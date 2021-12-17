@@ -1,7 +1,7 @@
 # HomeAssistant
 BatDash : My Custom Dashboard pour PC, mobile, tabeltte
 
-Theme nuit
+Theme nuit (center version)
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
 
 Theme nuit + alarme
