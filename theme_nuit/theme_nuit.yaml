@@ -4,7 +4,7 @@ theme_nuit:
 
   # Ma couleur de fond
   text_on: lightgrey
-  icon_on: "var(--my_color2)" #white
+  icon_on: "var(--my_color2)" 
   icon_off: grey
   pastille_on: 'var(--button-card-light-color)'
   pastille_aspi_on: rgba(255,127,80,0.5)
@@ -12,8 +12,8 @@ theme_nuit:
   pastille_tv_on: 'rgba(255,127,80,0.5)'
   pastille_off: 'rgba(70,70,70,0.3)'
   graph_line: 'rgba(36, 46, 66, 0.6)'
-  my_color: rgba(23, 23, 23,1) #rgba(200,200,200,0.7)  #rgba(220,220,220,0.7) #rgba(190,190,190,0.7) #rgba(150,150,150,0.9) #darkgrey #rgb(44, 44, 59)  #ON
-  my_color2: rgba(23, 23, 23,1)  #rgba(27, 28, 31,0.8) #rgba(19, 19, 19,0.4)    #OFF
+  my_color: rgba(23, 23, 23,1) #ON
+  my_color2: rgba(23, 23, 23,1)   #OFF
   my_color_card: "var(--my_color2)" #CARD
   my_color_pastille: "var(--my_color2)"
   
