@@ -4,7 +4,7 @@ theme_jour:
 
   # Ma couleur de fond
   text_on: lightgrey
-  icon_on: black #"var(--my_color2)" #white
+  icon_on: black 
   icon_off: grey
   pastille_on: 'var(--button-card-light-color)'
   pastille_aspi_on: rgba(255,127,80,0.5)
@@ -12,7 +12,7 @@ theme_jour:
   pastille_tv_on: 'rgba(255,127,80,0.5)'
   pastille_off: 'rgba(70,70,70,0.3)'
   graph_line: 'rgba(36, 46, 66, 0.9)'
-  my_color: rgba(43, 57, 84,0.9) #rgba(200,200,200,0.7)   #ON
+  my_color: rgba(43, 57, 84,0.9)    #ON
   my_color2: 'rgba(14, 19, 28,0.5)' #OFF
   my_color_card: 'var(--my_color2)'  #CARD
   my_color_pastille: 'var(--my_color2)' 
