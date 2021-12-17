@@ -14,4 +14,15 @@ Je ne suis pas un expert, je suis simplement un passionné, les codes ne sont pe
 
 Ca été très long à écrire, je modifie régulièrement les détails, ou quand j'ai des nouvelles idées. 
 
+Mon setup :
+- Raspberry 4 + SSD
+- ConBee2
+- Dongle Bluetooth 
+- Box Internet Orange Livebox 4
+- 3 cubes Tenda Nova MW6 parametrés en pont 
+
+J'utilise Alexa en vocal, et HomeKit sur l'Apple Watch
+
+
+
  
