@@ -57,7 +57,7 @@ Mes intégrations  hacs:
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs.jpg)
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs2.jpg)
 
- Vous verrez que j'ai beaucoup de templates dans mon fichiers configuration.yaml, j'en écris beaucoup, et je les garde, mais ils ne servent pas tous ! 😉
+ Vous verrez beaucoup de templates dans mon fichiers configuration.yaml, je les crée, et je les garde, mais ils ne servent pas tous ! 😉
 
 J'ai fait le choix de poster ma configuration intégrale, meme ce qui est potentiellemnt inutile mais que je conserve pour le moment. 
 
