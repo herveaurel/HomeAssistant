@@ -5,7 +5,7 @@ Theme nuit
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
 
 Theme nuit + alarme
-(Icone clignote jaune quand arming, rouge quand armed_away)
+(Icone clignote jaune quand 'arming', rouge quand 'armed_away')
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarme.jpg)
 
 Theme jour
