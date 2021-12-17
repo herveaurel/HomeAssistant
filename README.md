@@ -30,5 +30,6 @@ Mes intégrations :
 Mes intégrations  hacs:
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs2.jpg)
 
  
