@@ -53,9 +53,9 @@ J'ai fait le choix de poster ma configuration intégrale, meme ce qui est potent
 Si vous aimez quelque chose ici, likez 🌟 de mon repo !
 If you like anything here, be sure to 🌟 my repo !
 
-Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️ : https://www.buymeacoffee.com/aurelrv ou paypal.me/aaherve
+Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️ : https://www.buymeacoffee.com/aurelrv ou https://www.paypal.com/paypalme/aaherve
 
-If you want to offer me a little beer 🍺 or a coffee ☕️ : https://www.buymeacoffee.com/aurelrv or paypal.me/aaherve
+If you want to offer me a little beer 🍺 or a coffee ☕️ : https://www.buymeacoffee.com/aurelrv or https://www.paypal.com/paypalme/aaherve
 
 Merci ! 
 Thank you !
