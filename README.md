@@ -1,5 +1,5 @@
 # HomeAssistant
-BatDark : Dashboard custom by Me 
+BatDark : My Custom Dashboard
 
 Bienvenue, je vous propose ma configuration personnelle, Tableau de bord , templates, thèmes jour et nuit. 
 
