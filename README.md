@@ -25,6 +25,11 @@ Mon setup :
 
 J'utilise Alexa en vocal, et HomeKit sur l'Apple Watch
 
+
+Mes modules :
+
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/modules.jpg)
+
 Mes intégrations :
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations.jpg)
