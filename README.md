@@ -49,3 +49,5 @@ Mes intégrations  hacs:
  Vous verrez que j'ai beaucoup de templates dans mon fichiers configuration.yaml, j'en écris beaucoup, et je les garde, mais ils ne servent pas tous ! 😉
 
 J'ai fait le choix de poster ma configuration intégrale, meme ce qui est potentiellemnt inutile mais que je conserve pour le moment. 
+
+If you like anything here, be sure to 🌟 my repo !
