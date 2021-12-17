@@ -50,4 +50,10 @@ Mes intégrations  hacs:
 
 J'ai fait le choix de poster ma configuration intégrale, meme ce qui est potentiellemnt inutile mais que je conserve pour le moment. 
 
+Si vous aimez quelque chose ici, likez 🌟 de mon repo !
 If you like anything here, be sure to 🌟 my repo !
+
+Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️ pour me remercier ou m'encourager, c'est ici : https://www.buymeacoffee.com/aurelrv ou paypal.me/aaherve
+Merci ! 
+If you want to offer me a little beer 🍺 or a coffee ☕️ to thank or encourage me, it's here: https://www.buymeacoffee.com/aurelrv or paypal.me/aaherve
+Thank you !
