@@ -1,5 +1,5 @@
 # HomeAssistant
-BatDash : My Custom Dashboard
+BatDash : My Custom Dashboard pour PC, mobile, tabeltte
 
 Theme nuit
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
@@ -11,11 +11,23 @@ Theme nuit + alarme
 Theme jour
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_light.jpg)
 
+Sur mobile
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_1.png)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_2.png)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_3.png)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_4.png)
+
+Dashboard 1 page : popup card ! 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_2.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_3.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_4.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_5.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_6.jpg)
+
 
 Bienvenue ! 
 
 Je vous propose ma configuration personnelle :
-- Tableau de bord (lovelace UI mode)
+- Tableau de bord (lovelace UI mode) PC, smartphone, tablette...
 - templates
 - thèmes jour et nuit
 
