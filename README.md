@@ -1,5 +1,5 @@
 # HomeAssistant
-BatDark : My Custom Dashboard
+BatDash : My Custom Dashboard
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
 
