@@ -23,6 +23,8 @@ Mon setup :
 
 J'utilise Alexa en vocal, et HomeKit sur l'Apple Watch
 
+Mes intégrations :
 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations.jpg)
 
  
