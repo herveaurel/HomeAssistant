@@ -1,8 +1,13 @@
 # HomeAssistant
 BatDash : My Custom Dashboard
 
+Theme nuit
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
+
+Theme nuit + alarme
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarme.jpg)
+
+Theme jour
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_light.jpg)
 
 
