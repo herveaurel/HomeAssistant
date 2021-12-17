@@ -12,8 +12,10 @@ Theme jour
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_light.jpg)
 
 Sur mobile
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_1.png)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_2.png)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_3.png)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_4.png)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_1.PNG)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_2.PNG)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_3.PNG)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile_4.PNG)
 
 Dashboard 1 page : popup card ! 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg)
