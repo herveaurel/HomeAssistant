@@ -2,7 +2,7 @@
 BatDash : My Custom Dashboard pour PC, mobile, tabeltte
 
 Theme nuit (center version)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark_v2.jpg)
 
 Theme nuit + alarme
 (Icone clignote jaune quand 'arming', rouge quand 'armed_away')
