@@ -15,7 +15,7 @@ Theme jour
 Bienvenue ! 
 
 Je vous propose ma configuration personnelle :
-- Tableau de bord 
+- Tableau de bord (lovelace UI mode)
 - templates
 - thèmes jour et nuit
 
