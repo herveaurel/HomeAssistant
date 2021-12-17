@@ -1,0 +1,943 @@
+button_card_templates:
+  bouton_titre:
+    show_icon: false
+    show_name: true
+    show_state: false
+    show_label: false
+    styles:
+      name:
+        - top: 30%
+        - left: 5%
+        - font-size: 15px
+        - font-weight: bold
+        - font-style: italic
+        - color: darkgrey
+        - position: absolute
+      label:
+        - top: 55%
+        - left: 5%
+        - font-size: 13px
+        - font-style: italic
+        - color: grey
+        - position: absolute
+      card:
+        - height: 25px
+    double_tap_action:
+      action: toggle
+    tap_action:
+      action: more-info
+  bouton_mode:
+    show_icon: true
+    show_name: true
+    show_state: false
+    show_label: true
+    styles:
+      img_cell:
+        - background-color: rgba(255,0,0,0.2)
+        - border-radius: 50%
+        - place-self: start
+        - width: 27px
+        - height: 27px
+        - margin-top: 2px
+        - margin-left: 3px
+      icon:
+        - place-self: start
+        - width: 76%
+        - color: grey
+      name:
+        - top: 15%
+        - left: 40%
+        - font-size: 90%
+        - font-weight: bold
+        - position: absolute
+      label:
+        - top: 40%
+        - left: 40%
+        - font-weight: null
+        - font-size: 90%
+        - position: absolute
+      card:
+        - height: 50px
+        - width: null
+        - padding: 5px
+        - font-size: 100%
+        - border-color: transparent
+        - background-color: transparent
+    state:
+      - value: 'off'
+        color: grey
+        styles:
+          img_cell:
+            - background-color: var(--pastille_off)
+          icon:
+            - color: var(--icon_off)
+          name:
+            - color: grey
+          label:
+            - color: grey
+    tap_action:
+      action: more-info
+  bouton_activite:
+    show_icon: true
+    show_name: false
+    show_state: false
+    show_label: false
+    styles:
+      img_cell:
+        - background-color: rgba(70,70,70,0.5)
+        - border-radius: 50%
+        - width: 34px
+        - height: 34px
+      icon:
+        - width: 80%
+      card:
+        - height: 50px
+        - box-shadow: none
+        - font-size: 100%
+        - background-color: transparent
+        - border-color: rgba(152, 167, 185, 0)
+      custom_fields:
+        notification:
+          - border-radius: 50%
+          - position: absolute
+          - left: 63%
+          - top: 48%
+          - height: 30%
+          - width: 30%
+          - font-size: 85%
+          - line-height: 167%
+          - font-weight: bold
+    tap_action:
+      action: more-info
+    double_tap_action:
+      action: more-info
+    state:
+      - value: 'off'
+        styles:
+          img_cell:
+            - background-color: rgba(70,70,70,0.2)
+          icon:
+            - color: grey
+          card:
+            - opacity: 60%
+      - value: unavailable
+        styles:
+          img_cell:
+            - background-color: rgba(70,70,70,0.2)
+          icon:
+            - color: grey
+          card:
+            - opacity: 60%
+  bouton_badge:
+    show_icon: false
+    show_name: false
+    show_state: false
+    show_label: true
+    styles:
+      label:
+        - justify-self: center
+        - padding: 1px
+        - font-weight: null
+        - font-size: 13px
+        - font-weight: bold
+        - color: lightgrey
+      grid:
+        - grid-template-areas: '"l"'
+      card:
+        - border-radius: 18px
+        - height: 40px
+        - width: auto
+        - padding-left: 6px
+        - padding-right: 6px
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+        - border-radius: 25px
+        - background-color: var(--my_color_pastille)
+        - border-color: rgba(152, 167, 185, 0.2)
+        - border-style: outset
+        - border-width: 1px
+    double_tap_action:
+      action: more-info
+  bouton_rond:
+    aspect_ratio: 1/1
+    show_icon: true
+    show_name: false
+    show_state: false
+    show_label: false
+    styles:
+      img_cell:
+        - background-color: rgba(70,70,70,0.5)
+        - border-radius: 50%
+        - width: 40px
+        - height: 40px
+      icon:
+        - width: 70%
+      card:
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+        - border-radius: 50%
+        - font-size: 110%
+        - transition: none
+        - color: rgba(255, 255, 255, 0.3)
+        - background-color: var(--my_color_pastille)
+        - border-color: rgba(152, 167, 185, 0.2)
+        - border-style: outset
+        - border-width: 1px
+      custom_fields:
+        notification:
+          - border-radius: 50%
+          - position: absolute
+          - left: 63%
+          - top: 48%
+          - height: 30%
+          - width: 30%
+          - font-size: 85%
+          - line-height: 167%
+          - font-weight: bold
+    double_tap_action:
+      action: more-info
+    state:
+      - value: 'off'
+        styles:
+          img_cell:
+            - background-color: rgba(70,70,70,0.2)
+          icon:
+            - color: grey
+          card: null
+      - value: disarmed
+        color: grey
+        styles:
+          img_cell:
+            - background-color: rgba(70,70,70,0.2)
+      - value: armed_away
+        color: red
+        styles:
+          img_cell:
+            - background-color: rgba(255,0,0,0.2)
+          icon:
+            - color: red
+      - value: arming
+        color: gold
+        styles:
+          img_cell:
+            - background-color: rgba(255,215,0,0.2)
+          icon:
+            - animation: blink 1s ease infinite
+      - value: triggered
+        color: red
+        styles:
+          img_cell:
+            - background-color: rgba(255,0,0,0.2)
+          icon:
+            - animation: blink 1s ease infinite
+  bouton_systeme:
+    aspect_ratio: 1/1
+    show_icon: true
+    show_name: true
+    show_state: false
+    show_label: true
+    styles:
+      img_cell:
+        - border-radius: 50%
+        - place-self: start
+        - width: 40px
+        - height: 40px
+        - margin-left: 4%
+        - margin-top: 2%
+      icon:
+        - color: grey
+        - place-self: start
+        - width: 75%
+      name:
+        - color: grey
+        - top: 14%
+        - left: 34%
+        - font-size: 100%
+        - font-weight: bold
+        - position: absolute
+      state:
+        - top: 7%
+        - left: 11%
+        - position: absolute
+      card:
+        - font-size: 100%
+        - transition: none
+        - color: >
+            [[[ return (entity.state === 'on' || entity.state === 'home') ?
+            'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.3)'; ]]]
+        - background-color: var(--my_color2)
+        - border-color: rgba(152, 167, 185, 0.2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+      custom_fields:
+        ic:
+          - position: absolute
+          - top: 2%
+          - left: 110%
+          - width: calc(55% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+          - opacity: 100%
+        graph:
+          - position: absolute
+          - top: 70%
+          - left: 50%
+          - width: calc(100% + 25px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 12
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+        circle:
+          - top: 17%
+          - left: 66.2%
+          - width: 30%
+          - position: absolute
+          - letter-spacing: 0.03vw
+        info1:
+          - font-size: 12px
+          - color: grey
+          - top: 55%
+          - left: 3.2%
+          - position: absolute
+          - width: null
+        info2:
+          - font-size: 12px
+          - color: grey
+          - top: 65%
+          - left: 3.2%
+          - width: null
+          - position: absolute
+        info3:
+          - font-size: 12px
+          - color: grey
+          - top: 75%
+          - left: 3.2%
+          - width: null
+          - position: absolute
+        info4:
+          - font-size: 12px
+          - color: grey
+          - top: 85%
+          - left: 3.2%
+          - width: null
+          - position: absolute
+  bouton_person:
+    show_entity_picture: true
+    show_icon: false
+    show_name: false
+    show_state: false
+    show_label: true
+    styles:
+      entity_picture:
+        - border-radius: 50%
+        - top: 0%
+        - left: 0%
+        - width: 37%
+        - color: gray
+        - opacity: 80%
+      name:
+        - top: 5%
+        - left: 8%
+        - position: absolute
+        - color: grey
+        - font-size: 85%
+      state:
+        - top: 79%
+        - left: 5%
+        - position: absolute
+      label:
+        - font-size: 90%
+        - font-weight: bold
+        - top: 52%
+        - left: 5%
+        - position: absolute
+      card:
+        - height: 85px
+        - font-size: 100%
+        - border-color: rgba(152, 167, 185, 0.2)
+        - background-color: >
+            [[[ return (entity.state === 'on' || entity.state === 'home') ?
+            'var(--my_color2)' : 'var(--my_color_pastille)'; ]]]
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+      custom_fields:
+        heure:
+          - font-size: 85%
+          - top: 70%
+          - left: 5%
+          - color: grey
+          - position: absolute
+        batterie:
+          - font-size: 80%
+          - top: 4%
+          - left: 70%
+          - position: absolute
+          - color: lightgrey
+        icon_batterie:
+          - width: 23%
+          - top: 17%
+          - left: 70%
+          - position: absolute
+    state:
+      - value: 'on'
+        styles:
+          card:
+            - box-shadow: ' outset -1px -1px 2px 0px rgb(12, 12, 14) '
+            - animation: ball-scale 0.2s
+            - border-width: 1px
+      - value: 'off'
+        styles:
+          card:
+            - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+            - animation: ball-scale2 0.2s
+            - border-width: 1px
+    double_tap_action:
+      action: more-info
+  effet:
+    extra_styles: |
+      @keyframes ball-scale {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(0.90);
+        }
+      }
+      @keyframes ball-scale2 {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(0.90);
+        }
+      }
+
+      @keyframes ball-scale2 {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(0.90);
+        }
+      }
+      @keyframes ball-scale2 {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(0.90);
+        }
+      }
+  bouton_piece:
+    show_icon: true
+    show_name: true
+    show_state: false
+    show_label: true
+    styles:
+      img_cell:
+        - background-color: rgba(70,70,70,0.5)
+        - border-radius: 50%
+        - place-self: start
+        - width: 34px
+        - height: 34px
+        - margin-top: 11px
+      icon:
+        - place-self: start
+        - width: 80%
+      name:
+        - top: 22%
+        - left: 30%
+        - font-size: 100%
+        - font-weight: bold
+        - position: absolute
+      state:
+        - color: lightgrey
+        - top: 45%
+        - left: 50%
+        - font-size: 90%
+        - position: absolute
+      label:
+        - top: 44%
+        - left: 30%
+        - font-weight: null
+        - font-size: 95%
+        - position: absolute
+      card:
+        - height: 76px
+        - padding: 3px
+        - font-size: 100%
+        - border-color: rgba(152, 167, 185, 0.2)
+        - background-color: var(--my_color2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+        - animation: ball-scale 0.2s
+      custom_fields:
+        notification:
+          - border-radius: 50%
+          - position: absolute
+          - left: 0%
+          - top: 1%
+          - height: 16%
+          - width: 15%
+          - font-size: 90%
+          - line-height: 137%
+          - font-weight: bold
+        ic:
+          - position: absolute
+          - top: 70%
+          - left: 65%
+          - width: calc(60% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+        lum:
+          - position: absolute
+          - top: '-03%'
+          - left: 50%
+          - width: calc(70% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+        porte:
+          - position: absolute
+          - top: 70%
+          - left: 75%
+          - width: calc(35% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+        mouv:
+          - position: absolute
+          - top: 70%
+          - left: 90%
+          - width: calc(35% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+        moust:
+          - position: absolute
+          - top: 70%
+          - left: 35%
+          - width: calc(70% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+        graph:
+          - position: absolute
+          - top: 100%
+          - left: 50%
+          - width: calc(80% + 25px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 12
+          - '--paper-card-background-color': rgba(0, 0, 0, 0)
+          - '--ha-card-background': rgba(0, 0, 0, 0)"
+          - '--ha-card-box-shadow': none
+          - pointer-events: none
+    state:
+      - value: 'on'
+        styles:
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: var(--button-card-light-color)
+          icon:
+            - color: var(--icon_on)
+            - transition: 2s ease
+          name:
+            - color: var(--text_on)
+      - value: 'off'
+        color: grey
+        styles:
+          card:
+            - animation: ball-scale2 0.2s
+          img_cell:
+            - background-color: var(--pastille_off)
+          icon:
+            - color: var(--icon_off)
+            - transition: 2s ease
+          name:
+            - color: grey
+    double_tap_action:
+      action: toggle
+  bouton_piece_graph:
+    custom_fields:
+      graph:
+        card:
+          type: custom:mini-graph-card
+          height: 300
+          line_width: 5
+          lower_bound: 18
+          points_per_hour: 1
+          hours_to_show: 24
+          show:
+            fill: fade
+            icon: false
+            name: false
+            state: false
+            legend: false
+            points: false
+            labels: false
+  bouton_securite:
+    double_tap_action:
+      action: more-info
+    aspect_ratio: 1/1
+    show_icon: true
+    show_name: true
+    show_state: true
+    show_label: false
+    styles:
+      img_cell:
+        - background-color: rgba(255,0,0,0.2)
+        - border-radius: 50%
+        - place-self: start
+        - width: 50px
+        - height: 50px
+        - margin-top: 4px
+      icon:
+        - place-self: start
+        - width: 80%
+      name:
+        - top: 40%
+        - left: 6%
+        - font-size: 100%
+        - font-weight: bold
+        - position: absolute
+      state:
+        - color: lightgrey
+        - top: 50%
+        - left: 6%
+        - font-size: 90%
+        - position: absolute
+      label:
+        - color: lightgrey
+        - top: 40%
+        - left: 36%
+        - font-weight: bold
+        - font-size: 90%
+        - position: absolute
+      card:
+        - padding: 5px
+        - font-size: 100%
+        - border-color: rgba(152, 167, 185, 0.2)
+        - background-color: var(--my_color2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+      custom_fields:
+        batterie:
+          - top: 4%
+          - left: 66.2%
+          - width: 30%
+          - position: absolute
+          - letter-spacing: 0.03vw
+        ic:
+          - opacity: 80%
+          - position: absolute
+          - top: 80%
+          - left: 50%
+          - width: calc(120% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+    state:
+      - value: disarmed
+        color: grey
+        styles:
+          img_cell:
+            - background-color: rgba(70,70,70,0.2)
+          state:
+            - color: grey
+          name:
+            - color: grey
+      - value: armed_away
+        color: red
+        styles:
+          img_cell:
+            - background-color: rgba(255,0,0,0.2)
+          state:
+            - color: red
+            - font-weight: bold
+          icon:
+            - color: red
+      - value: arming
+        color: gold
+        styles:
+          img_cell:
+            - background-color: rgba(255,215,0,0.2)
+          icon:
+            - animation: blink 1s ease infinite
+          state:
+            - color: tomato
+      - value: triggered
+        color: red
+        styles:
+          img_cell:
+            - background-color: rgba(255,0,0,0.2)
+          state:
+            - color: red
+          icon:
+            - animation: blink 1s ease infinite
+  bouton_multimedia:
+    double_tap_action:
+      action: toggle
+    aspect_ratio: 1/1
+    show_icon: true
+    show_name: true
+    show_state: false
+    show_label: true
+    styles:
+      img_cell:
+        - background-color: rgba(255,0,0,0.2)
+        - border-radius: 50%
+        - place-self: start
+        - width: 50px
+        - height: 50px
+        - margin-top: 4px
+      icon:
+        - place-self: start
+        - width: 80%
+      name:
+        - top: 40%
+        - left: 6%
+        - font-size: 100%
+        - font-weight: bold
+        - position: absolute
+      state:
+        - color: lightgrey
+        - top: 50%
+        - left: 6%
+        - font-size: 90%
+        - position: absolute
+      label:
+        - color: lightgrey
+        - top: 50%
+        - left: 6%
+        - font-weight: bold
+        - font-size: 90%
+        - position: absolute
+      card:
+        - padding: 5px
+        - font-size: 100%
+        - border-color: rgba(152, 167, 185, 0.2)
+        - background-color: var(--my_color2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+      custom_fields:
+        notification:
+          - border-radius: 50%
+          - position: absolute
+          - left: 33%
+          - top: 10%
+          - height: 15%
+          - width: 15%
+          - font-size: 100%
+          - line-height: 117%
+          - font-weight: bold
+        circle:
+          - top: 4%
+          - left: 66.2%
+          - width: 30%
+          - position: absolute
+          - letter-spacing: 0.03vw
+          - stroke: |
+              [[[
+                if (entity.state < 49)
+                  return 'grey';
+                if (entity.state > 49)
+                  return 'tomato';
+                return '';
+              ]]]
+        ac:
+          - position: absolute
+          - opacity: 50%
+          - top: 70%
+          - left: 65%
+          - width: calc(100% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+  bouton_appareil:
+    show_icon: true
+    show_name: true
+    show_state: false
+    show_label: true
+    styles:
+      img_cell:
+        - background-color: rgba(255,0,0,0.2)
+        - border-radius: 50%
+        - place-self: start
+        - width: 40px
+        - height: 40px
+        - margin-top: 5px
+      icon:
+        - place-self: start
+        - width: 76%
+        - color: grey
+      name:
+        - top: 24%
+        - left: 32%
+        - font-size: 100%
+        - font-weight: bold
+        - position: absolute
+      state:
+        - color: lightgrey
+        - top: 42%
+        - left: 48%
+        - font-size: 90%
+        - position: absolute
+      label:
+        - top: 42%
+        - left: 32%
+        - font-weight: null
+        - font-size: 90%
+        - position: absolute
+      card:
+        - height: 104px
+        - padding: 5px
+        - font-size: 100%
+        - border-color: rgba(152, 167, 185, 0.2)
+        - background-color: var(--my_color2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+      custom_fields:
+        batterie:
+          - top: 4%
+          - left: 75%
+          - color: |
+              [[[
+                if (entity.state == 'cleaning')
+                  return 'lightgrey';
+                if (entity.state == 'on')
+                  return 'lightgrey';
+               return 'grey';
+              ]]]
+          - font-weight: null
+          - font-size: 100%
+          - position: absolute
+        ic:
+          - position: absolute
+          - top: 70%
+          - left: 50%
+          - width: calc(80% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
+  bouton_appareil_lave_state:
+    state:
+      - value: 'on'
+        styles:
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: dodgerblue
+          icon:
+            - color: var(--icon_on)
+            - transition: 2s ease
+          name:
+            - color: var(--text_on)
+          label:
+            - color: var(--text_on)
+      - value: 'off'
+        color: grey
+        styles:
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: var(--pastille_off)
+          icon:
+            - color: var(--icon_off)
+            - transition: 2s ease
+          name:
+            - color: grey
+          label:
+            - color: grey
+      - value: unavailable
+        styles:
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: var(--pastille_off)
+          icon:
+            - color: firebrick
+            - transition: 2s ease
+          name:
+            - color: grey
+  bouton_appareil_aspi_state:
+    state:
+      - value: cleaning
+        styles:
+          icon:
+            - animation: rotating 4s ease infinite
+            - color: var(--icon_on)
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: rgba(255,127,80,0.5)
+          name:
+            - color: var(--text_on)
+          label:
+            - color: var(--text_on)
+      - value: docked
+        color: grey
+        styles:
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: var(--pastille_off)
+          icon:
+            - color: grey
+          name:
+            - color: grey
+      - value: unavailable
+        styles:
+          icon:
+            - animation: blink 0.8s ease infinite
+            - color: firebrick
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: var(--pastille_off)
+          name:
+            - color: grey
+          label: null
+      - value: error
+        styles:
+          icon:
+            - animation: blink 0.8s ease infinite
+            - color: null
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: var(--pastille_off)
+          name:
+            - color: firebrick
+          label:
+            - color: firebrick
+    tap_action:
+      action: more-info
+    double_tap_action:
+      action: navigate
+      navigation_path: /lovelace/1
