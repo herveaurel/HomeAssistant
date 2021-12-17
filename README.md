@@ -1,7 +1,7 @@
 # HomeAssistant
 BatDark : My Custom Dashboard
 
-
+![alt text](https://github.com/rherveaurel/HomeAssistant/Captures/Dashboard-dark.jpg)
 
 Bienvenue, je vous propose ma configuration personnelle, Tableau de bord , templates, thèmes jour et nuit. 
 
