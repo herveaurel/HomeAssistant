@@ -3,7 +3,7 @@
 ---Pour les changements, lisez le changelog---
 
 
-BatDash : My Custom Dashboard pour PC, mobile, tabeltte
+Bat-Geek : My Custom Dashboard pour PC, mobile, tabeltte
 
 Theme nuit (center title version)
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
