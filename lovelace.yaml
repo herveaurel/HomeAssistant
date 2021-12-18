@@ -119,16 +119,18 @@ button_card_templates:
             - background-color: rgba(70,70,70,0.2)
           icon:
             - color: grey
+            - opacity: 40%
           card:
-            - opacity: 60%
+            - opacity: 100%
       - value: unavailable
         styles:
           img_cell:
             - background-color: rgba(70,70,70,0.2)
           icon:
             - color: grey
+            - opacity: 40%
           card:
-            - opacity: 60%
+            - opacity: 100%
   bouton_badge:
     show_icon: false
     show_name: false
@@ -146,7 +148,7 @@ button_card_templates:
         - grid-template-areas: '"l"'
       card:
         - border-radius: 18px
-        - height: 40px
+        - height: 35px
         - width: auto
         - padding-left: 6px
         - padding-right: 6px
