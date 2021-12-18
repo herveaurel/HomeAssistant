@@ -1,5 +1,6 @@
 2021-12-18
 Button "pièces" and "appareils": change height
+column titles : correction for Dashboard mobile
 
 2021-12-17
 column titles : center for PC Dashboard 
