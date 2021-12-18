@@ -467,7 +467,7 @@ button_card_templates:
         - font-size: 95%
         - position: absolute
       card:
-        - height: 76px
+        - height: 80px
         - padding: 3px
         - font-size: 100%
         - border-color: rgba(152, 167, 185, 0.2)
@@ -812,7 +812,7 @@ button_card_templates:
         - font-size: 90%
         - position: absolute
       card:
-        - height: 104px
+        - height: 111px
         - padding: 5px
         - font-size: 100%
         - border-color: rgba(152, 167, 185, 0.2)
