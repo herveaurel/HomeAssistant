@@ -1,3 +1,5 @@
-18/12/2021
-date & time & hello : center
-column titles : center
+2021-12-18
+Button "pièces" and "appareils": change height
+
+2021-12-17
+column titles : center for PC Dashboard 
