@@ -1,6 +1,6 @@
 # HomeAssistant
 
-<!-- Pour les changements, lisez le changelog -->
+---Pour les changements, lisez le changelog---
 
 
 BatDash : My Custom Dashboard pour PC, mobile, tabeltte
