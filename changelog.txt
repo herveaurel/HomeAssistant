@@ -1,7 +1,7 @@
 2021-12-18
 Alarme icon: change Color and bug fix 
 Alarme img_cell: change Color and bug fix 
-Button "activite" : change opacity 
+Button "activite" : change opacity  
 
 2021-12-18
 Button "badges" : change height
