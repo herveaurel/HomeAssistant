@@ -119,7 +119,7 @@ button_card_templates:
             - background-color: rgba(70,70,70,0.2)
           icon:
             - color: grey
-            - opacity: 40%
+            - opacity: 70%
           card:
             - opacity: 100%
       - value: unavailable
@@ -128,7 +128,7 @@ button_card_templates:
             - background-color: rgba(70,70,70,0.2)
           icon:
             - color: grey
-            - opacity: 40%
+            - opacity: 70%
           card:
             - opacity: 100%
   bouton_badge:
@@ -211,26 +211,28 @@ button_card_templates:
           img_cell:
             - background-color: rgba(70,70,70,0.2)
       - value: armed_away
-        color: red
+        color: var(--icon_on)
         styles:
           img_cell:
-            - background-color: rgba(255,0,0,0.2)
+            - background-color: rgba(255,0,0,0.7)
           icon:
-            - color: red
+            - color: var(--icon_on)
       - value: arming
         color: gold
         styles:
           img_cell:
-            - background-color: rgba(255,215,0,0.2)
+            - background-color: rgba(255,215,0,0.7)
           icon:
             - animation: blink 1s ease infinite
+            - color: var(--icon_on)
       - value: triggered
         color: red
         styles:
           img_cell:
-            - background-color: rgba(255,0,0,0.2)
+            - background-color: rgba(255,0,0,0.7)
           icon:
             - animation: blink 1s ease infinite
+            - color: var(--icon_on)
   bouton_systeme:
     aspect_ratio: 1/1
     show_icon: true
@@ -358,7 +360,7 @@ button_card_templates:
         - left: 5%
         - position: absolute
       card:
-        - height: 85px
+        - height: 95px
         - font-size: 100%
         - border-color: rgba(152, 167, 185, 0.2)
         - background-color: >
@@ -470,7 +472,7 @@ button_card_templates:
         - font-size: 95%
         - position: absolute
       card:
-        - height: 80px
+        - height: 77px
         - padding: 3px
         - font-size: 100%
         - border-color: rgba(152, 167, 185, 0.2)
@@ -673,30 +675,32 @@ button_card_templates:
         color: red
         styles:
           img_cell:
-            - background-color: rgba(255,0,0,0.2)
+            - background-color: rgba(255,0,0,0.7)
           state:
             - color: red
             - font-weight: bold
           icon:
-            - color: red
+            - color: var(--icon_on)
       - value: arming
         color: gold
         styles:
           img_cell:
-            - background-color: rgba(255,215,0,0.2)
+            - background-color: rgba(255,215,0,0.7)
           icon:
             - animation: blink 1s ease infinite
+            - color: var(--icon_on)
           state:
             - color: tomato
       - value: triggered
         color: red
         styles:
           img_cell:
-            - background-color: rgba(255,0,0,0.2)
+            - background-color: rgba(255,0,0,0.7)
           state:
             - color: red
           icon:
             - animation: blink 1s ease infinite
+            - color: var(--icon_on)
   bouton_multimedia:
     double_tap_action:
       action: toggle
