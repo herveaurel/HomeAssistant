@@ -3,6 +3,9 @@ Pastille_off : correction
 pastille_on : correction and simplification
 All Codes : simplification 
 
+2021-12-19
+Best code for themes
+
 2021-12-18
 Alarme icon: change Color and bug fix 
 Alarme img_cell: change Color and bug fix 
