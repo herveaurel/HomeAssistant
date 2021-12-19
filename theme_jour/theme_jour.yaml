@@ -1,25 +1,31 @@
-
-
 theme_jour:  
 
-  # Ma couleur de fond
+  # Wallpaper - Fond d'écran 
+  lovelace-background: 'center / cover no-repeat url("/local/wallpaper/ha-jour2.jpg")'
+  
+  # Text in Cards
   text_on: lightgrey
-  icon_on: black 
+  
+  # Icon
+  icon_on: black
   icon_off: grey
-  pastille_on: 'var(--button-card-light-color)'
+  
+  # Icon pastille
+  pastille_on: 'var(--button-card-light-color)' # IMG_CELL BUTTONS PIECES
+  my_color_pastille: "var(--my_color2)" # IMG_CELL OTHER BUTTONS 
+  pastille_off: 'rgba(70,70,70,0.4)' # IMG_CELL OFF
   pastille_aspi_on: rgba(255,127,80,0.5)
   pastille_lave_on: rgba(123,104,238,0.5)
-  pastille_tv_on: 'rgba(255,127,80,0.5)'
-  pastille_off: 'rgba(70,70,70,0.3)'
-  graph_line: 'rgba(36, 46, 66, 0.9)'
-  my_color: rgba(43, 57, 84,0.9)    #ON
-  my_color2: 'rgba(14, 19, 28,0.5)' #OFF
-  my_color_card: 'var(--my_color2)'  #CARD
-  my_color_pastille: 'var(--my_color2)' 
+  pastille_multimedia_on: 'rgba(255,127,80,0.5)'
 
+  # Graphique
+  graph_line: 'rgba(36, 46, 66, 0.9)'
   
-  # Fond d'écran 
-  lovelace-background: 'center / cover no-repeat url("/local/wallpaper/ha-jour2.jpg")' #ha-nuit4.jpg ha-back-jour.jpg
+  # Cards custom
+  my_color: rgba(43, 57, 84,0.9) # BUTTON ON
+  my_color2: 'rgba(14, 19, 28,0.5)'  # BUTTON OFF
+  my_color_card: "var(--my_color2)" # CARD INFO
+
   
   # Fonts
   primary-font-family: 'Avenir' #'Raleway,sans-serif'
