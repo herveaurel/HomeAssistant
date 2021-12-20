@@ -5,9 +5,12 @@ All Codes : simplification
 Button christmas lights : change to conditional card : christmas lights, halloween lights, or nothing 
 
 ----------------
+2021-12-20
+Best colors for themes
+New name
 
 2021-12-19
-Best code for themes
+Best codes for themes
 
 2021-12-18
 Alarme icon: change Color and bug fix 
