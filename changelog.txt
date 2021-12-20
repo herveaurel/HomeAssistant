@@ -1,13 +1,12 @@
 Coming soon
-Pastille_off : correction
-pastille_on : correction and simplification
 All Codes : simplification 
 Button christmas lights : change to conditional card : christmas lights, halloween lights, or nothing 
 
 ----------------
 2021-12-20
-Best colors for themes
-New name
+Best name and colors for themes
+Pastille_off : correction
+pastille_on : correction and simplification
 
 2021-12-19
 Best codes for themes
