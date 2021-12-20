@@ -1,0 +1,153 @@
+bat_night:
+
+
+  # Wallpaper - Fond d'écran 
+  #lovelace-background: 'center / cover no-repeat url("/local/wallpaper/back_dark.jpg")' 
+  
+  
+  # Text Cards
+  text_on: lightgrey
+  text_off: grey
+  text_title: dimgrey
+  text_systeme_info: grey
+  
+  # Icon
+  icon_on: "var(--my_color2)" #white
+  icon_off: grey
+  
+  # Icon pastille
+  pastille_on: 'var(--button-card-light-color)' # IMG_CELL BUTTONS PIECES
+  my_color_pastille: "var(--my_color2)" # IMG_CELL OTHER BUTTONS 
+  pastille_off: 'rgba(70,70,70,0.4)' # IMG_CELL OFF
+  pastille_aspi_on: rgba(255,127,80,0.5)
+  pastille_lave_on: rgba(123,104,238,0.5)
+  pastille_multimedia_on: 'rgba(255,127,80,0.5)'
+  
+  
+  # Graphique
+  graph_line: 'rgba(36, 46, 66, 0.6)'
+  
+  # Cards custom
+  my_color: rgba(45, 45, 45,1) # BUTTON ON
+  my_color2: rgba(23, 23, 23,1)  # BUTTON OFF
+  my_color_card: "var(--my_color2)" # CARD INFO
+  
+  # Fonts
+  primary-font-family: 'Avenir' #'Raleway,sans-serif'
+  paper-font-common-base_-_font-family: 'var(--primary-font-family)'
+  paper-font-common-code_-_font-family: 'var(--primary-font-family)'
+  paper-font-body1_-_font-family: 'var(--primary-font-family)'
+  paper-font-subhead_-_font-family: 'var(--primary-font-family)'
+  paper-font-headline_-_font-family: 'var(--primary-font-family)'
+  paper-font-caption_-_font-family: 'var(--primary-font-family)'
+  paper-font-title_-_font-family: 'var(--primary-font-family)'
+  ha-card-header-font-family: 'var(--primary-font-family)'
+
+  # Header:
+  app-header-background-color: black 
+  app-header-text-color: rgb(198, 203, 210)
+  # Main Interface Colors
+
+  primary-color: rgb(138, 180, 248)
+  light-primary-color: var(--primary-color)
+  primary-background-color: black 
+  secondary-background-color: rgb(32, 33, 36)
+  divider-color: var(--primary-background-color)
+  accent-color: rgb(138, 180, 248)
+  # Text
+  primary-text-color: rgb(242, 242, 242)
+  secondary-text-color: rgb(166, 166, 166)
+  text-primary-color: var(--primary-text-color)
+  disabled-text-color: rgba(184, 190, 199, 0.4)
+  # Sidebar Menu
+  sidebar-icon-color: rgb(169, 177, 188)
+  sidebar-text-color: rgb(198, 203, 210)
+  sidebar-background-color: rgb(32, 33, 36)
+  sidebar-selected-background-color: var(--primary-background-color)
+  sidebar-selected-icon-color: rgb(138, 180, 248)
+  sidebar-selected-text-color: var(--sidebar-selected-icon-color)
+  # Buttons
+  paper-item-icon-color: rgb(169, 177, 188)
+  paper-item-icon-active-color: rgb(138, 180, 248)
+  # States and Badges
+  state-icon-color: gb(138, 180, 248)
+  state-icon-active-color: rgb(169, 177, 188)
+  state-icon-unavailable-color: var(--disabled-text-color)
+  # Sliders
+  paper-slider-knob-color: rgb(138, 180, 248)
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--paper-slider-knob-color)
+  paper-slider-active-color: var(--paper-slider-knob-color)
+  paper-slider-secondary-color: var(--light-primary-color)
+  # Labels
+  label-badge-background-color: rgb(32, 33, 36)
+  label-badge-text-color: rgb(198, 203, 210)
+  label-badge-red: rgb(208, 101, 104)
+  label-badge-green: rgb(128, 200, 132)
+  label-badge-blue: rgb(138, 180, 248)
+  label-badge-yellow: rgb(223, 194, 113)
+  label-badge-gray: rgb(95, 98, 103)
+  # Cards
+  card-background-color: rgb(32, 33, 36)
+  ha-card-border-radius: "15px"
+  ha-card-box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+  paper-dialog-background-color: var(--card-background-color)
+  paper-listbox-background-color: var(--card-background-color)
+  paper-card-background-color: var(--card-background-color)
+  # Switches
+  switch-checked-button-color: rgb(138, 180, 248)
+  switch-checked-track-color: rgb(138, 180, 248)
+  switch-unchecked-button-color: rgb(172, 176, 185)
+  switch-unchecked-track-color: rgb(154, 160, 166)
+  # Toggles
+  paper-toggle-button-checked-button-color: var(--switch-checked-button-color)
+  paper-toggle-button-checked-bar-color: var(--switch-checked-track-color)
+  paper-toggle-button-unchecked-button-color: var(--switch-unchecked-button-color)
+  paper-toggle-button-unchecked-bar-color: var(--switch-unchecked-track-color)
+  # Table
+  table-row-background-color: var(--primary-background-color)
+  table-row-alternative-background-color: var(--secondary-background-color)
+  data-table-background-color: var(--primary-background-color)
+  mdc-checkbox-unchecked-color: rgb(169, 177, 188)
+  # Dropdowns
+  material-background-color: var(--secondary-background-color)
+  material-secondary-background-color: var(--primary-background-color)
+  mdc-theme-surface: var(--primary-background-color)
+  # Pre/Code
+  markdown-code-background-color: rgb(23, 23, 23)
+  # Checkboxes
+  mdc-select-fill-color: rgb(32, 33, 36)
+  mdc-select-ink-color: var(--primary-text-color)
+  mdc-select-label-ink-color: var(--secondary-text-color)
+  mdc-select-idle-line-color: var(--primary-text-color)
+  mdc-select-dropdown-icon-color: var(--secondary-text-color)
+  mdc-select-hover-line-color: var(--accent-color)
+  # Input
+  input-fill-color: var(--secondary-background-color)
+  input-dropdown-icon-color: var(--secondary-text-color)
+  input-ink-color: var(--primary-text-color)
+  input-label-ink-color: var(--secondary-text-color)
+  input-idle-line-color: var(--primary-text-color)
+  input-hover-line-color: var(--accent-color)
+
+  # Card-Mod #####################################################################
+  # Uncomment the Code below if you have card-mod installed and want blur effect #
+  ################################################################################
+
+
+  card-mod-theme: bat_night
+  card-mod-more-info-yaml: |
+   $: |
+     .mdc-dialog .mdc-dialog__scrim {
+       backdrop-filter: blur(15px);
+       -webkit-backdrop-filter: blur(15px);
+       background: rgba(0,0,0,0.1);
+     } 
+     .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+       box-shadow: none !important;
+       border-radius: var(--ha-card-border-radius);
+     }
+   .: |
+     :host {
+       --ha-card-box-shadow: none;
+     }
