@@ -1,28 +1,29 @@
-Coming soon
-All Codes : simplification 
+2021-12-21
+New Lovelace.yaml : almost 4000 lines deleted !
+New popup ! 
+All Codes : simplification with button_card_templates
 Button christmas lights : change to conditional card : christmas lights, halloween lights, or nothing 
-
-----------------
+---------------
 2021-12-20
 Best name and colors for themes
 Pastille_off : correction
 pastille_on : correction and simplification
-
+---------------
 2021-12-19
 Best codes for themes
-
+---------------
 2021-12-18
 Alarme icon: change Color and bug fix 
 Alarme img_cell: change Color and bug fix 
 Button "activite" : change opacity  
-
+---------------
 2021-12-18
 Button "badges" : change height
 Button "activite" : change opacity 
-
+---------------
 2021-12-18
 Button "pièces" and "appareils": change height
 column titles : correction for Dashboard mobile
-
+---------------
 2021-12-17
 column titles : center for PC Dashboard 
