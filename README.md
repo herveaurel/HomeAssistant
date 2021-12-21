@@ -5,17 +5,16 @@
 
 Bat-Geek : My Custom Dashboard pour PC, mobile, tabeltte
 
-Theme nuit (center title version)
+Theme bat_Dark (center title version)
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
 
-Theme nuit + alarme
-(Icone clignote jaune quand 'arming', rouge quand 'armed_away')
+Theme bat_Darkwith alarm
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarme.jpg)
 
-Theme jour
+Theme bat_Day
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_light.jpg)
 
-Sur mobile
+Mobile
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile.PNG)
 
 Dashboard 1 page : popup card ! 
