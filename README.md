@@ -3,7 +3,7 @@
 ---Pour les changements, lisez le changelog---
 
 
-Bat-Geek : My Custom Dashboard pour PC, mobile, tabeltte
+Bat-Geek : My Custom Dashboard for PC, mobile, tablette 
 
 Theme bat_Dark (center title version)
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
@@ -24,7 +24,7 @@ Dashboard 1 page : popup card !
 Bienvenue ! 
 
 Je vous propose ma configuration personnelle :
-- Tableau de bord (lovelace UI mode) PC, smartphone, tablette...
+- Tableau de bord (lovelace UI mode) PC, mobile, tablette
 - templates
 - thèmes jour et nuit
 
@@ -55,9 +55,13 @@ Mes intégrations  hacs:
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs.jpg)
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs2.jpg)
 
- Vous verrez beaucoup de templates dans mon fichiers configuration.yaml, je les crée, et je les garde, mais ils ne servent pas tous ! 😉
 
-J'ai fait le choix de poster ma configuration intégrale, meme ce qui est potentiellemnt inutile mais que je conserve pour le moment. 
+Je suis en mode UI.
+ 
+Je ne scinde pas mes fichiers, donc tout est dans configaration.yaml. 
+Il y a beaucoup de templates, je les rédige, et je les garde, mais ils ne servent pas tous ! 😉
+
+J'ai fait le choix de publier ma configuration intégrale, même ce qui est potentiellement inutile mais que je conserve pour le moment. 
 
 Si vous aimez quelque chose ici, likez 🌟 mon repo !
 If you like anything here, be sure to 🌟 my repo !
