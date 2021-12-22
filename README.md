@@ -19,11 +19,6 @@ Mobile
 
 Dashboard 1 page : popup card ! 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_2.jpg)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_3.jpg)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_4.jpg)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_5.jpg)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_6.jpg)
 
 
 Bienvenue ! 
