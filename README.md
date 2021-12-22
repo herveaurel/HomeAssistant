@@ -5,7 +5,7 @@
 
 Bat-Geek : My Custom Dashboard for PC, mobile, tablette 
 
-Theme bat_Dark (center title version)
+Theme bat_Dark 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
 
 Theme bat_Dark with alarm
