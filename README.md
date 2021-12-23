@@ -1,5 +1,8 @@
 # HomeAssistant
 
+French group Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
+
+
 ---Pour les changements, lisez le changelog---
 
 
