@@ -1,4 +1,205 @@
 button_card_templates:
+  capteur_aspi:
+    show_icon: true
+    show_name: true
+    show_state: true
+    show_label: false
+    show_last_changed: false
+    styles:
+      img_cell:
+        - background-color: var(--pastille_off)
+        - border-radius: 50%
+        - place-self: start
+        - width: 35px
+        - height: 35px
+        - margin-top: 30px
+      icon:
+        - place-self: start
+        - width: 80%
+        - color: grey
+      name:
+        - color: lightgrey
+        - top: 5%
+        - left: 8%
+        - font-size: 83%
+        - font-weight: bold
+        - position: absolute
+      state:
+        - color: lightgrey
+        - top: 55%
+        - left: 40%
+        - font-size: 100%
+        - position: absolute
+      label:
+        - color: darkgrey
+        - top: 75%
+        - left: 8%
+        - font-size: 75%
+        - position: absolute
+      card:
+        - height: 75px
+        - padding: 3px
+        - padding: 3px
+        - font-size: 100%
+        - border-color: rgba(152, 167, 185, 0.2)
+        - background-color: var(--my_color2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+    state:
+      - value: 'off'
+        styles:
+          img_cell:
+            - background-color: var(--pastille_off)
+          icon:
+            - color: var(--icon_off)
+          card: null
+      - value: 'on'
+        styles:
+          img_cell:
+            - background-color: rgba(255,0,0,0.8)
+          name:
+            - color: red
+            - font-weight: bold
+          label:
+            - color: red
+            - font-weight: bold
+          icon:
+            - color: var(--icon_on)
+          card:
+            - border-color: red
+      - value: 25
+        operator: '>'
+        styles:
+          icon:
+            - color: tomato
+      - value: 19
+        operator: <
+        styles:
+          icon:
+            - color: dodgerblue
+      - value: disarmed
+        styles:
+          icon:
+            - color: var(--icon_off)
+          state:
+            - color: grey
+      - value: armed_away
+        styles:
+          img_cell:
+            - background-color: rgba(255,0,0,0.8)
+          icon:
+            - color: var(--icon_on)
+          state:
+            - color: red
+            - font-weight: bold
+      - value: arming
+        styles:
+          img_cell:
+            - background-color: rgba(255,215,0,0.8)
+          icon:
+            - color: var(--icon_on)
+          state:
+            - color: gold
+            - font-weight: bold
+      - value: triggered
+        styles:
+          img_cell:
+            - background-color: rgba(255,0,0,0.8)
+          icon:
+            - color: var(--icon_on)
+            - animation: blink 1s ease infinite
+          state:
+            - color: red
+            - font-weight: bold
+    double_tap_action:
+      action: more-info
+    tap_action:
+      action: more-info
+  popup_temp:
+    show_icon: true
+    show_name: true
+    show_state: true
+    show_label: false
+    show_last_changed: true
+    styles:
+      img_cell:
+        - background-color: var(--pastille_off)
+        - border-radius: 50%
+        - place-self: start
+        - width: 30px
+        - height: 30px
+        - margin-top: 1px
+      icon:
+        - place-self: start
+        - width: 80%
+        - color: grey
+      name:
+        - color: grey
+        - top: 45%
+        - left: 08%
+        - font-size: 90%
+        - font-weight: bold
+        - position: absolute
+      state:
+        - color: lightgrey
+        - top: 15%
+        - left: 45%
+        - font-size: 90%
+        - position: absolute
+      label:
+        - color: darkgrey
+        - top: 75%
+        - left: 8%
+        - font-size: 70%
+        - position: absolute
+      card:
+        - height: 85px
+        - padding: 3px
+        - padding: 3px
+        - font-size: 100%
+        - border-color: rgba(152, 167, 185, 0.2)
+        - background-color: var(--my_color2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+    state:
+      - value: 24
+        operator: '>'
+        styles:
+          icon:
+            - color: tomato
+          state:
+            - color: tomato
+            - font-weight: bold
+          name:
+            - color: tomato
+            - font-weight: bold
+          label:
+            - color: tomato
+            - font-weight: bold
+          card:
+            - border-color: rgba(178,34,34,0.5)
+      - value: 19.5
+        operator: <
+        styles:
+          icon:
+            - color: dodgerblue
+          state:
+            - color: dodgerblue
+            - font-weight: bold
+          name:
+            - color: dodgerblue
+            - font-weight: bold
+          label:
+            - color: dodgerblue
+            - font-weight: bold
+          card:
+            - border-color: rgba(30,144,255,0.5)
+    double_tap_action:
+      action: more-info
+    tap_action:
+      action: more-info
   popup_ambiance:
     aspect_ratio: 1/1
     show_icon: true
@@ -137,8 +338,8 @@ button_card_templates:
         - background-color: var(--pastille_off)
         - border-radius: 50%
         - place-self: start
-        - width: 35px
-        - height: 35px
+        - width: 32px
+        - height: 32px
         - margin-top: 1px
       icon:
         - place-self: start
@@ -146,22 +347,22 @@ button_card_templates:
         - color: grey
       name:
         - color: grey
-        - top: 5%
-        - left: 35%
+        - top: 49%
+        - left: 5%
         - font-size: 90%
         - font-weight: bold
         - position: absolute
       state:
         - color: lightgrey
-        - top: 25%
+        - top: 15%
         - left: 35%
-        - font-size: 90%
+        - font-size: 100%
         - position: absolute
       label:
         - color: darkgrey
         - top: 75%
         - left: 8%
-        - font-size: 80%
+        - font-size: 75%
         - position: absolute
       card:
         - height: 75px
@@ -402,7 +603,7 @@ button_card_templates:
         - grid-template-areas: '"l"'
       card:
         - border-radius: 18px
-        - height: 35px
+        - height: 30px
         - width: auto
         - padding-left: 4px
         - padding-right: 6px
@@ -711,7 +912,7 @@ button_card_templates:
         - top: 22%
         - left: 30%
         - font-size: 100%
-        - font-weight: bold
+        - font-weight: null
         - position: absolute
       state:
         - color: lightgrey
@@ -722,7 +923,7 @@ button_card_templates:
       label:
         - top: 44%
         - left: 30%
-        - font-weight: null
+        - font-weight: bold
         - font-size: 85%
         - position: absolute
       card:
@@ -904,10 +1105,10 @@ button_card_templates:
       custom_fields:
         alarme_heure:
           - top: 4%
-          - left: 70%
+          - left: 40%
           - color: grey
           - font-weight: bold
-          - font-size: 95%
+          - font-size: 90%
           - position: absolute
         batterie:
           - top: 4%
@@ -1390,6 +1591,32 @@ button_card_templates:
             - color: var(--text_on)
           label:
             - color: var(--text_on)
+      - value: returning
+        styles:
+          icon:
+            - animation: rotating 4s ease infinite
+            - color: var(--icon_on)
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: rgba(255,127,80,0.5)
+          name:
+            - color: var(--text_on)
+          label:
+            - color: var(--text_on)
+      - value: idle
+        styles:
+          icon:
+            - color: var(--icon_on)
+          card:
+            - animation: ball-scale 0.2s
+          img_cell:
+            - background-color: rgba(255,127,80,0.5)
+          name:
+            - color: var(--text_on)
+          label:
+            - color: red
+            - font-weight: bold
       - value: docked
         color: grey
         styles:
@@ -1455,131 +1682,8 @@ views:
           - cards:
               - type: vertical-stack
                 cards:
-                  - type: markdown
-                    content: >
-                      <b><i><font color= "lightgrey"><font size= "6">{{
-                      states('sensor.time') }}</b></i>
-
-                      <font size= "3"><font color= "darkgrey">{{
-                      states('sensor.date_simple') }}
-
-                      <font color= "lightgrey">{{ states('sensor.bonjour') }}
-
-                      {{ states('sensor.anniversaire') }}
-                    style: |
-                      ha-card {
-                        font-family: Avenir;
-                        --mdc-icon-size: 17px;   
-                        box-shadow: none !important;
-                        background: transparent;
-                      }
                   - type: horizontal-stack
                     cards:
-                      - type: custom:button-card
-                        entity: weather.beaucouze
-                        name: |
-                          [[[
-                            if (entity.state == 'unavailable')
-                              return "☀️ HS" ;
-
-                            return states['sensor.weather_icon'].state ;
-                          ]]]
-                        show_icon: false
-                        show_name: true
-                        show_state: false
-                        show_label: true
-                        label: |
-                          [[[
-                            if (entity.state == 'unavailable')
-                              return "" ;
-
-                            return  (states['sensor.weather_temperature'].state  );
-                          ]]]
-                        styles:
-                          name:
-                            - justify-self: center
-                            - align-self: center
-                            - padding: 0px
-                            - margin-top: 11px
-                            - font-weight: null
-                            - font-size: 19px
-                            - font-weight: bold
-                            - color: lightgrey
-                          label:
-                            - justify-self: center
-                            - align-self: center
-                            - padding: 3px
-                            - margin-top: 12px
-                            - margin-left: 4px
-                            - font-weight: null
-                            - font-size: 13px
-                            - font-weight: bold
-                            - color: lightgrey
-                          grid:
-                            - grid-template-areas: '"n l"'
-                          card:
-                            - border-radius: 18px
-                            - height: 35px
-                            - width: auto
-                            - padding-left: 6px
-                            - padding-right: 6px
-                            - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                            - border-radius: 25px
-                            - background-color: var(--my_color_pastille)
-                            - border-color: rgba(152, 167, 185, 0.2)
-                            - border-style: outset
-                            - border-width: 1px
-                            - opacity: |
-                                [[[
-                                  if (entity.state == 'unavailable')
-                                    return "50%" ;
-                                  return "100%";
-                                ]]]
-                        double_tap_action:
-                          action: more-info
-                        tap_action:
-                          action: fire-dom-event
-                          browser_mod:
-                            command: popup
-                            title: Info et Météo
-                            card:
-                              type: vertical-stack
-                              cards:
-                                - type: markdown
-                                  content: >
-                                    <font size= "3"><font color='lightgrey'><u>
-                                    Savoir inutile </u>:<i>
-                                    {{states('sensor.savoir_scrape') }}</i>
-                                  style:
-                                    .: |
-                                      ha-card {
-                                          --ha-card-background: none !important;
-                                          box-shadow: none !important;
-                                          font-family: Avenir;
-
-                                      }
-                                - type: custom:meteofrance-weather-card
-                                  entity: weather.beaucouze
-                                  number_of_forecasts: '5'
-                                  cloudCoverEntity: sensor.beaucouze_cloud_cover
-                                  rainChanceEntity: sensor.beaucouze_rain_chance_2
-                                  uvEntity: sensor.beaucouze_uv_2
-                                  freezeChanceEntity: sensor.beaucouze_freeze_chance_2
-                                  snowChanceEntity: sensor.beaucouze_snow_chance_2
-                                  alertEntity: sensor.49_weather_alert
-                                  rainForecastEntity: sensor.beaucouze_next_rain_2
-                                  style: |
-                                    ha-card {
-
-                                      background: var(--my_color2);
-                                      --ha-card-background: none !important;
-                                      font-family: Avenir;
-                                      border-color: rgba(152, 167, 185, 0.2) ;
-                                      border-style: outset ;
-                                      border-width: 1px ;
-                                      box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-
-                                    }
                       - type: custom:button-card
                         entity: sensor.compteur_home
                         name: maison
@@ -1592,47 +1696,22 @@ views:
                           action: fire-dom-event
                           browser_mod:
                             command: popup
-                            title: Info et Météo
+                            title: Personnes
                             card:
                               type: grid
                               cards:
                                 - type: custom:button-card
                                   entity: person.herve
                                   name: Aurel
-                                  aspect_ratio: 1/1
-                                  show_entity_picture: true
-                                  show_icon: false
-                                  show_name: false
-                                  show_state: false
-                                  show_label: true
+                                  template:
+                                    - bouton_person
+                                    - effet
                                   label: |
                                     [[[
                                       return states['sensor.aurel_gps'].state
                                     ]]]
                                   styles:
-                                    entity_picture:
-                                      - border-radius: 50%
-                                      - top: 5%
-                                      - left: 5%
-                                      - width: 40%
-                                      - color: gray
-                                      - opacity: 60%
-                                    name:
-                                      - top: 5%
-                                      - left: 8%
-                                      - position: absolute
-                                      - color: grey
-                                      - font-size: 85%
-                                    state:
-                                      - top: 79%
-                                      - left: 5%
-                                      - position: absolute
                                     label:
-                                      - font-size: 85%
-                                      - font-weight: bold
-                                      - top: 58%
-                                      - left: 8%
-                                      - position: absolute
                                       - color: |
                                           [[[
                                             if (states['person.herve'].state == "home")
@@ -1647,80 +1726,52 @@ views:
                                               return 'grey';
                                             return 'red';
                                           ]]]
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: >
-                                          [[[ return (entity.state === 'on' ||
-                                          entity.state === 'home') ?
-                                          'var(--my_color2)' :
-                                          'var(--my_color_pastille)'; ]]]
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
                                     custom_fields:
-                                      aurel_heure:
-                                        - font-size: 85%
-                                        - top: 75%
-                                        - left: 8%
-                                        - color: grey
-                                        - position: absolute
-                                      circle:
-                                        - top: 10%
-                                        - left: 55%
-                                        - width: 35%
-                                        - position: absolute
-                                        - letter-spacing: 0.03vw
-                                        - stroke: |
+                                      icon_batterie:
+                                        - color: |
                                             [[[
-                                              if (states['sensor.iphoneaurel_battery_level_ha'].state < 40)
+                                              if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charging")
+                                                return 'gold';
+                                              if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charged")
                                                 return 'red';
-                                             return 'grey';
+                                              if (states['sensor.iphoneaurel_battery_level_ha'].state > 80)
+                                                return 'darkgrey';
+                                              if (states['sensor.iphoneaurel_battery_level_ha'].state > 70)
+                                                return 'darkgrey';
+                                              if (states['sensor.iphoneaurel_battery_level_ha'].state > 50)
+                                                return 'tomato';
+                                              if (states['sensor.iphoneaurel_battery_level_ha'].state > 30)
+                                                return 'red';
+                                              if (states['sensor.iphoneaurel_battery_level_ha'].state > 0)
+                                                return 'red';
+                                              return 'red';
                                             ]]]
-                                  extra_styles: |
-                                    @keyframes ball-scale {
-                                      from {
-                                        transform: scale(1);
-                                      }
-                                      to {
-                                        transform: scale(0.90);
-                                      }
-                                    }
-                                    @keyframes ball-scale2 {
-                                      from {
-                                        transform: scale(1);
-                                      }
-                                      to {
-                                        transform: scale(0.90);
-                                      }
-                                    }
-                                  state:
-                                    - value: 'on'
-                                      styles:
-                                        card:
-                                          - box-shadow: ' outset -1px -1px 2px 0px rgb(12, 12, 14) '
-                                          - animation: ball-scale 0.2s
-                                          - border-width: 1px
-                                    - value: 'off'
-                                      styles:
-                                        card:
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                          - animation: ball-scale2 0.2s
-                                          - border-width: 1px
                                   custom_fields:
-                                    aurel_heure: >
+                                    batterie: >
+                                      [[[ return
+                                      states['sensor.iphoneaurel_battery_level_ha'].state
+                                      + "%" ]]]
+                                    icon_batterie: |
+                                      [[[
+                                        if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charging")
+                                          return '<ha-icon icon="phu:battery-charged">';
+                                        if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charged")
+                                          return '<ha-icon icon="phu:battery-charged">';
+                                        if (states['sensor.iphoneaurel_battery_level_ha'].state > 80)
+                                          return '<ha-icon icon="phu:battery-full">';
+                                        if (states['sensor.iphoneaurel_battery_level_ha'].state > 70)
+                                          return '<ha-icon icon="phu:battery-good">';
+                                        if (states['sensor.iphoneaurel_battery_level_ha'].state > 50)
+                                          return '<ha-icon icon="phu:battery-half">';
+                                        if (states['sensor.iphoneaurel_battery_level_ha'].state > 30)
+                                          return '<ha-icon icon="phu:battery-low">';
+                                        if (states['sensor.iphoneaurel_battery_level_ha'].state > 0)
+                                          return '<ha-icon icon="phu:battery-critical">';
+                                        return '<ha-icon icon="phu:battery-full">';
+                                      ]]]
+                                    heure: >
                                       [[[ return
                                       states['sensor.aurel_heure'].state ]]]
-                                    circle: |
-                                      [[[ if (entity.state != 'unavailable' ) 
-                                      {
-                                         ;
-                                         const radius = 20.5; const circumference = radius * 2 * Math.PI; 
-                                         return `<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="${radius}" stroke="grey" stroke-width="1" fill="none" style="
-                                         transform: rotate(-90deg); transform-origin: 50% 50%; stroke-dasharray: ${circumference}; stroke-dashoffset: ${circumference - states['sensor.iphoneaurel_battery_level_ha'].state / 100 * circumference};" />
-                                         <text x="50%" y="54%" fill="grey" font-size="13" text-anchor="middle" alignment-baseline="middle">${states['sensor.iphoneaurel_battery_level_ha'].state}%<tspan font-size="10"></tspan></text></svg>`; } ]]]
-                                  double_tap_action:
-                                    action: more-info
                                   tap_action:
                                     action: fire-dom-event
                                     browser_mod:
@@ -1865,40 +1916,15 @@ views:
                                 - type: custom:button-card
                                   entity: person.alex
                                   name: Alex
-                                  aspect_ratio: 1/1
-                                  show_entity_picture: true
-                                  show_icon: false
-                                  show_name: false
-                                  show_state: false
-                                  show_label: true
+                                  template:
+                                    - bouton_person
+                                    - effet
                                   label: |
                                     [[[
                                       return states['sensor.alex_gps'].state
                                     ]]]
                                   styles:
-                                    entity_picture:
-                                      - border-radius: 50%
-                                      - top: 5%
-                                      - left: 5%
-                                      - width: 40%
-                                      - color: gray
-                                      - opacity: 60%
-                                    name:
-                                      - top: 55%
-                                      - left: 8%
-                                      - position: absolute
-                                      - color: grey
-                                      - font-size: 85%
-                                    state:
-                                      - top: 79%
-                                      - left: 5%
-                                      - position: absolute
                                     label:
-                                      - font-size: 85%
-                                      - font-weight: bold
-                                      - top: 58%
-                                      - left: 8%
-                                      - position: absolute
                                       - color: |
                                           [[[
                                             if (states['person.alex'].state == "home")
@@ -1927,66 +1953,51 @@ views:
                                       - border-width: 1px
                                       - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
                                     custom_fields:
-                                      alex_heure:
-                                        - font-size: 85%
-                                        - top: 75%
-                                        - left: 8%
-                                        - color: grey
-                                        - position: absolute
-                                      circle:
-                                        - top: 10%
-                                        - left: 55%
-                                        - width: 35%
-                                        - position: absolute
-                                        - letter-spacing: 0.03vw
-                                        - stroke: |
+                                      icon_batterie:
+                                        - color: |
                                             [[[
-                                              if (states['sensor.alex_iphone_battery_level_ha'].state < 40)
+                                              if (states['sensor.alex_iphone_battery_state_ha'].state == "Charging")
+                                                return 'gold';
+                                              if (states['sensor.alex_iphone_battery_state_ha'].state == "Charged")
                                                 return 'red';
-                                             return 'grey';
+                                              if (states['sensor.alex_iphone_battery_level_ha'].state > 80)
+                                                return 'darkgrey';
+                                              if (states['sensor.alex_iphone_battery_level_ha'].state > 70)
+                                                return 'darkgrey';
+                                              if (states['sensor.alex_iphone_battery_level_ha'].state > 50)
+                                                return 'tomato';
+                                              if (states['sensor.alex_iphone_battery_level_ha'].state > 30)
+                                                return 'red';
+                                              if (states['sensor.alex_iphone_battery_level_ha'].state > 0)
+                                                return 'red';
+                                              return 'red';
                                             ]]]
-                                  extra_styles: |
-                                    @keyframes ball-scale {
-                                      from {
-                                        transform: scale(1);
-                                      }
-                                      to {
-                                        transform: scale(0.90);
-                                      }
-                                    }
-                                    @keyframes ball-scale2 {
-                                      from {
-                                        transform: scale(1);
-                                      }
-                                      to {
-                                        transform: scale(0.90);
-                                      }
-                                    }
-                                  state:
-                                    - value: 'on'
-                                      styles:
-                                        card:
-                                          - box-shadow: ' outset -1px -1px 2px 0px rgb(12, 12, 14) '
-                                          - animation: ball-scale 0.2s
-                                          - border-width: 1px
-                                    - value: 'off'
-                                      styles:
-                                        card:
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                          - animation: ball-scale2 0.2s
-                                          - border-width: 1px
                                   custom_fields:
-                                    alex_heure: >
+                                    batterie: >
+                                      [[[ return
+                                      states['sensor.alex_iphone_battery_level_ha'].state
+                                      + "%" ]]]
+                                    icon_batterie: |
+                                      [[[
+                                        if (states['sensor.alex_iphone_battery_state_ha'].state == "Charging")
+                                          return '<ha-icon icon="phu:battery-charged">';
+                                        if (states['sensor.alex_iphone_battery_state_ha'].state == "Charged")
+                                          return '<ha-icon icon="phu:battery-charged">';
+                                        if (states['sensor.alex_iphone_battery_level_ha'].state > 80)
+                                          return '<ha-icon icon="phu:battery-full">';
+                                        if (states['sensor.alex_iphone_battery_level_ha'].state > 70)
+                                          return '<ha-icon icon="phu:battery-good">';
+                                        if (states['sensor.alex_iphone_battery_level_ha'].state > 50)
+                                          return '<ha-icon icon="phu:battery-half">';
+                                        if (states['sensor.alex_iphone_battery_level_ha'].state > 30)
+                                          return '<ha-icon icon="phu:battery-low">';
+                                        if (states['sensor.alex_iphone_battery_level_ha'].state > 0)
+                                          return '<ha-icon icon="phu:battery-critical">';
+                                        return '<ha-icon icon="phu:battery-full">';
+                                      ]]]
+                                    heure: >
                                       [[[ return
                                       states['sensor.alex_heure'].state ]]]
-                                    circle: |
-                                      [[[ if (entity.state != 'unavailable' ) 
-                                      {
-                                         ;
-                                         const radius = 20.5; const circumference = radius * 2 * Math.PI; 
-                                         return `<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="${radius}" stroke="grey" stroke-width="1" fill="none" style="
-                                         transform: rotate(-90deg); transform-origin: 50% 50%; stroke-dasharray: ${circumference}; stroke-dashoffset: ${circumference - states['sensor.alex_iphone_battery_level_ha'].state / 100 * circumference};" />
-                                         <text x="50%" y="54%" fill="grey" font-size="13" text-anchor="middle" alignment-baseline="middle">${states['sensor.alex_iphone_battery_level_ha'].state}%<tspan font-size="10"></tspan></text></svg>`; } ]]]
                                   double_tap_action:
                                     action: more-info
                                   tap_action:
@@ -2133,40 +2144,15 @@ views:
                                 - type: custom:button-card
                                   entity: person.tom
                                   name: Tom
-                                  aspect_ratio: 1/1
-                                  show_entity_picture: true
-                                  show_icon: false
-                                  show_name: false
-                                  show_state: false
-                                  show_label: true
+                                  template:
+                                    - bouton_person
+                                    - effet
                                   label: |
                                     [[[
                                       return states['sensor.tom_gps'].state
                                     ]]]
                                   styles:
-                                    entity_picture:
-                                      - border-radius: 50%
-                                      - top: 5%
-                                      - left: 5%
-                                      - width: 40%
-                                      - color: gray
-                                      - opacity: 60%
-                                    name:
-                                      - top: 55%
-                                      - left: 8%
-                                      - position: absolute
-                                      - color: grey
-                                      - font-size: 85%
-                                    state:
-                                      - top: 79%
-                                      - left: 5%
-                                      - position: absolute
                                     label:
-                                      - font-size: 85%
-                                      - font-weight: bold
-                                      - top: 58%
-                                      - left: 8%
-                                      - position: absolute
                                       - color: |
                                           [[[
                                             if (states['person.tom'].state == "home")
@@ -2175,60 +2161,10 @@ views:
                                               return 'red';
                                             return 'red';
                                           ]]]
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: >
-                                          [[[ return (entity.state === 'on' ||
-                                          entity.state === 'home') ?
-                                          'var(--my_color2)' :
-                                          'var(--my_color_pastille)'; ]]]
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                    custom_fields:
-                                      tom_heure:
-                                        - font-size: 85%
-                                        - top: 75%
-                                        - left: 8%
-                                        - color: grey
-                                        - position: absolute
-                                  extra_styles: |
-                                    @keyframes ball-scale {
-                                      from {
-                                        transform: scale(1);
-                                      }
-                                      to {
-                                        transform: scale(0.90);
-                                      }
-                                    }
-                                    @keyframes ball-scale2 {
-                                      from {
-                                        transform: scale(1);
-                                      }
-                                      to {
-                                        transform: scale(0.90);
-                                      }
-                                    }
-                                  state:
-                                    - value: 'on'
-                                      styles:
-                                        card:
-                                          - box-shadow: ' outset -1px -1px 2px 0px rgb(12, 12, 14) '
-                                          - animation: ball-scale 0.2s
-                                          - border-width: 2px
-                                    - value: 'off'
-                                      styles:
-                                        card:
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                          - animation: ball-scale2 0.2s
-                                          - border-width: 1px
                                   custom_fields:
-                                    tom_heure: >
+                                    heure: >
                                       [[[ return
                                       states['sensor.tom_heure'].state ]]]
-                                  double_tap_action:
-                                    action: more-info
                                   tap_action:
                                     action: fire-dom-event
                                     browser_mod:
@@ -2395,6 +2331,20 @@ views:
                                     return "50%" ;
                                   return "100%";
                                 ]]]
+                        state:
+                          - value: unavailable
+                            operator: '!='
+                            styles:
+                              card:
+                                - border-color: |
+                                    [[[
+                                      if (states['sensor.temp_moyenne_rdc'].state < 19.5 || states['sensor.temp_moyenne_etage'].state < 19.5)
+                                        return 'rgba(30,144,255,0.8)';
+                                      return 'rgba(152, 167, 185, 0.2)';
+                                      if (states['sensor.temp_moyenne_rdc'].state > 24 || states['sensor.temp_moyenne_etage'].state > 24)
+                                        return 'rgba(178,34,34,0.8)';
+                                      return 'rgba(152, 167, 185, 0.2)';
+                                    ]]]
                         tap_action:
                           action: fire-dom-event
                           browser_mod:
@@ -2408,414 +2358,46 @@ views:
                                     - type: custom:button-card
                                       entity: sensor.temp_sejour
                                       name: null
-                                      aspect_ratio: 1/1
-                                      icon: mdi:thermometer
-                                      show_icon: false
-                                      show_name: true
-                                      show_state: true
-                                      show_label: true
-                                      show_last_changed: true
-                                      label: |
-                                        [[[
-                                          if (states['sensor.lum_sejour'].state != 'unavailable')
-                                            return (states['sensor.lum_sejour'].state ) + " lx" ;
-                                          return "";
-                                        ]]]
-                                      styles:
-                                        state:
-                                          - font-size: 110%
-                                          - color: |
-                                              [[[
-                                                if (entity.state < 20)
-                                                  return 'dodgerblue';
-                                                if (entity.state > 23)
-                                                  return 'tomato';
-                                                return 'lightgrey';
-                                              ]]]
-                                        name:
-                                          - font-size: 90%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-bottom: 15%
-                                          - color: grey
-                                        label:
-                                          - font-size: 70%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-top: 10%
-                                          - color: grey
-                                        card:
-                                          - font-size: 100%
-                                          - border-color: rgba(152, 167, 185, 0.2)
-                                          - background-color: var(--my_color2)
-                                          - border-style: outset
-                                          - border-width: 1px
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                      double_tap_action:
-                                        action: more-info
-                                      tap_action:
-                                        action: more-info
+                                      template:
+                                        - popup_temp
                                     - type: custom:button-card
                                       entity: sensor.temp_couloir_rdc
                                       name: null
-                                      aspect_ratio: 1/1
-                                      icon: mdi:thermometer
-                                      show_icon: false
-                                      show_name: true
-                                      show_state: true
-                                      show_label: true
-                                      show_last_changed: true
-                                      styles:
-                                        state:
-                                          - font-size: 110%
-                                          - color: |
-                                              [[[
-                                                if (entity.state < 20)
-                                                  return 'dodgerblue';
-                                                if (entity.state > 23)
-                                                  return 'tomato';
-                                                return 'lightgrey';
-                                              ]]]
-                                        name:
-                                          - font-size: 90%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-bottom: 15%
-                                          - color: grey
-                                        label:
-                                          - font-size: 70%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-top: 10%
-                                          - color: grey
-                                        card:
-                                          - font-size: 100%
-                                          - border-color: rgba(152, 167, 185, 0.2)
-                                          - background-color: var(--my_color2)
-                                          - border-style: outset
-                                          - border-width: 1px
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                      double_tap_action:
-                                        action: more-info
-                                      tap_action:
-                                        action: more-info
+                                      template:
+                                        - popup_temp
                                     - type: custom:button-card
                                       entity: sensor.temp_cuisine
                                       name: Cuisine
-                                      aspect_ratio: 1/0.9
-                                      icon: mdi:thermometer
-                                      show_icon: false
-                                      show_name: true
-                                      show_state: true
-                                      show_label: true
-                                      show_last_changed: true
-                                      styles:
-                                        state:
-                                          - font-size: 110%
-                                          - color: |
-                                              [[[
-                                                if (entity.state < 20)
-                                                  return 'dodgerblue';
-                                                if (entity.state > 23)
-                                                  return 'tomato';
-                                                return 'lightgrey';
-                                              ]]]
-                                        name:
-                                          - font-size: 90%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-bottom: 15%
-                                          - color: grey
-                                        label:
-                                          - font-size: 70%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-top: 10%
-                                          - color: grey
-                                        card:
-                                          - font-size: 100%
-                                          - border-color: rgba(152, 167, 185, 0.2)
-                                          - background-color: var(--my_color2)
-                                          - border-style: outset
-                                          - border-width: 1px
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                      double_tap_action:
-                                        action: more-info
-                                      tap_action:
-                                        action: more-info
+                                      template:
+                                        - popup_temp
                                     - type: custom:button-card
                                       entity: sensor.temp_parents
                                       name: null
-                                      aspect_ratio: 1/1
-                                      icon: mdi:thermometer
-                                      show_icon: false
-                                      show_name: true
-                                      show_state: true
-                                      show_label: true
-                                      show_last_changed: true
-                                      styles:
-                                        state:
-                                          - font-size: 110%
-                                          - color: |
-                                              [[[
-                                                if (entity.state < 20)
-                                                  return 'dodgerblue';
-                                                if (entity.state > 23)
-                                                  return 'tomato';
-                                                return 'lightgrey';
-                                              ]]]
-                                        name:
-                                          - font-size: 90%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-bottom: 15%
-                                          - color: grey
-                                        label:
-                                          - font-size: 70%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-top: 10%
-                                          - color: grey
-                                        card:
-                                          - font-size: 100%
-                                          - border-color: rgba(152, 167, 185, 0.2)
-                                          - background-color: var(--my_color2)
-                                          - border-style: outset
-                                          - border-width: 1px
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                      double_tap_action:
-                                        action: more-info
-                                      tap_action:
-                                        action: more-info
+                                      template:
+                                        - popup_temp
                                   columns: 4
                                 - type: grid
                                   cards:
                                     - type: custom:button-card
                                       entity: sensor.temp_tom
                                       name: null
-                                      aspect_ratio: 1/1
-                                      icon: mdi:thermometer
-                                      show_icon: false
-                                      show_name: true
-                                      show_state: true
-                                      show_label: true
-                                      label: |
-                                        [[[
-                                          if (states['sensor.mouv_tom_luminosite'].state != 'unavailable')
-                                            return (states['sensor.mouv_tom_luminosite'].state ) + " lx" ;
-                                          return "";
-                                        ]]]
-                                      show_last_changed: true
-                                      styles:
-                                        state:
-                                          - font-size: 110%
-                                          - color: |
-                                              [[[
-                                                if (entity.state < 20)
-                                                  return 'dodgerblue';
-                                                if (entity.state > 23)
-                                                  return 'tomato';
-                                                return 'lightgrey';
-                                              ]]]
-                                        name:
-                                          - font-size: 90%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-bottom: 15%
-                                          - color: grey
-                                        label:
-                                          - font-size: 70%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-top: 10%
-                                          - color: grey
-                                        card:
-                                          - font-size: 100%
-                                          - border-color: rgba(152, 167, 185, 0.2)
-                                          - background-color: var(--my_color2)
-                                          - border-style: outset
-                                          - border-width: 1px
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                      double_tap_action:
-                                        action: more-info
-                                      tap_action:
-                                        action: more-info
+                                      template:
+                                        - popup_temp
                                     - type: custom:button-card
                                       entity: sensor.temp_manon
                                       name: null
-                                      aspect_ratio: 1/1
-                                      icon: mdi:thermometer
-                                      show_icon: false
-                                      show_name: true
-                                      show_state: true
-                                      show_label: true
-                                      label: |
-                                        [[[
-                                          if (states['sensor.lum_moyenne_manon'].state != 'unavailable')
-                                            return (states['sensor.lum_moyenne_manon'].state ) + " lx" ;
-                                          return "";
-                                        ]]]
-                                      show_last_changed: true
-                                      styles:
-                                        state:
-                                          - font-size: 110%
-                                          - color: |
-                                              [[[
-                                                if (entity.state < 20)
-                                                  return 'dodgerblue';
-                                                if (entity.state > 23)
-                                                  return 'tomato';
-                                                return 'lightgrey';
-                                              ]]]
-                                        name:
-                                          - font-size: 90%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-bottom: 15%
-                                          - color: grey
-                                        label:
-                                          - font-size: 70%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-top: 10%
-                                          - color: grey
-                                        card:
-                                          - font-size: 100%
-                                          - border-color: rgba(152, 167, 185, 0.2)
-                                          - background-color: var(--my_color2)
-                                          - border-style: outset
-                                          - border-width: 1px
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                      double_tap_action:
-                                        action: more-info
-                                      tap_action:
-                                        action: more-info
+                                      template:
+                                        - popup_temp
                                     - type: custom:button-card
                                       entity: sensor.temp_nina
                                       name: null
-                                      aspect_ratio: 1/1
-                                      icon: mdi:thermometer
-                                      show_icon: false
-                                      show_name: true
-                                      show_state: true
-                                      show_label: true
-                                      show_last_changed: true
-                                      styles:
-                                        state:
-                                          - font-size: 110%
-                                          - color: |
-                                              [[[
-                                                if (entity.state < 20)
-                                                  return 'dodgerblue';
-                                                if (entity.state > 23)
-                                                  return 'tomato';
-                                                return 'lightgrey';
-                                              ]]]
-                                        name:
-                                          - font-size: 90%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-bottom: 15%
-                                          - color: grey
-                                        label:
-                                          - font-size: 70%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-top: 10%
-                                          - color: grey
-                                        card:
-                                          - font-size: 100%
-                                          - border-color: rgba(152, 167, 185, 0.2)
-                                          - background-color: var(--my_color2)
-                                          - border-style: outset
-                                          - border-width: 1px
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                      double_tap_action:
-                                        action: more-info
-                                      tap_action:
-                                        action: more-info
+                                      template:
+                                        - popup_temp
                                     - type: custom:button-card
                                       entity: sensor.temp_salle_de_bain
                                       name: null
-                                      aspect_ratio: 1/1
-                                      icon: mdi:thermometer
-                                      show_icon: false
-                                      show_name: true
-                                      show_state: true
-                                      show_label: true
-                                      show_last_changed: true
-                                      styles:
-                                        state:
-                                          - font-size: 110%
-                                          - color: |
-                                              [[[
-                                                if (entity.state < 20)
-                                                  return 'dodgerblue';
-                                                if (entity.state > 23)
-                                                  return 'tomato';
-                                                return 'lightgrey';
-                                              ]]]
-                                        name:
-                                          - font-size: 90%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-bottom: 10%
-                                          - color: grey
-                                        label:
-                                          - font-size: 70%
-                                          - color: grey
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-top: 10%
-                                        card:
-                                          - font-size: 100%
-                                          - border-color: rgba(152, 167, 185, 0.2)
-                                          - background-color: var(--my_color2)
-                                          - border-style: outset
-                                          - border-width: 1px
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                      double_tap_action:
-                                        action: more-info
-                                      tap_action:
-                                        action: more-info
-                                    - type: custom:button-card
-                                      entity: sensor.lum_palier
-                                      name: Palier
-                                      units: lx
-                                      aspect_ratio: 1/1
-                                      icon: mdi:thermometer
-                                      show_icon: false
-                                      show_name: true
-                                      show_state: true
-                                      show_label: true
-                                      styles:
-                                        state:
-                                          - font-size: 110%
-                                          - color: |
-                                              [[[
-                                                if (entity.state < 15)
-                                                  return 'dodgerblue';
-                                                if (entity.state > 80)
-                                                  return 'tomato';
-                                                return 'lightgrey';
-                                              ]]]
-                                        name:
-                                          - font-size: 90%
-                                          - align-self: middle
-                                          - justify-self: center
-                                          - padding-bottom: 15%
-                                          - color: grey
-                                        card:
-                                          - font-size: 100%
-                                          - border-color: rgba(152, 167, 185, 0.2)
-                                          - background-color: var(--my_color2)
-                                          - border-style: outset
-                                          - border-width: 1px
-                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                      double_tap_action:
-                                        action: more-info
-                                      tap_action:
-                                        action: more-info
+                                      template:
+                                        - popup_temp
                                   columns: 4
                                 - type: vertical-stack
                                   cards:
@@ -3410,6 +2992,245 @@ views:
                                       --paper-item-icon-color: dodgerblue;
                                     }
                                   type: custom:mini-graph-card
+                  - type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.date_simple
+                        aspect_ratio: 1.2/1
+                        show_icon: false
+                        show_name: false
+                        show_state: false
+                        show_label: false
+                        tap_action:
+                          action: more-info
+                        styles:
+                          grid:
+                            - grid-template-areas: |
+                                "giorno"
+                                "numero"
+                                "testo"
+                                "eventi"
+                                "eventi2"
+                            - grid-template-columns: 1fr
+                            - grid-template-rows: min-content min-content min-content 1fr
+                            - gap: 01%
+                            - overflow: hidden
+                          card:
+                            - '-webkit-tap-highlight-color': rgba(0,0,0,0)
+                            - transition: none
+                            - padding: 6% 6% 6% 6%
+                            - border-color: rgba(152, 167, 185, 0.2)
+                            - background-color: var(--my_color2)
+                            - border-style: outset
+                            - border-width: 1px
+                            - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+                            - color: rgba(255, 255, 255, 0.8)
+                          custom_fields:
+                            giorno:
+                              - color: '#ff3b2f'
+                              - text-transform: uppercase
+                              - font-weight: 500
+                              - font-size: 70%
+                              - top: 10%
+                              - left: 8%
+                              - line-height: 115%
+                              - position: absolute
+                            numero:
+                              - color: rgba(255, 255, 255, 0.8)
+                              - font-weight: 500
+                              - font-size: 150%
+                              - top: 17%
+                              - left: 08%
+                              - font-size: 190%
+                              - font-weight: null
+                              - position: absolute
+                            eventi:
+                              - border-left: 3px red solid
+                              - padding-left: 5px
+                              - color: rgba(255, 255, 255, 0.8)
+                              - font-weight: null
+                              - font-size: 75%
+                              - top: 60%
+                              - left: 8%
+                              - position: absolute
+                            eventi2:
+                              - border-left: 3px dodgerblue solid
+                              - padding-left: 5px
+                              - color: rgba(255, 255, 255, 0.8)
+                              - font-weight: null
+                              - font-size: 75%
+                              - top: 80%
+                              - left: 8%
+                              - position: absolute
+                        custom_fields:
+                          giorno: |
+                            [[[ return states['sensor.date_simple'].state ]]]
+                          numero: |
+                            [[[ return states['sensor.time'].state ]]]
+                               
+                          eventi: |
+                            [[[ return states['sensor.calendar_famille'].state
+                            ]]]
+                          eventi2: |
+                            [[[ return states['sensor.calendar_poubelles'].state
+                            ]]]
+                      - type: custom:button-card
+                        entity: weather.beaucouze
+                        name: Beaucouzé
+                        aspect_ratio: 1.2/1
+                        show_icon: true
+                        show_entity_picture: true
+                        show_name: false
+                        show_state: true
+                        show_label: true
+                        double_tap_action:
+                          action: more-info
+                        styles:
+                          card:
+                            - '-webkit-tap-highlight-color': rgba(0,0,0,0)
+                            - transition: none
+                            - padding: 10% 9% 9% 10%
+                            - border-color: |
+                                [[[
+                                  if (states['sensor.weather_alerte_couleur'].state == "Jaune")
+                                    return "rgba(255, 255, 0, 0.6)" ;
+                                  return "rgba(152, 167, 185, 0.2)";
+                                  if (states['sensor.weather_alerte_couleur'].state == "Orange")
+                                    return "rgba(255, 165, 0, 0.6)" ;
+                                  return "rgba(152, 167, 185, 0.2)";
+                                  if (states['sensor.weather_alerte_couleur'].state == "Rouge")
+                                    return "rgba(255, 0, 0, 0.6)" ;
+                                  return "rgba(152, 167, 185, 0.2)";
+                                ]]]
+                            - background-color: var(--my_color2)
+                            - border-style: outset
+                            - border-width: 1px
+                            - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+                            - color: rgba(255, 255, 255, 0.8)
+                          name:
+                            - top: 10%
+                            - left: 8%
+                            - text-transform: uppercase
+                            - font-weight: 0
+                            - font-size: 65%
+                            - position: absolute
+                          img_cell:
+                            - top: '-20%'
+                            - left: 25%
+                            - position: absolute
+                          icon:
+                            - width: 25%
+                          label:
+                            - font-size: 90%
+                            - top: 60%
+                            - left: 8%
+                            - margin-left: '-5px'
+                            - position: absolute
+                          state:
+                            - font-size: 80%
+                            - top: 10%
+                            - left: 8%
+                            - line-height: 115%
+                            - position: absolute
+                          custom_fields:
+                            temp:
+                              - top: 19%
+                              - left: 08%
+                              - font-size: 190%
+                              - font-weight: null
+                              - position: absolute
+                            alerte:
+                              - top: 80%
+                              - left: 08%
+                              - font-size: 80%
+                              - font-weight: null
+                              - position: absolute
+                        label: |
+                          [[[
+                            return `<ha-icon
+                              icon="mdi:arrow-up-thin"
+                              style="width: 20px; height: 20px; color: red; margin-right: -5px;">
+                              </ha-icon><span>: ${states['sensor.temp_max'].state}</span>
+                                    <ha-icon
+                              icon="mdi:arrow-down-thin"
+                              style="width: 20px; color: dodgerblue; height: 20px; margin-right: -5px;">
+                              </ha-icon><span>: ${states['sensor.temp_min'].state}</span>          
+                            `
+                          ]]]
+                        custom_fields:
+                          temp: |
+                            [[[ return entity.attributes.temperature + "°"; ]]] 
+                          alerte: >
+                            [[[ return
+                            states['sensor.weather_alerte_couleur'].state ]]] 
+                        entity_picture: |
+                          [[[
+                            if ((entity.state == 'sunny') && (states['sun.sun'].state == 'above_horizon'))
+                              return "/local/weather/clear-day.svg";
+                              if ((entity.state == 'sunny') || (entity.state == 'clear-night') && (states['sun.sun'].state == 'below_horizon'))
+                                return "/local/weather/clear-night.svg";   
+                                  if (entity.state == 'fog')
+                                    return "/local/weather/fog.svg";     
+                                      if ((entity.state == 'partlycloudy') && (states['sun.sun'].state == 'above_horizon'))
+                                        return "/local/weather/partly-cloudy-day.svg";                      
+                                          if ((entity.state == 'partlycloudy') && (states['sun.sun'].state == 'below_horizon'))
+                                            return "/local/weather/partly-cloudy-night.svg";    
+                                              if (entity.state == 'rainy')
+                                                return "/local/weather/rain.svg";                  
+                                                  if (entity.state == 'sleet')
+                                                    return "/local/weather/sleet.svg";         
+                                                      if (entity.state == 'snow')
+                                                        return "/local/weather/snow.svg";  
+                                                          if (entity.state == 'cloudy')
+                                                            return "/local/weather/cloudy.svg";    
+                            else (entity.state == 'wind')
+                              return "/local/weather/wind.svg";                        
+                          ]]]
+                        tap_action:
+                          action: fire-dom-event
+                          browser_mod:
+                            command: popup
+                            title: Info et Météo
+                            card:
+                              type: vertical-stack
+                              cards:
+                                - type: markdown
+                                  content: >
+                                    <font size= "3"><font color='lightgrey'><u>
+                                    Savoir inutile </u>:<i>
+                                    {{states('sensor.savoir_scrape') }}</i>
+                                  style:
+                                    .: |
+                                      ha-card {
+                                          --ha-card-background: none !important;
+                                          box-shadow: none !important;
+                                          font-family: Avenir;
+
+                                      }
+                                - type: custom:meteofrance-weather-card
+                                  entity: weather.beaucouze
+                                  number_of_forecasts: '5'
+                                  cloudCoverEntity: sensor.beaucouze_cloud_cover
+                                  rainChanceEntity: sensor.beaucouze_rain_chance_2
+                                  uvEntity: sensor.beaucouze_uv_2
+                                  freezeChanceEntity: sensor.beaucouze_freeze_chance_2
+                                  snowChanceEntity: sensor.beaucouze_snow_chance_2
+                                  alertEntity: sensor.49_weather_alert
+                                  rainForecastEntity: sensor.beaucouze_next_rain_2
+                                  style: |
+                                    ha-card {
+
+                                      background: var(--my_color2);
+                                      --ha-card-background: none !important;
+                                      font-family: Avenir;
+                                      border-color: rgba(152, 167, 185, 0.2) ;
+                                      border-style: outset ;
+                                      border-width: 1px ;
+                                      box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+
+                                    }
+                    columns: 2
+                    square: false
                   - type: grid
                     cards:
                       - type: custom:button-card
@@ -4147,12 +3968,9 @@ views:
                       type: custom:aarlo-glance
                   - type: markdown
                     content: |
+                      {{ states('sensor.bonjour') }}
 
                       {{ states('sensor.calendar_calendrier') }}
-                      {{states('sensor.calendar_famille') }} 
-
-                      {{states('sensor.calendar_poubelles') }}
-
 
                       {{ states('sensor.lum_hs') }}
                       {{ states('sensor.bt_off') }}
@@ -4594,6 +4412,8 @@ views:
                           [[[
                             if (states['sensor.ambiances_sejour'].state == "TV" )
                               return "mdi:television-play";
+                            if (states['sensor.ambiances_sejour'].state == "Normale + TV" )
+                              return "mdi:television-play";
                             if (states['sensor.ambiances_sejour'].state == "Normale" )
                               return "mdi:ceiling-light-multiple";
                             if (states['sensor.ambiances_sejour'].state == "Doux" )
@@ -4612,6 +4432,8 @@ views:
                               return "mdi:music";
                             if (states['sensor.ambiances_sejour'].state == "Travail" )
                               return "mdi:pen";
+                            if (states['sensor.ambiances_sejour'].state == "Anniversaire" )
+                              return "mdi:party-popper";
                             return "phu:ceiling-fugato-three-alt" ;
                           ]]]
                         label: |
@@ -4626,6 +4448,8 @@ views:
                                     [[[
                                       if (states['sensor.ambiances_sejour'].state == "TV" )
                                         return "rgba(255,0,0,0.7)";
+                                      if (states['sensor.ambiances_sejour'].state == "Normale + TV" )
+                                        return "rgba(255,255,0,0.7)";
                                       if (states['sensor.ambiances_sejour'].state == "Normale" )
                                         return "rgba(255,255,0,0.7)";
                                       if (states['sensor.ambiances_sejour'].state == "Doux" )
@@ -4644,6 +4468,8 @@ views:
                                         return "rgba(0,191,250,0.7)";
                                       if (states['sensor.ambiances_sejour'].state == "Travail" )
                                         return "rgba(255,255,250,0.7)";
+                                      if (states['sensor.ambiances_sejour'].state == "Anniversaire" )
+                                        return "rgba(238,130,238,0.7)";
                                       return "rgba(255,120,120,0.5)" ;
                                     ]]]
                               icon:
@@ -4894,6 +4720,35 @@ views:
                                     service: script.turn_on
                                     service_data:
                                       entity_id: script.disco_lum
+                                - type: custom:button-card
+                                  entity: light.ambiance_normale
+                                  name: Anniv
+                                  icon: mdi:party-popper
+                                  template:
+                                    - popup_ambiance
+                                  state:
+                                    - value: 'on'
+                                      styles:
+                                        img_cell:
+                                          - background-color: |
+                                              [[[
+                                                if (states['sensor.ambiances_sejour'].state == "Disco" )
+                                                  return "rgba(238,130,238,0.7)";
+                                                return "var(--pastille_off)" ;
+                                              ]]]
+                                        icon:
+                                          - color: var(--icon_on)
+                                          - color: |
+                                              [[[
+                                                if (states['sensor.ambiances_sejour'].state == "Disco" )
+                                                  return "var(--icon_on)";
+                                                return "var(--icon_off)" ;
+                                              ]]]
+                                  tap_action:
+                                    action: call-service
+                                    service: scene.turn_on
+                                    service_data:
+                                      entity_id: scene.anniversaire
                               square: false
                       - type: custom:button-card
                         entity: group.mode
@@ -6130,7 +5985,37 @@ views:
                             return "";
                           ]]]
                         tap_action:
-                          action: more-info
+                          action: fire-dom-event
+                          browser_mod:
+                            command: popup
+                            title: Garage
+                            card:
+                              type: vertical-stack
+                              cards:
+                                - type: grid
+                                  square: false
+                                  columns: 3
+                                  cards:
+                                    - type: custom:button-card
+                                      entity: binary_sensor.porte_cagibi
+                                      name: null
+                                      template:
+                                        - popup_capteur
+                                    - type: custom:button-card
+                                      entity: binary_sensor.porte_garage
+                                      name: null
+                                      template:
+                                        - popup_capteur
+                                    - type: custom:button-card
+                                      entity: binary_sensor.mouv_garage
+                                      name: Mouvements
+                                      template:
+                                        - popup_capteur
+                                    - type: custom:button-card
+                                      entity: light.cagibi
+                                      name: null
+                                      template:
+                                        - popup_light
                         custom_fields:
                           lum:
                             card:
@@ -6361,6 +6246,7 @@ views:
                                   cards:
                                     - type: custom:button-card
                                       entity: sensor.temp_parents
+                                      name: Température
                                       show_last_changed: true
                                       show_state: true
                                       show_icon: true
@@ -6423,7 +6309,7 @@ views:
                                               - color: dodgerblue
                                     - type: custom:button-card
                                       entity: binary_sensor.porte_chambre_parents
-                                      name: null
+                                      name: Porte fenêtre
                                       show_last_changed: true
                                       show_state: true
                                       styles:
@@ -6743,15 +6629,17 @@ views:
                                   cards:
                                     - type: custom:button-card
                                       entity: sensor.temp_tom
+                                      name: Température
                                       template:
                                         - popup_capteur
                                     - type: custom:button-card
                                       entity: binary_sensor.mouv_tom
+                                      name: Mouvements
                                       template:
                                         - popup_capteur
                                     - type: custom:button-card
                                       entity: sensor.mouv_tom_luminosite
-                                      name: null
+                                      name: Luminosité
                                       show_last_changed: true
                                       show_state: true
                                       styles:
@@ -6768,15 +6656,15 @@ views:
                                           - color: grey
                                         name:
                                           - color: grey
-                                          - top: 5%
-                                          - left: 42%
+                                          - top: 49%
+                                          - left: 5%
                                           - font-size: 90%
                                           - font-weight: bold
                                           - position: absolute
                                         state:
                                           - color: lightgrey
-                                          - top: 25%
-                                          - left: 42%
+                                          - top: 15%
+                                          - left: 35%
                                           - font-size: 90%
                                           - position: absolute
                                         label:
@@ -7103,6 +6991,67 @@ views:
                                       name: Léane
                                       template:
                                         - popup_capteur
+                                    - type: custom:button-card
+                                      entity: sensor.mouv_manon_luminosite
+                                      name: Luminosité
+                                      show_last_changed: true
+                                      show_state: true
+                                      styles:
+                                        img_cell:
+                                          - background-color: var(--pastille_off)
+                                          - border-radius: 50%
+                                          - place-self: start
+                                          - width: 35px
+                                          - height: 35px
+                                          - margin-top: 1px
+                                        icon:
+                                          - place-self: start
+                                          - width: 80%
+                                          - color: grey
+                                        name:
+                                          - color: grey
+                                          - top: 49%
+                                          - left: 5%
+                                          - font-size: 90%
+                                          - font-weight: bold
+                                          - position: absolute
+                                        state:
+                                          - color: lightgrey
+                                          - top: 15%
+                                          - left: 35%
+                                          - font-size: 90%
+                                          - position: absolute
+                                        label:
+                                          - color: darkgrey
+                                          - top: 75%
+                                          - left: 8%
+                                          - font-size: 80%
+                                          - position: absolute
+                                        card:
+                                          - height: 75px
+                                          - padding: 3px
+                                          - padding: 3px
+                                          - font-size: 100%
+                                          - border-color: rgba(152, 167, 185, 0.2)
+                                          - background-color: var(--my_color2)
+                                          - border-style: outset
+                                          - border-width: 1px
+                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+                                      double_tap_action:
+                                        action: toggle
+                                      tap_action:
+                                        action: more-info
+                                      state:
+                                        - value: 200
+                                          operator: '>'
+                                          styles:
+                                            icon:
+                                              - color: tomato
+                                        - value: 60
+                                          operator: <
+                                          styles:
+                                            icon:
+                                              - color: dodgerblue
                                   square: false
                                   columns: 3
                                 - type: custom:button-card
@@ -7452,16 +7401,17 @@ views:
                                   cards:
                                     - type: custom:button-card
                                       entity: sensor.temp_nina
+                                      name: Température
                                       template:
                                         - popup_capteur
                                     - type: custom:button-card
                                       entity: binary_sensor.mouv_nina
-                                      name: Mouv Nina
+                                      name: Mouvements
                                       template:
                                         - popup_capteur
                                     - type: custom:button-card
                                       entity: sensor.mouv_nina_luminosite
-                                      name: Lum Nina
+                                      name: Luminosité
                                       show_last_changed: true
                                       show_state: true
                                       styles:
@@ -7478,15 +7428,15 @@ views:
                                           - color: grey
                                         name:
                                           - color: grey
-                                          - top: 5%
-                                          - left: 42%
+                                          - top: 49%
+                                          - left: 5%
                                           - font-size: 90%
                                           - font-weight: bold
                                           - position: absolute
                                         state:
                                           - color: lightgrey
-                                          - top: 25%
-                                          - left: 42%
+                                          - top: 15%
+                                          - left: 35%
                                           - font-size: 90%
                                           - position: absolute
                                         label:
@@ -7848,6 +7798,9 @@ views:
                           - bouton_piece
                           - effet
                         color: auto
+                        label: >
+                          [[[ return (states['sensor.mouv_palier_lum'].state ) +
+                          " lx"; ]]]
                         styles:
                           custom_fields:
                             notification:
@@ -7927,7 +7880,7 @@ views:
                                 - type: grid
                                   cards:
                                     - type: custom:button-card
-                                      entity: binary_sensor.mouv_escaliers
+                                      entity: binary_sensor.mouv_escalier
                                       name: Escalier
                                       template:
                                         - popup_capteur
@@ -7936,6 +7889,67 @@ views:
                                       name: Palier
                                       template:
                                         - popup_capteur
+                                    - type: custom:button-card
+                                      entity: sensor.mouv_palier_lum
+                                      name: Luminosité
+                                      show_last_changed: true
+                                      show_state: true
+                                      styles:
+                                        img_cell:
+                                          - background-color: var(--pastille_off)
+                                          - border-radius: 50%
+                                          - place-self: start
+                                          - width: 35px
+                                          - height: 35px
+                                          - margin-top: 1px
+                                        icon:
+                                          - place-self: start
+                                          - width: 80%
+                                          - color: grey
+                                        name:
+                                          - color: grey
+                                          - top: 49%
+                                          - left: 5%
+                                          - font-size: 90%
+                                          - font-weight: bold
+                                          - position: absolute
+                                        state:
+                                          - color: lightgrey
+                                          - top: 15%
+                                          - left: 35%
+                                          - font-size: 90%
+                                          - position: absolute
+                                        label:
+                                          - color: darkgrey
+                                          - top: 75%
+                                          - left: 8%
+                                          - font-size: 80%
+                                          - position: absolute
+                                        card:
+                                          - height: 75px
+                                          - padding: 3px
+                                          - padding: 3px
+                                          - font-size: 100%
+                                          - border-color: rgba(152, 167, 185, 0.2)
+                                          - background-color: var(--my_color2)
+                                          - border-style: outset
+                                          - border-width: 1px
+                                          - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+                                      double_tap_action:
+                                        action: toggle
+                                      tap_action:
+                                        action: more-info
+                                      state:
+                                        - value: 200
+                                          operator: '>'
+                                          styles:
+                                            icon:
+                                              - color: tomato
+                                        - value: 60
+                                          operator: <
+                                          styles:
+                                            icon:
+                                              - color: dodgerblue
                                   square: false
                                 - type: custom:button-card
                                   style:
@@ -8841,8 +8855,6 @@ views:
                                   return "red";
                                 return "var(--text_on)";
                               ]]]
-                    tap_action:
-                      action: more-info
                     custom_fields:
                       circle: |
                         [[[ if (entity.state == 'on' ) {
@@ -8866,73 +8878,60 @@ views:
                             power: true
                             controls: true
                           group: true
+                    tap_action:
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: TV et programme
+                        card:
+                          type: vertical-stack
+                          cards:
+                            - type: custom:mini-media-player
+                              entity: media_player.lg_webos_smart_tv_2
+                              name: TV Salon
+                              icon: mdi:television
+                              source: full
+                              sound_mode: icon
+                              info: scroll
+                              artwork: material
+                            - aspect_ratio: 200%
+                              type: iframe
+                              url: >-
+                                https://www.programme-tv.net/programme/programme-tnt.html
                   - type: custom:button-card
                     entity: switch.tele_des_parents
                     name: TV parents
-                    icon: mdi:television
+                    icon: |
+                      [[[
+                        if (states['sensor.tv_parents_source'].state == "Netflix")
+                          return "phu:netflix";
+                        if (states['sensor.tv_parents_source'].state == "DD Externe")
+                          return "mdi:movie-open";
+                        return "mdi:television";
+                      ]]]
                     template:
                       - bouton_tv
                       - effet
                     label: |
-
                       [[[
                         if ( entity.state  == 'on')
-                          return (states['sensor.prise_tv_parents_duree'].state );
+                          return (states['sensor.tv_parents_source'].state );
                         if ( entity.state  == 'off')
                           return '';
                         return '';
                       ]]]
                     styles:
-                      custom_fields:
-                        source:
-                          - top: 40%
-                          - left: 36%
-                          - font-weight: bold
-                          - font-size: 90%
-                          - position: absolute
-                          - color: |
-                              [[[
+                      label:
+                        - color: |
+                            [[[
                                 if (states['sensor.tv_parents_source'].state == "Netflix")
                                   return "red";
                                 return "var(--text_on)";
                               ]]]
-                    state:
-                      - value: 'on'
-                        styles:
-                          card:
-                            - animation: ball-scale 0.2s
-                          img_cell:
-                            - background-color: rgba(255,127,80,0.5)
-                          icon:
-                            - color: var(--icon_on)
-                            - transition: 2s ease
-                          name:
-                            - color: var(--text_on)
-                          label:
-                            - color: var(--text_on)
-                      - value: 'off'
-                        color: grey
-                        styles:
-                          card:
-                            - animation: ball-scale 0.2s
-                          img_cell:
-                            - background-color: var(--pastille_off)
-                          icon:
-                            - color: var(--icon_off)
-                            - transition: 2s ease
-                          name:
-                            - color: grey
                     double_tap_action:
                       action: toggle
                     tap_action:
                       action: more-info
-                    custom_fields:
-                      source: |
-                        [[[
-                          if (entity.state == "on")
-                            return (states['sensor.tv_parents_source'].state );
-                          return "";
-                        ]]]
                 columns: 2
                 square: false
               - type: custom:button-card
@@ -9286,6 +9285,619 @@ views:
                   [[[ return "Maison"]]]
                 label: |
                   [[[ return states['sensor.systeme'].state ]]]
+              - type: grid
+                cards:
+                  - type: custom:button-card
+                    entity: person.herve
+                    name: Aurel
+                    template:
+                      - bouton_person
+                      - effet
+                    label: |
+                      [[[
+                        return states['sensor.aurel_gps'].state
+                      ]]]
+                    styles:
+                      label:
+                        - color: |
+                            [[[
+                              if (states['person.herve'].state == "home")
+                                return 'darkgrey';
+                              if (states['person.herve'].state == "Salle de sport")
+                                return 'grey';
+                              if (states['person.herve'].state == "Hopital")
+                                return 'grey';
+                              if (states['person.herve'].state == "Travail")
+                                return 'grey';
+                             if (states['person.herve'].state == "Collège")
+                                return 'grey';
+                              return 'red';
+                            ]]]
+                      custom_fields:
+                        icon_batterie:
+                          - color: |
+                              [[[
+                                if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charging")
+                                  return 'gold';
+                                if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charged")
+                                  return 'red';
+                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 80)
+                                  return 'darkgrey';
+                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 60)
+                                  return 'darkgrey';
+                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 50)
+                                  return 'tomato';
+                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 30)
+                                  return 'red';
+                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 0)
+                                  return 'red';
+                                return 'red';
+                              ]]]
+                    custom_fields:
+                      batterie: >
+                        [[[ return
+                        states['sensor.iphoneaurel_battery_level_ha'].state +
+                        "%" ]]]
+                      icon_batterie: |
+                        [[[
+                          if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charging")
+                            return '<ha-icon icon="phu:battery-charged">';
+                          if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charged")
+                            return '<ha-icon icon="phu:battery-charged">';
+                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 80)
+                            return '<ha-icon icon="phu:battery-full">';
+                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 70)
+                            return '<ha-icon icon="phu:battery-good">';
+                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 50)
+                            return '<ha-icon icon="phu:battery-half">';
+                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 30)
+                            return '<ha-icon icon="phu:battery-low">';
+                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 0)
+                            return '<ha-icon icon="phu:battery-critical">';
+                          return '<ha-icon icon="phu:battery-full">';
+                        ]]]
+                      heure: |
+                        [[[ return states['sensor.aurel_heure'].state ]]]
+                    tap_action:
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: Aurel
+                        card:
+                          type: custom:vertical-stack-in-card
+                          cards:
+                            - type: picture
+                              style: |
+                                ha-card {
+                                  border-radius: 10px;
+                                  background: var(--my_color2);
+                                }
+                              image: /local/header/header_aurel2.png
+                              tap_action:
+                                action: none
+                              hold_action:
+                                action: none
+                            - type: entities
+                              entities:
+                                - entity: person.herve
+                              style: |
+                                ha-card {
+                                  border-radius: 15px ;
+                                  background: var(--my_color2);
+                                  color: lightgrey;
+                                }
+                            - aspect_ratio: '1:1'
+                              dark_mode: true
+                              default_zoom: 15
+                              entities:
+                                - entity: person.herve
+                              hours_to_show: 12
+                              type: map
+                              style: |
+                                ha-card {
+                                  border-radius: 15px ;
+                                  border-radius: 15px 15px 0px 0px ;
+                                  border-top : px solid grey;
+                                  border-left : px solid grey;
+                                  border-right : px solid grey;
+                                }
+                            - header:
+                                title: 📱iPhone ️
+                                show: true
+                                show_states: true
+                                colorize_states: true
+                              experimental:
+                                brush: true
+                              graph_span: 72h
+                              brush:
+                                selection_span: 12h
+                              apex_config:
+                                grid:
+                                  show: false
+                                legend:
+                                  fontSize: 12px
+                                  height: 40
+                                dataLabels:
+                                  enabled: false
+                                stroke:
+                                  width: 3
+                                  curve: smooth
+                                fill:
+                                  type: gradient
+                                  gradient:
+                                    type: vertical
+                                    shadeIntensity: 0.8
+                                    inverseColors: false
+                                    opacityFrom: 0.5
+                                    opacityTo: 0
+                                    stops:
+                                      - - 0
+                                        - 50
+                                        - 100
+                                tooltip:
+                                  enabled: true
+                                yaxis:
+                                  - show: true
+                                    decimalsInFloat: 0
+                                    labels:
+                                      style:
+                                        colors: '#FFB62E'
+                                        fontSize: 12px
+                                    forceNiceScale: true
+                                  - show: true
+                                    decimalsInFloat: 0
+                                    opposite: true
+                                    labels:
+                                      style:
+                                        colors: '#2eb9ff'
+                                        fontSize: 12px
+                                    forceNiceScale: true
+                                xaxis:
+                                  axisBorder:
+                                    show: false
+                                  labels:
+                                    style:
+                                      fontSize: 14px
+                              series:
+                                - entity: sensor.iphoneaurel_battery_level_ha
+                                  name: Aurel
+                                  show:
+                                    extremas: false
+                                  type: area
+                                  color: grey
+                                  fill_raw: last
+                                  float_precision: 1
+                                  group_by:
+                                    duration: 10min
+                                    func: avg
+                                - entity: sensor.alex_iphone_battery_level_ha
+                                  name: Alex
+                                  show:
+                                    extremas: false
+                                  type: area
+                                  color: purple
+                                  fill_raw: last
+                                  float_precision: 1
+                                  group_by:
+                                    duration: 10min
+                                    func: avg
+                                - entity: sensor.iphoneaurel_battery_level_ha
+                                  name: Aurel
+                                  color: dodgerblue
+                                  fill_raw: last
+                                  type: area
+                                  stroke_width: 1
+                                  group_by:
+                                    duration: 10min
+                                    func: avg
+                                  show:
+                                    in_brush: true
+                                    in_chart: false
+                              card_mod:
+                                style: |
+                                  ha-card {
+                                  background-color: black;
+                                  }
+                              type: custom:apexcharts-card
+                  - type: custom:button-card
+                    entity: person.alex
+                    name: Alex
+                    template:
+                      - bouton_person
+                      - effet
+                    label: |
+                      [[[
+                        return states['sensor.alex_gps'].state
+                      ]]]
+                    styles:
+                      label:
+                        - color: |
+                            [[[
+                              if (states['person.alex'].state == "home")
+                                return 'darkgrey';
+                              if (states['person.alex'].state == "Salle de sport")
+                                return 'grey';
+                              if (states['person.alex'].state == "Travail")
+                                return 'grey';
+                              if (states['person.alex'].state == "Collège")
+                                return 'grey';
+                              if (states['person.alex'].state == "Complexe sportif")
+                                return 'grey';
+                              if (states['person.alex'].state == "Atoll")
+                                return 'grey';
+                              return 'red';
+                            ]]]
+                      card:
+                        - font-size: 100%
+                        - border-color: rgba(152, 167, 185, 0.2)
+                        - background-color: >
+                            [[[ return (entity.state === 'on' || entity.state
+                            === 'home') ? 'var(--my_color2)' :
+                            'var(--my_color_pastille)'; ]]]
+                        - border-style: outset
+                        - border-width: 1px
+                        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+                      custom_fields:
+                        icon_batterie:
+                          - color: |
+                              [[[
+                                if (states['sensor.alex_iphone_battery_state_ha'].state == "Charging")
+                                  return 'gold';
+                                if (states['sensor.alex_iphone_battery_state_ha'].state == "Charged")
+                                  return 'red';
+                                if (states['sensor.alex_iphone_battery_level_ha'].state > 80)
+                                  return 'darkgrey';
+                                if (states['sensor.alex_iphone_battery_level_ha'].state > 60)
+                                  return 'darkgrey';
+                                if (states['sensor.alex_iphone_battery_level_ha'].state > 50)
+                                  return 'tomato';
+                                if (states['sensor.alex_iphone_battery_level_ha'].state > 30)
+                                  return 'red';
+                                if (states['sensor.alex_iphone_battery_level_ha'].state > 0)
+                                  return 'red';
+                                return 'red';
+                              ]]]
+                    custom_fields:
+                      batterie: >
+                        [[[ return
+                        states['sensor.alex_iphone_battery_level_ha'].state +
+                        "%" ]]]
+                      icon_batterie: |
+                        [[[
+                          if (states['sensor.alex_iphone_battery_state_ha'].state == "Charging")
+                            return '<ha-icon icon="phu:battery-charged">';
+                          if (states['sensor.alex_iphone_battery_state_ha'].state == "Charged")
+                            return '<ha-icon icon="phu:battery-charged">';
+                          if (states['sensor.alex_iphone_battery_level_ha'].state > 80)
+                            return '<ha-icon icon="phu:battery-full">';
+                          if (states['sensor.alex_iphone_battery_level_ha'].state > 70)
+                            return '<ha-icon icon="phu:battery-good">';
+                          if (states['sensor.alex_iphone_battery_level_ha'].state > 50)
+                            return '<ha-icon icon="phu:battery-half">';
+                          if (states['sensor.alex_iphone_battery_level_ha'].state > 30)
+                            return '<ha-icon icon="phu:battery-low">';
+                          if (states['sensor.alex_iphone_battery_level_ha'].state > 0)
+                            return '<ha-icon icon="phu:battery-critical">';
+                          return '<ha-icon icon="phu:battery-full">';
+                        ]]]
+                      heure: |
+                        [[[ return states['sensor.alex_heure'].state ]]]
+                    double_tap_action:
+                      action: more-info
+                    tap_action:
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: Alex
+                        card:
+                          type: custom:vertical-stack-in-card
+                          cards:
+                            - type: picture
+                              style: |
+                                ha-card {
+                                  border-radius: 10px;
+                                  background: var(--my_color2);
+                                }
+                              image: /local/header/header_alex2.png
+                              tap_action:
+                                action: none
+                              hold_action:
+                                action: none
+                            - type: entities
+                              entities:
+                                - entity: person.alex
+                              style: |
+                                ha-card {
+                                  border-radius: 15px ;
+                                  background: var(--my_color2);
+                                  color: lightgrey;
+                                }
+                            - aspect_ratio: '1:1'
+                              dark_mode: true
+                              default_zoom: 15
+                              entities:
+                                - entity: person.alex
+                              hours_to_show: 12
+                              type: map
+                              style: |
+                                ha-card {
+                                  border-radius: 15px ;
+                                  border-radius: 15px 15px 0px 0px ;
+                                  border-top : px solid grey;
+                                  border-left : px solid grey;
+                                  border-right : px solid grey;
+                                }
+                            - header:
+                                title: 📱iPhone ️
+                                show: true
+                                show_states: true
+                                colorize_states: true
+                              experimental:
+                                brush: true
+                              graph_span: 72h
+                              brush:
+                                selection_span: 12h
+                              apex_config:
+                                grid:
+                                  show: false
+                                legend:
+                                  fontSize: 12px
+                                  height: 40
+                                dataLabels:
+                                  enabled: false
+                                stroke:
+                                  width: 3
+                                  curve: smooth
+                                fill:
+                                  type: gradient
+                                  gradient:
+                                    type: vertical
+                                    shadeIntensity: 0.8
+                                    inverseColors: false
+                                    opacityFrom: 0.5
+                                    opacityTo: 0
+                                    stops:
+                                      - - 0
+                                        - 50
+                                        - 100
+                                tooltip:
+                                  enabled: true
+                                yaxis:
+                                  - show: true
+                                    decimalsInFloat: 0
+                                    labels:
+                                      style:
+                                        colors: '#FFB62E'
+                                        fontSize: 12px
+                                    forceNiceScale: true
+                                  - show: true
+                                    decimalsInFloat: 0
+                                    opposite: true
+                                    labels:
+                                      style:
+                                        colors: '#2eb9ff'
+                                        fontSize: 12px
+                                    forceNiceScale: true
+                                xaxis:
+                                  axisBorder:
+                                    show: false
+                                  labels:
+                                    style:
+                                      fontSize: 14px
+                              series:
+                                - entity: sensor.iphoneaurel_battery_level_ha
+                                  name: Aurel
+                                  show:
+                                    extremas: false
+                                  type: area
+                                  color: grey
+                                  fill_raw: last
+                                  float_precision: 1
+                                  group_by:
+                                    duration: 10min
+                                    func: avg
+                                - entity: sensor.alex_iphone_battery_level_ha
+                                  name: Alex
+                                  show:
+                                    extremas: false
+                                  type: area
+                                  color: purple
+                                  fill_raw: last
+                                  float_precision: 1
+                                  group_by:
+                                    duration: 10min
+                                    func: avg
+                                - entity: sensor.iphoneaurel_battery_level_ha
+                                  name: Aurel
+                                  color: dodgerblue
+                                  fill_raw: last
+                                  type: area
+                                  stroke_width: 1
+                                  group_by:
+                                    duration: 10min
+                                    func: avg
+                                  show:
+                                    in_brush: true
+                                    in_chart: false
+                              card_mod:
+                                style: |
+                                  ha-card {
+                                  background-color: black;
+                                  }
+                              type: custom:apexcharts-card
+                  - type: custom:button-card
+                    entity: person.tom
+                    name: Tom
+                    template:
+                      - bouton_person
+                      - effet
+                    label: |
+                      [[[
+                        return states['sensor.tom_gps'].state
+                      ]]]
+                    styles:
+                      label:
+                        - color: |
+                            [[[
+                              if (states['person.tom'].state == "home")
+                                return 'darkgrey';
+                              if (states['person.tom'].state == "not_home")
+                                return 'red';
+                              return 'red';
+                            ]]]
+                      card:
+                        - opacity: |
+                            [[[
+                              if (states['input_boolean.nilemato'].state == "off")
+                                return '70%';
+                              return '100%';
+                            ]]]
+                    custom_fields:
+                      heure: |
+                        [[[ return states['sensor.tom_heure'].state ]]]
+                    tap_action:
+                      action: fire-dom-event
+                      browser_mod:
+                        command: popup
+                        title: Tom
+                        card:
+                          type: custom:vertical-stack-in-card
+                          cards:
+                            - type: picture
+                              style: |
+                                ha-card {
+                                  border-radius: 10px;
+                                  background: var(--my_color2);
+                                }
+                              image: /local/header/header_tom2.png
+                              tap_action:
+                                action: none
+                              hold_action:
+                                action: none
+                            - type: entities
+                              entities:
+                                - entity: person.tom
+                              style: |
+                                ha-card {
+                                  border-radius: 15px ;
+                                  background: var(--my_color2);
+                                  color: lightgrey;
+                                }
+                            - aspect_ratio: '1:1'
+                              dark_mode: true
+                              default_zoom: 15
+                              entities:
+                                - entity: person.tom
+                              hours_to_show: 12
+                              type: map
+                              style: |
+                                ha-card {
+                                  border-radius: 15px ;
+                                  border-radius: 15px 15px 0px 0px ;
+                                  border-top : px solid grey;
+                                  border-left : px solid grey;
+                                  border-right : px solid grey;
+                                }
+                            - header:
+                                title: 📱iPhone ️
+                                show: true
+                                show_states: true
+                                colorize_states: true
+                              experimental:
+                                brush: true
+                              graph_span: 72h
+                              brush:
+                                selection_span: 12h
+                              apex_config:
+                                grid:
+                                  show: false
+                                legend:
+                                  fontSize: 12px
+                                  height: 40
+                                dataLabels:
+                                  enabled: false
+                                stroke:
+                                  width: 3
+                                  curve: smooth
+                                fill:
+                                  type: gradient
+                                  gradient:
+                                    type: vertical
+                                    shadeIntensity: 0.8
+                                    inverseColors: false
+                                    opacityFrom: 0.5
+                                    opacityTo: 0
+                                    stops:
+                                      - - 0
+                                        - 50
+                                        - 100
+                                tooltip:
+                                  enabled: true
+                                yaxis:
+                                  - show: true
+                                    decimalsInFloat: 0
+                                    labels:
+                                      style:
+                                        colors: '#FFB62E'
+                                        fontSize: 12px
+                                    forceNiceScale: true
+                                  - show: true
+                                    decimalsInFloat: 0
+                                    opposite: true
+                                    labels:
+                                      style:
+                                        colors: '#2eb9ff'
+                                        fontSize: 12px
+                                    forceNiceScale: true
+                                xaxis:
+                                  axisBorder:
+                                    show: false
+                                  labels:
+                                    style:
+                                      fontSize: 14px
+                              series:
+                                - entity: sensor.iphoneaurel_battery_level_ha
+                                  name: Aurel
+                                  show:
+                                    extremas: false
+                                  type: area
+                                  color: grey
+                                  fill_raw: last
+                                  float_precision: 1
+                                  group_by:
+                                    duration: 10min
+                                    func: avg
+                                - entity: sensor.alex_iphone_battery_level_ha
+                                  name: Alex
+                                  show:
+                                    extremas: false
+                                  type: area
+                                  color: purple
+                                  fill_raw: last
+                                  float_precision: 1
+                                  group_by:
+                                    duration: 10min
+                                    func: avg
+                                - entity: sensor.iphoneaurel_battery_level_ha
+                                  name: Aurel
+                                  color: dodgerblue
+                                  fill_raw: last
+                                  type: area
+                                  stroke_width: 1
+                                  group_by:
+                                    duration: 10min
+                                    func: avg
+                                  show:
+                                    in_brush: true
+                                    in_chart: false
+                              card_mod:
+                                style: |
+                                  ha-card {
+                                  background-color: black;
+                                  }
+                              type: custom:apexcharts-card
+                square: false
+                columns: 3
               - type: grid
                 cards:
                   - type: custom:button-card
@@ -9736,612 +10348,6 @@ views:
                               type: custom:apexcharts-card
                 columns: 2
                 square: false
-              - type: grid
-                cards:
-                  - type: custom:button-card
-                    entity: person.herve
-                    name: Aurel
-                    template:
-                      - bouton_person
-                      - effet
-                    label: |
-                      [[[
-                        return states['sensor.aurel_gps'].state
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['person.herve'].state == "home")
-                                return 'darkgrey';
-                              if (states['person.herve'].state == "Salle de sport")
-                                return 'grey';
-                              if (states['person.herve'].state == "Hopital")
-                                return 'grey';
-                              if (states['person.herve'].state == "Travail")
-                                return 'grey';
-                             if (states['person.herve'].state == "Collège")
-                                return 'grey';
-                              return 'red';
-                            ]]]
-                      custom_fields:
-                        icon_batterie:
-                          - color: |
-                              [[[
-                                if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charging")
-                                  return 'gold';
-                                if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charged")
-                                  return 'red';
-                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 80)
-                                  return 'darkgrey';
-                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 70)
-                                  return 'darkgrey';
-                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 50)
-                                  return 'tomato';
-                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 30)
-                                  return 'red';
-                                if (states['sensor.iphoneaurel_battery_level_ha'].state > 0)
-                                  return 'red';
-                                return 'red';
-                              ]]]
-                    custom_fields:
-                      batterie: >
-                        [[[ return
-                        states['sensor.iphoneaurel_battery_level_ha'].state +
-                        "%" ]]]
-                      icon_batterie: |
-                        [[[
-                          if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charging")
-                            return '<ha-icon icon="phu:battery-charged">';
-                          if (states['sensor.iphoneaurel_battery_state_ha'].state == "Charged")
-                            return '<ha-icon icon="phu:battery-charged">';
-                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 80)
-                            return '<ha-icon icon="phu:battery-full">';
-                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 70)
-                            return '<ha-icon icon="phu:battery-good">';
-                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 50)
-                            return '<ha-icon icon="phu:battery-half">';
-                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 30)
-                            return '<ha-icon icon="phu:battery-low">';
-                          if (states['sensor.iphoneaurel_battery_level_ha'].state > 0)
-                            return '<ha-icon icon="phu:battery-critical">';
-                          return '<ha-icon icon="phu:battery-full">';
-                        ]]]
-                      heure: |
-                        [[[ return states['sensor.aurel_heure'].state ]]]
-                    tap_action:
-                      action: fire-dom-event
-                      browser_mod:
-                        command: popup
-                        title: Aurel
-                        card:
-                          type: custom:vertical-stack-in-card
-                          cards:
-                            - type: picture
-                              style: |
-                                ha-card {
-                                  border-radius: 10px;
-                                  background: var(--my_color2);
-                                }
-                              image: /local/header/header_aurel2.png
-                              tap_action:
-                                action: none
-                              hold_action:
-                                action: none
-                            - type: entities
-                              entities:
-                                - entity: person.herve
-                              style: |
-                                ha-card {
-                                  border-radius: 15px ;
-                                  background: var(--my_color2);
-                                  color: lightgrey;
-                                }
-                            - aspect_ratio: '1:1'
-                              dark_mode: true
-                              default_zoom: 15
-                              entities:
-                                - entity: person.herve
-                              hours_to_show: 12
-                              type: map
-                              style: |
-                                ha-card {
-                                  border-radius: 15px ;
-                                  border-radius: 15px 15px 0px 0px ;
-                                  border-top : px solid grey;
-                                  border-left : px solid grey;
-                                  border-right : px solid grey;
-                                }
-                            - header:
-                                title: 📱iPhone ️
-                                show: true
-                                show_states: true
-                                colorize_states: true
-                              experimental:
-                                brush: true
-                              graph_span: 72h
-                              brush:
-                                selection_span: 12h
-                              apex_config:
-                                grid:
-                                  show: false
-                                legend:
-                                  fontSize: 12px
-                                  height: 40
-                                dataLabels:
-                                  enabled: false
-                                stroke:
-                                  width: 3
-                                  curve: smooth
-                                fill:
-                                  type: gradient
-                                  gradient:
-                                    type: vertical
-                                    shadeIntensity: 0.8
-                                    inverseColors: false
-                                    opacityFrom: 0.5
-                                    opacityTo: 0
-                                    stops:
-                                      - - 0
-                                        - 50
-                                        - 100
-                                tooltip:
-                                  enabled: true
-                                yaxis:
-                                  - show: true
-                                    decimalsInFloat: 0
-                                    labels:
-                                      style:
-                                        colors: '#FFB62E'
-                                        fontSize: 12px
-                                    forceNiceScale: true
-                                  - show: true
-                                    decimalsInFloat: 0
-                                    opposite: true
-                                    labels:
-                                      style:
-                                        colors: '#2eb9ff'
-                                        fontSize: 12px
-                                    forceNiceScale: true
-                                xaxis:
-                                  axisBorder:
-                                    show: false
-                                  labels:
-                                    style:
-                                      fontSize: 14px
-                              series:
-                                - entity: sensor.iphoneaurel_battery_level_ha
-                                  name: Aurel
-                                  show:
-                                    extremas: false
-                                  type: area
-                                  color: grey
-                                  fill_raw: last
-                                  float_precision: 1
-                                  group_by:
-                                    duration: 10min
-                                    func: avg
-                                - entity: sensor.alex_iphone_battery_level_ha
-                                  name: Alex
-                                  show:
-                                    extremas: false
-                                  type: area
-                                  color: purple
-                                  fill_raw: last
-                                  float_precision: 1
-                                  group_by:
-                                    duration: 10min
-                                    func: avg
-                                - entity: sensor.iphoneaurel_battery_level_ha
-                                  name: Aurel
-                                  color: dodgerblue
-                                  fill_raw: last
-                                  type: area
-                                  stroke_width: 1
-                                  group_by:
-                                    duration: 10min
-                                    func: avg
-                                  show:
-                                    in_brush: true
-                                    in_chart: false
-                              card_mod:
-                                style: |
-                                  ha-card {
-                                  background-color: black;
-                                  }
-                              type: custom:apexcharts-card
-                  - type: custom:button-card
-                    entity: person.alex
-                    name: Alex
-                    template:
-                      - bouton_person
-                      - effet
-                    label: |
-                      [[[
-                        return states['sensor.alex_gps'].state
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['person.alex'].state == "home")
-                                return 'darkgrey';
-                              if (states['person.alex'].state == "Salle de sport")
-                                return 'grey';
-                              if (states['person.alex'].state == "Travail")
-                                return 'grey';
-                              if (states['person.alex'].state == "Collège")
-                                return 'grey';
-                              if (states['person.alex'].state == "Complexe sportif")
-                                return 'grey';
-                              if (states['person.alex'].state == "Atoll")
-                                return 'grey';
-                              return 'red';
-                            ]]]
-                      card:
-                        - font-size: 100%
-                        - border-color: rgba(152, 167, 185, 0.2)
-                        - background-color: >
-                            [[[ return (entity.state === 'on' || entity.state
-                            === 'home') ? 'var(--my_color2)' :
-                            'var(--my_color_pastille)'; ]]]
-                        - border-style: outset
-                        - border-width: 1px
-                        - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                      custom_fields:
-                        icon_batterie:
-                          - color: |
-                              [[[
-                                if (states['sensor.alex_iphone_battery_state_ha'].state == "Charging")
-                                  return 'gold';
-                                if (states['sensor.alex_iphone_battery_state_ha'].state == "Charged")
-                                  return 'red';
-                                if (states['sensor.alex_iphone_battery_level_ha'].state > 80)
-                                  return 'darkgrey';
-                                if (states['sensor.alex_iphone_battery_level_ha'].state > 70)
-                                  return 'darkgrey';
-                                if (states['sensor.alex_iphone_battery_level_ha'].state > 50)
-                                  return 'tomato';
-                                if (states['sensor.alex_iphone_battery_level_ha'].state > 30)
-                                  return 'red';
-                                if (states['sensor.alex_iphone_battery_level_ha'].state > 0)
-                                  return 'red';
-                                return 'red';
-                              ]]]
-                    custom_fields:
-                      batterie: >
-                        [[[ return
-                        states['sensor.alex_iphone_battery_level_ha'].state +
-                        "%" ]]]
-                      icon_batterie: |
-                        [[[
-                          if (states['sensor.alex_iphone_battery_state_ha'].state == "Charging")
-                            return '<ha-icon icon="phu:battery-charged">';
-                          if (states['sensor.alex_iphone_battery_state_ha'].state == "Charged")
-                            return '<ha-icon icon="phu:battery-charged">';
-                          if (states['sensor.alex_iphone_battery_level_ha'].state > 80)
-                            return '<ha-icon icon="phu:battery-full">';
-                          if (states['sensor.alex_iphone_battery_level_ha'].state > 70)
-                            return '<ha-icon icon="phu:battery-good">';
-                          if (states['sensor.alex_iphone_battery_level_ha'].state > 50)
-                            return '<ha-icon icon="phu:battery-half">';
-                          if (states['sensor.alex_iphone_battery_level_ha'].state > 30)
-                            return '<ha-icon icon="phu:battery-low">';
-                          if (states['sensor.alex_iphone_battery_level_ha'].state > 0)
-                            return '<ha-icon icon="phu:battery-critical">';
-                          return '<ha-icon icon="phu:battery-full">';
-                        ]]]
-                      heure: |
-                        [[[ return states['sensor.alex_heure'].state ]]]
-                    double_tap_action:
-                      action: more-info
-                    tap_action:
-                      action: fire-dom-event
-                      browser_mod:
-                        command: popup
-                        title: Alex
-                        card:
-                          type: custom:vertical-stack-in-card
-                          cards:
-                            - type: picture
-                              style: |
-                                ha-card {
-                                  border-radius: 10px;
-                                  background: var(--my_color2);
-                                }
-                              image: /local/header/header_alex2.png
-                              tap_action:
-                                action: none
-                              hold_action:
-                                action: none
-                            - type: entities
-                              entities:
-                                - entity: person.alex
-                              style: |
-                                ha-card {
-                                  border-radius: 15px ;
-                                  background: var(--my_color2);
-                                  color: lightgrey;
-                                }
-                            - aspect_ratio: '1:1'
-                              dark_mode: true
-                              default_zoom: 15
-                              entities:
-                                - entity: person.alex
-                              hours_to_show: 12
-                              type: map
-                              style: |
-                                ha-card {
-                                  border-radius: 15px ;
-                                  border-radius: 15px 15px 0px 0px ;
-                                  border-top : px solid grey;
-                                  border-left : px solid grey;
-                                  border-right : px solid grey;
-                                }
-                            - header:
-                                title: 📱iPhone ️
-                                show: true
-                                show_states: true
-                                colorize_states: true
-                              experimental:
-                                brush: true
-                              graph_span: 72h
-                              brush:
-                                selection_span: 12h
-                              apex_config:
-                                grid:
-                                  show: false
-                                legend:
-                                  fontSize: 12px
-                                  height: 40
-                                dataLabels:
-                                  enabled: false
-                                stroke:
-                                  width: 3
-                                  curve: smooth
-                                fill:
-                                  type: gradient
-                                  gradient:
-                                    type: vertical
-                                    shadeIntensity: 0.8
-                                    inverseColors: false
-                                    opacityFrom: 0.5
-                                    opacityTo: 0
-                                    stops:
-                                      - - 0
-                                        - 50
-                                        - 100
-                                tooltip:
-                                  enabled: true
-                                yaxis:
-                                  - show: true
-                                    decimalsInFloat: 0
-                                    labels:
-                                      style:
-                                        colors: '#FFB62E'
-                                        fontSize: 12px
-                                    forceNiceScale: true
-                                  - show: true
-                                    decimalsInFloat: 0
-                                    opposite: true
-                                    labels:
-                                      style:
-                                        colors: '#2eb9ff'
-                                        fontSize: 12px
-                                    forceNiceScale: true
-                                xaxis:
-                                  axisBorder:
-                                    show: false
-                                  labels:
-                                    style:
-                                      fontSize: 14px
-                              series:
-                                - entity: sensor.iphoneaurel_battery_level_ha
-                                  name: Aurel
-                                  show:
-                                    extremas: false
-                                  type: area
-                                  color: grey
-                                  fill_raw: last
-                                  float_precision: 1
-                                  group_by:
-                                    duration: 10min
-                                    func: avg
-                                - entity: sensor.alex_iphone_battery_level_ha
-                                  name: Alex
-                                  show:
-                                    extremas: false
-                                  type: area
-                                  color: purple
-                                  fill_raw: last
-                                  float_precision: 1
-                                  group_by:
-                                    duration: 10min
-                                    func: avg
-                                - entity: sensor.iphoneaurel_battery_level_ha
-                                  name: Aurel
-                                  color: dodgerblue
-                                  fill_raw: last
-                                  type: area
-                                  stroke_width: 1
-                                  group_by:
-                                    duration: 10min
-                                    func: avg
-                                  show:
-                                    in_brush: true
-                                    in_chart: false
-                              card_mod:
-                                style: |
-                                  ha-card {
-                                  background-color: black;
-                                  }
-                              type: custom:apexcharts-card
-                  - type: custom:button-card
-                    entity: person.tom
-                    name: Tom
-                    template:
-                      - bouton_person
-                      - effet
-                    label: |
-                      [[[
-                        return states['sensor.tom_gps'].state
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['person.tom'].state == "home")
-                                return 'darkgrey';
-                              if (states['person.tom'].state == "not_home")
-                                return 'red';
-                              return 'red';
-                            ]]]
-                    custom_fields:
-                      heure: |
-                        [[[ return states['sensor.tom_heure'].state ]]]
-                    tap_action:
-                      action: fire-dom-event
-                      browser_mod:
-                        command: popup
-                        title: Tom
-                        card:
-                          type: custom:vertical-stack-in-card
-                          cards:
-                            - type: picture
-                              style: |
-                                ha-card {
-                                  border-radius: 10px;
-                                  background: var(--my_color2);
-                                }
-                              image: /local/header/header_tom2.png
-                              tap_action:
-                                action: none
-                              hold_action:
-                                action: none
-                            - type: entities
-                              entities:
-                                - entity: person.tom
-                              style: |
-                                ha-card {
-                                  border-radius: 15px ;
-                                  background: var(--my_color2);
-                                  color: lightgrey;
-                                }
-                            - aspect_ratio: '1:1'
-                              dark_mode: true
-                              default_zoom: 15
-                              entities:
-                                - entity: person.tom
-                              hours_to_show: 12
-                              type: map
-                              style: |
-                                ha-card {
-                                  border-radius: 15px ;
-                                  border-radius: 15px 15px 0px 0px ;
-                                  border-top : px solid grey;
-                                  border-left : px solid grey;
-                                  border-right : px solid grey;
-                                }
-                            - header:
-                                title: 📱iPhone ️
-                                show: true
-                                show_states: true
-                                colorize_states: true
-                              experimental:
-                                brush: true
-                              graph_span: 72h
-                              brush:
-                                selection_span: 12h
-                              apex_config:
-                                grid:
-                                  show: false
-                                legend:
-                                  fontSize: 12px
-                                  height: 40
-                                dataLabels:
-                                  enabled: false
-                                stroke:
-                                  width: 3
-                                  curve: smooth
-                                fill:
-                                  type: gradient
-                                  gradient:
-                                    type: vertical
-                                    shadeIntensity: 0.8
-                                    inverseColors: false
-                                    opacityFrom: 0.5
-                                    opacityTo: 0
-                                    stops:
-                                      - - 0
-                                        - 50
-                                        - 100
-                                tooltip:
-                                  enabled: true
-                                yaxis:
-                                  - show: true
-                                    decimalsInFloat: 0
-                                    labels:
-                                      style:
-                                        colors: '#FFB62E'
-                                        fontSize: 12px
-                                    forceNiceScale: true
-                                  - show: true
-                                    decimalsInFloat: 0
-                                    opposite: true
-                                    labels:
-                                      style:
-                                        colors: '#2eb9ff'
-                                        fontSize: 12px
-                                    forceNiceScale: true
-                                xaxis:
-                                  axisBorder:
-                                    show: false
-                                  labels:
-                                    style:
-                                      fontSize: 14px
-                              series:
-                                - entity: sensor.iphoneaurel_battery_level_ha
-                                  name: Aurel
-                                  show:
-                                    extremas: false
-                                  type: area
-                                  color: grey
-                                  fill_raw: last
-                                  float_precision: 1
-                                  group_by:
-                                    duration: 10min
-                                    func: avg
-                                - entity: sensor.alex_iphone_battery_level_ha
-                                  name: Alex
-                                  show:
-                                    extremas: false
-                                  type: area
-                                  color: purple
-                                  fill_raw: last
-                                  float_precision: 1
-                                  group_by:
-                                    duration: 10min
-                                    func: avg
-                                - entity: sensor.iphoneaurel_battery_level_ha
-                                  name: Aurel
-                                  color: dodgerblue
-                                  fill_raw: last
-                                  type: area
-                                  stroke_width: 1
-                                  group_by:
-                                    duration: 10min
-                                    func: avg
-                                  show:
-                                    in_brush: true
-                                    in_chart: false
-                              card_mod:
-                                style: |
-                                  ha-card {
-                                  background-color: black;
-                                  }
-                              type: custom:apexcharts-card
-                square: false
-                columns: 3
               - type: custom:button-card
                 template:
                   - bouton_titre
@@ -10908,6 +10914,16 @@ views:
                     template:
                       - bouton_systeme
                     styles:
+                      icon:
+                        - color: |
+                            [[[
+                              if (states['sensor.temp_moyenne_rdc'].state < 19.5 || states['sensor.temp_moyenne_etage'].state < 19.5)
+                                return 'rgba(30,144,255,0.8)';
+                              return 'grey';
+                              if (states['sensor.temp_moyenne_rdc'].state > 24 || states['sensor.temp_moyenne_etage'].state > 24)
+                                return 'rgba(178,34,34,0.8)';
+                              return 'grey';
+                            ]]]
                       img_cell:
                         - background-color: |
                             [[[
@@ -10998,414 +11014,46 @@ views:
                                 - type: custom:button-card
                                   entity: sensor.temp_sejour
                                   name: null
-                                  aspect_ratio: 1/1
-                                  icon: mdi:thermometer
-                                  show_icon: false
-                                  show_name: true
-                                  show_state: true
-                                  show_label: true
-                                  show_last_changed: true
-                                  label: |
-                                    [[[
-                                      if (states['sensor.lum_sejour'].state != 'unavailable')
-                                        return (states['sensor.lum_sejour'].state ) + " lx" ;
-                                      return "";
-                                    ]]]
-                                  styles:
-                                    state:
-                                      - font-size: 110%
-                                      - color: |
-                                          [[[
-                                            if (entity.state < 20)
-                                              return 'dodgerblue';
-                                            if (entity.state > 23)
-                                              return 'tomato';
-                                            return 'lightgrey';
-                                          ]]]
-                                    name:
-                                      - font-size: 90%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-bottom: 15%
-                                      - color: grey
-                                    label:
-                                      - font-size: 70%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-top: 10%
-                                      - color: grey
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: var(--my_color2)
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                  double_tap_action:
-                                    action: more-info
-                                  tap_action:
-                                    action: more-info
+                                  template:
+                                    - popup_temp
                                 - type: custom:button-card
                                   entity: sensor.temp_couloir_rdc
                                   name: null
-                                  aspect_ratio: 1/1
-                                  icon: mdi:thermometer
-                                  show_icon: false
-                                  show_name: true
-                                  show_state: true
-                                  show_label: true
-                                  show_last_changed: true
-                                  styles:
-                                    state:
-                                      - font-size: 110%
-                                      - color: |
-                                          [[[
-                                            if (entity.state < 20)
-                                              return 'dodgerblue';
-                                            if (entity.state > 23)
-                                              return 'tomato';
-                                            return 'lightgrey';
-                                          ]]]
-                                    name:
-                                      - font-size: 90%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-bottom: 15%
-                                      - color: grey
-                                    label:
-                                      - font-size: 70%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-top: 10%
-                                      - color: grey
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: var(--my_color2)
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                  double_tap_action:
-                                    action: more-info
-                                  tap_action:
-                                    action: more-info
+                                  template:
+                                    - popup_temp
                                 - type: custom:button-card
                                   entity: sensor.temp_cuisine
                                   name: Cuisine
-                                  aspect_ratio: 1/0.9
-                                  icon: mdi:thermometer
-                                  show_icon: false
-                                  show_name: true
-                                  show_state: true
-                                  show_label: true
-                                  show_last_changed: true
-                                  styles:
-                                    state:
-                                      - font-size: 110%
-                                      - color: |
-                                          [[[
-                                            if (entity.state < 20)
-                                              return 'dodgerblue';
-                                            if (entity.state > 23)
-                                              return 'tomato';
-                                            return 'lightgrey';
-                                          ]]]
-                                    name:
-                                      - font-size: 90%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-bottom: 15%
-                                      - color: grey
-                                    label:
-                                      - font-size: 70%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-top: 10%
-                                      - color: grey
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: var(--my_color2)
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                  double_tap_action:
-                                    action: more-info
-                                  tap_action:
-                                    action: more-info
+                                  template:
+                                    - popup_temp
                                 - type: custom:button-card
                                   entity: sensor.temp_parents
                                   name: null
-                                  aspect_ratio: 1/1
-                                  icon: mdi:thermometer
-                                  show_icon: false
-                                  show_name: true
-                                  show_state: true
-                                  show_label: true
-                                  show_last_changed: true
-                                  styles:
-                                    state:
-                                      - font-size: 110%
-                                      - color: |
-                                          [[[
-                                            if (entity.state < 20)
-                                              return 'dodgerblue';
-                                            if (entity.state > 23)
-                                              return 'tomato';
-                                            return 'lightgrey';
-                                          ]]]
-                                    name:
-                                      - font-size: 90%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-bottom: 15%
-                                      - color: grey
-                                    label:
-                                      - font-size: 70%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-top: 10%
-                                      - color: grey
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: var(--my_color2)
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                  double_tap_action:
-                                    action: more-info
-                                  tap_action:
-                                    action: more-info
+                                  template:
+                                    - popup_temp
                               columns: 4
                             - type: grid
                               cards:
                                 - type: custom:button-card
                                   entity: sensor.temp_tom
                                   name: null
-                                  aspect_ratio: 1/1
-                                  icon: mdi:thermometer
-                                  show_icon: false
-                                  show_name: true
-                                  show_state: true
-                                  show_label: true
-                                  label: |
-                                    [[[
-                                      if (states['sensor.mouv_tom_luminosite'].state != 'unavailable')
-                                        return (states['sensor.mouv_tom_luminosite'].state ) + " lx" ;
-                                      return "";
-                                    ]]]
-                                  show_last_changed: true
-                                  styles:
-                                    state:
-                                      - font-size: 110%
-                                      - color: |
-                                          [[[
-                                            if (entity.state < 20)
-                                              return 'dodgerblue';
-                                            if (entity.state > 23)
-                                              return 'tomato';
-                                            return 'lightgrey';
-                                          ]]]
-                                    name:
-                                      - font-size: 90%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-bottom: 15%
-                                      - color: grey
-                                    label:
-                                      - font-size: 70%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-top: 10%
-                                      - color: grey
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: var(--my_color2)
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                  double_tap_action:
-                                    action: more-info
-                                  tap_action:
-                                    action: more-info
+                                  template:
+                                    - popup_temp
                                 - type: custom:button-card
                                   entity: sensor.temp_manon
                                   name: null
-                                  aspect_ratio: 1/1
-                                  icon: mdi:thermometer
-                                  show_icon: false
-                                  show_name: true
-                                  show_state: true
-                                  show_label: true
-                                  label: |
-                                    [[[
-                                      if (states['sensor.lum_moyenne_manon'].state != 'unavailable')
-                                        return (states['sensor.lum_moyenne_manon'].state ) + " lx" ;
-                                      return "";
-                                    ]]]
-                                  show_last_changed: true
-                                  styles:
-                                    state:
-                                      - font-size: 110%
-                                      - color: |
-                                          [[[
-                                            if (entity.state < 20)
-                                              return 'dodgerblue';
-                                            if (entity.state > 23)
-                                              return 'tomato';
-                                            return 'lightgrey';
-                                          ]]]
-                                    name:
-                                      - font-size: 90%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-bottom: 15%
-                                      - color: grey
-                                    label:
-                                      - font-size: 70%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-top: 10%
-                                      - color: grey
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: var(--my_color2)
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                  double_tap_action:
-                                    action: more-info
-                                  tap_action:
-                                    action: more-info
+                                  template:
+                                    - popup_temp
                                 - type: custom:button-card
                                   entity: sensor.temp_nina
                                   name: null
-                                  aspect_ratio: 1/1
-                                  icon: mdi:thermometer
-                                  show_icon: false
-                                  show_name: true
-                                  show_state: true
-                                  show_label: true
-                                  show_last_changed: true
-                                  styles:
-                                    state:
-                                      - font-size: 110%
-                                      - color: |
-                                          [[[
-                                            if (entity.state < 20)
-                                              return 'dodgerblue';
-                                            if (entity.state > 23)
-                                              return 'tomato';
-                                            return 'lightgrey';
-                                          ]]]
-                                    name:
-                                      - font-size: 90%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-bottom: 15%
-                                      - color: grey
-                                    label:
-                                      - font-size: 70%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-top: 10%
-                                      - color: grey
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: var(--my_color2)
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                  double_tap_action:
-                                    action: more-info
-                                  tap_action:
-                                    action: more-info
+                                  template:
+                                    - popup_temp
                                 - type: custom:button-card
                                   entity: sensor.temp_salle_de_bain
                                   name: null
-                                  aspect_ratio: 1/1
-                                  icon: mdi:thermometer
-                                  show_icon: false
-                                  show_name: true
-                                  show_state: true
-                                  show_label: true
-                                  show_last_changed: true
-                                  styles:
-                                    state:
-                                      - font-size: 110%
-                                      - color: |
-                                          [[[
-                                            if (entity.state < 20)
-                                              return 'dodgerblue';
-                                            if (entity.state > 23)
-                                              return 'tomato';
-                                            return 'lightgrey';
-                                          ]]]
-                                    name:
-                                      - font-size: 90%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-bottom: 10%
-                                      - color: grey
-                                    label:
-                                      - font-size: 70%
-                                      - color: grey
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-top: 10%
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: var(--my_color2)
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                  double_tap_action:
-                                    action: more-info
-                                  tap_action:
-                                    action: more-info
-                                - type: custom:button-card
-                                  entity: sensor.lum_palier
-                                  name: Palier
-                                  units: lx
-                                  aspect_ratio: 1/1
-                                  icon: mdi:thermometer
-                                  show_icon: false
-                                  show_name: true
-                                  show_state: true
-                                  show_label: true
-                                  styles:
-                                    state:
-                                      - font-size: 110%
-                                      - color: |
-                                          [[[
-                                            if (entity.state < 15)
-                                              return 'dodgerblue';
-                                            if (entity.state > 80)
-                                              return 'tomato';
-                                            return 'lightgrey';
-                                          ]]]
-                                    name:
-                                      - font-size: 90%
-                                      - align-self: middle
-                                      - justify-self: center
-                                      - padding-bottom: 15%
-                                      - color: grey
-                                    card:
-                                      - font-size: 100%
-                                      - border-color: rgba(152, 167, 185, 0.2)
-                                      - background-color: var(--my_color2)
-                                      - border-style: outset
-                                      - border-width: 1px
-                                      - box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
-                                  double_tap_action:
-                                    action: more-info
-                                  tap_action:
-                                    action: more-info
+                                  template:
+                                    - popup_temp
                               columns: 4
                             - type: vertical-stack
                               cards:
@@ -12318,4 +11966,3 @@ views:
                 columns: 2
                 square: false
             type: vertical-stack
-
