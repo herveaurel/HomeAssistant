@@ -12,7 +12,7 @@ Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
 
 Theme bat_Night with alarm
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarme.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.jpg)
 
 Theme bat_Day
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_clear.jpg)
