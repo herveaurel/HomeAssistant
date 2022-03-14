@@ -1,33 +1,42 @@
 bat_day:  
 
   # Wallpaper - Fond d'écran 
-  lovelace-background: 'center / cover no-repeat url("/local/wallpaper/ha-jour2.jpg")'
+  lovelace-background: 'center / cover no-repeat url("/local/wallpaper/ha-jour5.jpeg") fixed'
+  
+  # Icones Mouvements
+  mouv: red
+  border_mouv: rgba(255,0,0,0.9)
+  
+  # Icones portes fenêtres 
+  porte: steelblue
   
   # Text in Cards
   text_on: lightgrey
   text_off: grey
-  text_title: dimgrey
+  text_title: darkgrey
   text_systeme_info: grey
   # Icon
   icon_on: black
-  icon_off: grey
+  icon_off: rgba(128,128,128,0.7)
   
   # Icon pastille
-  pastille_on: 'var(--button-card-light-color)' # IMG_CELL BUTTONS PIECES
-  my_color_pastille: "var(--my_color2)" # IMG_CELL OTHER BUTTONS 
-  pastille_off: 'rgba(14, 19, 28,0.5)'  # IMG_CELL OFF
-  pastille_aspi_on: rgba(255,127,80,0.5)
-  pastille_lave_on: rgba(123,104,238,0.5)
-  pastille_multimedia_on: 'rgba(255,127,80,0.5)'
-
+  pastille_on: rgba(100,149,237,0.5) # IMG_CELL BUTTONS PIECES
+  my_color_pastille: rgba(100,149,237,0.5)  # IMG_CELL OTHER BUTTONS 
+  pastille_off: rgba(14,19,28,0.7)   # IMG_CELL OFF
+  pastille_aspi_on: rgba(30,144,255,0.5) #rgba(241, 148, 138,0.6)
+  pastille_lave_on: rgb(30,144,255) #rgba(123,104,238,0.5)
+  pastille_multimedia_on: rgba(255,255,255,0.5) #'rgba(46,134,193,0.9)'
+  pastille_appareil: rgb(30,144,255)  
+  pastille_mode: rgba(255,255,0,0.5)
+  pastille_imprim: rgba(255,255,255,0.5)
   # Graphique
-  graph_line: 'rgba(36, 46, 66, 0.9)'
+  graph_line: 'rgba(63, 81, 117, 0.7)'
   
-  # Cards custom
-  my_color: rgba(43, 57, 84,0.9) # BUTTON ON
-  my_color2:  'rgba(14, 19, 28,0.5)'  # BUTTON OFF
-  my_color_card: "var(--my_color2)" # CARD INFO
-
+  # Color custom
+  my_color2:  linear-gradient(to top, rgba(14,19,28,0.7) 0% ,rgba(32, 44, 69,1) 100%)  # BUTTON OFF
+  back_person: rgba(255,0,0,0.8)  
+  back_securite: rgba(255,0,0,0.6) 
+  card_border: rgba(50, 50, 50, 0.2) #rgba(190, 190, 190, 0.1)
   
   # Fonts
   primary-font-family: 'Avenir' #'Raleway,sans-serif'
@@ -51,13 +60,13 @@ bat_day:
   primary-color: 'var(--accent-color)'
   
   # Main Colors
-  app-header-background-color: '#19202e' #'#242e42' #HEADER 
-  accent-color: dodgerblue #'#1A89F5'
+  app-header-background-color: '#242e42' #HEADER 
+  accent-color: '#1A89F5'
   accent-medium-color: 'var(--accent-color)'
 
   # Background
   background-color: '#242e42'
-  primary-background-color: 'var(--background-color)' #linear-gradient(90deg, rgba(3,3,3,1) 05%, rgba(20,26,38,1) 40%, rgba(37,49,71,1) 100%) #'var(--background-color)'
+  primary-background-color: 'var(--background-color)' 
   background-color-2: '#20293c' 
   secondary-background-color: 'none'
   markdown-code-background-color: 'var(--background-color)'
@@ -68,11 +77,10 @@ bat_day:
   ha-card-box-shadow: "3px 3px 13px -6px rgba(17,35,52,1)"
   ha-card-border-radius: "15px"
   border-color: 'none'
-
   
   # Icons
   paper-item-icon-color: '#EBEBEB'
-  paper-item-icon-active-color: 'var(--accent-color)'
+  paper-item-icon-active-color: gold #'var(--accent-color)' #COLOR ICON FOR LIGHT NO COLOR
   
   # Sidebar
   sidebar-background-color: 'var(--background-color)'
