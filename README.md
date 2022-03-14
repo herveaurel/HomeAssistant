@@ -8,17 +8,17 @@ French group Home Assistant : https://www.facebook.com/groups/homeassistantgroup
 
 Bat-Geek : My Custom Dashboard for PC, mobile, tablette 
 
-Theme bat_Dark 
+Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_dark.jpg)
 
-Theme bat_Dark with alarm
+Theme bat_Nightwith alarm
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarme.jpg)
 
 Theme bat_Day
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_light.jpg)
 
 Mobile
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile.PNG)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile.jpg)
 
 Dashboard 1 page : popup card ! 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg)
