@@ -8,11 +8,12 @@ bat_day:
   border_mouv: rgba(255,0,0,0.9)
   
   # Icones portes fenêtres 
-  porte: steelblue
+  porte: red
+  porte_icon: darkgrey
   
   # Text in Cards
   text_on: lightgrey
-  text_off: grey
+  text_off: darkgrey
   text_title: darkgrey
   text_systeme_info: grey
   # Icon
@@ -23,7 +24,7 @@ bat_day:
   pastille_on: rgba(100,149,237,0.5) # IMG_CELL BUTTONS PIECES
   my_color_pastille: rgba(100,149,237,0.5)  # IMG_CELL OTHER BUTTONS 
   pastille_off: rgba(14,19,28,0.7)   # IMG_CELL OFF
-  pastille_aspi_on: rgba(30,144,255,0.5) #rgba(241, 148, 138,0.6)
+  pastille_aspi_on: rgba(255,99,71,0.8) #rgba(241, 148, 138,0.6)
   pastille_lave_on: rgb(30,144,255) #rgba(123,104,238,0.5)
   pastille_multimedia_on: rgba(255,255,255,0.5) #'rgba(46,134,193,0.9)'
   pastille_appareil: rgb(30,144,255)  
@@ -37,6 +38,7 @@ bat_day:
   back_person: rgba(255,0,0,0.8)  
   back_securite: rgba(255,0,0,0.6) 
   card_border: rgba(50, 50, 50, 0.2) #rgba(190, 190, 190, 0.1)
+  card_box_shadow: 1px 1px 5px 0px rgb(12, 12, 14)
   
   # Fonts
   primary-font-family: 'Avenir' #'Raleway,sans-serif'
@@ -68,13 +70,13 @@ bat_day:
   background-color: '#242e42'
   primary-background-color: 'var(--background-color)' 
   background-color-2: '#20293c' 
-  secondary-background-color: 'none'
+  secondary-background-color:  'none'
   markdown-code-background-color: 'var(--background-color)'
   
   # Card
-  card-background-color:  '#19202e' #'var(--ha-card-background)' #POPUP ET CARTES DANS MENU
+  card-background-color: '#242e42' #'#19202e' #POPUP ET CARTES DANS MENU
   ha-card-background: 'var(--my_color2)' #rgba(59, 89, 122,0.7) #'var(--my_color2)' #'rgba(43,55,78,1)' 
-  ha-card-box-shadow: "3px 3px 13px -6px rgba(17,35,52,1)"
+  ha-card-box-shadow: "1px 1px 5px 0px rgb(12, 12, 14)" #"3px 3px 13px -6px rgba(17,35,52,1)"
   ha-card-border-radius: "15px"
   border-color: 'none'
   
@@ -142,7 +144,23 @@ bat_day:
   # Alarm
   alarm-color-armed: 'rgba(247,53,67,1)'
   
-  
+  # Code Editor
+  code-editor-background-color: "#2f3542"
+  codemirror-property: "#16a085"
+  mdc-text-field-fill-color: var(--primary-background-color)
+  mdc-text-field-ink-color: var(--primary-text-color)
+  mdc-text-field-label-ink-color: var(--primary-text-color)
+  input-fill-color: var(--primary-background-color)
+  input-ink-color: var(--primary-text-color)
+  input-label-ink-color: var(--primary-text-color)
+  input-disabled-fill-color: var(--primary-background-color)
+  input-disabled-ink-color: var(--disabled-text-color)
+  input-disabled-label-ink-color: var(--disabled-text-color)
+  input-idle-line-color: var(--primary-background-color)
+  input-dropdown-icon-color: var(--primary-text-color)
+  input-hover-line-color: var(--primary-color)
+  # Misc
+  scrollbar-thumb-color: var(--app-header-background-color)  
   
 
   # Card-Mod #####################################################################
