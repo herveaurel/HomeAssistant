@@ -61,7 +61,7 @@ Mes intégrations  hacs:
 
 Je suis en mode UI.
  
-Je ne scinde pas mes fichiers, donc tout est dans configaration.yaml. 
+Je ne scinde pas mes fichiers, donc tout est dans configuration.yaml. 
 Il y a beaucoup de templates, je les rédige, et je les garde, mais ils ne servent pas tous ! 😉
 
 J'ai fait le choix de publier ma configuration intégrale, même ce qui est potentiellement inutile mais que je conserve pour le moment. 
