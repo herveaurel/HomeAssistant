@@ -18,7 +18,7 @@ Theme bat_Day
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_clear.jpg)
 
 Mobile
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_mobile.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.jpg)
 
 Dashboard 1 page : popup card ! 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup.jpg)
