@@ -8,7 +8,8 @@ bat_night:
   border_mouv: rgba(255,0,0,0.8)
   
   # Icones portes fenêtres 
-  porte: steelblue
+  porte: red
+  porte_icon: darkgrey
   
   # Text in Cards
   text_on: lightgrey
@@ -37,7 +38,7 @@ bat_night:
   back_person: rgba(255,0,0,0.8)  
   back_securite: rgba(255,0,0,0.6)  
   card_border: rgba(50, 50, 50, 0.3) #rgba(190, 190, 190, 0.1)
-  
+  card_box_shadow: 1px 1px 5px 0px rgb(12, 12, 14)
   # Fonts
   primary-font-family: 'Avenir' #'Raleway,sans-serif'
   paper-font-common-base_-_font-family: "var(--primary-font-family)"
@@ -72,15 +73,15 @@ bat_night:
   markdown-code-background-color: 'var(--background-color)'
   
   # Card
-  card-background-color:  '#19202e' #'var(--ha-card-background)' #POPUP ET CARTES DANS MENU
+  card-background-color:  '#242e42' #'#19202e' #POPUP ET CARTES DANS MENU
   ha-card-background: 'var(--my_color2)' #rgba(59, 89, 122,0.7) #'var(--my_color2)' #'rgba(43,55,78,1)' 
-  ha-card-box-shadow: "3px 3px 13px -6px rgba(17,35,52,1)"
+  ha-card-box-shadow: "1px 1px 5px 0px rgb(12, 12, 14)" #"3px 3px 13px -6px rgba(17,35,52,1)"
   ha-card-border-radius: "15px"
   border-color: 'none'
   
   # Icons
   paper-item-icon-color: '#EBEBEB'
-  paper-item-icon-active-color: gold #'var(--accent-color)' #COLOR ICON FOR LIGHT NO COLOR
+  paper-item-icon-active-color: tomato #'var(--accent-color)' #COLOR ICON FOR LIGHT NO COLOR
   
   # Sidebar
   sidebar-background-color: 'var(--background-color)'
