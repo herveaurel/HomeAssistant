@@ -2,7 +2,6 @@
 
 Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
 
-
 ---Pour les changements mineurs, lisez le changelog---
 
 Bat-Geek 
@@ -35,6 +34,7 @@ Mobile
 Tableau de bord 1 page : popup card ! 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup.jpg)
 
+---------------------
  
 Voici comment je m'organise : 
 
@@ -51,6 +51,8 @@ Voici comment je m'organise :
 
 4ème colonne : sécurité / personnes et système avec popups détaillés
 
+
+---------------------
 
 Je vous propose ma configuration personnelle :
 - Tableau de bord (lovelace UI mode) PC, mobile, tablette
@@ -84,6 +86,7 @@ Mes intégrations  hacs:
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs.jpg)
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs2.jpg)
 
+---------------------
 
 Je suis en mode UI.
  
