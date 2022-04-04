@@ -42,10 +42,10 @@ Voici comment je m'organise :
 - bouton-badge : info rapide avec popup en tap action
 - bouton-rond : Sécurité, lumières, et devices allumés, avec badge compteur, et le tap action ouvre un popup complet 
 - carte activité : calendrier / météo / activité / mise à jour (infos dynamiques) , tap action : météo détailléé 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/colonne activite.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/colonne_activite.jpg)
 
 2ème colonne : les pièces de la maison avec popups détaillés
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/colonne pieces.png)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/colonne_pieces.png)
 
 3ème colonne : multimédia et appareils avec popups détaillés
 
