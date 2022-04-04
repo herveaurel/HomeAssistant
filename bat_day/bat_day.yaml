@@ -6,28 +6,33 @@ bat_day:
   
   # Icones Mouvements
   mouv: red
-  border_mouv: rgba(255,0,0,0.9)
+  border_mouv: rgba(255,0,0,1)
   
   # Icones portes fenêtres 
   porte: red
-  porte_icon: darkgrey
+  porte_icon: red
   
   # Text in Cards
   text_on: lightgrey
-  text_off: darkgrey
+  text_on_sidebar: lightgrey
+  text_on_info_sidebar: darkgrey
+  text_off_sidebar: grey
+  text_off: grey
   text_title: darkgrey
   text_systeme_info: grey
+  bouton_titre_piece_name: lightgrey
+  bouton_titre_piece_label: darkgrey
+  
   # Icon
   icon_on: black
   icon_off: rgba(128,128,128,0.7)
   
   # Icon pastille
   pastille_on: rgba(100,149,237,0.5) # IMG_CELL BUTTONS PIECES
-  my_color_pastille: rgba(100,149,237,0.5)  # IMG_CELL OTHER BUTTONS 
   pastille_off: rgba(14,19,28,0.7)   # IMG_CELL OFF
-  pastille_aspi_on: rgba(255,99,71,0.8) #rgba(241, 148, 138,0.6)
-  pastille_lave_on: rgb(30,144,255) #rgba(123,104,238,0.5)
-  pastille_multimedia_on: rgba(255,255,255,0.5) #'rgba(46,134,193,0.9)'
+  pastille_aspi: rgba(255,99,71,0.8) 
+  pastille_machine: rgb(30,144,255) 
+  pastille_multimedia: grey 
   pastille_appareil: rgb(30,144,255)  
   pastille_mode: rgba(30,144,255,0.5)
   pastille_imprim: rgba(255,255,255,0.5)
@@ -35,11 +40,12 @@ bat_day:
   graph_line: 'rgba(63, 81, 117, 0.7)'
   
   # Color custom
-  my_color2:  linear-gradient(to top, rgba(26, 40, 55,0.3) 0% ,rgba(26, 40, 55,1) 100%)  # BUTTON OFF
+  my_color2:  linear-gradient(to top, rgba(26, 40, 55,0.4) 0% ,rgba(26, 40, 55,1) 100%)  # BUTTON OFF
   back_person: rgba(255,0,0,0.8)  
   back_securite: rgba(255,0,0,0.6) 
   card_border: rgba(50, 50, 50, 0.2) #rgba(190, 190, 190, 0.1)
   card_box_shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+  card_box_shadow_color: 1px 1px 5px 0px rgb(255, 0, 0)
   
   # Fonts
   primary-font-family: 'Avenir' #'Raleway,sans-serif'
@@ -55,7 +61,7 @@ bat_day:
 
   # Change the value below 6px to 0px to remove the rounded corners
   ha-card-border-radius: 15px
-
+  bar-card-border-radius: 8px
   # Main colors
   primary-color: rgba(41, 128, 185, 1.0)
   secondary-color: "#283E54"
@@ -78,21 +84,21 @@ bat_day:
   info-color: "#9b59b6"
   warning-color: "#f39c12"
   # Sidebar colors
-  sidebar-background-color: rgba(34, 53, 72, 1)
+  sidebar-background-color: rgba(26, 40, 55,1) 
   sidebar-icon-color: var(--light-primary-color)
   sidebar-text-color: var(--primary-text-color)
   sidebar-selected-background-color: var(--secondary-color)
   sidebar-selected-icon-color: var(--primary-color)
   sidebar-selected-text-color: var(--primary-text-color)
   # App Header
-  app-header-background-color: "#223548"
+  app-header-background-color: rgba(26, 40, 55,1)
   app-header-icon-color: var(--light-primary-color)
   app-header-text-color: var(--primary-text-color)
   app-header-selection-bar-color: var(--primary-color)
   app-header-selection-color: var(--secondar-color)
   # Icons colors
   state-icon-color: var(--disabled-color)
-  state-icon-active-color: var(--primary-color) #COLOR ICON FOR LIGHT NO COLOR
+  state-icon-active-color: gold #COLOR ICON FOR LIGHT NO COLOR
   state-icon-unavailable-color: var(--primary-background-color)
   # Settins and colors of Mini Media Player
   mini-media-player-icon-color: var(--primary-color)
@@ -110,8 +116,8 @@ bat_day:
   label-badge-red: var(--primary-color)
   label-badge-blue: var(--light-primary-color)
   # Cards colors
-  ha-card-background: 'var(--my_color2)' #rgba(26, 40, 55, 0.5) #CARTES 
-  card-background-color: var(--secondary-background-color) #POPUP ET CARTES DANS MENU
+  ha-card-background: linear-gradient(to top, rgba(26, 40, 55,0.4) 0% ,rgba(26, 40, 55,1) 100%) #'var(--my_color2)' #rgba(26, 40, 55, 0.5) #CARTES 
+  card-background-color: rgba(26, 40, 55,1) #var(--secondary-background-color) #POPUP ET CARTES DANS MENU
   paper-card-background-color: var(--ha-card-background)
   paper-listbox-background-color: var(--primary-background-color)
   # Toggle button colors
