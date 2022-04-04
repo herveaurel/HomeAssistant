@@ -4,148 +4,157 @@ bat_night:
   lovelace-background: 'center / cover no-repeat url("/local/wallpaper/ha-black.png") fixed'
   
   # Icones Mouvements
-  mouv: rgba(255,0,0,0.8)
-  border_mouv: rgba(255,0,0,0.8)
+  mouv: red
+  border_mouv: rgba(255,0,0,1)
   
   # Icones portes fenêtres 
   porte: red
-  porte_icon: darkgrey
+  porte_icon: red
   
   # Text in Cards
   text_on: lightgrey
+  text_on_sidebar: lightgrey
+  text_on_info_sidebar: darkgrey
+  text_off_sidebar: grey
   text_off: grey
   text_title: darkgrey
   text_systeme_info: grey
+  bouton_titre_piece_name: darkgrey
+  bouton_titre_piece_label: grey
   # Icon
   icon_on: black
   icon_off: rgba(128,128,128,0.7)
   
   # Icon pastille
   pastille_on: rgba(100,149,237,0.5) # IMG_CELL BUTTONS PIECES
-  my_color_pastille: rgba(100,149,237,0.5)  # IMG_CELL OTHER BUTTONS 
-  pastille_off: 'rgba(0, 0, 0,0.5)' #'rgba(34, 47, 69,1)' #'rgba(14, 19, 28,0.8)'  # IMG_CELL OFF
-  pastille_aspi_on: rgba(30,144,255,0.5) #rgba(241, 148, 138,0.6)
-  pastille_lave_on: rgb(30,144,255) #rgba(123,104,238,0.5)
-  pastille_multimedia_on: rgba(255,255,255,0.5) #'rgba(46,134,193,0.9)'
+  pastille_off: rgba(14,19,28,0.7)   # IMG_CELL OFF
+  pastille_aspi: rgba(255,99,71,0.8) 
+  pastille_machine: rgb(30,144,255) 
+  pastille_multimedia: grey 
   pastille_appareil: rgb(30,144,255)  
-  pastille_mode: rgba(255,255,0,0.5)
+  pastille_mode: rgba(30,144,255,0.5)
   pastille_imprim: rgba(255,255,255,0.5)
+  
   # Graphique
-  graph_line: 'rgba(63, 81, 117, 0.4)'
+  graph_line: 'rgba(63, 81, 117, 0.7)'
   
   # Color custom
-  my_color2:  linear-gradient(to top, rgba(14,19,28,0.7) 0% ,rgba(32, 44, 69,1) 100%)  # BUTTON OFF
+  my_color2:  linear-gradient(to top, rgba(32, 44, 69,0.3) 0% ,rgba(32, 44, 69,1) 100%) # BACKGROUND CARD
   back_person: rgba(255,0,0,0.8)  
-  back_securite: rgba(255,0,0,0.6)  
-  card_border: rgba(50, 50, 50, 0.3) #rgba(190, 190, 190, 0.1)
+  back_securite: rgba(255,0,0,0.6) 
+  card_border: rgba(50, 50, 50, 0.2) #rgba(190, 190, 190, 0.1)
   card_box_shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+  card_box_shadow_color: 1px 1px 5px 0px rgb(255, 0, 0)
+  
   # Fonts
   primary-font-family: 'Avenir' #'Raleway,sans-serif'
-  paper-font-common-base_-_font-family: "var(--primary-font-family)"
-  paper-font-common-code_-_font-family: "var(--primary-font-family)"
-  paper-font-body1_-_font-family: "var(--primary-font-family)"
-  paper-font-subhead_-_font-family: "var(--primary-font-family)"
+  secondary-font-family: "Oxygen,sans-serif"
+  paper-font-common-base_-_font-family: "var(--secondary-font-family)"
+  paper-font-common-code_-_font-family: "var(--secondary-font-family)"
+  paper-font-body1_-_font-family: "var(--secondary-font-family)"
+  paper-font-subhead_-_font-family: "var(--secondary-font-family)"
   paper-font-headline_-_font-family: "var(--primary-font-family)"
-  paper-font-caption_-_font-family: "var(--primary-font-family)"
+  paper-font-caption_-_font-family: "var(--secondary-font-family)"
   paper-font-title_-_font-family: "var(--primary-font-family)"
   ha-card-header-font-family: "var(--primary-font-family)"
 
-  # Text
-  text-color: '#ffffff' 
-  primary-text-color: 'var(--text-color)'
-  text-primary-color: 'var(--text-color)'
+  # Change the value below 6px to 0px to remove the rounded corners
+  ha-card-border-radius: 15px
+  bar-card-border-radius: 8px
+  
+  # Main colors
+  primary-color: rgba(41, 128, 185, 1.0)
+  secondary-color: "#283E54"
+  light-primary-color: "#CECECE"
+  accent-color: "#2187CC"
+  graph-color: var(--primary-color)
+  primary-background-color: "#223548"
+  secondary-background-color: var(--primary-background-color)
+  divider-color: "#223548"
+  disabled-color: "#E8E9F3"
+  # Text colors
+  primary-text-color: "#CECECE"
+  text-primary-color: "#E5E5E5"
   secondary-text-color: "#BAC0C6"
-  text-medium-light-color: '#A0A2A8'
-  text-medium-color: '#80828A'
-  disabled-text-color: '#626569'
-  primary-color: 'var(--accent-color)'
-  
-  # Main Colors
-  app-header-background-color: '#19202e' #'#242e42' #HEADER 
-  accent-color: '#1A89F5'
-  accent-medium-color: 'var(--accent-color)'
-
-  # Background
-  background-color: '#242e42'
-  primary-background-color: 'var(--background-color)' 
-  background-color-2: '#20293c' 
-  secondary-background-color: 'none'
-  markdown-code-background-color: 'var(--background-color)'
-  
-  # Card
-  card-background-color:  '#242e42' #'#19202e' #POPUP ET CARTES DANS MENU
-  ha-card-background: 'var(--my_color2)' #rgba(59, 89, 122,0.7) #'var(--my_color2)' #'rgba(43,55,78,1)' 
-  ha-card-box-shadow: "1px 1px 5px 0px rgb(12, 12, 14)" #"3px 3px 13px -6px rgba(17,35,52,1)"
-  ha-card-border-radius: "15px"
-  border-color: 'none'
-  
-  # Icons
-  paper-item-icon-color: '#EBEBEB'
-  paper-item-icon-active-color: tomato #'var(--accent-color)' #COLOR ICON FOR LIGHT NO COLOR
-  
-  # Sidebar
-  sidebar-background-color: 'var(--background-color)'
-  sidebar-icon-color: '#98a7b9'
-  sidebar-selected-icon-color: 'var(--accent-color)'
-  sidebar-selected-text-color: 'var(--text-color)'
-  paper-listbox-background-color: 'var(--sidebar-background-color)'
-  divider-color: 'var(--background-color)'
-  light-primary-color: 'var(--ha-card-background)'
-
-  # Sliders
-  paper-slider-knob-color: 'var(--accent-color)'
-  paper-slider-pin-color: 'var(--background-color-2)'
-  paper-slider-active-color: 'var(--accent-color)'
-  paper-slider-container-color: 'var(--background-color-2)'
-
-  # Toggle:
-  paper-toggle-button-checked-bar-color: 'var(--accent-color)'
-  mdc-theme-primary: 'var(--accent-color)'
-
-  # Switch
-  switch-unchecked-color: '#70889e'
-  switch-checked-button-color: 'var(--accent-color)'
-  switch-unchecked-track-color: 'var(--background-color-2)'
-  switch-checked-track-color: 'var(--background-color-2)'
-
-  # Radio Button
-  paper-radio-button-checked-color: 'var(--accent-color)'
-
-  # Popups
-  more-info-header-background: 'var(--secondary-background-color)'
-  paper-dialog-background-color: 'var(--background-color)' #'rgba(47,59,82,0.4)'
-
-  # Tables
-  table-row-background-color: 'var(--background-color)'
-  table-row-alternative-background-color: 'var(--ha-card-background)'
-
-  # Badges
-  label-badge-background-color: 'var(--background-color)'
-  label-badge-text-color: 'var(--text-primary-color)'
-  label-badge-red: 'rgba(73,85,108,1)'
-  label-badge-blue: 'rgba(26,137,245,1)'
-  label-badge-green: 'rgba(0,202,139,1)'
-  label-badge-yellow: 'rgba(222,176,107,1)'
-
-  paper-input-container-focus-color: 'var(--accent-color)'
-  
-  # Custom Header
-  ch-background: 'var(--background-color)'
-  ch-active-tab-color: 'var(--accent-color)'
-  ch-notification-dot-color: 'var(--accent-color)'
-  ch-all-tabs-color: 'var(--sidebar-icon-color)'
-  ch-tab-indicator-color: 'var(--accent-color)'
-
-  # Mini Mediaplayer
-  mini-media-player-base-color: 'var(--text-color)'
-  mini-media-player-accent-color: 'var(--accent-color)'
-
-  # Alarm
-  alarm-color-armed: 'rgba(247,53,67,1)'
-  
+  text-medium-light-color: "#A0A2A8"
+  text-medium-color: "#80828A"
+  disabled-text-color: "#626569"
+  error-color: "#e74c3c"
+  success-color: "#2ecc71"
+  info-color: "#9b59b6"
+  warning-color: "#f39c12"
+  # Sidebar colors
+  sidebar-background-color: rgba(26, 40, 55,1)
+  sidebar-icon-color: darkgrey #var(--light-primary-color)
+  sidebar-text-color: darkgrey #var(--primary-text-color)
+  sidebar-selected-background-color: var(--secondary-color)
+  sidebar-selected-icon-color: var(--primary-color)
+  sidebar-selected-text-color: var(--primary-text-color)
+  # App Header
+  app-header-background-color: rgba(0, 0, 0,1) #HEADER
+  app-header-icon-color: var(--light-primary-color)
+  app-header-text-color: grey #var(--primary-text-color)
+  app-header-selection-bar-color: var(--primary-color)
+  app-header-selection-color: var(--secondar-color)
+  # Icons colors
+  state-icon-color: var(--disabled-color)
+  state-icon-active-color: gold #var(--primary-color) #COLOR ICON FOR LIGHT NO COLOR
+  state-icon-unavailable-color: var(--primary-background-color)
+  # Settins and colors of Mini Media Player
+  mini-media-player-icon-color: var(--primary-color)
+  mini-media-player-accent-color: var(--primary-color)
+  mini-media-player-progress-height: 8px
+  # Papers slider colors
+  paper-slider-knob-color: var(--primary-color)
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--paper-slider-knob-color)
+  paper-slider-active-color: var(--paper-slider-knob-color)
+  paper-slider-container-color: var(--disabled-color)
+  # Labels colors
+  label-badge-background-color: var(--accent-color)
+  label-badge-text-color: var(--primary-text-color)
+  label-badge-red: var(--primary-color)
+  label-badge-blue: var(--light-primary-color)
+  # Cards colors
+  ha-card-background: 'var(--my_color2)' #rgba(26, 40, 55, 0.5) #CARTES 
+  card-background-color: rgba(26, 40, 55,1) #rgba(32, 44, 69,1) #var(--secondary-background-color) #POPUP ET CARTES DANS MENU
+  paper-card-background-color: var(--ha-card-background)
+  paper-listbox-background-color: var(--primary-background-color)
+  # Toggle button colors
+  paper-toggle-button-checked-button-color: var(--primary-color)
+  paper-toggle-button-checked-bar-color: var(--light-primary-color)
+  paper-toggle-button-unchecked-button-color: var(--disabled-color)
+  paper-toggle-button-unchecked-bar-color: var(--primary-background-color)
+  # Switch colors
+  switch-checked-color: var(--paper-toggle-button-checked-button-color)
+  switch-unchecked-button-color: var(--paper-toggle-button-unchecked-button-color)
+  switch-unchecked-color: var(--paper-toggle-button-unchecked-bar-color)
+  switch-unchecked-track-color: var(--paper-toggle-button-unchecked-bar-color)
+  # Table colors
+  table-row-background-color: var(--divider-color)
+  table-row-alternative-background-color: var(--secondary-color)
+  #Animated icons
+  weather-icon-clear-night: url("/hacsfiles/themes/waves/clear-night.svg")
+  weather-icon-cloudy: url("/hacsfiles/themes/waves/cloudy.svg")
+  weather-icon-fog: url("/hacsfiles/themes/waves/fog.svg")
+  weather-icon-lightning: url("/hacsfiles/themes/waves/lightning.svg")
+  weather-icon-lightning-rainy: url("/hacsfiles/themes/waves/lightning-rainy.svg")
+  weather-icon-partlycloudy: url("/hacsfiles/themes/waves/partlycloudy.svg")
+  weather-icon-pouring: url("/hacsfiles/themes/waves/pouring.svg")
+  weather-icon-rainy: url("/hacsfiles/themes/waves/rainy.svg")
+  weather-icon-hail: url("/hacsfiles/themes/waves/hail.svg")
+  weather-icon-snowy: url("/hacsfiles/themes/waves/snowy.svg")
+  weather-icon-snowy-rainy: url("/hacsfiles/themes/waves/snowy-rainy.svg")
+  weather-icon-sunny: url("/hacsfiles/themes/waves/sunny.svg")
+  weather-icon-windy: url("/hacsfiles/themes/waves/windy.svg")
+  weather-icon-windy-variant: url("/hacsfiles/themes/waves/windy-variant.svg")
+  weather-icon-exceptional: url("/hacsfiles/themes/waves/exceptional.svg")
+  # Shadown
+  ha-card-box-shadow: var(--card_box_shadow) #'0px 0px 3px 0px #0d141c'
   # HACS
   hacs-badge-color: var(--primary-color)
   link-text-color: var(--disabled-color)
+  markdown-code-background-color: "#2f3542"
   google-blue-500: var(--primary-color)
   hacs-accent-color: var(--light-primary-color)
   hacs-chip-color: var(--accent-color)
@@ -153,7 +162,6 @@ bat_night:
   hacs-warning-color: var(--warning-color)
   hacs-update-color: var(--success-color)
   hacs-new-color: var(--info-color)
-  
   # Code Editor
   code-editor-background-color: "#2f3542"
   codemirror-property: "#16a085"
@@ -168,9 +176,7 @@ bat_night:
   input-disabled-label-ink-color: var(--disabled-text-color)
   input-idle-line-color: var(--primary-background-color)
   input-dropdown-icon-color: var(--primary-text-color)
-  input-hover-line-color: var(--primary-color)
-  # Misc
-  scrollbar-thumb-color: var(--app-header-background-color) 
+  input-hover-line-color: var(--primary-color) 
 
 
   # Card-Mod #####################################################################
