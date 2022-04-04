@@ -1,12 +1,24 @@
 # HomeAssistant
 
-French group Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
+Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
 
 
----Pour les changements, lisez le changelog---
+---Pour les changements mineurs, lisez le changelog---
 
+Bat-Geek 
+Mon tableau de bord pour PC, smartphone, tablette
+Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 13 pouces (ref MacBook Pro) et 1 colonne tient entièrement sur l'écran d'un smartphone (ref iphone 13 Pro). 
 
-Bat-Geek : My Custom Dashboard for PC, mobile, tablette 
+Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
+- amélioration des codes 
+- créations de base templates pour unifier les cartes et les boutons 
+- option retour à la ligne automatique dans tous les button card 
+- nouvelle carte Activité, réalisée avec button card, entièrement dynamique et icone météo animé
+- nouvelle jauge en barre 
+- amélioaration des thèmes jour et nuit 
+
+D'autres modifications viendront dans les prochaines mises à jour...
+
 
 Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
@@ -20,11 +32,25 @@ Theme bat_Day
 Mobile
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.jpg)
 
-Dashboard 1 page : popup card ! 
+Tableau de bord 1 page : popup card ! 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup.jpg)
 
+ 
+Voici comment je m'organise : 
 
-Bienvenue ! 
+1ère colonne : Activité générale 
+- bouton-badge : info rapide avec popup en tap action
+- bouton-rond : Sécurité, lumières, et devices allumés, avec badge compteur, et le tap action ouvre un popup complet 
+- carte activité : calendrier / météo / activité / mise à jour (infos dynamiques) , tap action : météo détailléé 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/colonne activite.jpg)
+
+2ème colonne : les pièces de la maison avec popups détaillés
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/colonne pieces.png)
+
+3ème colonne : multimédia et appareils avec popups détaillés
+
+4ème colonne : sécurité / personnes et système avec popups détaillés
+
 
 Je vous propose ma configuration personnelle :
 - Tableau de bord (lovelace UI mode) PC, mobile, tablette
