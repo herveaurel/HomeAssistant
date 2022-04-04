@@ -1,3 +1,14 @@
+2022-04-04
+Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
+- amélioration des codes 
+- créations de base templates pour unifier les cartes et les boutons 
+- option retour à la ligne automatique dans tous les button card 
+- nouvelle carte Activité, réalisée avec button card, entièrement dynamique et icone météo animé
+- nouvelle jauge en barre 
+- amélioaration des thèmes jour et nuit 
+
+D'autres modifications viendront dans les prochaines mises à jour...
+
 2022-03-16
 Lots of changes!
 - Themes
