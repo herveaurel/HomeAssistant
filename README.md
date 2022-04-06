@@ -8,6 +8,8 @@ Bat-Geek
 Mon tableau de bord pour PC, smartphone, tablette
 Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 13 pouces (ref MacBook Pro) et 1 colonne tient entièrement sur l'écran d'un smartphone (ref iphone 13 Pro). 
 
+---------------------
+
 Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
 - amélioration des codes 
 - créations de base templates pour unifier les cartes et les boutons 
@@ -16,8 +18,26 @@ Complètement revisité pour cette nouvelle version, les changements majeurs son
 - nouvelle jauge en barre 
 - amélioaration des thèmes jour et nuit 
 
+
+Modifications du 06 avril 2022 :
+
+Ajout le la jauge température : couleurs basées sur seuils, et surtout la proportionnalité prend en compte la température maxium prévue du jour ! 🥳
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/meteo_modif.jpg)
+
+Travail sur la customisation des cartes personnes avec nouvelles options 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/persons.png)
+
+Petit changement esthetique sur le graphique de la consommation électrique 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/enedis.jpg)
+
+Création des popup pour le bouton Modes et Annonces 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_annonces.jpg)
+
+Corrections de bugs divers
+
 D'autres modifications viendront dans les prochaines mises à jour...
 
+---------------------
 
 Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
