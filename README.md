@@ -33,6 +33,9 @@ Petit changement esthetique sur le graphique de la consommation électrique
 Création des popup pour le bouton Modes et Annonces 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_annonces.jpg)
 
+Création des boutons pour déclencher les aspirateurs encore plsu facilement dans les zones et pièces
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/boutons_aspi.jpg)
+
 Corrections de bugs divers
 
 D'autres modifications viendront dans les prochaines mises à jour...
