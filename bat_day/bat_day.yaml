@@ -13,19 +13,19 @@ bat_day:
   porte_icon: red
   
   # Text in Cards
-  text_on: lightgrey
-  text_on_sidebar: lightgrey
-  text_on_info_sidebar: darkgrey
-  text_off_sidebar: grey
-  text_off: grey
-  text_title: darkgrey
-  text_systeme_info: grey
-  bouton_titre_piece_name: lightgrey
-  bouton_titre_piece_label: darkgrey
+  text_on: rgba(211,211,211,1)
+  text_on_sidebar: rgba(211,211,211,1)
+  text_on_info_sidebar: rgba(211,211,211,0.8)
+  text_off_sidebar: rgba(211,211,211,0.6)
+  text_off: rgba(211,211,211,0.6)
+  text_title: rgba(211,211,211,0.8)
+  text_systeme_info: rgba(211,211,211,0.6)
+  bouton_titre_piece_name: rgba(211,211,211,1)
+  bouton_titre_piece_label: rgba(211,211,211,0.8)
   
   # Icon
-  icon_on: black
-  icon_off: rgba(128,128,128,0.7)
+  icon_on: rgba(0,0,0,1)
+  icon_off: rgba(211,211,211,0.6)
   
   # Icon pastille
   pastille_on: rgba(100,149,237,0.5) # IMG_CELL BUTTONS PIECES
@@ -34,7 +34,7 @@ bat_day:
   pastille_machine: rgb(30,144,255) 
   pastille_multimedia: grey 
   pastille_appareil: rgb(30,144,255)  
-  pastille_mode: rgba(30,144,255,0.5)
+  pastille_mode: rgba(30,144,255,0.8)
   pastille_imprim: rgba(255,255,255,0.5)
   # Graphique
   graph_line: 'rgba(63, 81, 117, 0.7)'
