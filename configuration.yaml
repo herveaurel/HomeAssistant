@@ -1245,6 +1245,9 @@ sensor:
       weather_temperature:
         friendly_name: "Weather Température"
         value_template: "{{ state_attr('weather.beaucouze' , 'temperature') }}°"
+      weather_temperature_v2:
+        friendly_name: "Weather Température"
+        value_template: "{{ state_attr('weather.beaucouze' , 'temperature') }}"
       weather_humidite:
         friendly_name: "Weather Humidité"
         value_template: "{{ state_attr('weather.beaucouze' , 'humidity') }}%"  
@@ -1300,9 +1303,9 @@ sensor:
             {% if states('weather.beaucouze') == 'lightning-rainy' -%}
               Pluies orageuses
             {% elif states.sensor.beaucouze_rain_chance_2.state | float > 0 -%}
-              {{ weather_state }}, il fait {{ temp }}
+              {{ weather_state }}, {{ temp }}
             {% else -%}
-              {{ weather_state }}, il fait {{ temp }}
+              {{ weather_state }}, {{ temp }}
             {% endif -%}
           {% else -%}
             Pas d'info...
@@ -1482,6 +1485,10 @@ sensor:
         friendly_name: Température max du jour
         value_template: "{{ states.weather.beaucouze.attributes.forecast[0].temperature|float|round(2) }}°"  
 
+      temp_max_v2:
+        friendly_name: Température max du jour
+        value_template: "{{ states.weather.beaucouze.attributes.forecast[0].temperature|float|round(2) }}" 
+        
       temp_min:
         friendly_name: Température min du jour
         value_template: "{{ states.weather.beaucouze.attributes.forecast[0].templow|float|round(0) }}°"        
@@ -3216,7 +3223,7 @@ sensor:
       tv_salon_vol:
         friendly_name: TV salon volume
         value_template: >-      
-          {{ states.media_player.tv_salon.attributes.volume_level *100 | round(0)}}
+          {{ (state_attr('media_player.tv_salon','volume_level') |float *100)|round(0) }}
           
       tv_parents_duree:
         friendly_name: TV parents durée
@@ -3231,7 +3238,7 @@ sensor:
       tv_parents_vol:
         friendly_name: TV parents volume
         value_template: >-      
-          {{ states.media_player.papa.attributes.volume_level *10}}
+          {{ (state_attr('media_player.aurel_s_fire_tv_cube','volume_level') |float *10)|round(0) }}
           
       prise_tv_parents_duree:
         friendly_name: prise TV parents durée
@@ -3696,27 +3703,8 @@ sensor:
         friendly_name: "R2D2 erreur"
         value_template: "{{ state_attr('vacuum.r2d2' , 'error') }}" 
 
-
-      aspis_etat:
-        friendly_name: stauts aspis 
-        value_template: >-          
-            {%- if states.binary_sensor.wall_e_mop_attached.state == "on" 
-             or states.vacuum.wall_e.state == "idle" 
-             or states.vacuum.wall_e.state == "paused" 
-             or states.vacuum.wall_e.state == "returning"             
-             or states.vacuum.wall_e.state == "disconnected" 
-             or states.vacuum.wall_e.state == "error" 
-             or states.binary_sensor.r2d2_mop_attached.state == "on"
-             or states.vacuum.r2d2.state == "idle" 
-             or states.vacuum.r2d2.state == "paused" 
-             or states.vacuum.r2d2.state == "returning"
-             or states.vacuum.r2d2.state == "disconnected" 
-             or states.vacuum.r2d2.state == "error" -%}
-              🧹 <b>Aspirateur :</b>
-            {%- endif -%}
-            
       walle_etat:
-        friendly_name: stauts aspis 
+        friendly_name: statuts walle pour sidebar 
         value_template: >-          
             {% if states.binary_sensor.wall_e_mop_attached.state == "on" 
              or states.vacuum.wall_e.state == "idle" 
@@ -3730,11 +3718,8 @@ sensor:
                 | replace('idle', 'Pause')
                 | replace('returning', 'Retour')
                 | replace('paused', 'Pause')
-                | replace('disconnected', 'Débranché')
-                | replace('error', 'ERREUR') -%} 
-              {%- if not is_state("sensor.walle_error", "unknown") -%}
-                <font color='red'>{{ states('sensor.walle_erreur') }}</b>
-              {% elif states.binary_sensor.wall_e_mop_attached.state == "on" -%}
+                | replace('disconnected', 'Débranché') -%} 
+              {% if states.binary_sensor.wall_e_mop_attached.state == "on" -%}
                 Wall-E :</b>
                 {{ walle_state }} <font color='red'>avec serpillère</b>  
               {% else -%}
@@ -3746,7 +3731,7 @@ sensor:
              {% endif -%}
             
       r2d2_etat:
-        friendly_name: stauts r2d2 
+        friendly_name: statuts r2d2 pour sidebar
         value_template: >-
             {%- if states.binary_sensor.r2d2_mop_attached.state == "on" 
              or states.vacuum.r2d2.state == "idle" 
@@ -3778,7 +3763,7 @@ sensor:
          
 
       walle_state:
-        friendly_name: walle state (button card)
+        friendly_name: walle state (carte aspi)
         value_template: >- 
           {%- if states.vacuum.wall_e.state == "cleaning"  -%}
              Nettoyage
@@ -3795,7 +3780,7 @@ sensor:
           {%- endif -%}
           
       r2d2_state:
-        friendly_name: r2d2 state (button card)
+        friendly_name: r2d2 state (carte aspi)
         value_template: >- 
           {%- if states.vacuum.r2d2.state == "cleaning"   -%}
              Nettoyage
@@ -3825,20 +3810,20 @@ sensor:
         friendly_name: WallE message d'erreur
         value_template: >-      
           {% if states.sensor.walle_error.state == "Device stuck, clean area" %}
-            🧹 Wall-E: 
+            Wall-E: 
             coincé ou bloqué ! Retirez les obstacles 
           {% elif states.sensor.walle_error.state == "Docking station not reachable" %}
-            🧹 Wall-E: 
+            Wall-E: 
             Impossible d'atteindre la station de charge
           {% elif states.sensor.walle_error.state == "Charging fault" %}
-             🧹 Wall-E: 
+             Wall-E: 
              Impossible de charger correctement, assurez-vous que les surfaces de chargements sont propres            
           {% elif states.sensor.walle_error.state == "Clean hovering sensors, move robot" %}
-            🧹 Wall-E: 
+            Wall-E: 
             Problème avec les capteurs de dénivelé : nettoyez les détecteurs de dénivelé, éloignez le robot, et redémarrez-le.
           {% elif is_state("sensor.walle_error", "unknown") -%}
           {%- else -%}
-            🧹 Wall-E: 
+            Wall-E: 
             {{ states('sensor.walle_error') }}
           {%- endif %}
           
@@ -3848,20 +3833,20 @@ sensor:
         friendly_name: r2d2 message d'erreur
         value_template: >-      
           {% if states.sensor.r2d2_error.state == "Device stuck, clean area" %}
-            🧹 R2D2 : 
+            R2D2 : 
             coincé ou bloqué ! Retirez les obstacles
           {% elif states.sensor.r2d2_error.state == "Docking station not reachable" %}
-            🧹 R2D2 : 
+            R2D2 : 
             Impossible d'atteindre la station de charge
           {% elif states.sensor.r2d2_error.state == "Charging fault" %}
-            🧹 R2D2 : 
+            R2D2 : 
             Impossible de charger, vérifiez que les capteurs soient propres 
           {% elif states.sensor.r2d2_error.state == "Clean hovering sensors, move robot" %}
-            🧹 R2D2 : 
+            R2D2 : 
             Problème avec les capteurs de dénivelé : nettoyez les, éloignez R2D2, et redémarrez-le.            
           {% elif is_state("sensor.r2d2_error", "unknown") -%} 
           {%- else -%}
-            🧹 R2D2 : 
+            R2D2 : 
             {{ states('sensor.r2d2_error') }}        
           {%- endif %}         
           
@@ -3872,6 +3857,8 @@ sensor:
         value_template: >-      
           {%- if states('sensor.disk_use_percent_home')| float < 70 and
            is_state('device_tracker.arlo_sonnette', 'home') and
+           not is_state('binary_sensor.lave_vaisselle_door', 'unavailable') and
+           not states('switch.lave_vaisselle_power')  == 'unavailable' and
            states('sensor.cpu_temperature')| float < 65 and
            states('sensor.compteur_yeelight_hs')| float == 0 and
            states('sensor.compteur_zigbee_hs')| float == 0 and
