@@ -8,25 +8,25 @@ button_card_templates:
     show_label: false
     entity_picture: |
       [[[
-            if ((states['weather.maison'].state == 'sunny') && (states['sun.sun'].state == 'above_horizon'))
+            if ((states['weather.beaucouze'].state == 'sunny') && (states['sun.sun'].state == 'above_horizon'))
               return "/local/weather/clear-day.svg";
-              if ((states['weather.maison'].state == 'sunny') || (entity.state == 'clear-night') && (states['sun.sun'].state == 'below_horizon'))
+              if ((states['weather.beaucouze'].state == 'sunny') || (entity.state == 'clear-night') && (states['sun.sun'].state == 'below_horizon'))
                 return "/local/weather/clear-night.svg";   
-                  if (states['weather.maison'].state == 'fog')
+                  if (states['weather.beaucouze'].state == 'fog')
                       return "/local/weather/fog.svg";     
-                        if ((states['weather.maison'].state == 'partlycloudy') && (states['sun.sun'].state == 'above_horizon'))
+                        if ((states['weather.beaucouze'].state == 'partlycloudy') && (states['sun.sun'].state == 'above_horizon'))
                           return "/local/weather/partly-cloudy-day.svg";                      
-                            if ((states['weather.maison'].state == 'partlycloudy') && (states['sun.sun'].state == 'below_horizon'))
+                            if ((states['weather.beaucouze'].state == 'partlycloudy') && (states['sun.sun'].state == 'below_horizon'))
                               return "/local/weather/partly-cloudy-night.svg";    
-                                if (states['weather.maison'].state == 'rainy')
+                                if (states['weather.beaucouze'].state == 'rainy')
                                   return "/local/weather/rain.svg";                  
-                                    if (states['weather.maison'].state == 'sleet')
+                                    if (states['weather.beaucouze'].state == 'sleet')
                                       return "/local/weather/sleet.svg";         
-                                        if (states['weather.maison'].state == 'snow')
+                                        if (states['weather.beaucouze'].state == 'snow')
                                           return "/local/weather/snow.svg";  
-                                            if (states['weather.maison'].state == 'cloudy')
+                                            if (states['weather.beaucouze'].state == 'cloudy')
                                               return "/local/weather/cloudy.svg";    
-            else (states['weather.maison'].state == 'wind')
+            else (states['weather.beaucouze'].state == 'wind')
               return "/local/weather/wind.svg";                        
       ]]]
     styles:
@@ -46,7 +46,6 @@ button_card_templates:
             "device_hs"
             "batterie_alerte"
             "titre_activite"
-            "alarme"
             "walle"
             "r2d2"
             "reveil"
@@ -74,7 +73,7 @@ button_card_templates:
         - line-height: 120%
       img_cell:
         - left: 38%
-        - top: '-43%'
+        - top: '-38%'
         - position: absolute
       icon:
         - width: 12%
@@ -260,14 +259,6 @@ button_card_templates:
           - text-align: left
           - color: var(--text_on_sidebar)
           - white-space: normal
-        alarme:
-          - border-left: 2px grey solid
-          - padding: 0px 0px 0px 08px
-          - font-size: 83%
-          - justifiy-self: start
-          - text-align: left
-          - color: var(--text_on_info_sidebar)
-          - white-space: normal
         walle:
           - border-left: 2px grey solid
           - padding: 0px 0px 0px 08px
@@ -386,6 +377,17 @@ button_card_templates:
                 return "var(--text_on_info_sidebar)" ;
               ]]]
           - white-space: normal
+        temp_barre:
+          - position: absolute
+          - opacity: 100%
+          - top: 2.8%
+          - left: 70%
+          - width: calc(35% + 0px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
         bouton:
           - position: absolute
           - opacity: 100%
@@ -473,15 +475,6 @@ button_card_templates:
       titre_activite: |
         [[[ return "Activité" 
         ]]]
-      alarme: |
-        [[[
-          if (states['sensor.alarmes'].state == 'Aucune')
-            return ""
-          return `<ha-icon
-            icon="mdi:shield-lock"
-            style="width: 18px; color: red; height: 18px; margin-right: 2px;">
-            </ha-icon><span> ${states['sensor.alarmes'].state}</span>`
-        ]]]
       walle: |
         [[[
           if (states['sensor.walle_etat'].state == 'RAS')
@@ -540,11 +533,11 @@ button_card_templates:
         [[[
           if (states['sensor.reveil'].state == 'Aucun')
             return `<ha-icon
-              icon="mdi:timer"
+              icon="mdi:clock-check-outline"
               style="width: 18px; height: 18px; color: var(--text_off); margin-right: 2px;">
               </ha-icon><span> ${states['sensor.reveil'].state}</span>`
           return `<ha-icon
-            icon="mdi:timer"
+            icon="mdi:clock-check-outline"
             style="width: 18px; color: var(--text_on_sidebar); height: 18px; margin-right: 2px;">
             </ha-icon><span> ${states['sensor.reveil'].state}</span>`
         ]]]
@@ -566,6 +559,115 @@ button_card_templates:
       maj: |
         [[[ return states['sensor.maj'].state ;
         ]]]
+      temp_barre:
+        card:
+          type: custom:bar-card
+          name: Batterie
+          entities:
+            - entity: sensor.weather_temperature_v2
+          entity_row: true
+          unit_of_measurement: °
+          positions:
+            value: inside
+            name: 'off'
+          height: 17px
+          width: 50%
+          max: |
+            [[[
+              if (states['sensor.temp_max_v2'].state > 36)
+                return "36"
+              if (states['sensor.temp_max_v2'].state > 35)
+                return "35"
+              if (states['sensor.temp_max_v2'].state > 34)
+                return "34"
+              if (states['sensor.temp_max_v2'].state > 33)
+                return "33"
+              if (states['sensor.temp_max_v2'].state > 32)
+                return "32"
+              if (states['sensor.temp_max_v2'].state > 31)
+                return "31"
+              if (states['sensor.temp_max_v2'].state > 30)
+                return "30"
+              if (states['sensor.temp_max_v2'].state > 29)
+                return "29"
+              if (states['sensor.temp_max_v2'].state > 28)
+                return "28"
+              if (states['sensor.temp_max_v2'].state > 27)
+                return "27"
+              if (states['sensor.temp_max_v2'].state > 26)
+                return "26"
+              if (states['sensor.temp_max_v2'].state > 25)
+                return "25"
+              if (states['sensor.temp_max_v2'].state > 24)
+                return "24"
+              if (states['sensor.temp_max_v2'].state > 23)
+                return "23"
+              if (states['sensor.temp_max_v2'].state > 22)
+                return "22"
+              if (states['sensor.temp_max_v2'].state > 21)
+                return "21"
+              if (states['sensor.temp_max_v2'].state > 20)
+                return "20"
+              if (states['sensor.temp_max_v2'].state > 19)
+                return "19"
+              if (states['sensor.temp_max_v2'].state > 18)
+                return "18"
+              if (states['sensor.temp_max_v2'].state > 17)
+                return "17"
+              if (states['sensor.temp_max_v2'].state > 16)
+                return "16"
+              if (states['sensor.temp_max_v2'].state > 15)
+                return "15"
+              if (states['sensor.temp_max_v2'].state > 14)
+                return "14"
+              if (states['sensor.temp_max_v2'].state > 13)
+                return "13"
+              if (states['sensor.temp_max_v2'].state > 12)
+                return "12"
+              if (states['sensor.temp_max_v2'].state > 11)
+                return "11"
+              if (states['sensor.temp_max_v2'].state > 10)
+                return "10"
+              if (states['sensor.temp_max_v2'].state > 9)
+                return "9"
+              if (states['sensor.temp_max_v2'].state > 8)
+                return "8"
+              if (states['sensor.temp_max_v2'].state > 7)
+                return "7"
+              if (states['sensor.temp_max_v2'].state > 6)
+                return "6"
+              if (states['sensor.temp_max_v2'].state > 5)
+                return "5"
+              if (states['sensor.temp_max_v2'].state > 4)
+                return "4"
+              if (states['sensor.temp_max_v2'].state > 3)
+                return "3"
+              if (states['sensor.temp_max_v2'].state > 2)
+                return "2"
+              if (states['sensor.temp_max_v2'].state > 1)
+                return "1"
+              if (states['sensor.temp_max_v2'].state > 0)
+                return "1"
+              return "40"
+            ]]]
+          icon: 'off'
+          severity:
+            - from: '0'
+              to: '13'
+              color: rgba(0,191,255,0.4)
+            - from: '13'
+              to: '25'
+              color: rgba(240,230,140,0.4)
+            - from: '25'
+              to: '50'
+              color: rgba(240,128,128,0.4)
+          style: |-
+            bar-card-value {
+              margin-right: -30%;
+              font-size: 13px;
+              font-weight: bold;
+              color: lightgrey;
+            }
       bouton:
         card:
           type: horizontal-stack
@@ -924,6 +1026,65 @@ button_card_templates:
                   ]]]
               double_tap_action:
                 action: more-info
+              tap_action:
+                action: fire-dom-event
+                browser_mod:
+                  command: popup
+                  title: Modes
+                  card:
+                    square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: input_boolean.nilemato
+                        name: null
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: automation.c_est_l_heure_d_aller_a_l_ecole
+                        name: Annonce école
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: input_boolean.belle_saison
+                        name: null
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: input_boolean.piscine
+                        name: null
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: input_boolean.vacances
+                        name: null
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: input_boolean.noel
+                        name: null
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: input_boolean.halloween
+                        name: null
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
             - type: custom:button-card
               entity: group.actions
               name: Annonces
@@ -963,6 +1124,65 @@ button_card_templates:
                 ]]]
               double_tap_action:
                 action: more-info
+              tap_action:
+                action: fire-dom-event
+                browser_mod:
+                  command: popup
+                  title: Annonces
+                  card:
+                    square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: script.cest_lheure_daller_a_lecole
+                        name: Ecole
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.a_table
+                        name: A table !
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.gouter
+                        name: Goûter
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.1590760144160
+                        name: Fin ecrans
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.annonce_au_lit
+                        name: Filles couché
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.tom_va_se_coucher
+                        name: Tom couché
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.reveille_tom_annonce_alexa
+                        name: Réveiller Tom
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
   sidebar_bouton:
     show_icon: true
     show_name: false
@@ -1240,11 +1460,22 @@ button_card_templates:
           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
           - '--ha-card-background': rgba(0, 0, 0, 0.0)"
           - '--ha-card-box-shadow': none
+        bouton_3:
+          - opacity: 90%
+          - position: absolute
+          - top: 70%
+          - left: 53%
+          - width: calc(15% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
+          - z-index: 1
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-box-shadow': none
         bouton_1:
           - opacity: 90%
           - position: absolute
           - top: 70%
-          - left: 65%
+          - left: 70%
           - width: calc(15% + 1px)
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 1
@@ -1255,7 +1486,7 @@ button_card_templates:
           - opacity: 90%
           - position: absolute
           - top: 70%
-          - left: 85%
+          - left: 87%
           - width: calc(15% + 1px)
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 1
@@ -1493,6 +1724,20 @@ button_card_templates:
           - '--ha-card-box-shadow': none
     state:
       - value: 'on'
+        styles:
+          card:
+            - animation: ball-scale 0.2s
+            - background-color: var(--pastille_multimedia)
+          img_cell:
+            - background-color: var(--pastille_multimedia)
+          icon:
+            - color: var(--icon_on)
+            - transition: 2s ease
+          name:
+            - color: var(--text_on)
+          label:
+            - color: var(--text_on)
+      - value: home
         styles:
           card:
             - animation: ball-scale 0.2s
@@ -1901,13 +2146,13 @@ button_card_templates:
           img_cell:
             - background-color: rgba(255,0,0,0.7)
           name:
-            - color: red
+            - color: var(--text_on)
             - font-weight: null
           label:
-            - color: red
+            - color: var(--text_on)
             - font-weight: null
           state:
-            - color: red
+            - color: var(--text_on)
             - font-weight: bold
           icon:
             - color: var(--icon_on)
@@ -1920,13 +2165,13 @@ button_card_templates:
             - animation: blink 1s ease infinite
             - color: var(--icon_on)
           name:
-            - color: gold
+            - color: var(--text_on)
             - font-weight: null
           label:
-            - color: gold
+            - color: var(--text_on)
             - font-weight: null
           state:
-            - color: gold
+            - color: var(--text_on)
             - font-weight: bold
       - value: triggered
         color: red
@@ -1934,13 +2179,13 @@ button_card_templates:
           img_cell:
             - background-color: var(--back_securite)
           name:
-            - color: red
+            - color: var(--text_on)
             - font-weight: null
           label:
-            - color: red
+            - color: var(--text_on)
             - font-weight: null
           state:
-            - color: red
+            - color: var(--text_on)
             - font-weight: bold
           icon:
             - animation: blink 1s ease infinite
@@ -1954,13 +2199,13 @@ button_card_templates:
     show_name: false
     styles:
       icon:
-        - color: var(--icon_off)
+        - color: darkgrey
         - width: 80%
     state:
       - value: 'off'
         styles:
           icon:
-            - color: var(--icon_off)
+            - color: darkgrey
       - value: 'on'
         styles:
           icon:
@@ -2056,12 +2301,12 @@ button_card_templates:
       label:
         - padding-top: 5px
         - color: var(--text_on)
-        - font-weight: bold
+        - font-weight: null
       card:
         - height: 117px
       custom_fields:
         batterie_barre:
-          - opacity: 85%
+          - opacity: 70%
           - position: absolute
           - top: 10%
           - left: 28%
@@ -2076,9 +2321,9 @@ button_card_templates:
         graph_fixe:
           - opacity: 80%
           - position: absolute
-          - top: 55%
+          - top: 65%
           - left: 50%
-          - width: calc(110% + 0px)
+          - width: calc(100% + 0px)
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 12
           - '--paper-card-background-color': rgba(0, 0, 0, 0)
@@ -2092,8 +2337,8 @@ button_card_templates:
           - position: absolute
           - letter-spacing: 0.03vw
         icon_batterie:
-          - width: 18%
-          - top: 76%
+          - width: 19%
+          - top: 77%
           - left: 78%
           - position: absolute
     state:
@@ -2249,7 +2494,7 @@ button_card_templates:
         - width: 80%
         - color: var(--icon_off)
       name:
-        - padding-top: 2px
+        - padding-top: 1px
         - padding-bottom: 1px
         - color: var(--text_on)
         - font-size: 80%
@@ -2268,15 +2513,28 @@ button_card_templates:
         - font-weight: null
         - text-align: center
       card:
-        - padding-left: 2px
-        - padding-right: 2px
+        - padding-left: 1px
+        - padding-right: 1px
         - font-size: 100%
-        - height: 75px
+        - height: 70px
         - border-color: var(--card_border)
         - border-style: outset
         - border-width: 1px
         - box-shadow: var(--card_box_shadow)
         - animation: ball-scale 0.2s
+    state:
+      - value: 'on'
+        styles:
+          img_cell:
+            - background-color: var(--pastille_mode)
+          card:
+            - background-color: var(--pastille_mode)
+          label:
+            - color: var(--text_on)
+          name:
+            - color: var(--text_on)
+          icon:
+            - color: var(--icon_on)
   base_popup:
     show_icon: true
     show_name: true
@@ -2465,7 +2723,7 @@ button_card_templates:
       custom_fields:
         lum:
           - position: absolute
-          - top: 65%
+          - top: 70%
           - left: 50%
           - width: calc(90% + 1px)
           - transform: translate(-50%, calc(-50% + 10px))
@@ -5218,12 +5476,35 @@ views:
                                                     return 'grey';
                                                 ]]]
                                         custom_fields:
-                                          batterie: |
-                                            [[[ 
-                                              if (states['sensor.walle_batterie'].state == 100 )
-                                                return '';
-                                              return states['sensor.walle_batterie'].state + "%" ]]]
-                                          ic:
+                                          batterie_aspi:
+                                            card:
+                                              type: custom:bar-card
+                                              name: Batterie
+                                              entities:
+                                                - entity: sensor.walle_batterie
+                                              entity_row: true
+                                              unit_of_measurement: '%'
+                                              positions:
+                                                value: inside
+                                                name: 'off'
+                                              height: 25px
+                                              width: 180%
+                                              icon: 'off'
+                                              severity:
+                                                - from: '0'
+                                                  to: '20'
+                                                  color: red
+                                                - from: '50'
+                                                  to: '100'
+                                                  color: var(--pastille_off)
+                                              style: |-
+                                                bar-card-value {
+                                                  margin-right: 18%;
+                                                  font-size: 13px;
+                                                  font-weight: bold;
+                                                  color: grey;
+                                                }
+                                          bouton_aspi:
                                             card:
                                               type: grid
                                               cards:
@@ -5233,10 +5514,7 @@ views:
                                                   styles:
                                                     icon:
                                                       - color: var(--icon_off)
-                                                      - width: 70%
-                                                    card:
-                                                      - background: transparent
-                                                      - 'border-color:': transparent
+                                                      - width: 80%
                                                   tap_action:
                                                     action: toggle
                                                 - type: custom:button-card
@@ -5245,10 +5523,7 @@ views:
                                                   styles:
                                                     icon:
                                                       - color: var(--icon_off)
-                                                      - width: 70%
-                                                    card:
-                                                      - background: transparent
-                                                      - 'border-color:': transparent
+                                                      - width: 80%
                                                   tap_action:
                                                     action: toggle
                                                 - type: custom:button-card
@@ -5257,10 +5532,7 @@ views:
                                                   styles:
                                                     icon:
                                                       - color: var(--icon_off)
-                                                      - width: 70%
-                                                    card:
-                                                      - background: transparent
-                                                      - 'border-color:': transparent
+                                                      - width: 80%
                                                   tap_action:
                                                     action: toggle
                                                 - type: custom:button-card
@@ -5271,10 +5543,7 @@ views:
                                                   styles:
                                                     icon:
                                                       - color: var(--icon_off)
-                                                      - width: 70%
-                                                    card:
-                                                      - background: transparent
-                                                      - 'border-color:': transparent
+                                                      - width: 80%
                                               columns: 4
                                               square: false
                                     - type: conditional
@@ -5306,16 +5575,39 @@ views:
                                                     return "firebrick";
                                                   if (states['sensor.r2d2_state'].state == "En pause")
                                                     return 'firebrick';
-                                                  if (states['sensor.r2d2_state'].state == "En charge")
+                                                  if (states['sensor.r2d2_state'].state == "Charge")
                                                     return 'grey';
                                                 ]]]
                                         custom_fields:
-                                          batterie: |
-                                            [[[ 
-                                              if (states['sensor.r2d2_batterie'].state == 100 )
-                                                return '';
-                                              return states['sensor.r2d2_batterie'].state + "%"]]]
-                                          ic:
+                                          batterie_aspi:
+                                            card:
+                                              type: custom:bar-card
+                                              name: Batterie
+                                              entities:
+                                                - entity: sensor.r2d2_batterie
+                                              entity_row: true
+                                              unit_of_measurement: '%'
+                                              positions:
+                                                value: inside
+                                                name: 'off'
+                                              height: 25px
+                                              width: 180%
+                                              icon: 'off'
+                                              severity:
+                                                - from: '0'
+                                                  to: '20'
+                                                  color: red
+                                                - from: '50'
+                                                  to: '100'
+                                                  color: var(--pastille_off)
+                                              style: |-
+                                                bar-card-value {
+                                                  margin-right: 18%;
+                                                  font-size: 13px;
+                                                  font-weight: bold;
+                                                  color: grey;
+                                                }
+                                          bouton_aspi:
                                             card:
                                               type: grid
                                               cards:
@@ -5325,10 +5617,7 @@ views:
                                                   styles:
                                                     icon:
                                                       - color: var(--icon_off)
-                                                      - width: 50%
-                                                    card:
-                                                      - background: transparent
-                                                      - 'border-color:': transparent
+                                                      - width: 60%
                                                   tap_action:
                                                     action: toggle
                                                 - type: custom:button-card
@@ -5337,10 +5626,7 @@ views:
                                                   styles:
                                                     icon:
                                                       - color: var(--icon_off)
-                                                      - width: 50%
-                                                    card:
-                                                      - background: transparent
-                                                      - 'border-color:': transparent
+                                                      - width: 60%
                                                   tap_action:
                                                     action: toggle
                                                 - type: custom:button-card
@@ -5349,10 +5635,7 @@ views:
                                                   styles:
                                                     icon:
                                                       - color: var(--icon_off)
-                                                      - width: 50%
-                                                    card:
-                                                      - background: transparent
-                                                      - 'border-color:': transparent
+                                                      - width: 60%
                                                   tap_action:
                                                     action: toggle
                                               columns: 3
@@ -6025,13 +6308,39 @@ views:
                                 entity: light.sejour2
                                 radius: 5px
                                 height: 15px
-                                width: 55%
+                                width: 45%
                                 mainSliderColor: var(--button-card-light-color-no-temperature)
                                 thumbHorizontalPadding: 0px
                                 thumbVerticalPadding: 0px
                                 thumbWidth: 2px
                                 minSet: 1
                           bouton_1:
+                            card:
+                              type: grid
+                              cards:
+                                - type: custom:button-card
+                                  entity: scene.zen
+                                  show_name: false
+                                  styles:
+                                    icon:
+                                      - color: |
+                                          [[[
+                                            if (states['light.sejour2'].state == 'on'  )
+                                              return 'var(--text_on)';
+                                            return 'var(--text_off)';
+                                          ]]]
+                                      - width: 80%
+                                    card:
+                                      - background: transparent
+                                      - 'border-color:': transparent
+                                  tap_action:
+                                    action: call-service
+                                    service: scene.turn_on
+                                    service_data:
+                                      entity_id: scene.zen
+                              columns: 1
+                              square: false
+                          bouton_3:
                             card:
                               type: grid
                               cards:
@@ -7160,12 +7469,38 @@ views:
                                 entity: light.parents
                                 radius: 5px
                                 height: 15px
-                                width: 70%
+                                width: 55%
                                 mainSliderColor: var(--button-card-light-color-no-temperature)
                                 thumbHorizontalPadding: 0px
                                 thumbVerticalPadding: 0px
                                 thumbWidth: 2px
                                 minSet: 1
+                          bouton_1:
+                            card:
+                              type: grid
+                              cards:
+                                - type: custom:button-card
+                                  entity: scene.chambre_parents_ambiance_normale
+                                  show_name: false
+                                  styles:
+                                    icon:
+                                      - color: |
+                                          [[[
+                                            if (states['light.parents'].state == 'on'  )
+                                              return 'var(--text_on)';
+                                            return 'var(--text_off)';
+                                          ]]]
+                                      - width: 80%
+                                    card:
+                                      - background: transparent
+                                      - 'border-color:': transparent
+                                  double_tap_action:
+                                    action: call-service
+                                    service: scene.turn_on
+                                    service_data:
+                                      entity_id: scene.chambre_parents_ambiance_normale
+                              columns: 1
+                              square: false
                           bouton_2:
                             card:
                               type: grid
@@ -7173,7 +7508,6 @@ views:
                                 - type: custom:button-card
                                   entity: script.ambiance_cine_chevet_parents
                                   show_name: false
-                                  icon: mdi:television
                                   styles:
                                     icon:
                                       - color: |
@@ -9265,6 +9599,8 @@ views:
                 cards:
                   - type: custom:button-card
                     entity: media_player.tv_salon
+                    triggers_update:
+                      - device_tracker.lgwebostv
                     name: Salon
                     icon: |
                       [[[
@@ -9322,7 +9658,7 @@ views:
                             color: var(--pastille_off)
                             style: |-
                               bar-card-value {
-                                margin-right: 18%;
+                                margin-right: 25%;
                                 font-size: 13px;
                                 font-weight: bold;
                                 color: var(--text_on);
@@ -9343,7 +9679,7 @@ views:
                                 show_name: false
                                 styles:
                                   icon:
-                                    - color: var(--text_on)
+                                    - color: var(--icon_off)
                                     - width: 85%
                                   card:
                                     - background: transparent
@@ -9355,7 +9691,7 @@ views:
                                 show_name: false
                                 styles:
                                   icon:
-                                    - color: var(--text_on)
+                                    - color: var(--icon_off)
                                     - width: 85%
                                   card:
                                     - background: transparent
@@ -9367,7 +9703,7 @@ views:
                                 show_name: false
                                 styles:
                                   icon:
-                                    - color: var(--text_on)
+                                    - color: var(--icon_off)
                                     - width: 85%
                                   card:
                                     - background: transparent
@@ -9379,7 +9715,7 @@ views:
                                 show_name: false
                                 styles:
                                   icon:
-                                    - color: var(--text_on)
+                                    - color: var(--icon_off)
                                     - width: 100%
                                   card:
                                     - background: transparent
@@ -9391,7 +9727,7 @@ views:
                                 show_name: false
                                 styles:
                                   icon:
-                                    - color: var(--text_on)
+                                    - color: var(--icon_off)
                                     - width: 100%
                                   card:
                                     - background: transparent
@@ -9457,6 +9793,35 @@ views:
                       action: toggle
                     tap_action:
                       action: more-info
+                    custom_fields:
+                      volume_barre:
+                        card:
+                          type: conditional
+                          conditions:
+                            - entity: switch.tele_des_parents
+                              state: 'on'
+                          card:
+                            type: custom:bar-card
+                            name: Batterie
+                            entities:
+                              - entity: sensor.tv_parents_vol
+                            entity_row: true
+                            unit_of_measurement: /10
+                            positions:
+                              value: inside
+                              name: 'off'
+                            max: 10
+                            height: 25px
+                            width: 200%
+                            icon: 'off'
+                            color: var(--pastille_off)
+                            style: |-
+                              bar-card-value {
+                                margin-right: 18%;
+                                font-size: 13px;
+                                font-weight: bold;
+                                color: var(--text_on);
+                              }
                 columns: 2
                 square: false
               - type: grid
@@ -11538,7 +11903,7 @@ views:
                               margin-right: 18%;
                               font-size: 13px;
                               font-weight: bold;
-                              color: grey;
+                              color: darkgrey;
                             }
                       bouton_alarme:
                         card:
@@ -11729,10 +12094,15 @@ views:
                               ]]]
                     custom_fields:
                       duree: |
-                        [[[    
-                          return `<ha-icon
+                        [[[   
+                          if (states['person.herve'].state == 'home')
+                            return `<ha-icon
+                            icon="mdi:home-import-outline"
+                            style="width: 16px; height: 16px; color: lightgrey; margin-right: 1px;">
+                            </ha-icon><span> ${states['sensor.aurel_duree'].state}</span>`
+                            return `<ha-icon
                             icon="mdi:timer"
-                            style="width: 15px; height: 15px; color: grey; margin-right: -2px;">
+                            style="width: 16px; height: 16px; color: red; margin-right: 1px;">
                             </ha-icon><span> ${states['sensor.aurel_duree'].state}</span>`
                         ]]]
                       batterie_barre:
@@ -11759,7 +12129,7 @@ views:
                               color: tomato
                             - from: '50'
                               to: '100'
-                              color: var(--graph_line)
+                              color: var(--pastille_off)
                           style: |-
                             bar-card-value {
                               margin-right: -25%;
@@ -11825,10 +12195,15 @@ views:
                               ]]]
                     custom_fields:
                       duree: |
-                        [[[    
-                          return `<ha-icon
+                        [[[   
+                          if (states['person.alex'].state == 'home')
+                            return `<ha-icon
+                            icon="mdi:home-import-outline"
+                            style="width: 16px; height: 16px; color: lightgrey; margin-right: 1px;">
+                            </ha-icon><span> ${states['sensor.alex_duree'].state}</span>`
+                            return `<ha-icon
                             icon="mdi:timer"
-                            style="width: 15px; height: 15px; color: grey; margin-right: -2px;">
+                            style="width: 16px; height: 16px; color: red; margin-right: 1px;">
                             </ha-icon><span> ${states['sensor.alex_duree'].state}</span>`
                         ]]]
                       batterie_barre:
@@ -11855,7 +12230,7 @@ views:
                               color: tomato
                             - from: '50'
                               to: '100'
-                              color: var(--graph_line)
+                              color: var(--pastille_off)
                           style: |-
                             bar-card-value {
                               margin-right: -25%;
@@ -11915,10 +12290,15 @@ views:
                             ]]]
                     custom_fields:
                       duree: |
-                        [[[    
-                          return `<ha-icon
+                        [[[   
+                          if (states['person.tom'].state == 'home')
+                            return `<ha-icon
+                            icon="mdi:home-import-outline"
+                            style="width: 16px; height: 16px; color: lightgrey; margin-right: 1px;">
+                            </ha-icon><span> ${states['sensor.tom_duree'].state}</span>`
+                            return `<ha-icon
                             icon="mdi:timer"
-                            style="width: 15px; height: 15px; color: grey; margin-right: -2px;">
+                            style="width: 16px; height: 16px; color: red; margin-right: 1px;">
                             </ha-icon><span> ${states['sensor.tom_duree'].state}</span>`
                         ]]]
                     extra_styles: |
@@ -12266,7 +12646,7 @@ views:
                             - entity: sensor.myenedis_cout_j2
                               color: rgba(123,104,238,0.2)
                             - entity: sensor.myenedis_cout_j1
-                              color: rgba(123,104,238,0.4)
+                              color: rgba(255,255,0,0.5)
                           height: 300
                           line_width: 1
                           lower_bound: 1
@@ -13564,7 +13944,7 @@ views:
       - type: custom:layout-card
         layout_type: masonry
         layout:
-          width: 340
+          width: 350
         cards:
           - type: vertical-stack
             cards:
@@ -13600,7 +13980,7 @@ views:
                         service_data:
                           entity_id: script.sortir_l_aspi
                   - square: false
-                    columns: 6
+                    columns: 4
                     type: grid
                     cards:
                       - type: custom:button-card
@@ -13618,6 +13998,13 @@ views:
                         tap_action:
                           action: toggle
                       - type: custom:button-card
+                        entity: script.aspi_walle_tapis
+                        name: Tapis
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
                         entity: script.aspi_walle_couloir
                         name: Couloir
                         template:
@@ -13625,8 +14012,8 @@ views:
                         tap_action:
                           action: toggle
                       - type: custom:button-card
-                        entity: script.aspi_walle_salon
-                        name: Salon
+                        entity: script.aspi_walle_sejour
+                        name: Séjour
                         template:
                           - base_verticale_centree
                         tap_action:
@@ -13639,8 +14026,15 @@ views:
                         tap_action:
                           action: toggle
                       - type: custom:button-card
-                        entity: script.aspi_walle_bureau
-                        name: Bureau
+                        entity: script.aspi_walle_salon
+                        name: Salon
+                        template:
+                          - base_verticale_centree
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.aspi_walle_chambre_parents
+                        name: Parents
                         template:
                           - base_verticale_centree
                         tap_action:
@@ -13773,7 +14167,7 @@ views:
       - type: custom:layout-card
         layout_type: masonry
         layout:
-          width: 340
+          width: 350
         cards:
           - type: vertical-stack
             cards:
@@ -13798,16 +14192,9 @@ views:
                     show: true
                     label: Nettoyage localisé
               - square: false
-                columns: 5
+                columns: 3
                 type: grid
                 cards:
-                  - type: custom:button-card
-                    entity: script.aspi_r2d2_salle_de_bain
-                    name: SdB
-                    template:
-                      - base_verticale_centree
-                    tap_action:
-                      action: toggle
                   - type: custom:button-card
                     entity: script.aspi_r2d2_chambre_tom
                     name: Tom
@@ -13825,6 +14212,13 @@ views:
                   - type: custom:button-card
                     entity: script.aspi_r2d2_chambre_nina
                     name: Nina
+                    template:
+                      - base_verticale_centree
+                    tap_action:
+                      action: toggle
+                  - type: custom:button-card
+                    entity: script.aspi_r2d2_salle_de_bain
+                    name: SdB
                     template:
                       - base_verticale_centree
                     tap_action:
