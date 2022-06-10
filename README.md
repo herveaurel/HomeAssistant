@@ -10,35 +10,30 @@ Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 1
 
 ---------------------
 
-Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
+⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
 
-- modifiactions des codes, templates, template button card
+- modifiactions des codes, templates, template button card ! 🥳
 - créations de base templates pour unifier les cartes et les boutons 
 - option retour à la ligne automatique dans tous les button card 
 - nouvelle carte Activité, réalisée avec button card, entièrement dynamique et icone météo MDI animé
 - amélioaration des thèmes jour et nuit 
+- Corrections de bugs divers
+- Et beaucoup d'autres changements ! 🤪
 
+D'autres modifications viendront dans les prochaines mises à jour... 😇
 
-Modifications du 10 mai 2022 :
+Exemple :
 
-Carte activité retravaillée
+Carte activité 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/meteo_modif.jpg)
 
-Travail sur la customisation des cartes personnes avec nouvelles options 
+Cartes personnes avec nouvelles options et nouveaux popup 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/persons.jpg)
-
-Petit changement esthetique sur le graphique de la consommation électrique 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/enedis.jpg)
-
-Création des popup pour le bouton Modes et Annonces 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_annonces.jpg)
 
 Création des boutons pour déclencher les aspirateurs encore plsu facilement dans les zones et pièces
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/boutons_aspi.jpg)
 
-Corrections de bugs divers
 
-D'autres modifications viendront dans les prochaines mises à jour...
 
 ---------------------
 
@@ -63,7 +58,8 @@ Voici comment je m'organise :
 
 1ère colonne : Activité générale 
 - bouton-badge : info rapide avec popup en tap action
-- bouton-rond : Sécurité, lumières, et devices allumés, avec badge compteur, et le tap action ouvre un popup complet 
+- cartes Alarmes : Cartes et leurs popup
+- bouton-rond : Modes, lumières, et devices allumés, avec badge compteur, capteurs, annonces etc... et le tap action ouvre un popup complet 
 - carte activité : calendrier / météo / activité / mise à jour (infos dynamiques) , tap action : météo détailléé 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/colonne_activite.jpg)
 
@@ -72,7 +68,7 @@ Voici comment je m'organise :
 
 3ème colonne : multimédia et appareils avec popups détaillés
 
-4ème colonne : sécurité / personnes et système avec popups détaillés
+4ème colonne : personnes et système avec popups détaillés
 
 
 ---------------------
