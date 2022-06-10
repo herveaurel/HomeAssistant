@@ -2,8 +2,6 @@
 
 Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
 
----Pour les changements mineurs, lisez le changelog---
-
 Bat-Geek 
 Mon tableau de bord pour PC, smartphone, tablette
 Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 13 pouces (ref MacBook Pro) et 1 colonne tient entièrement sur l'écran d'un smartphone (ref iphone 13 Pro). 
@@ -22,7 +20,7 @@ Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 1
 
 D'autres modifications viendront dans les prochaines mises à jour... 😇
 
-Exemple :
+Exemples :
 
 Carte activité 
 
