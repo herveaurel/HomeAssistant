@@ -25,12 +25,15 @@ D'autres modifications viendront dans les prochaines mises à jour... 😇
 Exemple :
 
 Carte activité 
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/meteo_modif.jpg)
 
 Cartes personnes avec nouvelles options et nouveaux popup 
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/persons.jpg)
 
 Création des boutons pour déclencher les aspirateurs encore plsu facilement dans les zones et pièces
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/boutons_aspi.jpg)
 
 
@@ -61,10 +64,9 @@ Voici comment je m'organise :
 - cartes Alarmes : Cartes et leurs popup
 - bouton-rond : Modes, lumières, et devices allumés, avec badge compteur, capteurs, annonces etc... et le tap action ouvre un popup complet 
 - carte activité : calendrier / météo / activité / mise à jour (infos dynamiques) , tap action : météo détailléé 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/colonne_activite.jpg)
 
 2ème colonne : les pièces de la maison avec popups détaillés
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/colonne_pieces.png)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/cartes_pieces.jpg)
 
 3ème colonne : multimédia et appareils avec popups détaillés
 
