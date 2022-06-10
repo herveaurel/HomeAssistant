@@ -25,7 +25,7 @@ Ajout le la jauge température : couleurs basées sur seuils, et surtout la prop
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/meteo_modif.jpg)
 
 Travail sur la customisation des cartes personnes avec nouvelles options 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/persons.png)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/persons.jpg)
 
 Petit changement esthetique sur le graphique de la consommation électrique 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/enedis.jpg)
@@ -46,16 +46,16 @@ Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
 
 Theme bat_Night with alarm
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.png)
 
 Theme bat_Day
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_clear.jpg)
 
 Mobile
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.png)
 
 Tableau de bord 1 page : popup card ! 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup.png)
 
 ---------------------
  
