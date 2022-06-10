@@ -10,13 +10,15 @@ Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 1
 
 ⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
 
-- modifiactions des codes, templates, template button card ! 🥳
-- créations de base templates pour unifier les cartes et les boutons 
-- option retour à la ligne automatique dans tous les button card 
-- nouvelle carte Activité, réalisée avec button card, entièrement dynamique et icone météo MDI animé
+- Réécriture des templates button card  
+- Modifications des sensor templates  
+- Modifications des cartes  
+- Nouvelles cartes  
+- Nouveaux popup  
 - amélioaration des thèmes jour et nuit 
 - Corrections de bugs divers
 - Et beaucoup d'autres changements ! 🤪
+Le tout harmonisé grâce aux templates button card.
 
 D'autres modifications viendront dans les prochaines mises à jour... 😇
 
