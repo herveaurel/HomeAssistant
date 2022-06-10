@@ -6,7 +6,7 @@ Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantg
 Mon tableau de bord pour PC, smartphone, tablette
 Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 13 pouces (ref MacBook Pro) et 1 colonne tient entièrement sur l'écran d'un smartphone (ref iphone 13 Pro). 
 
----------------------
+-----
 
 ## ⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
 
@@ -37,8 +37,8 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/boutons_aspi.jpg)
 
 
+-----
 
----------------------
 
 ## Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
