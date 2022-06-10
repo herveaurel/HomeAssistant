@@ -11,17 +11,17 @@ Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 1
 ---------------------
 
 Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
-- amélioration des codes 
+
+- modifiactions des codes, templates, template button card
 - créations de base templates pour unifier les cartes et les boutons 
 - option retour à la ligne automatique dans tous les button card 
-- nouvelle carte Activité, réalisée avec button card, entièrement dynamique et icone météo animé
-- nouvelle jauge en barre 
+- nouvelle carte Activité, réalisée avec button card, entièrement dynamique et icone météo MDI animé
 - amélioaration des thèmes jour et nuit 
 
 
-Modifications du 06 avril 2022 :
+Modifications du 10 mai 2022 :
 
-Ajout le la jauge température : couleurs basées sur seuils, et surtout la proportionnalité prend en compte la température maxium prévue du jour ! 🥳
+Carte activité retravaillée
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/meteo_modif.jpg)
 
 Travail sur la customisation des cartes personnes avec nouvelles options 
