@@ -62,7 +62,7 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 
 ## Voici comment je m'organise : 
 
-*1ère colonne : * Activité générale 
+*- 1ère colonne * : Activité générale 
 - bouton-badge : info rapide avec popup en tap action
 - cartes Alarmes : Cartes et leurs popup
 - bouton-rond : Modes, lumières, et devices allumés, avec badge compteur, capteurs, annonces etc... et le tap action ouvre un popup complet 
