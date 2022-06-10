@@ -9011,7 +9011,7 @@ views:
                                   type: custom:apexcharts-card
                       - type: custom:button-card
                         entity: light.escalier
-                        name: Esacalier
+                        name: Escalier
                         icon: mdi:stairs
                         template:
                           - base
