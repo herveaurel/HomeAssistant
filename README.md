@@ -6,8 +6,23 @@ Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantg
 Mon tableau de bord pour PC, smartphone, tablette
 Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 13 pouces (ref MacBook Pro) et 1 colonne tient entièrement sur l'écran d'un smartphone (ref iphone 13 Pro). 
 
------
+# INTRODUCTION
 
+Je vous propose ma configuration personnelle :
+- Tableau de bord (lovelace UI mode) PC, mobile, tablette
+- templates
+- thèmes jour et nuit
+
+Je ne suis pas un expert, je suis simplement un passionné, les codes ne sont peut-être pas écrits de la meilleure façon, mais j'ai réalisé ceci avec mes petites connaissances.
+
+Ca été très long à écrire, je modifie régulièrement les détails, ou quand j'ai des nouvelles idées. 
+
+Je suis en mode UI.
+ 
+Je ne scinde pas mes fichiers, donc tout est dans configuration.yaml. 
+Il y a beaucoup de templates, je les rédige, et je les garde, mais ils ne servent pas tous ! 😉
+
+J'ai fait le choix de publier ma configuration intégrale, même ce qui est potentiellement inutile mais que je conserve pour le moment. 
 
 ### ⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
 
@@ -39,26 +54,25 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 
 
 -----
+# THEMES
 
-
-
-## Theme bat_Night
+### Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
 
-## Theme bat_Day avec alarme
+### Theme bat_Day avec alarme
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.png)
 
-## Theme bat_Day
+### Theme bat_Day
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_clear.jpg)
 
-## Smartphone
+### Smartphone
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.png)
 
-## Tableau de bord 1 page grace aux popup card ! 
+### Tableau de bord 1 page grace aux popup card ! 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup.png)
 
 ---------------------
- 
+ # ORGANISATION
 
 ## Voici comment je m'organise : 
 
@@ -78,15 +92,7 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 
 ---------------------
 
-
-Je vous propose ma configuration personnelle :
-- Tableau de bord (lovelace UI mode) PC, mobile, tablette
-- templates
-- thèmes jour et nuit
-
-Je ne suis pas un expert, je suis simplement un passionné, les codes ne sont peut-être pas écrits de la meilleure façon, mais j'ai réalisé ceci avec mes petites connaissances.
-
-Ca été très long à écrire, je modifie régulièrement les détails, ou quand j'ai des nouvelles idées. 
+# SETUP 
 
 Mon setup :
 - Raspberry 4 + SSD
@@ -113,13 +119,7 @@ Mes intégrations  hacs:
 
 ---------------------
 
-
-Je suis en mode UI.
- 
-Je ne scinde pas mes fichiers, donc tout est dans configuration.yaml. 
-Il y a beaucoup de templates, je les rédige, et je les garde, mais ils ne servent pas tous ! 😉
-
-J'ai fait le choix de publier ma configuration intégrale, même ce qui est potentiellement inutile mais que je conserve pour le moment. 
+# MERCI
 
 Si vous aimez quelque chose ici, likez 🌟 mon repo !
 If you like anything here, be sure to 🌟 my repo !
