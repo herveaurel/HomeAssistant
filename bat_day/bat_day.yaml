@@ -6,10 +6,12 @@ bat_day:
   
   # Icones Mouvements
   mouv: red
+  mouv_off: var(--text_on) #icone dans carte piece
   border_mouv: rgba(255,0,0,1)
   
   # Icones portes fenêtres 
   porte: red
+  porte_off: var(--text_on) #icone dans carte piece
   porte_icon: red
   
   # Text in Cards
@@ -17,7 +19,7 @@ bat_day:
   text_on_sidebar: rgba(211,211,211,1)
   text_on_info_sidebar: rgba(211,211,211,0.8)
   text_off_sidebar: rgba(211,211,211,0.6)
-  text_off: rgba(211,211,211,0.6)
+  text_off: rgba(211,211,211,0.8)
   text_title: rgba(211,211,211,0.8)
   text_systeme_info: rgba(211,211,211,0.6)
   bouton_titre_piece_name: rgba(211,211,211,1)
@@ -33,11 +35,12 @@ bat_day:
   pastille_aspi: rgba(255,99,71,0.8) 
   pastille_machine: rgb(30,144,255) 
   pastille_multimedia: grey 
-  pastille_appareil: rgb(30,144,255)  
+  pastille_appareil: rgba(70,130,180,0.7) 
   pastille_mode: rgba(30,144,255,0.8)
   pastille_imprim: rgba(255,255,255,0.5)
   # Graphique
-  graph_line: 'rgba(63, 81, 117, 0.7)'
+  graph_line: 'rgba(63, 81, 117, 1)'
+ 
   
   # Color custom
   my_color2:  linear-gradient(to top, rgba(26, 40, 55,0.4) 0% ,rgba(26, 40, 55,1) 100%)  # BUTTON OFF
@@ -60,7 +63,7 @@ bat_day:
   ha-card-header-font-family: "var(--primary-font-family)"
 
   # Change the value below 6px to 0px to remove the rounded corners
-  ha-card-border-radius: 15px
+  ha-card-border-radius: 13px
   bar-card-border-radius: 8px
   # Main colors
   primary-color: rgba(41, 128, 185, 1.0)
@@ -116,7 +119,7 @@ bat_day:
   label-badge-red: var(--primary-color)
   label-badge-blue: var(--light-primary-color)
   # Cards colors
-  ha-card-background: linear-gradient(to top, rgba(26, 40, 55,0.4) 0% ,rgba(26, 40, 55,1) 100%) #'var(--my_color2)' #rgba(26, 40, 55, 0.5) #CARTES 
+  ha-card-background: linear-gradient(to top, rgba(26, 40, 55,0.5) 0% ,rgba(26, 40, 55,1) 100%) #'var(--my_color2)' #rgba(26, 40, 55, 0.5) #CARTES 
   card-background-color: rgba(26, 40, 55,1) #var(--secondary-background-color) #POPUP ET CARTES DANS MENU
   paper-card-background-color: var(--ha-card-background)
   paper-listbox-background-color: var(--primary-background-color)
