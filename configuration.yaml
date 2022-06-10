@@ -1728,7 +1728,7 @@ sensor:
             Anniversaire Aurel 
           {% elif is_state("sensor.date_simple_v2", "14 Juillet") -%}
             Anniversaire Luc 
-          {% elif is_state("sensor.date_simple_v2", "31 Juilet") -%}
+          {% elif is_state("sensor.date_simple_v2", "31 Juillet") -%}
             Anniversaire Léane et Mamé 
           {% elif is_state("sensor.date_simple_v2", "23 Octobre") -%}
             Anniversaire Tom 
