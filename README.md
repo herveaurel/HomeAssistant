@@ -6,7 +6,7 @@ Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantg
 Mon tableau de bord pour PC, smartphone, tablette
 Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 13 pouces (ref MacBook Pro) et 1 colonne tient entièrement sur l'écran d'un smartphone (ref iphone 13 Pro). 
 
-# INTRODUCTION
+## INTRODUCTION
 
 Je vous propose ma configuration personnelle :
 - Tableau de bord (lovelace UI mode) PC, mobile, tablette
@@ -54,7 +54,7 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 
 
 -----
-# THEMES
+## THEMES
 
 ### Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
@@ -72,9 +72,9 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup.png)
 
 ---------------------
- # ORGANISATION
+ ## ORGANISATION
 
-## Voici comment je m'organise : 
+### Voici comment je m'organise : 
 
 1ère colonne : Activité générale 
 - bouton-badge : info rapide avec popup en tap action
@@ -92,7 +92,7 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 
 ---------------------
 
-# SETUP 
+## SETUP 
 
 Mon setup :
 - Raspberry 4 + SSD
@@ -119,7 +119,7 @@ Mes intégrations  hacs:
 
 ---------------------
 
-# MERCI
+# MERCI 😉
 
 Si vous aimez quelque chose ici, likez 🌟 mon repo !
 If you like anything here, be sure to 🌟 my repo !
