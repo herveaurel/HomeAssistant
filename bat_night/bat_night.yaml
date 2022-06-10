@@ -5,10 +5,12 @@ bat_night:
   
   # Icones Mouvements
   mouv: red
+  mouv_off: rgba(0,0,0,1)
   border_mouv: rgba(255,0,0,1)
   
   # Icones portes fenêtres 
   porte: red
+  porte_off: rgba(0,0,0,1)
   porte_icon: red
   
   # Text in Cards
@@ -16,7 +18,7 @@ bat_night:
   text_on_sidebar: rgba(211,211,211,1)
   text_on_info_sidebar: rgba(211,211,211,0.8)
   text_off_sidebar: rgba(211,211,211,0.6)
-  text_off: rgba(211,211,211,0.6)
+  text_off: rgba(211,211,211,0.8)
   text_title: rgba(211,211,211,0.8)
   text_systeme_info: rgba(211,211,211,0.6)
   bouton_titre_piece_name: rgba(211,211,211,1)
@@ -32,21 +34,22 @@ bat_night:
   pastille_aspi: rgba(255,99,71,0.8) 
   pastille_machine: rgb(30,144,255) 
   pastille_multimedia: grey 
-  pastille_appareil: rgb(30,144,255)  
+  pastille_appareil: rgba(70,130,180,0.7)  
   pastille_mode: rgba(30,144,255,0.5)
   pastille_imprim: rgba(255,255,255,0.8)
   
   # Graphique
-  graph_line: 'rgba(63, 81, 117, 0.7)'
+  graph_line: 'rgba(63, 81, 117, 0.9)'
   
   # Color custom
-  my_color2:  linear-gradient(to top, rgba(32, 44, 69,0.3) 0% ,rgba(32, 44, 69,1) 100%) # BACKGROUND CARD
+  my_color2: linear-gradient(to top, rgba(32, 44, 69,0.4) 0% ,rgba(32, 44, 69,1) 100%) # BACKGROUND CARD
   back_person: rgba(255,0,0,0.8)  
   back_securite: rgba(255,0,0,0.6) 
-  card_border: rgba(50, 50, 50, 0.2) #rgba(190, 190, 190, 0.1)
+  card_border: rgba(50, 50, 50, 0.3) #rgba(190, 190, 190, 0.1)
   card_box_shadow: 1px 1px 5px 0px rgb(12, 12, 14)
   card_box_shadow_color: 1px 1px 5px 0px rgb(255, 0, 0)
-  
+  color_light: var(--button-card-light-color-no-temperature)
+  slider-bar-color: rgba(var(--color_light),0.4)
   # Fonts
   primary-font-family: 'Avenir' #'Raleway,sans-serif'
   secondary-font-family: "Oxygen,sans-serif"
@@ -60,7 +63,7 @@ bat_night:
   ha-card-header-font-family: "var(--primary-font-family)"
 
   # Change the value below 6px to 0px to remove the rounded corners
-  ha-card-border-radius: 15px
+  ha-card-border-radius: 13px
   bar-card-border-radius: 8px
   
   # Main colors
