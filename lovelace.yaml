@@ -4,7 +4,7 @@ button_card_templates:
       card:
         - font-family: Avenir
   sidebar:
-    entity: weather.beaucouze
+    entity: weather.ta_ville
     show_entity_picture: false
     show_icon: true
     show_name: false
@@ -14,35 +14,35 @@ button_card_templates:
       - police
     icon: |
       [[[
-        if (states['weather.beaucouze'].state == 'sunny' )
+        if (states['weather.ta_ville'].state == 'sunny' )
           return 'mdi:weather-sunny';
-        if (states['weather.beaucouze'].state == 'rainy' )
+        if (states['weather.ta_ville'].state == 'rainy' )
           return 'mdi:weather-rainy';
-        if (states['weather.beaucouze'].state == 'partlycloudy' )
+        if (states['weather.ta_ville'].state == 'partlycloudy' )
           return 'mdi:weather-partly-cloudy';
-        if (states['weather.beaucouze'].state == 'cloudy' )
+        if (states['weather.ta_ville'].state == 'cloudy' )
           return 'mdi:weather-cloudy';
-        if (states['weather.beaucouze'].state == 'clear-night' )
+        if (states['weather.ta_ville'].state == 'clear-night' )
           return 'mdi:weather-night';
-        if (states['weather.beaucouze'].state == 'fog' )
+        if (states['weather.ta_ville'].state == 'fog' )
           return 'mdi:weather-fog';
-        if (states['weather.beaucouze'].state == 'hail' )
+        if (states['weather.ta_ville'].state == 'hail' )
           return 'mdi:weather-hail';
-        if (states['weather.beaucouze'].state == 'lightning-rainy' )
+        if (states['weather.ta_ville'].state == 'lightning-rainy' )
           return 'mdi:weather-lightning-rainy';
-        if (states['weather.beaucouze'].state == 'lightning' )
+        if (states['weather.ta_ville'].state == 'lightning' )
           return 'mdi:weather-lightning';
-        if (states['weather.beaucouze'].state == 'pourring' )
+        if (states['weather.ta_ville'].state == 'pourring' )
           return 'mdi:weather-pouring';
-        if (states['weather.beaucouze'].state == 'snowy-rainy' )
+        if (states['weather.ta_ville'].state == 'snowy-rainy' )
           return 'mdi:weather-snowy-rainy';
-        if (states['weather.beaucouze'].state == 'snowy' )
+        if (states['weather.ta_ville'].state == 'snowy' )
           return 'mdi:weather-snowy';
-        if (states['weather.beaucouze'].state == 'windy-variant' )
+        if (states['weather.ta_ville'].state == 'windy-variant' )
           return 'mdi:weather-windy-variant';
-        if (states['weather.beaucouze'].state == 'windy' )
+        if (states['weather.ta_ville'].state == 'windy' )
           return 'mdi:weather-windy';
-        if (states['weather.beaucouze'].state == 'exceptional' )
+        if (states['weather.ta_ville'].state == 'exceptional' )
           return 'mdi:weather-cloudy-alert';
         return 'mdi:weather-sunny';
       ]]]
@@ -116,51 +116,51 @@ button_card_templates:
         - width: 60%
         - animation: |
             [[[
-              if (states['weather.beaucouze'].state == 'sunny' )
+              if (states['weather.ta_ville'].state == 'sunny' )
                 return 'rotating 9s infinite'
-              if (states['weather.beaucouze'].state == 'lightning' )
+              if (states['weather.ta_ville'].state == 'lightning' )
                 return 'blink 2s ease infinite'
-              if (states['weather.beaucouze'].state == 'lightning-rainy' )
+              if (states['weather.ta_ville'].state == 'lightning-rainy' )
                 return 'blink 2s ease infinite'
-              if (states['weather.beaucouze'].state == 'exceptional' )
+              if (states['weather.ta_ville'].state == 'exceptional' )
                 return 'blink 2s ease infinite'
-              if (states['weather.beaucouze'].state == 'windy-variant' )
+              if (states['weather.ta_ville'].state == 'windy-variant' )
                 return 'swing 5s ease infinite'
-              if (states['weather.beaucouze'].state == 'windy' )
+              if (states['weather.ta_ville'].state == 'windy' )
                 return 'swing 5s ease infinite'
               return 'swing 10s ease infinite'
             ]]]
         - color: |
             [[[
-              if (states['weather.beaucouze'].state == 'sunny' )
+              if (states['weather.ta_ville'].state == 'sunny' )
                 return 'gold';
-              if (states['weather.beaucouze'].state == 'rainy' )
+              if (states['weather.ta_ville'].state == 'rainy' )
                 return 'skyblue';
-              if (states['weather.beaucouze'].state == 'partlycloudy' )
+              if (states['weather.ta_ville'].state == 'partlycloudy' )
                 return 'lightgrey';
-              if (states['weather.beaucouze'].state == 'cloudy' )
+              if (states['weather.ta_ville'].state == 'cloudy' )
                 return 'silver';
-              if (states['weather.beaucouze'].state == 'clear-night' )
+              if (states['weather.ta_ville'].state == 'clear-night' )
                 return 'royalblue';
-              if (states['weather.beaucouze'].state == 'fog' )
+              if (states['weather.ta_ville'].state == 'fog' )
                 return 'silver';
-              if (states['weather.beaucouze'].state == 'hail' )
+              if (states['weather.ta_ville'].state == 'hail' )
                 return 'skyblue';
-              if (states['weather.beaucouze'].state == 'lightning-rainy' )
+              if (states['weather.ta_ville'].state == 'lightning-rainy' )
                 return 'skyblue';
-              if (states['weather.beaucouze'].state == 'lightning' )
+              if (states['weather.ta_ville'].state == 'lightning' )
                 return 'silver';
-              if (states['weather.beaucouze'].state == 'pourring' )
+              if (states['weather.ta_ville'].state == 'pourring' )
                 return 'silver';
-              if (states['weather.beaucouze'].state == 'snowy-rainy' )
+              if (states['weather.ta_ville'].state == 'snowy-rainy' )
                 return 'silver';
-              if (states['weather.beaucouze'].state == 'snowy' )
+              if (states['weather.ta_ville'].state == 'snowy' )
                 return 'silver';
-              if (states['weather.beaucouze'].state == 'windy-variant' )
+              if (states['weather.ta_ville'].state == 'windy-variant' )
                 return 'silver';
-              if (states['weather.beaucouze'].state == 'windy' )
+              if (states['weather.ta_ville'].state == 'windy' )
                 return 'silver';
-              if (states['weather.beaucouze'].state == 'exceptional' )
+              if (states['weather.ta_ville'].state == 'exceptional' )
                 return 'firebrick';
               return 'silver';
             ]]]
@@ -2785,35 +2785,35 @@ views:
                                       units: °C
                                       icon: |
                                         [[[
-                                          if (states['weather.beaucouze'].state == 'sunny' )
+                                          if (states['weather.ta_ville'].state == 'sunny' )
                                             return 'mdi:weather-sunny';
-                                          if (states['weather.beaucouze'].state == 'rainy' )
+                                          if (states['weather.ta_ville'].state == 'rainy' )
                                             return 'mdi:weather-rainy';
-                                          if (states['weather.beaucouze'].state == 'partlycloudy' )
+                                          if (states['weather.ta_ville'].state == 'partlycloudy' )
                                             return 'mdi:weather-partly-cloudy';
-                                          if (states['weather.beaucouze'].state == 'cloudy' )
+                                          if (states['weather.ta_ville'].state == 'cloudy' )
                                             return 'mdi:weather-cloudy';
-                                          if (states['weather.beaucouze'].state == 'clear-night' )
+                                          if (states['weather.ta_ville'].state == 'clear-night' )
                                             return 'mdi:weather-night';
-                                          if (states['weather.beaucouze'].state == 'fog' )
+                                          if (states['weather.ta_ville'].state == 'fog' )
                                             return 'mdi:weather-fog';
-                                          if (states['weather.beaucouze'].state == 'hail' )
+                                          if (states['weather.ta_ville'].state == 'hail' )
                                             return 'mdi:weather-hail';
-                                          if (states['weather.beaucouze'].state == 'lightning-rainy' )
+                                          if (states['weather.ta_ville'].state == 'lightning-rainy' )
                                             return 'mdi:weather-lightning-rainy';
-                                          if (states['weather.beaucouze'].state == 'lightning' )
+                                          if (states['weather.ta_ville'].state == 'lightning' )
                                             return 'mdi:weather-lightning';
-                                          if (states['weather.beaucouze'].state == 'pourring' )
+                                          if (states['weather.ta_ville'].state == 'pourring' )
                                             return 'mdi:weather-pouring';
-                                          if (states['weather.beaucouze'].state == 'snowy-rainy' )
+                                          if (states['weather.ta_ville'].state == 'snowy-rainy' )
                                             return 'mdi:weather-snowy-rainy';
-                                          if (states['weather.beaucouze'].state == 'snowy' )
+                                          if (states['weather.ta_ville'].state == 'snowy' )
                                             return 'mdi:weather-snowy';
-                                          if (states['weather.beaucouze'].state == 'windy-variant' )
+                                          if (states['weather.ta_ville'].state == 'windy-variant' )
                                             return 'mdi:weather-windy-variant';
-                                          if (states['weather.beaucouze'].state == 'windy' )
+                                          if (states['weather.ta_ville'].state == 'windy' )
                                             return 'mdi:weather-windy';
-                                          if (states['weather.beaucouze'].state == 'exceptional' )
+                                          if (states['weather.ta_ville'].state == 'exceptional' )
                                             return 'mdi:weather-cloudy-alert';
                                           return 'mdi:weather-sunny';
                                         ]]]
@@ -6141,15 +6141,15 @@ views:
                           type: vertical-stack
                           cards:
                             - type: custom:meteofrance-weather-card
-                              entity: weather.beaucouze
+                              entity: weather.ta_ville
                               number_of_forecasts: '5'
-                              cloudCoverEntity: sensor.beaucouze_cloud_cover
-                              rainChanceEntity: sensor.beaucouze_rain_chance_2
-                              uvEntity: sensor.beaucouze_uv_2
-                              freezeChanceEntity: sensor.beaucouze_freeze_chance_2
-                              snowChanceEntity: sensor.beaucouze_snow_chance_2
+                              cloudCoverEntity: sensor.ta_ville_cloud_cover
+                              rainChanceEntity: sensor.ta_ville_rain_chance_2
+                              uvEntity: sensor.ta_ville_uv_2
+                              freezeChanceEntity: sensor.ta_ville_freeze_chance_2
+                              snowChanceEntity: sensor.ta_ville_snow_chance_2
                               alertEntity: sensor.49_weather_alert
-                              rainForecastEntity: sensor.beaucouze_next_rain_2
+                              rainForecastEntity: sensor.ta_ville_next_rain_2
                               style: |
                                 ha-card {
                                   font-size: 80%;
@@ -6179,15 +6179,15 @@ views:
                                 primary_info: state
                                 hide_icon: true
                             - type: custom:meteofrance-weather-card
-                              entity: weather.beaucouze
+                              entity: weather.ta_ville
                               number_of_forecasts: '5'
-                              cloudCoverEntity: sensor.beaucouze_cloud_cover
-                              rainChanceEntity: sensor.beaucouze_rain_chance_2
-                              uvEntity: sensor.beaucouze_uv_2
-                              freezeChanceEntity: sensor.beaucouze_freeze_chance_2
-                              snowChanceEntity: sensor.beaucouze_snow_chance_2
+                              cloudCoverEntity: sensor.ta_ville_cloud_cover
+                              rainChanceEntity: sensor.ta_ville_rain_chance_2
+                              uvEntity: sensor.ta_ville_uv_2
+                              freezeChanceEntity: sensor.ta_ville_freeze_chance_2
+                              snowChanceEntity: sensor.ta_ville_snow_chance_2
                               alertEntity: sensor.49_weather_alert
-                              rainForecastEntity: sensor.beaucouze_next_rain_2
+                              rainForecastEntity: sensor.ta_ville_next_rain_2
                               style: |
                                 ha-card {
                                   font-size: 80%;
@@ -11106,35 +11106,35 @@ views:
                                   units: °C
                                   icon: |
                                     [[[
-                                      if (states['weather.beaucouze'].state == 'sunny' )
+                                      if (states['weather.ta_ville'].state == 'sunny' )
                                         return 'mdi:weather-sunny';
-                                      if (states['weather.beaucouze'].state == 'rainy' )
+                                      if (states['weather.ta_ville'].state == 'rainy' )
                                         return 'mdi:weather-rainy';
-                                      if (states['weather.beaucouze'].state == 'partlycloudy' )
+                                      if (states['weather.ta_ville'].state == 'partlycloudy' )
                                         return 'mdi:weather-partly-cloudy';
-                                      if (states['weather.beaucouze'].state == 'cloudy' )
+                                      if (states['weather.ta_ville'].state == 'cloudy' )
                                         return 'mdi:weather-cloudy';
-                                      if (states['weather.beaucouze'].state == 'clear-night' )
+                                      if (states['weather.ta_ville'].state == 'clear-night' )
                                         return 'mdi:weather-night';
-                                      if (states['weather.beaucouze'].state == 'fog' )
+                                      if (states['weather.ta_ville'].state == 'fog' )
                                         return 'mdi:weather-fog';
-                                      if (states['weather.beaucouze'].state == 'hail' )
+                                      if (states['weather.ta_ville'].state == 'hail' )
                                         return 'mdi:weather-hail';
-                                      if (states['weather.beaucouze'].state == 'lightning-rainy' )
+                                      if (states['weather.ta_ville'].state == 'lightning-rainy' )
                                         return 'mdi:weather-lightning-rainy';
-                                      if (states['weather.beaucouze'].state == 'lightning' )
+                                      if (states['weather.ta_ville'].state == 'lightning' )
                                         return 'mdi:weather-lightning';
-                                      if (states['weather.beaucouze'].state == 'pourring' )
+                                      if (states['weather.ta_ville'].state == 'pourring' )
                                         return 'mdi:weather-pouring';
-                                      if (states['weather.beaucouze'].state == 'snowy-rainy' )
+                                      if (states['weather.ta_ville'].state == 'snowy-rainy' )
                                         return 'mdi:weather-snowy-rainy';
-                                      if (states['weather.beaucouze'].state == 'snowy' )
+                                      if (states['weather.ta_ville'].state == 'snowy' )
                                         return 'mdi:weather-snowy';
-                                      if (states['weather.beaucouze'].state == 'windy-variant' )
+                                      if (states['weather.ta_ville'].state == 'windy-variant' )
                                         return 'mdi:weather-windy-variant';
-                                      if (states['weather.beaucouze'].state == 'windy' )
+                                      if (states['weather.ta_ville'].state == 'windy' )
                                         return 'mdi:weather-windy';
-                                      if (states['weather.beaucouze'].state == 'exceptional' )
+                                      if (states['weather.ta_ville'].state == 'exceptional' )
                                         return 'mdi:weather-cloudy-alert';
                                       return 'mdi:weather-sunny';
                                     ]]]
