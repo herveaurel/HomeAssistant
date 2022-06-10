@@ -9,7 +9,7 @@ Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 1
 -----
 
 
-## ⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
+### ⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
 
 - Réécriture des templates button card  
 - Modifications des sensor templates  
