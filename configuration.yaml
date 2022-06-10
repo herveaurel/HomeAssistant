@@ -1235,13 +1235,13 @@ sensor:
 ###### METEO
       weather_temperature:
         friendly_name: "Weather Température"
-        value_template: "{{ state_attr('weather.beaucouze' , 'temperature') }}°"
+        value_template: "{{ state_attr('weather.ta_ville' , 'temperature') }}°"
       weather_temperature_v2:
         friendly_name: "Weather Température"
-        value_template: "{{ state_attr('weather.beaucouze' , 'temperature') }}"
+        value_template: "{{ state_attr('weather.ta_ville' , 'temperature') }}"
       weather_humidite:
         friendly_name: "Weather Humidité"
-        value_template: "{{ state_attr('weather.beaucouze' , 'humidity') }}%"  
+        value_template: "{{ state_attr('weather.ta_ville' , 'humidity') }}%"  
       weather_alert_inondation:
         friendly_name: "Alerte Inondation"
         value_template: "{{ state_attr('sensor.49_weather_alert' , 'Inondation') }}"
@@ -1267,8 +1267,8 @@ sensor:
       weather_conditions:
         value_template: >-
           {% set temperature = states('sensor.weather_temperature') | round %}
-          {% set precip = states('sensor.beaucouze_rain_chance_2') | round %}
-          {% set snow = states('sensor.beaucouze_snow_chance_2') | round %}
+          {% set precip = states('sensor.ta_ville_rain_chance_2') | round %}
+          {% set snow = states('sensor.ta_ville_snow_chance_2') | round %}
           {% set ressenti = states('sensor.weather_ressenti') | round %}
           {% set temp = states('sensor.weather_temperature') | round %}
           {% set icon = states('sensor.weather_icon')  %}
@@ -1276,7 +1276,7 @@ sensor:
           {% set pluie = states('sensor.weather_conditions_pluie')  %}
           {% set vent = states('sensor.weather_conditions_vent')  %}
           {% set uv = states('sensor.weather_conditions_uv')  %}
-          {% set weather_state = states('weather.beaucouze') 
+          {% set weather_state = states('weather.ta_ville') 
             | replace('rainy', 'Pluvieux')
             | replace('partlycloudy', 'Partiellement nuageux')
             | replace('cloudy', 'Nuageux')
@@ -1294,9 +1294,9 @@ sensor:
             | replace('exceptional', 'Exceptionel') %}
           
           {% if not state_attr('weather.maison', 'temperature') == 'Indisponible' -%}
-            {% if states('weather.beaucouze') == 'lightning-rainy' -%}
+            {% if states('weather.ta_ville') == 'lightning-rainy' -%}
               Pluies orageuses
-            {% elif states.sensor.beaucouze_rain_chance_2.state | float > 0 -%}
+            {% elif states.sensor.ta_ville_rain_chance_2.state | float > 0 -%}
               {{ weather_state }}
             {% else -%}
               {{ weather_state }}
@@ -1307,7 +1307,7 @@ sensor:
 
       weather_conditions_simplifiees:
         value_template: >-
-          {% set weather_state = states('weather.beaucouze') 
+          {% set weather_state = states('weather.ta_ville') 
             | replace('rainy', 'Pluie')
             | replace('partlycloudy', 'Nuageux')
             | replace('cloudy', 'Nuages')
@@ -1327,7 +1327,7 @@ sensor:
           
       weather_icon:
         value_template: >-
-          {% set weather_icon = states('weather.beaucouze') 
+          {% set weather_icon = states('weather.ta_ville') 
             | replace('rainy', '☔️')
             | replace('partlycloudy', '⛅️')
             | replace('cloudy', '☁️')
@@ -1345,7 +1345,7 @@ sensor:
             | replace('exceptional', '⚠️') %}     
 
           {% if not state_attr('weather.maison', 'temperature') == 'Indisponible' -%}
-            {% if states('weather.beaucouze') == 'lightning-rainy' -%}
+            {% if states('weather.ta_ville') == 'lightning-rainy' -%}
               ⛈
             {% else -%}
             {{ weather_icon }}
@@ -1355,8 +1355,8 @@ sensor:
 
       weather_conditions_pluie:
         value_template: >-          
-          {% set precip = states('sensor.beaucouze_rain_chance_2') | round %}
-          {% if states.sensor.beaucouze_rain_chance_2.state | float > 0 -%}
+          {% set precip = states('sensor.ta_ville_rain_chance_2') | round %}
+          {% if states.sensor.ta_ville_rain_chance_2.state | float > 0 -%}
            ☔{{ precip }}%
           {% else -%}
            ☔{{ precip }}%
@@ -1364,16 +1364,16 @@ sensor:
           
       weather_conditions_neige:
         value_template: >-          
-          {% set snow = states('sensor.beaucouze_snow_chance_2') | round %}
-          {% if states.sensor.beaucouze_snow_chance_2.state | float > 0 -%}
+          {% set snow = states('sensor.ta_ville_snow_chance_2') | round %}
+          {% if states.sensor.ta_ville_snow_chance_2.state | float > 0 -%}
             ☃ {{ snow }}%
           {% else -%}
           {% endif -%}  
           
       weather_conditions_ciel:
         value_template: >-        
-          {% set ciel = states('sensor.beaucouze_cloud_cover') | round -%}
-          {% if states.sensor.beaucouze_cloud_cover.state | float > 10 -%}
+          {% set ciel = states('sensor.ta_ville_cloud_cover') | round -%}
+          {% if states.sensor.ta_ville_cloud_cover.state | float > 10 -%}
             ☁️{{ ciel }}%
           {% else -%}
            ☁️{{ ciel }}%
@@ -1382,7 +1382,7 @@ sensor:
       weather_vent:
         friendly_name: "Weather vent"
         value_template: 
-          "{{ state_attr('weather.beaucouze' , 'wind_speed') }}"
+          "{{ state_attr('weather.ta_ville' , 'wind_speed') }}"
 
       weather_conditions_vent:
         value_template: >-        
@@ -1394,8 +1394,8 @@ sensor:
           
       weather_conditions_uv:
         value_template: >-        
-          {% set uv = states('sensor.beaucouze_uv_2') | round -%}
-          {% if states.sensor.beaucouze_uv_2.state | float > 5 -%}
+          {% set uv = states('sensor.ta_ville_uv_2') | round -%}
+          {% if states.sensor.ta_ville_uv_2.state | float > 5 -%}
             😎{{ uv }}
           {% else -%}
           {% endif -%}  
@@ -1506,15 +1506,15 @@ sensor:
       
       temp_max:
         friendly_name: Température max du jour
-        value_template: "{{ states.weather.beaucouze.attributes.forecast[0].temperature|float|round(2) }}°"  
+        value_template: "{{ states.weather.ta_ville.attributes.forecast[0].temperature|float|round(2) }}°"  
 
       temp_max_v2:
         friendly_name: Température max du jour
-        value_template: "{{ states.weather.beaucouze.attributes.forecast[0].temperature|float|round(2) }}" 
+        value_template: "{{ states.weather.ta_ville.attributes.forecast[0].temperature|float|round(2) }}" 
         
       temp_min:
         friendly_name: Température min du jour
-        value_template: "{{ states.weather.beaucouze.attributes.forecast[0].templow|float|round(0) }}°"        
+        value_template: "{{ states.weather.ta_ville.attributes.forecast[0].templow|float|round(0) }}°"        
         
 ###### BONJOUR MESSAGE
       bonjour:
