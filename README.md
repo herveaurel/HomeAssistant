@@ -8,7 +8,7 @@ Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 1
 
 ---------------------
 
-# ⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
+## ⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
 
 - Réécriture des templates button card  
 - Modifications des sensor templates  
@@ -40,24 +40,24 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 
 ---------------------
 
-Theme bat_Night
+## Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
 
-Theme bat_Day avec alarme
+## Theme bat_Day avec alarme
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.png)
 
-Theme bat_Day
+## Theme bat_Day
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_clear.jpg)
 
-Smartphone
+## Smartphone
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.png)
 
-Tableau de bord 1 page grace aux popup card ! 
+## Tableau de bord 1 page grace aux popup card ! 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup.png)
 
 ---------------------
  
-Voici comment je m'organise : 
+## Voici comment je m'organise : 
 
 1ère colonne : Activité générale 
 - bouton-badge : info rapide avec popup en tap action
