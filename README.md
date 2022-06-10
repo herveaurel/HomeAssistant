@@ -8,6 +8,7 @@ Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 1
 
 -----
 
+
 ## ⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
 
 - Réécriture des templates button card  
@@ -40,6 +41,7 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 -----
 
 
+
 ## Theme bat_Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
 
@@ -57,6 +59,7 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 
 ---------------------
  
+
 ## Voici comment je m'organise : 
 
 1ère colonne : Activité générale 
@@ -74,6 +77,7 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 
 
 ---------------------
+
 
 Je vous propose ma configuration personnelle :
 - Tableau de bord (lovelace UI mode) PC, mobile, tablette
@@ -108,6 +112,7 @@ Mes intégrations  hacs:
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs2.jpg)
 
 ---------------------
+
 
 Je suis en mode UI.
  
