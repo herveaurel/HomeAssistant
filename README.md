@@ -83,7 +83,9 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 - carte activité : calendrier / météo / activité / mise à jour (infos dynamiques) , tap action : météo détailléé 
 
 2ème colonne : les pièces de la maison avec popups détaillés
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/cartes_pieces.jpg)
+
 
 3ème colonne : multimédia et appareils avec popups détaillés
 
