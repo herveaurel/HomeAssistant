@@ -77,7 +77,7 @@ Un tap action sur une carte ouvre un second popup avec le détail des lumières 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_lumieres.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_lumieres_detail.jpg)
 
-Nouveau popup météo (tap action sur la sidecar / carte activité
+Nouveau popup météo (tap action sur la sidecar / carte activité)
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/meteo.jpg)
 
