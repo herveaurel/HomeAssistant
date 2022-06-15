@@ -58,6 +58,15 @@ Mettre à jour le nouveau template button card de la sidecar.
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_reglages.jpg)
 
+Nouveaux boutons qui rempalcent les anciens boutons ronds...
+J'ai écrit deux templates button card : 
+- carte_ronde : Icone + name + info 
+- carte_ronde_no_label : icone + name
+Ce qui permet aux positions des éléments d'etre identiques dans les deux formats. 
+
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg)
+
+
 Cartes personnes avec nouvelles options et nouveaux popup 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/persons.jpg)
