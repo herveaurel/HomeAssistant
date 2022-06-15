@@ -38,7 +38,7 @@ Le tout harmonisé grâce aux templates button card.
 
 D'autres modifications viendront dans les prochaines mises à jour... 😇
 
-### 🎉 Nouveautés de la mise à jour du 15 juin 2022 : 
+### 🎉 Nouveautés : mise à jour du 15 juin 2022 : 
 
 Carte activité 
 
