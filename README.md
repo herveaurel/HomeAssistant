@@ -62,6 +62,7 @@ Nouveaux boutons qui rempalcent les anciens boutons ronds...
 J'ai écrit deux templates button card : 
 - carte_ronde : Icone + name + info 
 - carte_ronde_no_label : icone + name
+
 Ce qui permet aux positions des éléments d'etre identiques dans les deux formats. 
 Egalement en place dans les popup. 
 
@@ -69,6 +70,10 @@ Egalement en place dans les popup.
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde_popup.jpg)
 
+Nouveau popup du bouton Lumières (au dessus de la sidecar ou carte activité)
+Un tap action sur une carte ouvre un second popup avec le détail des lumières de la pièce. 
+
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_lumieres.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_lumieres_detail.jpg)
 
 Cartes personnes avec nouvelles options et nouveaux popup 
 
