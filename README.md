@@ -68,7 +68,7 @@ Egalement en place dans les popup.
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde_popup.jpg)
 
-Ajout du bouton AdGuard et son popup
+Ajout du bouton AdGuard et son popup (les annonces vocales Alexa ont migré dans le bouton "Appareils")
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/adguard_popup.jpg)
 
