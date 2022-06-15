@@ -15,6 +15,8 @@ Je vous propose ma configuration personnelle :
 
 Je ne suis pas un expert, je suis simplement un passionné, les codes ne sont peut-être pas écrits de la meilleure façon, mais j'ai réalisé ceci avec mes petites connaissances.
 
+Je n'utilise pas Mushroom et autre, j'écris tout donc soyez indulgent ! 😊
+
 Ca été très long à écrire, je modifie régulièrement les détails, ou quand j'ai des nouvelles idées. 
 
 Je suis en mode UI.
