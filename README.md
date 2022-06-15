@@ -42,7 +42,7 @@ Exemples :
 
 Carte activité 
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/meteo_modif.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite.jpg)
 
 Cartes personnes avec nouvelles options et nouveaux popup 
 
