@@ -49,7 +49,7 @@ Il est possible de choisir son thème, et de choisir ce qui sera affiché dans l
 Pour cela, créer simplement des input.boolean : 
 - input_boolean.sidecar_show_mode
 - input_boolean.sidecar_show_porte
-- input_boolean.sidecar_show_mouvement
+- input_boolean.sidecar_show_mouvement (nouveau template dans configuration.yaml)
 - input_boolean.sidecar_show_lumiere
 - input_boolean.sidecar_show_autre
 - input_boolean.sidecar_show_connecte
