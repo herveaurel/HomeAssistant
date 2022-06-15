@@ -1357,26 +1357,27 @@ sensor:
         value_template: >-          
           {% set precip = states('sensor.ta_ville_rain_chance_2') | round %}
           {% if states.sensor.ta_ville_rain_chance_2.state | float > 0 -%}
-           ☔{{ precip }}%
+           {{ precip }}
           {% else -%}
-           ☔{{ precip }}%
+           {{ precip }}
           {% endif -%}    
           
       weather_conditions_neige:
         value_template: >-          
           {% set snow = states('sensor.ta_ville_snow_chance_2') | round %}
           {% if states.sensor.ta_ville_snow_chance_2.state | float > 0 -%}
-            ☃ {{ snow }}%
+            {{ snow }}
           {% else -%}
+            {{ snow }}
           {% endif -%}  
           
       weather_conditions_ciel:
         value_template: >-        
           {% set ciel = states('sensor.ta_ville_cloud_cover') | round -%}
           {% if states.sensor.ta_ville_cloud_cover.state | float > 10 -%}
-            ☁️{{ ciel }}%
+            {{ ciel }}
           {% else -%}
-           ☁️{{ ciel }}%
+           {{ ciel }}
           {% endif -%}          
 
       weather_vent:
@@ -1388,16 +1389,18 @@ sensor:
         value_template: >-        
           {% set vent = states('sensor.weather_vent') | round -%}
           {% if states.sensor.weather_vent.state | float > 20 -%}
-            💨{{ vent }}Km/h
+            {{ vent }}
           {% else -%}
+            {{ vent }}
           {% endif -%}
           
       weather_conditions_uv:
         value_template: >-        
           {% set uv = states('sensor.ta_ville_uv_2') | round -%}
           {% if states.sensor.ta_ville_uv_2.state | float > 5 -%}
-            😎{{ uv }}
+            {{ uv }}
           {% else -%}
+            {{ uv }}
           {% endif -%}  
 
 
@@ -1947,16 +1950,16 @@ sensor:
         value_template: >-
           {%- if is_state("input_boolean.reveils", "on") -%} 
             {%- if not is_state("sensor.tom_next_alarm", "unavailable") -%}
-              Tom {{ states('sensor.tom_reveil') }}
+              Tom {{ states('sensor.tom_reveil') }}{{ ('  ') }}
             {%- endif -%}
             {%- if not is_state("sensor.manon_next_alarm", "unavailable") -%}  
-              - Manon {{ states('sensor.manon_reveil') }} 
+              Manon {{ states('sensor.manon_reveil') }}{{ ('  ') }}
             {%- endif -%}
             {% if not is_state("sensor.leane_next_alarm", "unavailable") -%}
-              - Léane {{ states('sensor.leane_reveil') }} 
+              Léane {{ states('sensor.leane_reveil') }}{{ ('  ') }}
             {%- endif -%}
             {% if not is_state("sensor.nina_next_alarm", "unavailable") -%} 
-              - Nina {{ states('sensor.nina_reveil') }}
+              Nina {{ states('sensor.nina_reveil') }}
             {%- endif %}
           {%- elif is_state("input_boolean.reveils", "off") and is_state("input_boolean.nilemato", "on") -%}
              Aucun
@@ -2882,7 +2885,21 @@ sensor:
            states.binary_sensor.mouv_palier,
            ] %}
           {{ binary_sensor | selectattr('state','eq','on') | list | count }}
-          
+
+      mouv_on:
+        friendly_name: mouvements état
+        value_template: >-      
+         {%- if states.group.mouvements.state == "on"  -%}
+           {% set mouv_on = states | selectattr('entity_id', 'in', state_attr('group.mouvements','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
+           {%- if mouv_on | length == 1 -%} 
+           {{ mouv_on[0] }}
+           {%- else -%}
+           {{ mouv_on[:-1] | join(' , ') }}{{' ,' if mouv_on | length > 2 else ' '}} et {{ mouv_on[-1]}}
+           {%- endif -%}
+         {%- else -%}
+           Aucun
+         {%- endif -%}  
+         
       compteur_aspi:
         friendly_name: Compteur aspi           
         value_template: >-
