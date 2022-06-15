@@ -38,11 +38,24 @@ Le tout harmonisé grâce aux templates button card.
 
 D'autres modifications viendront dans les prochaines mises à jour... 😇
 
-Exemples :
+### 🎉 Nouveautés de la mise à jour du 15 juin 2022 : 
 
 Carte activité 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite.jpg)
+
+En haut à droite, un nouveau bouton ouvrant un popup pour quelques réglages via un simple clic ! Ce menu s'étoffera au fil du temps...
+Il est possible de choisir son thème, et de choisir ce qui sera affiché dans les informations dynamiques de la partie "Activité". 
+Pour cela, créer simplement des input.boolean : 
+- input_boolean.sidecar_show_mode
+- input_boolean.sidecar_show_porte
+- input_boolean.sidecar_show_mouvement
+- input_boolean.sidecar_show_lumiere
+- input_boolean.sidecar_show_autre
+- input_boolean.sidecar_show_connecte
+Mettre à jour le nouveau template button card de la sidecar. 
+
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_reglages.jpg)
 
 Cartes personnes avec nouvelles options et nouveaux popup 
 
