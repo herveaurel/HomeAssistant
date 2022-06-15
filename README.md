@@ -66,6 +66,7 @@ Ce qui permet aux positions des éléments d'etre identiques dans les deux forma
 Egalement en place dans les popup. 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg)
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde_popup.jpg)
 
 
