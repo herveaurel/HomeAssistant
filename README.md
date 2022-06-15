@@ -65,7 +65,8 @@ J'ai écrit deux templates button card :
 Ce qui permet aux positions des éléments d'etre identiques dans les deux formats. 
 Egalement en place dans les popup. 
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde_popup.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde_popup.jpg)
 
 
 Cartes personnes avec nouvelles options et nouveaux popup 
