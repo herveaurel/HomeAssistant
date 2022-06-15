@@ -53,6 +53,7 @@ Pour cela, créer simplement des input.boolean :
 - input_boolean.sidecar_show_lumiere
 - input_boolean.sidecar_show_autre
 - input_boolean.sidecar_show_connecte
+
 Mettre à jour le nouveau template button card de la sidecar. 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_reglages.jpg)
