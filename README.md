@@ -68,6 +68,10 @@ Egalement en place dans les popup.
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde_popup.jpg)
 
+Ajout du bouton AdGuard et son popup
+
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/adguard.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/adguard_popup.jpg)
+
 Nouveau popup du bouton Lumières (au dessus de la sidecar ou carte activité)
 Un tap action sur une carte ouvre un second popup avec le détail des lumières de la pièce. 
 
