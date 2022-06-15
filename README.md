@@ -66,9 +66,7 @@ J'ai écrit deux templates button card :
 Ce qui permet aux positions des éléments d'etre identiques dans les deux formats. 
 Egalement en place dans les popup. 
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg)
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde_popup.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde_popup.jpg)
 
 Nouveau popup du bouton Lumières (au dessus de la sidecar ou carte activité)
 Un tap action sur une carte ouvre un second popup avec le détail des lumières de la pièce. 
