@@ -139,8 +139,10 @@ Création des boutons pour déclencher les aspirateurs encore plus facilement da
 1ère colonne : Activité générale 
 - bouton-badge : info rapide avec popup en tap action
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/badges.jpg)
+
 - cartes Alarmes : Cartes et leurs popup
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/alarmes.jpg)
+
 - carte ronde : Modes, lumières, et devices allumés, avec badge compteur, capteurs, AdGuard etc... et le tap action ouvre un popup complet 
 - carte activité : calendrier / météo / activité / mise à jour (infos dynamiques) , tap action : météo détailléé 
 
