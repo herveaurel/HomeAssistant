@@ -175,11 +175,9 @@ Mes intégrations  hacs:
 ## MERCI 😉
 
 Si vous aimez quelque chose ici, likez 🌟 mon repo !
-If you like anything here, be sure to 🌟 my repo !
-
 Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️ : https://www.buymeacoffee.com/aurelrv ou https://www.paypal.com/paypalme/aaherve
-
-If you want to offer me a little beer 🍺 or a coffee ☕️ : https://www.buymeacoffee.com/aurelrv or https://www.paypal.com/paypalme/aaherve
-
 Merci ! 
+
+If you like anything here, be sure to 🌟 my repo !
+If you want to offer me a little beer 🍺 or a coffee ☕️ : https://www.buymeacoffee.com/aurelrv or https://www.paypal.com/paypalme/aaherve
 Thank you !
