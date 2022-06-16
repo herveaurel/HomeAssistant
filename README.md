@@ -136,14 +136,44 @@ Création des boutons pour déclencher les aspirateurs encore plus facilement da
 
 ## SETUP 
 
-Mon setup :
 - Raspberry 4 + SSD
 - ConBee2
 - Dongle Bluetooth 
 - Box Internet Orange Livebox 4
-- 3 cubes Tenda Nova MW6 parametrés en pont 
+- 2 cubes Tenda Nova MW6 parametrés en pont 
 
 J'utilise Alexa en vocal, et HomeKit sur l'Apple Watch
+
+## Mes appareils 
+
+Zigbee
+- Capteurs portes : Xiaomi et Aqara
+- Capteurs mouvements : Xiaomi et Aqara
+- Capteurs vibration : Xiaomi et Aqara
+- Eclairage : ampoule Hue, ampoule GLEDOPTO, ampoules Trust International B.V, ampoules JunYu, ampoules INNR, ampoule TZ3000_keabpigv, bandeau led LEDVANCE
+- Prises : Xiaomi, Osram
+- Sirène Heiman
+- Interrupteurs : bouton Wireless Switch Xiaomi 
+- Thermometre rond à écran Orvibo
+
+Bluetooth
+- capteurs plantes Xiaomi 
+- thermometres ronds à ecran Xiaomi 
+
+Wifi
+- Eclairage : ampoules couleurs, lampes de bureau, et bandeau led couleur Yeelight
+- Sonnette Arlo Video Doorbell
+- TV LG
+- Alexa : Fire TV, Fire Cube, Echos Dot et Show 
+- Imprimante Canon 
+- Lave-vaisselle Siemens 
+- Aspirateurs : Roborock S50 et S6
+
+Bientôt...
+- Sirène Zigbee Frient
+- Clavier Zigbee Frient
+- Ruban led Sonoff intérieur 
+
 
 
 Mes modules :
