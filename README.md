@@ -6,6 +6,8 @@ Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantg
 Mon tableau de bord pour PC, smartphone, tablette
 Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 13 pouces (ref MacBook Pro) et 1 colonne tient entièrement sur l'écran d'un smartphone (ref iphone 13 Pro). 
 
+-----
+
 ## INTRODUCTION
 
 Je vous propose ma configuration personnelle :
@@ -26,6 +28,8 @@ Il y a beaucoup de templates, je les rédige, et je les garde, mais ils ne serve
 
 J'ai fait le choix de publier ma configuration intégrale, même ce qui est potentiellement inutile mais que je conserve pour le moment. 
 
+-----
+
 ### ⚠️ Complètement revisité pour cette nouvelle version : 
 
 - Réécriture des templates button card  
@@ -39,6 +43,8 @@ J'ai fait le choix de publier ma configuration intégrale, même ce qui est pote
 Le tout harmonisé grâce aux templates button card.
 
 D'autres modifications viendront dans les prochaines mises à jour... 😇
+
+-----
 
 ### 🎉 Nouveautés : mise à jour du 15 juin 2022 : 
 
