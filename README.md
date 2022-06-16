@@ -2,7 +2,7 @@
 
 Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
 
-## Bat-Geek 
+## Bat Geek 
 Mon tableau de bord pour PC, smartphone, tablette
 Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 13 pouces (ref MacBook Pro) et 1 colonne tient entièrement sur l'écran d'un smartphone (ref iphone 13 Pro). 
 
@@ -10,16 +10,17 @@ Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 1
 
 ## INTRODUCTION
 
-Je vous propose ma configuration personnelle :
+Voici ma configuration personnelle :
+
 - Tableau de bord (lovelace UI mode) PC, mobile, tablette
 - templates
 - thèmes jour et nuit
 
-Je ne suis pas un expert, je suis simplement un passionné, les codes ne sont peut-être pas écrits de la meilleure façon, mais j'ai réalisé ceci avec mes petites connaissances.
+Je ne suis pas un expert, je suis simplement un passionné, les codes ne sont certainement pas écrits de la meilleure façon, mais j'ai réalisé ceci avec mes petites connaissances.
 
-Je n'utilise pas Mushroom et autre, j'écris tout donc soyez indulgent ! 😊
+Je n'utilise pas Mushroom et autre, j'écris tout donc soyez indulgents ! 😊
 
-Ca été très long à écrire, je modifie régulièrement les détails, ou quand j'ai des nouvelles idées. 
+Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées. 
 
 Je suis en mode UI.
  
