@@ -696,14 +696,14 @@ button_card_templates:
         - white-space: normal
       state:
         - color: var(--text_on)
-        - font-size: 85%
+        - font-size: 90%
         - font-weight: null
         - text-align: left
         - place-self: start
         - white-space: normal
       label:
         - color: var(--text_on)
-        - font-size: 85%
+        - font-size: 90%
         - font-weight: null
         - text-align: left
         - place-self: start
@@ -1005,6 +1005,7 @@ button_card_templates:
         styles:
           label:
             - color: rgba(255,0,0,1)
+            - font-weight: bold
   state_alarme:
     state:
       - value: disarmed
@@ -2058,8 +2059,8 @@ button_card_templates:
         - opacity: 95%
         - width: 100%
       label:
-        - font-weight: bold
-        - line-height: 90%
+        - font-weight: null
+        - line-height: 95%
       card:
         - height: 90px
       custom_fields:
@@ -2947,7 +2948,6 @@ views:
                         name: temp rdc
                         template:
                           - bouton_badge
-                          - state_temp
                         label: |
                           [[[
                             if (entity.state == 'unavailable')
@@ -2963,6 +2963,13 @@ views:
                                   if (entity.state == '° / °')
                                     return "50%" ;
                                   return "100%";
+                                ]]]
+                          label:
+                            - color: |
+                                [[[
+                                  if (entity.state < 19 || states['sensor.temp_moyenne_etage'].state < 19) return 'dodgerblue'
+                                  if (entity.state > 25 || states['sensor.temp_moyenne_etage'].state > 25) return 'tomato'
+                                  else return 'var(--text_on)'
                                 ]]]
                         tap_action:
                           action: fire-dom-event
@@ -3518,11 +3525,12 @@ views:
                                     return "50%" ;
                                   return "100%";
                                 ]]]
-                            - box-shadow: |
+                          label:
+                            - color: |
                                 [[[
-                                  if (entity.state < 2.50) return 'var(--card_box_shadow)';
-                                  if (entity.state >= 2.50 && entity.state < 3) return '';
-                                  else return '';
+                                  if (entity.state < 2) return 'var(--text_on)';
+                                  if (entity.state >= 2 && entity.state < 3) return 'tomato';
+                                  else return 'tomato';
                                 ]]]
                         tap_action:
                           action: fire-dom-event
@@ -7519,7 +7527,7 @@ views:
                           [[[
                             if (entity.state == 'on' )
                               return (states['sensor.temp_sejour'].state )+"°"  + " / " + Math.round(entity.attributes.brightness / 2.54) + "%";
-                            return (states['sensor.temp_sejour'].state ) + "° / "+(states['sensor.hum_sejour'].state ) + "%";
+                            return states['sensor.temp_sejour'].state + "°";
                           ]]]
                         styles:
                           label:
@@ -7528,7 +7536,7 @@ views:
                                   if (states['sensor.temp_sejour'].state < 19)
                                     return 'dodgerblue';
                                   if (states['sensor.temp_sejour'].state > 25)
-                                    return 'red';
+                                    return 'tomato';
                                     return 'var(--text_on)';
                                 ]]]
                           custom_fields:
@@ -8239,7 +8247,7 @@ views:
                           [[[
                             if (entity.state == 'on' )
                               return (states['sensor.temp_couloir_rdc'].state ) + "°" + " / " + Math.round(entity.attributes.brightness / 2.54) + "%";
-                            return (states['sensor.temp_couloir_rdc'].state )  + "° / "+(states['sensor.hum_couloir_rdc'].state ) + "%";
+                            return (states['sensor.temp_couloir_rdc'].state )  + "°";
                           ]]]
                         styles:
                           label:
@@ -8248,7 +8256,7 @@ views:
                                   if (states['sensor.temp_couloir_rdc'].state < 19)
                                     return 'dodgerblue';
                                   if (states['sensor.temp_couloir_rdc'].state > 25)
-                                    return 'red';
+                                    return 'tomato';
                                     return 'var(--text_on)';
                                 ]]]
                           custom_fields:
@@ -8549,7 +8557,7 @@ views:
                         name: Cuisine
                         label: >
                           [[[ return (states['sensor.temp_cuisine'].state )  +
-                          "° / "+(states['sensor.hum_cuisine'].state ) + "%";
+                          "°"
 
                           ]]]
                         styles:
@@ -8559,7 +8567,7 @@ views:
                                   if (states['sensor.temp_cuisine'].state < 19)
                                     return 'dodgerblue';
                                   if (states['sensor.temp_cuisine'].state > 25)
-                                    return 'red';
+                                    return 'tomato';
 
                                     return 'var(--text_on)';
                                 ]]]
@@ -8707,7 +8715,7 @@ views:
                           [[[
                             if (entity.state == 'on' )
                               return (states['sensor.temp_parents'].state ) + "°" + " / " + Math.round(entity.attributes.brightness / 2.54) + "%";
-                            return (states['sensor.temp_parents'].state )  + "° / "+(states['sensor.hum_parents'].state ) + "%";
+                            return (states['sensor.temp_parents'].state )  + "°"
                           ]]]
                         styles:
                           label:
@@ -8716,7 +8724,7 @@ views:
                                   if (states['sensor.temp_parents'].state < 19)
                                     return 'dodgerblue';
                                   if (states['sensor.temp_parents'].state > 25)
-                                    return 'red';
+                                    return 'tomato';
                                     return 'var(--text_on)';
                                 ]]]
                           card:
@@ -9085,7 +9093,7 @@ views:
                           [[[
                             if (entity.state == 'on' )
                               return (states['sensor.temp_tom'].state ) + "°" + " / " + Math.round(entity.attributes.brightness / 2.54) + "%";
-                            return (states['sensor.temp_tom'].state )  + "° / "+(states['sensor.hum_tom'].state ) + "%";
+                            return (states['sensor.temp_tom'].state )  + "°"
                           ]]]
                         styles:
                           label:
@@ -9094,7 +9102,7 @@ views:
                                   if (states['sensor.temp_tom'].state < 19)
                                     return 'dodgerblue';
                                   if (states['sensor.temp_tom'].state > 25)
-                                    return 'red';
+                                    return 'tomato';
                                     return 'var(--text_on)';
                                 ]]]
                           custom_fields:
@@ -9383,7 +9391,7 @@ views:
                           [[[
                             if (entity.state == 'on' )
                               return (states['sensor.temp_manon'].state ) + "°" + " / " + Math.round(entity.attributes.brightness / 2.54) + "%";
-                            return (states['sensor.temp_manon'].state )  + "° / "+(states['sensor.hum_manon'].state ) + "%";
+                            return (states['sensor.temp_manon'].state )  + "°"
                           ]]]
                         styles:
                           label:
@@ -9392,7 +9400,7 @@ views:
                                   if (states['sensor.temp_manon'].state < 19)
                                     return 'dodgerblue';
                                   if (states['sensor.temp_manon'].state > 25)
-                                    return 'red';
+                                    return 'tomato';
                                     return 'var(--text_on)';
                                 ]]]
                           custom_fields:
@@ -9764,7 +9772,7 @@ views:
                           [[[
                             if (entity.state == 'on' )
                               return (states['sensor.temp_nina'].state ) + "°" + " / " + Math.round(entity.attributes.brightness / 2.54) + "%";
-                            return (states['sensor.temp_nina'].state )  + "° / "+(states['sensor.hum_nina'].state ) + "%";
+                            return (states['sensor.temp_nina'].state )  + "°"
                           ]]]
                         styles:
                           label:
@@ -9773,7 +9781,7 @@ views:
                                   if (states['sensor.temp_nina'].state < 19)
                                     return 'dodgerblue';
                                   if (states['sensor.temp_nina'].state > 25)
-                                    return 'red';
+                                    return 'tomato';
                                     return 'var(--text_on)';
                                 ]]]
                           custom_fields:
@@ -10104,7 +10112,7 @@ views:
                                   if (states['sensor.temp_salle_de_bain'].state < 19)
                                     return 'dodgerblue';
                                   if (states['sensor.temp_salle_de_bain'].state > 25)
-                                    return 'red';
+                                    return 'tomato';
                                     return 'var(--text_on)';
                                 ]]]
                         custom_fields:
@@ -11721,23 +11729,23 @@ views:
                           - '--text-color-sensor': >-
                               [[[ if
                               (states["sensor.processor_use_percent"].state >
-                              50) return "red";  else return "var(--text_on)";
-                              ]]]
+                              50) return "tomato";  else return
+                              "var(--text_on)"; ]]]
                         info2:
                           - '--text-color-sensor': >-
                               [[[ if (states["sensor.memory_use_percent"].state
-                              > 60) return  "red";  else return
+                              > 60) return  "tomato";  else return
                               "var(--text_on)"; ]]]
                         info3:
                           - '--text-color-sensor': >-
                               [[[ if
                               (states["sensor.disk_use_percent_home"].state >
-                              70) return "red";  else return "var(--text_on)";
-                              ]]]
+                              70) return "tomato";  else return
+                              "var(--text_on)"; ]]]
                         info4:
                           - '--text-color-sensor': >-
                               [[[ if (states["sensor.speedtest_download"].state
-                              < 200)  return  "red";   if
+                              < 200)  return  "tomato";   if
                               (states["sensor.speedtest_download"].state ==
                               "unavailable")  return  "transparent"; else 
                               return "var(--text_on)"; 
@@ -11959,7 +11967,7 @@ views:
                             [[[
                               if (entity.state < 2) return 'var(--pastille_off)';
                               if (entity.state >= 2 && entity.state < 3) return 'tomato';
-                              else return 'red';
+                              else return 'tomato';
                             ]]]
                       icon:
                         - color: |
@@ -12007,7 +12015,7 @@ views:
                               show_name: false
                               styles:
                                 icon:
-                                  - color: firebrick
+                                  - color: var(--icon_off)
                                   - width: 80%
                                 card:
                                   - background: transparent
@@ -12245,16 +12253,16 @@ views:
                       icon:
                         - color: |
                             [[[
-                              if (entity.state < 18) return 'var(--icon_off)';
-                              if (entity.state >= 19 && entity.state < 26) return 'var(--icon_on)';
+                              if (entity.state < 18) return 'var(--icon_on)';
+                              if (entity.state >= 19 && entity.state < 26) return 'var(--icon_off)';
                               else return 'var(--icon_on)';
                             ]]]
                       img_cell:
                         - background-color: |
                             [[[
-                              if (entity.state < 18) return 'red';
+                              if (entity.state < 18) return 'dodgerblue';
                               if (entity.state >= 19 && entity.state < 26) return 'var(--pastille_off)';
-                              else return 'red';
+                              else return 'tomato';
                             ]]]
                       custom_fields:
                         info1:
@@ -12324,7 +12332,7 @@ views:
                               show_name: false
                               styles:
                                 icon:
-                                  - color: firebrick
+                                  - color: var(--icon_off)
                                   - width: 75%
                                 card:
                                   - background: transparent
@@ -12895,14 +12903,14 @@ views:
                             [[[
                               if (entity.state < 1) return 'red';
                               if (entity.state >= 1 && entity.state < 26) return 'var(--pastille_off)';
-                              else return 'red';
+                              else return 'tomato';
                             ]]]
                       icon:
                         - color: |
                             [[[
                               if (entity.state < 1) return 'var(--icon_on)';
                               if (entity.state >= 1 && entity.state < 26) return 'var(--icon_off)';
-                              else return 'var(--icon_off)';
+                              else return 'var(--icon_on)';
                             ]]]
                       custom_fields:
                         info1:
@@ -13949,7 +13957,7 @@ views:
                       - type: custom:button-card
                         entity: light.lampe_tele_salon
                         name: Lampe TV
-                        show_label: false
+                        show_state: false
                         template:
                           - base
                           - bouton_lumiere
@@ -13960,6 +13968,7 @@ views:
                         name: Bandeau TV
                         template:
                           - base
+                          - base_capteur
                           - bouton_lumiere
                           - state_lumiere
                           - state_unavailable
@@ -14123,7 +14132,9 @@ views:
                           return (states['sensor.compteur_entree2'].state ) + " lumière" ;
                         return (states['sensor.compteur_entree2'].state ) + " lumières";
                       ]]]
-                  - type: grid
+                  - square: false
+                    columns: 2
+                    type: grid
                     cards:
                       - type: custom:button-card
                         entity: light.couloir
@@ -14197,8 +14208,6 @@ views:
                                 thumbVerticalPadding: 0px
                                 thumbWidth: 2px
                                 minSet: 1
-                    square: false
-                    columns: 2
                   - type: custom:button-card
                     template:
                       - bouton_titre_piece
@@ -14216,7 +14225,9 @@ views:
                           return " 1 lumière" ;
                         return "0 lumière";
                       ]]]
-                  - type: grid
+                  - square: false
+                    columns: 2
+                    type: grid
                     cards:
                       - type: custom:button-card
                         entity: light.cagibi
@@ -14242,8 +14253,6 @@ views:
                                 thumbVerticalPadding: 0px
                                 thumbWidth: 2px
                                 minSet: 1
-                    square: false
-                    columns: 2
                 type: vertical-stack
       - type: custom:layout-card
         layout_type: masonry
@@ -14938,10 +14947,3 @@ views:
                 columns: 2
             type: vertical-stack
 
-
-
-
-
-
-
-       
