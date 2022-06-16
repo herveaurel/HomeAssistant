@@ -97,14 +97,16 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 -----
 ## THEMES
 
-### Theme bat_Night
+### Theme Bat Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
-
-### Theme bat_Day avec alarme
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.jpg)
 
 ### Theme bat_Day
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_clear.jpg)
+
+### Theme avec l'alarme
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.jpg)
+
+
 
 ### Smartphone
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.png)
