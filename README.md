@@ -138,7 +138,7 @@ Création des boutons pour déclencher les aspirateurs encore plus facilement da
 
 - Raspberry 4 + SSD
 - ConBee2
-- Dongle Bluetooth 
+- Dongle Bluetooth Sena Parani UD100
 - Box Internet Orange Livebox 4
 - 2 cubes Tenda Nova MW6 parametrés en pont 
 
