@@ -102,7 +102,7 @@ Cartes personnes avec nouvelles options et nouveaux popup
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/persons.jpg)
 
-Création des boutons pour déclencher les aspirateurs encore plsu facilement dans les zones et pièces
+Création des boutons pour déclencher les aspirateurs encore plus facilement dans les zones et pièces
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/boutons_aspi.jpg)
 
