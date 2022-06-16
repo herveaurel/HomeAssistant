@@ -53,7 +53,7 @@ D'autres modifications viendront dans les prochaines mises à jour... 😇
 - Corrections de bugs icone et couleur des cartes Système 
 - Corrections de bugs 
 
-### 🎉 Nouveautés : mise à jour du 15 juin 2022 : 
+### 🎉 Mise à jour : Nouveautés du 15 juin 2022 : 
 
 Carte activité 
 
