@@ -26,7 +26,7 @@ Il y a beaucoup de templates, je les rédige, et je les garde, mais ils ne serve
 
 J'ai fait le choix de publier ma configuration intégrale, même ce qui est potentiellement inutile mais que je conserve pour le moment. 
 
-### ⚠️ Complètement revisité pour cette nouvelle version, les changements majeurs sont : 
+### ⚠️ Complètement revisité pour cette nouvelle version : 
 
 - Réécriture des templates button card  
 - Modifications des sensor templates  
@@ -57,6 +57,8 @@ Pour cela, créer simplement des input.boolean :
 - input_boolean.sidecar_show_connecte
 
 Mettre à jour le nouveau template button card de la sidecar. 
+
+Il est également possible de créer une automatisation, basée par exemple sur l'état de l'alarme ou des présences, pour que les informations varient. En effet, peut-être pas besoin que tout soit affiché quand je suis à la maison, je peux consulter les autres cartes, mais quand je ne suis pas à la maison je veux voir toutes les informations rapidement... 😉
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_reglages.jpg)
 
