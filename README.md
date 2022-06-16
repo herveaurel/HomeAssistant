@@ -151,12 +151,16 @@ Création des boutons pour déclencher les aspirateurs encore plus facilement da
 
 - carte activité : calendrier / météo / activité / mise à jour (infos dynamiques) , tap action : météo détailléé 
 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/meteo.jpg)
+
 2ème colonne : les pièces de la maison avec popups détaillés
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/cartes_pieces.jpg)
-
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/pieces.jpg)
 
 3ème colonne : multimédia et appareils avec popups détaillés
+
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/multimedia_appareils.jpg)
+
 
 4ème colonne : personnes et système avec popups détaillés
 
