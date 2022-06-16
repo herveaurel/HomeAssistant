@@ -1261,7 +1261,7 @@ sensor:
         friendly_name: "Alerte Neige-verglas"
         value_template: "{{ state_attr('sensor.49_weather_alert' , 'Neige-verglas') }}"
       weather_alert_canicule:
-        friendly_name: "Alerte Neige-verglas"
+        friendly_name: "Alerte Canicule"
         value_template: "{{ state_attr('sensor.49_weather_alert' , 'Canicule') }}"        
           
       weather_conditions:
