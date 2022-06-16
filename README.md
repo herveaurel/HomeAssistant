@@ -112,15 +112,17 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 ### Theme avec l'alarme
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.jpg)
 
-
-
 ### Smartphone
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.png)
+
+-----
+## POPUP
 
 ### Tableau de bord 1 page grace aux popup card ! 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup.png)
 
 ---------------------
+
  ## ORGANISATION
 
 ### Voici comment je m'organise : 
@@ -128,7 +130,7 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 1ère colonne : Activité générale 
 - bouton-badge : info rapide avec popup en tap action
 - cartes Alarmes : Cartes et leurs popup
-- bouton-rond : Modes, lumières, et devices allumés, avec badge compteur, capteurs, annonces etc... et le tap action ouvre un popup complet 
+- carte ronde : Modes, lumières, et devices allumés, avec badge compteur, capteurs, AdGuard etc... et le tap action ouvre un popup complet 
 - carte activité : calendrier / météo / activité / mise à jour (infos dynamiques) , tap action : météo détailléé 
 
 2ème colonne : les pièces de la maison avec popups détaillés
@@ -170,7 +172,7 @@ Mes intégrations  hacs:
 
 ---------------------
 
-# MERCI 😉
+## MERCI 😉
 
 Si vous aimez quelque chose ici, likez 🌟 mon repo !
 If you like anything here, be sure to 🌟 my repo !
