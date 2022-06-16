@@ -126,10 +126,9 @@ Création des boutons pour déclencher les aspirateurs encore plsu facilement da
 ## POPUP
 
 ### Tableau de bord 1 page grace aux popup card ! 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup2.jpg) 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup3.jpg) 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup4.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup5.jpg) 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup6.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_2.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_3.jpg) 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_4.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_5.jpg) 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_6.jpg)
 
 ---------------------
 
