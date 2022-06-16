@@ -1,7 +1,5 @@
 # HomeAssistant
 
- [https://github.com/herveaurel/HomeAssistant#smartphone](quimeneversça)
-
 Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
 
 ## Bat Geek 
