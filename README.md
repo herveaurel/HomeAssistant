@@ -45,6 +45,13 @@ Le tout harmonisé grâce aux templates button card.
 D'autres modifications viendront dans les prochaines mises à jour... 😇
 
 -----
+### Mise à jour mineure du 16 juin 2022 : 
+
+- Suppression du taux d'humidité dans le le label des cartes pièces pour alléger le visuel 
+- Taille du label des cartes pièces légèrement plus grosse 
+- Couleur du texte des boutons badges selon conditions 
+- Corrections de bugs icone et couleur des cartes Système 
+- Corrections de bugs 
 
 ### 🎉 Nouveautés : mise à jour du 15 juin 2022 : 
 
