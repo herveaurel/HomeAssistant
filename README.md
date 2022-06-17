@@ -48,8 +48,8 @@ D'autres modifications viendront dans les prochaines mises à jour... 😇
 -----
 ### Mise à jour mineure du 17 juin 2022 :  ( 🚨 bientot en ligne)
 
-- Carte ronde : codes du template optimisés ( maintenant une seule et unique carte peu importe le nombre d'informations ) 
-- Ambiances lumières du séjour : optimisation du fonctionnement pour un rendu impeecable des boutons 
+- Carte ronde : codes du template optimisés ( maintenant une seule et unique carte peu importe le nombre d'informations, name - label - state) 
+- Ambiances lumières du séjour : optimisation du fonctionnement pour un meilleur résultat des boutons 
 
 ### Mise à jour mineure du 16 juin 2022 : 
 
