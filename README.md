@@ -46,6 +46,10 @@ Le tout harmonisé grâce aux templates button card.
 D'autres modifications viendront dans les prochaines mises à jour... 😇
 
 -----
+### Mise à jour mineure du 17 juin 2022 : 
+- Carte ronde : codes du template optimisés (maintenant une seule carte avec label , state, ou que le name) 
+- Ambiances lumières du séjour : optimisation du fonctionnement pour un rendu impeecable des boutons 
+
 ### Mise à jour mineure du 16 juin 2022 : 
 
 - Suppression du taux d'humidité dans le le label des cartes pièces pour alléger le visuel 
@@ -76,13 +80,7 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_reglages.jpg)
 
-Nouveaux boutons qui rempalcent les anciens boutons ronds...
-J'ai écrit deux templates button card : 
-- carte_ronde : Icone + name + info 
-- carte_ronde_no_label : icone + name
-
-Ce qui permet aux positions des éléments d'etre identiques dans les deux formats. 
-Egalement en place dans les popup. 
+Nouveaux boutons "carte_ronde" qui rempalcent les anciens boutons ronds...
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_ronde_popup.jpg)
 
