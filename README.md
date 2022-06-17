@@ -46,7 +46,7 @@ Le tout harmonisé grâce aux templates button card.
 D'autres modifications viendront dans les prochaines mises à jour... 😇
 
 -----
-### Mise à jour mineure du 17 juin 2022 : 
+### Mise à jour mineure du 17 juin 2022 :  ( 🚨 bientot en ligne)
 - Carte ronde : codes du template optimisés (maintenant une seule carte avec label , state, ou que le name) 
 - Ambiances lumières du séjour : optimisation du fonctionnement pour un rendu impeecable des boutons 
 
