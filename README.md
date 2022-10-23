@@ -67,10 +67,10 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 -----
 ## THEMES
 
-### Theme Bat Night
+### Theme Mad Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
 
-### Theme Bat Day
+### Theme Mad Day
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_clear.jpg)
 
 ### Theme avec l'alarme
