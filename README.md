@@ -1,5 +1,3 @@
-#PATIENCE... EN COURS D'UPLOAD
-
 # HomeAssistant
 
 Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
