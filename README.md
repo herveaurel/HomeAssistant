@@ -50,7 +50,7 @@ D'autres modifications viendront dans les prochaines mises à jour... 😇
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite.jpg)
 
-En haut à droite, un nouveau bouton ouvrant une sous-vue pour quelques réglages via un simple clic ! Ce menu s'étoffera au fil du temps...
+Afin de choisir les informations qui apparraissent dans la carte acticité : En haut à droite, un bouton ouvrant une sous-vue pour quelques réglages via un simple clic ! Ce menu s'étoffera au fil du temps...
 Il est possible de choisir son thème, et de choisir ce qui sera affiché dans les informations dynamiques de la partie "Activité". 
 Pour cela, créer simplement des input.boolean : 
 - input_boolean.sidecar_show_mode
