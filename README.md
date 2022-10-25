@@ -91,7 +91,7 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 -----
 ## SOUS-VUES
 
-### Tableau de bord 1 page grace aux sous-vues ! 
+### Tableau de bord avec peu d'onglets...grace aux sous-vues ! J'en ai 30, je vous présente des exemples : 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup2.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_3.jpg) 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_4.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_5.jpg) 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_6.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_7.jpg) 
