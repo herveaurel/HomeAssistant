@@ -36,7 +36,7 @@ J'ai fait le choix de publier ma configuration intégrale, même ce qui est pote
 - Modifications des cartes  
 - Nouvelles cartes  
 - Nouveauté : les sous-vues ! (adieu les popup de Browser Mod) 
-- amélioaration des thèmes jour et nuit 
+- Amélioration des thèmes clair et sombre 
 - Corrections de bugs divers
 
 Et beaucoup d'autres changements ! 🤪
@@ -123,7 +123,7 @@ Zigbee
 - Moniteur de qualité de l'air Aqara
 - Détecteur de fuite Aqara
 - Capteur température Aqara
-- Guide de rdeau Aqara
+- Guide de rideau Aqara
 - Tête thermostatique de radiateur Aqara
 - Sirène Zigbee Frient
 - Clavier Zigbee Frient
