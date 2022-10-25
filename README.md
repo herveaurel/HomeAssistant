@@ -81,6 +81,13 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 ### Smartphone
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.jpeg)
 
+
+-----
+## ONGLETS
+
+### Tableau de bord avec peu d'onglets 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/onglet_1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/onglet_2.jpg) 
+
 -----
 ## SOUS-VUES
 
