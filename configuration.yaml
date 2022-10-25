@@ -1,25 +1,14 @@
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
+bluetooth:
+cloud:
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-
-
-#############################################
-##                                         ##
-##       dongle BT connexion auto          ##
-##                                         ##
-#############################################  
-shell_command:
-  turn_bluetooth_off: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa root@127.0.0.1 sudo bluetoothctl power off'
-  turn_bluetooth_on: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa root@127.0.0.1 sudo bluetoothctl power on'
-  
 #############################################
 ##                                         ##
 ##           Text to speech                ##
 ##                                         ##
 #############################################  
-
 tts:
   - platform: google_translate
     language: 'fr'
@@ -52,18 +41,13 @@ recorder:
     domains:
       - sun
       - weather
-      - automation
     entities:
       - camera.roborock_s50
       - camera.roborock_s6
-      - switch.bureau_update
-      - switch.bureau_tom_update
-      - switch.bandeau_led_update
     event_types:
-      - call_service # Don't record service calls
-      - deconz_event
-      
-      
+#      - call_service # Don't record service calls
+#      - deconz_event
+
 api:
 
 #############################################
@@ -77,14 +61,27 @@ frontend:
   extra_module_url:
     - /local/card-mod.js
 
-discovery:
-
+#############################################
+##                                         ##
+##            Light Group                  ##
+##                                         ##
+#############################################   
+#light:
+#  - platform: switch
+#    name: Lampe tv salon
+#    entity_id: switch.lampe_tv_salon
+#  - platform: switch
+#    name: Guirlande Nina
+#    entity_id: switch.guirlande_nina  
+#  - platform: switch
+#    name: Arbre lumineux
+#    entity_id: switch.arbre_lumineux
+    
 #############################################
 ##                                         ##
 ##           Arlo Sonette                  ##
 ##                                         ##
 #############################################
-
 aarlo:
   username: !secret arlo_username
   password: !secret arlo_password
@@ -100,184 +97,15 @@ aarlo:
 #  reconnect_every: 90
 #  mode_api: v2
   
-
-#############################################
-##                                         ##
-##            Browser Mod                  ##
-##                                         ##
-############################################# 
-browser_mod: 
-  prefix: "browser_"
-
-
-#############################################
-##                                         ##
-##            Light Group                  ##
-##                                         ##
-#############################################   
-
-    
-light:
-
-  - platform: group
-    name: Tout
-    entities:
-      - light.lampe_tele_salon
-      - light.lustre_salle_a_manger
-      - light.lustre_salon
-      - light.trilampe
-      - light.lampadaire
-      - light.bandeau_led
-      - light.lampe_de_bureau
-      - light.buffet
-      
-
-      - light.lustre_parents
-      - light.chevet
-      
-      - light.aqara_hub_54e1
-      - light.entree
-      - light.couloir
-      
-
-      - light.wc_droit
-      - light.wc_gauche
-      
   
-      - light.lustre_tom
-      - light.chevet_tom
-      - light.lampe_de_bureau_tom 
-      
-      - light.lustre_manon_et_leane
-      - light.lampe_manon_et_leane
-      - light.arbre_lumineux
-      - light.chevet_leane
-      - light.chevet_manon
-      
-      - light.lustre_nina
-      - light.lampadaire_nina
-      - light.chevet_nina
-      - light.guirlande_nina 
-      - light.lampe_de_bureau_nina
-    
-      - light.palier  
-      - light.escalier
-      
-      - light.cagibi
-      
-      
-  - platform: group
-    name: Séjour
-    entities:
-      - light.lampe_tele_salon
-      - light.lustre_salle_a_manger
-      - light.lustre_salon
-      - light.trilampe
-      - light.lampadaire
-      - light.bandeau_led
-      - light.buffet
-      
-  - platform: group
-    name: Séjour2
-    entities:
-      - light.lampe_tele_salon
-      - light.lustre_salle_a_manger
-      - light.lustre_salon
-      - light.trilampe
-      - light.lampadaire
-      - light.bandeau_led
-      - light.lampe_de_bureau
-      - light.buffet
-
-  - platform: group
-    name: Salon
-    entities:
-      - light.lampe_tele_salon
-      - light.lustre_salon
-      - light.trilampe
-      - light.bandeau_led
-      
-  - platform: group
-    name: SàM
-    entities:
-      - light.lustre_salle_a_manger
-      - light.lampadaire
-      - light.buffet
-      
-  - platform: group
-    name: Ambiance Normale
-    entities:
-      - light.lampe_tele_salon
-      - light.trilampe
-      - light.lampadaire
-      - light.bandeau_led
-      - light.buffet
-      
-      
-  - platform: group
-    name: Parents
-    entities:
-      - light.lustre_parents
-      - light.chevet
-      
-  - platform: group
-    name: Entrée
-    entities:
-      - light.aqara_hub_54e1
-      - light.entree
-      - light.couloir
-      
-
-  - platform: group
-    name: Salle d'eau
-    entities:
-      - light.wc_droit
-      - light.wc_gauche   
-      
-  - platform: group
-    name: Tom
-    entities:
-      - light.lustre_tom
-      - light.chevet_tom
-      - light.lampe_de_bureau_tom       
-      
-  - platform: group
-    name: Manon et Léane
-    entities:
-      - light.lustre_manon_et_leane
-      - light.lampe_manon_et_leane
-      - light.arbre_lumineux
-      - light.chevet_leane
-      - light.chevet_manon
-      
-  - platform: group
-    name: Nina
-    entities:
-      - light.lustre_nina
-      - light.lampadaire_nina
-      - light.chevet_nina
-      - light.guirlande_nina
-      - light.lampe_de_bureau_nina
-      
-  - platform: group
-    name: Escaliers
-    entities:
-      - light.palier
-      - light.escalier
-
-      
-      
-  - platform: switch
-    name: Lampe télé salon
-    entity_id: switch.light_lampe_tele_salon
-  - platform: switch
-    name: Arbre lumineux
-    entity_id: switch.arbre_lumineux
-  - platform: switch
-    name: guirlande nina
-    entity_id: switch.guirlande_nina
-    
-    
+#############################################
+##                                         ##
+##               Sonoff                    ##
+##                                         ##
+#############################################  
+sonoff:
+  username: !secret sonoff_username
+  password: !secret sonoff_password
     
 #############################################
 ##                                         ##
@@ -289,21 +117,18 @@ homekit:
     include_domains:
       - alarm_control_panel
     exclude_entities:
-      - alarm_control_panel.aqara_hub_54e1
+      - alarm_control_panel.aqara_hub_54e1_security_system
+      - alarm_control_panel.clavier_alarme
     include_entities:
-
-      - switch.alarme_sirene
-      - switch.cam_sejour
-      - switch.camera_garage
-
+      - camera.camera_hub_g3_2725
+      - camera.camera_g2hpro
+      - switch.sirene_heiman
       - switch.lave_vaisselle_power
-
       - switch.radiateur
-
       - light.lampe_de_bureau
-      - switch.light_lampe_tele_salon
+      - switch.lampe_tv_salon
       - light.bandeau_led
-      - light.trilampe
+      - light.lampe_canape
       - light.lampadaire
       - light.lustre_salle_a_manger
       - light.lustre_salon
@@ -322,6 +147,7 @@ homekit:
       - light.lampe_manon_et_leane
       - light.chevet_leane
       - light.chevet_manon
+      - light.lampe_de_bureau_manon
       - switch.arbre_lumineux
       - light.salle_d_eau
       - light.cagibi
@@ -330,18 +156,13 @@ homekit:
       - light.couloir
       - light.palier
       - light.escalier
-
       - switch.moustique_manon
       - switch.moustique_nina
       - switch.moustique_tom
       - switch.moustique_parents 
-
       - switch.tele_des_parents
-
       - input_boolean.imprimante
-
       - input_boolean.lave_linge
-
       - sensor.temp_manon
       - sensor.temp_tom
       - sensor.temp_nina
@@ -358,16 +179,13 @@ homekit:
 #      - sensor.hum_sejour
 #      - sensor.hum_salle_de_bain
 #      - sensor.hum_cuisine
-      
       - scene.ambiance_normale
       - scene.zen
       - script.ambiance_repas
       - scene.tv
       - script.apero_lum
       - scene.travail_dessin_2
-
       - binary_sensor.boite_aux_lettres
-
       - binary_sensor.mouv_salle_a_manger
       - binary_sensor.mouv_salon
       - binary_sensor.mouv_escalier   
@@ -379,28 +197,23 @@ homekit:
       - binary_sensor.mouv_tom
       - binary_sensor.mouv_manon
       - binary_sensor.mouv_leane
-
       - binary_sensor.porte_entree
       - binary_sensor.porte_salle_a_manger
       - binary_sensor.porte_cuisine
       - binary_sensor.porte_chambre_parents
       - binary_sensor.porte_cagibi
       - binary_sensor.porte_garage
-
       - script.cest_lheure_daller_a_lecole
       - script.1590760144160
       - script.gouter
       - script.a_table
       - script.annonce_au_lit
       - script.tom_va_se_coucher
-
       - person.herve
       - person.alex
       - person.tom
-
 #      - media_player.maman
 #      - media_player.la_salle_de_bain
-      
       - vacuum.wall_e
       - vacuum.r2d2
       - script.aspi_walle_salon
@@ -434,15 +247,11 @@ homekit:
     alarm_control_panel.alarme:
       code: !secret alarme_code
 
-
-
-
 #############################################
 ##                                         ##
 ##               Calendrier                ##
 ##                                         ##
 ############################################# 
-
 calendar: 
   - platform: caldav
     username: !secret caldav_username
@@ -463,14 +272,14 @@ calendar:
         search: '.*'      
       - name: Vacances zone B
         calendar: Vacances scolaires
-        search: '.*'      
+        search: '.*'   
+        
 #############################################
 ##                                         ##
 ##               Yeelight                  ##
 ##                                         ##
 ############################################# 
 yeelight:
-
   custom_effects:
 #test dans outil dev : (service yeelight flow)
 #EXEMPLE
@@ -488,6 +297,16 @@ yeelight:
         transitions:
           - RGBTransition: [255, 0, 0, 4000, 80]
           - RGBTransition: [0, 128, 0, 4000, 80]
+
+    - name: 'Alarme'
+      flow_params:
+        count: 0
+        action: stay
+        transitions:
+          - RGBTransition: [255, 0, 0, 600, 100]
+          - RGBTransition: [255, 0, 0, 200, 4]
+          - SleepTransition: [0] 
+          
     - name: 'Ciné'
       flow_params:
         count: 1
@@ -495,6 +314,7 @@ yeelight:
         transitions:
           - RGBTransition: [170, 35, 255, 1000, 1]
           - RGBTransition: [170, 35, 255, 3000, 60]
+          
     - name: 'France'
       flow_params:
         count: 0
@@ -504,7 +324,6 @@ yeelight:
           - RGBTransition: [255, 255, 255, 1000, 50]
           - RGBTransition: [255, 0, 0, 1000, 20]
           - SleepTransition: [50]    
-          
     - name: 'Flash'
       flow_params:
         count: 10
@@ -513,8 +332,6 @@ yeelight:
           - TemperatureTransition: [3500, 500, 100]
           - TemperatureTransition: [3500, 500, 1]
            
-          
-     
 #############################################
 ##                                         ##
 ##                 iOS                     ##
@@ -522,74 +339,127 @@ yeelight:
 #############################################      
 ios:
   actions:
+    - name: alarme_off
+      background_color: "black"
+      label:
+        text: "Désarmer"
+        color: "grey"
+      icon:
+        icon: mdi:shield-off
+        color: "grey"
     - name: alarme_on
       background_color: "black"
       label:
-        text: "Armée"
+        text: "Armer Absent"
         color: "red"
       icon:
         icon: mdi:shield-lock
         color: "red"
-    - name: alarme_off
+    - name: alarme_nuit_on
       background_color: "black"
       label:
-        text: "Désarmée"
-        color: "lightgrey"
+        text: "Armer Nuit"
+        color: "dodgerblue"
       icon:
-        icon: mdi:shield-off
-        color: "grey"
+        icon: mdi:shield-lock
+        color: "dodgerblue"
+    - name: ambiance_normale
+      background_color: "black"
+      label:
+        text: "Normale"
+        color: "gold"
+      icon:
+        icon: mdi:ceiling-light-multiple
+        color: "gold"
+    - name: ambiance_douce
+      background_color: "black"
+      label:
+        text: "Doux"
+        color: "violet"
+      icon:
+        icon: mdi:sofa
+        color: "violet"
+    - name: ambiance_tv
+      background_color: "black"
+      label:
+        text: "TV"
+        color: "red"
+      icon:
+        icon: mdi:television
+        color: "red"
+    - name: ambiance_repas
+      background_color: "black"
+      label:
+        text: "Repas"
+        color: "orange"
+      icon:
+        icon: mdi:food
+        color: "orange"        
+    - name: ambiance_repas
+      background_color: "black"
+      label:
+        text: "Repas"
+        color: "orange"
+      icon:
+        icon: mdi:food
+        color: "orange"
     - name: tout_eteindre
-      background_color: "#000000"
+      background_color: "black"
       label:
         text: "Tout éteindre"
-        color: "lightgrey"
+        color: "grey"
       icon:
-        icon: mdi:lightbulb-off
-        color: "lightgrey"
-    - name: a_table
-      background_color: "#000000"
-      label:
-        text: "A table ! "
-        color: "lightgrey"
-      icon:
-        icon: mdi:silverware-variant
-        color: "#FF8A33"
+        icon: mdi:lightbulb-group-off
+        color: "grey"
     - name: fin_ecran
-      background_color: "#000000"
+      background_color: "black"
       label:
         text: "Fin des écrans"
         color: "lightgrey"
       icon:
-        icon: mdi:gamepad-variant
-        color: "#FF8A33"
+        icon: phu:rooms-mancave
+        color: "lightgrey"
+    - name: a_table
+      background_color: "black"
+      label:
+        text: "A table"
+        color: "lightgrey"
+      icon:
+        icon: mdi:hamburger
+        color: "lightgrey"
+    - name: gouter
+      background_color: "black"
+      label:
+        text: "Gouter"
+        color: "lightgrey"
+      icon:
+        icon: mdi:food-croissant
+        color: "lightgrey"
     - name: filles_coucher
-      background_color: "#000000"
+      background_color: "black"
       label:
         text: "Filles au lit"
         color: "lightgrey"
       icon:
-        icon: mdi:bed-empty
-        color: "#33B5FF"
+        icon: mdi:sleep
+        color: "lightgrey"
     - name: tom_coucher
-      background_color: "#000000"
+      background_color: "black"
       label:
         text: "Tom au lit"
         color: "lightgrey"
       icon:
-        icon: mdi:sleep
-        color: "#33B5FF"
-    - name: romantique
-      background_color: "#000000"
+        icon: mdi:bed
+        color: "lightgrey"
+    - name: tom_reveil
+      background_color: "black"
       label:
-        text: "Romantique"
+        text: "Tom réveil"
         color: "lightgrey"
       icon:
-        icon: mdi:heart-outline
-        color: "#FF4633"
+        icon: mdi:alarm-snooze
+        color: "lightgrey"
 
-            
-            
-            
 
 #############################################
 ##                                         ##
@@ -599,15 +469,8 @@ ios:
 home_connect:
   client_id: !secret home_connect_client_id
   client_secret: !secret home_connect_client_secret
-  
-  
-  
-  
-  
-  
-  
-camera: 
 
+camera: 
 #############################################
 ##                                         ##
 ##            Arlo caméra                  ##
@@ -616,27 +479,21 @@ camera:
   - platform: aarlo
     ffmpeg_arguments: '-pred 1 -q:v 2'
 
-    
 #############################################
 ##                                         ##
 ##           Cam Xiaomi 360                ##
 ##                                         ##
 ############################################# 
-
-
 #  - platform: generic
 #    still_image_url: http://192.168.1.24/jpg/image.jpg
 #    stream_source: rtsp://192.168.1.24:8554/substream
 #    name: Caméra salon
-    
-    
     
 #############################################
 ##                                         ##
 ##            Aspi carto S6                ##
 ##                                         ##
 #############################################    
- 
   - platform: xiaomi_cloud_map_extractor
     host: 192.168.1.41 
     token: !secret s6_token
@@ -700,7 +557,7 @@ camera:
 ##                                         ##
 #############################################         
   - platform: xiaomi_cloud_map_extractor      
-    host: 192.168.1.25
+    host: 192.168.1.82
     token: !secret s50_token
     username: !secret xiaomi_username
     password: !secret xiaomi_password
@@ -768,28 +625,15 @@ vacuum:
 #    token: !secret s6_token
 #    name: Wall-E
 #    vacuum:
-  - platform: xiaomi_miio
-    host: 192.168.1.25
-    token: !secret s50_token
-    name: R2D2
-    
+ 
 #############################################
 ##                                         ##
 ##                LG TV                    ##
 ##                                         ##
 #############################################        
-
 wake_on_lan:
 
 webostv:
-#  host: 192.168.1.60 
-#  name: TV Salon LAN
-#  turn_on_action:
-#    service: wake_on_lan.send_magic_packet
-#    data:
-#      mac: 74:e6:b8:2e:1f:1e
-#      broadcast_address: 192.168.1.255
-      
   host: 192.168.1.62
   name: TV Salon Wifi
   turn_on_action:
@@ -803,26 +647,16 @@ webostv:
 ##                Fire TV                  ##
 ##                                         ##
 #############################################   
-
-media_player:
-  - platform: androidtv
-    host: 192.168.1.40 
-    device_class: firetv
-    adb_server_port: 5037
-    name: Cube TV
-    adb_server_ip: 127.0.0.1
-    apps:
-      com.amazon.tv.launcher: "Menu"
-      org.courville.nova: "Clé USB"
-
-       
-
-
-cloud: 
-
-
-   
-
+#media_player:
+#  - platform: androidtv
+#    host: 192.168.1.30
+#    device_class: firetv
+#    adb_server_port: 5037
+#    name: Cube TV
+#    adb_server_ip: 127.0.0.1
+#    apps:
+#      com.amazon.tv.launcher: "Menu"
+#      org.courville.nova: "Clé USB"
 
 #############################################
 ##                                         ##
@@ -835,8 +669,6 @@ binary_sensor:
     command: curl -s https://www.google.com > /dev/null && echo on || echo off
     scan_interval: 180
     
-    
-
 #############################################
 ##                                         ##
 ##           Arlo binary sensor            ##
@@ -850,14 +682,12 @@ binary_sensor:
     - cry
     - connectivity 
     
-    
 #############################################
 ##                                         ##
 ##                Sensor                   ##
 ##                                         ##
 #############################################      
 sensor:
-
 
 ##############################
 #Arlo sensor
@@ -869,7 +699,6 @@ sensor:
     - battery_level
     - captured_today
     - signal_strength
-    
     
 ##############################
 #Sensor Savoir inutile 
@@ -895,10 +724,11 @@ sensor:
     resource: https://www.ephemeride.com/free/fete.jsp
     select: ".FeteFemme"
     scan_interval: 28800  
+    
 ##############################
 #Sensor Saisons 
 ##############################
-  - platform: season
+#  - platform: season
   
 ##############################
 #Sensor Random 
@@ -951,33 +781,6 @@ sensor:
     unit_of_measurement: "°C"
     value_template: '{{ value | multiply(0.001) | round(1) }}'
 
-#############################################
-##                                         ##
-##        Sensor MaJ HassOS                ##
-##                                         ##
-#############################################
-#  - platform: command_line
-#    name: Updater HassOS
-#    command: 'curl http://supervisor/os/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"update_available":.data.update_available}'''
-#    value_template: "{% if value_json.update_available or value_json.newest_version != value_json.current_version %}on{% else %}off{% endif %}"
-#    json_attributes:
-#    - newest_version
-#    - current_version
-#    - update_available
-
-#  - platform: command_line
-#    name: Supervisor updates
-#    command: 'curl http://supervisor/supervisor/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"update_available":.data.update_available,"addons":[.data.addons[] | select(.update_available)]}'''
-#    value_template: "{{ value_json.addons | length }}"
-#    unit_of_measurement: pending update(s)
-#    json_attributes:
-#    - update_available
-#    - newest_version
-#    - current_version
-#    - addons
-     
-
- 
 ##############################
 #Sensor Monitoring 
 ##############################
@@ -1000,89 +803,71 @@ sensor:
 ##############################
 #Sensor Myenedis
 ##############################
-#  - platform: myEnedis
-#    token: !secret myenedis_token
-#    code: !secret myenedis_code 
-#    hc_cout: 0.1557
-#    hp_cout: 0.1557
-#    scan_interval: 1800
-
+  - platform: myEnedis
+    token: !secret myenedis_token
+    code: !secret myenedis_code 
+    hc_cout: 0.1557
+    hp_cout: 0.1557
+    scan_interval: 1800
 ##############################
 #Sensor Templates 
 ##############################
   - platform: template
-
     sensors:
-          
-          
-###### ECHOS ALEXA     
-      sejour_volume:
-        friendly_name: "Séjour volume"
-        value_template: "{{ state_attr('media_player.sejour' , 'volume_level') }}"
+
+###### CHAUFFAGE PARENTS
+      chauffage_parents_temp_cible:
+        friendly_name: "Chauffage parents temperature cible"
+        value_template: >- 
+          {{ state_attr('climate.chauffage_parents' , 'temperature') }}°
         
+###### MONITEUR QUALITE AIR
+      qualite_air:
+        friendly_name: "Qualité de l'air en mg/m³"
+        value_template: "{{ (states.sensor.moniteur_qualite_air_volatile_organic.state|float /100)|float|round(2) }}" 
+        
+###### ECHOS ALEXA     
       last_alexa:
         friendly_name: "Dernier echo appelé"
         value_template: "{{ expand('group.echos') | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}"       
        
-       
 ###### THERMOMETRES 
-      battery_level_rdc:
-        friendly_name: "Thermo RDC"
-        value_template: "{{ state_attr('sensor.temp_couloir_rdc' , 'battery_level') }}"
-      battery_level_tom:
-        friendly_name: "Thermo Tom"
-        value_template: "{{ state_attr('sensor.temp_tom' , 'battery_level') }}"
-      battery_level_parents:
-        friendly_name: "Thermo Parents"
-        value_template: "{{ state_attr('sensor.temp_parents' , 'battery_level') }}"
-      battery_level_nina:
-        friendly_name: "Thermo Nina"
-        value_template: "{{ state_attr('sensor.temp_nina' , 'battery_level') }}"
-      battery_level_manon:
-        friendly_name: "Thermo Manon"
-        value_template: "{{ state_attr('sensor.temp_manon' , 'battery_level') }}"
-      battery_level_sejour:
-        friendly_name: "Thermo Sejour"
-        value_template: "{{ state_attr('sensor.temp_sejour' , 'battery_level') }}"
-      battery_level_cuisine:
-        friendly_name: "Thermo Cuisine"
-        value_template: "{{ state_attr('sensor.temp_cuisine' , 'battery_level') }}"
 
       batterie_alerte:
         friendly_name: "Alerte batterie"
         value_template: >- 
-          {%- if states('sensor.battery_level_manon')| float < 15 or
-           states('sensor.battery_level_tom')| float < 15 or
-           states('sensor.battery_level_nina')| float < 15 or
-           states('sensor.battery_level_parents')| float < 15 or
-           states('sensor.battery_level_sejour')| float < 15 or
-           states('sensor.battery_level_cuisine')| float < 15 or
-           states('sensor.battery_level_rdc')| float < 15 or
+          {%- if states('sensor.manon_thermo_batterie')| float < 15 or
+           states('sensor.tom_thermo_batterie')| float < 15 or
+           states('sensor.nina_thermo_batterie')| float < 15 or
+           states('sensor.parents_thermo_batterie')| float < 15 or
+           states('sensor.sejour_thermo_batterie')| float < 15 or
+           states('sensor.cuisine_thermo_batterie')| float < 15 or
+           states('sensor.couloir_thermo_batterie')| float < 15 or
            states('sensor.temp_sdb_battery_level')| float < 15 
           -%}
            {%- else -%}
              Aucun
            {%- endif -%}
-           {%- if states('sensor.battery_level_manon')| float < 15 -%}
-            Thermo Manon {{ states('sensor.battery_level_manon') }}%<br>
+           {%- if states('sensor.manon_thermo_batterie')| float < 15 -%}
+            Thermo Manon {{ states('sensor.manon_thermo_batterie') }}%<br>
            {%- endif -%}
-           {%- if states('sensor.battery_level_tom')| float < 15 -%}
-            Thermo Tom {{ states('sensor.battery_level_tom') }}%<br>
+           {%- if states('sensor.tom_thermo_batterie')| float < 15 -%}
+            Thermo Tom {{ states('sensor.tom_thermo_batterie') }}%<br>
            {%- endif -%}
-           {%- if states('sensor.battery_level_nina')| float < 15 -%}
-           Thermo Nina {{ states('sensor.battery_level_nina') }}%<br>
+           {%- if states('sensor.nina_thermo_batterie')| float < 15 -%}
+           Thermo Nina {{ states('sensor.nina_thermo_batterie') }}%<br>
            {%- endif -%}
-           {%- if states('sensor.battery_level_parents')| float < 15 -%}
-           Thermo Parents {{ states('sensor.battery_level_parents') }}%<br>
+           {%- if states('sensor.parents_thermo_batterie')| float < 15 -%}
+           Thermo Parents {{ states('sensor.parents_thermo_batterie') }}%<br>
            {%- endif -%}
-           {%- if states('sensor.battery_level_sejour')| float < 15 -%}
-           Thermo Séjour {{ states('sensor.battery_level_sejour') }}%<br>
+           {%- if states('sensor.sejour_thermo_batterie')| float < 15 -%}
+           Thermo Séjour {{ states('sensor.sejour_thermo_batterie') }}%<br>
            {%- endif -%}
-           {%- if states('sensor.battery_level_cuisine')| float < 15  -%}
-           Thermo Cuisine {{ states('sensor.battery_level_cuisine') }}%<br>
+           {%- if states('sensor.cuisine_thermo_batterie')| float < 15  -%}
+           Thermo Cuisine {{ states('sensor.cuisine_thermo_batterie') }}%<br>
            {%- endif -%}
-           {%- if states('sensor.battery_level_rdc')| float < 15 -%}
-           Thermo Couloir {{ states('sensor.battery_level_rdc') }}%<br>
+           {%- if states('sensor.couloir_thermo_batterie')| float < 15 -%}
+           Thermo Couloir {{ states('sensor.couloir_thermo_batterie') }}%<br>
            {%- endif -%}
            {%- if states('sensor.temp_sdb_battery_level')| float < 15 -%}
            Thermo Salle de bain {{ states('sensor.temp_sdb_battery_level') }}%<br>
@@ -1138,9 +923,12 @@ sensor:
             Alerte
            {%- else -%}
             OK
-           {%- endif -%}       
+           {%- endif -%}   
+           
 ###### MYENEDIS
-   
+      myenedis_conso_hier_kwh:
+        friendly_name: "MyEnedis conso hier en kWh arrondie"
+        value_template: "{{ states.sensor.myenedis_09397539765420.state |float| round(1)}}" 
       myenedis_conso_semaine_derniere:
         friendly_name: "MyEnedis conso semaine dernière"
         value_template: "{{ state_attr('sensor.myenedis_09397539765420' , 'last_week') |float| round(2)}}"      
@@ -1181,7 +969,6 @@ sensor:
         friendly_name: "MyEnedis coût J-7"
         value_template: '{{ states.sensor.myenedis_09397539765420.attributes.dailyweek_cost[6]|float|round(2) }}'          
 
-
       myenedis_refresh:
         value_template: >-
           {% if states.sensor.myenedis_cout_j1.state  == "-1.0" -%}
@@ -1215,7 +1002,7 @@ sensor:
         friendly_name: "Date du jour"
         icon_template: mdi:calendar-today
         value_template: >
-          {% set months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"] %}
+          {% set months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"] %}
           {% set days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]  %}
           {{ days[now().weekday()] + ' ' + now().day | string + ' ' + months[now().month-1] }}
           
@@ -1266,16 +1053,6 @@ sensor:
           
       weather_conditions:
         value_template: >-
-          {% set temperature = states('sensor.weather_temperature') | round %}
-          {% set precip = states('sensor.ta_ville_rain_chance_2') | round %}
-          {% set snow = states('sensor.ta_ville_snow_chance_2') | round %}
-          {% set ressenti = states('sensor.weather_ressenti') | round %}
-          {% set temp = states('sensor.weather_temperature') | round %}
-          {% set icon = states('sensor.weather_icon')  %}
-          {% set ciel = states('sensor.weather_conditions_ciel')  %}
-          {% set pluie = states('sensor.weather_conditions_pluie')  %}
-          {% set vent = states('sensor.weather_conditions_vent')  %}
-          {% set uv = states('sensor.weather_conditions_uv')  %}
           {% set weather_state = states('weather.ta_ville') 
             | replace('rainy', 'Pluvieux')
             | replace('partlycloudy', 'Partiellement nuageux')
@@ -1303,7 +1080,7 @@ sensor:
             {% endif -%}
           {% else -%}
             Pas d'info...
-          {% endif -%} 
+          {% endif -%}  
 
       weather_conditions_simplifiees:
         value_template: >-
@@ -1434,7 +1211,7 @@ sensor:
         friendly_name: Alerte météo
         value_template: >-
           {% if not is_state("sensor.49_weather_alert", "Vert") -%}
-             ⚠️
+             
           {%- endif %} 
           {% if is_state("sensor.weather_alert_grand_froid", "Jaune") -%} 
           Grand froid {%- endif %}  
@@ -1501,7 +1278,6 @@ sensor:
         value_template: >-
             {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%-Hh%M") }}  
  
-          
       weather_couche_soleil:
         friendly_name: Soleil couché           
         value_template: >-
@@ -1517,7 +1293,7 @@ sensor:
         
       temp_min:
         friendly_name: Température min du jour
-        value_template: "{{ states.weather.ta_ville.attributes.forecast[0].templow|float|round(0) }}°"        
+        value_template: "{{ states.weather.maison.attributes.forecast[0].templow|float|round(0) }}°"        
         
 ###### BONJOUR MESSAGE
       bonjour:
@@ -1623,6 +1399,7 @@ sensor:
         friendly_name: "Tempertaures moyennes de la maison"
         value_template: >-
           {{ states('sensor.temp_moyenne_rdc') }}° / {{ states('sensor.temp_moyenne_etage') }}°
+          
       temp_moyenne_rdc:
         friendly_name: "Tempertaure moyenne du rdc"
         value_template: >-
@@ -1669,32 +1446,18 @@ sensor:
           Etage : {{ states('sensor.temp_moyenne_etage') }}°
           {% endif %}        
           
-      lum_moyenne_manon:
-        friendly_name: "Luminosité moyenne Manon et Léane"
-        value_template: >-
-          {{ ((float(states.sensor.mouv_manon_luminosite.state)  + float(states.sensor.mouv_leane_luminosite.state)) / 2) | round(1) }}
-          
-          
 ###### BLUETOOTH
-
-      bt_off:
-        friendly_name: "surveillance Bluetooth"
-        value_template: >-
-          {% set sejour  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_sejour.last_changed)) /60) | round(0) %}
-          {% if  sejour > 10  -%}
-              <font color='red'>❗️Bluetooth HS depuis {{ as_timestamp(states.sensor.temp_sejour.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.sensor.temp_sejour.last_changed)}})
-          {% else -%}
-          {% endif -%}
           
       bt_dongle_hs:
         friendly_name: "surveillance dongle Bluetooth"
         value_template: >-
           {% set sejour  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_sejour.last_changed)) /60) | round(0) %}
-          {% if  sejour > 10  -%}
+          {% set tom  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_tom.last_changed)) /60) | round(0) %}
+          {% set cuisine  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_cuisine.last_changed)) /60) | round(0) %}
+          {% if  sejour > 10  and tom > 10 and cuisine > 10 -%}
               hs
           {% else -%}
           {% endif -%}
-
 
 ###### LUMINOSITE
       lum_palier:
@@ -1706,6 +1469,11 @@ sensor:
         friendly_name: "Luminosité moyenne séjour "
         value_template: >-
           {{ ((float(states.sensor.plante_lum_dracaena.state) + float(states.sensor.plante_lum_pied_elephant.state)) / 2) | round(0) }}          
+          
+      lum_moyenne_manon:
+        friendly_name: "Luminosité moyenne Manon et Léane"
+        value_template: >-
+          {{ ((float(states.sensor.mouv_manon_luminosite.state)  + float(states.sensor.mouv_leane_luminosite.state)) / 2) | round(1) }}
           
 ###### ANNIVERSAIRES
       anniversaire:
@@ -1755,9 +1523,7 @@ sensor:
             Aucun
           {%- endif %}
   
-
 ###### ALARME
-
       alarmes:
         friendly_name: Alarmes          
         value_template: >-
@@ -1816,13 +1582,22 @@ sensor:
       alarme_cause:
         friendly_name: Alarme déclenchée à cause de
         value_template: >-          
-         {% set alarme = states | selectattr('entity_id', 'in', state_attr('group.alarme_cause','entity_id')) | selectattr('state','in',['on','open']) | map(attribute='name') | list %}
+         {% set alarme = states | selectattr('entity_id', 'in', state_attr('binary_sensor.declencheur_alarme','entity_id')) | selectattr('state','in',['on','open']) | map(attribute='name') | list %}
          {% if alarme | length == 1 %} 
          Détection sur : {{ alarme[0] }} 
          {% else %}
          Détection sur : {{ alarme[:-1] | join(' , ') }}{{' ,' if alarme | length > 2 else ' '}} et {{ alarme[-1]}} 
          {% endif %}    
-         
+
+      alarme_cause_nuit:
+        friendly_name: Alarme nuit déclenchée à cause de
+        value_template: >-          
+         {% set alarme = states | selectattr('entity_id', 'in', state_attr('binary_sensor.declencheur_alarme_nuit','entity_id')) | selectattr('state','in',['on','open']) | map(attribute='name') | list %}
+         {% if alarme | length == 1 %} 
+         Détection sur : {{ alarme[0] }} 
+         {% else %}
+         Détection sur : {{ alarme[:-1] | join(' , ') }}{{' ,' if alarme | length > 2 else ' '}} et {{ alarme[-1]}} 
+         {% endif %}         
 ###### APPAREILS CONNECTES A LA MAISON
          
       app_connectes:
@@ -1830,6 +1605,20 @@ sensor:
         value_template: >-
          {%- if states.group.connecte.state == "home"  -%}
            {% set porte_on = states | selectattr('entity_id', 'in', state_attr('group.connecte','entity_id')) | selectattr('state','in',['','home']) | map(attribute='name') | list %}
+           {%- if porte_on | length == 1 -%} 
+           {{ porte_on[0] }}
+           {%- else -%}
+           {{ porte_on[:-1] | join(', ') }}{{', ' if porte_on | length > 2 else ' '}}et {{ porte_on[-1]}}
+           {%- endif -%}
+         {%- else -%}
+          Aucun
+         {%- endif -%} 
+         
+      enfant_presence:
+        friendly_name: Enfants présents          
+        value_template: >-
+         {%- if states.group.enfants.state == "home"  -%}
+           {% set porte_on = states | selectattr('entity_id', 'in', state_attr('group.enfants','entity_id')) | selectattr('state','in',['','home']) | map(attribute='name') | list %}
            {%- if porte_on | length == 1 -%} 
            {{ porte_on[0] }}
            {%- else -%}
@@ -1874,15 +1663,14 @@ sensor:
          {%- if states.group.mode.state == "on"  -%}
            {% set mode_on = states | selectattr('entity_id', 'in', state_attr('group.mode','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
            {%- if mode_on | length == 1 -%} 
-           {{ mode_on[0] }}
+           Mode : {{ mode_on[0] }}
            {%- elif mode_on | length > 1 -%}
-           {{ mode_on[:-1] | join(' , ') }} {{'' if mode_on | length == 2 else ' '}}et {{ mode_on[-1]}}
+           Modes : {{ mode_on[:-1] | join(' , ') }} {{'' if mode_on | length == 2 else ' '}}et {{ mode_on[-1]}}
            {%- else -%}
            {%- endif -%}
          {%- else -%}
           Aucun
          {%- endif -%}
-
 
 ###### NOEL          
       compteur_noel:
@@ -1962,7 +1750,7 @@ sensor:
               Nina {{ states('sensor.nina_reveil') }}
             {%- endif %}
           {%- elif is_state("input_boolean.reveils", "off") and is_state("input_boolean.nilemato", "on") -%}
-             Aucun
+             Aucun réveil
           {%- endif %}
           
       tom_reveil_annonce:
@@ -1975,19 +1763,31 @@ sensor:
       filles_reveil_annonce:
         friendly_name: Filles Réveil annonce Alexa       
         value_template: >-
+          {% if not is_state("sensor.reveil", "Aucun") -%} 
+            Les réveils sont programmés pour :
+          {%- endif %}
           {% if not is_state("sensor.nina_reveil", "Grasse mat !") -%} 
-            Demain, debout à {{ states.sensor.nina_reveil.state }}
+            Nina, à {{ states.sensor.nina_reveil.state }}.
+          {%- endif %} 
+          {% if not is_state("sensor.leane_reveil", "Grasse mat !") -%} 
+            Léane, à {{ states.sensor.leane_reveil.state }}.
+          {%- endif %}
+          {% if not is_state("sensor.manon_reveil", "Grasse mat !") -%} 
+            Manon, à {{ states.sensor.manon_reveil.state }}.
           {%- endif %}          
 
       tom_reveil:
-        friendly_name: Réveil Tom 
+        friendly_name: Réveil Tom
         value_template: >-
           {% if states('sensor.tom_next_alarm') == 'unavailable' %}
             Grasse mat !
           {% else -%}
             {{as_timestamp(states('sensor.tom_next_alarm')) | timestamp_custom('%Hh%M') }}
           {% endif %}
-          
+      tom_reveil_date:
+        friendly_name: Réveil Tom
+        value_template: >-
+            {{as_timestamp(states('sensor.tom_next_alarm')) | timestamp_custom('%d/%m') }}
       manon_reveil:
         friendly_name: Réveil manon 
         value_template: >-
@@ -2016,7 +1816,6 @@ sensor:
             {{as_timestamp(states('sensor.nina_next_alarm')) | timestamp_custom('%Hh%M') }}
           {% endif %}
           
-          
       compteur_reveil_off:
         friendly_name: Compteur reveil eteint         
         value_template: >-
@@ -2025,7 +1824,6 @@ sensor:
            states.sensor.manon_reveil,
            states.sensor.leane_reveil,
            states.sensor.nina_reveil,
-
            ] %}
           {{ rappel | selectattr('state','eq','Grasse mat !') | list | count }}
          
@@ -2056,7 +1854,6 @@ sensor:
            ] %}
           {{ minuteur | selectattr('state','eq','unavailable') | list | count }}
 
-
       minuteur_bureau:
         friendly_name: Minuteur bureau         
         value_template: >-
@@ -2075,7 +1872,6 @@ sensor:
           {%- set days = '{}j'.format(days) if days > 0 else '' %}
           {%- set duree = days + hours + minutes %}
           Il y a {{ duree }}
-          
           
       minuteur_salon:
         friendly_name: Minuteur salon         
@@ -2107,35 +1903,29 @@ sensor:
         value_template: >-
           {{ ( as_timestamp(states('sensor.maman_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }}
           
-          
       minuteur_tom:
         friendly_name: Minuteur tom         
         value_template: >-
           {{ ( as_timestamp(states('sensor.tom_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }}
-          
           
       minuteur_nina:
         friendly_name: Minuteur nina         
         value_template: >-
           {{ ( as_timestamp(states('sensor.nina_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }}
           
-          
       minuteur_leane:
         friendly_name: Minuteur leane         
         value_template: >-
           {{ ( as_timestamp(states('sensor.leane_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }}
-          
           
       minuteur_manon:
         friendly_name: Minuteur manon         
         value_template: >-
           {{ ( as_timestamp(states('sensor.manon_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }}
           
-          
       minuteur:
         friendly_name: Minuteur          
         value_template: >-
-
           {%  if not is_state("sensor.compteur_minuteur", "11") %} 
             ⏳<font color= lightgrey><b>Minuteur :</b></font>
             {% if not is_state("sensor.le_bureau_next_timer", "unavailable") -%}  
@@ -2176,9 +1966,7 @@ sensor:
       minuteur_v2:
         friendly_name: Minuteur v2         
         value_template: >-
-
           {%  if not is_state("sensor.compteur_minuteur", "11") %} 
-            
             {% if not is_state("sensor.le_bureau_next_timer", "unavailable") -%}  
               ⏳<font color= darkgrey><b>Bureau :</b></font><br>{{ ( as_timestamp(states('sensor.le_bureau_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
             {% endif -%}
@@ -2230,7 +2018,6 @@ sensor:
            states.sensor.nina_next_reminder,
            states.sensor.leane_next_reminder,
            states.sensor.manon_next_reminder,
-
            ] %}
           {{ rappel | selectattr('state','eq','unavailable') | list | count }}
           
@@ -2284,95 +2071,6 @@ sensor:
           {%- endif %}
            
 ###### APPAREILS HS AVERTISSEMENTS ET COMPTEURS
-
-      devices_hs:
-        friendly_name: Appareils Indisponibles
-        value_template: >-      
-          {%- if states('sensor.compteur_plante_hs') | float > 0  or
-           states('sensor.compteur_yeelight_hs') | float > 0 or
-           states('sensor.compteur_zigbee_hs') | float > 0 or
-           states('sensor.compteur_echo_hs') | float > 0 or
-           states('sensor.compteur_thermo_hs') | float > 0 or
-           states('sensor.compteur_aspi_hs') | float > 0 or
-           states('sensor.compteur_noel_hs') | float > 0 or
-           states('switch.lave_vaisselle_power')  == 'unavailable' or
-           states('binary_sensor.lave_vaisselle_door')  == 'unavailable' -%}
-            ⚠️<b> <font color='red'>Indisponible :</b>
-          {% endif -%}
-          {% set sejour  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_sejour.last_changed)) /60) | round(0) %}
-          {%- if  sejour > 10  -%}
-              ❗️Bluetooth HS depuis {{ as_timestamp(states.sensor.temp_sejour.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.sensor.temp_sejour.last_changed)}})
-          {% else -%}
-          {% endif -%}
-          {%- if states('sensor.compteur_plante_hs') | float > 0  -%}
-            {{  states('sensor.compteur_plante_hs') }} Capteur(s) plantes :
-            {% if is_state("sensor.plante_hum_dracaena", "unavailable") -%}
-              • Dracaena ({{ as_timestamp(states.sensor.plante_hum_dracaena.last_changed) | timestamp_custom("%d/%m à %Hh%M") }})</b>
-            {% endif -%} 
-            {% if is_state("sensor.plante_hum_pied_elephant", "unavailable") -%}
-              • Pied d'Eléphant  ({{ as_timestamp(states.sensor.plante_hum_pied_elephant.last_changed) | timestamp_custom("%d/%m à %Hh%M") }})</b>
-            {% endif -%}
-            {% if is_state("sensor.plante_citro_humidite", "unavailable") -%}
-              • Citronnier ({{ as_timestamp(states.sensor.plante_citro_humidite.last_changed) | timestamp_custom("%d/%m à %Hh%M") }})</b>
-            {% endif -%}
-          {% endif -%} 
-          {%- if states('sensor.compteur_yeelight_hs') | float > 0  -%}
-           {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.lumieres','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
-           {% if lum_hs | length == 1 -%} 
-          Lumière : {{ lum_hs[0] }}
-           {% else -%}
-           {{ states('sensor.compteur_yeelight_hs') }} : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}
-           {% endif -%}
-          {% else -%}
-          {% endif -%}
-          {%- if states('sensor.compteur_zigbee_hs') | float > 0  -%}
-           {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.zigbee','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
-           {% if lum_hs | length == 1 -%} 
-           Zigbee : {{ lum_hs[0] }}
-           {% else -%}
-            {{ states('sensor.compteur_zigbee_hs') }} Zigbee : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}} 
-           {% endif -%}
-          {% else -%}
-          {% endif -%} 
-          {%- if states('sensor.compteur_echo_hs') | float > 0  -%}
-          {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.echos','entity_id')) | selectattr('state','in',['on','unavailable']) | map(attribute='name') | list %}
-           {% if open_doors | length == 1 -%} 
-            Echo : {{ open_doors[0] }}
-           {% else -%}
-            {{ states('sensor.compteur_echo_hs') }} Echos : {{ open_doors[:-1] | join(' , ') }}{{' ,' if open_doors | length > 2 else ' '}}et {{ open_doors[-1]}}</b>
-           {% endif -%}
-          {% endif -%}
-          {%- if states('sensor.compteur_thermo_hs') | float > 0  -%}
-           {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.thermo','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
-           {% if lum_hs | length == 1 -%} 
-           Thermomètre : {{ lum_hs[0] }}
-           {% else -%}
-            {{ states('sensor.compteur_thermo_hs') }} Thermomètres :
-               {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}
-           {% endif -%}
-          {% else -%}
-          {% endif -%}
-          {%- if states.group.noel.state == "on"  -%}
-            {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.noel','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
-            {%- if open_doors | length == 1 -%} 
-            Lumière Noël : { open_doors[0] }}
-            {%- elif open_doors | length > 1 -%}
-            Lumières Noël : {{ open_doors[:-1] | join(' , ') }} {{'' if open_doors | length == 2 else ' '}}et {{ open_doors[-1]}}
-            {%- else -%}
-            {%- endif -%}
-          {%- else -%}
-          {%- endif -%} 
-          {%- if states('vacuum.wall_e')  == 'unavailable'  -%}
-            Wall-E
-          {% endif -%}
-          {%- if states('vacuum.r2d2')  == 'unavailable'  -%}
-            R2D2
-          {% endif -%}
-          {%- if states('switch.lave_vaisselle_power')  == 'unavailable'  or 
-          states('binary_sensor.lave_vaisselle_door')  == 'unavailable' -%}
-            Lave-vaisselle
-          {% endif -%} </font>
-          
           
       compteur_plante_hs:
         friendly_name: Compteur plante indisponible          
@@ -2382,32 +2080,32 @@ sensor:
            states.sensor.plante_hum_pied_elephant,
            states.sensor.plante_citro_humidite,
            ] %}
-          {{ hs | selectattr('state','eq','unavailable') | list | count }}
+          {{ hs | selectattr('state','eq','unknown') | list | count }}
           
       plante_hs:
         friendly_name: plante Indisponible
         value_template: >-      
           {%- if states('sensor.compteur_plante_hs') | float > 0  -%}
             {{  states('sensor.compteur_plante_hs') }} Capteur(s) plantes :
-            {% if is_state("sensor.plante_hum_dracaena", "unavailable") -%}
+            {% if is_state("sensor.plante_hum_dracaena", "unknown") -%}
               • Dracaena ({{ as_timestamp(states.sensor.plante_hum_dracaena.last_changed) | timestamp_custom("%d/%m à %Hh%M") }})</b>
             {% endif -%} 
-            {% if is_state("sensor.plante_hum_pied_elephant", "unavailable") -%}
+            {% if is_state("sensor.plante_hum_pied_elephant", "unknown") -%}
               • Pied d'Eléphant  ({{ as_timestamp(states.sensor.plante_hum_pied_elephant.last_changed) | timestamp_custom("%d/%m à %Hh%M") }})</b>
             {% endif -%}
-            {% if is_state("sensor.plante_citro_humidite", "unavailable") -%}
+            {% if is_state("sensor.plante_citro_humidite", "unknown") -%}
               • Citronnier ({{ as_timestamp(states.sensor.plante_citro_humidite.last_changed) | timestamp_custom("%d/%m à %Hh%M") }})</b>
             {% endif -%}
           {% endif -%}      
           
-         
-      compteur_yeelight_hs:
-        friendly_name: Compteur Yeelight indisponible          
+      compteur_lumieres_hs:
+        friendly_name: Compteur lumières indisponibles         
         value_template: >-
           {% set hs = [
            states.light.lampe_de_bureau,
-           states.switch.light_lampe_tele_salon,
+           states.switch.lampe_tv_salon,
            states.light.bandeau_led,
+           states.light.veranda,
            states.light.entree,
            states.light.lampadaire,
            states.light.lustre_salle_a_manger,
@@ -2416,6 +2114,7 @@ sensor:
            states.light.chevet,
            states.light.chevet_tom,
            states.light.lustre_tom,
+           states.light.sonoff_10013f6d7e,
            states.light.lampe_de_bureau_tom,
            states.switch.guirlande_nina,
            states.light.chevet_nina,
@@ -2427,6 +2126,7 @@ sensor:
            states.light.lampe_manon_et_leane,
            states.light.chevet_leane,
            states.light.chevet_manon,
+           states.light.lampe_de_bureau_manon,
            states.light.couloir,
            states.light.palier,
            states.light.buffet,
@@ -2438,20 +2138,18 @@ sensor:
            states.light.wc_droit,
            states.light.wc_gauche, 
            states.light.cagibi,
-                      
            ] %}
           {{ hs | selectattr('state','eq','unavailable') | list | count }}
  
-
       lum_hs:
         friendly_name: Lumières HS pour carte Activité
         value_template: >-    
-         {%- if states('sensor.compteur_yeelight_hs') | float > 0  -%}
-           {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.lumieres','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+         {%- if states('sensor.compteur_lumieres_hs') | float > 0  -%}
+           {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('light.tout','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
            {% if lum_hs | length == 1 -%} 
           Lumière : {{ lum_hs[0] }}
            {% else -%}
-           {{ states('sensor.compteur_yeelight_hs') }}/32 lumières : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}
+           {{ states('sensor.compteur_lumieres_hs') }}/32 lumières : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}
            {% endif -%}
          {% else -%}
          {% endif -%}
@@ -2459,12 +2157,12 @@ sensor:
       lum_hs2:
         friendly_name: Lumières HS (automatisation lum hs notif)
         value_template: >-  
-         {% if states('sensor.compteur_yeelight_hs') | float > 0  -%}
-           {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.lumieres','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+         {% if states('sensor.compteur_lumieres_hs') | float > 0  -%}
+           {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('light.tout','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
            {% if lum_hs | length == 1 %} 
            Lumière HS : {{ lum_hs[0] }} 
            {% else %}
-           {{ states('sensor.compteur_yeelight_hs') }}/32 lumières HS : 
+           {{ states('sensor.compteur_lumieres_hs') }} lumières HS : 
             {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}
            {% endif %}
          {% else -%}
@@ -2486,6 +2184,7 @@ sensor:
            states.binary_sensor.porte_cagibi,
            states.binary_sensor.porte_garage,
            states.binary_sensor.mouv_salon,
+           states.binary_sensor.mouv_garage,
            states.binary_sensor.mouv_salle_a_manger,
            states.binary_sensor.mouv_escalier,
            states.binary_sensor.mouv_salle_d_eau,
@@ -2495,14 +2194,15 @@ sensor:
            states.binary_sensor.mouv_leane,
            states.binary_sensor.mouv_couloir,
            states.binary_sensor.mouv_palier,
-           states.switch.cam_sejour,
-           states.switch.camera_garage,
+           states.binary_sensor.vibrations,
            states.switch.tele_des_parents,
            states.switch.moustique_parents,
            states.switch.moustique_tom,
            states.switch.moustique_nina,
            states.switch.moustique_manon,
-           states.switch.alarme_sirene,
+           states.switch.sirene_heiman,
+           states.siren.frient,
+           states.alarm_control_panel.clavier_alarme,
            
            ] %}
           {{ hs | selectattr('state','eq','unavailable') | list | count }}
@@ -2629,24 +2329,15 @@ sensor:
         value_template: >- 
              {{ states('sensor.canon_mg4100_series_black') }}% / {{ states('sensor.canon_mg4100_series_color') }}%
 
-      imprim_on_v2:
-        friendly_name: Imprimantes
-        value_template: >- 
-          {% if not is_state("sensor.canon_mg4100_series_black", "unavailable") -%}
-            <font color='grey'><ha-icon icon="mdi:printer"></ha-icon>
-          {% endif %}           
-
 ###### COMPTEURS ET LIGHT ON
       compteur_lumiere:
         friendly_name: Compteur lumières allumées          
         value_template: >
           {% set lights = [
            states.light.lampe_de_bureau,
-           states.switch.light_lampe_tele_salon,
+           states.switch.lampe_tv_salon,
            states.light.bandeau_led,
-           states.light.trilampe_gauche,
-           states.light.trilampe_centre,
-           states.light.trilampe_droite,
+           states.light.lampe_canape,
            states.light.lampadaire,
            states.light.lustre_salle_a_manger,
            states.light.lustre_salon,
@@ -2655,6 +2346,7 @@ sensor:
            states.light.lustre_tom,
            states.light.chevet_tom,
            states.light.lampe_de_bureau_tom,
+           states.light.sonoff_10013f6d7e,
            states.light.lustre_nina,
            states.light.chevet_nina,
            states.switch.guirlande_nina,
@@ -2664,10 +2356,12 @@ sensor:
            states.light.lampe_manon_et_leane,
            states.light.chevet_leane,
            states.light.chevet_manon,
+           states.light.lampe_de_bureau_manon,
            states.switch.arbre_lumineux,
            states.light.wc_droit,
            states.light.wc_gauche,
            states.light.cagibi,
+           states.light.veranda,
            states.light.entree,
            states.light.couloir,
            states.light.palier,
@@ -2676,11 +2370,9 @@ sensor:
            states.light.escalier,
            states.switch.sapin,
            states.switch.guirlande_etoiles,
-
            ] %}
           {{ lights | selectattr('state','eq','on') | list | count }}
           
-
       compteur_sdb:
         friendly_name: Compteur sdb      
         value_template: >
@@ -2693,27 +2385,9 @@ sensor:
         friendly_name: Compteur séjour      
         value_template: >
           {% set lights = [
-           states.switch.light_lampe_tele_salon,
+           states.light.lampe_tv_salon,
            states.light.bandeau_led,
-           states.light.trilampe_gauche,
-           states.light.trilampe_centre,
-           states.light.trilampe_droite,
-           states.light.lampadaire,
-           states.light.lustre_salle_a_manger,
-           states.light.lustre_salon,
-           states.light.buffet,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
-          
-      compteur_sejour2:
-        friendly_name: Compteur séjour      
-        value_template: >
-          {% set lights = [
-           states.switch.light_lampe_tele_salon,
-           states.light.bandeau_led,
-           states.light.trilampe_gauche,
-           states.light.trilampe_centre,
-           states.light.trilampe_droite,
+           states.light.lampe_canape,
            states.light.lampadaire,
            states.light.lustre_salle_a_manger,
            states.light.lustre_salon,
@@ -2746,21 +2420,10 @@ sensor:
         friendly_name: Compteur entrée         
         value_template: >
           {% set lights = [
+           states.light.veranda,
            states.light.entree,
            states.light.couloir,
            states.light.aqara_hub_54e1,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
-          
-      compteur_entree2:
-        friendly_name: Compteur entrée2        
-        value_template: >
-          {% set lights = [
-           states.light.entree,
-           states.light.couloir,
-           states.light.aqara_hub_54e1,
-           states.light.wc_droit,
-           states.light.wc_gauche,
            ] %}
           {{ lights | selectattr('state','eq','on') | list | count }}
           
@@ -2768,16 +2431,13 @@ sensor:
         friendly_name: Compteur salon         
         value_template: >
           {% set lights = [
-           states.switch.light_lampe_tele_salon,
+           states.switch.lampe_tv_salon,
            states.light.bandeau_led,
-           states.light.trilampe_gauche,
-           states.light.trilampe_centre,
-           states.light.trilampe_droite,
+           states.light.lampe_canape,
            states.light.lustre_salon,
            ] %}
           {{ lights | selectattr('state','eq','on') | list | count }}
 
-          
       compteur_bureau:
         friendly_name: Compteur bureau         
         value_template: >
@@ -2812,6 +2472,7 @@ sensor:
            states.light.lustre_tom,
            states.light.chevet_tom,
            states.light.lampe_de_bureau_tom,
+           states.light.sonoff_10013f6d7e,
            ] %}
           {{ lights | selectattr('state','eq','on') | list | count }}  
           
@@ -2824,6 +2485,7 @@ sensor:
            states.switch.arbre_lumineux,
            states.light.chevet_leane,
            states.light.chevet_manon,
+           states.light.lampe_de_bureau_manon,
            ] %}
           {{ lights | selectattr('state','eq','on') | list | count }}   
           
@@ -2873,6 +2535,7 @@ sensor:
         value_template: >
           {% set binary_sensor = [
            states.binary_sensor.mouv_salon,
+           states.binary_sensor.mouv_camera_g3,
            states.binary_sensor.mouv_salle_a_manger,
            states.binary_sensor.mouv_couloir,
            states.binary_sensor.mouv_salle_d_eau,
@@ -2889,8 +2552,8 @@ sensor:
       mouv_on:
         friendly_name: mouvements état
         value_template: >-      
-         {%- if states.group.mouvements.state == "on"  -%}
-           {% set mouv_on = states | selectattr('entity_id', 'in', state_attr('group.mouvements','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
+         {%- if states.binary_sensor.mouvements.state == "on"  -%}
+           {% set mouv_on = states | selectattr('entity_id', 'in', state_attr('binary_sensor.mouvements','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
            {%- if mouv_on | length == 1 -%} 
            {{ mouv_on[0] }}
            {%- else -%}
@@ -2898,7 +2561,7 @@ sensor:
            {%- endif -%}
          {%- else -%}
            Aucun
-         {%- endif -%}  
+         {%- endif -%} 
          
       compteur_aspi:
         friendly_name: Compteur aspi           
@@ -2914,11 +2577,9 @@ sensor:
         value_template: >
           {% set lights = [
            states.light.lampe_de_bureau,
-           states.switch.light_lampe_tele_salon,
+           states.switch.lampe_tv_salon,
            states.light.bandeau_led,
-           states.light.trilampe_gauche,
-           states.light.trilampe_centre,
-           states.light.trilampe_droite,
+           states.light.lampe_canape,
            states.light.lampadaire,
            states.light.lustre_salle_a_manger,
            states.light.lustre_salon,
@@ -2936,6 +2597,7 @@ sensor:
            states.light.lampe_manon_et_leane,
            states.light.chevet_leane,
            states.light.chevet_manon,
+           states.light.lampe_de_bureau_manon,
            states.switch.arbre_lumineux,
            states.light.wc_droit,
            states.light.wc_gauche,
@@ -2970,28 +2632,13 @@ sensor:
            states.switch.moustique_nina,
            states.switch.moustique_tom,
            states.switch.moustique_manon,   
-           states.media_player.tv_salon,
-           states.switch.tele_des_parents, 
            states.switch.radiateur, 
-           states.group.walle,
-           states.group.r2d2, 
            states.switch.lave_vaisselle_power, 
            states.input_boolean.imprimante,
            states.input_boolean.lave_linge,
            ] %}
-          {{ (lights | selectattr('state','eq','on') | list | count)  + float(states('sensor.compteur_musique')) | round(0) }}
+          {{ (lights | selectattr('state','eq','on') | list | count)  }}
           
-      compteur_automatisation:
-        friendly_name: Compteur automatisation         
-        value_template: >
-          {% set modes = [
-           states.automation.c_est_l_heure_d_aller_a_l_ecole,
-           states.automation.icloud_resfresh,
-           states.automation.sonnette_xiaomi_2,
-           states.automation.alarme_auto_si_personne,
-           ] %}
-          {{ modes | selectattr('state','eq','on') | list | count }}          
-
       compteur_programme:
         friendly_name: Compteur modes + automatisations       
         value_template: >
@@ -3009,30 +2656,21 @@ sensor:
            ] %}
           {{ modes | selectattr('state','eq','on') | list | count }}  
           
-      compteur_camera:
-        friendly_name: Compteur cameras         
-        value_template: >
-          {% set cam = [
-           states.switch.cam_sejour,
-           states.switch.camera_garage,
-           ] %}
-          {{ cam | selectattr('state','eq','on') | list | count }}          
-
 
       compteur_pieces:
         friendly_name: Compteur pièces         
         value_template: >
           {% set lights = [
-           states.group.sejour,
-           states.group.bureau,
-           states.group.entree,
-           states.group.salle_d_eau,
-           states.group.garage,
-           states.group.chambre_des_parents,
-           states.group.tom,
-           states.group.manon_et_leane,
-           states.group.nina,
-           states.group.escaliers,
+           states.light.sejour,
+           states.light.lampe_de_bureau,
+           states.light.entree_et_couloir,
+           states.light.lavabo,
+           states.light.cagibi,
+           states.light.parents,
+           states.light.tom,
+           states.light.manon_et_leane,
+           states.light.nina,
+           states.light.escaliers,
            ] %}
           {{ lights | selectattr('state','eq','on') | list | count }}
           
@@ -3040,11 +2678,11 @@ sensor:
         friendly_name: Compteur pièces         
         value_template: >
           {% set lights = [
-           states.light.sejour2,
-           states.group.entree,
-           states.group.salle_d_eau,
-           states.group.garage,
-           states.group.chambre_des_parents,
+           states.light.sejour,
+           states.light.entree_et_couloir,
+           states.light.lavabo,
+           states.light.cagibi,
+           states.light.parents,
            ] %}
           {{ lights | selectattr('state','eq','on') | list | count }}
           
@@ -3052,10 +2690,10 @@ sensor:
         friendly_name: Compteur pièces         
         value_template: >
           {% set lights = [
-           states.group.tom,
-           states.group.manon_et_leane,
-           states.group.nina,
-           states.group.escaliers,
+           states.light.tom,
+           states.light.manon_et_leane,
+           states.light.nina,
+           states.light.escaliers,
            states.switch.radiateur,
            ] %}
           {{ lights | selectattr('state','eq','on') | list | count }}
@@ -3085,8 +2723,8 @@ sensor:
       moustiques:
         friendly_name: moustiques
         value_template: >-  
-         {%- if states.group.moustique_prises.state == "on"  -%}
-           {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.moustique_prises','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
+         {%- if states.switch.moustiques.state == "on"  -%}
+           {% set open_doors = states | selectattr('entity_id', 'in', state_attr('switch.moustiques','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
            {%- if open_doors | length == 1 -%} 
            🐝 {{ states('sensor.compteur_moustique') }} Prises anti-moustiques : {{ open_doors[0] }}
            {%- else -%}
@@ -3097,24 +2735,19 @@ sensor:
          
 ###### LUMIERES
          
-          
       lumiere_etat:
         friendly_name: Lumières ON 
         value_template: >-  
-            {% if states.group.lumieres.state == "on" -%} 
-             {%- if states.sensor.compteur_pieces.state | float == 1  -%}
-             {% set lum_on = states | selectattr('entity_id', 'in', state_attr('group.pieces','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
-             {{ lum_on[0] }} 
-             {%- elif states.sensor.compteur_pieces.state | float == 2  -%}
-             {% set lum_on = states | selectattr('entity_id', 'in', state_attr('group.pieces','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
-             {{ lum_on[0] }} et {{ lum_on[-1]}} 
-             {%- elif states.sensor.compteur_pieces.state | float > 2 -%}
-             {% set lum_on = states | selectattr('entity_id', 'in', state_attr('group.pieces','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
-             {{ lum_on[:-1] | join(' , ') }} {{' ' if lum_on | length > 2 else ' '}} et {{ lum_on[-1]}}
-             {%- endif -%}
-            {%- else -%}
-              Aucune
-            {%- endif -%}
+          {% if states.light.tout.state == "on" -%}
+           {% set porte_on = states | selectattr('entity_id', 'in', state_attr('light.pieces','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
+           {%- if porte_on | length == 1 -%} 
+           {{ porte_on[0] }}
+           {%- else -%}
+           {{ porte_on[:-1] | join(', ') }}{{', ' if porte_on | length > 2 else ' '}}et {{ porte_on[-1]}}
+           {%- endif -%}
+          {%- else -%}
+           Aucune
+          {%- endif -%}
          
       ambiances_sejour:
         friendly_name: Ambiances séjour 
@@ -3129,56 +2762,60 @@ sensor:
           {% elif states.light.lustre_salle_a_manger.attributes.brightness == "255" and 
           states.light.lustre_salle_a_manger.attributes.color_temp == "250"  %}
            Travail             
-          {% elif states.light.sejour2.attributes.brightness == 20 and 
+          {% elif states.light.sejour.attributes.brightness == 20 and 
           states('sensor.compteur_sejour')| float == 3%}
            TV
-          {% elif states.light.sejour2.attributes.brightness == 4 and 
+          {% elif states.light.sejour.attributes.brightness == 14 and 
+          states('sensor.compteur_sejour')| float == 3%}
+           TV
+          {% elif states.light.sejour.attributes.brightness == 4 and 
           states('sensor.compteur_sejour')| float == 3%}
            TV           
-          {% elif states.light.sejour2.attributes.brightness > 240 and 
-          states('sensor.compteur_sejour')| float == 7%}
+          {% elif states.light.sejour.attributes.brightness > 240 and 
+          states('sensor.compteur_sejour')| float == 5%}
            Normale
-          {% elif states.light.sejour2.attributes.brightness > 180 and 
-          states.light.sejour2.attributes.brightness < 200 and
+          {% elif states.light.sejour.attributes.brightness > 180 and 
+          states.light.sejour.attributes.brightness < 200 and
           states.media_player.tv_salon.state == "on" and
-          states('sensor.compteur_sejour')| float == 7%}
+          states('sensor.compteur_sejour')| float == 5%}
            Normale + TV 
-          {% elif states.light.sejour2.attributes.brightness > 180 and 
-          states.light.sejour2.attributes.brightness < 200 and
+          {% elif states.light.sejour.attributes.brightness > 180 and 
+          states.light.sejour.attributes.brightness < 200 and
           states.media_player.tv_salon.state == "off" and
-          states('sensor.compteur_sejour')| float == 7%}
+          states('sensor.compteur_sejour')| float == 5%}
            Normale
-          {% elif states.light.sejour2.attributes.brightness > 45 and 
-          states.light.sejour2.attributes.brightness < 60 and
-          states('sensor.compteur_sejour')| float == 7%}
+          {% elif states.light.sejour.attributes.brightness > 45 and 
+          states.light.sejour.attributes.brightness < 60 and
+          states('sensor.compteur_sejour')| float == 5%}
            Doux
-          {% elif states.light.sejour2.attributes.brightness == 91 and 
-          states('sensor.compteur_sejour')| float == 7%}
+          {% elif states.light.sejour.attributes.brightness == 79 and 
+          states('sensor.compteur_sejour')| float == 6%}
            Repas TV
-          {% elif states.light.sejour2.attributes.brightness == 163 and 
-          states('sensor.compteur_sejour')| float == 8%}
+          {% elif states.light.sejour.attributes.brightness == 163 and 
+          states('sensor.compteur_sejour')| float == 6%}
            Repas invités
-          {% elif states.light.sejour2.attributes.brightness == 254 and 
+          {% elif states.light.sejour.attributes.brightness == 254 and 
           states('sensor.compteur_sejour')| float == 3%}
            Lecture   
-          {% elif states.light.sejour2.attributes.effect == "Slow Temp" or
-          states.light.sejour2.attributes.effect == "Noel" and 
-          states('sensor.compteur_sejour')| float == 6  %}
+          {% elif states.light.sejour.attributes.effect == "Slow Temp" or
+          states.light.sejour.attributes.effect == "Noel" and 
+          states('sensor.compteur_sejour')| float == 4  %}
            Apéro 
           {% elif states.light.bandeau_led.attributes.effect == "Noel" and
           states('sensor.compteur_sejour')| float == 2  %}
            Noël  
-          {% elif states.light.sejour2.attributes.effect == "Disco" and 
+          {% elif states.light.sejour.attributes.effect == "Disco" and 
           states('sensor.compteur_sejour')| float == 3  %}
            Disco 
-          {% elif states.light.sejour2.attributes.effect == "Slowdown" and 
-          states('sensor.compteur_sejour')| float == 9  %}
+          {% elif states.light.sejour.attributes.effect == "Slowdown" and 
+          states('sensor.compteur_sejour')| float == 7  %}
            Anniversaire           
           {% else %}
            Aucune
           {%- endif %}
           
-###### BOITE AUX LETTRES          
+###### BOITE AUX LETTRES   
+
       boite_aux_lettres:
         friendly_name: Boite aux lettre          
         value_template: >-
@@ -3203,13 +2840,11 @@ sensor:
            ] %}
           {{ binary_sensor | selectattr('state','eq','on') | list | count }}
 
-         
-
       porte_on:
         friendly_name: Porte état
         value_template: >-      
-         {%- if states.group.portes.state == "on"  -%}
-           {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.portes','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
+         {%- if states.binary_sensor.portes.state == "on"  -%}
+           {% set open_doors = states | selectattr('entity_id', 'in', state_attr('binary_sensor.portes','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
            {%- if open_doors | length == 1 -%} 
            {{ open_doors[0] }}
            {%- else -%}
@@ -3222,24 +2857,12 @@ sensor:
       portes_ouvertes:
         friendly_name: Portes ouvertes
         value_template: >-          
-         {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.portes','entity_id')) | selectattr('state','in',['on','open']) | map(attribute='name') | list %}
+         {% set open_doors = states | selectattr('entity_id', 'in', state_attr('binary_sensor.portes','entity_id')) | selectattr('state','in',['on','open']) | map(attribute='name') | list %}
          {% if open_doors | length == 1 %} 
-         Attention, la porte {{ open_doors[0] }} est ouverte.
+         Attention, la {{ open_doors[0] }} est ouverte.
          {% else %}
-         Attention, les portes : {{ open_doors[:-1] | join(' , ') }}{{' ,' if open_doors | length > 2 else ' '}} et {{ open_doors[-1]}} sont ouvertes
+         Attention, les {{ open_doors[:-1] | join(' , ') }}{{' ,' if open_doors | length > 2 else ' '}} et {{ open_doors[-1]}} sont ouvertes
          {% endif %}
-
-
-         
-###### SONNETTE
-      sonnette_hs:
-        friendly_name: Sonnette HS pour carte Activité
-        value_template: >-    
-          {% if states.binary_sensor.aarlo_connected_sonnette.state == "off" %}
-             <b><font color='red'>Sonnette Arlo déconnectée</b>
-          {% else %}
-          {% endif %}  
-          
           
 ###### TV
 
@@ -3280,7 +2903,7 @@ sensor:
       tv_salon_vol:
         friendly_name: TV salon volume
         value_template: >-      
-          {{ (state_attr('media_player.tv_salon','volume_level') |float *100)|round(0) }}
+          {{ (state_attr('media_player.tv_salon','volume_level') |float(0) *100)|round(0) }}
 
       tv_salon_sortie_audio:
         friendly_name: TV salon sortie audio
@@ -3303,12 +2926,16 @@ sensor:
       tv_parents_source:
         friendly_name: TV parents source
         value_template: >-      
-          {{ states.media_player.cube_tv.attributes.source }}   
+          {% if states.media_player.cube_tv.attributes.source == "com.amazon.tv.launcher" %}
+            Menu
+          {% else %}
+            {{ states.media_player.cube_tv.attributes.source }}
+          {% endif %}  
 
       tv_parents_vol:
         friendly_name: TV parents volume
         value_template: >-      
-          {{ (state_attr('media_player.aurel_s_fire_tv_cube','volume_level') |float *100)|round(0) }}
+          {{ (state_attr('media_player.aurel_s_fire_tv_cube','volume_level') |float(0) *100)|round(0) }}
 
       tv_parents_sortie_audio:
         friendly_name: TV parents sortie audio
@@ -3408,8 +3035,7 @@ sensor:
            states.media_player.maman,
            states.media_player.tom,
            states.media_player.nina,
-           states.media_player.leane,
-           states.media_player.manon,
+           states.media_player.grande_chambre,
            ] %}
           {{ echos | selectattr('state','eq','playing') | list | count }}
           
@@ -3430,8 +3056,7 @@ sensor:
           {% set echos = [
            states.media_player.tom,
            states.media_player.nina,
-           states.media_player.leane,
-           states.media_player.manon,
+           states.media_player.grande_chambre,
            states.media_player.la_salle_de_bain,
            ] %}
           {{ echos | selectattr('state','eq','playing') | list | count }} 
@@ -3498,7 +3123,7 @@ sensor:
             {% if is_state("media_player.la_salle_de_bain", "playing") or
             is_state("media_player.tom", "playing") or
             is_state("media_player.nina", "playing") or
-            is_state("media_player.chambre_de_manon_et_leane", "playing") or
+            is_state("media_player.grande_chambre", "playing") or
             is_state("media_player.manon", "playing") or
             is_state("media_player.leane", "playing") or
             is_state("media_player.sejour", "playing") or
@@ -3533,7 +3158,7 @@ sensor:
             {% if is_state("media_player.la_salle_de_bain", "playing") or
             is_state("media_player.tom", "playing") or
             is_state("media_player.nina", "playing") or
-            is_state("media_player.chambre_de_manon_et_leane", "playing") or
+            is_state("media_player.grande_chambre", "playing") or
             is_state("media_player.manon", "playing") or
             is_state("media_player.leane", "playing") or
             is_state("media_player.etage", "playing") -%}                
@@ -3565,7 +3190,7 @@ sensor:
                and not is_state("media_player.etage", "playing")-%}
               {{ ('- ') }}Nina <br>
             {% endif -%}
-            {% if is_state("media_player.chambre_de_manon_et_leane", "playing") 
+            {% if is_state("media_player.grande_chambre", "playing") 
                and not is_state("media_player.partout", "playing")
                and not is_state("media_player.etage", "playing")-%}
               {{ ('- ') }}Manon et Léane <br>
@@ -3638,7 +3263,7 @@ sensor:
                and not is_state("media_player.etage", "playing")-%}
               {{ ('- ') }}Nina <br>
             {% endif -%}
-            {% if is_state("media_player.chambre_de_manon_et_leane", "playing") 
+            {% if is_state("media_player.grande_chambre", "playing") 
                and not is_state("media_player.partout", "playing")
                and not is_state("media_player.etage", "playing")-%}
               {{ ('- ') }}Manon et Léane <br>
@@ -3646,13 +3271,13 @@ sensor:
             {% if is_state("media_player.manon", "playing") 
                and not is_state("media_player.partout", "playing")
                and not is_state("media_player.etage", "playing")
-               and not is_state("media_player.chambre_de_manon_et_leane", "playing") -%}
+               and not is_state("media_player.grande_chambre", "playing") -%}
               - Manon <br>
             {% endif -%}
             {% if is_state("media_player.leane", "playing") 
                and not is_state("media_player.partout", "playing")
                and not is_state("media_player.etage", "playing")
-               and not is_state("media_player.chambre_de_manon_et_leane", "playing") -%}
+               and not is_state("media_player.grande_chambre", "playing") -%}
               {{ ('- ') }}Léane <br>
             {% endif -%}
             {% if is_state("media_player.etage", "playing") -%}                
@@ -3660,7 +3285,8 @@ sensor:
             {% endif -%}
           {%  elif not is_state("sensor.compteur_musique", "0") and is_state("media_player.partout", "playing")%} 
               Partout : {{ state_attr('media_player.partout', 'media_artist')}} - <i>{{ state_attr('media_player.partout', 'media_title')}} </i>
-          {%- endif -%}          
+          {%- endif -%}    
+          
       musique_on:
         friendly_name: Musique (sans infos pour carte Markdown)          
         value_template: >-        
@@ -3689,30 +3315,9 @@ sensor:
             <font color='darkgrey'><ha-icon icon="mdi:speaker"></ha-icon><font color='lightgrey'>{{ states('sensor.compteur_musique') }}
          {%- endif -%}          
          
-###### LAVE VAISSELLE        
-      lave_vaisselle:
-        friendly_name: lave-vaisselle (carte Mardown)
-        value_template: >-   
-          {%- if states.sensor.lave_vaisselle_operation_state.state == "Run" -%}
-          🍽 <b>Lave-vaisselle : </b>Fin à {{as_timestamp(states('sensor.lave_vaisselle_remaining_program_time')) | timestamp_custom('%-Hh%M ', 'true') }}
-          {%- elif states.sensor.lave_vaisselle_operation_state.state == "Finished" -%}
-          🍽 <b>Lave-vaisselle :</b> Fini
-          {%- elif states.sensor.lave_vaisselle_operation_state.state == "Ready" -%}
-          🍽 <b>Lave-vaisselle : </b>{{ states('sensor.lave_vaisselle2') }}                
-          {%- endif -%}
-
-      lave_vaisselle_on:
-        friendly_name: lave-vaisselle (carte Mardown)
-        value_template: >-   
-          {%- if states.sensor.lave_vaisselle_operation_state.state == "Run" -%}
-           <font color='darkgrey'><ha-icon icon="mdi:dishwasher"></ha-icon>
-          {%- elif states.sensor.lave_vaisselle_operation_state.state == "Finished" -%}
-            <font color='red'><ha-icon icon="mdi:dishwasher"></ha-icon>
-          {%- elif states.sensor.lave_vaisselle_operation_state.state == "Ready" -%}
-             <font color='grey'><ha-icon icon="mdi:dishwasher"></ha-icon>
-          {%- endif -%}
+###### LAVE VAISSELLE 
           
-      lave_vaisselle2:
+      lave_vaisselle:
         friendly_name: lave-vaisselle (carte button card)
         value_template: >-   
           {% if states.sensor.lave_vaisselle_operation_state.state == "Run" %}
@@ -3752,23 +3357,16 @@ sensor:
           {% endif -%}
           
 ###### LAVE LINGE        
-      lave_linge:
-        friendly_name: lave-linge (carte Mardown)
+      lave_linge_duree:
+        friendly_name: lave-linge durée
         value_template: >-   
-          {%- if states.input_boolean.lave_linge.state == "on" -%}
-            👕 <b>Lave-linge : </b>depuis {{ as_timestamp(states.input_boolean.lave_linge.last_changed) | timestamp_custom("%Hh%M") }}
-          {%- endif -%}
-
-          
-      lave_linge2:
-        friendly_name: lave-linge (carte button card)
-        value_template: >-   
-          {% if states.input_boolean.lave_linge.state == 'on' %}
-            {{ as_timestamp(states.input_boolean.lave_linge.last_changed) | timestamp_custom("%Hh%M") }}     
+          {% if states.input_select.lave_linge.state == 'on' %}
+            {{ as_timestamp(states.input_select.lave_linge.last_changed) | timestamp_custom("%Hh%M") }}  
+          {% elif states.input_select.lave_linge.state == 'veille' %}
+            {{ as_timestamp(states.input_select.lave_linge.last_changed) | timestamp_custom("%Hh%M") }} 
           {%- else %}
           {%- endif %}
 
-          
 ###### ASPIS
 
       walle_statut:
@@ -3841,8 +3439,6 @@ sensor:
               RAS              
             {%- endif -%}
           
-         
-
       walle_state:
         friendly_name: walle state (carte aspi)
         value_template: >- 
@@ -3877,7 +3473,6 @@ sensor:
              Base
           {%- endif -%}          
 
-          
       walle_batterie:
         friendly_name: "Wall-E batterie"
         value_template: '{{ states.vacuum.wall_e.attributes.battery_level }}' 
@@ -3886,7 +3481,6 @@ sensor:
         friendly_name: "r2d2 batterie"
         value_template: '{{ states.vacuum.r2d2.attributes.battery_level }}' 
         
-          
       walle_erreur:
         friendly_name: WallE message d'erreur
         value_template: >-      
@@ -3907,8 +3501,6 @@ sensor:
             Wall-E: 
             {{ states('sensor.walle_error') }}
           {%- endif %}
-          
-          
           
       r2d2_erreur:
         friendly_name: r2d2 message d'erreur
@@ -3931,89 +3523,62 @@ sensor:
             {{ states('sensor.r2d2_error') }}        
           {%- endif %}         
           
-          
 ###### SURVEILLANCE SYSTEME          
-      systeme:
-        friendly_name: Surveillance systeme
-        value_template: >-      
-          {%- if states('sensor.disk_use_percent_home')| float < 70 and
-           states('sensor.aarlo_battery_level_sonnette')| float > 30 and
-           is_state('device_tracker.arlo_sonnette', 'home') and
-           not is_state('binary_sensor.lave_vaisselle_door', 'unavailable') and
-           not states('switch.lave_vaisselle_power')  == 'unavailable' and
-           states('sensor.cpu_temperature')| float < 65 and
-           states('sensor.compteur_yeelight_hs')| float == 0 and
-           states('sensor.compteur_zigbee_hs')| float == 0 and
-           states('sensor.compteur_aspi_hs')| float == 0 and
-           not is_state('vacuum.r2d2.state', 'error') and
-           not is_state('vacuum.walle.state', 'error') and
-           states('sensor.compteur_echo_hs')| float == 0 and
-           states('sensor.compteur_plantes_hs')| float == 0 and
-           states('sensor.compteur_noel_hs')| float == 0 and
-           states('sensor.battery_level_manon')| float > 15 and
-           states('sensor.battery_level_tom')| float > 15 and
-           states('sensor.battery_level_nina')| float > 15 and
-           states('sensor.battery_level_parents')| float > 15 and
-           states('sensor.battery_level_sejour')| float > 15 and
-           states('sensor.battery_level_cuisine')| float > 15 and
-           states('sensor.battery_level_rdc')| float > 15 and
-           states('sensor.temp_sdb_battery_level')| float > 15 -%}
-           ☑️ Tout est OK
-          {% else -%}
-           ⚠️ AVERTISSEMENT
-          {% endif -%}
 
       systeme_sidebar:
         friendly_name: Surveillance systeme sidebar
         value_template: >-    
-            {%- if is_state('sensor.systeme', '⚠️ AVERTISSEMENT') -%}
-            {% else -%}
-             Aucun<br>
-            {% endif -%}
-              {%- if states('sensor.disk_use_percent_home')| float > 70.0 -%}
-              Espace DD {{states('sensor.disk_use_percent_home')}}%<br>
-              {% endif -%}
-              {%- if states('sensor.aarlo_battery_level_sonnette')| float < 30 -%}
-              Sonnette Arlo {{states('sensor.aarlo_battery_level_sonnette')}}%<br>
-              {% endif -%}
-              {%- if is_state('device_tracker.arlo_sonnette', 'not_home') -%}
-               Sonnette Arlo déconnectée<br>
-              {% endif -%}
-              {%- if states('sensor.cpu_temperature')| float > 65 -%}
-               CPU {{states('sensor.cpu_temperature')}}°<br>
-              {% endif -%}
-              {%- if states('sensor.compteur_plante_hs') | float > 0  or
-               states('sensor.compteur_yeelight_hs') | float > 0 or
-               states('sensor.compteur_zigbee_hs') | float > 0 or
-               states('sensor.compteur_echo_hs') | float > 0 or
-               states('sensor.compteur_thermo_hs') | float > 0 or
-               states('sensor.compteur_aspi_hs') | float > 0 or
-               states('switch.lave_vaisselle_power')  == 'unavailable' or
-               states('binary_sensor.lave_vaisselle_door')  == 'unavailable' -%}
-              {% endif -%}
               {% set sejour  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_sejour.last_changed)) /60) | round(0) %}
-              {%- if  sejour > 10  -%}
-                  ❗️Bluetooth HS depuis {{ as_timestamp(states.sensor.temp_sejour.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.sensor.temp_sejour.last_changed)}})
+              {% set tom  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_tom.last_changed)) /60) | round(0) %}
+              {% set cuisine  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_cuisine.last_changed)) /60) | round(0) %}
+              {% if  sejour > 10  and tom > 10 and cuisine > 10 -%}
+                  <font color='red'>Bluetooth HS depuis {{ as_timestamp(states.sensor.temp_sejour.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.sensor.temp_sejour.last_changed)}})<br>
               {% else -%}
               {% endif -%}
-              {%- if states('sensor.compteur_plante_hs') | float > 0  -%}
-                {{  states('sensor.compteur_plante_hs') }} Capteur(s) plantes :<br>
-                {% if is_state("sensor.plante_hum_dracaena", "unavailable") -%}
-                  • Dracaena ({{ as_timestamp(states.sensor.plante_hum_dracaena.last_changed) | timestamp_custom("%d/%m à %Hh%M") }})</b>
+              {%- if is_state('camera.camera_hub_g3_2725', 'unavailable') -%}
+               Caméra séjour HS<br>
+              {% endif -%}     
+              {%- if is_state('camera.camera_g2hpro', 'unavailable') -%}
+               Caméra garage HS<br>
+              {% endif -%}
+              {%- if is_state('sensor.moniteur_qualite_air', 'unavailable') -%}
+               Moniteur Qualité de l'air HS<br>
+              {% endif -%}
+              {%- if is_state('sensor.temp_parents_aqara', 'unavailable') -%}
+               Capteur temp pour chauffage parents HS<br>
+              {% endif -%} 
+              {%- if is_state('sensor.cube_aqara_batterie', 'unavailable') -%}
+               Cube Aqara HS<br>
+              {% endif -%} 
+              {%- if states('sensor.compteur_plante_hs') | float == 1  -%}
+                {{  states('sensor.compteur_plante_hs') }} Capteur plantes :
+                {% if is_state("sensor.plante_hum_dracaena", "unknown") -%}
+                  Dracaena <br>
                 {% endif -%} 
-                {% if is_state("sensor.plante_hum_pied_elephant", "unavailable") -%}
-                  • Pied d'Eléphant  ({{ as_timestamp(states.sensor.plante_hum_pied_elephant.last_changed) | timestamp_custom("%d/%m à %Hh%M") }})</b>
+                {% if is_state("sensor.plante_hum_pied_elephant", "unknown") -%}
+                  Pied d'Eléphant<br>
                 {% endif -%}
-                {% if is_state("sensor.plante_citro_humidite", "unavailable") -%}
-                  • Citronnier ({{ as_timestamp(states.sensor.plante_citro_humidite.last_changed) | timestamp_custom("%d/%m à %Hh%M") }})</b>
+                {% if is_state("sensor.plante_citro_humidite", "unknown") -%}
+                  Citronnier <br>
+                {% endif -%}
+              {%- elif states('sensor.compteur_plante_hs') | float > 1  -%}
+                {{  states('sensor.compteur_plante_hs') }} Capteurs plantes :
+                {% if is_state("sensor.plante_hum_dracaena", "unknown") -%}
+                  Dracaena
+                {% endif -%} 
+                {% if is_state("sensor.plante_hum_pied_elephant", "unknown") -%}
+                  / Pied d'Eléphant /
+                {% endif -%}
+                {% if is_state("sensor.plante_citro_humidite", "unknown") -%}
+                  / Citronnier <br>
                 {% endif -%}
               {% endif -%} 
-              {%- if states('sensor.compteur_yeelight_hs') | float > 0  -%}
-               {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.lumieres','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+              {%- if states('sensor.compteur_lumieres_hs') | float > 0  -%}
+               {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('light.tout','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                {% if lum_hs | length == 1 -%} 
               Lumière HS : {{ lum_hs[0] }}<br>
                {% else -%}
-               {{ states('sensor.compteur_yeelight_hs') }} lumières HS : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+               {{ states('sensor.compteur_lumieres_hs') }} lumières HS : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
                {% endif -%}
               {% else -%}
               {% endif -%}
@@ -4043,7 +3608,7 @@ sensor:
                {% endif -%}
               {% else -%}
               {% endif -%}
-             {%- if states.group.noel.state == "on"  -%}
+              {%- if states.group.noel.state == "on"  -%}
                {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.noel','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                {%- if open_doors | length == 1 -%} 
                Lumière Noël HS : { open_doors[0] }}
@@ -4051,8 +3616,20 @@ sensor:
                Lumières Noël HS : {{ open_doors[:-1] | join(' , ') }} {{'' if open_doors | length == 2 else ' '}}et {{ open_doors[-1]}}
                {%- else -%}
                {%- endif -%}
-             {%- else -%}
-             {%- endif -%} 
+              {%- else -%}
+              {%- endif -%} 
+              {%- if states('sensor.disk_use_percent_home')| float > 70.0 -%}
+              Espace DD {{states('sensor.disk_use_percent_home')}}%<br>
+              {% endif -%}
+              {%- if is_state('device_tracker.arlo_sonnette', 'not_home') -%}
+               Sonnette Arlo déconnectée<br>
+              {% endif -%}
+              {%- if is_state('climate.chauffage_parents', 'unavailable') -%}
+               Chauffage parents HS<br>
+              {% endif -%}              
+              {%- if states('sensor.cpu_temperature')| float > 65 -%}
+               CPU {{states('sensor.cpu_temperature')}}°<br>
+              {% endif -%}
               {%- if states('vacuum.wall_e')  == 'unavailable'  -%}
                 Wall-E indisponible<br>
               {% endif -%}
@@ -4106,49 +3683,291 @@ sensor:
               states('binary_sensor.lave_vaisselle_door')  == 'unavailable' -%}
                 Lave-vaisselle HS<br>
               {% endif -%} 
-               {%- if states('sensor.battery_level_manon')| float < 16 -%}
-                Thermo Manon {{ states('sensor.battery_level_manon') }}%<br>
+              {%- if states('sensor.aarlo_battery_level_sonnette')| float < 30 -%}
+              Sonnette Arlo {{states('sensor.aarlo_battery_level_sonnette')}}%<br>
+              {% endif -%}
+               {%- if states.sensor.manon_thermo_batterie.state != "unavailable" and states('sensor.manon_thermo_batterie')| float < 16 -%}
+                Thermo Manon {{ states('sensor.manon_thermo_batterie') }}%<br>
                {%- endif -%}
-               {%- if states('sensor.battery_level_tom')| float < 16 -%}
-                Thermo Tom {{ states('sensor.battery_level_tom') }}%<br>
+               {%- if states.sensor.tom_thermo_batterie.state != "unavailable" and states('sensor.tom_thermo_batterie')| float < 16 -%}
+                Thermo Tom {{ states('sensor.tom_thermo_batterie') }}%<br>
                {%- endif -%}
-               {%- if states('sensor.battery_level_nina')| float < 16 -%}
-               Thermo Nina {{ states('sensor.battery_level_nina') }}%<br>
+               {%- if states.sensor.nina_thermo_batterie.state != "unavailable" and states('sensor.nina_thermo_batterie')| float < 16 -%}
+               Thermo Nina {{ states('sensor.nina_thermo_batterie') }}%<br>
                {%- endif -%}
-               {%- if states('sensor.battery_level_parents')| float < 16 -%}
-               Thermo Parents {{ states('sensor.battery_level_parents') }}%<br>
+               {%- if states.sensor.parents_thermo_batterie.state != "unavailable" and states('sensor.parents_thermo_batterie')| float < 16 -%}
+               Thermo Parents {{ states('sensor.parents_thermo_batterie') }}%<br>
                {%- endif -%}
-               {%- if states('sensor.battery_level_sejour')| float < 16 -%}
-               Thermo Séjour {{ states('sensor.battery_level_sejour') }}%<br>
+               {%- if states.sensor.sejour_thermo_batterie.state != "unavailable" and states('sensor.sejour_thermo_batterie')| float < 16 -%}
+               Thermo Séjour {{ states('sensor.sejour_thermo_batterie') }}%<br>
                {%- endif -%}
-               {%- if states('sensor.battery_level_cuisine')| float < 16  -%}
-               Thermo Cuisine {{ states('sensor.battery_level_cuisine') }}%<br>
+               {%- if states.sensor.cuisine_thermo_batterie.state != "unavailable" and states('sensor.cuisine_thermo_batterie')| float < 16  -%}
+               Thermo Cuisine {{ states('sensor.cuisine_thermo_batterie') }}%<br>
                {%- endif -%}
-               {%- if states('sensor.battery_level_rdc')| float < 16 -%}
-               Thermo Couloir {{ states('sensor.battery_level_rdc') }}%<br>
+               {%- if states.sensor.couloir_thermo_batterie.state != "unavailable" and states('sensor.couloir_thermo_batterie')| float < 16 -%}
+               Thermo Couloir {{ states('sensor.couloir_thermo_batterie') }}%<br>
                {%- endif -%}
-               {%- if states('sensor.temp_sdb_battery_level')| float < 16 -%}
+               {%- if states.sensor.temp_sdb_battery_level.state != "unavailable" and states('sensor.temp_sdb_battery_level')| float < 16 -%}
                Thermo Salle de bain {{ states('sensor.temp_sdb_battery_level') }}%<br>
                {%- endif -%}
-          
-      devices_on:
-        friendly_name: Surveillance systeme
-        value_template: >-      
-          {%- if is_state('switch.radiateur', 'on') or
-           is_state('group.moustique_prises', 'on') or
-           is_state('group.tv', 'on') or
-           is_state('input_boolean.musique', 'on') or
-           is_state('group.aspis', 'on') or
-           is_state('switch.lave_vaisselle_power', 'on') or
-           is_state('input_boolean.lave_linge', 'on') or
-           is_state('input_boolean.imprimante', 'on') 
-          -%}
-            oui
-          {% else -%}
-            non
-          {% endif -%}       
+              {% set interr_hs = states | selectattr('entity_id', 'in', state_attr('group.interrupteurs','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+              {% if interr_hs | length == 0 -%}
+              {% elif interr_hs | length == 1 -%} 
+              Interrupteur : {{ interr_hs[0] }}
+              {% else -%}
+              Interrupteurs : {{ interr_hs[:-1] | join(' , ') }}{{' ,' if interr_hs | length > 2 else ' '}} et {{ interr_hs[-1]}}
+              {% endif -%}
 
-         
+      systeme_sidebar_v2:
+        friendly_name: Surveillance systeme sidebar
+        value_template: >-  
+          {{ states('sensor.systeme_bluetooth_hs') }}
+          {{ states('sensor.systeme_plante_hs') }}
+          {{ states('sensor.systeme_lumieres_hs') }}
+          {{ states('sensor.systeme_zigbee_hs') }}
+          {{ states('sensor.systeme_echos_hs') }}
+          {{ states('sensor.systeme_thermo_hs') }}
+          {{ states('sensor.systeme_interr_hs') }}
+          {{ states('sensor.systeme_noel_hs') }}
+          {{ states('sensor.systeme_espace_ssd') }}
+          {{ states('sensor.systeme_sonnette_hs') }}
+          {{ states('sensor.systeme_temp_rpi') }}
+          {{ states('sensor.systeme_aspis_hs') }}
+          {{ states('sensor.systeme_aspis_erreur') }}
+          {{ states('sensor.systeme_lave_vaisselle_hs') }}
+          {{ states('sensor.systeme_sonnette_batterie') }}
+          {{ states('sensor.systeme_thermo_batterie') }}
+
+      systeme_bluetooth_hs:
+        friendly_name: Surveillance Bluetooth 
+        value_template: >-
+              {% set sejour  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_sejour.last_changed)) /60) | round(0) %}
+              {% set tom  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_tom.last_changed)) /60) | round(0) %}
+              {% set cuisine  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_cuisine.last_changed)) /60) | round(0) %}
+              {% if  sejour > 10  and tom > 10 and cuisine > 10 -%}
+                  <font color='red'>Bluetooth HS depuis {{ as_timestamp(states.sensor.temp_sejour.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.sensor.temp_sejour.last_changed)}})<br>
+              {% else -%}
+              {% endif -%}
+      systeme_plante_hs:
+        friendly_name: Surveillance Plantes 
+        value_template: >-
+              {%- if states('sensor.compteur_plante_hs') | float == 1  -%}
+                {{  states('sensor.compteur_plante_hs') }} Capteur plantes :
+                {% if is_state("sensor.plante_hum_dracaena", "unknown") -%}
+                  Dracaena <br>
+                {% endif -%} 
+                {% if is_state("sensor.plante_hum_pied_elephant", "unknown") -%}
+                  Pied d'Eléphant<br>
+                {% endif -%}
+                {% if is_state("sensor.plante_citro_humidite", "unknown") -%}
+                  Citronnier <br>
+                {% endif -%}
+              {%- elif states('sensor.compteur_plante_hs') | float > 1  -%}
+                {{  states('sensor.compteur_plante_hs') }} Capteurs plantes :
+                {% if is_state("sensor.plante_hum_dracaena", "unknown") -%}
+                  Dracaena
+                {% endif -%} 
+                {% if is_state("sensor.plante_hum_pied_elephant", "unknown") -%}
+                  / Pied d'Eléphant /
+                {% endif -%}
+                {% if is_state("sensor.plante_citro_humidite", "unknown") -%}
+                  / Citronnier <br>
+                {% endif -%}
+              {% endif -%} 
+      systeme_lumieres_hs:
+        friendly_name: Surveillance Lumières 
+        value_template: >-
+              {%- if states('sensor.compteur_lumieres_hs') | float > 0  -%}
+               {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('light.tout','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+               {% if lum_hs | length == 1 -%} 
+              Lumière HS : {{ lum_hs[0] }}<br>
+               {% else -%}
+               {{ states('sensor.compteur_lumieres_hs') }} lumières HS : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+               {% endif -%}
+              {% else -%}
+              {% endif -%}
+      systeme_zigbee_hs:
+        friendly_name: Surveillance Zigbee 
+        value_template: >-
+              {%- if states('sensor.compteur_zigbee_hs') | float > 0  -%}
+               {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.zigbee','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+               {% if lum_hs | length == 1 -%} 
+               Zigbee HS : {{ lum_hs[0] }}<br>
+               {% else -%}
+                {{ states('sensor.compteur_zigbee_hs') }} Zigbee HS : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+               {% endif -%}
+              {% else -%}
+              {% endif -%} 
+      systeme_echos_hs:
+        friendly_name: Surveillance Echos 
+        value_template: >-
+              {%- if states('sensor.compteur_echo_hs') | float > 0  -%}
+              {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.echos','entity_id')) | selectattr('state','in',['on','unavailable']) | map(attribute='name') | list %}
+               {% if open_doors | length == 1 -%} 
+                Echo HS : {{ open_doors[0] }}<br>
+               {% else -%}
+                {{ states('sensor.compteur_echo_hs') }} Echos HS : {{ open_doors[:-1] | join(' , ') }}{{' ,' if open_doors | length > 2 else ' '}}et {{ open_doors[-1]}}<br>
+               {% endif -%}
+              {% endif -%}
+      systeme_thermo_hs:
+        friendly_name: Surveillance thermomètres  
+        value_template: >-
+              {%- if states('sensor.compteur_thermo_hs') | float > 0  -%}
+               {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.thermo','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+               {% if lum_hs | length == 1 -%} 
+               Thermomètre HS : {{ lum_hs[0] }}<br>
+               {% else -%}
+                {{ states('sensor.compteur_thermo_hs') }} Thermomètres HS : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+               {% endif -%}
+              {% else -%}
+              {% endif -%}
+      systeme_interr_hs:
+        friendly_name: Surveillance interrupteurs 
+        value_template: >-
+              {% set interr_hs = states | selectattr('entity_id', 'in', state_attr('group.interrupteurs','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+              {% if interr_hs | length == 0 -%}
+              {% elif interr_hs | length == 1 -%} 
+              Interrupteur : {{ interr_hs[0] }}
+              {% else -%}
+              Interrupteurs : {{ interr_hs[:-1] | join(' , ') }}{{' ,' if interr_hs | length > 2 else ' '}} et {{ interr_hs[-1]}}
+              {% endif -%}
+      systeme_noel_hs:
+        friendly_name: Surveillance Noël  
+        value_template: >-
+              {%- if states.group.noel.state == "on"  -%}
+               {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.noel','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+               {%- if open_doors | length == 1 -%} 
+               Lumière Noël HS : { open_doors[0] }}
+               {%- elif open_doors | length > 1 -%}
+               Lumières Noël HS : {{ open_doors[:-1] | join(' , ') }} {{'' if open_doors | length == 2 else ' '}}et {{ open_doors[-1]}}
+               {%- else -%}
+               {%- endif -%}
+              {%- else -%}
+              {%- endif -%} 
+      systeme_espace_ssd:
+        friendly_name: Surveillance espace SSD 
+        value_template: >-
+              {%- if states('sensor.disk_use_percent_home')| float > 70.0 -%}
+              Espace DD {{states('sensor.disk_use_percent_home')}}%<br>
+              {% endif -%}
+      systeme_sonnette_hs:
+        friendly_name: Surveillance sonnette déconnectée 
+        value_template: >-
+              {%- if is_state('device_tracker.arlo_sonnette', 'not_home') -%}
+               Sonnette Arlo déconnectée<br>
+              {% endif -%}
+      systeme_temp_rpi:
+        friendly_name: Surveillance temp RPI 
+        value_template: >-
+              {%- if states('sensor.cpu_temperature')| float > 65 -%}
+               CPU {{states('sensor.cpu_temperature')}}°<br>
+              {% endif -%}
+      systeme_aspis_hs:
+        friendly_name: Surveillance aspis HS 
+        value_template: >-
+              {%- if states('vacuum.wall_e')  == 'unavailable'  -%}
+                Wall-E indisponible<br>
+              {% endif -%}
+              {%- if states('vacuum.r2d2')  == 'unavailable'  -%}
+                R2D2 indisponible<br>
+              {% endif -%}
+      systeme_aspis_erreur:
+        friendly_name: Surveillance aspis erreur 
+        value_template: >-
+              {% if states.sensor.walle_error.state == "Device stuck, clean area" %}
+                Wall-E: 
+                coincé ou bloqué ! Retirez les obstacles <br>
+              {% elif states.sensor.walle_error.state == "Docking station not reachable" %}
+                Wall-E: 
+                Impossible d'atteindre la station de charge<br>
+              {% elif states.sensor.walle_error.state == "Charging fault" %}
+                 Wall-E: 
+                 Impossible de charger correctement, assurez-vous que les surfaces de chargements sont propres  <br>          
+              {% elif states.sensor.walle_error.state == "Clean hovering sensors, move robot" %}
+                Wall-E: 
+                Problème avec les capteurs de dénivelé : nettoyez les détecteurs de dénivelé, éloignez le robot, et redémarrez-le.<br>
+              {% elif states.sensor.walle_error.state == "Wheels on top of void, move robot" %}
+                Wall-E: 
+                Roues bloquées ou suspendues, déplacez le robot<br>
+              {% elif is_state("sensor.walle_error", "unknown") -%}
+              {%- else -%}
+                Wall-E: 
+                {{ states('sensor.walle_error') }}<br>
+              {%- endif %}              
+              {% if states.sensor.r2d2_error.state == "Device stuck, clean area" %}
+                R2D2 : 
+                coincé ou bloqué ! Retirez les obstacles<br>
+              {% elif states.sensor.r2d2_error.state == "Docking station not reachable" %}
+                R2D2 : 
+                Impossible d'atteindre la station de charge<br>
+              {% elif states.sensor.r2d2_error.state == "Charging fault" %}
+                R2D2 : 
+                Impossible de charger, vérifiez que les capteurs soient propres <br>
+              {% elif states.sensor.r2d2_error.state == "Clean hovering sensors, move robot" %}
+                R2D2 : 
+                Problème avec les capteurs de dénivelé : nettoyez les, éloignez R2D2, et redémarrez-le.<br>
+              {% elif states.sensor.r2d2_error.state == "Charging fault" %}
+                R2D2 : 
+                Impossible de charger, vérifiez que les capteurs soient propres <br>
+              {% elif states.sensor.r2d2_error.state == "Wheels on top of void, move robot" %}
+                R2D2 : 
+                Roues bloquées ou suspendues, déplacez le robot<br>
+              {% elif is_state("sensor.r2d2_error", "unknown") -%} 
+              {%- else -%}
+                R2D2 : 
+                {{ states('sensor.r2d2_error') }}  <br>      
+              {%- endif %} 
+      systeme_lave_vaisselle_hs:
+        friendly_name: Surveillance lave vaisselle HS 
+        value_template: >-
+              {%- if states('switch.lave_vaisselle_power')  == 'unavailable'  or 
+              states('binary_sensor.lave_vaisselle_door')  == 'unavailable' -%}
+                Lave-vaisselle HS<br>
+              {% endif -%} 
+      systeme_sonnette_batterie:
+        friendly_name: Surveillance sonnette batterie 
+        value_template: >-
+              {%- if states('sensor.aarlo_battery_level_sonnette')| float < 30 -%}
+              Sonnette Arlo {{states('sensor.aarlo_battery_level_sonnette')}}%<br>
+              {% endif -%}
+      systeme_thermo_batterie:
+        friendly_name: Surveillance thermomètres batterie 
+        value_template: >-
+               {%- if states.sensor.manon_thermo_batterie.state != "unavailable" and states('sensor.manon_thermo_batterie')| float < 16 -%}
+                Thermo Manon {{ states('sensor.manon_thermo_batterie') }}%<br>
+               {%- endif -%}
+               {%- if states.sensor.tom_thermo_batterie.state != "unavailable" and states('sensor.tom_thermo_batterie')| float < 16 -%}
+                Thermo Tom {{ states('sensor.tom_thermo_batterie') }}%<br>
+               {%- endif -%}
+               {%- if states.sensor.nina_thermo_batterie.state != "unavailable" and states('sensor.nina_thermo_batterie')| float < 16 -%}
+               Thermo Nina {{ states('sensor.nina_thermo_batterie') }}%<br>
+               {%- endif -%}
+               {%- if states.sensor.parents_thermo_batterie.state != "unavailable" and states('sensor.parents_thermo_batterie')| float < 16 -%}
+               Thermo Parents {{ states('sensor.parents_thermo_batterie') }}%<br>
+               {%- endif -%}
+               {%- if states.sensor.sejour_thermo_batterie.state != "unavailable" and states('sensor.sejour_thermo_batterie')| float < 16 -%}
+               Thermo Séjour {{ states('sensor.sejour_thermo_batterie') }}%<br>
+               {%- endif -%}
+               {%- if states.sensor.cuisine_thermo_batterie.state != "unavailable" and states('sensor.cuisine_thermo_batterie')| float < 16  -%}
+               Thermo Cuisine {{ states('sensor.cuisine_thermo_batterie') }}%<br>
+               {%- endif -%}
+               {%- if states.sensor.couloir_thermo_batterie.state != "unavailable" and states('sensor.couloir_thermo_batterie')| float < 16 -%}
+               Thermo Couloir {{ states('sensor.couloir_thermo_batterie') }}%<br>
+               {%- endif -%}
+               {%- if states.sensor.temp_sdb_battery_level.state != "unavailable" and states('sensor.temp_sdb_battery_level')| float < 16 -%}
+               Thermo Salle de bain {{ states('sensor.temp_sdb_battery_level') }}%<br>
+               {%- endif -%}
+
+      surveillance_systeme_changement_etat:
+        friendly_name: "surveillance systeme changement d'état"
+        value_template: >-
+          {% set systeme  = ((as_timestamp(now()) - as_timestamp(states.sensor.systeme_sidebar_v2.last_changed)) /60) | round(0) %}
+          {% if not is_state("sensor.systeme_sidebar_v2", "") and systeme < 1  -%}
+              hs
+          {% else -%}
+              ok
+          {% endif -%}
+          
       autres_appareils:
         friendly_name: Autres appareils 
         value_template: >-         
@@ -4163,42 +3982,30 @@ sensor:
            Aucun
          {%- endif -%}         
 
-      sidebar_activite_ras:
-        friendly_name: Sidebar Activité RAS 
-        value_template: >- 
-          {% if states('alarm_control_panel.alarme') == 'disarmed' and 
-                states('alarm_control_panel.aarlo_sonnette') == 'disarmed' and 
-                states('sensor.compteur_autre')  == '0' and
-                states('sensor.compteur_musique')  == '0' and
-                states('sensor.compteur_lumiere')  == '0' and
-                states('sensor.compteur_portes')  == '0' and
-                states('input_boolean.nilemato')  == 'off' and
-                states('sensor.compteur_rappel')  == '0' and
-                states('sensor.app_connectes')  == 'Aucun' %} 
-            RAS
-          {%- endif -%}       
         
 ###### MISE A JOUR HACS ET SUPERVISOR
           
       maj:
         friendly_name: Mise à jour 
         value_template: >-           
-          {% if states('sensor.hacs') | float == 1 and states('binary_sensor.home_assistant_versions_update_available')  == 'off' and states('binary_sensor.home_assistant_operating_system_update_available')  == 'off' and states('binary_sensor.deconz_update_available')  == 'off'%}
+          {% if states('sensor.hacs') | float == 1 and states('binary_sensor.home_assistant_versions_update_available')  == 'off' and states('update.home_assistant_operating_system_update')  == 'off' and states('update.home_assistant_supervisor_update') == 'off' %}
             Aucune
-          {% elif states('sensor.hacs') | float > 1 or states('binary_sensor.home_assistant_versions_update_available') == 'on' or states('binary_sensor.home_assistant_operating_system_update_available')  == 'on'  or states('binary_sensor.deconz_update_available')  == 'on' -%}   
+          {% elif states('sensor.hacs') | float > 1 or states('binary_sensor.home_assistant_versions_update_available') == 'on' or states('update.home_assistant_operating_system_update')  == 'on' or states('update.home_assistant_supervisor_update') == 'on' -%}   
           {%- endif -%}
-            {%- if states('binary_sensor.home_assistant_versions_update_available') == 'on' or states('binary_sensor.home_assistant_operating_system_update_available')  == 'on' or states('binary_sensor.deconz_update_available')  == 'on' %} 
+            {%- if states('binary_sensor.home_assistant_versions_update_available') == 'on' or states('update.home_assistant_operating_system_update')  == 'on' %} 
+                <b>Home Assistant :</b><br>
                {%- if states('binary_sensor.home_assistant_versions_update_available') == 'on' %} 
-                 HA Core {{ states('sensor.home_assistant_versions') }}<br>
+                 HA Core {{state_attr('update.home_assistant_core_update','installed_version')}} -> {{ states('sensor.home_assistant_versions') }}<br>
                {%- endif -%}
-               {%- if states('binary_sensor.home_assistant_operating_system_update_available')  == 'on' %} 
+               {%- if states('update.home_assistant_supervisor_update') == 'on' %} 
+                 HA Supervisor {{state_attr('update.home_assistant_supervisor_update','latest_version')}}<br>
+               {%- endif -%}
+               {%- if states('update.home_assistant_operating_system_update')  == 'on' %} 
                  HassOS {{ states('sensor.home_assistant_operating_system_version') }} → {{ states('sensor.home_assistant_operating_system_newest_version') }}<br>
-               {%- endif -%}
-               {%- if states('binary_sensor.deconz_update_available')  == 'on' %}
-                 deCONZ {{ states.sensor.deconz_version.state }} → {{ states.sensor.deconz_newest_version.state }}<br>
                {%- endif -%}
             {%- endif -%}
             {%- if states('sensor.hacs') | float > 1  %}
+                <b>Hacs :</b><br>
                 {% for repo in states.sensor.hacs.attributes.repositories -%}
                 {{ repo.display_name }} ({{ repo["available_version"] }})<br>
                 {% endfor %} 
@@ -4206,6 +4013,16 @@ sensor:
           {%- endif -%}    
           
 ###### PERSONNES PRESENTES
+      compteur_personnes:
+        friendly_name: Compteur Personnes à la maison         
+        value_template: >-
+          {% set pers = [
+           states.sensor.alex_gps,
+           states.sensor.aurel_gps,
+           states.sensor.tom_gps,           
+           ] %}
+          {{ pers | selectattr('state','eq','Maison') | list | count }}
+          
       compteur_home:
         friendly_name: Compteur Personnes à la maison         
         value_template: >-
@@ -4228,7 +4045,6 @@ sensor:
            {% endif %}  
          {% else %}
          {% endif %}
-
 
       person_home:
         friendly_name: Personnes à la maison
@@ -4258,6 +4074,8 @@ sensor:
             Sport           
           {% elif states.person.alex.state == "Collège" %}
             Collège 
+          {% elif states.person.alex.state == "Lycée" %}
+            Lycée 
           {% elif states.person.alex.state == "Complexe sportif" %}
             Complexe sportif  
           {% elif states.person.alex.state == "Atoll" %}
@@ -4283,6 +4101,8 @@ sensor:
             Au sport           
           {% elif states.person.alex.state == "Collège" %}
             Au collège 
+          {% elif states.person.alex.state == "Lycée" %}
+            Au Lycée 
           {% elif states.person.alex.state == "Complexe sportif" %}
             Au Complexe sportif  
           {% elif states.person.alex.state == "Atoll" %}
@@ -4352,6 +4172,8 @@ sensor:
             Sport
           {% elif states.person.herve.state == "Collège" %}
             Collège 
+          {% elif states.person.herve.state == "Lycée" %}
+            Lycée 
           {% elif states.person.herve.state == "Complexe sportif" %}
             Complexe sportif   
           {% elif states.person.herve.state == "Atoll" %}
@@ -4434,7 +4256,7 @@ sensor:
       manon_duree:
         friendly_name: "manon duree"
         value_template: >-
-          {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.tablette_manon.last_changed)) | int  %}
+          {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.manon_tab_ping.last_changed)) | int  %}
           {%- set minutes = ((time % 3600) // 60) %}
           {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
           {%- set hours = ((time % 86400) // 3600) %}
@@ -4447,6 +4269,18 @@ sensor:
         friendly_name: "leane duree"
         value_template: >-
           {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.leane_tab_ping.last_changed)) | int  %}
+          {%- set minutes = ((time % 3600) // 60) %}
+          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
+          {%- set hours = ((time % 86400) // 3600) %}
+          {%- set hours = '{}h '.format(hours) if hours > 0 else '' %}
+          {%- set days = (time // 86400) %}
+          {%- set days = '{}j '.format(days) if days > 0 else '' %}
+          {{ '- de 1min' if time < 60 else days + hours +  minutes }}
+          
+      nina_duree:
+        friendly_name: "nina duree"
+        value_template: >-
+          {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.aurel_ipad_ping.last_changed)) | int  %}
           {%- set minutes = ((time % 3600) // 60) %}
           {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
           {%- set hours = ((time % 86400) // 3600) %}
@@ -4539,13 +4373,13 @@ sensor:
         friendly_name: Apple Watch lumiere
         value_template: >-
           {% if states.sensor.compteur_lumiere.state > "0"  -%}
-            {% if states.group.sejour.state == "on"  -%}
+            {% if states.light.sejour.state == "on"  -%}
               🛋️ 
             {% endif -%}
             {% if states.light.lampe_de_bureau.state == "on"  -%}
               🖥️ 
             {% endif -%}
-            {% if states.group.salle_d_eau.state == "on"  -%}
+            {% if states.light.lavabo.state == "on"  -%}
               🚾 
             {% endif -%}
           {% endif -%}
@@ -4599,12 +4433,12 @@ device_tracker:
     scan_interval: 12
     hosts:
       aurel_mac_ping: 192.168.1.39
-      aurel_iphone_ping: 192.168.1.51
-      aurel_ipad_ping: 192.168.1.43      
-      alex_mac_ping: 192.168.1.12
+      aurel_iphone_ping: 192.168.1.47
+      aurel_ipad_ping: 192.168.1.46      
+      alex_mac_ping: 192.168.1.10
       alex_iphone_ping: 192.168.1.76
-      tom_iphone_ping: 192.168.1.35
-      tom_mac_ping: 192.168.1.34
+      tom_iphone_ping: 192.168.1.23
+      tom_mac_ping: 192.168.1.60
       #tom_watch_ping: 192.168.1.76
       leane_tab_ping: 192.168.1.31
       manon_tab_ping: 192.168.1.77     
@@ -4613,9 +4447,9 @@ device_tracker:
     consider_home: 60
     scan_interval: 12
     hosts:
-      aurel_iphone: 192.168.1.114
-      alex_iphone: 192.168.1.74
-      tom_iphone: 192.168.1.35
+      aurel_iphonedetect: 192.168.1.47
+      alex_iphonedetect: 192.168.1.76
+      tom_iphonedetect: 192.168.1.23
 
 #############################################
 ##                                         ##
@@ -4627,11 +4461,14 @@ alarm_control_panel:
     name: Alarme
     code: !secret alarme_code 
     code_arm_required: false
-    arming_time: 45
-    delay_time: 15
-    armed_away:
-      arming_time: 45
-      delay_time: 15
+    arming_time: 50 #secondes pour quitter le bâtiment avant de déclencher l'alarme
+    delay_time: 20 #secondes pour désarmer l'alarme au retour
+    armed_away: # mode absent 
+      arming_time: 50 #secondes pour quitter le bâtiment avant de déclencher l'alarme
+      delay_time: 20 #secondes pour désarmer l'alarme au retour
+    armed_night: # mode nuit
+      arming_time: 0 #secondes pour quitter le bâtiment avant de déclencher l'alarme
+      delay_time: 20 #secondes pour désarmer l'alarme au retour
     disarmed:
       trigger_time: 0
 
