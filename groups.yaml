@@ -1,0 +1,175 @@
+Interrupteurs: 
+    entities:
+      - sensor.inter_entree_batterie
+      - sensor.inter_couloir_batterie
+      - sensor.inter_chambre_parents_batterie
+      - sensor.inter_salon_batterie
+      - sensor.inter_salle_a_manger_batterie
+      - sensor.inter_ambiances_sejour_batterie
+      - sensor.inter_salle_d_eau_batterie
+      - sensor.inter_chambre_tom_batterie
+      - sensor.inter_chevet_tom_batterie
+      - sensor.inter_grande_chambre_batterie
+      - sensor.inter_chevet_leane_batterie
+      - sensor.inter_chevet_manon_batterie
+      - sensor.inter_chambre_nina_batterie
+      - sensor.inter_chevet_nina_batterie
+      - sensor.inter_palier_batterie
+Annonces:
+    entities:
+      - script.cest_lheure_daller_a_lecole
+      - script.1590760144160
+      - script.a_table
+      - script.gouter
+      - script.annonce_au_lit
+      - script.tom_va_se_coucher
+      - script.reveille_tom_annonce_alexa
+      
+Autre: 
+    entities:
+      - switch.lave_vaisselle_power
+      - switch.radiateur
+      - input_boolean.imprimante
+      - input_boolean.lave_linge
+      - switch.moustiques
+      
+Machines:
+    entities:
+      - switch.lave_vaisselle_power
+      - input_boolean.lave_linge
+     
+      
+Thermo: 
+    entities:
+      - sensor.temp_manon
+      - sensor.temp_tom
+      - sensor.temp_nina
+      - sensor.temp_parents
+      - sensor.temp_couloir_rdc
+      - sensor.temp_sejour
+      - sensor.temp_salle_de_bain
+      - sensor.temp_cuisine
+
+Echos:
+    entities:
+      - media_player.sejour
+      - media_player.le_salon
+      - media_player.le_bureau
+      - media_player.la_cuisine
+      - media_player.tom
+      - media_player.nina
+      - media_player.leane
+      - media_player.manon
+      - media_player.papa
+      - media_player.maman
+      - media_player.la_salle_de_bain
+    icon: mdi:music
+      
+TV:
+    entities:
+      - media_player.tv_salon
+      - media_player.cube_tv
+      - media_player.fire_tv_stick_4k
+      - switch.tele_des_parents
+    icon: mdi:television-play
+    
+PC Tablette:
+    entities:
+      - device_tracker.pc_a_on_2
+      - device_tracker.galaxy_tab_a
+    icon: mdi:tablet
+
+Réveils:
+    entities:
+      - sensor.manon_next_alarm
+      - sensor.nina_next_alarm
+      - sensor.tom_next_alarm
+      - sensor.leane_next_alarm
+    icon: mdi:alarm-note
+
+Tracker BT:
+    entities:
+      - device_tracker.alex_iphone
+      - device_tracker.iphone_tom
+      - device_tracker.iphoneaurel
+      
+Noel:
+    entities:
+      - switch.guirlande_etoiles
+      - switch.sapin
+      - script.ambiance_noel
+
+Mode:
+    entities:
+      - input_boolean.nilemato
+      - automation.annonce_ecole
+      - input_boolean.belle_saison
+      - input_boolean.piscine
+      - input_boolean.vacances
+      - input_boolean.noel
+      - input_boolean.halloween
+
+Aspis:
+    entities:
+      - vacuum.wall_e
+      - vacuum.r2d2
+Walle:
+    entities:
+      - vacuum.wall_e
+R2D2:
+    entities:
+      - vacuum.r2d2
+      
+Zigbee:
+    entities:
+      - switch.piscine
+      - binary_sensor.boite_aux_lettres
+      - switch.radiateur
+      - binary_sensor.porte_chambre_parents
+      - binary_sensor.porte_entree
+      - binary_sensor.porte_salle_a_manger
+      - binary_sensor.porte_cuisine
+      - binary_sensor.porte_cagibi
+      - binary_sensor.porte_garage
+      - binary_sensor.mouv_salon
+      - binary_sensor.mouv_salle_a_manger
+      - binary_sensor.mouv_escalier
+      - binary_sensor.mouv_couloir
+      - binary_sensor.mouv_salle_d_eau
+      - binary_sensor.mouv_palier
+      - binary_sensor.mouv_tom
+      - binary_sensor.mouv_manon
+      - binary_sensor.mouv_leane
+      - binary_sensor.mouv_nina
+      - binary_sensor.mouv_garage
+      - switch.tele_des_parents
+      - switch.sirene_heiman
+      - switch.moustique_parents
+      - switch.moustique_tom
+      - switch.moustique_nina
+      - switch.moustique_manon
+      - binary_sensor.vibrations
+      - siren.frient
+      - alarm_control_panel.clavier_alarme
+
+Person:
+    entities:
+      - person.herve
+      - person.alex
+      - person.tom
+      
+Enfants:
+    entities:
+      - person.tom
+      - device_tracker.tom_mac_ping
+      - device_tracker.tablette_manon
+      - device_tracker.leane_tab_ping     
+     
+Connecté:
+    entities:
+      - device_tracker.tom_mac_ping
+      - device_tracker.aurel_ipad_ping
+      - device_tracker.tablette_manon
+      - device_tracker.leane_tab_ping 
+      - device_tracker.aurel_mac_ping
+      - device_tracker.alex_mac_ping
