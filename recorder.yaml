@@ -1,0 +1,12 @@
+  purge_keep_days: 10
+  commit_interval: 30
+  exclude:
+    domains:
+      - sun
+      - weather
+    entities:
+      - camera.roborock_s50
+      - camera.roborock_s6
+    event_types:
+#      - call_service # Don't record service calls
+#      - deconz_event
