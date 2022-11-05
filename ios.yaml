@@ -1,0 +1,121 @@
+  actions:
+    - name: alarme_off
+      background_color: "black"
+      label:
+        text: "Désarmer"
+        color: "grey"
+      icon:
+        icon: mdi:shield-off
+        color: "grey"
+    - name: alarme_on
+      background_color: "black"
+      label:
+        text: "Armer Absent"
+        color: "red"
+      icon:
+        icon: mdi:shield-lock
+        color: "red"
+    - name: alarme_nuit_on
+      background_color: "black"
+      label:
+        text: "Armer Nuit"
+        color: "dodgerblue"
+      icon:
+        icon: mdi:shield-lock
+        color: "dodgerblue"
+    - name: ambiance_normale
+      background_color: "black"
+      label:
+        text: "Normale"
+        color: "gold"
+      icon:
+        icon: mdi:ceiling-light-multiple
+        color: "gold"
+    - name: ambiance_douce
+      background_color: "black"
+      label:
+        text: "Doux"
+        color: "violet"
+      icon:
+        icon: mdi:sofa
+        color: "violet"
+    - name: ambiance_tv
+      background_color: "black"
+      label:
+        text: "TV"
+        color: "red"
+      icon:
+        icon: mdi:television
+        color: "red"
+    - name: ambiance_repas
+      background_color: "black"
+      label:
+        text: "Repas"
+        color: "orange"
+      icon:
+        icon: mdi:food
+        color: "orange"        
+    - name: ambiance_repas
+      background_color: "black"
+      label:
+        text: "Repas"
+        color: "orange"
+      icon:
+        icon: mdi:food
+        color: "orange"
+    - name: tout_eteindre
+      background_color: "black"
+      label:
+        text: "Tout éteindre"
+        color: "grey"
+      icon:
+        icon: mdi:lightbulb-group-off
+        color: "grey"
+    - name: fin_ecran
+      background_color: "black"
+      label:
+        text: "Fin des écrans"
+        color: "lightgrey"
+      icon:
+        icon: phu:rooms-mancave
+        color: "lightgrey"
+    - name: a_table
+      background_color: "black"
+      label:
+        text: "A table"
+        color: "lightgrey"
+      icon:
+        icon: mdi:hamburger
+        color: "lightgrey"
+    - name: gouter
+      background_color: "black"
+      label:
+        text: "Gouter"
+        color: "lightgrey"
+      icon:
+        icon: mdi:food-croissant
+        color: "lightgrey"
+    - name: filles_coucher
+      background_color: "black"
+      label:
+        text: "Filles au lit"
+        color: "lightgrey"
+      icon:
+        icon: mdi:sleep
+        color: "lightgrey"
+    - name: tom_coucher
+      background_color: "black"
+      label:
+        text: "Tom au lit"
+        color: "lightgrey"
+      icon:
+        icon: mdi:bed
+        color: "lightgrey"
+    - name: tom_reveil
+      background_color: "black"
+      label:
+        text: "Tom réveil"
+        color: "lightgrey"
+      icon:
+        icon: mdi:alarm-snooze
+        color: "lightgrey"
