@@ -17,15 +17,10 @@ Voici ma configuration personnelle :
 - thèmes jour et nuit
 
 Je ne suis pas un expert, je suis simplement un passionné, les codes ne sont certainement pas écrits de la meilleure façon, mais j'ai réalisé ceci avec mes petites connaissances.
-
 J'écris tout moi-même donc soyez indulgents ! 😊
+
 Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées. 
 
-Je suis en mode UI.
-Je ne scinde pas mes fichiers, donc tout est dans configuration.yaml. 
-Il y a beaucoup de templates, je les rédige, et je les garde, mais ils ne servent pas tous ! 😉
-
-J'ai fait le choix de publier ma configuration intégrale, même ce qui est potentiellement inutile mais que je conserve pour le moment. 
 
 -----
 
