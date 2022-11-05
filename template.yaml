@@ -1,0 +1,33 @@
+  - sensor:
+      - name: "Gas consumption index (m³)"
+        unit_of_measurement: "m³"
+        device_class: "gas"
+        state_class: "total_increasing"
+        state: "{{ state_attr('sensor.grdf_consommation_gaz', 'index_m3') }}"
+
+      - name: "Gas consumption index (kWh)"
+        unit_of_measurement: "kWh"
+        device_class: "energy"
+        state_class: "total_increasing"
+        state: "{{ state_attr('sensor.grdf_consommation_gaz', 'index_kWh') }}" 
+
+      - name: "GRDF consommation gaz (m³)"
+        unit_of_measurement: "m³"
+        device_class: "gas"
+        state: "{{ state_attr('sensor.grdf_consommation_gaz', 'conso_m3') }}"
+        
+      - name: gas_volume
+        unit_of_measurement: 'm³'
+        state: >
+          {{ state_attr('sensor.gazpar', 'daily')[0]['end_index_m3'] | float(0) }}
+        icon: mdi:fire
+        device_class: gas
+        state_class: total_increasing
+        
+      - name: gas_energy
+        unit_of_measurement: 'kWh'      
+        state: >   
+          {{ states('sensor.gazpar') | float(0) }}
+        icon: mdi:fire
+        device_class: energy
+        state_class: total_increasing
