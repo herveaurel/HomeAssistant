@@ -1,0 +1,30 @@
+#utility_meter:
+  total_gas_volume:
+    source: sensor.gas_volume
+  daily_gas_volume:
+    source: sensor.gas_volume    
+    cycle: daily
+  weekly_gas_volume:
+    source: sensor.gas_volume    
+    cycle: weekly 
+  monthly_gas_volume:
+    source: sensor.gas_volume    
+    cycle: monthly
+  yearly_gas_volume:
+    source: sensor.gas_volume    
+    cycle: yearly
+  
+  total_gas_energy:
+    source: sensor.gas_energy
+  daily_gas_energy:
+    source: sensor.gas_energy    
+    cycle: daily
+  weekly_gas_energy:
+    source: sensor.gas_energy    
+    cycle: weekly 
+  monthly_gas_energy:
+    source: sensor.gas_energy    
+    cycle: monthly
+  yearly_gas_energy:
+    source: sensor.gas_energy    
+    cycle: yearly  
