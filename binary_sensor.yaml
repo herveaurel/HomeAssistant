@@ -1,0 +1,22 @@
+#############################################
+##                                         ##
+##                  Ping                   ##
+##                                         ##
+############################################# 
+  - platform: command_line
+    name: 'Home assistant  online'
+    command: curl -s https://www.google.com > /dev/null && echo on || echo off
+    scan_interval: 180
+    
+#############################################
+##                                         ##
+##           Arlo binary sensor            ##
+##                                         ##
+#############################################
+  - platform: aarlo
+    monitored_conditions:
+    - motion
+    - sound
+    - ding
+    - cry
+    - connectivity 
