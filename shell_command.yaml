@@ -1,0 +1,2 @@
+    grdf_get_data: '/config/gazpar/gazpar_ha.sh fetch  {{ states("input_text.grdf_user") | base64_encode }} {{ states("input_text.grdf_pwd") | base64_encode }}  {{ states("input_text.grdf_pce") }}'
+    grdf_delete_data: '/config/gazpar/gazpar_ha.sh delete' 
