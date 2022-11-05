@@ -1,0 +1,33 @@
+  - platform: bluetooth_tracker
+    interval_seconds: 60
+    consider_home: 180
+    new_device_defaults:
+      track_new_devices: true
+  - platform: bluetooth_le_tracker 
+    interval_seconds: 60
+    consider_home: 180
+    new_device_defaults:
+      track_new_devices: true  
+      
+  - platform: ping
+    consider_home: 60
+    scan_interval: 12
+    hosts:
+      aurel_mac_ping: 192.168.1.39
+      aurel_iphone_ping: 192.168.1.47
+      aurel_ipad_ping: 192.168.1.84      
+      alex_mac_ping: 192.168.1.10
+      alex_iphone_ping: 192.168.1.76
+      tom_iphone_ping: 192.168.1.83
+      tom_mac_ping: 192.168.1.60
+      #tom_watch_ping: 192.168.1.76
+      leane_tab_ping: 192.168.1.31
+      manon_tab_ping: 192.168.1.160     
+      
+  - platform: iphonedetect
+    consider_home: 60
+    scan_interval: 12
+    hosts:
+      aurel_iphonedetect: 192.168.1.47
+      alex_iphonedetect: 192.168.1.76
+      tom_iphonedetect: 192.168.1.83
