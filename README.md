@@ -8,7 +8,7 @@ Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 1
 
 -----
 
-## INTRODUCTION
+## <span style="color:blue">some *blue* text</span>INTRODUCTION
 
 Voici ma configuration personnelle :
 
