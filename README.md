@@ -23,7 +23,7 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 
 -----
 
-### ⚠️ Complètement revisité pour cette nouvelle version octobre 2022 : 
+### ⚠️ Complètement revisité pour cette nouvelle version novembre 2022 : 
 
 - Réécriture des templates button card  
 - Modifications des sensor templates  
