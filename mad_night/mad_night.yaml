@@ -3,53 +3,54 @@ mad_night:
   # Wallpaper - Fond d'écran 
   lovelace-background: 'center / cover no-repeat url("/local/wallpaper/ha-black.png") fixed'
   
-  # Icones Mouvements
-  mouv: red
-  mouv_off: rgba(0,0,0,1)
-  border_mouv: rgba(255,0,0,1)
+  # Card color
+  custom-blue: rgba(0,191,255,0.1)
+  custom-card-color-blue: rgba(0,191,255,1)
+  custom-img-cell-color-blue: rgba(0,191,255,0.3)
+  custom-icon-color-blue: rgba(0,191,255,1)
+  custom-badge-color-blue: rgba(0,191,255,0.5)
+  custom-card-color-red: rgba(255,0,0,1)
+  custom-img-cell-color-red: rgba(255,0,0,0.3)
+  custom-icon-color-red: rgba(255,0,0,1)
+  custom-badge-color-red: rgba(255,0,0,0.5)
+  custom-card-color-gold: rgba(255,255,0,1)
+  custom-img-cell-color-gold: rgba(255,255,0,0.3)
+  custom-icon-color-gold: rgba(255,215,0,1)
+  custom-card-color-yellow: rgba(255,215,0,1)
+  custom-img-cell-color-yellow: rgba(255,215,0,1)
+  custom-icon-color-yellow: rgba(255,215,0,1)
+  custom-card-color-orange: rgba(255,99,71,1)
+  custom-icon-color-orange: rgba(255,99,71,1)
+  custom-img-cell-color-orange: rgba(255,99,71,1)
+  card_border: rgba(50, 50, 50, 0.2) #rgba(190, 190, 190, 0.1)
+  card_box_shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
+  card_box_shadow_color: 1px 1px 2px 0px rgba(255, 0, 0,0.3)
   
-  # Icones portes fenêtres 
-  porte: red
-  porte_off: rgba(0,0,0,1)
-  porte_icon: red
-  
-  # Text in Cards
+  # Text color
   text_on: rgba(211,211,211,1)
   text_on_sidebar: rgba(211,211,211,1)
   text_on_info_sidebar: rgba(211,211,211,0.8)
   text_off_sidebar: rgba(211,211,211,0.6)
   text_off: rgba(211,211,211,0.8)
-  text_title: rgba(211,211,211,0.8)
   text_systeme_info: rgba(211,211,211,0.6)
-  bouton_titre_piece_name: rgba(211,211,211,1)
-  bouton_titre_piece_label: rgba(211,211,211,0.8)
   
-  # Icon
+  # Icon color
   icon_on: rgba(0,0,0,1)
   icon_off: rgba(211,211,211,0.6)
   
-  # Icon pastille
-  pastille_on: rgba(100,149,237,0.5) # IMG_CELL BUTTONS PIECES
-  pastille_off: rgba(14,19,28,0.7)   # IMG_CELL OFF
-  pastille_aspi: rgba(255,99,71,0.8) 
-  pastille_machine: rgb(30,144,255) 
-  pastille_multimedia: rgba(0, 206, 209,0.6)
-  pastille_appareil: rgba(70,130,180,0.7)  
-  pastille_mode: rgba(30,144,255,0.5)
-  pastille_imprim: rgba(255,255,255,0.8)
+  # img-cell color
+  pastille_on: steelblue #rgba(100,149,237,0.5) # IMG_CELL BUTTONS PIECES
+  pastille_off: rgba(0,0,0,0.9) #rgba(14,19,28,0.7)   # IMG_CELL OFF
+  pastille_aspi: steelblue #rgba(255,99,71,0.8) 
+  pastille_machine: steelblue #rgb(30,144,255) 
+  pastille_multimedia: steelblue #rgba(150, 150, 150,0.9) #rgba(106, 159, 217,0.9)  
+  pastille_appareil: steelblue #rgba(70,130,180,0.7) 
+  pastille_mode: steelblue #rgba(30,144,255,0.8)
+  pastille_imprim: steelblue #rgba(255,255,255,0.5)
   
   # Graphique
-  graph_line: 'rgba(63, 81, 117, 0.9)'
+  graph_line: var(--custom-badge-color-blue) #'rgba(63, 81, 117, 0.9)'
   
-  # Color custom
-  my_color2: linear-gradient(to top, rgba(32, 44, 69,0.4) 0% ,rgba(32, 44, 69,1) 100%) # BACKGROUND CARD
-  back_person: rgba(255,0,0,0.8)  
-  back_securite: rgba(255,0,0,0.6) 
-  card_border: rgba(50, 50, 50, 0.3) #rgba(190, 190, 190, 0.1)
-  card_box_shadow: 1px 1px 3px 0px rgba(128, 128, 128,0.2)
-  card_box_shadow_color: 1px 1px 5px 0px rgb(255, 0, 0)
-  color_light: var(--button-card-light-color-no-temperature)
-  slider-bar-color: rgba(var(--color_light),0.4)
   # Fonts
   primary-font-family: 'Avenir' #'Raleway,sans-serif'
   secondary-font-family: "Oxygen,sans-serif"
@@ -63,8 +64,10 @@ mad_night:
   ha-card-header-font-family: "var(--primary-font-family)"
 
   # Change the value below 6px to 0px to remove the rounded corners
+  ha-card-border-width: "0px"
   ha-card-border-radius: 13px
-  bar-card-border-radius: 8px
+  bar-card-border-radius: 13px
+  bar-card-disabled-color: red
   
   # Main colors
   primary-color: rgba(41, 128, 185, 1.0)
@@ -120,7 +123,7 @@ mad_night:
   label-badge-red: var(--primary-color)
   label-badge-blue: var(--light-primary-color)
   # Cards colors
-  ha-card-background: linear-gradient(to top, rgba(32, 44, 69,0.4) 0% ,rgba(32, 44, 69,1) 100%) #rgba(26, 40, 55, 0.5) #CARTES 
+  ha-card-background: linear-gradient(1deg, rgba(26, 40, 55,0.7), rgba(26, 40, 55,1)) #rgba(26, 40, 55, 0.5) #CARTES 
   card-background-color: rgba(26, 40, 55,1) #rgba(32, 44, 69,1) #var(--secondary-background-color) #POPUP ET CARTES DANS MENU
   popup-background-color: rgba(14,19,28,0.8)
   paper-card-background-color: var(--ha-card-background)
