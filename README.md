@@ -3,12 +3,11 @@
 Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
 
 ## Mad Geek 
-Mon tableau de bord pour PC, smartphone, tablette
-Compatible avec tous les supports, ce dashbord tient entièrement sur un ecran 13 pouces (ref MacBook Pro) et 1 colonne tient entièrement sur l'écran d'un smartphone (ref iphone 13 Pro). 
+Mon tableau de bord compatible avec PC, smartphone, tablette
 
 -----
 
-## <span style="color:blue">INTRODUCTION</span>
+## INTRODUCTION
 
 Voici ma configuration personnelle :
 
@@ -31,8 +30,7 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 - Modifications des cartes  
 - Nouvelles cartes  
 - Nouveauté : les sous-vues ! (adieu les popup de Browser Mod) 
-- Amélioration des thèmes clair et sombre 
-- Corrections de bugs divers
+- Nouveaux thèmes
 
 Et beaucoup d'autres changements ! 🤪
 Le tout harmonisé grâce aux templates button card.
