@@ -1,4 +1,6 @@
   - sensor:
+  
+######GAZ
       - name: "Gas consumption index (m³)"
         unit_of_measurement: "m³"
         device_class: "gas"
@@ -31,3 +33,73 @@
         icon: mdi:fire
         device_class: energy
         state_class: total_increasing
+
+      - name: "gaz cout jour avec abo"
+        unit_of_measurement: 'EUR /kWh'      
+        state: >   
+          {{ (states.sensor.grdf_consommation_gaz.state|float*0.0580+0.65)|float|round(2) }}
+        icon: "mdi:gas-burner"
+        device_class: "monetary"
+        state_class: "total_increasing" 
+        
+######ELECTRICITE 
+      - name: "electricite conso veille"
+        unit_of_measurement: 'kWh'      
+        state: >   
+          {{ states.sensor.myenedis_09397539765420.attributes.day_1 |float| round(2)}}
+        icon: "mdi:flash"
+        device_class: "energy"
+        state_class: "measurement"
+        
+      - name: "electricite conso kwh arrondie"
+        unit_of_measurement: 'kWh'      
+        state: >   
+          {{ states.sensor.myenedis_09397539765420.state |float| round(2)}}
+        icon: "mdi:flash"
+        device_class: "energy"
+        state_class: "total_increasing"
+        
+      - name: "electricite cout jour avec abo"
+        unit_of_measurement: 'EUR /kWh'      
+        state: >   
+          {{ (states.sensor.myenedis_09397539765420.state|float*0.1740+0.379)|float|round(2) }}
+        icon: "mdi:flash"
+        device_class: "monetary"
+        state_class: "total_increasing"
+        
+      - name: "electricite cout semaine avec abo"
+        unit_of_measurement: 'EUR'      
+        state: >   
+          {{ (states.sensor.myenedis_09397539765420.attributes.current_week|float*0.1740+2.84)|float|round(2) }}
+        icon: "mdi:flash"
+        device_class: "monetary"
+        state_class: "total_increasing"
+        
+      - name: "electricite cout mois avec abo"
+        unit_of_measurement: 'EUR'      
+        state: >   
+          {{ (states.sensor.myenedis_09397539765420.attributes.current_month|float*0.1740+11.36)|float|round(2) }}
+        icon: "mdi:flash"
+        device_class: "monetary"
+        state_class: "total_increasing"
+        
+      - name: "electricite cout annee avec abo"
+        unit_of_measurement: 'EUR'      
+        state: >   
+          {{ (states.sensor.myenedis_09397539765420.attributes.current_year|float*0.1740+136.32)|float|round(2) }}
+        icon: "mdi:flash"
+        device_class: "monetary"
+        state_class: "total_increasing"
+
+######MONITEUR QUALITE AIR 
+      - name: "moniteur qualite air temp arrondie"
+        unit_of_measurement: '°C'      
+        state: >   
+          {{ states.sensor.moniteur_qualite_air_temperature.state |float| round(2)}}
+        icon: "mdi:thermometer"
+        device_class: "temperature"
+        state_class: "measurement"        
+        
+        
+        
+          
