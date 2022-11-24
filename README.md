@@ -31,6 +31,7 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 - Nouvelles cartes  
 - Nouveauté : les sous-vues ! (adieu les popup de Browser Mod) 
 - Nouveaux thèmes
+- Utilisation des jauges HATC-GAUGE-CARD, développées par mon ami André Fortuna Gouveia, dont voici le github : https://github.com/tagcashdev/hatc-gauge-card
 
 Et beaucoup d'autres changements ! 🤪
 Le tout harmonisé grâce aux templates button card.
@@ -74,15 +75,9 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 
 
 -----
-## ONGLETS
+## ONGLETS ET SOUS-VUES
 
-### Tableau de bord avec peu d'onglets 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/onglet_1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/onglet_2.jpg) 
-
------
-## SOUS-VUES
-
-### Tableau de bord avec peu d'onglets...grace aux sous-vues ! J'en ai 30, je vous présente des exemples : 
+### Tableau de bord avec peu d'onglets...grace aux sous-vues ! J'en ai 30, voici des exemples : 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup2.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_3.jpg) 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_4.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_5.jpg) 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_6.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_7.jpg) 
