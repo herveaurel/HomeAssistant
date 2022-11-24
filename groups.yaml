@@ -38,6 +38,16 @@ Machines:
       - switch.lave_vaisselle_power
       - input_boolean.lave_linge
      
+Cameras:
+    entities:
+      - camera.camera_hub_g3_2725
+      - camera.camera_g2hpro
+      
+Plantes:
+    entities:
+      - sensor.plante_hum_dracaena
+      - sensor.plante_hum_pied_elephant
+      - sensor.plante_citro_humidite
       
 Thermo: 
     entities:
@@ -49,6 +59,19 @@ Thermo:
       - sensor.temp_sejour
       - sensor.temp_salle_de_bain
       - sensor.temp_cuisine
+      - sensor.sonde_garage_temperature
+      
+Thermo batterie: 
+    entities:
+      - sensor.manon_thermo_batterie
+      - sensor.tom_thermo_batterie
+      - sensor.nina_thermo_batterie
+      - sensor.parents_thermo_batterie
+      - sensor.sejour_thermo_batterie
+      - sensor.cuisine_thermo_batterie
+      - sensor.couloir_thermo_batterie
+      - sensor.temp_sdb_battery_level
+      - sensor.sonde_garage_batterie
 
 Echos:
     entities:
@@ -63,6 +86,7 @@ Echos:
       - media_player.papa
       - media_player.maman
       - media_player.la_salle_de_bain
+      - media_player.le_garage
     icon: mdi:music
       
 TV:
@@ -119,38 +143,26 @@ Walle:
 R2D2:
     entities:
       - vacuum.r2d2
+
+moustiques:
+    entities:
+      - switch.moustique_parents
+      - switch.moustique_tom
+      - switch.moustique_nina
+      - switch.moustique_manon
       
 Zigbee:
     entities:
       - switch.piscine
       - binary_sensor.boite_aux_lettres
       - switch.radiateur
-      - binary_sensor.porte_chambre_parents
-      - binary_sensor.porte_entree
-      - binary_sensor.porte_salle_a_manger
-      - binary_sensor.porte_cuisine
-      - binary_sensor.porte_cagibi
-      - binary_sensor.porte_garage
-      - binary_sensor.mouv_salon
-      - binary_sensor.mouv_salle_a_manger
-      - binary_sensor.mouv_escalier
-      - binary_sensor.mouv_couloir
-      - binary_sensor.mouv_salle_d_eau
-      - binary_sensor.mouv_palier
-      - binary_sensor.mouv_tom
-      - binary_sensor.mouv_manon
-      - binary_sensor.mouv_leane
-      - binary_sensor.mouv_nina
-      - binary_sensor.mouv_garage
       - switch.tele_des_parents
       - switch.sirene_heiman
-      - switch.moustique_parents
-      - switch.moustique_tom
-      - switch.moustique_nina
-      - switch.moustique_manon
       - binary_sensor.vibrations
       - siren.frient
       - alarm_control_panel.clavier_alarme
+      - sensor.cube_aqara_batterie
+      - sensor.moniteur_qualite_air
 
 Person:
     entities:
