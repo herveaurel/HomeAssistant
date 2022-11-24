@@ -70,7 +70,7 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.jpg)
 
 ### Smartphone
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.jpeg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.png)
 
 
 -----
