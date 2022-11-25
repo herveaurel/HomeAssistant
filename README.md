@@ -32,6 +32,12 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 - Nouveauté : les sous-vues ! (adieu les popup de Browser Mod) 
 - Nouveaux thèmes
 - Utilisation des jauges HATC-GAUGE-CARD, développées par mon ami André Fortuna Gouveia, dont voici le github : https://github.com/tagcashdev/hatc-gauge-card
+- Désormais l'icone d'une pièce prend la couleur eéelle, ainsi qu'on dégradé de la couleur réelle pour la pastille et le fond de la carte : 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/piece.jpg)
+
+- Badge automatique avec icone de la zone, ou absence d'une personne
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/badge-personne.jpg)
+
 
 Et beaucoup d'autres changements ! 🤪
 Le tout harmonisé grâce aux templates button card.
