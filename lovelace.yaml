@@ -9375,41 +9375,48 @@ views:
                           - color: rgb(180, 70, 70)
                             from: 0
                             to: 40
-                  tab:
+                  bouton:
                     card:
-                      type: custom:button-card
-                      entity: sensor.ipad_aurel_battery_level
-                      icon: mdi:tablet
-                      template:
-                        - carte_personne_appareil
-                      show_state: false
-                      styles:
-                        icon:
-                          - color: |
-                              [[[
-                                if (states['device_tracker.aurel_ipad_ping'].state == "home")
-                                  return 'rgba(211,211,211,0.9)'
-                                if (states['device_tracker.aurel_ipad_ping'].state == "not_home")
-                                  return 'rgba(211,211,211,0.3)'
-                                return "red"
-                              ]]]
-                  mac:
-                    card:
-                      type: custom:button-card
-                      entity: device_tracker.aurel_mac_ping
-                      icon: mdi:desktop-mac
-                      template:
-                        - carte_personne_appareil
-                      styles:
-                        icon:
-                          - color: |
-                              [[[
-                                if (states['device_tracker.aurel_mac_ping'].state == "home")
-                                  return 'rgba(211,211,211,0.9)'
-                                if (states['device_tracker.aurel_mac_ping'].state == "not_home")
-                                  return 'rgba(211,211,211,0.3)'
-                                return "red"
-                              ]]]
+                      type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          entity: sensor.ipad_aurel_battery_level
+                          icon: mdi:tablet
+                          template:
+                            - carte_bouton
+                            - carte_bouton_state
+                          styles:
+                            icon:
+                              - color: |
+                                  [[[
+                                    if (states['device_tracker.aurel_ipad_ping'].state == "home")
+                                      return 'rgba(211,211,211,0.9)'
+                                    if (states['device_tracker.aurel_ipad_ping'].state == "not_home")
+                                      return 'rgba(211,211,211,0.3)'
+                                    return "red"
+                                  ]]]
+                        - type: custom:button-card
+                          entity: device_tracker.aurel_mac_ping
+                          icon: mdi:desktop-mac
+                          template:
+                            - carte_bouton
+                            - carte_bouton_state
+                          styles:
+                            icon:
+                              - color: |
+                                  [[[
+                                    if (states['device_tracker.aurel_mac_ping'].state == "home")
+                                      return 'rgba(211,211,211,0.9)'
+                                    if (states['device_tracker.aurel_mac_ping'].state == "not_home")
+                                      return 'rgba(211,211,211,0.3)'
+                                    return "red"
+                                  ]]]
               - type: custom:button-card
                 entity: person.alex
                 label: |
@@ -9449,46 +9456,34 @@ views:
                           - color: rgb(180, 70, 70)
                             from: 0
                             to: 40
-                  mac:
+                  bouton:
                     card:
-                      type: custom:button-card
-                      entity: sensor.macbook_alex_internal_battery_level
-                      icon: mdi:desktop-mac
-                      template:
-                        - carte_personne_appareil
-                      styles:
-                        icon:
-                          - color: |
-                              [[[
-                                if (states['device_tracker.alex_mac_ping'].state == "home" )
-                                  return 'rgba(211,211,211,0.9)'
-                                if (states['device_tracker.alex_mac_ping'].state != "home")
-                                return "rgba(211,211,211,0.3)"
-                              ]]]
-                  tab:
-                    card:
-                      type: custom:button-card
-                      entity: device_tracker.liseuse_alex
-                      icon: |
-                        [[[
-                          if (states['device_tracker.liseuse_alex'].state == "home")
-                            return 'mdi:book-open'
-                          if (states['device_tracker.liseuse_alex'].state == "not_home")
-                            return 'mdi:book-open'
-                        ]]]
-                      template:
-                        - carte_personne_appareil
-                      show_state: false
-                      styles:
-                        icon:
-                          - color: |
-                              [[[
-                                if (states['device_tracker.liseuse_alex'].state == "home")
-                                  return 'rgba(211,211,211,0.9)'
-                                if (states['device_tracker.liseuse_alex'].state == "not_home")
-                                  return 'rgba(211,211,211,0.3)'
-                                return "red"
-                              ]]]
+                      type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          entity: device_tracker.liseuse_alex
+                          icon: |
+                            [[[
+                              if (states['device_tracker.liseuse_alex'].state == "home")
+                                return 'mdi:book-open'
+                              if (states['device_tracker.liseuse_alex'].state == "not_home")
+                                return 'mdi:book-open'
+                            ]]]
+                          template:
+                            - carte_bouton
+                            - carte_bouton_state
+                        - type: custom:button-card
+                          entity: sensor.macbook_alex_internal_battery_level
+                          icon: mdi:desktop-mac
+                          template:
+                            - carte_bouton
+                            - carte_bouton_state
               - type: custom:button-card
                 entity: person.tom
                 label: |
@@ -9498,23 +9493,24 @@ views:
                 custom_fields:
                   duree: |
                     [[[return states["sensor.tom_duree"].state]]]
-                  mac:
+                  bouton:
                     card:
-                      type: custom:button-card
-                      entity: device_tracker.tom_mac_ping
-                      icon: mdi:desktop-mac
-                      template:
-                        - carte_personne_appareil
-                      styles:
-                        icon:
-                          - color: |
-                              [[[
-                                if (states['device_tracker.tom_mac_ping'].state == "home")
-                                  return 'rgba(211,211,211,0.9)'
-                                if (states['device_tracker.tom_mac_ping'].state == "not_home")
-                                  return 'rgba(211,211,211,0.3)'
-                                return "red"
-                              ]]]
+                      type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          color_type: blank-card
+                        - type: custom:button-card
+                          entity: device_tracker.tom_mac_ping
+                          icon: mdi:desktop-mac
+                          template:
+                            - carte_bouton
+                            - carte_bouton_state
               - type: custom:button-card
                 entity: person.manon
                 label: |
@@ -9557,7 +9553,7 @@ views:
                         [[[
                           if (states['input_boolean.nilemato'].state == 'on')
                             return ""
-                          return "red"
+                          return "var(--custom-icon-color-red)"
                         ]]]
                 custom_fields:
                   duree: |
@@ -10235,13 +10231,13 @@ views:
                           to: 1
               bouton:
                 card:
-                  type: grid
+                  type: horizontal-stack
                   cards:
                     - type: custom:button-card
                       entity: switch.lave_vaisselle_power
                       icon: mdi:power
                       template:
-                        - carte_appareil_bouton
+                        - carte_bouton
                       styles:
                         icon:
                           - color: |
@@ -10250,11 +10246,16 @@ views:
                                   return 'var(--custom-icon-color-blue)'
                                 return "var(--icon_off)"
                               ]]]
+                      tap_action:
+                        confirmation:
+                          text: >-
+                            [[[ return `${entity.attributes.friendly_name} :
+                            confirmer la bascule ON / OFF ?` ]]]
                     - type: custom:button-card
                       entity: switch.lave_vaisselle_program_auto2
                       icon: mdi:flag-checkered
                       template:
-                        - carte_appareil_bouton
+                        - carte_bouton
                       styles:
                         icon:
                           - color: |
@@ -10263,10 +10264,17 @@ views:
                                   return 'var(--custom-icon-color-blue)'
                                 return "var(--icon_off)"
                               ]]]
+                      tap_action:
+                        confirmation:
+                          text: >-
+                            [[[ return `${entity.attributes.friendly_name} :
+                            confirmer la bascule du programme ?` ]]]
                     - type: custom:button-card
                       entity: binary_sensor.lave_vaisselle_door
                       template:
-                        - carte_appareil_bouton
+                        - carte_bouton
+                      tap_action:
+                        action: more-info
                       styles:
                         icon:
                           - color: |
@@ -10281,8 +10289,6 @@ views:
                                   return 'var(--custom-icon-color-blue)'
                                 return "grey"
                               ]]]
-                  columns: 3
-                  square: false
           - type: custom:button-card
             entity: input_select.lave_linge
             name: Linge
@@ -10311,7 +10317,7 @@ views:
                 [[[return states['sensor.lave_linge_conso'].state+" kWh"]]]
               bouton:
                 card:
-                  type: grid
+                  type: horizontal-stack
                   cards:
                     - type: custom:button-card
                       color_type: blank-card
@@ -10323,19 +10329,16 @@ views:
                       entity: switch.lave_linge
                       icon: mdi:power-plug
                       template:
-                        - carte_appareil_bouton
+                        - carte_bouton
                         - state_unavailable
                       styles:
                         icon:
                           - color: |
                               [[[
                                 if (states['switch.lave_linge'].state == "on")
-                                  return 'var(--custom-icon-color-blue)';
+                                  return 'rgb(176, 196, 222)';
                                 return "var(--icon_off)"
                               ]]]
-                          - width: 60%
-                  columns: 4
-                  square: false
           - type: custom:button-card
             entity: switch.radiateur
             name: Chauffage SDB
@@ -15051,4 +15054,41 @@ views:
         entities:
           - entity: sensor.moniteur_qualite_air
         hours_to_show: 72
-
+  - title: test
+    path: test
+    icon: mdi:test-tube
+    layout:
+      width: 350
+      max_cols: 4
+    type: custom:horizontal-layout
+    badges:
+      - entity: vacuum.wall_e
+        style: |
+          @keyframes blinker { 50% { opacity: 0; } }
+          :host {
+            --label-badge-red: 
+              {% if is_state('vacuum.wall_e', 'cleaning') %} firebrick;
+              {% else %} rgba(0,191,205,0.5) {% endif %};
+            animation: 
+              {% if is_state('vacuum.wall_e', 'cleaning')  %}
+                blinker 1s linear infinite;
+              {% endif %};
+          }      
+      - entity: vacuum.r2d2
+        style: |
+          @keyframes blinker { 50% { opacity: 0; } }
+          :host {
+            --label-badge-red: 
+              {% if is_state('vacuum.r2d2', 'cleaning') %} firebrick;
+              {% else %} rgba(0,191,205,0.5) {% endif %};
+            animation: 
+              {% if is_state('vacuum.r2d2', 'cleaning')  %}
+                blinker 1s linear infinite;
+              {% endif %};
+          } 
+    cards:
+      - type: entities
+        entities:
+          - entity: input_select.wall_e_pieces
+          - entity: script.aspi_retour_base
+        state_color: true
