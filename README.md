@@ -7,7 +7,7 @@ Mon tableau de bord compatible avec PC, smartphone, tablette
 
 -----
 
-## ℹ️ #f03c15 INTRODUCTION
+## ℹ️ '#f03c15' INTRODUCTION
 
 Voici ma configuration personnelle :
 
