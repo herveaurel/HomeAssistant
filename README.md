@@ -38,6 +38,9 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 - Badge automatique avec icone de la zone, ou absence d'une personne
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/badge-personne.jpg)
 
+- Popup de confirmation sur le tap action de certains boutons afin d'éviter des erreurs de manipulations
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/confirmation.jpg)
+
 
 Et beaucoup d'autres changements ! 🤪
 Le tout harmonisé grâce aux templates button card.
