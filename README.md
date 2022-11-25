@@ -2,12 +2,12 @@
 
 Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
 
-## Mad Geek 
+##🤓 Mad Geek 
 Mon tableau de bord compatible avec PC, smartphone, tablette
 
 -----
 
-## INTRODUCTION
+##ℹ️ INTRODUCTION
 
 Voici ma configuration personnelle :
 
@@ -23,7 +23,7 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 
 -----
 
-### ⚠️ Complètement revisité pour cette nouvelle version novembre 2022 : 
+### 🥳 Complètement revisité pour cette nouvelle version novembre 2022 : 
 
 - Réécriture des templates button card  
 - Modifications des sensor templates  
@@ -68,7 +68,7 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_reglages.jpg)
 
 -----
-## THEMES
+##🎨 THEMES
 
 ### Theme Mad Night
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
@@ -84,7 +84,7 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 
 
 -----
-## ONGLETS ET SOUS-VUES
+##😎 ONGLETS ET SOUS-VUES
 
 ### Tableau de bord avec peu d'onglets...grace aux sous-vues ! J'en ai 30, voici des exemples : 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup2.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_3.jpg) 
@@ -95,7 +95,7 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 
 ---------------------
 
-## SETUP 
+##🖥️ SETUP 
 
 - Raspberry 4 + SSD
 - Clé USB Sonoff Zigbee 3.0
@@ -105,7 +105,7 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 
 J'utilise Alexa en vocal, et HomeKit sur l'Apple Watch
 
-## Mes appareils 
+##🔧 Mes appareils 
 
 Zigbee
 - Capteurs portes : Xiaomi et Aqara
@@ -158,7 +158,7 @@ Mes intégrations  hacs:
 
 ---------------------
 
-## MERCI 😉
+##🙏🏻 MERCI 
 
 Si vous aimez quelque chose ici, likez 🌟 mon repo !
 Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️ : https://www.buymeacoffee.com/aurelrv ou https://www.paypal.com/paypalme/aaherve
