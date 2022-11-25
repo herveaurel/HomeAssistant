@@ -607,29 +607,15 @@ button_card_templates:
         - box-shadow: var(--card_box_shadow)
         - white-space: normal
       custom_fields:
+        bouton:
+          - position: absolute
+          - top: 72%
+          - left: 50%
+          - width: calc(90% + 1px)
+          - transform: translate(-50%, calc(-50% + 10px))
         gauge:
           - position: absolute
           - top: 60%
-          - left: 50%
-          - width: calc(90% + 0px)
-          - transform: translate(-50%, calc(-50% + 10px))
-          - z-index: 12
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
-          - '--ha-card-box-shadow': none
-        gauge1:
-          - position: absolute
-          - top: 37%
-          - left: 50%
-          - width: calc(90% + 0px)
-          - transform: translate(-50%, calc(-50% + 10px))
-          - z-index: 12
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
-          - '--ha-card-box-shadow': none
-        gauge2:
-          - position: absolute
-          - top: 74%
           - left: 50%
           - width: calc(90% + 0px)
           - transform: translate(-50%, calc(-50% + 10px))
@@ -641,6 +627,91 @@ button_card_templates:
       action: more-info
     double_tap_action:
       action: toggle
+  carte_bouton:
+    show_name: false
+    show_state: false
+    show_icon: true
+    styles:
+      card:
+        - border-radius: 5px
+      icon:
+        - color: grey
+        - width: 15px
+    double_tap_action:
+      action: more-info
+    tap_action:
+      action: toggle
+  carte_bouton_state:
+    state:
+      - value: 'on'
+        styles:
+          icon:
+            - color: |-
+                [[[ 
+                  var color = '211,211,211'; // Default Color
+
+                  if( states[entity.entity_id].attributes.rgb_color != undefined)
+                    color = states[entity.entity_id].attributes.rgb_color; 
+                  
+                  return 'rgb(' + color + ',1)';
+                ]]]
+      - value: home
+        styles:
+          icon:
+            - color: rgb(176, 196, 222)
+      - value: heat
+        styles:
+          icon:
+            - color: rgb(176, 196, 222)
+      - value: armed_away
+        styles:
+          icon:
+            - color: rgb(176, 196, 222)
+      - value: playing
+        styles:
+          icon:
+            - color: rgb(176, 196, 222)
+      - value: veille
+        styles:
+          icon:
+            - color: rgb(176, 196, 222)
+      - value: 'off'
+        styles:
+          icon:
+            - color: rgb(211,211,211)
+            - opacity: 30%
+      - value: not_home
+        styles:
+          icon:
+            - color: rgb(211,211,211)
+            - opacity: 30%
+      - value: disarmed
+        styles:
+          icon:
+            - color: rgb(211,211,211)
+            - opacity: 30%
+      - value: standby
+        styles:
+          icon:
+            - color: rgb(211,211,211)
+            - opacity: 30%
+      - value: idle
+        styles:
+          icon:
+            - color: rgb(211,211,211)
+            - opacity: 30%
+      - value: paused
+        styles:
+          icon:
+            - color: rgb(211,211,211)
+            - opacity: 30%
+      - value: unavailable
+        styles:
+          icon:
+            - color: red
+            - animation: blink 0.8s ease infinite
+    tap_action:
+      action: more-info
   base_petite:
     styles:
       card:
@@ -694,17 +765,13 @@ button_card_templates:
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 8
           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)
           - '--ha-card-box-shadow': none
-        appareil:
-          - position: absolute
-          - top: 78%
-          - left: 60%
-          - width: calc(67% + 0px)
-          - transform: translate(-50%, calc(-50% + 10px))
+        bouton:
+          - top: 75%
           - z-index: 2
           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)
           - '--ha-card-box-shadow': none
         graph:
           - opacity: 70%
@@ -715,7 +782,7 @@ button_card_templates:
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 4
           - '--paper-card-background-color': rgba(0, 0, 0, 0)
-          - '--ha-card-background': rgba(0, 0, 0, 0)"
+          - '--ha-card-background': rgba(0, 0, 0, 0)
           - '--ha-card-box-shadow': none
           - pointer-events: none
         graph_fixe:
@@ -727,82 +794,9 @@ button_card_templates:
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 12
           - '--paper-card-background-color': rgba(0, 0, 0, 0)
-          - '--ha-card-background': rgba(0, 0, 0, 0)"
+          - '--ha-card-background': rgba(0, 0, 0, 0)
           - '--ha-card-box-shadow': none
           - pointer-events: none
-  carte_piece_appareil:
-    show_name: false
-    show_label: false
-    show_state: false
-    styles:
-      icon:
-        - width: 90%
-        - padding-bottom: 10px
-      card:
-        - height: 20px
-        - width: 20px
-        - border-radius: 0px
-    state:
-      - value: 'on'
-        styles:
-          icon:
-            - color: |-
-                [[[ 
-                  var color = '211,211,211'; // Default Color
-
-                  if( states[entity.entity_id].attributes.rgb_color != undefined)
-                    color = states[entity.entity_id].attributes.rgb_color; 
-                  
-                  return 'rgb(' + color + ',1)';
-                ]]]
-      - value: heat
-        styles:
-          icon:
-            - color: rgb(211,211,211)
-      - value: armed_away
-        styles:
-          icon:
-            - color: rgb(211,211,211)
-      - value: playing
-        styles:
-          icon:
-            - color: rgb(211,211,211)
-      - value: veille
-        styles:
-          icon:
-            - color: rgb(211,211,211)
-      - value: 'off'
-        styles:
-          icon:
-            - color: rgb(211,211,211)
-            - opacity: 20%
-      - value: disarmed
-        styles:
-          icon:
-            - color: rgb(211,211,211)
-            - opacity: 20%
-      - value: standby
-        styles:
-          icon:
-            - color: rgb(211,211,211)
-            - opacity: 20%
-      - value: idle
-        styles:
-          icon:
-            - color: rgb(211,211,211)
-            - opacity: 20%
-      - value: paused
-        styles:
-          icon:
-            - color: rgb(211,211,211)
-            - opacity: 20%
-      - value: unavailable
-        styles:
-          icon:
-            - color: red
-            - animation: blink 0.8s ease infinite
-    tap_action:
-      action: more-info
   piece_jauge_lumiere:
     custom_fields:
       lum:
@@ -810,8 +804,8 @@ button_card_templates:
           type: conditional
           card:
             type: custom:my-slider
-            radius: 5px
-            height: 13px
+            radius: 3px
+            height: 10px
             width: 75%
             mainSliderColor: var(--button-card-light-color-no-temperature)
             secondarySliderColor: darkslategrey
@@ -862,7 +856,7 @@ button_card_templates:
         lum:
           - position: absolute
           - top: 67%
-          - left: 50%
+          - left: 49%
           - width: calc(90% + 1px)
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 1
@@ -2093,12 +2087,12 @@ button_card_templates:
           - border-radius: 5px
           - position: absolute
           - left: 8%
-          - top: 78%
-          - height: 15px
+          - top: 77%
+          - height: 12px
           - width: auto
-          - font-size: 12px
+          - font-size: 11px
           - color: lightgrey
-          - line-height: 140%
+          - line-height: 120%
           - font-weight: bold
           - opacity: 75%
           - background-color: var(--custom-blue)
@@ -2112,32 +2106,11 @@ button_card_templates:
           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
           - '--ha-card-background': rgba(0, 0, 0, 0.0)"
           - '--ha-card-box-shadow': none
-        batterie:
-          - position: absolute
-          - top: 15%
-          - left: 87%
-          - width: calc(99% + 0px)
-          - transform: translate(-50%, calc(-50% + 0px))
+        bouton:
+          - top: 75%
+          - z-index: 2
           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
-          - '--ha-card-box-shadow': none
-        mac:
-          - position: absolute
-          - top: 90%
-          - left: 90%
-          - width: calc(30% + 1px)
-          - transform: translate(-50%, calc(-50% + 0px))
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
-          - '--ha-card-box-shadow': none
-        tab:
-          - position: absolute
-          - top: 89%
-          - left: 73%
-          - width: calc(30% + 1px)
-          - transform: translate(-50%, calc(-50% + 0px))
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)
           - '--ha-card-box-shadow': none
     custom_fields:
       notification: |
@@ -2165,38 +2138,6 @@ button_card_templates:
                 return `<ha-icon icon="${states["zone." + id_zone].attributes.icon}" style="width: 13px; height: 13px; color: white;"></ha-icon>`;
               }
             ]]]
-  carte_personne_appareil:
-    show_name: false
-    show_state: false
-    show_icon: true
-    show_label: false
-    show_last_changed: false
-    show_units: false
-    styles:
-      card:
-        - border-radius: 0px
-        - height: 33px
-        - padding: 0px
-      icon:
-        - color: rgba(211,211,211,0.8)
-        - width: 30%
-    tap_action:
-      action: more-info
-  carte_bouton:
-    show_name: false
-    show_state: false
-    show_icon: true
-    styles:
-      card:
-        - border-radius: 5px
-        - background-color: var(--custom-blue)
-      icon:
-        - color: darkgrey
-        - width: 20px
-    double_tap_action:
-      action: more-info
-    tap_action:
-      action: toggle
   carte_appareil:
     styles:
       custom_fields:
@@ -2213,22 +2154,16 @@ button_card_templates:
           - border-radius: 5px
           - position: absolute
           - left: 8%
-          - top: 72%
-          - height: 15px
+          - top: 77%
+          - height: 12px
           - width: auto
-          - font-size: 12px
+          - font-size: 11px
           - color: lightgrey
-          - line-height: 140%
+          - line-height: 120%
           - font-weight: bold
           - opacity: 75%
           - background-color: var(--custom-blue)
           - padding: 2%
-        bouton:
-          - position: absolute
-          - top: 71%
-          - left: 50%
-          - width: calc(90% + 1px)
-          - transform: translate(-50%, calc(-50% + 10px))
         barre_imprimante_noire:
           - opacity: 90%
           - position: absolute
@@ -2261,6 +2196,8 @@ button_card_templates:
           - font-size: 90%
           - font-weight: null
           - text-align: left
+        bouton:
+          - top: 80%
         barre_volume:
           - position: absolute
           - opacity: 100%
@@ -2269,13 +2206,6 @@ button_card_templates:
           - width: calc(100% + 0px)
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 1
-        volume:
-          - position: absolute
-          - opacity: 100%
-          - top: 78%
-          - left: 48.5%
-          - width: calc(90% + 1px)
-          - transform: translate(-50%, calc(-50% + 10px))
   carte_securite:
     label: |-
       [[[ 
@@ -2300,12 +2230,6 @@ button_card_templates:
           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
           - '--ha-card-background': rgba(0, 0, 0, 0.0)"
           - '--ha-card-box-shadow': none
-        bouton:
-          - position: absolute
-          - top: 70%
-          - left: 50%
-          - width: calc(90% + 1px)
-          - transform: translate(-50%, calc(-50% + 10px))
   carte_multimedia:
     aspect_ratio: 1/1
     show_entity_picture: true
@@ -3351,34 +3275,37 @@ views:
                                 entities:
                                   - color: var(--graph_line)
                                     entity: sensor.temp_sejour
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
                                 - type: custom:button-card
                                   entity: alarm_control_panel.camera_g3
                                   icon: mdi:cctv
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: media_player.tv_salon
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: media_player.sejour
                                   icon: mdi:speaker
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.mouvements_sejour
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.porte_salle_a_manger
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                         tap_action:
                           action: navigate
                           navigation_path: /lovelace/Séjour
@@ -3430,29 +3357,26 @@ views:
                               card:
                                 type: custom:my-slider
                                 entity: light.entree_et_couloir
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   entity: alarm_control_panel.aarlo_sonnette
                                   icon: mdi:cctv
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.mouv_couloir
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.porte_entree
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                           graph:
                             card:
                               type: conditional
@@ -3498,30 +3422,27 @@ views:
                         tap_action:
                           action: more-info
                         custom_fields:
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   entity: media_player.la_cuisine
                                   icon: mdi:speaker
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: switch.lave_vaisselle_power
                                   icon: phu:rooms-dining
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.porte_cuisine
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                           graph:
                             card:
                               type: conditional
@@ -3563,16 +3484,10 @@ views:
                               card:
                                 type: custom:my-slider
                                 entity: light.lavabo
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   color_type: blank-card
                                 - type: custom:button-card
@@ -3580,7 +3495,8 @@ views:
                                 - type: custom:button-card
                                   entity: binary_sensor.mouv_salle_d_eau
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                         tap_action:
                           action: navigate
                           navigation_path: /lovelace/Lavabo
@@ -3625,32 +3541,32 @@ views:
                               card:
                                 type: custom:my-slider
                                 entity: light.parents
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   entity: switch.moustique_parents
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: media_player.chambre_des_parents
                                   icon: mdi:speaker
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: switch.tele_des_parents
                                   icon: mdi:television
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.porte_chambre_parents
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                           graph:
                             card:
                               type: conditional
@@ -3707,40 +3623,44 @@ views:
                               card:
                                 type: custom:my-slider
                                 entity: light.cagibi
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 6
-                              type: grid
+                              type: horizontal-stack
                               cards:
                                 - type: custom:button-card
                                   entity: input_select.lave_linge
                                   icon: mdi:tshirt-crew
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: alarm_control_panel.camera_g2hpro
                                   icon: mdi:cctv
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: media_player.le_garage
                                   icon: mdi:speaker
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.mouv_garage
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.porte_cagibi
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.porte_garage
                                   icon: mdi:garage-open-variant
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                     columns: 2
                     square: false
                   - type: custom:button-card
@@ -3793,29 +3713,26 @@ views:
                               card:
                                 type: custom:my-slider
                                 entity: light.tom
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   entity: switch.moustique_tom
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: media_player.tom
                                   icon: mdi:speaker
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.mouv_tom
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                           graph:
                             card:
                               type: conditional
@@ -3869,31 +3786,31 @@ views:
                               card:
                                 type: custom:my-slider
                                 entity: light.manon_et_leane
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   entity: switch.moustique_manon
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: media_player.grande_chambre
                                   icon: mdi:speaker
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.mouv_manon
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.mouv_leane
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                           graph:
                             card:
                               type: conditional
@@ -3952,29 +3869,26 @@ views:
                               card:
                                 type: custom:my-slider
                                 entity: light.nina
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   entity: switch.moustique_nina
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: media_player.nina
                                   icon: mdi:speaker
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                                 - type: custom:button-card
                                   entity: binary_sensor.mouv_nina
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                           graph:
                             card:
                               type: conditional
@@ -4017,16 +3931,10 @@ views:
                                   return "darkgrey"
                                 ]]]
                         custom_fields:
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   color_type: blank-card
                                 - type: custom:button-card
@@ -4035,7 +3943,8 @@ views:
                                   entity: media_player.la_salle_de_bain
                                   icon: mdi:speaker
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                           graph_fixe:
                             card:
                               type: custom:mini-graph-card
@@ -4072,16 +3981,10 @@ views:
                               card:
                                 type: custom:my-slider
                                 entity: light.escalier
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   color_type: blank-card
                                 - type: custom:button-card
@@ -4089,7 +3992,8 @@ views:
                                 - type: custom:button-card
                                   entity: binary_sensor.mouv_escalier
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                         double_tap_action:
                           action: toggle
                         tap_action:
@@ -4122,16 +4026,10 @@ views:
                               card:
                                 type: custom:my-slider
                                 entity: light.palier
-                          appareil:
+                          bouton:
                             card:
-                              square: false
-                              columns: 5
-                              type: grid
+                              type: horizontal-stack
                               cards:
-                                - type: custom:button-card
-                                  color_type: blank-card
-                                - type: custom:button-card
-                                  color_type: blank-card
                                 - type: custom:button-card
                                   color_type: blank-card
                                 - type: custom:button-card
@@ -4139,7 +4037,8 @@ views:
                                 - type: custom:button-card
                                   entity: binary_sensor.mouv_palier
                                   template:
-                                    - carte_piece_appareil
+                                    - carte_bouton
+                                    - carte_bouton_state
                         double_tap_action:
                           action: toggle
                         tap_action:
@@ -4240,7 +4139,7 @@ views:
                                 font-weight: bold;
                                 color: lightgrey;
                               }
-                      volume:
+                      bouton:
                         card:
                           type: conditional
                           conditions:
@@ -4345,7 +4244,7 @@ views:
                                 font-weight: bold;
                                 color: lightgrey;
                               }
-                      volume:
+                      bouton:
                         card:
                           type: conditional
                           conditions:
@@ -5161,41 +5060,48 @@ views:
                               - color: rgb(180, 70, 70)
                                 from: 0
                                 to: 40
-                      tab:
+                      bouton:
                         card:
-                          type: custom:button-card
-                          entity: sensor.ipad_aurel_battery_level
-                          icon: mdi:tablet
-                          template:
-                            - carte_personne_appareil
-                          show_state: false
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['device_tracker.aurel_ipad_ping'].state == "home")
-                                      return 'rgba(211,211,211,0.9)'
-                                    if (states['device_tracker.aurel_ipad_ping'].state == "not_home")
-                                      return 'rgba(211,211,211,0.3)'
-                                    return "red"
-                                  ]]]
-                      mac:
-                        card:
-                          type: custom:button-card
-                          entity: device_tracker.aurel_mac_ping
-                          icon: mdi:desktop-mac
-                          template:
-                            - carte_personne_appareil
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['device_tracker.aurel_mac_ping'].state == "home")
-                                      return 'rgba(211,211,211,0.9)'
-                                    if (states['device_tracker.aurel_mac_ping'].state == "not_home")
-                                      return 'rgba(211,211,211,0.3)'
-                                    return "red"
-                                  ]]]
+                          type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              entity: sensor.ipad_aurel_battery_level
+                              icon: mdi:tablet
+                              template:
+                                - carte_bouton
+                                - carte_bouton_state
+                              styles:
+                                icon:
+                                  - color: |
+                                      [[[
+                                        if (states['device_tracker.aurel_ipad_ping'].state == "home")
+                                          return 'rgba(211,211,211,0.9)'
+                                        if (states['device_tracker.aurel_ipad_ping'].state == "not_home")
+                                          return 'rgba(211,211,211,0.3)'
+                                        return "red"
+                                      ]]]
+                            - type: custom:button-card
+                              entity: device_tracker.aurel_mac_ping
+                              icon: mdi:desktop-mac
+                              template:
+                                - carte_bouton
+                                - carte_bouton_state
+                              styles:
+                                icon:
+                                  - color: |
+                                      [[[
+                                        if (states['device_tracker.aurel_mac_ping'].state == "home")
+                                          return 'rgba(211,211,211,0.9)'
+                                        if (states['device_tracker.aurel_mac_ping'].state == "not_home")
+                                          return 'rgba(211,211,211,0.3)'
+                                        return "red"
+                                      ]]]
                   - type: custom:button-card
                     entity: person.alex
                     label: |
@@ -5235,46 +5141,34 @@ views:
                               - color: rgb(180, 70, 70)
                                 from: 0
                                 to: 40
-                      mac:
+                      bouton:
                         card:
-                          type: custom:button-card
-                          entity: sensor.macbook_alex_internal_battery_level
-                          icon: mdi:desktop-mac
-                          template:
-                            - carte_personne_appareil
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['device_tracker.alex_mac_ping'].state == "home" )
-                                      return 'rgba(211,211,211,0.9)'
-                                    if (states['device_tracker.alex_mac_ping'].state != "home")
-                                    return "rgba(211,211,211,0.3)"
-                                  ]]]
-                      tab:
-                        card:
-                          type: custom:button-card
-                          entity: device_tracker.liseuse_alex
-                          icon: |
-                            [[[
-                              if (states['device_tracker.liseuse_alex'].state == "home")
-                                return 'mdi:book-open'
-                              if (states['device_tracker.liseuse_alex'].state == "not_home")
-                                return 'mdi:book-open'
-                            ]]]
-                          template:
-                            - carte_personne_appareil
-                          show_state: false
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['device_tracker.liseuse_alex'].state == "home")
-                                      return 'rgba(211,211,211,0.9)'
-                                    if (states['device_tracker.liseuse_alex'].state == "not_home")
-                                      return 'rgba(211,211,211,0.3)'
-                                    return "red"
-                                  ]]]
+                          type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              entity: device_tracker.liseuse_alex
+                              icon: |
+                                [[[
+                                  if (states['device_tracker.liseuse_alex'].state == "home")
+                                    return 'mdi:book-open'
+                                  if (states['device_tracker.liseuse_alex'].state == "not_home")
+                                    return 'mdi:book-open'
+                                ]]]
+                              template:
+                                - carte_bouton
+                                - carte_bouton_state
+                            - type: custom:button-card
+                              entity: sensor.macbook_alex_internal_battery_level
+                              icon: mdi:desktop-mac
+                              template:
+                                - carte_bouton
+                                - carte_bouton_state
                   - type: custom:button-card
                     entity: person.tom
                     label: |
@@ -5284,23 +5178,24 @@ views:
                     custom_fields:
                       duree: |
                         [[[return states["sensor.tom_duree"].state]]]
-                      mac:
+                      bouton:
                         card:
-                          type: custom:button-card
-                          entity: device_tracker.tom_mac_ping
-                          icon: mdi:desktop-mac
-                          template:
-                            - carte_personne_appareil
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['device_tracker.tom_mac_ping'].state == "home")
-                                      return 'rgba(211,211,211,0.9)'
-                                    if (states['device_tracker.tom_mac_ping'].state == "not_home")
-                                      return 'rgba(211,211,211,0.3)'
-                                    return "red"
-                                  ]]]
+                          type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              color_type: blank-card
+                            - type: custom:button-card
+                              entity: device_tracker.tom_mac_ping
+                              icon: mdi:desktop-mac
+                              template:
+                                - carte_bouton
+                                - carte_bouton_state
                   - type: custom:button-card
                     entity: person.manon
                     label: |
@@ -5964,7 +5859,7 @@ views:
                 showIcon: false
                 showCost: true
                 showDailyHistory: true
-                showMonthlyHistory: true
+                showMonthlyHistory: false
                 showHistoryHeader: false
                 showEnergyHistory: true
                 showVolumeHistory: false
@@ -6136,7 +6031,7 @@ views:
                 unit_of_measurement: null
                 positions:
                   value: inside
-                  name: inside
+                  name: outside
                   indicator: inside
                   icon: 'off'
                 target: 50
@@ -6162,7 +6057,6 @@ views:
                   }
                   bar-card-name {
                     font-size: 12px;
-                    margin-top: -15px;
                     color: white;
                     text-shadow: 1px 1px #0005;
                     font-weight: bold;
@@ -6202,7 +6096,7 @@ views:
                 unit_of_measurement: null
                 positions:
                   value: inside
-                  name: inside
+                  name: outside
                   indicator: inside
                   icon: 'off'
                 target: 50
@@ -6227,7 +6121,6 @@ views:
                     text-shadow: 1px 1px #0005;
                   }
                   bar-card-name {
-                    margin-top: -15px;
                     font-size: 12px;
                     color: white;
                     text-shadow: 1px 1px #0005;
@@ -6279,7 +6172,7 @@ views:
                 unit_of_measurement: null
                 positions:
                   value: inside
-                  name: inside
+                  name: outside
                   indicator: inside
                   icon: 'off'
                 target: 50
@@ -6305,7 +6198,6 @@ views:
                   }
                   bar-card-name {
                     font-size: 12px;
-                    margin-top: -15px;
                     color: white;
                     text-shadow: 1px 1px #0005;
                     font-weight: bold;
@@ -6334,7 +6226,7 @@ views:
                   - entity: sensor.tom_thermo_batterie
                     name: Tom
                   - entity: sensor.manon_thermo_batterie
-                    name: Manon Léane
+                    name: Manon
                   - entity: sensor.nina_thermo_batterie
                     name: Nina
                   - entity: sensor.sonde_garage_batterie
@@ -6355,7 +6247,7 @@ views:
                 unit_of_measurement: null
                 positions:
                   value: inside
-                  name: inside
+                  name: outside
                   indicator: inside
                   icon: 'off'
                 target: 50
@@ -6380,7 +6272,6 @@ views:
                     text-shadow: 1px 1px #0005;
                   }
                   bar-card-name {
-                    margin-top: -15px;
                     font-size: 12px;
                     color: white;
                     text-shadow: 1px 1px #0005;
@@ -6440,7 +6331,7 @@ views:
                 unit_of_measurement: null
                 positions:
                   value: inside
-                  name: inside
+                  name: outside
                   indicator: inside
                   icon: 'off'
                 target: 40
@@ -6467,7 +6358,6 @@ views:
                   }
                   bar-card-name {
                     font-size: 12px;
-                    margin-top: -15px;
                     color: white;
                     text-shadow: 1px 1px #0005;
                     font-weight: bold;
@@ -6487,7 +6377,7 @@ views:
                   - entity: sensor.inter_couloir_batterie
                     name: Couloir
                   - entity: sensor.inter_chambre_parents_batterie
-                    name: Chambre parents
+                    name: Parents
                   - entity: sensor.inter_salon_batterie
                     name: Salon
                   - entity: sensor.inter_salle_a_manger_batterie
@@ -6497,17 +6387,17 @@ views:
                   - entity: sensor.inter_salle_d_eau_batterie
                     name: Lavabo
                   - entity: sensor.inter_chambre_tom_batterie
-                    name: Chambre Tom
+                    name: Tom
                   - entity: sensor.inter_chevet_tom_batterie
                     name: Chevet Tom
                   - entity: sensor.inter_grande_chambre_batterie
-                    name: Chambre filles
+                    name: Filles
                   - entity: sensor.inter_chevet_leane_batterie
-                    name: Chevet Léane
+                    name: Léane
                   - entity: sensor.inter_chevet_manon_batterie
-                    name: Chevet Manon
+                    name: Manon
                   - entity: sensor.inter_chambre_nina_batterie
-                    name: Chambre Nina
+                    name: Nina
                   - entity: sensor.inter_chevet_nina_batterie
                     name: Chevet Nina
                   - entity: sensor.inter_palier_batterie
@@ -8170,12 +8060,54 @@ views:
                   - titre_section
                 name: |
                   [[[ return "Rez-de-chaussée  " ]]]
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    template:
+                      - titre_section
+                    name: |
+                      [[[ return "Séjour" ]]]
+                    styles:
+                      name:
+                        - justify-self: middle
+                  - type: custom:button-card
+                    template:
+                      - titre_section
+                    name: |
+                      [[[ return "Couloir" ]]]
+                    styles:
+                      name:
+                        - justify-self: middle
+                  - type: custom:button-card
+                    template:
+                      - titre_section
+                    name: |
+                      [[[ return "Cuisine" ]]]
+                    styles:
+                      name:
+                        - justify-self: middle
+                  - type: custom:button-card
+                    template:
+                      - titre_section
+                    name: |
+                      [[[ return "Parents" ]]]
+                    styles:
+                      name:
+                        - justify-self: middle
+                  - type: custom:button-card
+                    template:
+                      - titre_section
+                    name: |
+                      [[[ return "Garage" ]]]
+                    styles:
+                      name:
+                        - justify-self: middle
               - type: custom:bar-card
                 direction: up
                 unit_of_measurement: null
                 positions:
                   value: inside
-                  name: outside
+                  name: 'off'
                   indicator: inside
                   icon: inside
                 icon: mdi:thermometer
@@ -8301,12 +8233,46 @@ views:
                   - titre_section
                 name: |
                   [[[ return "Etage " ]]]
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    template:
+                      - titre_section
+                    name: |
+                      [[[ return "SDB" ]]]
+                    styles:
+                      name:
+                        - justify-self: middle
+                  - type: custom:button-card
+                    template:
+                      - titre_section
+                    name: |
+                      [[[ return "Tom" ]]]
+                    styles:
+                      name:
+                        - justify-self: middle
+                  - type: custom:button-card
+                    template:
+                      - titre_section
+                    name: |
+                      [[[ return "Manon" ]]]
+                    styles:
+                      name:
+                        - justify-self: middle
+                  - type: custom:button-card
+                    template:
+                      - titre_section
+                    name: |
+                      [[[ return "Nina" ]]]
+                    styles:
+                      name:
+                        - justify-self: middle
               - type: custom:bar-card
                 direction: up
                 unit_of_measurement: null
                 positions:
                   value: inside
-                  name: outside
+                  name: 'off'
                   indicator: inside
                   icon: inside
                 icon: mdi:thermometer
