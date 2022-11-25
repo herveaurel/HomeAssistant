@@ -4,7 +4,7 @@ button_card_templates:
       card:
         - font-family: Avenir
   sidebar:
-    entity: weather.ta_ville
+    entity: weather.ta_ville_ou_il_fait_beau
     show_entity_picture: true
     show_icon: true
     show_name: false
@@ -2182,6 +2182,21 @@ button_card_templates:
         - width: 30%
     tap_action:
       action: more-info
+  carte_bouton:
+    show_name: false
+    show_state: false
+    show_icon: true
+    styles:
+      card:
+        - border-radius: 5px
+        - background-color: var(--custom-blue)
+      icon:
+        - color: darkgrey
+        - width: 20px
+    double_tap_action:
+      action: more-info
+    tap_action:
+      action: toggle
   carte_appareil:
     styles:
       custom_fields:
@@ -2230,24 +2245,6 @@ button_card_templates:
           - width: calc(100% + 0px)
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 1
-  carte_appareil_bouton:
-    show_name: false
-    show_state: false
-    show_label: false
-    show_last_changed: false
-    styles:
-      card:
-        - border-radius: 8px
-        - height: 28px
-        - background-color: var(--custom-img-cell-color-blue)
-      icon:
-        - color: var(--icon_off)
-        - width: 40%
-        - padding-bottom: 2px
-    tap_action:
-      action: more-info
-    double_tap_action:
-      action: toggle
   carte_tv:
     styles:
       card:
@@ -2279,19 +2276,6 @@ button_card_templates:
           - left: 48.5%
           - width: calc(90% + 1px)
           - transform: translate(-50%, calc(-50% + 10px))
-  bouton_tv_volume:
-    show_name: false
-    styles:
-      card:
-        - border-radius: 20%
-        - background-color: var(--custom-blue)
-        - height: 28px
-        - width: 25px
-      icon:
-        - color: var(--custom-icon-color-blue)
-        - width: 73%
-    tap_action:
-      action: toggle
   carte_securite:
     label: |-
       [[[ 
@@ -2322,23 +2306,6 @@ button_card_templates:
           - left: 50%
           - width: calc(90% + 1px)
           - transform: translate(-50%, calc(-50% + 10px))
-  carte_securite_bouton:
-    show_name: false
-    show_state: false
-    show_label: false
-    show_last_changed: false
-    styles:
-      card:
-        - border-radius: 5px
-        - height: 28px
-      icon:
-        - color: var(--icon_off)
-        - width: 40%
-        - padding-bottom: 02px
-    tap_action:
-      action: more-info
-    double_tap_action:
-      action: toggle
   carte_multimedia:
     aspect_ratio: 1/1
     show_entity_picture: true
@@ -2389,7 +2356,7 @@ button_card_templates:
         - color: var(--text_on)
         - justify-self: start
       card:
-        - height: 30px
+        - height: 33px
         - padding: 01%
         - border-radius: 0px
         - line-height: 100%
@@ -2726,22 +2693,38 @@ views:
                         custom_fields:
                           bouton:
                             card:
-                              type: grid
+                              type: horizontal-stack
                               cards:
                                 - type: custom:button-card
                                   entity: script.alarme_disarmed
                                   template:
-                                    - carte_securite_bouton
+                                    - carte_bouton
+                                  tap_action:
+                                    confirmation:
+                                      text: >-
+                                        [[[ return
+                                        `${entity.attributes.friendly_name} :
+                                        confirmer la désactivation ?` ]]]
                                 - type: custom:button-card
                                   entity: script.alarme_armed_away
                                   template:
-                                    - carte_securite_bouton
+                                    - carte_bouton
+                                  tap_action:
+                                    confirmation:
+                                      text: >-
+                                        [[[ return
+                                        `${entity.attributes.friendly_name} :
+                                        confirmer le mode Absent ?` ]]]
                                 - type: custom:button-card
                                   entity: script.alarme_armed_night
                                   template:
-                                    - carte_securite_bouton
-                              columns: 3
-                              square: false
+                                    - carte_bouton
+                                  tap_action:
+                                    confirmation:
+                                      text: >-
+                                        [[[ return
+                                        `${entity.attributes.friendly_name} :
+                                        confirmer le mode Nuit ?` ]]]
                         double_tap_action:
                           action: call-service
                           service: script.alarme_on_off
@@ -2785,22 +2768,32 @@ views:
                                     to: 30
                           bouton:
                             card:
-                              type: grid
+                              type: horizontal-stack
                               cards:
                                 - type: custom:button-card
                                   entity: script.alarme_sonnette_disarmed
                                   template:
-                                    - carte_securite_bouton
+                                    - carte_bouton
+                                  tap_action:
+                                    confirmation:
+                                      text: >-
+                                        [[[ return
+                                        `${entity.attributes.friendly_name} :
+                                        confirmer la désactivation ?` ]]]
                                 - type: custom:button-card
                                   entity: script.alarme_sonnette_armee
                                   template:
-                                    - carte_securite_bouton
+                                    - carte_bouton
+                                  tap_action:
+                                    confirmation:
+                                      text: >-
+                                        [[[ return
+                                        `${entity.attributes.friendly_name} :
+                                        confirmer le mode Absent ?` ]]]
                                 - type: custom:button-card
                                   entity: switch.aarlo_snapshot_sonnette
                                   template:
-                                    - carte_securite_bouton
-                              columns: 3
-                              square: false
+                                    - carte_bouton
                         double_tap_action:
                           action: call-service
                           service: script.alarme_sonnette_on_off
@@ -3192,7 +3185,7 @@ views:
                         jauge:
                           - top: '-05%'
                           - left: 80%
-                          - width: 17%
+                          - width: 16%
                           - position: absolute
                           - z-index: 2
                           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
@@ -3253,6 +3246,7 @@ views:
                             icon: false
                           gauge:
                             icon: false
+                            unit_of_measurement: false
                             font-size: 11px
                             text-color: severity
                             max_value: 100
@@ -4253,13 +4247,11 @@ views:
                             - entity: media_player.tv_salon
                               state: 'on'
                           card:
-                            type: grid
-                            square: false
-                            columns: 5
+                            type: horizontal-stack
                             cards:
                               - type: custom:button-card
                                 entity: script.tv_salon_volume_mute
-                                template: bouton_tv_volume
+                                template: carte_bouton
                                 styles:
                                   icon:
                                     - color: |
@@ -4270,16 +4262,16 @@ views:
                                         ]]]
                               - type: custom:button-card
                                 entity: script.tv_salon_volume_bas
-                                template: bouton_tv_volume
+                                template: carte_bouton
                               - type: custom:button-card
                                 entity: script.tv_salon_volume_haut
-                                template: bouton_tv_volume
+                                template: carte_bouton
                               - type: custom:button-card
                                 entity: script.tv_salon_chaine_bas
-                                template: bouton_tv_volume
+                                template: carte_bouton
                               - type: custom:button-card
                                 entity: script.tv_salon_chaine_haut
-                                template: bouton_tv_volume
+                                template: carte_bouton
                     double_tap_action:
                       action: call-service
                       service: script.tv_salon_on_off
@@ -4360,25 +4352,23 @@ views:
                             - entity: switch.tele_des_parents
                               state: 'on'
                           card:
-                            type: grid
-                            square: false
-                            columns: 5
+                            type: horizontal-stack
                             cards:
                               - type: custom:button-card
                                 entity: script.tv_parents_menu
-                                template: bouton_tv_volume
+                                template: carte_bouton
                               - type: custom:button-card
                                 entity: script.tv_parents_gauche
-                                template: bouton_tv_volume
+                                template: carte_bouton
                               - type: custom:button-card
                                 entity: script.tv_parents_droite
-                                template: bouton_tv_volume
+                                template: carte_bouton
                               - type: custom:button-card
                                 entity: script.tv_parents_bas
-                                template: bouton_tv_volume
+                                template: carte_bouton
                               - type: custom:button-card
                                 entity: script.tv_parents_haut
-                                template: bouton_tv_volume
+                                template: carte_bouton
                     double_tap_action:
                       action: toggle
                     tap_action:
@@ -4728,12 +4718,12 @@ views:
                                 to: 40
                       bouton:
                         card:
-                          type: grid
+                          type: horizontal-stack
                           cards:
                             - type: custom:button-card
                               entity: script.aspi_walle_demarrage
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
                               styles:
                                 icon:
                                   - color: |
@@ -4742,11 +4732,10 @@ views:
                                           return 'rgb(176, 196, 222)';
                                         return "var(--icon_off)"
                                       ]]]
-                                  - width: 60%
                             - type: custom:button-card
                               entity: script.aspi_pause
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
                               styles:
                                 icon:
                                   - color: |
@@ -4755,18 +4744,14 @@ views:
                                           return 'rgb(176, 196, 222)';
                                         return "var(--icon_off)"
                                       ]]]
-                                  - width: 60%
                             - type: custom:button-card
                               entity: script.sortir_l_aspi
                               template:
-                                - carte_appareil_bouton
-                              styles:
-                                icon:
-                                  - width: 60%
+                                - carte_bouton
                             - type: custom:button-card
                               entity: script.aspi_retour_base
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
                               styles:
                                 icon:
                                   - color: |
@@ -4775,9 +4760,6 @@ views:
                                           return 'rgb(176, 196, 222)';
                                         return "var(--icon_off)"
                                       ]]]
-                                  - width: 60%
-                          columns: 4
-                          square: false
                   - type: custom:button-card
                     entity: vacuum.r2d2
                     icon: phu:roborock
@@ -4815,12 +4797,12 @@ views:
                                 to: 40
                       bouton:
                         card:
-                          type: grid
+                          type: horizontal-stack
                           cards:
                             - type: custom:button-card
                               entity: script.aspi_r2d2_demarrage
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
                               styles:
                                 icon:
                                   - color: |
@@ -4834,7 +4816,7 @@ views:
                             - type: custom:button-card
                               entity: script.aspi_pause
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
                               styles:
                                 icon:
                                   - color: |
@@ -4846,7 +4828,7 @@ views:
                             - type: custom:button-card
                               entity: script.aspi_retour_base
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
                               styles:
                                 icon:
                                   - color: |
@@ -4855,8 +4837,6 @@ views:
                                           return 'rgb(176, 196, 222)';
                                         return "var(--icon_off)"
                                       ]]]
-                          columns: 3
-                          square: false
                   - type: custom:button-card
                     entity: switch.lave_vaisselle_power
                     name: Vaisselle
@@ -4914,13 +4894,13 @@ views:
                                   to: 1
                       bouton:
                         card:
-                          type: grid
+                          type: horizontal-stack
                           cards:
                             - type: custom:button-card
                               entity: switch.lave_vaisselle_power
                               icon: mdi:power
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
                               styles:
                                 icon:
                                   - color: |
@@ -4929,11 +4909,17 @@ views:
                                           return 'var(--custom-icon-color-blue)'
                                         return "var(--icon_off)"
                                       ]]]
+                              tap_action:
+                                confirmation:
+                                  text: >-
+                                    [[[ return
+                                    `${entity.attributes.friendly_name} :
+                                    confirmer la bascule ON / OFF ?` ]]]
                             - type: custom:button-card
                               entity: switch.lave_vaisselle_program_auto2
                               icon: mdi:flag-checkered
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
                               styles:
                                 icon:
                                   - color: |
@@ -4942,10 +4928,18 @@ views:
                                           return 'var(--custom-icon-color-blue)'
                                         return "var(--icon_off)"
                                       ]]]
+                              tap_action:
+                                confirmation:
+                                  text: >-
+                                    [[[ return
+                                    `${entity.attributes.friendly_name} :
+                                    confirmer la bascule du programme ?` ]]]
                             - type: custom:button-card
                               entity: binary_sensor.lave_vaisselle_door
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
+                              tap_action:
+                                action: more-info
                               styles:
                                 icon:
                                   - color: |
@@ -4960,8 +4954,6 @@ views:
                                           return 'var(--custom-icon-color-blue)'
                                         return "grey"
                                       ]]]
-                          columns: 3
-                          square: false
                   - type: custom:button-card
                     entity: input_select.lave_linge
                     name: Linge
@@ -4991,7 +4983,7 @@ views:
                         kWh"]]]
                       bouton:
                         card:
-                          type: grid
+                          type: horizontal-stack
                           cards:
                             - type: custom:button-card
                               color_type: blank-card
@@ -5003,7 +4995,7 @@ views:
                               entity: switch.lave_linge
                               icon: mdi:power-plug
                               template:
-                                - carte_appareil_bouton
+                                - carte_bouton
                                 - state_unavailable
                               styles:
                                 icon:
@@ -5013,9 +5005,6 @@ views:
                                           return 'rgb(176, 196, 222)';
                                         return "var(--icon_off)"
                                       ]]]
-                                  - width: 60%
-                          columns: 4
-                          square: false
                   - type: custom:button-card
                     entity: binary_sensor.boite_aux_lettres
                     name: Lettres
@@ -14761,7 +14750,7 @@ views:
               }
             cards:
               - type: custom:clock-weather-card
-                entity: weather.ta_ville
+                entity: weather.ta_ville_ou_il_fait_beau
                 title: ''
                 sun_entity: sun.sun
                 weather_icon_type: fill
@@ -14789,27 +14778,27 @@ views:
               }
             cards:
               - type: custom:meteofrance-weather-card
-                entity: weather.ta_ville
+                entity: weather.ta_ville_ou_il_fait_beau
                 number_of_forecasts: '5'
                 name: null
                 alert_forecast: false
                 details: false
                 current: false
                 one_hour_forecast: true
-                cloudCoverEntity: sensor.ta_ville_cloud_cover
-                rainChanceEntity: sensor.ta_ville_rain_chance_2
-                uvEntity: sensor.ta_ville_uv_2
-                freezeChanceEntity: sensor.ta_ville_freeze_chance_2
-                snowChanceEntity: sensor.ta_ville_snow_chance_2
+                cloudCoverEntity: sensor.ta_ville_ou_il_fait_beau_cloud_cover
+                rainChanceEntity: sensor.ta_ville_ou_il_fait_beau_rain_chance_2
+                uvEntity: sensor.ta_ville_ou_il_fait_beau_uv_2
+                freezeChanceEntity: sensor.ta_ville_ou_il_fait_beau_freeze_chance_2
+                snowChanceEntity: sensor.ta_ville_ou_il_fait_beau_snow_chance_2
                 alertEntity: sensor.49_weather_alert
-                rainForecastEntity: sensor.ta_ville_next_rain_2
+                rainForecastEntity: sensor.ta_ville_ou_il_fait_beau_next_rain_2
                 style: |
                   ha-card {
                     font-size: 100%;
                     font-family: Avenir;
                   }
               - type: custom:clock-weather-card
-                entity: weather.ta_ville
+                entity: weather.ta_ville_ou_il_fait_beau
                 title: ''
                 sun_entity: sun.sun
                 weather_icon_type: fill
@@ -14861,13 +14850,15 @@ views:
                     return "pas bien"
                   ]]]
                 styles:
+                  card:
+                    - padding-right: 70px
                   label:
                     - white-space: normal
                   custom_fields:
                     jauge:
                       - top: '-05%'
-                      - left: 85%
-                      - width: 16%
+                      - left: 82%
+                      - width: 19%
                       - position: absolute
                       - z-index: 2
                       - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
@@ -14928,7 +14919,7 @@ views:
                         icon: false
                       gauge:
                         icon: false
-                        font-size: 13px
+                        font-size: 12px
                         text-color: severity
                         max_value: 13600
                         friendly_name: false
