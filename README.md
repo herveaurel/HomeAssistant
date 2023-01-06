@@ -49,6 +49,22 @@ D'autres modifications viendront dans les prochaines mises à jour... 😇
 
 -----
 
+## 🎨 THEMES
+
+### Theme Mad Night
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
+
+### Theme Mad Geek
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_clear.jpg)
+
+### Theme avec l'alarme
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.jpg)
+
+### Smartphone
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.png)
+
+-----
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite.jpg)
 
 Afin de choisir les informations qui apparraissent dans la carte acticité : En haut à droite, un bouton ouvrant une sous-vue pour quelques réglages via un simple clic ! Ce menu s'étoffera au fil du temps...
@@ -66,21 +82,6 @@ Mettre à jour le nouveau template button card de la sidecar.
 Il est également possible de créer une automatisation, basée par exemple sur l'état de l'alarme ou des présences, pour que les informations varient. En effet, peut-être pas besoin que tout soit affiché quand je suis à la maison, je peux consulter les autres cartes, mais quand je ne suis pas à la maison je veux voir toutes les informations rapidement... 😉
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_reglages.jpg)
-
------
-## 🎨 THEMES
-
-### Theme Mad Night
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_night.jpg)
-
-### Theme Mad Geek
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_clear.jpg)
-
-### Theme avec l'alarme
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_alarm.jpg)
-
-### Smartphone
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/dashboard_smartphone.png)
 
 
 -----
