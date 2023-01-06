@@ -32,15 +32,6 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 - Nouveauté : les sous-vues ! (adieu les popup de Browser Mod) 
 - Nouveaux thèmes
 - Utilisation des jauges HATC-GAUGE-CARD, développées par mon ami André Fortuna Gouveia, dont voici le github : https://github.com/tagcashdev/hatc-gauge-card
-- Désormais l'icone d'une pièce prend la couleur réelle, ainsi qu'un dégradé de la couleur réelle pour la pastille et le fond de la carte : 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/piece.jpg)
-
-- Badge automatique avec icone de la zone, ou absence d'une personne
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/badge-personne.jpg)
-
-- Popup de confirmation sur le tap action de certains boutons afin d'éviter des erreurs de manipulations
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/confirmation.jpg)
-
 
 Et beaucoup d'autres changements ! 🤪
 Le tout harmonisé grâce aux templates button card.
@@ -65,6 +56,7 @@ D'autres modifications viendront dans les prochaines mises à jour... 😇
 
 -----
 
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite.jpg)
 
 Afin de choisir les informations qui apparraissent dans la carte acticité : En haut à droite, un bouton ouvrant une sous-vue pour quelques réglages via un simple clic ! Ce menu s'étoffera au fil du temps...
@@ -83,6 +75,14 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_reglages.jpg)
 
+Désormais l'icone d'une pièce prend la couleur réelle, ainsi qu'un dégradé de la couleur réelle pour la pastille et le fond de la carte : 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/piece.jpg)
+
+- Badge automatique avec icone de la zone, ou absence d'une personne
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/badge-personne.jpg)
+
+- Popup de confirmation sur le tap action de certains boutons afin d'éviter des erreurs de manipulations
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/confirmation.jpg)
 
 -----
 ## 😎 ONGLETS ET SOUS-VUES
