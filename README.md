@@ -56,6 +56,7 @@ D'autres modifications viendront dans les prochaines mises à jour... 😇
 
 -----
 
+## La carte Activité
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite.jpg)
 
