@@ -39,15 +39,6 @@
     - captured_today
     - signal_strength
     
-##############################
-#Sensor Savoir inutile 
-##############################
-
-  - platform: scrape
-    resource: https://www.savoir-inutile.com/
-    scan_interval: 3600
-    name: Savoir scrape
-    select: "#phrase"
   
     
 ##############################
@@ -97,14 +88,35 @@
 ##############################
 #Sensor Templates 
 ##############################
-
+      
   - platform: template
     sensors:
 
+###### SOLEIL
+      sun_elevation:
+        friendly_name: Sun Elevation
+        icon_template: mdi:weather-sunny
+        unit_of_measurement: "°"
+        value_template: >
+          {{ state_attr('sun.sun', 'elevation') }}
+          
+###### UPTIME
+      uptime_ha:
+        friendly_name: "Dernier démarrage de HA"
+        value_template: >-        
+          {%- set time = (as_timestamp(now()) - as_timestamp(states.sensor.uptime.last_changed)) | int  %}
+          {%- set minutes = ((time % 3600) // 60) %}
+          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
+          {%- set hours = ((time % 86400) // 3600) %}
+          {%- set hours = '{}h '.format(hours) if hours > 0 else '' %}
+          {%- set days = (time // 86400) %}
+          {%- set days = '{}j '.format(days) if days > 0 else '' %}
+          {{ '- de 1min' if time < 60 else days + hours + minutes }} 
+        
 ###### MONITEUR QUALITE AIR
       qualite_air_calcul:
         friendly_name: "Qualité de l'air calcul"
-        value_template: "{{ (states.sensor.moniteur_qualite_air.state|float(0)*100/13600)|float|round(2) }}" 
+        value_template: "{{ (states.sensor.moniteur_qualite_air.state|float(0)*100/5500)|float|round(2) }}" 
       qualite_air_pourcentage:
         friendly_name: "Qualité de l'air en %"
         value_template: "{{ (100) - (states.sensor.qualite_air_calcul.state|float(0))|float|round(1) }}" 
@@ -128,17 +140,87 @@
            {%- endif -%}
            
       thermo_alerte_froid:
-        friendly_name: "Alerte notif si - 18° pour notif"
+        friendly_name: "Alerte temp basse sauf garage"
         value_template: >- 
-           {% set thermo = states | selectattr('entity_id', 'in', state_attr('group.thermo','entity_id')) | selectattr('state', 'lessthan', '19') | map(attribute='name') | list %}
-           {%- if thermo | length == 0 -%}
-             OK
-           {%- elif thermo | length == 1 -%}
-           Froid : {{ thermo[0] }}
-           {%- else -%}
-           Froid : {{ thermo[:-1] | join(', ') }}{{', ' if thermo | length > 2 else ' '}}et {{ thermo[-1]}}
-           {%- endif -%}
-          
+            {% set compteur_temp_basse =
+            states                  
+            | selectattr('entity_id', 'in', state_attr('group.thermo', 'entity_id'))|selectattr('state', 'lt', '18.5')
+            | rejectattr('state', 'in', ['unavailable', 'unknown'])  
+            | rejectattr('entity_id', 'search', 'garage') 
+            | map(attribute='name') | list | count%}
+            {%set thermo =
+            states                
+            | selectattr('entity_id', 'in', state_attr('group.thermo', 'entity_id'))|selectattr('state', 'lt', '18.5')
+            | rejectattr('state', 'in', ['unavailable', 'unknown'])  
+            | rejectattr('entity_id', 'search', 'garage') 
+            | map(attribute='name') | list | join(' , ')%}
+            {% if compteur_temp_basse | float(0) == 0 -%}
+                Temp OK
+            {% elif compteur_temp_basse | float(0) == 1 -%}
+                1 pièce froide : {{ thermo }}
+            {% else -%}
+                {{ compteur_temp_basse }} pièces froides : {{ thermo }}
+            {% endif -%}
+            
+      thermo_alerte_chaud:
+        friendly_name: "Alerte temp chaude sauf garage"
+        value_template: >- 
+            {% set compteur_temp_chaude =
+            states                  
+            | selectattr('entity_id', 'in', state_attr('group.thermo', 'entity_id'))|selectattr('state', '>', '25.9')
+            | rejectattr('state', 'in', ['unavailable', 'unknown'])  
+            | rejectattr('entity_id', 'search', 'garage') 
+            | map(attribute='name') | list | count%}
+            {%set thermo =
+            states                
+            | selectattr('entity_id', 'in', state_attr('group.thermo', 'entity_id'))|selectattr('state', '>', '25.9')
+            | rejectattr('state', 'in', ['unavailable', 'unknown'])  
+            | rejectattr('entity_id', 'search', 'garage') 
+            | map(attribute='name') | list | join(' , ')%}
+            {% if compteur_temp_chaude | float(0) == 0 -%}
+                Temp OK
+            {% elif compteur_temp_chaude | float(0) == 1 -%}
+                1 pièce chaude : {{ thermo }}
+            {% else -%}
+                {{ compteur_temp_chaude }} pièces chaudes : {{ thermo }}
+            {% endif -%}
+
+      thermo_alerte_froid_rdc:
+        friendly_name: "Alerte temp basse rdc"
+        value_template: >- 
+            {% set compteur_temp_basse =
+            states                  
+            | selectattr('entity_id', 'in', state_attr('group.thermo_rdc', 'entity_id'))|selectattr('state', 'lt', '18.5')
+            | rejectattr('state', 'in', ['unavailable', 'unknown'])  
+            | map(attribute='name') | list | count%} {{ compteur_temp_basse }}  
+            
+      thermo_alerte_froid_etage:
+        friendly_name: "Alerte temp basse etage"
+        value_template: >- 
+            {% set compteur_temp_basse =
+            states                  
+            | selectattr('entity_id', 'in', state_attr('group.thermo_etage', 'entity_id'))|selectattr('state', 'lt', '18.5')
+            | rejectattr('state', 'in', ['unavailable', 'unknown'])  
+            | map(attribute='name') | list | count%} {{ compteur_temp_basse }}
+            
+      thermo_alerte_chaud_rdc:
+        friendly_name: "Alerte temp chaude rdc"
+        value_template: >- 
+            {% set compteur_temp_chaude =
+            states                  
+            | selectattr('entity_id', 'in', state_attr('group.thermo_rdc', 'entity_id'))|selectattr('state', '>', '25.9')
+            | rejectattr('state', 'in', ['unavailable', 'unknown'])  
+            | map(attribute='name') | list | count%} {{ compteur_temp_chaude }}
+            
+      thermo_alerte_chaud_etage:
+        friendly_name: "Alerte temp chaude etage"
+        value_template: >- 
+            {% set compteur_temp_chaude =
+            states                  
+            | selectattr('entity_id', 'in', state_attr('group.thermo_etage', 'entity_id'))|selectattr('state', '>', '25.9')
+            | rejectattr('state', 'in', ['unavailable', 'unknown'])  
+            | map(attribute='name') | list | count%} {{ compteur_temp_chaude }}
+            
 ###### HEURE ET DATE
       heure:
         friendly_name: "heure"
@@ -369,8 +451,10 @@
       weather_alerte:
         friendly_name: Alerte météo
         value_template: >-
+          {% if is_state("sensor.49_weather_alert", "Vert") -%}
+          Aucune
+          {%- endif %} 
           {% if not is_state("sensor.49_weather_alert", "Vert") -%}
-             
           {%- endif %} 
           {% if is_state("sensor.weather_alert_grand_froid", "Jaune") -%} 
           Grand froid {%- endif %}  
@@ -416,15 +500,15 @@
           Pluie / Inondation{%- endif %}
 
       weather_soleil:
-        friendly_name: Soleil levé couché avec icones          
+        friendly_name: Soleil levé couché         
         value_template: >-
           {% if is_state("sun.sun", "above_horizon") -%}
-            🌘{{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%-Hh%M") }}  ️☀️{{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%-Hh%M") }}
+            Couché {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%-Hh%M") }} - ️L️evé {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%-Hh%M") }}
           {% else %}
-            ️☀️{{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%-Hh%M") }}  🌘{{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%-Hh%M") }}
+            ️L️evé {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%-Hh%M") }} - Couché {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%-Hh%M") }}
           {% endif %}
       weather_soleil_v2:
-        friendly_name: Soleil levé couché sans icones           
+        friendly_name: Soleil levé couché           
         value_template: >-
           {% if is_state("sun.sun", "above_horizon") -%}
             {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%-Hh%M") }}  
@@ -441,16 +525,20 @@
         friendly_name: Soleil couché           
         value_template: >-
             {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%-Hh%M") }} 
-      
-      temp_max:
-        friendly_name: Température max du jour
-        value_template: "{{ states.weather.beaucouze.attributes.forecast[0].temperature|float|round(2) }}°"  
 
-      temp_max_v2:
+      weather_temp_min_max:
         friendly_name: Température max du jour
-        value_template: "{{ states.weather.beaucouze.attributes.forecast[0].temperature|float|round(2) }}" 
+        value_template: "{{ states.weather.maison.attributes.forecast[0].templow|float|round(0) }}° / {{ states.weather.maison.attributes.forecast[0].temperature|float|round(2) }}°" 
         
-      temp_min:
+      weather_temp_max:
+        friendly_name: Température max du jour
+        value_template: "{{ states.weather.maison.attributes.forecast[0].temperature|float|round(2) }}°"  
+
+      weather_temp_max_v2:
+        friendly_name: Température max du jour
+        value_template: "{{ states.weather.maison.attributes.forecast[0].temperature|float|round(2) }}" 
+        
+      weather_temp_min:
         friendly_name: Température min du jour
         value_template: "{{ states.weather.maison.attributes.forecast[0].templow|float|round(0) }}°"        
         
@@ -564,7 +652,7 @@
         friendly_name: "Tempertaure moyenne du rdc"
         unit_of_measurement: "°C"
         value_template: >-
-          {{ ((float(states.sensor.temp_sejour.state)  + float(states.sensor.temp_couloir_rdc.state) + float(states.sensor.temp_cuisine.state)) / 3) | round(1) }}
+          {{ ((float(states.sensor.temp_sejour.state)  + float(states.sensor.temp_couloir_rdc.state) + float(states.sensor.moniteur_qualite_air_temperature.state)) / 3) | round(1) }}
           
       temp_moyenne_etage:
         friendly_name: "Tempertaure moyenne etage"
@@ -619,7 +707,7 @@
           {% elif is_state("sensor.date_simple_v2", "8 Janvier") -%}
             Anniversaire Nina 
           {% elif is_state("sensor.date_simple_v2", "1 Janvier") -%}
-            Bonne année 
+            Bonne année !
           {% elif is_state("sensor.date_simple_v2", "13 Janvier") -%}
             Anniversaire Maxime  
           {% elif is_state("sensor.date_simple_v2", "29 Janvier") -%}
@@ -732,31 +820,19 @@
       compteur_connecte:
         friendly_name: Compteur appareils connectés          
         value_template: >-
-          {% set hs = [
-           states.device_tracker.mbp_de_aurelien_box,
-           states.device_tracker.tom_mac_ping,
-           states.device_tracker.macbook_air_de_tom,
-           states.device_tracker.aurel_ipad_box,
-           states.device_tracker.manon_tab_ping, 
-           states.device_tracker.leane_tab_ping,
-           states.device_tracker.pc_a_on_2,            
-           ] %}
-          {{ hs | selectattr('state','eq','home') | list | count }}            
+            {{states                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('group.connecte', 'entity_id'))|selectattr('state', 'equalto', 'home')
+            | map(attribute='name') | list | count}}            
           
 ###### MODES   
       compteur_modes:
         friendly_name: Compteur modes         
         value_template: >
-          {% set modes = [
-           states.input_boolean.nilemato,
-           states.automation.annonce_ecole,
-           states.input_boolean.belle_saison,
-           states.input_boolean.piscine,
-           states.input_boolean.vacances,
-           states.input_boolean.noel,
-           states.input_boolean.halloween,         
-           ] %}
-          {{ modes | selectattr('state','eq','on') | list | count }}
+            {{states                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('group.mode', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count}}
           
       modes:
         friendly_name: Modes en cours
@@ -777,48 +853,27 @@
       compteur_noel:
         friendly_name: Compteur Noel          
         value_template: >-
-          {% set hs = [
-           states.switch.sapin,
-           states.switch.guirlande_etoiles,
-           ] %}
-          {{ hs | selectattr('state','eq','on') | list | count }} 
-          
-      noel_on:
-        friendly_name: Noel appareils allumés
-        value_template: >-      
-         {%- if states.group.noel.state == "on"  -%}
-           {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.noel','entity_id')) | selectattr('state','in',['','on']) | map(attribute='name') | list %}
-           {%- if open_doors | length == 1 -%} 
-           {{ open_doors[0] }}
-           {%- elif open_doors | length > 1 -%}
-           {{ open_doors[:-1] | join(' , ') }} {{'' if open_doors | length == 2 else ' '}}et {{ open_doors[-1]}}
-           {%- else -%}
-           {%- endif -%}
-         {%- else -%}
-          Lumières de Noël éteintes 
-         {%- endif -%}   
+            {{states                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('group.noel', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count}} 
 
       compteur_noel_hs:
         friendly_name: Compteur Noel HS        
         value_template: >-
-          {% set hs = [
-           states.switch.sapin,
-           states.switch.guirlande_etoiles,
-           ] %}
-          {%- if states.group.noel.state == "on"  -%}
-          {{ hs | selectattr('state','eq','unavailable') | list | count }}
-          {%- endif -%}
+            {{states                                  
+            | selectattr('entity_id', 'in', state_attr('group.noel', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count}}
           
           
 ###### MACHINES          
       compteur_machines:
         friendly_name: Compteur machines a laver          
         value_template: >-
-          {% set hs = [
-           states.input_boolean.lave_linge,
-           states.switch.lave_vaisselle_power,
-           ] %}
-          {{ hs | selectattr('state','eq','on') | list | count }}           
+            {{states                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('group.machines', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count}}           
           
 ###### REVEILS ALEXA
       reveil:
@@ -1010,109 +1065,20 @@
         friendly_name: Minuteur manon         
         value_template: >-
           {{ ( as_timestamp(states('sensor.manon_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }}
-          
-      minuteur:
-        friendly_name: Minuteur          
-        value_template: >-
-          {%  if not is_state("sensor.compteur_minuteur", "11") %} 
-            ⏳<font color= lightgrey><b>Minuteur :</b></font>
-            {% if not is_state("sensor.le_bureau_next_timer", "unavailable") -%}  
-              Bureau : {{ ( as_timestamp(states('sensor.le_bureau_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.le_salon_next_timer", "unavailable") -%}  
-              Salon : {{ ( as_timestamp(states('sensor.le_salon_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', False) }}
-            {% endif -%}
-            {% if not is_state("sensor.aurel_s_fire_tv_cube_next_timer", "unavailable") -%}  
-              Fire Cube : {{ ( as_timestamp(states('sensor.aurel_s_fire_tv_cube_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }}
-            {% endif -%}
-            {% if not is_state("sensor.la_cuisine_next_timer", "unavailable") -%}  
-              Cuisine : {{ ( as_timestamp(states('sensor.la_cuisine_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.la_salle_de_bain_next_timer", "unavailable") -%}  
-              Salle de bains : {{ ( as_timestamp(states('sensor.la_salle_de_bain_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.papa_next_timer", "unavailable") -%}  
-              Aurel : {{ ( as_timestamp(states('sensor.papa_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.maman_next_timer", "unavailable") -%}  
-              Alex : {{ ( as_timestamp(states('sensor.maman_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.tom_next_timer", "unavailable") -%}  
-              Tom : {{ ( as_timestamp(states('sensor.tom_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.manon_next_timer", "unavailable") -%}  
-              Manon : {{ ( as_timestamp(states('sensor.manon_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.leane_next_timer", "unavailable") -%}  
-              Léane : {{ ( as_timestamp(states('sensor.leane_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.nina_next_timer", "unavailable") -%}  
-              Nina : {{ ( as_timestamp(states('sensor.nina_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-          {% endif -%}
-
-      minuteur_v2:
-        friendly_name: Minuteur v2         
-        value_template: >-
-          {%  if not is_state("sensor.compteur_minuteur", "11") %} 
-            {% if not is_state("sensor.le_bureau_next_timer", "unavailable") -%}  
-              ⏳<font color= darkgrey><b>Bureau :</b></font><br>{{ ( as_timestamp(states('sensor.le_bureau_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.le_salon_next_timer", "unavailable") -%}  
-              Salon : {{ ( as_timestamp(states('sensor.le_salon_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', False) }}
-            {% endif -%}
-            {% if not is_state("sensor.aurel_s_fire_tv_cube_next_timer", "unavailable") -%}  
-              Fire Cube : {{ ( as_timestamp(states('sensor.aurel_s_fire_tv_cube_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }}
-            {% endif -%}
-            {% if not is_state("sensor.la_cuisine_next_timer", "unavailable") -%}  
-              Cuisine : {{ ( as_timestamp(states('sensor.la_cuisine_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.la_salle_de_bain_next_timer", "unavailable") -%}  
-              Salle de bains : {{ ( as_timestamp(states('sensor.la_salle_de_bain_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.papa_next_timer", "unavailable") -%}  
-              Aurel : {{ ( as_timestamp(states('sensor.papa_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.maman_next_timer", "unavailable") -%}  
-              Alex : {{ ( as_timestamp(states('sensor.maman_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.tom_next_timer", "unavailable") -%}  
-              Tom : {{ ( as_timestamp(states('sensor.tom_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.manon_next_timer", "unavailable") -%}  
-              Manon : {{ ( as_timestamp(states('sensor.manon_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.leane_next_timer", "unavailable") -%}  
-              Léane : {{ ( as_timestamp(states('sensor.leane_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-            {% if not is_state("sensor.nina_next_timer", "unavailable") -%}  
-              Nina : {{ ( as_timestamp(states('sensor.nina_next_timer')) | int - (now().timestamp()) | int ) | timestamp_custom('%H:%M:%S', false) }} 
-            {% endif -%}
-          {% endif -%}
-          
+         
 ###### RAPPELS ALEXA
       compteur_rappel:
         friendly_name: Compteur rappel         
         value_template: >-
-          {% set rappel = [
-           states.sensor.le_bureau_next_reminder,
-           states.sensor.le_salon_next_reminder,
-           states.sensor.aurel_s_fire_tv_cube_next_reminder,
-           states.sensor.la_cuisine_next_reminder,
-           states.sensor.la_salle_de_bain_next_reminder,
-           states.sensor.papa_next_reminder,
-           states.sensor.maman_next_reminder,
-           states.sensor.tom_next_reminder,
-           states.sensor.nina_next_reminder,
-           states.sensor.leane_next_reminder,
-           states.sensor.manon_next_reminder,
-           ] %}
-          {{ rappel | selectattr('state','eq','unavailable') | list | count }}
+            {{states                                  
+            | selectattr('entity_id', 'search', 'reminder') 
+            | selectattr('state', 'eq', 'unavailable')
+            | map(attribute='name') | list | count}}
           
       rappel:
         friendly_name: rappel         
         value_template: >-
-          {%  if not is_state("sensor.compteur_rappel", "11") %} 
+          {%  if not is_state("sensor.compteur_rappel", "18") %} 
             {% if not is_state("sensor.le_bureau_next_reminder", "unavailable") -%}  
               Bureau : {{ state_attr('sensor.le_bureau_next_reminder' , 'reminder') }} le {{as_timestamp(states('sensor.le_bureau_next_reminder')) | timestamp_custom("%d/%m à %Hh%M") }} 
             {% endif -%}
@@ -1150,191 +1116,219 @@
             Aucun
           {% endif -%}
           
-###### ALEXA ANNONCE ECOLE
-      alexa:
-        friendly_name: Alexa annonce école 
-        value_template: >-
-          {% if is_state("automation.c_est_l_heure_d_aller_a_l_ecole", "on") -%} 
-           <font color='darkgrey'>Annonce Alexa pour l'école : activée
-          {%- endif %}
-           
 ###### APPAREILS HS AVERTISSEMENTS ET COMPTEURS
           
       compteur_plante_hs:
         friendly_name: Compteur plante indisponible          
         value_template: >-
-          {% set hs = [
-           states.sensor.plante_hum_dracaena,
-           states.sensor.plante_hum_pied_elephant,
-           states.sensor.plante_citro_humidite,
-           ] %}
-          {{ hs | selectattr('state','eq','unknown') | list | count }}
+            {{states                                  
+            | selectattr('entity_id', 'in', state_attr('group.plantes', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count}}
           
       compteur_lumieres_hs:
         friendly_name: Compteur lumières indisponibles         
         value_template: >-
-          {% set hs = [
-           states.light.lampe_de_bureau,
-           states.switch.lampe_tv_salon,
-           states.light.bandeau_led,
-           states.light.veranda,
-           states.light.entree,
-           states.light.lampadaire,
-           states.light.lustre_salle_a_manger,
-           states.light.lustre_salon,
-           states.light.lustre_parents,
-           states.light.chevet,
-           states.light.chevet_tom,
-           states.light.lustre_tom,
-           states.light.sonoff_10013f6d7e,
-           states.light.lampe_de_bureau_tom,
-           states.switch.guirlande_nina,
-           states.light.chevet_nina,
-           states.light.lustre_nina,
-           states.light.lampe_de_bureau_nina,
-           states.light.lampadaire_nina,
-           states.switch.arbre_lumineux,
-           states.light.lustre_manon_et_leane,
-           states.light.lampe_manon_et_leane,
-           states.light.chevet_leane,
-           states.light.chevet_manon,
-           states.light.lampe_de_bureau_manon,
-           states.light.couloir,
-           states.light.palier,
-           states.light.buffet,
-           states.light.aqara_hub_54e1,
-           states.light.escalier,
-           states.light.trilampe_centre,
-           states.light.trilampe_gauche,
-           states.light.trilampe_droite,
-           states.light.wc_droit,
-           states.light.wc_gauche, 
-           states.light.cagibi,
-           ] %}
-          {{ hs | selectattr('state','eq','unavailable') | list | count }}
+            {{states.light                                  
+            | rejectattr('state', 'eq', 'off')
+            | rejectattr('entity_id', 'search', 'light.tout')
+            | rejectattr('entity_id', 'search', 'light.pieces')
+            | rejectattr('entity_id', 'search', 'light.parents')
+            | rejectattr('entity_id', 'search', 'light.entree_et_couloir')
+            | rejectattr('entity_id', 'search', 'light.sejour')
+            | rejectattr('entity_id', 'search', 'light.tom')
+            | rejectattr('entity_id', 'search', 'light.nina')
+            | rejectattr('entity_id', 'search', 'light.manon_et_leane')
+            | rejectattr('entity_id', 'search', 'light.escaliers')
+            | rejectattr('entity_id', 'search', 'light.lavabo')
+            | rejectattr('entity_id', 'search', 'light.lustres_sejour')
+            | rejectattr('entity_id', 'search', 'light.salon')
+            | rejectattr('entity_id', 'search', 'light.sam')
+            | rejectattr('entity_id', 'search', 'trilam')
+            | rejectattr('entity_id', 'search', 'light.lampe_tv_salon_config')
+            | selectattr('state', 'eq', 'unavailable')  
+            | map(attribute='name') | list | count}}
  
       lumiere_hs:
         friendly_name: Lumières HS (automatisation lum hs notif)
         value_template: >-  
-         {% if states('sensor.compteur_lumieres_hs') | float > 0  -%}
-           {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('light.tout','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
-           {% if lum_hs | length == 1 %} 
-           Lumière indisponible : {{ lum_hs[0] }} 
-           {% else %}
-           {{ states('sensor.compteur_lumieres_hs') }} lumières indisponibles : 
-            {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}
-           {% endif %}
-         {% else -%}
+         {% if states('sensor.compteur_lumieres_hs') | float == 0  -%}
+         {% else %}
+            {{states.light                                  
+            | selectattr('entity_id', 'in', state_attr('light.tout', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ')}}
          {% endif -%}
          
-         
+      compteur_porte_hs:
+        friendly_name: Compteur porte indisponible          
+        value_template: >-
+            {{states                              
+            | selectattr('entity_id', 'in', state_attr('binary_sensor.portes', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count }}
+
+      porte_hs:
+        friendly_name: Porte indisponible          
+        value_template: >-
+            {{states                              
+            | selectattr('entity_id', 'in', state_attr('binary_sensor.portes', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ') }} 
+
+      compteur_mouv_hs:
+        friendly_name: Compteur mouvement indisponible          
+        value_template: >-
+            {{states                              
+            | selectattr('entity_id', 'in', state_attr('binary_sensor.mouvements', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count }}
+
+      mouv_hs:
+        friendly_name: Mouvement indisponible          
+        value_template: >-
+            {{states                              
+            | selectattr('entity_id', 'in', state_attr('binary_sensor.mouvements', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ') }}
+            
       compteur_zigbee_hs:
         friendly_name: Compteur zigbee indisponible          
         value_template: >-
-          {% set hs = [
+            {{states                              
+            | selectattr('entity_id', 'in', state_attr('group.zigbee', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count }}
+            
+      zigbee_hs:
+        friendly_name: zigbee indisponible          
+        value_template: >-
+            {{states                              
+            | selectattr('entity_id', 'in', state_attr('group.zigbee', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ') }}
 
-           states.switch.piscine,
-           states.binary_sensor.boite_aux_lettres,
-           states.switch.radiateur,
-           states.binary_sensor.vibrations,
-           states.switch.tele_des_parents,
-           states.switch.sirene_heiman,
-           states.siren.frient,
-           states.alarm_control_panel.clavier_alarme,
-           states.sensor.cube_aqara_batterie,
-           states.sensor.moniteur_qualite_air,
-           ] %}
-          {{ hs | selectattr('state','eq','unavailable') | list | count }}
-  
       compteur_echo_hs:
         friendly_name: Compteur echo indisponible          
         value_template: >-
-          {% set hs = [
-           states.media_player.le_salon,
-           states.media_player.le_bureau,
-           states.media_player.la_cuisine,
-           states.media_player.papa,
-           states.media_player.maman,
-           states.media_player.tom,
-           states.media_player.nina,
-           states.media_player.leane,
-           states.media_player.manon,
-           states.media_player.la_salle_de_bain,
-           states.media_player.le_salon,
-           states.media_player.le_garage,
-           ] %}
-          {{ hs | selectattr('state','eq','unavailable') | list | count }}
+            {{states                              
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.echos', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count }}
+            
+      echo_hs:
+        friendly_name: echo indisponible          
+        value_template: >-
+            {{states                              
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.echos', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ') }}
 
 
       compteur_thermo_hs:
         friendly_name: Compteur thermo indisponible          
         value_template: >-
-          {% set hs = [
-           states.sensor.temp_cuisine,
-           states.sensor.temp_salon,
-           states.sensor.temp_tom,
-           states.sensor.temp_manon,
-           states.sensor.temp_nina,
-           states.sensor.temp_salle_de_bain,
-           states.sensor.temp_couloir_rdc,
-           states.sensor.sonde_garage_temperature,
-           ] %}
-          {{ hs | selectattr('state','eq','unavailable') | list | count }}
+            {{states                                  
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.thermo', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count}}
           
-         
+      thermo_hs:
+        friendly_name: thermo indisponible          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.thermo', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ')}}
+            
       compteur_aspi_hs:
         friendly_name: Compteur aspi indisponible          
         value_template: >-
-          {% set hs = [
-           states.vacuum.wall_e,
-           states.vacuum.r2d2,
-           ] %}
-          {{ hs | selectattr('state','eq','unavailable') | list | count }}
+          {{states.vacuum                                  
+           | reject('in', ['undefined', 'off'])
+           | selectattr('state', 'eq', 'unavailable') 
+           | map(attribute='name') | list | count }}
 
+      aspi_hs:
+        friendly_name: aspi indisponible          
+        value_template: >-
+          {{states.vacuum                                  
+           | reject('in', ['undefined', 'off'])
+           | selectattr('state', 'eq', 'unavailable') 
+           | map(attribute='name') | list | join(' , ') }}
+           
+      compteur_camera_hs:
+        friendly_name: Compteur camera indisponible          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.cameras', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count}}
+
+      camera_hs:
+        friendly_name: camera indisponible          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.cameras', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ')}}
+            
+      compteur_moustique_hs:
+        friendly_name: Compteur prises anti moustiques indisponible          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.moustiques', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count}}
+            
+      moustique_hs:
+        friendly_name: prises anti moustiques indisponible          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.moustiques', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ')}}
+            
+      compteur_inter_hs:
+        friendly_name: Compteur interrupteur indisponible          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.interrupteurs', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | count}}
+            
+      inter_hs:
+        friendly_name: interrupteur indisponible          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.interrupteurs', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ')}}
+            
+            
+      noel_hs:
+        friendly_name: noel indisponible          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'off'])
+            | selectattr('entity_id', 'in', state_attr('group.noel', 'entity_id'))|selectattr('state', 'equalto', 'unavailable')
+            | map(attribute='name') | list | join(' , ')}}
 
 ###### COMPTEURS ET LIGHT ON
       compteur_lumiere:
         friendly_name: Compteur lumières allumées          
         value_template: >
-          {% set lights = [
-           states.light.lampe_de_bureau,
-           states.switch.lampe_tv_salon,
-           states.light.bandeau_led,
-           states.light.lampe_canape,
-           states.light.lampadaire,
-           states.light.lustre_salle_a_manger,
-           states.light.lustre_salon,
-           states.light.lustre_parents,
-           states.light.chevet,
-           states.light.lustre_tom,
-           states.light.chevet_tom,
-           states.light.lampe_de_bureau_tom,
-           states.light.sonoff_10013f6d7e,
-           states.light.lustre_nina,
-           states.light.chevet_nina,
-           states.switch.guirlande_nina,
-           states.light.lampadaire_nina,
-           states.light.lampe_de_bureau_nina,
-           states.light.lustre_manon_et_leane,
-           states.light.lampe_manon_et_leane,
-           states.light.chevet_leane,
-           states.light.chevet_manon,
-           states.light.lampe_de_bureau_manon,
-           states.switch.arbre_lumineux,
-           states.light.wc_droit,
-           states.light.wc_gauche,
-           states.light.cagibi,
-           states.light.veranda,
-           states.light.entree,
-           states.light.couloir,
-           states.light.palier,
-           states.light.aqara_hub_54e1,
-           states.light.buffet,
-           states.light.escalier,
-           states.switch.sapin,
-           states.switch.guirlande_etoiles,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | rejectattr('state', 'eq', 'off')
+            | rejectattr('entity_id', 'search', 'light.tout')
+            | rejectattr('entity_id', 'search', 'light.pieces')
+            | rejectattr('entity_id', 'search', 'light.parents')
+            | rejectattr('entity_id', 'search', 'light.entree_et_couloir')
+            | rejectattr('entity_id', 'search', 'light.sejour')
+            | rejectattr('entity_id', 'search', 'light.tom')
+            | rejectattr('entity_id', 'search', 'light.nina')
+            | rejectattr('entity_id', 'search', 'light.manon_et_leane')
+            | rejectattr('entity_id', 'search', 'light.escaliers')
+            | rejectattr('entity_id', 'search', 'light.lavabo')
+            | rejectattr('entity_id', 'search', 'light.lustres_sejour')
+            | rejectattr('entity_id', 'search', 'light.salon')
+            | rejectattr('entity_id', 'search', 'light.sam')
+            | rejectattr('entity_id', 'search', 'trilam')
+            | selectattr('state', 'eq', 'on') 
+            | map(attribute='name') | list | count }}
           
       compteur_sdb:
         friendly_name: Compteur sdb      
@@ -1347,17 +1341,10 @@
       compteur_sejour:
         friendly_name: Compteur séjour      
         value_template: >
-          {% set lights = [
-           states.light.lampe_tv_salon,
-           states.light.bandeau_led,
-           states.light.lampe_canape,
-           states.light.lampadaire,
-           states.light.lustre_salle_a_manger,
-           states.light.lustre_salon,
-           states.light.lampe_de_bureau,
-           states.light.buffet,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.sejour', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }}
           
       sejour_on:
         friendly_name: Séjour 1 light
@@ -1382,24 +1369,18 @@
       compteur_entree:
         friendly_name: Compteur entrée         
         value_template: >
-          {% set lights = [
-           states.light.veranda,
-           states.light.entree,
-           states.light.couloir,
-           states.light.aqara_hub_54e1,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.entree_et_couloir', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }}
           
       compteur_salon:
         friendly_name: Compteur salon         
         value_template: >
-          {% set lights = [
-           states.switch.lampe_tv_salon,
-           states.light.bandeau_led,
-           states.light.lampe_canape,
-           states.light.lustre_salon,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.salon', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }}
 
       compteur_bureau:
         friendly_name: Compteur bureau         
@@ -1412,105 +1393,74 @@
       compteur_sam:
         friendly_name: Compteur sam         
         value_template: >
-          {% set lights = [
-           states.light.lampadaire,
-           states.light.lustre_salle_a_manger,
-           states.light.buffet,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }} 
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.sam', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }}
 
       compteur_parents:
         friendly_name: Compteur parents         
         value_template: >
-          {% set lights = [
-           states.light.lustre_parents,
-           states.light.chevet,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}   
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.parents', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }}   
           
       compteur_tom:
         friendly_name: Compteur tom         
         value_template: >
-          {% set lights = [
-           states.light.lustre_tom,
-           states.light.chevet_tom,
-           states.light.lampe_de_bureau_tom,
-           states.light.sonoff_10013f6d7e,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}  
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.tom', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }}  
           
       compteur_manon:
         friendly_name: Compteur manon léane         
         value_template: >
-          {% set lights = [
-           states.light.lustre_manon_et_leane,
-           states.light.lampe_manon_et_leane,
-           states.switch.arbre_lumineux,
-           states.light.chevet_leane,
-           states.light.chevet_manon,
-           states.light.lampe_de_bureau_manon,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}   
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.manon_et_leane', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }}   
           
       compteur_nina:
         friendly_name: Compteur nina         
         value_template: >
-          {% set lights = [
-           states.light.lustre_nina,
-           states.light.chevet_nina,
-           states.switch.guirlande_nina,
-           states.light.lampadaire_nina,
-           states.light.lampe_de_bureau_nina,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}   
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.nina', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }}    
 
       compteur_escaliers:
         friendly_name: Compteur escalier et palier         
         value_template: >
-          {% set lights = [
-           states.light.palier,
-           states.light.escalier,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}  
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.escaliers', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }} 
           
       compteur_wc:
         friendly_name: Compteur wc         
         value_template: >
-          {% set lights = [
-           states.light.wc_droit,
-           states.light.wc_gauche,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}   
+            {{states.light                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('light.lavabo', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count }}   
           
       compteur_moustique:
         friendly_name: Compteur prises moustiques         
         value_template: >
-          {% set lights = [
-           states.switch.moustique_parents,
-           states.switch.moustique_nina,
-           states.switch.moustique_tom,
-           states.switch.moustique_manon,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
+            {{states.switch                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('group.moustiques', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count}}
 
       compteur_mouvement:
         friendly_name: Compteur mouvement         
         value_template: >
-          {% set binary_sensor = [
-           states.binary_sensor.mouv_salon,
-           states.binary_sensor.mouv_camera_g3,
-           states.binary_sensor.mouv_salle_a_manger,
-           states.binary_sensor.mouv_couloir,
-           states.binary_sensor.mouv_salle_d_eau,
-           states.binary_sensor.mouv_garage,
-           states.binary_sensor.mouv_escalier,
-           states.binary_sensor.mouv_tom,
-           states.binary_sensor.mouv_manon,
-           states.binary_sensor.mouv_leane,
-           states.binary_sensor.mouv_nina,
-           states.binary_sensor.mouv_palier,
-           ] %}
-          {{ binary_sensor | selectattr('state','eq','on') | list | count }}
+            {{states.binary_sensor                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('binary_sensor.mouvements', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count}}
 
       mouv_on:
         friendly_name: mouvements état
@@ -1529,137 +1479,18 @@
       compteur_aspi:
         friendly_name: Compteur aspi           
         value_template: >-
-          {% set hs = [
-           states.vacuum.wall_e,
-           states.vacuum.r2d2,
-           ] %}
-          {{ hs | selectattr('state','eq','cleaning') | list | count }}          
-          
-      compteur_tout:
-        friendly_name: Compteur tout          
-        value_template: >
-          {% set lights = [
-           states.light.lampe_de_bureau,
-           states.switch.lampe_tv_salon,
-           states.light.bandeau_led,
-           states.light.lampe_canape,
-           states.light.lampadaire,
-           states.light.lustre_salle_a_manger,
-           states.light.lustre_salon,
-           states.light.lustre_parents,
-           states.light.chevet,
-           states.light.lustre_tom,
-           states.light.chevet_tom,
-           states.light.lampe_de_bureau_tom,
-           states.light.lustre_nina,
-           states.light.chevet_nina,
-           states.switch.guirlande_nina,
-           states.light.lampadaire_nina,
-           states.light.lampe_de_bureau_nina,
-           states.light.lustre_manon_et_leane,
-           states.light.lampe_manon_et_leane,
-           states.light.chevet_leane,
-           states.light.chevet_manon,
-           states.light.lampe_de_bureau_manon,
-           states.switch.arbre_lumineux,
-           states.light.wc_droit,
-           states.light.wc_gauche,
-           states.light.cagibi,
-           states.light.entree,
-           states.light.couloir,
-           states.light.palier,
-           states.light.aqara_hub_54e1,
-           states.switch.moustique_parents,
-           states.switch.moustique_nina,
-           states.switch.moustique_tom,
-           states.switch.moustique_manon,   
-           states.media_player.tv_salon,
-           states.switch.tele_des_parents, 
-           states.switch.radiateur, 
-           states.group.walle,
-           states.group.r2d2, 
-           states.switch.lave_vaisselle_power, 
-           states.input_boolean.musique,
-           states.input_boolean.imprimante,
-           states.input_boolean.lave_linge,
-           states.light.buffet,
-           states.light.escalier,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
+          {{states.vacuum                                  
+           | reject('in', ['undefined', 'unavailable'])
+           | selectattr('state', 'eq', 'cleaning') 
+           | map(attribute='name') | list | count }}
           
       compteur_autre:
         friendly_name: Compteur autre          
         value_template: >
-          {% set lights = [
-           states.switch.moustique_parents,
-           states.switch.moustique_nina,
-           states.switch.moustique_tom,
-           states.switch.moustique_manon,   
-           states.switch.radiateur, 
-           states.switch.lave_vaisselle_power, 
-           states.input_boolean.imprimante,
-           states.input_boolean.lave_linge,
-           ] %}
-          {{ (lights | selectattr('state','eq','on') | list | count)  }}
-          
-      compteur_programme:
-        friendly_name: Compteur modes + automatisations       
-        value_template: >
-          {% set modes = [
-           states.input_boolean.nilemato,
-           states.input_boolean.belle_saison,
-           states.input_boolean.piscine,
-           states.input_boolean.vacances,
-           states.input_boolean.noel,
-           states.input_boolean.halloween,    
-           states.automation.c_est_l_heure_d_aller_a_l_ecole,
-           states.automation.icloud_resfresh,
-           states.automation.sonnette_xiaomi_2,
-           states.automation.alarme_auto_si_personne,           
-           ] %}
-          {{ modes | selectattr('state','eq','on') | list | count }}  
-          
-
-      compteur_pieces:
-        friendly_name: Compteur pièces         
-        value_template: >
-          {% set lights = [
-           states.light.sejour,
-           states.light.lampe_de_bureau,
-           states.light.entree_et_couloir,
-           states.light.lavabo,
-           states.light.cagibi,
-           states.light.parents,
-           states.light.tom,
-           states.light.manon_et_leane,
-           states.light.nina,
-           states.light.escaliers,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
-          
-      compteur_pieces_rdc:
-        friendly_name: Compteur pièces         
-        value_template: >
-          {% set lights = [
-           states.light.sejour,
-           states.light.entree_et_couloir,
-           states.light.lavabo,
-           states.light.cagibi,
-           states.light.parents,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
-          
-      compteur_pieces_etage:
-        friendly_name: Compteur pièces         
-        value_template: >
-          {% set lights = [
-           states.light.tom,
-           states.light.manon_et_leane,
-           states.light.nina,
-           states.light.escaliers,
-           states.switch.radiateur,
-           ] %}
-          {{ lights | selectattr('state','eq','on') | list | count }}
+            {{states                               
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('group.autre', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count}}
           
       compteur_multimedia:
         friendly_name: Compteur multimédia          
@@ -1770,15 +1601,10 @@
       compteur_portes:
         friendly_name: Compteur portes ouvertes          
         value_template: >
-          {% set binary_sensor = [
-           states.binary_sensor.porte_entree,
-           states.binary_sensor.porte_cagibi,
-           states.binary_sensor.porte_cuisine,
-           states.binary_sensor.porte_salle_a_manger,
-           states.binary_sensor.porte_chambre_parents,
-           states.binary_sensor.porte_garage,
-           ] %}
-          {{ binary_sensor | selectattr('state','eq','on') | list | count }}
+            {{states.binary_sensor                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('binary_sensor.portes', 'entity_id'))|selectattr('state', 'equalto', 'on')
+            | map(attribute='name') | list | count}}
 
       porte_on:
         friendly_name: Porte état
@@ -1793,7 +1619,7 @@
          {%- else -%}
            Aucune
          {%- endif -%}
-         
+              
       portes_ouvertes:
         friendly_name: Portes ouvertes
         value_template: >-          
@@ -1836,9 +1662,11 @@
             Accueil 
           {% elif states.media_player.tv_salon.attributes.source == "Amazon Prime Video" %}
             Prime Video
+          {% elif states.media_player.tv_salon.attributes.source == "Nintendo Switch Console de jeu" %}
+            Switch
           {% else %}
             {{ states.media_player.tv_salon.attributes.source }} {{ states.media_player.tv_salon.attributes.media_title }}
-          {% endif %}
+          {% endif %} 
           
       tv_salon_vol:
         friendly_name: TV salon volume
@@ -1912,18 +1740,12 @@
       compteur_musique:
         friendly_name: Compteur Musique          
         value_template: >-
-          {% set echos = [
-           states.media_player.sejour,
-           states.media_player.la_salle_de_bain,
-           states.media_player.la_cuisine,
-           states.media_player.papa,
-           states.media_player.maman,
-           states.media_player.tom,
-           states.media_player.nina,
-           states.media_player.grande_chambre,
-           states.media_player.le_garage,
-           ] %}
-          {{ echos | selectattr('state','eq','playing') | list | count }}
+            {{states       
+            | reject('in', ['undefined', 'unavailable'])
+            | rejectattr('entity_id', 'search', 'media_player.le_bureau')
+            | rejectattr('entity_id', 'search', 'media_player.le_salon')
+            | selectattr('entity_id', 'in', state_attr('group.echos', 'entity_id'))|selectattr('state', 'equalto', 'playing')
+            | map(attribute='name') | list | count }}
          
       musique3:
         friendly_name: Musique          
@@ -2079,41 +1901,42 @@
           {%- endif %} 
           
 ###### SURVEILLANCE SYSTEME          
-
+        
       systeme_avertissement:
         friendly_name: Surveillance systeme
         value_template: >-    
 
-              {% set sejour  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_sejour.last_changed)) /60) | round(0) %}
-              {% set tom  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_tom.last_changed)) /60) | round(0) %}
-              {% set cuisine  = ((as_timestamp(now()) - as_timestamp(states.sensor.temp_cuisine.last_changed)) /60) | round(0) %}
-              {% if  sejour > 10  and tom > 10 and cuisine > 10 -%}
-                  Bluetooth HS depuis {{ as_timestamp(states.sensor.temp_sejour.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.sensor.temp_sejour.last_changed)}})<br>
+              {% set time  = ((as_timestamp(now()) - as_timestamp(states.sensor.compteur_thermo_hs.last_changed)) /60) | round(0) %}
+              {% if  states('sensor.compteur_thermo_hs') | float(0) > 4 and time > 5  -%}
+                  <b>Bluetooth HS</b> depuis {{ as_timestamp(states.sensor.compteur_thermo_hs.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.sensor.compteur_thermo_hs.last_changed)}})<br>
               {% else -%}
-              {% endif -%} 
+              {% endif -%}
               
               {% set cam = states | selectattr('entity_id', 'in', state_attr('group.cameras','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {%- if cam | length == 0 -%}
               {%- elif cam | length == 1 -%}
-               Caméra HS : {{ cam[0]}}<br>
+               <b>Caméra HS :</b> {{ cam[0]}}<br>
               {%- else -%}
-               Caméras HS : {{ cam[:-1] | join(', ') }}{{', ' if cam | length > 1 else ' '}}et {{ cam[-1]}}<br>
+               <b>Caméras HS :</b> {{ cam[:-1] | join(', ') }}{{', ' if cam | length > 1 else ' '}}et {{ cam[-1]}}<br>
                {%- endif -%}
 
-              {% set plante = states | selectattr('entity_id', 'in', state_attr('group.plantes','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
-              {%- if plante | length == 0 -%}
-              {%- elif plante | length == 1 -%}
-               Plante HS : {{ plante[0]}}<br>
-              {%- else -%}
-               Plantes HS : {{ plante[:-1] | join(', ') }}{{', ' if plante | length > 1 else ' '}}et {{ plante[-1]}}<br>
-               {%- endif -%}
+              {% set time  = ((as_timestamp(now()) - as_timestamp(states.sensor.compteur_plante_hs.last_changed)) /60) | round(0) %}
+              {% if  states('sensor.compteur_plante_hs') | float(0) > 0 and time > 5  -%}
+                {% set plante = states | selectattr('entity_id', 'in', state_attr('group.plantes','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+                {%- if plante | length == 0 -%}
+                {%- elif plante | length == 1 -%}
+                 <b>Plante HS :</b> {{ plante[0]}}<br>
+                {%- else -%}
+                 <b>Plantes HS :</b> {{ plante[:-1] | join(', ') }}{{', ' if plante | length > 1 else ' '}}et {{ plante[-1]}}<br>
+                 {%- endif -%}
+              {%- endif -%}
 
-              {%- if states('sensor.compteur_lumieres_hs') | float > 0  -%}
+              {%- if states('sensor.compteur_lumieres_hs') | float(0) > 0  -%}
                {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('light.tout','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                {% if lum_hs | length == 1 -%} 
-              Lumière HS : {{ lum_hs[0] }}<br>
+              <b>Lumière HS :</b> {{ lum_hs[0] }}<br>
                {% else -%}
-               {{ states('sensor.compteur_lumieres_hs') }} lumières HS : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+               <b>{{ states('sensor.compteur_lumieres_hs') }} lumières HS :</b> {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
                {% endif -%}
               {% else -%}
               {% endif -%}
@@ -2121,9 +1944,9 @@
               {%- if states.group.noel.state == "on"  -%}
                {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.noel','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                {%- if open_doors | length == 1 -%} 
-               Lumière Noël HS : { open_doors[0] }}
+               <b>Lumière Noël HS :</b> { open_doors[0] }}
                {%- elif open_doors | length > 1 -%}
-               Lumières Noël HS : {{ open_doors[:-1] | join(' , ') }} {{'' if open_doors | length == 2 else ' '}}et {{ open_doors[-1]}}
+               <b>Lumières Noël HS :</b> {{ open_doors[:-1] | join(' , ') }} {{'' if open_doors | length == 2 else ' '}}et {{ open_doors[-1]}}
                {%- else -%}
                {%- endif -%}
               {%- else -%}
@@ -2132,84 +1955,76 @@
               {% set porte_hs = states | selectattr('entity_id', 'in', state_attr('binary_sensor.portes','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {%- if porte_hs | length == 0 -%} 
               {%- elif porte_hs | length == 1 -%} 
-               Porte HS : {{ porte_hs[0] }}<br>
+               <b>Porte HS :</b> {{ porte_hs[0] }}<br>
               {%- else -%}
-               Porte HS : {{ porte_hs[:-1] | join(' , ') }}{{' ,' if porte_hs | length > 2 else ' '}} et {{ porte_hs[-1]}}<br>
+               <b>Porte HS :</b> {{ porte_hs[:-1] | join(' , ') }}{{' ,' if porte_hs | length > 2 else ' '}} et {{ porte_hs[-1]}}<br>
               {%- endif -%}
 
               {% set mouv_hs = states | selectattr('entity_id', 'in', state_attr('binary_sensor.mouvements','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {%- if mouv_hs | length == 0 -%} 
               {%- elif mouv_hs | length == 1 -%} 
-               Mouvement HS : {{ mouv_hs[0] }}<br>
+               <b>Mouvement HS :</b> {{ mouv_hs[0] }}<br>
               {%- else -%}
-               Mouvements HS : {{ mouv_hs[:-1] | join(' , ') }}{{' ,' if mouv_hs | length > 2 else ' '}} et {{ mouv_hs[-1]}}<br>
+               <b>Mouvements HS :</b> {{ mouv_hs[:-1] | join(' , ') }}{{' ,' if mouv_hs | length > 2 else ' '}} et {{ mouv_hs[-1]}}<br>
               {%- endif -%}
 
               {% set moustique_hs = states | selectattr('entity_id', 'in', state_attr('group.moustiques','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {%- if moustique_hs | length == 0 -%} 
               {%- elif moustique_hs | length == 1 -%} 
-               Prise anti-moustiques HS : {{ moustique_hs[0] }}
+               <b>Prise anti-moustiques HS :</b> {{ moustique_hs[0] }}br>
               {%- else -%}
-               Prises anti-moustiques : {{ moustique_hs[:-1] | join(' , ') }}{{' ,' if moustique_hs | length > 2 else ' '}} et {{ moustique_hs[-1]}}
+               <b>Prises anti-moustiques :</b> {{ moustique_hs[:-1] | join(' , ') }}{{' ,' if moustique_hs | length > 2 else ' '}} et {{ moustique_hs[-1]}}<br>
               {%- endif -%}
            
-              {%- if states('sensor.compteur_zigbee_hs') | float > 0  -%}
+              {%- if states('sensor.compteur_zigbee_hs') | float(0) > 0  -%}
                {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.zigbee','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                {% if lum_hs | length == 1 -%} 
-               Appareil HS : {{ lum_hs[0] }}<br>
+               <b>Appareil HS :</b> {{ lum_hs[0] }}<br>
                {% else -%}
-                Appareils HS : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+                <b>Appareils HS :</b> {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
                {% endif -%}
               {% else -%}
               {% endif -%} 
 
-              {%- if states('sensor.compteur_echo_hs') | float > 0  -%}
+              {%- if states('sensor.compteur_echo_hs') | float(0) > 0  -%}
               {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.echos','entity_id')) | selectattr('state','in',['on','unavailable']) | map(attribute='name') | list %}
                {% if open_doors | length == 1 -%} 
-                Echo HS : {{ open_doors[0] }}<br>
+                <b>Echo HS :</b> {{ open_doors[0] }}<br>
                {% else -%}
-                {{ states('sensor.compteur_echo_hs') }} Echos HS : {{ open_doors[:-1] | join(' , ') }}{{' ,' if open_doors | length > 2 else ' '}}et {{ open_doors[-1]}}<br>
+                <b>{{ states('sensor.compteur_echo_hs') }} Echos HS :</b> {{ open_doors[:-1] | join(' , ') }}{{' ,' if open_doors | length > 2 else ' '}}et {{ open_doors[-1]}}<br>
                {% endif -%}
               {% endif -%}
 
-              {%- if states('sensor.compteur_thermo_hs') | float > 0  -%}
+              {% set time  = ((as_timestamp(now()) - as_timestamp(states.sensor.compteur_thermo_hs.last_changed)) /60) | round(0) %}
+              {% if  states('sensor.compteur_thermo_hs') | float(0) > 0 and time > 5  -%}
                {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.thermo','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
-               {% if lum_hs | length == 1 -%} 
-               Thermomètre HS : {{ lum_hs[0] }}<br>
+               {% if lum_hs | length == 0 -%} 
+               {% elif lum_hs | length == 1 -%} 
+               <b>Thermomètre HS</b> : {{ lum_hs[0] }}<br>
                {% else -%}
-                {{ states('sensor.compteur_thermo_hs') }} Thermomètres HS : {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+                <b>{{ states('sensor.compteur_thermo_hs') }} Thermomètres HS :</b> {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
                {% endif -%}
               {% else -%}
               {% endif -%}
 
-              {% set thermo = states | selectattr('entity_id', 'in', state_attr('group.thermo_batterie','entity_id')) | selectattr('state', 'lessthan', '10') | map(attribute='name') | list %}
-              {%- if thermo | length == 0 -%}
-              {%- elif thermo | length == 1 -%}
-               Pile thermo - de 10% : {{ thermo[0]}}<br>
-              {%- else -%}
-               Pile thermo - de 10% : {{ thermo[:-1] | join(', ') }}{{', ' if thermo | length > 1 else ' '}}et {{ thermo[-1]}}<br>
-               {%- endif -%} 
-
-              {%- if states('sensor.disk_use_percent_home')| float > 70.0 -%}
-              Espace DD {{states('sensor.disk_use_percent_home')}}%<br>
+              {%- if states('sensor.disk_use_percent_home')| float(0) > 70.0 -%}
+              <b>Espace DD</b> {{states('sensor.disk_use_percent_home')}}%<br>
               {% endif -%}             
-              {%- if states('sensor.cpu_temperature')| float > 65 -%}
-               CPU {{states('sensor.cpu_temperature')}}°<br>
+              {%- if states('sensor.cpu_temperature')| float(0) > 65 -%}
+               <b>CPU</b> {{states('sensor.cpu_temperature')}}°<br>
               {% endif -%}
 
               {%- if is_state('device_tracker.arlo_sonnette', 'not_home') -%}
-               Sonnette Arlo déconnectée<br>
+               <b>Sonnette Arlo déconnectée</b><br>
               {% endif -%}
 
-              {%- if states('sensor.aarlo_battery_level_sonnette')| float < 30 and is_state('device_tracker.arlo_sonnette', 'home') -%}
-              Sonnette Arlo {{states('sensor.aarlo_battery_level_sonnette')}}%<br>
+              {% set time  = ((as_timestamp(now()) - as_timestamp(states.vacuum.wall_e.last_changed)) /60) | round(0) %}
+              {%- if states('vacuum.wall_e')  == 'unavailable' and time > 1 -%}
+                <b>Wall-E indisponible</b> depuis {{ as_timestamp(states.vacuum.wall_e.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.vacuum.wall_e.last_changed)}})<br>
               {% endif -%}
-
-              {%- if states('vacuum.wall_e')  == 'unavailable'  -%}
-                Wall-E indisponible<br>
-              {% endif -%}
-              {%- if states('vacuum.r2d2')  == 'unavailable'  -%}
-                R2D2 indisponible<br>
+              {% set time  = ((as_timestamp(now()) - as_timestamp(states.vacuum.r2d2.last_changed)) /60) | round(0) %}
+              {%- if states('vacuum.r2d2')  == 'unavailable' and time > 1 -%}
+                <b>R2D2 indisponible</b> depuis {{ as_timestamp(states.vacuum.r2d2.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.vacuum.r2d2.last_changed)}})<br>
               {% endif -%}
               
               {% set walle_error = states('sensor.walle_error') 
@@ -2219,9 +2034,9 @@
                 | replace('Clean hovering sensors, move robot', 'Problème avec les capteurs de dénivelé : nettoyez les détecteurs de dénivelé, éloignez le robot, et redémarrez-le.') %} 
               {% if is_state("vacuum.walle", "error") -%}
                 {% if is_state("sensor.walle_error", "unknown") -%}
-                Wall-E : {{ states('sensor.walle_error') }}
+                <b>Wall-E :</b> {{ states('sensor.walle_error') }}
                 {%- else -%}
-                Wall-E : {{ walle_error }}
+                <b>Wall-E :</b> {{ walle_error }}
                 {%- endif %}
               {%- endif %}  
               
@@ -2232,24 +2047,57 @@
                 | replace('Clean hovering sensors, move robot', 'Problème avec les capteurs de dénivelé : nettoyez les détecteurs de dénivelé, éloignez le robot, et redémarrez-le.') %} 
               {% if is_state("vacuum.r2d2", "error") -%}
                 {% if is_state("sensor.r2d2_error", "unknown") -%}
-                R2D2 : {{ states('sensor.r2d2_error') }}
+                R2D2 :</b> {{ states('sensor.r2d2_error') }}
                 {%- else -%}
-                R2D2 : {{ r2d2_error }}
+                <b>R2D2 :</b> {{ r2d2_error }}
                 {%- endif %} 
               {%- endif %}  
 
               {%- if states('switch.lave_vaisselle_power')  == 'unavailable'  or 
               states('binary_sensor.lave_vaisselle_door')  == 'unavailable' -%}
-                Lave-vaisselle HS<br>
+                <b>Lave-vaisselle HS</b><br>
               {% endif -%} 
 
               {% set interr_hs = states | selectattr('entity_id', 'in', state_attr('group.interrupteurs','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {% if interr_hs | length == 0 -%}
               {% elif interr_hs | length == 1 -%}
-              Interrupteur HS : {{ interr_hs[0] }}
+              <b>Interrupteur HS :</b> {{ interr_hs[0] }}
               {% else -%}
-              Interrupteurs HS : {{ interr_hs[:-1] | join(' , ') }}{{' ,' if interr_hs | length > 2 else ' '}} et {{ interr_hs[-1]}}
+              <b>Interrupteurs HS :</b> {{ interr_hs[:-1] | join(' , ') }}{{' ,' if interr_hs | length > 2 else ' '}} et {{ interr_hs[-1]}}
               {% endif -%}
+              
+              {% set compteur_pile_faible =
+              states.sensor                  
+              | selectattr('attributes.device_class', 'defined') 
+              | selectattr('attributes.device_class', '==', 'battery') 
+              | rejectattr('state', 'in', ['unavailable', 'unknown'])
+              | rejectattr('state', 'eq', '100')   
+              | selectattr('state', 'lt', '30')
+              | map(attribute='name') | list | count%}
+              {%set pile_faible =
+              states.sensor                  
+              | selectattr('attributes.device_class', 'defined') 
+              | selectattr('attributes.device_class', '==', 'battery') 
+              | rejectattr('state', 'in', ['unavailable', 'unknown'])
+              | rejectattr('state', 'eq', '100')   
+              | selectattr('state', 'lt', '30')
+              | map(attribute='name') | list | join(' , ')%}
+              {%set etat_pile_faible =
+              states.sensor                  
+              | selectattr('attributes.device_class', 'defined') 
+              | selectattr('attributes.device_class', '==', 'battery') 
+              | rejectattr('state', 'in', ['unavailable', 'unknown'])
+              | rejectattr('state', 'eq', '100')   
+              | selectattr('state', 'lt', '30')
+              | map(attribute='state') | list | join(' , ')%}
+              {% if compteur_pile_faible | float(0) == 0 -%}
+              {% elif compteur_pile_faible | float(0) == 1 -%}
+                  <b>Batterie faible :</b> {{ pile_faible }} {{ etat_pile_faible }}%
+              {% else -%}
+                  <b>{{ compteur_pile_faible }} batteries faibles :</b> {{ pile_faible }}
+              {% endif -%}
+
+
               
 ###### MISE A JOUR HACS ET SUPERVISOR
           
@@ -2257,11 +2105,11 @@
         friendly_name: Mise à jour 
         value_template: >-           
           {% if states('sensor.hacs') | float == 1 and states('binary_sensor.home_assistant_versions_update_available')  == 'off' and states('update.home_assistant_operating_system_update')  == 'off' and states('update.home_assistant_supervisor_update') == 'off' %}
-            Aucune
-          {% elif states('sensor.hacs') | float > 1 or states('binary_sensor.home_assistant_versions_update_available') == 'on' or states('update.home_assistant_operating_system_update')  == 'on' or states('update.home_assistant_supervisor_update') == 'on' -%}   
+            Aucune mise à jour
+          {% elif states('sensor.hacs') | float > 1 or states('binary_sensor.home_assistant_versions_update_available') == 'on' or states('update.home_assistant_operating_system_update')  == 'on' or states('update.home_assistant_supervisor_update') == 'on' -%}
           {%- endif -%}
             {%- if states('binary_sensor.home_assistant_versions_update_available') == 'on' or states('update.home_assistant_supervisor_update')  == 'on' or states('update.home_assistant_operating_system_update')  == 'on' %} 
-                <b>Home Assistant :</b><br>
+                <b>MàJ Home Assistant :</b><br>
                {%- if states('binary_sensor.home_assistant_versions_update_available') == 'on' %} 
                  HA Core {{state_attr('update.home_assistant_core_update','installed_version')}} -> {{ states('sensor.home_assistant_versions') }}<br>
                {%- endif -%}
@@ -2273,7 +2121,7 @@
                {%- endif -%}
             {%- endif -%}
             {%- if states('sensor.hacs') | float > 1  %}
-                <b>Hacs :</b><br>
+                <b>MàJ Hacs :</b><br>
                 {% for repo in states.sensor.hacs.attributes.repositories -%}
                 {{ repo.display_name }} ({{ repo["available_version"] }})<br>
                 {% endfor %} 
@@ -2285,12 +2133,13 @@
       compteur_home:
         friendly_name: Compteur Personnes à la maison         
         value_template: >-
-          {% set pers = [
-           states.person.herve,
-           states.person.alex,
-           states.person.tom,           
-           ] %}
-          {{ pers | selectattr('state','eq','home') | list | count }}
+            {{states.person                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('state', 'eq', 'home') 
+            | rejectattr('entity_id', 'search', 'person.nina')
+            | rejectattr('entity_id', 'search', 'person.manon')
+            | rejectattr('entity_id', 'search', 'person.leane')
+            | map(attribute='name') | list | count }}
           
          
 ###### STATUT PERSON ET GPS POSITION
@@ -2373,33 +2222,45 @@
         value_template: >-        
           {%- set time = (as_timestamp(now()) - as_timestamp(states.person.herve.last_changed)) | int  %}
           {%- set minutes = ((time % 3600) // 60) %}
-          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
+          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '0min' %}
           {%- set hours = ((time % 86400) // 3600) %}
-          {%- set hours = '{}h '.format(hours) if hours > 0 else '' %}
+          {%- set hours = '{}h '.format(hours) if hours > 0 else '0h ' %}
           {%- set days = (time // 86400) %}
           {%- set days = '{}j '.format(days) if days > 0 else '' %}
-          {{ '- de 1min' if time < 60 else days + hours + minutes }}
+          {%- if time < 60 %}
+          - de 1min 
+          {%- elif time > 86400 %}
+          {{ days + hours }}
+          {%- else -%}
+          {{ days + hours + minutes}}
+          {%- endif -%}
           
       alex_duree:
         friendly_name: "Alex duree"
         value_template: >-
           {%- set time = (as_timestamp(now()) - as_timestamp(states.person.alex.last_changed)) | int  %}
           {%- set minutes = ((time % 3600) // 60) %}
-          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
+          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '0min' %}
           {%- set hours = ((time % 86400) // 3600) %}
-          {%- set hours = '{}h '.format(hours) if hours > 0 else '' %}
+          {%- set hours = '{}h '.format(hours) if hours > 0 else '0h ' %}
           {%- set days = (time // 86400) %}
           {%- set days = '{}j '.format(days) if days > 0 else '' %}
-          {{ '- de 1min' if time < 60 else days + hours + minutes }}
+          {%- if time < 60 %}
+          - de 1min 
+          {%- elif time > 86400 %}
+          {{ days + hours }}
+          {%- else -%}
+          {{ days + hours + minutes}}
+          {%- endif -%}
           
       tom_duree:
         friendly_name: "tom duree"
         value_template: >-
           {%- set time = (as_timestamp(now()) - as_timestamp(states.person.tom.last_changed)) | int  %}
           {%- set minutes = ((time % 3600) // 60) %}
-          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
+          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '0min ' %}
           {%- set hours = ((time % 86400) // 3600) %}
-          {%- set hours = '{}h '.format(hours) if hours > 0 else '' %}
+          {%- set hours = '{}h '.format(hours) if hours > 0 else '0h ' %}
           {%- set days = (time // 86400) %}
           {%- set days = '{}j '.format(days) if days > 0 else '' %}
           {{ '- de 1min' if time < 60 else days + hours +  minutes }}
@@ -2409,9 +2270,9 @@
         value_template: >-
           {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.manon_tab_ping.last_changed)) | int  %}
           {%- set minutes = ((time % 3600) // 60) %}
-          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
+          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '0min' %}
           {%- set hours = ((time % 86400) // 3600) %}
-          {%- set hours = '{}h '.format(hours) if hours > 0 else '' %}
+          {%- set hours = '{}h '.format(hours) if hours > 0 else '0h ' %}
           {%- set days = (time // 86400) %}
           {%- set days = '{}j '.format(days) if days > 0 else '' %}
           {{ '- de 1min' if time < 60 else days + hours +  minutes }}
@@ -2421,9 +2282,9 @@
         value_template: >-
           {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.leane_tab_ping.last_changed)) | int  %}
           {%- set minutes = ((time % 3600) // 60) %}
-          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
+          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '0min' %}
           {%- set hours = ((time % 86400) // 3600) %}
-          {%- set hours = '{}h '.format(hours) if hours > 0 else '' %}
+          {%- set hours = '{}h '.format(hours) if hours > 0 else '0h ' %}
           {%- set days = (time // 86400) %}
           {%- set days = '{}j '.format(days) if days > 0 else '' %}
           {{ '- de 1min' if time < 60 else days + hours +  minutes }}
@@ -2431,134 +2292,24 @@
       nina_duree:
         friendly_name: "nina duree"
         value_template: >-
-          {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.aurel_ipad_ping.last_changed)) | int  %}
+          {%- set time = (as_timestamp(now()) - as_timestamp(states.device_tracker.nina_tab_ping.last_changed)) | int  %}
           {%- set minutes = ((time % 3600) // 60) %}
-          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '' %}
+          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '0min' %}
           {%- set hours = ((time % 86400) // 3600) %}
-          {%- set hours = '{}h '.format(hours) if hours > 0 else '' %}
+          {%- set hours = '{}h '.format(hours) if hours > 0 else '0h ' %}
           {%- set days = (time // 86400) %}
           {%- set days = '{}j '.format(days) if days > 0 else '' %}
           {{ '- de 1min' if time < 60 else days + hours +  minutes }}
 
-###### APPLE WATCH COMPLICATIONS
-      apple_watch_presence:
-        friendly_name: Apple Watch Présence
-        value_template: >-
-          {% set person = [
-           states.person.herve,
-           states.person.alex,
-           states.person.tom,
-           ] %}
-          {{ person | selectattr('state','eq','home') | list | count }}
-    
-      apple_watch_alarme:
-        friendly_name: Apple Watch Alarme
-        value_template: >-
-          {% if states.alarm_control_panel.alarme.state == "disarmed" %}
-            {{states('sensor.compteur_home') }}🏠
-          {% elif states.alarm_control_panel.alarme.state == "armed_away" %}
-            🚨
-          {% else %}      
-            ⚠️
-          {% endif %}
-          
-      apple_watch_jauge_temp: #max de 35
-        friendly_name: Apple Watch Jauge Temp
-        value_template: '{{ (states("sensor.temp_sejour")|int/30) }}'
-        #value_template: '{{ (states.sensor.temp_sejour.attributes.mean|float/35)|float|round(2) }}'  
-          
-      apple_watch_jauge_batterie: 
-        friendly_name: Apple Watch Jauge Batterie
-        value_template: '{{ (states.sensor.iphone_aurel_battery_level.state|float/100)|float|round(2) }}'
-        
-      apple_watch_ipad: 
-        friendly_name: Apple Watch iPad
-        value_template: >-
-          {% if states.sensor.aurel_ipad_battery_state_2.state == "100" %}
-            100
-          {% else %}
-            {{ states.sensor.aurel_ipad_battery_state_2.state }}%
-          {% endif %}
-          
-      apple_watch_iphone: 
-        friendly_name: Apple Watch iPhone
-        value_template: >-
-          {% if states.sensor.iphone_aurel_battery_level.state == "100" %}
-            100
-          {% else %}
-            {{ states.sensor.iphone_aurel_battery_level.state }}%
-          {% endif %}
-          
-      apple_watch_jauge: 
-        friendly_name: Apple Watch Jauge 
-        value_template: >-
-          {% if states.person.herve.state == "home" %}
-            {{ states.sensor.apple_watch_jauge_temp.state }}
-          {% elif not states.person.herve.state == "home" %}
-            {{ states.sensor.apple_watch_jauge_batterie.state }}
-          {% endif %}        
-        
-      apple_watch_jauge_info: 
-        friendly_name: Apple Watch Jauge Info
-        value_template: >-
-          {% if states.person.herve.state == "home" %}
-            {{ states.sensor.temp_sejour.state }}°
-          {% elif not states.person.herve.state == "home" %}
-            
-            {{ states.sensor.apple_watch_batterie_icone.state }}{{ states.sensor.iphoneaurel_battery_level.state }}%
-          {% endif %}       
 
-      apple_watch_batterie_icone:
-        friendly_name: Apple Watch batterie icone
-        value_template: >-
-          {% if states.sensor.iphoneaurel_battery_state.state == "Charging"  %}
-            ⚡️
-          {% elif states.sensor.iphoneaurel_battery_state.state == "Full"  %}
-            🔋
-          {% elif states.sensor.iphoneaurel_battery_state.state == "Charged"  %}
-            🔋            
-          {% else %}
-          {% endif %}
-        
-      apple_watch_lumiere:
-        friendly_name: Apple Watch lumiere
-        value_template: >-
-          {% if states.sensor.compteur_lumiere.state > "0"  -%}
-            {% if states.light.sejour.state == "on"  -%}
-              🛋️ 
-            {% endif -%}
-            {% if states.light.lampe_de_bureau.state == "on"  -%}
-              🖥️ 
-            {% endif -%}
-            {% if states.light.lavabo.state == "on"  -%}
-              🚾 
-            {% endif -%}
-          {% endif -%}
-
-      apple_watch_jauge_gauche: 
-        friendly_name: Apple Watch Jauge gauche
-        value_template: >-
-          {% if states.person.herve.state == "home" %}
-            {% if states.sensor.iphoneaurel_battery_level.state == "100" %}
-              {{ states.sensor.iphoneaurel_battery_level.state }}  
-            {% else %}  
-              {{ states.sensor.iphoneaurel_battery_level.state }}%
-            {% endif %}
-          {% elif not states.person.herve.state == "home" %}
-            {% if states.sensor.apple_watch_presence.state == "0" %}
-              •{{ states.sensor.apple_watch_presence.state }}•
-            {% elif not states.sensor.apple_watch_presence.state == "0" %}
-              {{ states.sensor.apple_watch_presence.state }} 🙋‍♂️
-            {% endif %}
-          {% endif %}
           
 ##############################
 #Sensor Date et heure 
 ##############################
-
   - platform: time_date
     display_options:
       - 'time'
-      - 'date'         
+      - 'date'  
+       
 
      
