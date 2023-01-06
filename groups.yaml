@@ -42,6 +42,12 @@ Cameras:
     entities:
       - camera.camera_hub_g3_2725
       - camera.camera_g2hpro
+      - camera.aarlo_sonnette
+
+Alarmes:
+    entities:
+      - alarm_control_panel.alarme
+      - alarm_control_panel.aarlo_sonnette
       
 Plantes:
     entities:
@@ -60,6 +66,21 @@ Thermo:
       - sensor.temp_salle_de_bain
       - sensor.temp_cuisine
       - sensor.sonde_garage_temperature
+      
+Thermo_rdc: 
+    entities:
+      - sensor.temp_parents
+      - sensor.temp_couloir_rdc
+      - sensor.temp_sejour
+      - sensor.temp_cuisine
+      - sensor.moniteur_qualite_air_temperature
+
+Thermo_etage: 
+    entities:
+      - sensor.temp_manon
+      - sensor.temp_tom
+      - sensor.temp_nina
+      - sensor.temp_salle_de_bain
       
 Thermo batterie: 
     entities:
@@ -120,8 +141,10 @@ Tracker BT:
 Noel:
     entities:
       - switch.guirlande_etoiles
+      - switch.guirlande_veranda
+      - switch.guirlande_couloir
       - switch.sapin
-      - script.ambiance_noel
+      - scene.ambiance_noel
 
 Mode:
     entities:
@@ -153,16 +176,16 @@ moustiques:
       
 Zigbee:
     entities:
-      - switch.piscine
-      - binary_sensor.boite_aux_lettres
+      - switch.lave_linge
       - switch.radiateur
       - switch.tele_des_parents
-      - switch.sirene_heiman
+      - siren.sirene_heiman
       - binary_sensor.vibrations
       - siren.frient
       - alarm_control_panel.clavier_alarme
       - sensor.cube_aqara_batterie
       - sensor.moniteur_qualite_air
+      - binary_sensor.vibrations
 
 Person:
     entities:
@@ -174,14 +197,16 @@ Enfants:
     entities:
       - person.tom
       - device_tracker.tom_mac_ping
-      - device_tracker.tablette_manon
-      - device_tracker.leane_tab_ping     
+      - device_tracker.manon_tab_ping
+      - device_tracker.leane_tab_ping
+      - device_tracker.nina_tab_ping
      
 Connecté:
     entities:
       - device_tracker.tom_mac_ping
       - device_tracker.aurel_ipad_ping
-      - device_tracker.tablette_manon
+      - device_tracker.manon_tab_ping
       - device_tracker.leane_tab_ping 
       - device_tracker.aurel_mac_ping
       - device_tracker.alex_mac_ping
+      - device_tracker.nina_tab_ping
