@@ -23,7 +23,7 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 
 -----
 
-### 🥳 Complètement revisité pour cette nouvelle version novembre 2022 : 
+### 🥳 Complètement revisité pour cette nouvelle version 2023 : 
 
 - Réécriture des templates button card  
 - Modifications des sensor templates  
@@ -87,10 +87,10 @@ Il est également possible de créer une automatisation, basée par exemple sur 
 ## 😎 ONGLETS ET SOUS-VUES
 
 ### Tableau de bord avec peu d'onglets...grace aux sous-vues ! J'en ai 30, voici des exemples : 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup2.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_3.jpg) 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_4.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_5.jpg) 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_6.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_7.jpg) 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_8.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup2.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_2.jpg) 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_3.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_4.jpg) 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_5.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_6.jpg) 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_7.jpg)
 
 
 ---------------------
