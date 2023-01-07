@@ -14258,7 +14258,7 @@ views:
                 template:
                   - base
                 name: |
-                  [[[ return "Particlues dans l'air : " + entity.state+" ppb"]]]
+                  [[[ return "Particules dans l'air : " + entity.state+" ppb"]]]
                 label: |
                   [[[
                     if (states['sensor.moniteur_qualite_air'].state < 65  )
