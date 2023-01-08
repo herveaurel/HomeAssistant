@@ -303,7 +303,7 @@
             | replace('hail', 'Grêle')
             | replace('lightning-rainy', 'Pluie orageuse')
             | replace('lightning', 'Orages') 
-            | replace('pourring', 'Fortes pluies')
+            | replace('pouring', 'Fortes pluies')
             | replace('snowy-rainy', 'Neigeux')
             | replace('snowy', 'Neigeux')
             | replace('sunny', 'Ensoleillé')
