@@ -59,7 +59,7 @@ button_card_templates:
           return "/local/weather/icones animes/sleet.svg";  
 
         if (entity.state == 'pouring')
-          return "/local/weather/icones animes/pouring.svg"; 
+          return "/local/weather/icones animes/umbrella.svg"; 
 
         if (entity.state == 'snowy-rainy')
           return "/local/weather/icones animes/sleet.svg";  
