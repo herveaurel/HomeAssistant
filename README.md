@@ -165,5 +165,6 @@ Mes intégrations  hacs:
 ## ⭐️ VIP 
 
 Si vous aimez , likez 🌟 mon repo !
+
 Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️ , dire merci 🙏 , me soutenir ❤️‍🩹, ou m'encourager 💪🏼, et devenir VIP ⭐️ pour une aide personnalisée par message privé : https://www.buymeacoffee.com/aurelrv ou https://www.paypal.com/paypalme/aaherve
 Merci ! 
