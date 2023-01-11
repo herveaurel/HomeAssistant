@@ -23,6 +23,22 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 
 -----
 
+### version 2023.0.1
+
+Changements :
+- correction des state du moniteur d'air 
+- correction de fautes d'othographe sur le moniteur d'air 
+- modifications des graphiques electricté et gaz 
+- modifications des cartes jauges dans les sous vues des pièces 
+- modifications des boutons d'ambiances dans les sous vues des pièces 
+- modifications des cartes light dans l'onglet "lumières"
+- modifications de la rangées de modes, au dessus de la carte Activité 
+- modifications de l'onglet "surveillance système" 
+- ajouts de cartes Mini-Graph dans l'onglet "Températures" 
+- modifications de l'onglet "batteries" 
+
+-----
+
 ### 🥳 Complètement revisité pour cette nouvelle version 2023 : 
 
 - Réécriture des templates button card  
