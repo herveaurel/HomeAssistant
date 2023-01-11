@@ -136,7 +136,7 @@ button_card_templates:
           - position: absolute
           - top: 4%
           - left: 50%
-          - width: calc(97% + 1px)
+          - width: calc(95% + 1px)
           - transform: translate(-50%, calc(-50% + 10px))
           - '--ha-card-border-width': 0px
         date:
@@ -733,52 +733,42 @@ button_card_templates:
               styles:
                 card:
                   - line-height: 70%
+                  - background-color: |
+                      [[[
+                        if (states['sensor.qualite_air_pourcentage'].state >= 96.1 && states['sensor.qualite_air_pourcentage'].state <= 98.8)
+                          return "var(--custom-card-color-blue)" 
+                        if (states['sensor.qualite_air_pourcentage'].state >= 88.1 && states['sensor.qualite_air_pourcentage'].state <= 96)
+                          return "var(--custom-card-color-yellow)" 
+                        if (states['sensor.qualite_air_pourcentage'].state >= 60.1 && states['sensor.qualite_air_pourcentage'].state <= 88)
+                          return "var(--custom-card-color-orange)" 
+                        if (states['sensor.qualite_air_pourcentage'].state >= 0 && states['sensor.qualite_air_pourcentage'].state <= 60)
+                          return "var(--custom-card-color-red)" 
+                        return "" 
+                      ]]]
                 name:
                   - font-size: 9px
                   - font-weight: null
                   - color: darkgrey
                 state:
                   - font-size: 11px
+                  - color: |
+                      [[[
+                        if (states['sensor.qualite_air_pourcentage'].state >= 96.1 && states['sensor.qualite_air_pourcentage'].state <= 98.8)
+                          return "var(--custom-icon-color-blue)" 
+                        if (states['sensor.qualite_air_pourcentage'].state >= 88.1 && states['sensor.qualite_air_pourcentage'].state <= 96)
+                          return "var(--custom-icon-color-yellow)" 
+                        if (states['sensor.qualite_air_pourcentage'].state >= 60.1 && states['sensor.qualite_air_pourcentage'].state <= 88)
+                          return "var(--custom-icon-color-orange)" 
+                        if (states['sensor.qualite_air_pourcentage'].state >= 0 && states['sensor.qualite_air_pourcentage'].state <= 60)
+                          return "var(--custom-icon-color-red)" 
+                        return "" 
+                      ]]]
                 custom_fields:
                   gauge:
                     - top: 50.5%
                     - left: 50%
                     - opacity: 50%
                     - width: calc(140% + 0px)
-              state:
-                - value: 98.8
-                  operator: ''
-                  styles:
-                    img_cell:
-                      - background-color: var(--pastille_off)
-                    icon:
-                      - color: var(--icon_off)
-                - value: 98.8
-                  operator: <=
-                  styles:
-                    state:
-                      - color: var(--custom-icon-color-blue)
-                - value: 96
-                  operator: <=
-                  styles:
-                    card:
-                      - background-color: var(--custom-card-color-yellow)
-                    state:
-                      - color: var(--custom-icon-color-yellow)
-                - value: 88
-                  operator: <=
-                  styles:
-                    card:
-                      - background-color: var(--custom-card-color-orange)
-                    state:
-                      - color: var(--custom-icon-color-orange)
-                - value: 60
-                  operator: <=
-                  styles:
-                    card:
-                      - background-color: var(--custom-card-color-red)
-                    state:
-                      - color: var(--custom-icon-color-red)
               custom_fields:
                 gauge:
                   card:
@@ -1287,9 +1277,10 @@ button_card_templates:
         - font-size: 10px
         - color: var(--text_on)
       name:
-        - font-size: 10px
-        - padding-top: 10%
-        - color: var(--text_on)
+        - font-weight: bold
+        - font-size: 11px
+        - padding-top: 5%
+        - color: rgba(232,233,242,1)
       card:
         - border-radius: 15px
         - height: auto
@@ -1366,6 +1357,7 @@ button_card_templates:
         - font-size: 90%
       custom_fields:
         gauge:
+          - z-index: 1
           - position: absolute
           - top: 50.5%
           - left: 50%
@@ -1465,62 +1457,6 @@ button_card_templates:
               - color: rgb(180, 70, 70)
                 from: 500
                 to: 10000
-  carte_batterie:
-    style:
-      .: |
-        ha-card {
-            --ha-card-background: none !important;
-    template:
-      - carte_ronde
-      - state_batterie
-      - state_unavailable
-    show_icon: false
-    show_state: true
-    show_name: true
-    show_label: false
-    show_last_changed: true
-    styles:
-      name:
-        - font-size: 80%
-      state:
-        - font-size: 130%
-        - font-weight: bold
-      label:
-        - font-size: 60%
-      custom_fields:
-        gauge:
-          - position: absolute
-          - top: 50.5%
-          - left: 50%
-          - opacity: 90%
-          - width: calc(115% + 0px)
-          - transform: translate(-50%, calc(-50% + 0px))
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)
-          - '--ha-card-box-shadow': none
-          - '--ha-card-border-width': 0px
-    custom_fields:
-      gauge:
-        card:
-          type: custom:hatc-gauge-card
-          title:
-            name: false
-            icon: false
-          gauge:
-            icon: false
-            icon-size: 20px
-            state: false
-            text-color: lightgrey
-            font-size: 20px
-            max_value: 100
-            friendly_name: true
-            severity:
-              - color: rgb(176, 196, 222)
-                from: 0
-                to: 29.9
-              - color: rgb(70, 130, 180)
-                from: 30
-                to: 100
   carte_jauge:
     template:
       - carte_ronde
@@ -1542,7 +1478,7 @@ button_card_templates:
           - position: absolute
           - top: 50.5%
           - left: 50%
-          - opacity: 50%
+          - opacity: 90%
           - width: calc(115% + 0px)
           - transform: translate(-50%, calc(-50% + 0px))
           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
@@ -2180,13 +2116,15 @@ button_card_templates:
             - transition: 1s ease
   state_batterie:
     show_state: true
-    show_last_changed: false
+    show_last_changed: true
     styles:
       name:
-        - font-size: 11px
+        - font-size: 12px
       state:
-        - font-size: 11px
+        - font-size: 12px
         - font-weight: bold
+      label:
+        - font-size: 9px
     units: '%'
     state:
       - value: 40
@@ -3561,15 +3499,17 @@ views:
                           type: custom:aarlo-glance
                         - camera_view: live
                           type: picture-glance
-                          title: Salon
                           entities:
-                            - entity: alarm_control_panel.camera_g3
+                            - entity: binary_sensor.mouvements_sejour
+                            - entity: binary_sensor.mouv_camera_g3
+                            - entity: binary_sensor.porte_salle_a_manger
                           camera_image: camera.camera_hub_g3_2725
                         - camera_view: live
                           type: picture-glance
-                          title: Garage
                           entities:
-                            - entity: alarm_control_panel.camera_g2hpro
+                            - entity: binary_sensor.mouv_garage
+                            - entity: binary_sensor.mouv_camera_g2hpro
+                            - entity: binary_sensor.porte_garage
                           camera_image: camera.camera_g2hpro
                   - type: conditional
                     conditions:
@@ -3799,20 +3739,30 @@ views:
                           - state_appareil
                           - state_unavailable
                         entity: input_boolean.vacances
-                      - type: custom:button-card
-                        show_state: false
-                        template:
-                          - carte_badge
-                          - state_appareil
-                          - state_unavailable
-                        entity: input_boolean.noel
-                      - type: custom:button-card
-                        show_state: false
-                        template:
-                          - carte_badge
-                          - state_appareil
-                          - state_unavailable
-                        entity: input_boolean.halloween
+                      - type: conditional
+                        conditions:
+                          - entity: input_boolean.noel
+                            state: 'on'
+                        card:
+                          type: custom:button-card
+                          show_state: false
+                          template:
+                            - carte_badge
+                            - state_appareil
+                            - state_unavailable
+                          entity: input_boolean.noel
+                      - type: conditional
+                        conditions:
+                          - entity: input_boolean.halloween
+                            state: 'on'
+                        card:
+                          type: custom:button-card
+                          show_state: false
+                          template:
+                            - carte_badge
+                            - state_appareil
+                            - state_unavailable
+                          entity: input_boolean.halloween
                   - type: custom:button-card
                     template:
                       - sidebar
@@ -5594,16 +5544,16 @@ views:
                         - background-color: |
                             [[[
                               if (entity.state == "unavailable") return 'var(--pastille_off)'
-                              if (entity.state < 30) return 'rgba(106, 161, 12,0.4)';
-                              if (entity.state >= 30 ) return 'var(--custom-img-cell-color-red)';
+                              if (entity.state < 50) return 'var(--custom-img-cell-color-blue)';
+                              if (entity.state >= 50 ) return 'var(--custom-img-cell-color-red)';
                               else return 'var(--custom-img-cell-color-red)'; 
                             ]]]
                       icon:
                         - color: |
                             [[[
                               if (entity.state == "unavailable") return 'var(--icon_off)'
-                              if (entity.state < 30) return 'rgba(106, 161, 12,1)';
-                              if (entity.state >= 30) return 'var(--custom-icon-color-red)';
+                              if (entity.state < 50) return 'var(--custom-icon-color-blue)';
+                              if (entity.state >= 50) return 'var(--custom-icon-color-red)';
                               else return 'var(--custom-icon-color-red)';
                             ]]]
                     state:
@@ -5636,7 +5586,7 @@ views:
                           type: custom:mini-graph-card
                           entities:
                             - entity: sensor.grdf_consommation_gaz
-                              color: rgba(106, 161, 12,0.2)
+                              color: rgba(128,128,128,0.4)
                           group_by: date
                           height: 250
                           hours_to_show: 240
@@ -5875,7 +5825,7 @@ views:
     subview: false
     layout:
       width: 350
-      max_cols: 4
+      max_cols: 3
     type: custom:horizontal-layout
     badges: []
     cards:
@@ -5884,6 +5834,12 @@ views:
         layout:
           width: 320
         cards:
+          - type: custom:button-card
+            template:
+              - titre_section
+            entity: light.escaliers
+            name: |
+              [[[ return "Rez-de-chaussée " ]]]
           - square: false
             columns: 3
             type: grid
@@ -5955,6 +5911,29 @@ views:
                     card:
                       entity: sensor.temp_cuisine
               - type: custom:button-card
+                entity: sensor.moniteur_qualite_air_temperature
+                name: Air
+                template:
+                  - carte_thermo
+                label: |
+                  [[[
+                    if( states['sensor.moniteur_qualite_air_humidite'].state == "unavailable")
+                      return "HS"
+                    return states['sensor.moniteur_qualite_air_humidite'].state + "%"
+                  ]]]
+                styles:
+                  label:
+                    - color: |
+                        [[[
+                          if (states['sensor.moniteur_qualite_air_humidite'].state > 70 || states['sensor.hum_parents'].state < 40 )
+                            return 'red'
+                          return ''
+                        ]]]
+                custom_fields:
+                  gauge:
+                    card:
+                      entity: sensor.moniteur_qualite_air_temperature
+              - type: custom:button-card
                 entity: sensor.temp_parents
                 name: Parents
                 template:
@@ -5977,6 +5956,39 @@ views:
                   gauge:
                     card:
                       entity: sensor.temp_parents
+              - type: custom:button-card
+                entity: sensor.sonde_garage_temperature
+                name: Garage
+                template:
+                  - carte_thermo
+                label: |
+                  [[[
+                    if( states['sensor.sonde_garage_humidite'].state == "unavailable")
+                      return "HS"
+                    return states['sensor.sonde_garage_humidite'].state + "%"
+                  ]]]
+                styles:
+                  label:
+                    - color: |
+                        [[[
+                          if (states['sensor.sonde_garage_humidite'].state > 70 || states['sensor.sonde_garage_humidite'].state < 40 )
+                            return 'red'
+                          return ''
+                        ]]]
+                custom_fields:
+                  gauge:
+                    card:
+                      entity: sensor.sonde_garage_temperature
+          - type: custom:button-card
+            template:
+              - titre_section
+            entity: light.escaliers
+            name: |
+              [[[ return "Etage" ]]]
+          - square: false
+            columns: 3
+            type: grid
+            cards:
               - type: custom:button-card
                 entity: sensor.temp_tom
                 name: Tom
@@ -6048,7 +6060,7 @@ views:
                       entity: sensor.temp_nina
               - type: custom:button-card
                 entity: sensor.temp_salle_de_bain
-                name: S de bain
+                name: S. de bain
                 template:
                   - carte_thermo
                 label: |
@@ -6061,7 +6073,7 @@ views:
                   label:
                     - color: |
                         [[[
-                          if (states['sensor.hum_salle_de_bain'].state > 70 || states['sensor.hum_salle_de_bain'].state < 40 )
+                          if (states['sensor.hum_salle_de_bain'].state > 70 || states['sensor.sonde_garage_humidite'].state < 40 )
                             return 'red'
                           return ''
                         ]]]
@@ -6069,29 +6081,275 @@ views:
                   gauge:
                     card:
                       entity: sensor.temp_salle_de_bain
-              - type: custom:button-card
-                entity: sensor.sonde_garage_temperature
+      - type: custom:layout-card
+        layout_type: masonry
+        layout:
+          width: 320
+        cards:
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.temp_sejour
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.hum_sejour
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
+                name: Séjour
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.temp_couloir_rdc
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.hum_couloir_rdc
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
+                name: Couloir
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.temp_cuisine
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.hum_cuisine
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
+                name: Cuisine
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.temp_parents
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.hum_parents
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
+                name: Parents
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.temp_tom
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.hum_tom
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
+                name: Tom
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.temp_manon
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.hum_manon
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
+                name: Manon Léane
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.temp_nina
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.hum_nina
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
+                name: Nina
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.temp_salle_de_bain
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.hum_salle_de_bain
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
+                name: S. de bain
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.sonde_garage_temperature
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.sonde_garage_humidite
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
                 name: Garage
-                template:
-                  - carte_thermo
-                label: |
-                  [[[
-                    if( states['sensor.sonde_garage_humidite'].state == "unavailable")
-                      return "HS"
-                    return states['sensor.sonde_garage_humidite'].state + "%"
-                  ]]]
-                styles:
-                  label:
-                    - color: |
-                        [[[
-                          if (states['sensor.sonde_garage_humidite'].state > 70 || states['sensor.sonde_garage_humidite'].state < 40 )
-                            return 'red'
-                          return ''
-                        ]]]
-                custom_fields:
-                  gauge:
-                    card:
-                      entity: sensor.sonde_garage_temperature
+              - type: custom:mini-graph-card
+                align_header: center
+                entities:
+                  - color: rgb(180, 70, 70,1)
+                    entity: sensor.moniteur_qualite_air_temperature
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                  - color: rgba(0,191,255,1)
+                    entity: sensor.moniteur_qualite_air_humidite
+                    y_axis: secondary
+                    show_state: true
+                    show_graph: true
+                    state_adaptive_color: true
+                line_width: 3
+                lower_bound: 10
+                font_size: 65
+                hours_to_show: 72
+                points_per_hour: 2
+                show:
+                  icon: false
+                  graphe: line
+                  legend: false
+                  fill: fade
+                  icon_adaptive_color: true
+                name: Moniteur air
   - theme: Backend-selected
     icon: mdi:broom
     path: Aspis
@@ -6608,6 +6866,8 @@ views:
                     font-family: Avenir;
               - type: custom:apexcharts-card
                 graph_span: 7d
+                span:
+                  offset: '-1day'
                 experimental:
                   color_threshold: true
                 apex_config:
@@ -6643,11 +6903,13 @@ views:
                     decimals: 0
                     apex_config:
                       tickAmount: 4
+                    min: ~0
                   - id: second
                     opposite: true
                     decimals: 0
                     apex_config:
                       tickAmount: 4
+                    min: ~0
                 series:
                   - entity: sensor.myenedis_09397539765420
                     yaxis_id: first
@@ -6727,16 +6989,16 @@ views:
                     - background-color: |
                         [[[
                           if (entity.state == "unavailable") return 'var(--pastille_off)'
-                          if (entity.state < 30) return 'rgba(106, 161, 12,0.4)';
-                          if (entity.state >= 30 ) return 'var(--custom-img-cell-color-red)';
+                          if (entity.state < 50) return 'var(--custom-img-cell-color-blue)';
+                          if (entity.state >= 50 ) return 'var(--custom-img-cell-color-red)';
                           else return 'var(--custom-img-cell-color-red)'; 
                         ]]]
                   icon:
                     - color: |
                         [[[
                           if (entity.state == "unavailable") return 'var(--icon_off)'
-                          if (entity.state < 30) return 'rgba(106, 161, 12,1)';
-                          if (entity.state >= 30) return 'var(--custom-icon-color-red)';
+                          if (entity.state < 50) return 'var(--custom-icon-color-blue)';
+                          if (entity.state >= 50) return 'var(--custom-icon-color-red)';
                           else return 'var(--custom-icon-color-red)';
                         ]]]
                 state:
@@ -6779,6 +7041,8 @@ views:
                   }
               - type: custom:apexcharts-card
                 graph_span: 7d
+                span:
+                  offset: '-2day'
                 experimental:
                   color_threshold: true
                 apex_config:
@@ -6814,11 +7078,13 @@ views:
                     decimals: 0
                     apex_config:
                       tickAmount: 4
+                    min: ~0
                   - id: second
                     opposite: true
                     decimals: 0
                     apex_config:
                       tickAmount: 4
+                    min: ~0
                 series:
                   - entity: sensor.grdf_consommation_gaz
                     yaxis_id: first
@@ -7053,18 +7319,21 @@ views:
                     name: |
                       [[[ return "Séjour" ]]]
                   - square: false
-                    columns: 2
+                    columns: 4
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7080,24 +7349,31 @@ views:
                         entity: light.lampe_de_bureau
                         name: Bureau
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
-                          - state_lumiere
-                          - state_unavailable
-                        entity: light.lampe_tv_salon
-                        name: Lampe TV
-                      - type: custom:button-card
-                        show_last_changed: true
-                        show_state: false
-                        template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
+                        entity: light.lampe_tv_salon
+                        name: Lampe TV
+                      - type: custom:button-card
+                        show_state: false
+                        template:
+                          - carte_badge
+                          - jauge_lumiere
+                          - state_lumiere
+                          - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7113,14 +7389,17 @@ views:
                         entity: light.bandeau_led
                         name: Bandeau TV
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7136,14 +7415,17 @@ views:
                         entity: light.lampe_canape
                         name: Canapé
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7159,14 +7441,17 @@ views:
                         entity: light.lustre_salon
                         name: Lustre salon
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7182,14 +7467,17 @@ views:
                         entity: light.lustre_salle_a_manger
                         name: Lustre SaM
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7205,14 +7493,17 @@ views:
                         entity: light.buffet
                         name: Buffet
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7234,18 +7525,21 @@ views:
                     name: |
                       [[[ return "Entrée" ]]]
                   - square: false
-                    columns: 2
+                    columns: 4
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7260,14 +7554,17 @@ views:
                               minSet: 1
                         entity: light.couloir
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7282,14 +7579,17 @@ views:
                               minSet: 1
                         entity: light.entree
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7304,14 +7604,17 @@ views:
                               minSet: 1
                         entity: light.aqara_hub_54e1
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7326,12 +7629,6 @@ views:
                               minSet: 1
                         entity: light.veranda
                 type: vertical-stack
-      - type: custom:layout-card
-        layout_type: masonry
-        layout:
-          width: 280
-        cards:
-          - cards:
               - type: custom:button-card
                 template:
                   - titre_section
@@ -7339,18 +7636,21 @@ views:
                 name: |
                   [[[ return "Chambre parents" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7366,14 +7666,17 @@ views:
                     entity: light.lustre_parents
                     name: Lustre
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7388,6 +7691,12 @@ views:
                           minSet: 1
                     entity: light.chevet
                     name: Chevet
+      - type: custom:layout-card
+        layout_type: masonry
+        layout:
+          width: 280
+        cards:
+          - cards:
               - type: custom:button-card
                 template:
                   - titre_section
@@ -7395,18 +7704,21 @@ views:
                 name: |
                   [[[ return "Chambre Tom" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7421,14 +7733,17 @@ views:
                           minSet: 1
                     entity: light.lustre_tom
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7443,14 +7758,17 @@ views:
                           minSet: 1
                     entity: light.chevet_tom
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7466,14 +7784,17 @@ views:
                     entity: light.lampe_de_bureau_tom
                     name: Bureau
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7488,13 +7809,6 @@ views:
                           minSet: 1
                     entity: light.sonoff_10013f6d7e
                     name: Bureau
-            type: vertical-stack
-      - type: custom:layout-card
-        layout_type: masonry
-        layout:
-          width: 280
-        cards:
-          - cards:
               - type: custom:button-card
                 template:
                   - titre_section
@@ -7502,18 +7816,21 @@ views:
                 name: |
                   [[[ return "Chambre Manon et Léane" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7529,14 +7846,17 @@ views:
                     entity: light.lustre_manon_et_leane
                     name: Lustre
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7552,14 +7872,17 @@ views:
                     entity: light.chevet_manon
                     name: Manon
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7575,24 +7898,31 @@ views:
                     entity: light.lampe_de_bureau_manon
                     name: Bureau
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
-                      - state_lumiere
-                      - state_unavailable
-                    entity: switch.arbre_lumineux
-                    name: Arbre
-                  - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
-                    template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
+                    entity: switch.arbre_lumineux
+                    name: Arbre
+                  - type: custom:button-card
+                    show_state: false
+                    template:
+                      - carte_badge
+                      - jauge_lumiere
+                      - state_lumiere
+                      - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7608,14 +7938,17 @@ views:
                     entity: light.lampe_manon_et_leane
                     name: Lampadaire
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7637,18 +7970,21 @@ views:
                 name: |
                   [[[ return "Chambre Nina" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7664,14 +8000,17 @@ views:
                     entity: light.lampe_de_bureau_nina
                     name: Bureau
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7687,14 +8026,17 @@ views:
                     entity: light.lustre_nina
                     name: Lustre
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7710,24 +8052,31 @@ views:
                     entity: light.chevet_nina
                     name: Chevet
                   - type: custom:button-card
-                    show_last_changed: true
                     show_state: false
                     template:
-                      - base
-                      - base_moyenne
-                      - state_lumiere
-                      - state_unavailable
-                    entity: switch.guirlande_nina
-                    name: Guirlande
-                  - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
-                    template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
                       - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
+                    entity: switch.guirlande_nina
+                    name: Guirlande
+                  - type: custom:button-card
+                    show_state: false
+                    template:
+                      - carte_badge
+                      - jauge_lumiere
+                      - state_lumiere
+                      - state_unavailable
+                    styles:
+                      card:
+                        - height: 90px
+                      name:
+                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
@@ -7755,20 +8104,23 @@ views:
                       - titre_section
                     entity: light.escaliers
                     name: |
-                      [[[ return "Escalier et palier" ]]]
+                      [[[ return "Escalier, palier et WC" ]]]
                   - square: false
-                    columns: 2
+                    columns: 4
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7784,14 +8136,17 @@ views:
                         entity: light.escalier
                         icon: mdi:stairs
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7805,25 +8160,18 @@ views:
                               thumbWidth: 2px
                               minSet: 1
                         entity: light.palier
-                  - type: custom:button-card
-                    template:
-                      - titre_section
-                    entity: light.lavabo
-                    name: |
-                      [[[ return "Lavabo WC" ]]]
-                  - square: false
-                    columns: 2
-                    type: grid
-                    cards:
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7838,14 +8186,17 @@ views:
                               minSet: 1
                         entity: light.wc_gauche
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7865,18 +8216,21 @@ views:
                     name: |
                       [[[ return "Garage" ]]]
                   - square: false
-                    columns: 1
+                    columns: 4
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
                           - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
@@ -7897,26 +8251,34 @@ views:
                     name: |
                       [[[ return "Lumières de Noël " ]]]
                   - square: false
-                    columns: 2
+                    columns: 4
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
+                          - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         entity: switch.sapin
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
+                          - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
                         entity: switch.guirlande_veranda
                         name: Véranda
                         custom_fields:
@@ -7949,28 +8311,32 @@ views:
                                             return 'rgba(43,53,66,0.7)'
                                           ]]]
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
-                        styles:
-                          name:
-                            - white-space: normal
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
+                          - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
+                            - white-space: normal
                         entity: switch.guirlande_etoiles
                       - type: custom:button-card
-                        show_last_changed: true
                         show_state: false
-                        styles:
-                          name:
-                            - white-space: normal
                         template:
-                          - base
-                          - base_moyenne
+                          - carte_badge
+                          - jauge_lumiere
                           - state_lumiere
                           - state_unavailable
+                        styles:
+                          card:
+                            - height: 90px
+                          name:
+                            - padding-bottom: 30px
+                            - white-space: normal
                         entity: switch.guirlande_couloir
                 type: vertical-stack
             type: vertical-stack
@@ -7991,6 +8357,96 @@ views:
         cards:
           - type: vertical-stack
             cards:
+              - type: custom:button-card
+                template:
+                  - titre_section
+                style:
+                  .: |
+                    ha-card {
+                        --ha-card-background: none !important;
+                        box-shadow: none !important;
+                        font-family: Avenir
+                name: |
+                  [[[ return "💻 Tel, tablette et ordi" ]]]
+              - square: false
+                columns: 5
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    entity: sensor.iphone_aurel_battery_level
+                    name: Aurel
+                    template:
+                      - carte_badge
+                      - state_batterie
+                      - state_unavailable
+                    styles:
+                      card:
+                        - border-color: |
+                            [[[
+                               if( states['sensor.iphone_aurel_battery_state'].state == "Charging")
+                                 return "rgba(255, 215, 0, 0.7)"
+                               return "rgba(12, 12, 14, 0.2)"
+                            ]]]
+                  - type: custom:button-card
+                    entity: sensor.ipad_aurel_battery_level
+                    name: iPad
+                    template:
+                      - carte_badge
+                      - state_batterie
+                      - state_unavailable
+                    styles:
+                      card:
+                        - border-color: |
+                            [[[
+                               if( states['sensor.ipad_aurel_battery_state'].state == "Charging")
+                                 return "rgba(255, 215, 0, 0.7)"
+                               return "rgba(12, 12, 14, 0.2)"
+                            ]]]
+                  - type: custom:button-card
+                    entity: sensor.macbook_aurel_internal_battery_level
+                    name: Mac Aurel
+                    template:
+                      - carte_badge
+                      - state_batterie
+                      - state_unavailable
+                    styles:
+                      card:
+                        - border-color: |
+                            [[[
+                               if( states['sensor.macbook_aurel_internal_battery_state'].state == "Charging")
+                                 return "rgba(255, 215, 0, 0.7)"
+                               return "rgba(12, 12, 14, 0.2)"
+                            ]]]
+                  - type: custom:button-card
+                    entity: sensor.alex_iphone_battery_level_ha
+                    name: Alex
+                    template:
+                      - carte_badge
+                      - state_batterie
+                      - state_unavailable
+                    styles:
+                      card:
+                        - border-color: |
+                            [[[
+                               if( states['sensor.alex_iphone_battery_state_ha'].state == "Charging")
+                                 return "rgba(255, 215, 0, 0.7)"
+                               return "rgba(12, 12, 14, 0.2)"
+                            ]]]
+                  - type: custom:button-card
+                    entity: sensor.macbook_alex_internal_battery_level
+                    name: Mac Alex
+                    template:
+                      - carte_badge
+                      - state_batterie
+                      - state_unavailable
+                    styles:
+                      card:
+                        - border-color: |
+                            [[[
+                               if( states['sensor.macbook_alex_internal_battery_state'].state == "Charging")
+                                 return "rgba(255, 215, 0, 0.7)"
+                               return "rgba(12, 12, 14, 0.2)"
+                            ]]]
               - type: custom:button-card
                 template:
                   - titre_section
@@ -8046,7 +8502,7 @@ views:
                 name: |
                   [[[ return "🌡️ Thermomètres " ]]]
               - square: false
-                columns: 3
+                columns: 5
                 type: grid
                 cards:
                   - type: custom:button-card
@@ -8130,7 +8586,7 @@ views:
                 name: |
                   [[[ return "🏃🏼‍♂️ Mouvements " ]]]
               - square: false
-                columns: 3
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
@@ -8222,7 +8678,7 @@ views:
                 name: |
                   [[[ return "🚪 Portes " ]]]
               - square: false
-                columns: 3
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
@@ -8437,17 +8893,19 @@ views:
                 cards:
                   - type: custom:button-card
                     template:
-                      - carte_badge
+                      - base
                       - state_appareil
                       - state_unavailable
+                    show_state: true
                     show_last_changed: true
                     entity: siren.frient
                     name: Sirène Garage
                   - type: custom:button-card
                     template:
-                      - carte_badge
+                      - base
                       - state_appareil
                       - state_unavailable
+                    show_state: true
                     show_last_changed: true
                     entity: siren.sirene_heiman
                     name: Sirène Salon
@@ -8660,64 +9118,128 @@ views:
                 name: |
                   [[[ return "Capteurs" ]]]
               - square: false
-                columns: 3
+                columns: 2
                 type: grid
                 cards:
                   - type: custom:button-card
-                    entity: sensor.temp_sejour
                     template:
-                      - carte_thermo
-                    label: |
-                      [[[
-                        if( states['sensor.hum_sejour'].state == "unavailable")
-                          return "HS"
-                        return states['sensor.hum_sejour'].state + "%"
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['sensor.hum_sejour'].state > 70 || states['sensor.hum_sejour'].state < 40 )
-                                return 'red'
-                              return ''
-                            ]]]
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_temp
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.temp_sejour
+                    name: Température
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.temp_sejour
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.temp_sejour
+                          max: 40
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 18.4
+                            - color: rgb(0,191,255)
+                              from: 18.5
+                              to: 25.9
+                            - color: rgb(180, 70, 70)
+                              from: 26
+                              to: 40
                   - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_humidite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.hum_sejour
+                    name: Humidité
+                    custom_fields:
+                      jauge-horizontal:
+                        card:
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.hum_sejour
+                          max: 100
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 39.9
+                            - color: rgb(0,191,255)
+                              from: 40
+                              to: 70
+                            - color: rgb(180, 70, 70)
+                              from: 70.1
+                              to: 100
+                  - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_luminosite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
                     entity: sensor.plante_lum_dracaena
                     name: Salon
-                    template:
-                      - carte_lum
-                    label: |
-                      [[[
-                        return "Dracaena"
-                      ]]]
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.plante_lum_dracaena
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.plante_lum_dracaena
+                          max: 1000
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 99.9
+                            - color: rgb(0,191,255)
+                              from: 100
+                              to: 500
+                            - color: rgb(180, 70, 70)
+                              from: 500.1
+                              to: 1000
                   - type: custom:button-card
-                    entity: sensor.plante_lum_pied_elephant
-                    name: SàM
                     template:
-                      - carte_lum
-                    label: |
-                      [[[
-                        return "Pied Eleph"
-                      ]]]
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_luminosite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.plante_lum_pied_elephant
+                    name: S. à manger
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.plante_lum_pied_elephant
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.plante_lum_pied_elephant
+                          max: 1000
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 99.9
+                            - color: rgb(0,191,255)
+                              from: 100
+                              to: 500
+                            - color: rgb(180, 70, 70)
+                              from: 500.1
+                              to: 1000
               - square: false
-                columns: 4
+                columns: 2
                 type: grid
                 cards:
                   - type: custom:button-card
                     template:
-                      - carte_badge
+                      - base
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -8725,7 +9247,7 @@ views:
                     name: Mouv SàM
                   - type: custom:button-card
                     template:
-                      - carte_badge
+                      - base
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -8733,7 +9255,7 @@ views:
                     name: Mouv Salon
                   - type: custom:button-card
                     template:
-                      - carte_badge
+                      - base
                       - state_porte
                       - state_unavailable
                     show_last_changed: true
@@ -8741,7 +9263,7 @@ views:
                     name: Porte SàM
                   - type: custom:button-card
                     template:
-                      - carte_badge
+                      - base
                       - state_appareil
                       - state_unavailable
                     show_last_changed: true
@@ -8762,77 +9284,133 @@ views:
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
-                    entity: input_boolean.ambiance_normale
+                    entity: scene.ambiance_normale
                     name: Normale
                     show_name: true
                     template:
-                      - badge
+                      - carte_badge
                     styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                                 return "var(--custom-card-color-gold)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                                 return "var(--custom-img-cell-color-gold)"
+                               return "var(--pastille_off)"
+                            ]]]
                       icon:
-                        - color: gold
-                    state:
-                      - value: 'on'
-                        styles:
-                          card:
-                            - background-color: rgba(255,255,0,0.7)
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                                 return "var(--custom-icon-color-gold)"
+                               return ""
+                            ]]]
                     tap_action:
                       action: call-service
                       service: scene.turn_on
                       service_data:
                         entity_id: scene.ambiance_normale
                   - type: custom:button-card
-                    entity: input_boolean.ambiance_doux
+                    entity: scene.zen
                     name: Doux
                     show_name: true
                     template:
-                      - badge
+                      - carte_badge
                     styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                                 return "var(--custom-card-color-blue)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                                 return "var(--custom-img-cell-color-blue)"
+                               return "var(--pastille_off)"
+                            ]]]
                       icon:
-                        - color: violet
-                    state:
-                      - value: 'on'
-                        styles:
-                          card:
-                            - background-color: rgba(186,85,211,0.5)
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                                 return "var(--custom-icon-color-blue)"
+                               return ""
+                            ]]]
                     tap_action:
                       action: call-service
                       service: scene.turn_on
                       service_data:
                         entity_id: scene.zen
                   - type: custom:button-card
-                    entity: input_boolean.ambiance_repas_tv
-                    name: Repas devant TV
+                    entity: scene.repas_devant_tv
+                    name: Repas
                     show_name: true
                     template:
-                      - badge
+                      - carte_badge
                     styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Repas TV")
+                                 return "var(--custom-card-color-orange)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Repas TV")
+                                 return "var(--custom-img-cell-color-orange)"
+                               return "var(--pastille_off)"
+                            ]]]
                       icon:
-                        - color: tomato
-                    state:
-                      - value: 'on'
-                        styles:
-                          card:
-                            - background-color: rgba(255,0,0,0.7)
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Repas TV")
+                                 return "var(--custom-icon-color-orange)"
+                               return ""
+                            ]]]
                     tap_action:
                       action: call-service
                       service: scene.turn_on
                       service_data:
                         entity_id: scene.repas_devant_tv
                   - type: custom:button-card
-                    entity: input_boolean.ambiance_tv
+                    entity: scene.tv
                     name: TV
                     icon: mdi:television-play
                     show_name: true
                     template:
-                      - badge
+                      - carte_badge
                     styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "TV")
+                                 return "var(--custom-card-color-red)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "TV")
+                                 return "var(--custom-img-cell-color-red)"
+                               return "var(--pastille_off)"
+                            ]]]
                       icon:
-                        - color: red
-                    state:
-                      - value: 'on'
-                        styles:
-                          card:
-                            - background-color: rgba(255,0,0,0.7)
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "TV")
+                                 return "var(--custom-icon-color-red)"
+                               return ""
+                            ]]]
                     tap_action:
                       action: call-service
                       service: scene.turn_on
@@ -8841,61 +9419,132 @@ views:
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
-                    entity: input_boolean.ambiance_apero
-                    name: Apero
+                    entity: scene.travail_dessin_2
+                    name: Travail
                     show_name: true
                     template:
-                      - badge
+                      - carte_badge
                     styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Travail")
+                                 return "rgba(215,215,215,1)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Travail")
+                                 return "rgba(215,215,215,0.3)"
+                               return "var(--pastille_off)"
+                            ]]]
                       icon:
-                        - color: salmon
-                    state:
-                      - value: 'on'
-                        styles:
-                          card:
-                            - background-color: rgba(255,120,120,0.5)
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Travail")
+                                 return "rgba(215,215,215,1)"
+                               return ""
+                            ]]]
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.travail_dessin_2
+                  - type: custom:button-card
+                    entity: script.apero_lum
+                    name: Apéro
+                    show_name: true
+                    template:
+                      - carte_badge
+                    styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                                 return "var(--custom-card-color-gold)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                                 return "var(--custom-img-cell-color-gold)"
+                               return "var(--pastille_off)"
+                            ]]]
+                      icon:
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                                 return "var(--custom-icon-color-gold)"
+                               return ""
+                            ]]]
                     tap_action:
                       action: call-service
                       service: script.turn_on
                       service_data:
                         entity_id: script.apero_lum
                   - type: custom:button-card
-                    entity: input_boolean.ambiance_anniversaire
-                    name: Anniversaire
+                    entity: scene.anniversaire
+                    name: Anniv
                     show_name: true
                     template:
-                      - badge
+                      - carte_badge
                     styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                                 return "var(--custom-card-color-blue)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                                 return "var(--custom-img-cell-color-blue)"
+                               return "var(--pastille_off)"
+                            ]]]
                       icon:
-                        - color: skyblue
-                    state:
-                      - value: 'on'
-                        styles:
-                          icon:
-                            - color: rgba(238,130,238,1)
-                          card:
-                            - background-color: rgba(238,130,238,0.7)
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                                 return "var(--custom-icon-color-blue)"
+                               return ""
+                            ]]]
                     tap_action:
                       action: call-service
                       service: scene.turn_on
                       service_data:
                         entity_id: scene.anniversaire
                   - type: custom:button-card
-                    entity: input_boolean.ambiance_repas_invites
+                    entity: script.ambiance_repas_invites
                     name: Invités
                     show_name: true
                     template:
-                      - badge
+                      - carte_badge
                     styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                                 return "var(--custom-card-color-gold)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                                 return "var(--custom-img-cell-color-gold)"
+                               return "var(--pastille_off)"
+                            ]]]
                       icon:
-                        - color: yellow
-                    state:
-                      - value: 'on'
-                        styles:
-                          icon:
-                            - color: rgba(238,130,238,1)
-                          card:
-                            - background-color: rgba(238,130,238,0.7)
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                                 return "var(--custom-icon-color-gold)"
+                               return ""
+                            ]]]
                     tap_action:
                       action: call-service
                       service: script.turn_on
@@ -8903,19 +9552,33 @@ views:
                         entity_id: script.ambiance_repas_invites
                   - type: custom:button-card
                     entity: automation.inter_ambiances_sejour
-                    name: Foot France
+                    name: Foot
                     icon: mdi:flag
                     show_name: true
                     template:
-                      - badge
+                      - carte_badge
                     styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                                 return "var(--custom-card-color-blue)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                                 return "var(--custom-img-cell-color-blue)"
+                               return "var(--pastille_off)"
+                            ]]]
                       icon:
-                        - color: dodgerblue
-                    state:
-                      - value: trigger
-                        styles:
-                          card:
-                            - background-color: red
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                                 return "var(--custom-icon-color-blue)"
+                               return ""
+                            ]]]
                     tap_action:
                       action: call-service
                       service: automation.inter_ambiances_sejour
@@ -10143,58 +10806,117 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Capteurs et appareils" ]]]
+                  [[[ return "Capteurs" ]]]
               - square: false
-                columns: 3
+                columns: 2
                 type: grid
                 cards:
                   - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_temp
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
                     entity: sensor.temp_tom
-                    name: Tom
-                    template:
-                      - carte_thermo
-                    label: |
-                      [[[
-                        if( states['sensor.hum_tom'].state == "unavailable")
-                          return "HS"
-                        return states['sensor.hum_tom'].state + "%"
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['sensor.hum_tom'].state > 70 || states['sensor.hum_tom'].state < 40 )
-                                return 'red'
-                              return ''
-                            ]]]
+                    name: Température
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.temp_tom
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.temp_tom
+                          max: 40
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 18.4
+                            - color: rgb(0,191,255)
+                              from: 18.5
+                              to: 25.9
+                            - color: rgb(180, 70, 70)
+                              from: 26
+                              to: 40
                   - type: custom:button-card
-                    entity: sensor.mouv_tom_luminosite
-                    name: Tom
                     template:
-                      - carte_lum
-                    label: |
-                      [[[
-                        return "Luminosité"
-                      ]]]
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_humidite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.hum_tom
+                    name: Humidité
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.mouv_tom_luminosite
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.hum_tom
+                          max: 100
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 39.9
+                            - color: rgb(0,191,255)
+                              from: 40
+                              to: 70
+                            - color: rgb(180, 70, 70)
+                              from: 70.1
+                              to: 100
+                  - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_luminosite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.mouv_tom_luminosite
+                    name: Lum
+                    custom_fields:
+                      jauge-horizontal:
+                        card:
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.mouv_tom_luminosite
+                          max: 1000
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 99.9
+                            - color: rgb(0,191,255)
+                              from: 100
+                              to: 500
+                            - color: rgb(180, 70, 70)
+                              from: 500.1
+                              to: 1000
+                  - type: custom:button-card
+                    entity: binary_sensor.mouv_tom
+                    name: Mouv
+                    show_last_changed: true
+                    template:
+                      - base
+                      - base_moyenne
+                      - state_mouv
+                      - state_unavailable
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "lumières et appareils" ]]]
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
                     entity: scene.tom_ambiance_normale
                     name: Jour
                     template:
-                      - badge
+                      - carte_badge
                     show_name: true
-                    styles:
-                      icon:
-                        - color: gold
                     tap_action:
                       action: call-service
                       service: scene.turn_on
@@ -10204,11 +10926,8 @@ views:
                     entity: scene.tom_ambiance_nuit
                     name: Nuit
                     template:
-                      - badge
+                      - carte_badge
                     show_name: true
-                    styles:
-                      icon:
-                        - color: dodgerblue
                     tap_action:
                       action: call-service
                       service: scene.turn_on
@@ -10218,11 +10937,8 @@ views:
                     name: 'Tout éteindre '
                     icon: mdi:lightbulb-group-off
                     template:
-                      - badge
+                      - carte_badge
                     show_name: true
-                    styles:
-                      icon:
-                        - color: darkgrey
                     tap_action:
                       action: call-service
                       service: light.turn_off
@@ -10232,22 +10948,6 @@ views:
                 columns: 2
                 type: grid
                 cards:
-                  - type: custom:button-card
-                    entity: binary_sensor.mouv_tom
-                    name: Mouv
-                    show_last_changed: true
-                    template:
-                      - base
-                      - state_mouv
-                      - state_unavailable
-                  - type: custom:button-card
-                    entity: switch.moustique_tom
-                    name: Prise moustique
-                    show_last_changed: true
-                    template:
-                      - base
-                      - state_appareil
-                      - state_unavailable
                   - type: custom:button-card
                     entity: light.lustre_tom
                     show_last_changed: true
@@ -10344,6 +11044,15 @@ views:
                           thumbVerticalPadding: 0px
                           thumbWidth: 2px
                           minSet: 1
+                  - type: custom:button-card
+                    entity: switch.moustique_tom
+                    name: Prise moustique
+                    show_last_changed: true
+                    template:
+                      - base
+                      - base_moyenne
+                      - state_appareil
+                      - state_unavailable
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -10537,71 +11246,153 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Capteurs et appareils" ]]]
+                  [[[ return "Capteurs" ]]]
               - square: false
-                columns: 3
+                columns: 2
                 type: grid
                 cards:
                   - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_temp
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
                     entity: sensor.temp_manon
-                    name: Filles
-                    template:
-                      - carte_thermo
-                    label: |
-                      [[[
-                        if( states['sensor.hum_manon'].state == "unavailable")
-                          return "HS"
-                        return states['sensor.hum_manon'].state + "%"
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['sensor.hum_manon'].state > 70 || states['sensor.hum_tom'].state < 40 )
-                                return 'red'
-                              return ''
-                            ]]]
+                    name: Température
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.temp_manon
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.temp_manon
+                          max: 40
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 18.4
+                            - color: rgb(0,191,255)
+                              from: 18.5
+                              to: 25.9
+                            - color: rgb(180, 70, 70)
+                              from: 26
+                              to: 40
                   - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_humidite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.hum_manon
+                    name: Humidité
+                    custom_fields:
+                      jauge-horizontal:
+                        card:
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.hum_manon
+                          max: 100
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 39.9
+                            - color: rgb(0,191,255)
+                              from: 40
+                              to: 70
+                            - color: rgb(180, 70, 70)
+                              from: 70.1
+                              to: 100
+                  - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_luminosite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
                     entity: sensor.mouv_manon_luminosite
-                    name: Manon
-                    template:
-                      - carte_lum
-                    label: |
-                      [[[
-                        return "Luminosité"
-                      ]]]
+                    name: Manon Lum
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.mouv_manon_luminosite
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.mouv_manon_luminosite
+                          max: 1000
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 99.9
+                            - color: rgb(0,191,255)
+                              from: 100
+                              to: 500
+                            - color: rgb(180, 70, 70)
+                              from: 500.1
+                              to: 1000
                   - type: custom:button-card
-                    entity: sensor.mouv_leane_luminosite
-                    name: Léane
                     template:
-                      - carte_lum
-                    label: |
-                      [[[
-                        return "Luminosité"
-                      ]]]
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_luminosite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.mouv_leane_luminosite
+                    name: Léane Lum
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.mouv_leane_luminosite
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.mouv_leane_luminosite
+                          max: 1000
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 99.9
+                            - color: rgb(0,191,255)
+                              from: 100
+                              to: 500
+                            - color: rgb(180, 70, 70)
+                              from: 500.1
+                              to: 1000
+                  - type: custom:button-card
+                    entity: binary_sensor.mouv_manon
+                    name: Mouv
+                    show_last_changed: true
+                    template:
+                      - base
+                      - base_moyenne
+                      - state_mouv
+                      - state_unavailable
+                  - type: custom:button-card
+                    entity: binary_sensor.mouv_leane
+                    name: Mouv
+                    show_last_changed: true
+                    template:
+                      - base
+                      - base_moyenne
+                      - state_mouv
+                      - state_unavailable
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Lumières et appareils" ]]]
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
                     entity: scene.grande_chambre_ambiance_normale
                     name: Jour
-                    show_name: true
-                    styles:
-                      icon:
-                        - color: gold
                     template:
-                      - badge
+                      - carte_badge
                     tap_action:
                       action: call-service
                       service: scene.turn_on
@@ -10611,11 +11402,7 @@ views:
                     entity: scene.grande_chambre_ambiance_nuit
                     name: Nuit
                     template:
-                      - badge
-                    styles:
-                      icon:
-                        - color: dodgerblue
-                    show_name: true
+                      - carte_badge
                     tap_action:
                       action: call-service
                       service: scene.turn_on
@@ -10625,38 +11412,12 @@ views:
                     name: Tout éteindre
                     icon: mdi:lightbulb-multiple-off
                     template:
-                      - badge
-                    show_name: true
-                    styles:
-                      icon:
-                        - color: darkgrey
+                      - carte_badge
                     tap_action:
                       action: call-service
                       service: light.turn_off
                       service_data:
                         entity_id: light.manon_et_leane
-              - square: false
-                columns: 2
-                type: grid
-                cards:
-                  - type: custom:button-card
-                    entity: binary_sensor.mouv_manon
-                    name: Mouv Manon
-                    show_last_changed: true
-                    template:
-                      - base
-                      - base_moyenne
-                      - state_unavailable
-                      - state_mouv
-                  - type: custom:button-card
-                    entity: binary_sensor.mouv_leane
-                    name: Mouv Léane
-                    show_last_changed: true
-                    template:
-                      - base
-                      - base_moyenne
-                      - state_unavailable
-                      - state_mouv
               - square: false
                 columns: 2
                 type: grid
@@ -11078,58 +11839,116 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Capteurs et appreils" ]]]
+                  [[[ return "Capteurs" ]]]
               - square: false
-                columns: 3
+                columns: 2
                 type: grid
                 cards:
                   - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_temp
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
                     entity: sensor.temp_nina
-                    name: Nina
-                    template:
-                      - carte_thermo
-                    label: |
-                      [[[
-                        if( states['sensor.hum_nina'].state == "unavailable")
-                          return "HS"
-                        return states['sensor.hum_nina'].state + "%"
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['sensor.hum_nina'].state > 70 || states['sensor.hum_tom'].state < 40 )
-                                return 'red'
-                              return ''
-                            ]]]
+                    name: Température
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.temp_nina
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.temp_nina
+                          max: 40
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 18.4
+                            - color: rgb(0,191,255)
+                              from: 18.5
+                              to: 25.9
+                            - color: rgb(180, 70, 70)
+                              from: 26
+                              to: 40
                   - type: custom:button-card
-                    entity: sensor.mouv_nina_luminosite
-                    name: Nina
                     template:
-                      - carte_lum
-                    label: |
-                      [[[
-                        return "Luminosité"
-                      ]]]
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_humidite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.hum_nina
+                    name: Humidité
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.mouv_nina_luminosite
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.hum_nina
+                          max: 100
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 39.9
+                            - color: rgb(0,191,255)
+                              from: 40
+                              to: 70
+                            - color: rgb(180, 70, 70)
+                              from: 70.1
+                              to: 100
+                  - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_luminosite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.mouv_nina_luminosite
+                    name: Lum
+                    custom_fields:
+                      jauge-horizontal:
+                        card:
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.mouv_nina_luminosite
+                          max: 1000
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 99.9
+                            - color: rgb(0,191,255)
+                              from: 100
+                              to: 500
+                            - color: rgb(180, 70, 70)
+                              from: 500.1
+                              to: 1000
+                  - type: custom:button-card
+                    entity: binary_sensor.mouv_tom
+                    name: Mouv
+                    show_last_changed: true
+                    template:
+                      - base
+                      - base_moyenne
+                      - state_mouv
+                      - state_unavailable
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Lumières et appreils" ]]]
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
                     entity: scene.nina_ambiance_normale
                     name: Jour
                     template:
-                      - badge
-                    show_name: true
-                    styles:
-                      icon:
-                        - color: gold
+                      - carte_badge
                     tap_action:
                       action: call-service
                       service: scene.turn_on
@@ -11139,11 +11958,7 @@ views:
                     entity: scene.nina_ambiance_nuit
                     name: Nuit
                     template:
-                      - badge
-                    show_name: true
-                    styles:
-                      icon:
-                        - color: dodgerblue
+                      - carte_badge
                     tap_action:
                       action: call-service
                       service: scene.turn_on
@@ -11153,11 +11968,7 @@ views:
                     name: 'Tout éteindre '
                     icon: mdi:lightbulb-multiple-off
                     template:
-                      - badge
-                    show_name: true
-                    styles:
-                      icon:
-                        - color: darkgrey
+                      - carte_badge
                     tap_action:
                       action: call-service
                       service: light.turn_on
@@ -11167,25 +11978,6 @@ views:
                 columns: 2
                 type: grid
                 cards:
-                  - type: custom:button-card
-                    entity: binary_sensor.mouv_nina
-                    name: Mouv
-                    show_last_changed: true
-                    template:
-                      - base
-                      - base_moyenne
-                      - state_unavailable
-                      - state_mouv
-                  - type: custom:button-card
-                    entity: switch.moustique_nina
-                    name: Moustique
-                    show_state: false
-                    show_last_changed: true
-                    template:
-                      - base
-                      - base_moyenne
-                      - state_appareil
-                      - state_unavailable
                   - type: custom:button-card
                     entity: light.lampe_de_bureau_nina
                     name: Bureau
@@ -11256,17 +12048,6 @@ views:
                           thumbWidth: 2px
                           minSet: 1
                   - type: custom:button-card
-                    entity: switch.guirlande_nina
-                    name: Guirlande
-                    show_state: false
-                    show_last_changed: true
-                    template:
-                      - base
-                      - base_moyenne
-                      - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                  - type: custom:button-card
                     entity: light.lampadaire_nina
                     name: Lampadaire
                     show_state: false
@@ -11289,6 +12070,27 @@ views:
                           thumbVerticalPadding: 0px
                           thumbWidth: 2px
                           minSet: 1
+                  - type: custom:button-card
+                    entity: switch.guirlande_nina
+                    name: Guirlande
+                    show_state: false
+                    show_last_changed: true
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_lumiere
+                      - state_lumiere
+                      - state_unavailable
+                  - type: custom:button-card
+                    entity: switch.moustique_nina
+                    name: Moustique
+                    show_state: false
+                    show_last_changed: true
+                    template:
+                      - base
+                      - base_moyenne
+                      - state_appareil
+                      - state_unavailable
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -11617,32 +12419,65 @@ views:
             name: |
               [[[ return "Appareils" ]]]
           - square: false
-            columns: 3
+            columns: 2
             type: grid
             cards:
               - type: custom:button-card
-                entity: sensor.temp_salle_de_bain
-                name: S de bain
                 template:
-                  - carte_thermo
-                label: |
-                  [[[
-                    if( states['sensor.hum_salle_de_bain'].state == "unavailable")
-                      return "HS"
-                    return states['sensor.hum_salle_de_bain'].state + "%"
-                  ]]]
-                styles:
-                  label:
-                    - color: |
-                        [[[
-                          if (states['sensor.hum_salle_de_bain'].state > 70 || states['sensor.hum_tom'].state < 40 )
-                            return 'red'
-                          return ''
-                        ]]]
+                  - base
+                  - base_moyenne
+                  - jauge_horizontal
+                  - state_temp
+                  - state_unavailable
+                show_last_changed: false
+                show_state: true
+                entity: sensor.temp_salle_de_bain
+                name: Température
                 custom_fields:
-                  gauge:
+                  jauge-horizontal:
                     card:
-                      entity: sensor.temp_salle_de_bain
+                      type: custom:bar-card
+                      entities:
+                        - entity: sensor.temp_salle_de_bain
+                      max: 40
+                      severity:
+                        - color: rgb(176, 196, 222)
+                          from: 0
+                          to: 18.4
+                        - color: rgb(0,191,255)
+                          from: 18.5
+                          to: 25.9
+                        - color: rgb(180, 70, 70)
+                          from: 26
+                          to: 40
+              - type: custom:button-card
+                template:
+                  - base
+                  - base_moyenne
+                  - jauge_horizontal
+                  - state_humidite
+                  - state_unavailable
+                show_last_changed: false
+                show_state: true
+                entity: sensor.hum_salle_de_bain
+                name: Humidité
+                custom_fields:
+                  jauge-horizontal:
+                    card:
+                      type: custom:bar-card
+                      entities:
+                        - entity: sensor.hum_salle_de_bain
+                      max: 100
+                      severity:
+                        - color: rgb(176, 196, 222)
+                          from: 0
+                          to: 39.9
+                        - color: rgb(0,191,255)
+                          from: 40
+                          to: 70
+                        - color: rgb(180, 70, 70)
+                          from: 70.1
+                          to: 100
           - square: false
             columns: 1
             type: grid
@@ -11787,33 +12622,67 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Capteurs et appreils" ]]]
+                  [[[ return "Capteurs" ]]]
               - square: false
-                columns: 3
+                columns: 2
                 type: grid
                 cards:
                   - type: custom:button-card
-                    entity: sensor.temp_couloir_rdc
                     template:
-                      - carte_thermo
-                    label: |
-                      [[[
-                        if( states['sensor.hum_couloir_rdc'].state == "unavailable")
-                          return "HS"
-                        return states['sensor.hum_couloir_rdc'].state + "%"
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['sensor.hum_couloir_rdc'].state > 70 || states['sensor.hum_couloir_rdc'].state < 40 )
-                                return 'red'
-                              return ''
-                            ]]]
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_temp
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.temp_couloir_rdc
+                    name: Température
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.temp_couloir_rdc
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.temp_couloir_rdc
+                          max: 40
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 18.4
+                            - color: rgb(0,191,255)
+                              from: 18.5
+                              to: 25.9
+                            - color: rgb(180, 70, 70)
+                              from: 26
+                              to: 40
+                  - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_humidite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.hum_couloir_rdc
+                    name: Humidité
+                    custom_fields:
+                      jauge-horizontal:
+                        card:
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.hum_couloir_rdc
+                          max: 100
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 39.9
+                            - color: rgb(0,191,255)
+                              from: 40
+                              to: 70
+                            - color: rgb(180, 70, 70)
+                              from: 70.1
+                              to: 100
               - square: false
                 columns: 2
                 type: grid
@@ -11833,6 +12702,11 @@ views:
                     show_last_changed: true
                     entity: binary_sensor.mouv_couloir
                     name: Couloir
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Lumières" ]]]
               - square: false
                 columns: 2
                 type: grid
@@ -12127,80 +13001,69 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Capteurs et appareils" ]]]
+                  [[[ return "Capteurs" ]]]
               - square: false
-                columns: 3
+                columns: 2
                 type: grid
                 cards:
                   - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_temp
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
                     entity: sensor.temp_parents
-                    name: Parents
-                    template:
-                      - carte_thermo
-                    label: |
-                      [[[
-                        if( states['sensor.hum_parents'].state == "unavailable")
-                          return "HS"
-                        return states['sensor.hum_parents'].state + "%"
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['sensor.hum_parents'].state > 70 || states['sensor.hum_couloir_rdc'].state < 40 )
-                                return 'red'
-                              return ''
-                            ]]]
+                    name: Température
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.temp_parents
-              - type: horizontal-stack
-                cards:
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.temp_parents
+                          max: 40
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 18.4
+                            - color: rgb(0,191,255)
+                              from: 18.5
+                              to: 25.9
+                            - color: rgb(180, 70, 70)
+                              from: 26
+                              to: 40
                   - type: custom:button-card
-                    entity: scene.chambre_parents_ambiance_normale
-                    name: Jour
                     template:
-                      - badge
-                    show_name: true
-                    styles:
-                      icon:
-                        - color: gold
-                    tap_action:
-                      action: call-service
-                      service: scene.turn_on
-                      service_data:
-                        entity_id: scene.chambre_parents_ambiance_normale
-                  - type: custom:button-card
-                    entity: script.ambiance_cine_chevet_parents
-                    name: TV
-                    template:
-                      - badge
-                    show_name: true
-                    styles:
-                      icon:
-                        - color: dodgerblue
-                    tap_action:
-                      action: call-service
-                      service: script.turn_on
-                      service_data:
-                        entity_id: script.ambiance_cine_chevet_parents
-                  - type: custom:button-card
-                    name: 'Tout éteindre '
-                    icon: mdi:lightbulb-multiple-off
-                    template:
-                      - badge
-                    show_name: true
-                    styles:
-                      icon:
-                        - color: darkgrey
-                    tap_action:
-                      action: call-service
-                      service: light.turn_off
-                      service_data:
-                        entity_id: light.parents
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_humidite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.hum_parents
+                    name: Humidité
+                    custom_fields:
+                      jauge-horizontal:
+                        card:
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.hum_parents
+                          max: 100
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 39.9
+                            - color: rgb(0,191,255)
+                              from: 40
+                              to: 70
+                            - color: rgb(180, 70, 70)
+                              from: 70.1
+                              to: 100
               - square: false
-                columns: 2
+                columns: 1
                 type: grid
                 cards:
                   - type: custom:button-card
@@ -12211,13 +13074,50 @@ views:
                     show_last_changed: true
                     entity: binary_sensor.porte_chambre_parents
                     name: Porte-fenêtre
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Appareils" ]]]
+              - type: horizontal-stack
+                cards:
                   - type: custom:button-card
+                    entity: scene.chambre_parents_ambiance_normale
+                    name: Jour
                     template:
-                      - base
-                      - state_appareil
-                      - state_unavailable
-                    show_last_changed: true
-                    entity: switch.moustique_parents
+                      - carte_badge
+                    show_name: true
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.chambre_parents_ambiance_normale
+                  - type: custom:button-card
+                    entity: script.ambiance_cine_chevet_parents
+                    name: TV
+                    template:
+                      - carte_badge
+                    show_name: true
+                    tap_action:
+                      action: call-service
+                      service: script.turn_on
+                      service_data:
+                        entity_id: script.ambiance_cine_chevet_parents
+                  - type: custom:button-card
+                    name: 'Tout éteindre '
+                    icon: mdi:lightbulb-multiple-off
+                    template:
+                      - carte_badge
+                    show_name: true
+                    tap_action:
+                      action: call-service
+                      service: light.turn_off
+                      service_data:
+                        entity_id: light.parents
+              - square: false
+                columns: 2
+                type: grid
+                cards:
                   - type: custom:button-card
                     show_last_changed: true
                     show_state: false
@@ -12274,6 +13174,14 @@ views:
                     entity: switch.tele_des_parents
                     icon: mdi:youtube-tv
                     name: Prise TV
+                  - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - state_appareil
+                      - state_unavailable
+                    show_last_changed: true
+                    entity: switch.moustique_parents
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -12525,33 +13433,67 @@ views:
                 name: |
                   [[[ return "Capteurs" ]]]
               - square: false
-                columns: 3
+                columns: 2
                 type: grid
                 cards:
                   - type: custom:button-card
-                    entity: sensor.sonde_garage_temperature
                     template:
-                      - carte_thermo
-                    label: |
-                      [[[
-                        if( states['sensor.sonde_garage_humidite'].state == "unavailable")
-                          return "HS"
-                        return states['sensor.sonde_garage_humidite'].state + "%"
-                      ]]]
-                    styles:
-                      label:
-                        - color: |
-                            [[[
-                              if (states['sensor.sonde_garage_humidite'].state > 70 || states['sensor.hum_couloir_rdc'].state < 40 )
-                                return 'red'
-                              return ''
-                            ]]]
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_temp
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.sonde_garage_temperature
+                    name: Température
                     custom_fields:
-                      gauge:
+                      jauge-horizontal:
                         card:
-                          entity: sensor.sonde_garage_temperature
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.sonde_garage_temperature
+                          max: 40
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 18.4
+                            - color: rgb(0,191,255)
+                              from: 18.5
+                              to: 25.9
+                            - color: rgb(180, 70, 70)
+                              from: 26
+                              to: 40
+                  - type: custom:button-card
+                    template:
+                      - base
+                      - base_moyenne
+                      - jauge_horizontal
+                      - state_humidite
+                      - state_unavailable
+                    show_last_changed: false
+                    show_state: true
+                    entity: sensor.sonde_garage_humidite
+                    name: Humidité
+                    custom_fields:
+                      jauge-horizontal:
+                        card:
+                          type: custom:bar-card
+                          entities:
+                            - entity: sensor.sonde_garage_humidite
+                          max: 100
+                          severity:
+                            - color: rgb(176, 196, 222)
+                              from: 0
+                              to: 39.9
+                            - color: rgb(0,191,255)
+                              from: 40
+                              to: 70
+                            - color: rgb(180, 70, 70)
+                              from: 70.1
+                              to: 100
               - square: false
-                columns: 2
+                columns: 3
                 type: grid
                 cards:
                   - type: custom:button-card
@@ -12561,7 +13503,6 @@ views:
                     show_last_changed: true
                     template:
                       - base
-                      - base_moyenne
                       - state_porte
                       - state_unavailable
                   - type: custom:button-card
@@ -12571,13 +13512,8 @@ views:
                     show_last_changed: true
                     template:
                       - base
-                      - base_moyenne
                       - state_porte
                       - state_unavailable
-              - square: false
-                columns: 1
-                type: grid
-                cards:
                   - type: custom:button-card
                     entity: binary_sensor.mouv_garage
                     name: Mouvements
@@ -12585,7 +13521,6 @@ views:
                     show_last_changed: true
                     template:
                       - base
-                      - base_moyenne
                       - state_mouv
                       - state_unavailable
               - type: custom:button-card
@@ -12751,189 +13686,269 @@ views:
     icon: mdi:raspberry-pi
     badges: []
     cards:
-      - type: custom:apexcharts-card
-        header:
-          show: true
-          title: Raspberry
-          show_states: true
-          colorize_states: true
-        graph_span: 3d
-        now:
-          show: true
-          color: red
-          label: Maintenant
-        apex_config:
-          grid:
-            show: false
-          legend:
-            fontSize: 12px
-            height: 40
-          dataLabels:
-            enabled: false
-          stroke:
-            width: 1
-            curve: smooth
-          fill:
-            type: gradient
-            gradient:
-              type: vertical
-              shadeIntensity: 0.8
-              inverseColors: false
-              opacityFrom: 0.5
-              opacityTo: 0
-              stops:
-                - - 0
-                  - 50
-                  - 100
-        yaxis:
-          - id: first
-            max: ~100
-            min: ~0
-            decimals: 1
+      - type: custom:layout-card
+        layout_type: masonry
+        layout:
+          width: 300
+        cards:
+          - square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: sensor.cpu_temperature
+                name: CPU
+                template:
+                  - carte_jauge
+                  - state_unavailable
+                show_last_changed: true
+                styles:
+                  label:
+                    - font-size: 10px
+                custom_fields:
+                  gauge:
+                    card:
+                      entity: sensor.cpu_temperature
+                      gauge:
+                        max_value: 100
+                        severity:
+                          - color: darkgrey
+                          - color: var(--custom-icon-color-blue)
+                            from: 0
+                            to: 30
+                          - color: yellow
+                            from: 50
+                            to: 60
+                          - color: orange
+                            from: 60.1
+                            to: 70
+                          - color: red
+                            from: 70.1
+                            to: 100
+              - type: custom:button-card
+                entity: sensor.processor_use_percent
+                name: Processeur
+                template:
+                  - carte_jauge
+                  - state_unavailable
+                show_last_changed: true
+                styles:
+                  label:
+                    - font-size: 10px
+                custom_fields:
+                  gauge:
+                    card:
+                      entity: sensor.processor_use_percent
+                      gauge:
+                        max_value: 100
+                        severity:
+                          - color: darkgrey
+                          - color: var(--custom-icon-color-blue)
+                            from: 0
+                            to: 10
+                          - color: yellow
+                            from: 50
+                            to: 60
+                          - color: orange
+                            from: 60.1
+                            to: 70
+                          - color: red
+                            from: 70.1
+                            to: 100
+              - type: custom:button-card
+                entity: sensor.memory_use_percent
+                name: Mémoire
+                template:
+                  - carte_jauge
+                  - state_unavailable
+                show_last_changed: true
+                styles:
+                  label:
+                    - font-size: 10px
+                custom_fields:
+                  gauge:
+                    card:
+                      entity: sensor.memory_use_percent
+                      gauge:
+                        max_value: 100
+                        severity:
+                          - color: darkgrey
+                          - color: var(--custom-icon-color-blue)
+                            from: 0
+                            to: 10
+                          - color: yellow
+                            from: 50
+                            to: 60
+                          - color: orange
+                            from: 60.1
+                            to: 70
+                          - color: red
+                            from: 70.1
+                            to: 100
+              - type: custom:button-card
+                entity: sensor.disk_use_percent_home
+                name: SSD
+                template:
+                  - carte_jauge
+                  - state_unavailable
+                show_last_changed: true
+                styles:
+                  label:
+                    - font-size: 10px
+                custom_fields:
+                  gauge:
+                    card:
+                      entity: sensor.disk_use_percent_home
+                      gauge:
+                        max_value: 100
+                        severity:
+                          - color: darkgrey
+                          - color: var(--custom-icon-color-blue)
+                            from: 0
+                            to: 5
+                          - color: yellow
+                            from: 50
+                            to: 60
+                          - color: orange
+                            from: 60.1
+                            to: 70
+                          - color: red
+                            from: 70.1
+                            to: 100
+              - type: custom:button-card
+                entity: binary_sensor.rpi_power_status
+                name: Alim RPI
+                template:
+                  - carte_jauge
+                  - state_unavailable
+                show_last_changed: true
+                styles:
+                  label:
+                    - font-size: 10px
+                custom_fields:
+                  gauge:
+                    card:
+                      entity: binary_sensor.rpi_power_status
+                      gauge:
+                        severity:
+                          - color: darkgrey
+              - type: custom:button-card
+                entity: binary_sensor.wan_status
+                name: Livebox
+                template:
+                  - carte_jauge
+                  - state_unavailable
+                show_last_changed: true
+                styles:
+                  label:
+                    - font-size: 10px
+                custom_fields:
+                  gauge:
+                    card:
+                      entity: binary_sensor.wan_status
+                      gauge:
+                        severity:
+                          - color: darkgrey
+      - type: custom:layout-card
+        layout_type: masonry
+        layout:
+          width: 300
+        cards:
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              title: Raspberry
+              show_states: true
+              colorize_states: true
+            graph_span: 3d
+            now:
+              show: true
+              color: red
+              label: Maintenant
             apex_config:
-              tickAmount: 4
-          - id: second
-            opposite: true
-            min: ~0
-            decimals: 1
-            apex_config:
-              tickAmount: 4
-        all_series_config:
-          stroke_width: 2
-        series:
-          - entity: sensor.cpu_temperature
-            name: Température
-            yaxis_id: first
-            unit: '%'
-            color: tomato
-            type: area
-            fill_raw: last
-            show:
-              extremas: true
-              in_brush: false
-              header_color_threshold: true
-              legend_value: false
-            float_precision: 1
-            group_by:
-              duration: 10min
-              func: last
-          - entity: sensor.processor_use_percent
-            name: Processeur
-            yaxis_id: second
-            color: rgb(70, 180, 103)
-            type: area
-            fill_raw: last
-            show:
-              extremas: true
-              in_brush: false
-              header_color_threshold: true
-              legend_value: false
-            group_by:
-              duration: 10min
-              func: last
-          - entity: sensor.memory_use_percent
-            name: Mémoire
-            yaxis_id: second
-            color: dodgerblue
-            type: area
-            fill_raw: last
-            show:
-              extremas: true
-              in_brush: false
-              header_color_threshold: true
-              legend_value: false
-            float_precision: 1
-            group_by:
-              duration: 10min
-              func: last
-          - entity: sensor.disk_use_percent_home
-            name: SSD
-            yaxis_id: second
-            color: grey
-            type: area
-            fill_raw: last
-            show:
-              extremas: true
-              in_brush: false
-              header_color_threshold: true
-              legend_value: false
-            float_precision: 1
-            group_by:
-              duration: 10min
-              func: last
-      - type: custom:apexcharts-card
-        experimental:
-          color_threshold: true
-        header:
-          show: true
-          title: Raspberry
-          show_states: true
-          colorize_states: true
-        chart_type: radialBar
-        apex_config:
-          legend:
-            show: false
-        series:
-          - entity: sensor.cpu_temperature
-            name: CPU
-            fill_raw: last
-            color: tomato
-            color_threshold:
-              - value: 0
+              grid:
+                show: false
+              legend:
+                fontSize: 12px
+                height: 40
+              dataLabels:
+                enabled: false
+              stroke:
+                width: 1
+                curve: smooth
+              fill:
+                type: gradient
+                gradient:
+                  type: vertical
+                  shadeIntensity: 0.8
+                  inverseColors: false
+                  opacityFrom: 0.5
+                  opacityTo: 0
+                  stops:
+                    - - 0
+                      - 50
+                      - 100
+            yaxis:
+              - id: first
+                max: ~100
+                min: ~0
+                decimals: 1
+                apex_config:
+                  tickAmount: 4
+              - id: second
+                opposite: true
+                min: ~0
+                decimals: 1
+                apex_config:
+                  tickAmount: 4
+            all_series_config:
+              stroke_width: 2
+            series:
+              - entity: sensor.cpu_temperature
+                name: Température
+                yaxis_id: first
+                unit: '%'
+                color: tomato
+                type: area
+                fill_raw: last
+                show:
+                  extremas: true
+                  in_brush: false
+                  header_color_threshold: true
+                  legend_value: false
+                float_precision: 1
+                group_by:
+                  duration: 10min
+                  func: last
+              - entity: sensor.processor_use_percent
+                name: Processeur
+                yaxis_id: second
+                color: rgb(70, 180, 103)
+                type: area
+                fill_raw: last
+                show:
+                  extremas: true
+                  in_brush: false
+                  header_color_threshold: true
+                  legend_value: false
+                group_by:
+                  duration: 10min
+                  func: last
+              - entity: sensor.memory_use_percent
+                name: Mémoire
+                yaxis_id: second
                 color: dodgerblue
-              - value: 30
-                color: darkcyan
-              - value: 50
-                color: goldenrod
-              - value: 70
-                color: orangered
-              - value: 80
-                color: darkred
-          - entity: sensor.processor_use_percent
-            name: Processeur
-            fill_raw: last
-            color: rgb(70, 180, 103)
-            color_threshold:
-              - value: 0
-                color: dodgerblue
-              - value: 50
-                color: darkcyan
-              - value: 60
-                color: goldenrod
-              - value: 70
-                color: orangered
-              - value: 80
-                color: darkred
-          - entity: sensor.memory_use_percent
-            name: Mémoire
-            fill_raw: last
-            color: dodgerblue
-            color_threshold:
-              - value: 0
-                color: dodgerblue
-              - value: 40
-                color: darkcyan
-              - value: 50
-                color: goldenrod
-              - value: 70
-                color: orangered
-              - value: 80
-                color: darkred
-          - entity: sensor.disk_use_percent_home
-            name: SSD
-            fill_raw: last
-            color: grey
-            color_threshold:
-              - value: 0
-                color: dodgerblue
-              - value: 30
-                color: darkcyan
-              - value: 50
-                color: goldenrod
-              - value: 70
-                color: orangered
-              - value: 80
-                color: darkred
+                type: area
+                fill_raw: last
+                show:
+                  extremas: true
+                  in_brush: false
+                  header_color_threshold: true
+                  legend_value: false
+                float_precision: 1
+                group_by:
+                  duration: 10min
+                  func: last
   - theme: Backend-selected
     subview: true
     title: Plantes
@@ -14195,6 +15210,35 @@ views:
                 template:
                   - titre_section
                 name: |
+                  [[[ return "Autres modes" ]]]
+              - square: false
+                columns: 2
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    show_last_changed: false
+                    show_state: true
+                    template:
+                      - base
+                      - state_appareil
+                      - state_unavailable
+                    entity: input_boolean.noel
+                    tap_action:
+                      action: toggle
+                  - type: custom:button-card
+                    show_last_changed: false
+                    show_state: true
+                    template:
+                      - base
+                      - state_appareil
+                      - state_unavailable
+                    entity: input_boolean.halloween
+                    tap_action:
+                      action: toggle
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
                   [[[ return "Thèmes" ]]]
               - square: false
                 columns: 2
@@ -14273,6 +15317,14 @@ views:
                       return 'Danger : Ventilation intensifiée nécessaire'
                     return ''
                   ]]]
+                styles:
+                  img_cell:
+                    - width: 50px
+                    - height: 50px
+                  name:
+                    - font-size: 15px
+                  label:
+                    - font-size: 15px
                 state:
                   - value: 65
                     operator: <
@@ -14297,12 +15349,12 @@ views:
                     operator: <
                     styles:
                       img_cell:
-                        - background-color: var(--custom-img-cell-color-yellow)
+                        - background-color: var(--custom-img-cell-color-gold)
                       label:
-                        - color: var(--custom-icon-color-yellow)
+                        - color: var(--custom-icon-color-gold)
                         - font-weight: bold
                       icon:
-                        - color: var(--custom-icon-color-yellow)
+                        - color: var(--custom-icon-color-gold)
                   - value: 2200
                     operator: <
                     styles:
@@ -14352,7 +15404,7 @@ views:
                             - background-color: var(--custom-card-color-blue)
                           img_cell:
                             - background-color: var(--custom-img-cell-color-blue)
-                          label:
+                          state:
                             - color: var(--custom-icon-color-blue)
                           icon:
                             - color: var(--custom-icon-color-blue)
@@ -14363,7 +15415,7 @@ views:
                             - background-color: var(--custom-card-color-yellow)
                           img_cell:
                             - background-color: var(--custom-img-cell-color-yellow)
-                          label:
+                          state:
                             - color: var(--custom-icon-color-yellow)
                           icon:
                             - color: var(--custom-icon-color-yellow)
@@ -14374,7 +15426,7 @@ views:
                             - background-color: var(--custom-card-color-orange)
                           img_cell:
                             - background-color: var(--custom-img-cell-color-orange)
-                          label:
+                          state:
                             - color: var(--custom-icon-color-orange)
                           icon:
                             - color: var(--custom-icon-color-orange)
@@ -14385,7 +15437,7 @@ views:
                             - background-color: var(--custom-card-color-red)
                           img_cell:
                             - background-color: var(--custom-img-cell-color-red)
-                          label:
+                          state:
                             - color: var(--custom-icon-color-red)
                           icon:
                             - color: var(--custom-icon-color-red)
@@ -14430,58 +15482,33 @@ views:
                           return 'Danger'
                         return ''
                       ]]]
-                    state:
-                      - value: 98.8
-                        operator: '>'
-                        styles:
-                          img_cell:
-                            - background-color: var(--pastille_off)
-                          icon:
-                            - color: var(--icon_off)
-                      - value: 98.8
-                        operator: <=
-                        styles:
-                          card:
-                            - background-color: var(--custom-card-color-blue)
-                          img_cell:
-                            - background-color: var(--custom-img-cell-color-blue)
-                          label:
-                            - color: var(--custom-icon-color-blue)
-                          icon:
-                            - color: var(--custom-icon-color-blue)
-                      - value: 96
-                        operator: <=
-                        styles:
-                          card:
-                            - background-color: var(--custom-card-color-yellow)
-                          img_cell:
-                            - background-color: var(--custom-img-cell-color-yellow)
-                          label:
-                            - color: var(--custom-icon-color-yellow)
-                          icon:
-                            - color: var(--custom-icon-color-yellow)
-                      - value: 88
-                        operator: <=
-                        styles:
-                          card:
-                            - background-color: var(--custom-card-color-orange)
-                          img_cell:
-                            - background-color: var(--custom-img-cell-color-orange)
-                          label:
-                            - color: var(--custom-icon-color-orange)
-                          icon:
-                            - color: var(--custom-icon-color-orange)
-                      - value: 60
-                        operator: <=
-                        styles:
-                          card:
-                            - background-color: var(--custom-card-color-red)
-                          img_cell:
-                            - background-color: var(--custom-img-cell-color-red)
-                          label:
-                            - color: var(--custom-icon-color-red)
-                          icon:
-                            - color: var(--custom-icon-color-red)
+                    styles:
+                      card:
+                        - background-color: |
+                            [[[
+                              if (states['sensor.qualite_air_pourcentage'].state >= 96.1 && states['sensor.qualite_air_pourcentage'].state <= 98.8)
+                                return "var(--custom-card-color-blue)" 
+                              if (states['sensor.qualite_air_pourcentage'].state >= 88.1 && states['sensor.qualite_air_pourcentage'].state <= 96)
+                                return "var(--custom-card-color-yellow)" 
+                              if (states['sensor.qualite_air_pourcentage'].state >= 60.1 && states['sensor.qualite_air_pourcentage'].state <= 88)
+                                return "var(--custom-card-color-orange)" 
+                              if (states['sensor.qualite_air_pourcentage'].state >= 0 && states['sensor.qualite_air_pourcentage'].state <= 60)
+                                return "var(--custom-card-color-red)" 
+                              return "" 
+                            ]]]
+                      state:
+                        - color: |
+                            [[[
+                              if (states['sensor.qualite_air_pourcentage'].state >= 96.1 && states['sensor.qualite_air_pourcentage'].state <= 98.8)
+                                return "var(--custom-icon-color-blue)" 
+                              if (states['sensor.qualite_air_pourcentage'].state >= 88.1 && states['sensor.qualite_air_pourcentage'].state <= 96)
+                                return "var(--custom-icon-color-yellow)" 
+                              if (states['sensor.qualite_air_pourcentage'].state >= 60.1 && states['sensor.qualite_air_pourcentage'].state <= 88)
+                                return "var(--custom-icon-color-orange)" 
+                              if (states['sensor.qualite_air_pourcentage'].state >= 0 && states['sensor.qualite_air_pourcentage'].state <= 60)
+                                return "var(--custom-icon-color-red)" 
+                              return "" 
+                            ]]]
                     custom_fields:
                       gauge:
                         card:
@@ -14610,4 +15637,3 @@ views:
                      box-shadow: none;
                      font-family: Avenir;
                    }
-
