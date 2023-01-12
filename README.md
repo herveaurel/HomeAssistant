@@ -23,6 +23,16 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 
 -----
 
+### version 2023.0.2
+
+Changements :
+- modifications du graphique Apex electricté
+- modifications des codes couleurs des sous-boutons dans les cartes
+- modifications des thèmes
+- modifications du state home dans la carte Personne
+
+-----
+
 ### version 2023.0.1
 
 Changements :
