@@ -1,11 +1,11 @@
 mad_geek: 
 
       # Card color
-      custom-blue: rgba(0,191,255,0.1)
-      custom-card-color-blue: rgba(0,191,255,1)
-      custom-img-cell-color-blue: rgba(0,191,255,0.3)
+      custom-blue: rgba(0, 160, 214,0.1)
+      custom-card-color-blue: rgba(0, 160, 214,1)
+      custom-img-cell-color-blue: rgba(0, 160, 214,0.3)
       custom-icon-color-blue: rgba(0,191,255,1)
-      custom-badge-color-blue: rgba(0,191,255,0.5) 
+      custom-badge-color-blue: rgba(0, 160, 214,0.5) 
       
       custom-card-color-red: rgba(180, 70, 70,0.7)
       custom-img-cell-color-red: rgba(180, 70, 70,0.3)
@@ -16,13 +16,13 @@ mad_geek:
       custom-img-cell-color-gold: rgba(255,255,0,0.3)
       custom-icon-color-gold: rgba(255,215,0,1)
       
-      custom-card-color-yellow: rgba(255,215,0,1)
+      custom-card-color-yellow: rgba(255,215,1)
       custom-img-cell-color-yellow: rgba(255,215,0,1)
       custom-icon-color-yellow: rgba(255,215,0,1)
       
       custom-card-color-orange: rgba(255,99,71,1)
       custom-icon-color-orange: rgba(255,99,71,1)
-      custom-img-cell-color-orange: rgba(255,99,71,1)
+      custom-img-cell-color-orange: rgba(255,99,71,0.3)
       
       card_border: rgba(12, 12, 14, 0.2) #rgba(190, 190, 190, 0.1)
       card_box_shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
@@ -70,7 +70,7 @@ mad_geek:
       light-primary-color: "#CECECE"
       accent-color: "#2187CC"
       graph-color: var(--primary-color)
-      primary-background-color: rgb(38, 59, 82) #"#223548" #ou rgb(31, 43, 58)    
+      primary-background-color: rgb(37, 59, 82) #"#223548" #ou rgb(31, 43, 58)    
       secondary-background-color: var(--primary-background-color)
       divider-color: "#223548"
       disabled-color: "#E8E9F3"
