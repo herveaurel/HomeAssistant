@@ -4,24 +4,28 @@ mad_night:
       lovelace-background: 'center / cover no-repeat url("/local/wallpaper/ha-black.png") fixed'
       
       # Custom
-      custom-blue: rgba(0,191,255,0.1)
-      custom-card-color-blue: rgba(0,191,255,1)
-      custom-img-cell-color-blue: rgba(0,191,255,0.3)
+      custom-blue: rgba(0, 118, 158,0.1)
+      custom-card-color-blue: rgba(0, 118, 158,1)
+      custom-img-cell-color-blue: rgba(0, 118, 158,0.3)
       custom-icon-color-blue: rgba(0,191,255,1)
       custom-badge-color-blue: rgba(0,191,255,0.5) 
+      
       custom-card-color-red: rgba(180, 70, 70,0.7)
       custom-img-cell-color-red: rgba(180, 70, 70,0.3)
       custom-icon-color-red: rgba(255, 0, 0,1)
       custom-badge-color-red: rgba(255,0,0,0.5)
+      
       custom-card-color-gold: rgba(255,255,0,1)
       custom-img-cell-color-gold: rgba(255,255,0,0.3)
-      custom-icon-color-gold: rgba(255,215,0,1)
+      custom-icon-color-gold: rgba(255,255,0,1)
+      
       custom-card-color-yellow: rgba(255,215,0,1)
-      custom-img-cell-color-yellow: rgba(255,215,0,1)
+      custom-img-cell-color-yellow: rgba(255,215,0,3)
       custom-icon-color-yellow: rgba(255,215,0,1)
+      
       custom-card-color-orange: rgba(255,99,71,1)
       custom-icon-color-orange: rgba(255,99,71,1)
-      custom-img-cell-color-orange: rgba(255,99,71,1)
+      custom-img-cell-color-orange: rgba(255,99,71,0.3)
       
       text_on: rgba(211,211,211,1)
       text_on_sidebar: rgba(211,211,211,1)
