@@ -20,7 +20,28 @@ J'écris tout moi-même donc soyez indulgents ! 😊
 
 Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées. 
 
+-----
 
+## 🚧 INSTALLATION
+
+Ce n'est pas du 1clik ! 
+
+Il faut quelques connaissances avant de se lancer. 
+- Installer quelques intégrations hacs necessaires au bon fonctionnnement.
+- Créer les bons sensor templates aussi, car je les utilise en masse et en appelle partout dans les cartes.
+- Savoir ou copier coller chaque partie, que ce soit les sensor templates, le contenu du lovelace, les templates button card... 
+- Modifier les entités, supprimer celles en trop etc...
+
+Il faut adapter a sa config ! 🙂
+
+Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
+- l'onglet est parametré sur Type de vue : Horizontal (layout-card) / width: 350 / max_cols: 4
+- une colonne "pile verticale" est imbriquée dans une carte "type: custom:layout-card" / "layout_type: masonry" / et a comme Layout options  "width: 280"
+
+
+-----
+
+## ℹ️  INTRODUCTION
 -----
 
 ### version 2023.0.2
