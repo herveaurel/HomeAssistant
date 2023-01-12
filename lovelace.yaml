@@ -11,7 +11,7 @@ button_card_templates:
         - border-width: 1px
         - box-shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
   sidebar:
-    entity: weather.beaucouze
+    entity: weather.ta_ville
     show_entity_picture: true
     show_icon: true
     show_name: false
@@ -270,7 +270,12 @@ button_card_templates:
           - text-align: left
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
-          - color: var(--text_on_info_sidebar)
+          - color: |
+              [[[
+                if (states['input_boolean.nilemato'].state == "on" && states['sensor.tom_reveil'].state == "unavailable")
+                  return 'red';
+                return 'var(--text_on_info_sidebar)';
+              ]]]
         air:
           - border-left: 2px grey solid
           - white-space: normal
@@ -502,12 +507,20 @@ button_card_templates:
         ]]]
       reveil: |
         [[[
+          if (states['input_boolean.nilemato'].state == "on" && states['sensor.tom_reveil'].state == "unavailable")
+            return `<ha-icon
+              icon="mdi:alarm"
+              style="width: 16px; color: red; height: 16px; margin-right: 2px;">
+              </ha-icon><span>Indisponible</span>`
+          if (states['input_boolean.nilemato'].state == "off")
+            return ""
           if (states['sensor.reveil'].state == "")
             return ""
           return `<ha-icon
             icon="mdi:alarm"
             style="width: 16px; color: darkgrey; height: 16px; margin-right: 2px;">
             </ha-icon><span> ${states['sensor.reveil'].state}</span>`
+
         ]]]
       app_connectes: |
         [[[
@@ -522,17 +535,17 @@ button_card_templates:
         [[[
           if (states['input_boolean.sidecar_show_electricite'].state == 'off')
             return ""
-          if (states['sensor.myenedis_cost_yesterday_09397539765420'].state == '-1.0')
+          if (states['sensor.myenedis_cost_yesterday_ton_pdl'].state == '-1.0')
           return `<ha-icon
             icon="mdi:flash-alert"
             style="width: 16px; color: var(--text_on_sidebar); height: 16px; margin-right: 2px;">
             </ha-icon><span>Enedis: en attente</span>`
-          if (states['sensor.myenedis_cost_yesterday_09397539765420'].state == 'unavailable')
+          if (states['sensor.myenedis_cost_yesterday_ton_pdl'].state == 'unavailable')
           return `<ha-icon
             icon="mdi:flash-off"
             style="width: 16px; color: var(--text_on_sidebar); height: 16px; margin-right: 2px;">
             </ha-icon><span>Enedis : en attente</span>`
-          if (states['sensor.myenedis_cost_yesterday_09397539765420'].state != '-1.0')
+          if (states['sensor.myenedis_cost_yesterday_ton_pdl'].state != '-1.0')
           return `<ha-icon
             icon="mdi:flash"
             style="width: 16px; color: darkgrey; height: 16px; margin-right: 2px;">
@@ -1020,47 +1033,45 @@ button_card_templates:
       - value: 'on'
         styles:
           card:
-            - background: rgba(74,82,96,0.7)
+            - background: var(--custom-img-cell-color-blue)
           icon:
-            - color: |-
-                [[[ 
-                  var color = '211,211,211'; // Default Color
-
-                  if( states[entity.entity_id].attributes.rgb_color != undefined)
-                    color = states[entity.entity_id].attributes.rgb_color; 
-                  
-                  return 'rgb(' + color + ',1)';
-                ]]]
+            - color: var(--custom-icon-color-blue)
       - value: home
         styles:
           card:
-            - background: rgba(74,82,96,0.7)
+            - background: var(--custom-img-cell-color-blue)
           icon:
-            - color: rgb(176, 196, 222)
+            - color: var(--custom-icon-color-blue)
       - value: heat
         styles:
           card:
-            - background: rgba(74,82,96,0.7)
+            - background: var(--custom-img-cell-color-blue)
           icon:
-            - color: rgb(176, 196, 222)
+            - color: var(--custom-icon-color-blue)
+      - value: Run
+        styles:
+          card:
+            - background: var(--custom-img-cell-color-blue)
+          icon:
+            - color: var(--custom-icon-color-blue)
       - value: armed_away
         styles:
           card:
-            - background: rgba(74,82,96,0.7)
+            - background: var(--custom-img-cell-color-blue)
           icon:
-            - color: rgb(176, 196, 222)
+            - color: var(--custom-icon-color-blue)
       - value: playing
         styles:
           card:
-            - background: rgba(74,82,96,0.7)
+            - background: var(--custom-img-cell-color-blue)
           icon:
-            - color: rgb(176, 196, 222)
+            - color: var(--custom-icon-color-blue)
       - value: veille
         styles:
           card:
-            - background: rgba(74,82,96,0.7)
+            - background: var(--custom-img-cell-color-blue)
           icon:
-            - color: rgb(176, 196, 222)
+            - color: var(--custom-icon-color-blue)
       - value: 'off'
         styles:
           icon:
@@ -1204,12 +1215,23 @@ button_card_templates:
             thumbWidth: 1px
             thumbColor: lightgrey
   jauge_lumiere:
+    custom_fields:
+      lum:
+        card:
+          type: custom:my-slider
+          radius: 6px
+          height: 20px
+          mainSliderColor: var(--button-card-light-color-no-temperature)
+          thumbHorizontalPadding: 0px
+          thumbVerticalPadding: 0px
+          thumbWidth: 2px
+          minSet: 1
     styles:
       custom_fields:
         lum:
           - position: absolute
-          - top: 67%
-          - left: 50%
+          - top: 72%
+          - left: 51%
           - width: calc(90% + 1px)
           - transform: translate(-50%, calc(-50% + 10px))
           - z-index: 1
@@ -1248,6 +1270,16 @@ button_card_templates:
           - '--ha-card-background': rgba(0, 0, 0, 0.0)"
           - '--ha-card-box-shadow': none
           - '--ha-card-border-width': 0px
+  carte_lumiere:
+    template:
+      - carte_badge
+      - state_lumiere
+      - state_unavailable
+    styles:
+      card:
+        - height: 90px
+      name:
+        - padding-bottom: 30px
   carte_badge:
     show_icon: true
     show_name: true
@@ -1596,6 +1628,10 @@ button_card_templates:
             - transition: 1s ease
   state_person:
     state:
+      - value: home
+        styles:
+          card:
+            - background-color: var(--custom-card-color-blue)
       - value: Atoll
         styles:
           label:
@@ -2308,6 +2344,11 @@ button_card_templates:
                   - font-size: 10px
                 card:
                   - width: auto
+                  - background-color: |
+                      [[[
+                        if (states['person.herve'].state == "home")
+                        return "var(--custom-img-cell-color-blue)"
+                      ]]]
             - type: custom:button-card
               entity: device_tracker.aurel_ipad_ping
               icon: |
@@ -2446,6 +2487,11 @@ button_card_templates:
                   - font-size: 11px
                 card:
                   - width: auto
+                  - background-color: |
+                      [[[
+                        if (states['person.alex'].state == "home")
+                        return "var(--custom-img-cell-color-blue)"
+                      ]]]
             - type: custom:button-card
               entity: device_tracker.liseuse_alex
               icon: |
@@ -2523,6 +2569,12 @@ button_card_templates:
               styles:
                 state:
                   - font-size: 11px
+                card:
+                  - background-color: |
+                      [[[
+                        if (states['person.tom'].state == "home")
+                        return "var(--custom-img-cell-color-blue)"
+                      ]]]
             - type: custom:button-card
               entity: device_tracker.tom_mac_ping
               icon: mdi:desktop-mac
@@ -2554,6 +2606,12 @@ button_card_templates:
               styles:
                 state:
                   - font-size: 11px
+                card:
+                  - background-color: |
+                      [[[
+                        if (states['person.manon'].state == "home")
+                        return "var(--custom-img-cell-color-blue)"
+                      ]]]
   carte_personne_leane:
     entity: person.leane
     label: |
@@ -2579,6 +2637,12 @@ button_card_templates:
               styles:
                 state:
                   - font-size: 11px
+                card:
+                  - background-color: |
+                      [[[
+                        if (states['person.leane'].state == "home")
+                        return "var(--custom-img-cell-color-blue)"
+                      ]]]
   carte_personne_nina:
     entity: person.nina
     label: |
@@ -2604,6 +2668,12 @@ button_card_templates:
               styles:
                 state:
                   - font-size: 11px
+                card:
+                  - background-color: |
+                      [[[
+                        if (states['person.nina'].state == "home")
+                        return "var(--custom-img-cell-color-blue)"
+                      ]]]
   carte_appareil:
     styles:
       custom_fields:
@@ -2689,21 +2759,7 @@ button_card_templates:
               icon: mdi:power
               template:
                 - carte_bouton
-              styles:
-                card:
-                  - background: |
-                      [[[
-                        if (states['switch.lave_vaisselle_power'].state == "on")
-                          return 'rgba(74,82,96,0.7)'
-                        return 'rgba(43,53,66,0.7)'
-                      ]]]
-                icon:
-                  - color: |
-                      [[[
-                        if (states['switch.lave_vaisselle_power'].state == "on")
-                          return 'rgb(176, 196, 222)'
-                        return "var(--icon_off)"
-                      ]]]
+                - carte_bouton_state
               tap_action:
                 confirmation:
                   text: >-
@@ -2714,21 +2770,7 @@ button_card_templates:
               icon: mdi:flag-checkered
               template:
                 - carte_bouton
-              styles:
-                card:
-                  - background: |
-                      [[[
-                        if (states['sensor.lave_vaisselle_operation_state'].state == "Run")
-                          return 'rgba(74,82,96,0.7)'
-                        return 'rgba(43,53,66,0.7)'
-                      ]]]
-                icon:
-                  - color: |
-                      [[[
-                        if (states['sensor.lave_vaisselle_operation_state'].state == "Run")
-                          return 'rgb(176, 196, 222)'
-                        return "var(--icon_off)"
-                      ]]]
+                - carte_bouton_state
               tap_action:
                 confirmation:
                   text: >-
@@ -2738,29 +2780,9 @@ button_card_templates:
               entity: binary_sensor.lave_vaisselle_door
               template:
                 - carte_bouton
+                - carte_bouton_state
               tap_action:
                 action: more-info
-              styles:
-                card:
-                  - background: |
-                      [[[
-                        if (states['switch.lave_vaisselle_power'].state == "on" && states['binary_sensor.lave_vaisselle_door'].state == "on")
-                          return 'rgba(74,82,96,0.7)'
-                        return 'rgba(43,53,66,0.7)'
-                      ]]]
-                icon:
-                  - color: |
-                      [[[
-                        if (states['switch.lave_vaisselle_power'].state == "off" && states['binary_sensor.lave_vaisselle_door'].state == "off")
-                          return 'grey'
-                        if (states['switch.lave_vaisselle_power'].state == "off" && states['binary_sensor.lave_vaisselle_door'].state == "on")
-                          return 'grey'
-                        if (states['switch.lave_vaisselle_power'].state == "on" && states['binary_sensor.lave_vaisselle_door'].state == "off")
-                          return 'grey'
-                        if (states['switch.lave_vaisselle_power'].state == "on" && states['binary_sensor.lave_vaisselle_door'].state == "on")
-                          return 'rgb(176, 196, 222)'
-                        return "grey"
-                      ]]]
   carte_appareil_linge:
     entity: input_select.lave_linge
     name: Linge
@@ -2810,7 +2832,7 @@ button_card_templates:
                   - background: |
                       [[[
                         if (states['sensor.lave_linge_conso'].state != 0)
-                          return 'rgba(74,82,96,0.7)'
+                          return 'var(--custom-img-cell-color-blue)'
                         return 'rgba(43,53,66,0.7)'
                       ]]]
             - type: custom:button-card
@@ -2818,22 +2840,8 @@ button_card_templates:
               icon: mdi:power-plug
               template:
                 - carte_bouton
+                - carte_bouton_state
                 - state_unavailable
-              styles:
-                card:
-                  - background: |
-                      [[[
-                        if (states['switch.lave_linge'].state == "on")
-                          return 'rgba(74,82,96,0.7)'
-                        return 'rgba(43,53,66,0.7)'
-                      ]]]
-                icon:
-                  - color: |
-                      [[[
-                        if (states['switch.lave_linge'].state == "on")
-                          return 'rgb(176, 196, 222)';
-                        return "var(--icon_off)"
-                      ]]]
   carte_appareil_imprimante:
     type: custom:button-card
     entity: sensor.canon_mg4100_series
@@ -3545,6 +3553,8 @@ views:
                         conditions:
                           - entity: sensor.le_bureau_next_timer
                             state_not: unavailable
+                          - entity: sensor.le_bureau_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_bureau
@@ -3560,6 +3570,8 @@ views:
                         conditions:
                           - entity: sensor.la_cuisine_next_timer
                             state_not: unavailable
+                          - entity: sensor.la_cuisine_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_cuisine
@@ -3575,6 +3587,8 @@ views:
                         conditions:
                           - entity: sensor.le_salon_next_timer
                             state_not: unavailable
+                          - entity: sensor.le_salon_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_salon
@@ -3590,6 +3604,8 @@ views:
                         conditions:
                           - entity: sensor.aurel_s_fire_tv_cube_next_timer
                             state_not: unavailable
+                          - entity: sensor.aurel_s_fire_tv_cube_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_fire_tv
@@ -3605,6 +3621,8 @@ views:
                         conditions:
                           - entity: sensor.la_salle_de_bain_next_timer
                             state_not: unavailable
+                          - entity: sensor.la_salle_de_bain_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_sdb
@@ -3620,6 +3638,8 @@ views:
                         conditions:
                           - entity: sensor.papa_next_timer
                             state_not: unavailable
+                          - entity: sensor.papa_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_aurel
@@ -3635,6 +3655,8 @@ views:
                         conditions:
                           - entity: sensor.maman_next_timer
                             state_not: unavailable
+                          - entity: sensor.maman_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_alex
@@ -3650,6 +3672,8 @@ views:
                         conditions:
                           - entity: sensor.tom_next_timer
                             state_not: unavailable
+                          - entity: sensor.tom_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_tom
@@ -3665,6 +3689,8 @@ views:
                         conditions:
                           - entity: sensor.nina_next_timer
                             state_not: unavailable
+                          - entity: sensor.nina_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_nina
@@ -3680,6 +3706,8 @@ views:
                         conditions:
                           - entity: sensor.leane_next_timer
                             state_not: unavailable
+                          - entity: sensor.leane_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_leane
@@ -3695,6 +3723,8 @@ views:
                         conditions:
                           - entity: sensor.manon_next_timer
                             state_not: unavailable
+                          - entity: sensor.manon_next_timer
+                            state_not: unknown
                         card:
                           type: custom:button-card
                           entity: sensor.minuteur_manon
@@ -5156,14 +5186,14 @@ views:
                                   - background: |
                                       [[[
                                         if (states['sensor.walle_state'].state == "Nettoyage")
-                                          return 'rgba(74,82,96,0.7)'
+                                          return 'var(--custom-img-cell-color-blue)'
                                         return 'rgba(43,53,66,0.7)'
                                       ]]]
                                 icon:
                                   - color: |
                                       [[[
                                         if (states['sensor.walle_state'].state == "Nettoyage")
-                                          return 'rgb(176, 196, 222)';
+                                          return 'var(--custom-icon-color-blue)';
                                         return "var(--icon_off)"
                                       ]]]
                             - type: custom:button-card
@@ -5175,14 +5205,14 @@ views:
                                   - background: |
                                       [[[
                                         if (states['sensor.walle_state'].state == "En pause")
-                                          return 'rgba(74,82,96,0.7)'
+                                          return 'var(--custom-img-cell-color-blue)'
                                         return 'rgba(43,53,66,0.7)'
                                       ]]]
                                 icon:
                                   - color: |
                                       [[[
                                         if (states['sensor.walle_state'].state == "En pause")
-                                          return 'rgb(176, 196, 222)';
+                                          return 'var(--custom-icon-color-blue)';
                                         return "var(--icon_off)"
                                       ]]]
                             - type: custom:button-card
@@ -5208,14 +5238,14 @@ views:
                                   - background: |
                                       [[[
                                         if (states['sensor.walle_state'].state == "Base")
-                                          return 'rgba(74,82,96,0.7)'
+                                          return 'var(--custom-img-cell-color-blue)'
                                         return 'rgba(43,53,66,0.7)'
                                       ]]]
                                 icon:
                                   - color: |
                                       [[[
                                         if (states['sensor.walle_state'].state == "Base")
-                                          return 'rgb(176, 196, 222)';
+                                          return 'var(--custom-icon-color-blue)';
                                         return "var(--icon_off)"
                                       ]]]
                   - type: custom:button-card
@@ -5268,18 +5298,18 @@ views:
                                   - background: |
                                       [[[
                                         if (states['sensor.r2d2_state'].state == "Nettoyage")
-                                          return 'rgba(74,82,96,0.7)'
+                                          return 'rvar(--custom-img-cell-color-blue)'
                                         if (states['sensor.r2d2_state'].state == "Retour")
-                                          return 'rgba(74,82,96,0.7)'
+                                          return 'var(--custom-img-cell-color-blue)'
                                         return 'rgba(43,53,66,0.7)'
                                       ]]]
                                 icon:
                                   - color: |
                                       [[[
                                         if (states['sensor.r2d2_state'].state == "Nettoyage")
-                                          return 'rgb(176, 196, 222)';
+                                          return 'var(--custom-icon-color-blue)';
                                         if (states['sensor.r2d2_state'].state == "Retour")
-                                          return "rgb(176, 196, 222)"
+                                          return "var(--custom-icon-color-blue)"
                                         return "var(--icon_off)"
                                       ]]]
                             - type: custom:button-card
@@ -5291,14 +5321,14 @@ views:
                                   - background: |
                                       [[[
                                         if (states['sensor.r2d2_state'].state == "En pause")
-                                          return 'rgba(74,82,96,0.7)'
+                                          return 'var(--custom-img-cell-color-blue)'
                                         return 'rgba(43,53,66,0.7)'
                                       ]]]
                                 icon:
                                   - color: |
                                       [[[
                                         if (states['sensor.r2d2_state'].state == "En pause")
-                                          return 'rgb(176, 196, 222)';
+                                          return 'var(--custom-icon-color-blue)';
                                         return "var(--icon_off)"
                                       ]]]
                             - type: custom:button-card
@@ -5320,14 +5350,14 @@ views:
                                   - background: |
                                       [[[
                                         if (states['sensor.r2d2_state'].state == "Base")
-                                          return 'rgba(74,82,96,0.7)'
+                                          return 'var(--custom-img-cell-color-blue)'
                                         return 'rgba(43,53,66,0.7)'
                                       ]]]
                                 icon:
                                   - color: |
                                       [[[
                                         if (states['sensor.r2d2_state'].state == "Base")
-                                          return 'rgb(176, 196, 222)';
+                                          return 'var(--custom-icon-color-blue)';
                                         return "var(--icon_off)"
                                       ]]]
                   - type: custom:button-card
@@ -5393,7 +5423,7 @@ views:
               - type: grid
                 cards:
                   - type: custom:button-card
-                    entity: sensor.myenedis_09397539765420
+                    entity: sensor.myenedis_ton_pdl
                     name: Électricité
                     icon: mdi:flash
                     template:
@@ -5484,7 +5514,7 @@ views:
                         card:
                           type: custom:mini-graph-card
                           entities:
-                            - entity: sensor.myenedis_09397539765420
+                            - entity: sensor.myenedis_ton_pdl
                               color: rgba(0,191,255,0.2)
                           group_by: date
                           height: 250
@@ -6368,7 +6398,7 @@ views:
       - type: custom:layout-card
         layout_type: masonry
         layout:
-          width: 350
+          width: 380
         cards:
           - type: vertical-stack
             cards:
@@ -6400,6 +6430,72 @@ views:
                         service: script.turn_on
                         service_data:
                           entity_id: script.sortir_l_aspi
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:button-card
+                        entity: script.aspi_walle_sejour
+                        name: Séjour
+                        show_name: true
+                        template:
+                          - carte_badge
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.aspi_salle_a_manger
+                        name: SàM
+                        show_name: true
+                        template:
+                          - carte_badge
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.aspi_walle_salon
+                        name: Salon
+                        show_name: true
+                        template:
+                          - carte_badge
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.aspi_walle_chambre_parents
+                        name: Parents
+                        show_name: true
+                        template:
+                          - carte_badge
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.aspi_walle_cuisine
+                        name: Cuisine
+                        show_name: true
+                        template:
+                          - carte_badge
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.aspi_walle_entree
+                        name: Entrée
+                        show_name: true
+                        template:
+                          - carte_badge
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.aspi_walle_tapis
+                        name: Tapis
+                        show_name: true
+                        template:
+                          - carte_badge
+                        tap_action:
+                          action: toggle
+                      - type: custom:button-card
+                        entity: script.aspi_walle_couloir
+                        name: Couloir
+                        show_name: true
+                        template:
+                          - carte_badge
+                        tap_action:
+                          action: toggle
                   - type: custom:xiaomi-vacuum-map-card
                     entity: vacuum.wall_e
                     map_source:
@@ -6465,74 +6561,6 @@ views:
                                 - 34300
                     map_locked: true
                     two_finger_pan: false
-                  - type: horizontal-stack
-                    cards:
-                      - type: custom:button-card
-                        entity: script.aspi_walle_sejour
-                        name: Séjour
-                        show_name: true
-                        template:
-                          - badge
-                        tap_action:
-                          action: toggle
-                      - type: custom:button-card
-                        entity: script.aspi_salle_a_manger
-                        name: SàM
-                        show_name: true
-                        template:
-                          - badge
-                        tap_action:
-                          action: toggle
-                      - type: custom:button-card
-                        entity: script.aspi_walle_salon
-                        name: Salon
-                        show_name: true
-                        template:
-                          - badge
-                        tap_action:
-                          action: toggle
-                      - type: custom:button-card
-                        entity: script.aspi_walle_chambre_parents
-                        name: Parents
-                        show_name: true
-                        template:
-                          - badge
-                        tap_action:
-                          action: toggle
-                      - type: custom:button-card
-                        entity: script.aspi_walle_cuisine
-                        name: Cuisine
-                        show_name: true
-                        template:
-                          - badge
-                        tap_action:
-                          action: toggle
-                  - type: horizontal-stack
-                    cards:
-                      - type: custom:button-card
-                        entity: script.aspi_walle_entree
-                        name: Entrée
-                        show_name: true
-                        template:
-                          - badge
-                        tap_action:
-                          action: toggle
-                      - type: custom:button-card
-                        entity: script.aspi_walle_tapis
-                        name: Tapis
-                        show_name: true
-                        template:
-                          - badge
-                        tap_action:
-                          action: toggle
-                      - type: custom:button-card
-                        entity: script.aspi_walle_couloir
-                        name: Couloir
-                        show_name: true
-                        template:
-                          - badge
-                        tap_action:
-                          action: toggle
                   - square: false
                     columns: 2
                     type: grid
@@ -6600,7 +6628,7 @@ views:
       - type: custom:layout-card
         layout_type: masonry
         layout:
-          width: 350
+          width: 380
         cards:
           - type: vertical-stack
             cards:
@@ -6624,6 +6652,48 @@ views:
                   spot:
                     show: true
                     label: Nettoyage localisé
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: script.aspi_r2d2_chambre_tom
+                    name: Tom
+                    show_name: true
+                    template:
+                      - carte_badge
+                    tap_action:
+                      action: toggle
+                  - type: custom:button-card
+                    entity: script.aspi_r2d2_chambre_manon_leane
+                    name: Manon
+                    show_name: true
+                    template:
+                      - carte_badge
+                    tap_action:
+                      action: toggle
+                  - type: custom:button-card
+                    entity: script.aspi_r2d2_chambre_nina
+                    name: Nina
+                    show_name: true
+                    template:
+                      - carte_badge
+                    tap_action:
+                      action: toggle
+                  - type: custom:button-card
+                    entity: script.aspi_r2d2_salle_de_bain
+                    name: SdB
+                    show_name: true
+                    template:
+                      - carte_badge
+                    tap_action:
+                      action: toggle
+                  - type: custom:button-card
+                    entity: script.aspi_r2d2_palier
+                    name: Palier
+                    show_name: true
+                    template:
+                      - carte_badge
+                    tap_action:
+                      action: toggle
               - type: custom:xiaomi-vacuum-map-card
                 entity: vacuum.r2d2
                 map_source:
@@ -6669,48 +6739,6 @@ views:
                             - 24501
                 map_locked: true
                 two_finger_pan: false
-              - type: horizontal-stack
-                cards:
-                  - type: custom:button-card
-                    entity: script.aspi_r2d2_chambre_tom
-                    name: Tom
-                    show_name: true
-                    template:
-                      - badge
-                    tap_action:
-                      action: toggle
-                  - type: custom:button-card
-                    entity: script.aspi_r2d2_chambre_manon_leane
-                    name: Manon
-                    show_name: true
-                    template:
-                      - badge
-                    tap_action:
-                      action: toggle
-                  - type: custom:button-card
-                    entity: script.aspi_r2d2_chambre_nina
-                    name: Nina
-                    show_name: true
-                    template:
-                      - badge
-                    tap_action:
-                      action: toggle
-                  - type: custom:button-card
-                    entity: script.aspi_r2d2_salle_de_bain
-                    name: SdB
-                    show_name: true
-                    template:
-                      - badge
-                    tap_action:
-                      action: toggle
-                  - type: custom:button-card
-                    entity: script.aspi_r2d2_palier
-                    name: Palier
-                    show_name: true
-                    template:
-                      - badge
-                    tap_action:
-                      action: toggle
               - square: false
                 columns: 2
                 type: grid
@@ -6793,7 +6821,7 @@ views:
                 background-color: steelblue;
             cards:
               - type: custom:button-card
-                entity: sensor.myenedis_09397539765420
+                entity: sensor.myenedis_ton_pdl
                 name: Électricité
                 icon: mdi:flash
                 template:
@@ -6838,7 +6866,7 @@ views:
                       state:
                         - color: red
               - type: custom:content-card-linky
-                entity: sensor.myenedis_09397539765420
+                entity: sensor.myenedis_ton_pdl
                 titleName: Électricité (hors abo)
                 nbJoursAffichage: '7'
                 showDayName: short
@@ -6911,7 +6939,7 @@ views:
                       tickAmount: 4
                     min: ~0
                 series:
-                  - entity: sensor.myenedis_09397539765420
+                  - entity: sensor.electricite_conso_veille
                     yaxis_id: first
                     type: column
                     offset: +1day
@@ -7323,173 +7351,74 @@ views:
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.lampe_de_bureau
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.lampe_de_bureau
                         name: Bureau
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
-                          - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
+                          - carte_lumiere
                         entity: light.lampe_tv_salon
                         name: Lampe TV
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.bandeau_led
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.bandeau_led
                         name: Bandeau TV
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.lampe_canape
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.lampe_canape
                         name: Canapé
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.lustre_salon
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.lustre_salon
                         name: Lustre salon
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.lustre_salle_a_manger
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.lustre_salle_a_manger
                         name: Lustre SaM
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.buffet
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.buffet
                         name: Buffet
                       - type: custom:button-card
@@ -7529,104 +7458,44 @@ views:
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.couloir
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.couloir
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.entree
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.entree
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.aqara_hub_54e1
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.aqara_hub_54e1
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.veranda
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.veranda
                 type: vertical-stack
               - type: custom:button-card
@@ -7640,55 +7509,25 @@ views:
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_parents
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lustre_parents
                     name: Lustre
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.chevet
                     name: Chevet
       - type: custom:layout-card
@@ -7708,105 +7547,45 @@ views:
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_tom
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lustre_tom
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet_tom
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.chevet_tom
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_de_bureau_tom
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lampe_de_bureau_tom
                     name: Bureau
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.sonoff_10013f6d7e
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.sonoff_10013f6d7e
                     name: Bureau
               - type: custom:button-card
@@ -7820,147 +7599,63 @@ views:
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_manon_et_leane
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lustre_manon_et_leane
                     name: Lustre
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet_manon
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.chevet_manon
                     name: Manon
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_de_bureau_manon
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lampe_de_bureau_manon
                     name: Bureau
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
-                      - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
+                      - carte_lumiere
                     entity: switch.arbre_lumineux
                     name: Arbre
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_manon_et_leane
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lampe_manon_et_leane
                     name: Lampadaire
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet_leane
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.chevet_leane
                     name: Léane
               - type: custom:button-card
@@ -7974,121 +7669,52 @@ views:
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_de_bureau_nina
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lampe_de_bureau_nina
                     name: Bureau
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_nina
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lustre_nina
                     name: Lustre
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet_nina
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.chevet_nina
                     name: Chevet
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
-                      - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
+                      - carte_lumiere
                     entity: switch.guirlande_nina
                     name: Guirlande
                   - type: custom:button-card
-                    show_state: false
                     template:
-                      - carte_badge
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    styles:
-                      card:
-                        - height: 90px
-                      name:
-                        - padding-bottom: 30px
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampadaire_nina
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lampadaire_nina
                     name: Lampadaire
             type: vertical-stack
@@ -8110,105 +7736,45 @@ views:
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.escalier
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.escalier
                         icon: mdi:stairs
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.palier
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.palier
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.wc_gauche
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.wc_gauche
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.wc_droit
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.wc_droit
                   - type: custom:button-card
                     template:
@@ -8220,29 +7786,14 @@ views:
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
+                          - carte_lumiere
                           - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
                         custom_fields:
                           lum:
                             card:
                               type: custom:my-slider
                               entity: light.cagibi
-                              radius: 5px
-                              height: 20px
-                              mainSliderColor: var(--button-card-light-color-no-temperature)
-                              thumbHorizontalPadding: 0px
-                              thumbVerticalPadding: 0px
-                              thumbWidth: 2px
-                              minSet: 1
                         entity: light.cagibi
                   - type: custom:button-card
                     template:
@@ -8255,89 +7806,24 @@ views:
                     type: grid
                     cards:
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
-                          - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
+                          - carte_lumiere
                         entity: switch.sapin
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
-                          - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
+                          - carte_lumiere
                         entity: switch.guirlande_veranda
                         name: Véranda
-                        custom_fields:
-                          bouton:
-                            card:
-                              type: horizontal-stack
-                              cards:
-                                - type: custom:button-card
-                                  entity: sensor.guirlande_veranda_conso
-                                  units: W
-                                  show_state: true
-                                  show_icon: false
-                                  template:
-                                    - carte_bouton
-                                    - state_unavailable
-                                  styles:
-                                    state:
-                                      - font-size: 11px
-                                      - color: |
-                                          [[[
-                                            if (states['sensor.guirlande_veranda_conso'].state != 0)
-                                              return 'rgb(176, 196, 222)';
-                                            return "var(--icon_off)"
-                                          ]]]
-                                    card:
-                                      - background: |
-                                          [[[
-                                            if (states['sensor.guirlande_veranda_conso'].state != 0)
-                                              return 'rgba(74,82,96,0.7)'
-                                            return 'rgba(43,53,66,0.7)'
-                                          ]]]
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
-                          - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
-                            - white-space: normal
+                          - carte_lumiere
                         entity: switch.guirlande_etoiles
+                        name: Etoiles
                       - type: custom:button-card
-                        show_state: false
                         template:
-                          - carte_badge
-                          - jauge_lumiere
-                          - state_lumiere
-                          - state_unavailable
-                        styles:
-                          card:
-                            - height: 90px
-                          name:
-                            - padding-bottom: 30px
-                            - white-space: normal
+                          - carte_lumiere
                         entity: switch.guirlande_couloir
+                        name: Couloir
                 type: vertical-stack
             type: vertical-stack
   - theme: Backend-selected
@@ -8384,7 +7870,7 @@ views:
                         - border-color: |
                             [[[
                                if( states['sensor.iphone_aurel_battery_state'].state == "Charging")
-                                 return "rgba(255, 215, 0, 0.7)"
+                                 return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
                   - type: custom:button-card
@@ -8399,7 +7885,7 @@ views:
                         - border-color: |
                             [[[
                                if( states['sensor.ipad_aurel_battery_state'].state == "Charging")
-                                 return "rgba(255, 215, 0, 0.7)"
+                                 return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
                   - type: custom:button-card
@@ -8414,7 +7900,7 @@ views:
                         - border-color: |
                             [[[
                                if( states['sensor.macbook_aurel_internal_battery_state'].state == "Charging")
-                                 return "rgba(255, 215, 0, 0.7)"
+                                 return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
                   - type: custom:button-card
@@ -8429,7 +7915,7 @@ views:
                         - border-color: |
                             [[[
                                if( states['sensor.alex_iphone_battery_state_ha'].state == "Charging")
-                                 return "rgba(255, 215, 0, 0.7)"
+                                 return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
                   - type: custom:button-card
@@ -8444,7 +7930,7 @@ views:
                         - border-color: |
                             [[[
                                if( states['sensor.macbook_alex_internal_battery_state'].state == "Charging")
-                                 return "rgba(255, 215, 0, 0.7)"
+                                 return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
               - type: custom:button-card
@@ -9452,6 +8938,39 @@ views:
                       service_data:
                         entity_id: scene.travail_dessin_2
                   - type: custom:button-card
+                    entity: scene.lecture
+                    name: Lecture
+                    show_name: true
+                    template:
+                      - carte_badge
+                    styles:
+                      card:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Lecture")
+                                 return "rgba(215,215,215,1)"
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Lecture")
+                                 return "rgba(215,215,215,0.3)"
+                               return "var(--pastille_off)"
+                            ]]]
+                      icon:
+                        - color: |
+                            [[[
+                               if( states['sensor.ambiances_sejour'].state == "Lecture")
+                                 return "rgba(215,215,215,1)"
+                               return ""
+                            ]]]
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.lecture
+                  - type: custom:button-card
                     entity: script.apero_lum
                     name: Apéro
                     show_name: true
@@ -9461,21 +8980,21 @@ views:
                       card:
                         - background-color: |
                             [[[
-                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                               if( states['sensor.ambiances_sejour'].state == "Apero")
                                  return "var(--custom-card-color-gold)"
                                return ""
                             ]]]
                       img_cell:
                         - background-color: |
                             [[[
-                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                               if( states['sensor.ambiances_sejour'].state == "Apero")
                                  return "var(--custom-img-cell-color-gold)"
                                return "var(--pastille_off)"
                             ]]]
                       icon:
                         - color: |
                             [[[
-                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                               if( states['sensor.ambiances_sejour'].state == "Apero")
                                  return "var(--custom-icon-color-gold)"
                                return ""
                             ]]]
@@ -9494,21 +9013,21 @@ views:
                       card:
                         - background-color: |
                             [[[
-                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                               if( states['sensor.ambiances_sejour'].state == "Anniversaire")
                                  return "var(--custom-card-color-blue)"
                                return ""
                             ]]]
                       img_cell:
                         - background-color: |
                             [[[
-                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                               if( states['sensor.ambiances_sejour'].state == "Anniversaire")
                                  return "var(--custom-img-cell-color-blue)"
                                return "var(--pastille_off)"
                             ]]]
                       icon:
                         - color: |
                             [[[
-                               if( states['sensor.ambiances_sejour'].state == "Doux")
+                               if( states['sensor.ambiances_sejour'].state == "Anniversaire")
                                  return "var(--custom-icon-color-blue)"
                                return ""
                             ]]]
@@ -9527,21 +9046,21 @@ views:
                       card:
                         - background-color: |
                             [[[
-                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                               if( states['sensor.ambiances_sejour'].state == "Repas invités")
                                  return "var(--custom-card-color-gold)"
                                return ""
                             ]]]
                       img_cell:
                         - background-color: |
                             [[[
-                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                               if( states['sensor.ambiances_sejour'].state == "Repas invités")
                                  return "var(--custom-img-cell-color-gold)"
                                return "var(--pastille_off)"
                             ]]]
                       icon:
                         - color: |
                             [[[
-                               if( states['sensor.ambiances_sejour'].state == "Normale")
+                               if( states['sensor.ambiances_sejour'].state == "Repas invités")
                                  return "var(--custom-icon-color-gold)"
                                return ""
                             ]]]
@@ -9557,28 +9076,6 @@ views:
                     show_name: true
                     template:
                       - carte_badge
-                    styles:
-                      card:
-                        - background-color: |
-                            [[[
-                               if( states['sensor.ambiances_sejour'].state == "Doux")
-                                 return "var(--custom-card-color-blue)"
-                               return ""
-                            ]]]
-                      img_cell:
-                        - background-color: |
-                            [[[
-                               if( states['sensor.ambiances_sejour'].state == "Doux")
-                                 return "var(--custom-img-cell-color-blue)"
-                               return "var(--pastille_off)"
-                            ]]]
-                      icon:
-                        - color: |
-                            [[[
-                               if( states['sensor.ambiances_sejour'].state == "Doux")
-                                 return "var(--custom-icon-color-blue)"
-                               return ""
-                            ]]]
                     tap_action:
                       action: call-service
                       service: automation.inter_ambiances_sejour
@@ -9931,12 +9428,12 @@ views:
     badges: []
     cards:
       - square: false
-        columns: 2
+        columns: 3
         type: grid
         cards:
           - type: custom:button-card
             template:
-              - base
+              - carte_badge
               - state_porte
               - state_unavailable
             show_last_changed: true
@@ -9944,7 +9441,7 @@ views:
             name: Entrée
           - type: custom:button-card
             template:
-              - base
+              - carte_badge
               - state_porte
               - state_unavailable
             show_last_changed: true
@@ -9952,7 +9449,7 @@ views:
             name: SaM
           - type: custom:button-card
             template:
-              - base
+              - carte_badge
               - state_porte
               - state_unavailable
             show_last_changed: true
@@ -9960,7 +9457,7 @@ views:
             name: Cuisine
           - type: custom:button-card
             template:
-              - base
+              - carte_badge
               - state_porte
               - state_unavailable
             show_last_changed: true
@@ -9968,7 +9465,7 @@ views:
             name: Parents
           - type: custom:button-card
             template:
-              - base
+              - carte_badge
               - state_porte
               - state_unavailable
             show_last_changed: true
@@ -9976,7 +9473,7 @@ views:
             name: Cagibi
           - type: custom:button-card
             template:
-              - base
+              - carte_badge
               - state_porte
               - state_unavailable
             show_last_changed: true
@@ -10006,12 +9503,12 @@ views:
                 name: |
                   [[[ return "Rez-de-chaussée" ]]]
               - square: false
-                columns: 2
+                columns: 3
                 type: grid
                 cards:
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10019,7 +9516,7 @@ views:
                     name: Salon
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10027,7 +9524,7 @@ views:
                     name: Salle à manger
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10035,7 +9532,7 @@ views:
                     name: Couloir
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10043,7 +9540,7 @@ views:
                     name: Salle d'eau
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10051,7 +9548,7 @@ views:
                     name: Garage
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10059,7 +9556,7 @@ views:
                     name: Escalier
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10067,7 +9564,7 @@ views:
                     name: Caméra Salon
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10086,12 +9583,12 @@ views:
                 name: |
                   [[[ return "Etage"]]]
               - square: false
-                columns: 2
+                columns: 3
                 type: grid
                 cards:
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10099,7 +9596,7 @@ views:
                     name: Tom
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10107,7 +9604,7 @@ views:
                     name: Manon
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10115,7 +9612,7 @@ views:
                     name: Léane
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -10123,7 +9620,7 @@ views:
                     name: Nina
                   - type: custom:button-card
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
                     show_last_changed: true
@@ -11500,7 +10997,6 @@ views:
                     template:
                       - base
                       - base_moyenne
-                      - jauge_lumiere
                       - state_lumiere
                       - state_unavailable
                   - type: custom:button-card
@@ -14839,7 +14335,7 @@ views:
               }
             cards:
               - type: custom:meteofrance-weather-card
-                entity: weather.beaucouze
+                entity: weather.ta_ville
                 number_of_forecasts: '0'
                 name: null
                 alert_forecast: false
@@ -15092,7 +14588,7 @@ views:
                             from: 10.1
                             to: 100
           - type: custom:clock-weather-card
-            entity: weather.beaucouze
+            entity: weather.ta_ville
             title: ''
             sun_entity: sun.sun
             weather_icon_type: fill
@@ -15322,9 +14818,9 @@ views:
                     - width: 50px
                     - height: 50px
                   name:
-                    - font-size: 15px
+                    - font-size: 14px
                   label:
-                    - font-size: 15px
+                    - font-size: 12px
                 state:
                   - value: 65
                     operator: <
