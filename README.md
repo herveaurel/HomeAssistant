@@ -43,6 +43,18 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 
 ## ℹ️  INTRODUCTION
 
+### 🎉 version 2023.1
+
+Changements :
+- modifications des thèmes
+- nouvelle carte Activité (https://github.com/herveaurel/HomeAssistant#la-carte-activité)
+- nouvelle carte Météo 
+- modifications des boutons en bas des cartes
+- sous vues pieces : jauges pour les capteurs
+- sous vues pieces : réorganisation de la page
+- nombreux templates button card modifiés (sidebar,  carte_bouton,  carte_bouton_state, carte_personne_prenom)
+
+-----
 
 ### version 2023.0.2
 
@@ -105,19 +117,20 @@ D'autres modifications viendront dans les prochaines mises à jour... 😇
 
 ## La carte Activité
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite2.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite3.jpg)
 
-Afin de choisir les informations qui apparraissent dans la carte acticité : En haut à droite, un bouton ouvrant une sous-vue pour quelques réglages via un simple clic ! Ce menu s'étoffera au fil du temps...
+🎉 Nouveautés :
+- Un tap sue les jauges dirige vers les sous vues associées. 
+- Un tap sur le bouton Adguard, switche automtiquemznt le ON/OFF
+- Un tap sur l'un des bouton de mise à jour, fait apparaitre / disparaitre le detail en dessous
+
+Afin de choisir les informations qui apparraissent dans la carte acticité : En haut à droite, un bouton ouvrant une sous-vue pour quelques réglages via un simple clic !
 Il est possible de choisir son thème, et de choisir ce qui sera affiché dans les informations dynamiques de la partie "Activité". 
-Pour cela, créer simplement des input.boolean : 
+Pour cela, créer simplement des input.boolean, comme par exemple : 
 - input_boolean.sidecar_show_mode
 - input_boolean.sidecar_show_porte
-- input_boolean.sidecar_show_mouvement (nouveau template dans configuration.yaml)
-- input_boolean.sidecar_show_lumiere
-- input_boolean.sidecar_show_autre
-- input_boolean.sidecar_show_connecte
-
-Mettre à jour le nouveau template button card de la sidecar. 
+- input_boolean.sidecar_show_mouvement 
+etc...
 
 Il est également possible de créer une automatisation, basée par exemple sur l'état de l'alarme ou des présences, pour que les informations varient. En effet, peut-être pas besoin que tout soit affiché quand je suis à la maison, je peux consulter les autres cartes, mais quand je ne suis pas à la maison je veux voir toutes les informations rapidement... 😉
 
