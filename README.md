@@ -43,6 +43,18 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 
 ## ℹ️  INTRODUCTION
 
+
+### version 2023.3.1
+
+Changements :
+- améliorations de la carte météo
+- ajout de traduction sur les erreurs des aspirateurs dans le template "systeme_avertissement"
+
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_meteo.jpg)
+
+
+-----
+
 ### 🎉 version 2023.1
 
 Changements :
