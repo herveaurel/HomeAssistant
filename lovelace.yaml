@@ -11,7 +11,7 @@ button_card_templates:
         - border-width: 1px
         - box-shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
   sidebar:
-    entity: weather.tu_mets_ta_ville
+    entity: weather.ta_ville
     show_entity_picture: true
     show_icon: true
     show_name: false
@@ -82,8 +82,8 @@ button_card_templates:
     styles:
       img_cell:
         - border-radius: 50%
-        - width: 60px
-        - height: 60px
+        - width: 50px
+        - height: 50px
         - position: absolute
         - top: 0%
         - left: 5%
@@ -1154,7 +1154,7 @@ button_card_templates:
         - height: 27px
         - padding: 02px
         - line-height: 77%
-        - background: rgba(43,53,66,0.6)
+        - background: var(--background-button-in-card)
       icon:
         - color: grey
         - width: 16px
@@ -2553,12 +2553,12 @@ button_card_templates:
                   - background-color: |
                       [[[
                          if (states['sensor.macbook_aurel_internal_battery_state'].state == "Charging" && states['sensor.macbook_aurel_internal_battery_level'].state != 100 )
-                           return "var(--custom-img-cell-color-yellow)"
+                           return "var(--custom-img-cell-color-orange)"
                          if (states['sensor.macbook_aurel_internal_battery_state'].state == "Charging" && states['sensor.macbook_aurel_internal_battery_level'].state == 100)
                            return "var(--custom-img-cell-color-blue)"
                          if (states['sensor.macbook_aurel_internal_battery_state'].state == "Full" )
                            return "var(--custom-img-cell-color-blue)"
-                         return "rgba(43,53,66,0.6)"
+                         return "var(--background-button-in-card)"
                       ]]]
                 icon:
                   - color: |
@@ -2582,10 +2582,10 @@ button_card_templates:
                   - background-color: |
                       [[[
                          if (states['sensor.ipad_aurel_battery_state'].state == "Charging" )
-                           return "var(--custom-img-cell-color-gold)"
+                           return "var(--custom-img-cell-color-orange)"
                          if (states['sensor.ipad_aurel_battery_state'].state == "Full" )
                            return "var(--custom-img-cell-color-blue)"
-                         return "rgba(43,53,66,0.6)"
+                         return "var(--background-button-in-card)"
                       ]]]
                 icon:
                   - color: |
@@ -2734,7 +2734,7 @@ button_card_templates:
                            return "var(--custom-img-cell-color-blue)"
                          if (states['sensor.macbook_alex_internal_battery_state'].state == "Full" )
                            return "var(--custom-img-cell-color-blue)"
-                         return "rgba(43,53,66,0.6)"
+                         return "var(--background-button-in-card)"
                       ]]]
                 icon:
                   - color: |
@@ -4994,7 +4994,7 @@ views:
                                       [[[
                                         if (states['media_player.tv_salon'].attributes.is_volume_muted == true)
                                           return 'var(--custom-img-cell-color-red)';
-                                        return "rgba(43,53,66,0.6)"
+                                        return "var(--background-button-in-card)"
                                       ]]]
                                 icon:
                                   - color: |
@@ -14325,7 +14325,7 @@ views:
           - type: custom:vertical-stack-in-card
             cards:
               - type: custom:button-card
-                entity: weather.tu_mets_ta_ville
+                entity: weather.ta_ville
                 show_entity_picture: true
                 show_icon: true
                 show_name: false
@@ -14836,7 +14836,7 @@ views:
                                                 from: 10.1
                                                 to: 100
               - type: custom:clock-weather-card
-                entity: weather.tu_mets_ta_ville
+                entity: weather.ta_ville
                 title: ''
                 sun_entity: sun.sun
                 weather_icon_type: fill
@@ -15411,3 +15411,4 @@ views:
                      box-shadow: none;
                      font-family: Avenir;
                    }
+
