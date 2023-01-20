@@ -19,8 +19,8 @@ mad_night:
       custom-img-cell-color-gold: rgba(255,255,0,0.3)
       custom-icon-color-gold: rgba(255,255,0,1)
       
-      custom-card-color-yellow: rgba(255,215,0,1)
-      custom-img-cell-color-yellow: rgba(255,215,0,3)
+      custom-card-color-yellow: rgba(255,215,,0,1)
+      custom-img-cell-color-yellow: rgba(255,215,0,0.3)
       custom-icon-color-yellow: rgba(255,215,0,1)
       
       custom-card-color-orange: rgba(255,99,71,1)
