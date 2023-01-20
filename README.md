@@ -84,6 +84,7 @@ Changements :
 - sous vues pieces : réorganisation de la page
 - nombreux templates button card modifiés (sidebar,  carte_bouton,  carte_bouton_state, carte_personne_prenom)
 
+
 -----
 
 
