@@ -878,6 +878,14 @@ button_card_templates:
               template:
                 - carte_bouton
                 - carte_bouton_state
+              styles:
+                card:
+                  - background-color: |
+                      [[[
+                        if (states['binary_sensor.home_assistant_versions_update_available'].state == "on")
+                          return 'var(--custom-img-cell-color-blue)'
+                        return 'rgba(43,53,66,0.6)'
+                      ]]]
               double_tap_action:
                 action: more-info
               tap_action:
@@ -899,6 +907,14 @@ button_card_templates:
                     return states['update.home_assistant_supervisor_update'].attributes.latest_version
                   return states['update.home_assistant_supervisor_update'].attributes.installed_version
                 ]]]
+              styles:
+                card:
+                  - background-color: |
+                      [[[
+                        if (states['update.home_assistant_supervisor_update'].state == "on")
+                          return 'var(--custom-img-cell-color-blue)'
+                        return 'rgba(43,53,66,0.6)'
+                      ]]]
               template:
                 - carte_bouton
                 - carte_bouton_state
@@ -923,6 +939,14 @@ button_card_templates:
                     return states['sensor.home_assistant_operating_system_newest_version'].state
                   return states['sensor.home_assistant_operating_system_version'].state
                 ]]]
+              styles:
+                card:
+                  - background-color: |
+                      [[[
+                        if (states['update.home_assistant_operating_system_update'].state == "on")
+                          return 'var(--custom-img-cell-color-blue)'
+                        return 'rgba(43,53,66,0.6)'
+                      ]]]
               template:
                 - carte_bouton
                 - carte_bouton_state
@@ -15387,4 +15411,3 @@ views:
                      box-shadow: none;
                      font-family: Avenir;
                    }
-
