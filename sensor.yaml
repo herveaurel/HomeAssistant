@@ -92,11 +92,11 @@
   - platform: template
     sensors:
 
-      sacs_utilies_nombre_calcul:
-        friendly_name: "Calcul prix sacs utilisés"
-        unit_of_measurement: "€"
-        value_template: "{{ (states.counter.nombre_de_sacs_utilises.state| float(0) * 9.8) | float|round(2) }}"
-         
+      courrier_releve:
+        friendly_name: courrier relevé à          
+        value_template: >-
+          {{ as_timestamp(states.input_boolean.courrier_releve.last_changed) | timestamp_custom("%-Hh%M") }}
+
 ###### SOLEIL
       sun_elevation:
         friendly_name: Sun Elevation
