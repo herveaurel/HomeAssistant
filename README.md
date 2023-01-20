@@ -46,6 +46,7 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 ### version 2023.1.2
 
 Changements :
+- corrections couleur de fond des boutons de mise a jour système, dans la carte Activité (template button card "sidebar")
 - corrections bugs sur les thèmes
 - améliorations de la carte Courrier : optoin "relevé courrier fait" via un bouton (un input, un sensor template), avec automatisation et notification avec choix de valider ou non le relevé lorsque le capteur de la boite s'active, ca sera parfait ! 
 
