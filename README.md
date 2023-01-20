@@ -46,6 +46,7 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 ### version 2023.1.2
 
 Changements :
+- corrections bugs sur les thèmes
 - améliorations de la carte Courrier : optoin "relevé courrier fait" via un bouton
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_courrier.jpg)
 
