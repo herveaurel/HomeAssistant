@@ -48,9 +48,11 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 Changements :
 - corrections bugs sur les thèmes
 - améliorations de la carte Courrier : optoin "relevé courrier fait" via un bouton
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_courrier.jpg)
 
 - améliorations des cartes personnes : la jauge de la batterie affiche l'icone si en charge, le state si non en charge
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte-personne.jpg)
 
 -----
