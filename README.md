@@ -43,6 +43,16 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 
 ## ℹ️  INTRODUCTION
 
+### version 2023.1.2
+
+Changements :
+- améliorations de la carte Courrier : optoin "relevé courrier fait" via un bouton
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_courrier.jpg)
+
+- améliorations des cartes personnes : la jauge de la batterie affiche l'icone si en charge, le state si non en charge
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte-personne.jpg)
+
+-----
 
 ### version 2023.1.1
 
@@ -51,7 +61,6 @@ Changements :
 - ajout de traduction sur les erreurs des aspirateurs dans le template "systeme_avertissement"
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_meteo.jpg)
-
 
 -----
 
