@@ -41,7 +41,7 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 
 -----
 
-## ℹ️  INTRODUCTION
+## ℹ️  PRESENTATION
 
 ### version 2023.1.2
 
