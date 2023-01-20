@@ -80,31 +80,6 @@ Changements :
 
 -----
 
-### version 2023.0.2
-
-Changements :
-- modifications du graphique Apex electricté
-- modifications des codes couleurs des sous-boutons dans les cartes
-- modifications des thèmes
-- modifications du state home dans la carte Personne
-
------
-
-### version 2023.0.1
-
-Changements :
-- correction des state du moniteur d'air 
-- correction de fautes d'othographe sur le moniteur d'air 
-- modifications des graphiques electricté et gaz 
-- modifications des cartes jauges dans les sous vues des pièces 
-- modifications des boutons d'ambiances dans les sous vues des pièces 
-- modifications des cartes light dans l'onglet "lumières"
-- modifications de la rangées de modes, au dessus de la carte Activité 
-- modifications de l'onglet "surveillance système" 
-- ajouts de cartes Mini-Graph dans l'onglet "Températures" 
-- modifications de l'onglet "batteries" 
-
------
 
 ### 🥳 Complètement revisité pour cette nouvelle version 2023 : 
 
