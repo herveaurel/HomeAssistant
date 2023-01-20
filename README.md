@@ -47,11 +47,11 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 
 Changements :
 - corrections bugs sur les thèmes
-- améliorations de la carte Courrier : optoin "relevé courrier fait" via un bouton
+- améliorations de la carte Courrier : optoin "relevé courrier fait" via un bouton (un input, un sensor template), avec automatisation et notification avec choix de valider ou non le relevé lorsque le capteur de la boite s'active, ca sera parfait ! 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_courrier.jpg)
 
-- améliorations des cartes personnes : la jauge de la batterie affiche l'icone si en charge, le state si non en charge
+- améliorations des cartes personnes : la jauge de la batterie affiche l'icone si en charge, le state si non en charge (template button card : carte_personne et carte_personne_prenom)
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte-personne.jpg)
 
