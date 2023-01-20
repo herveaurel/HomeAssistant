@@ -24,6 +24,8 @@ mad_geek:
       custom-icon-color-orange: rgba(255,99,71,1)
       custom-img-cell-color-orange: rgba(255,99,71,0.3)
       
+      background-button-in-card: rgba(18, 28, 38,0.3) #rgba(43,53,66,0.6)
+      
       card_border: rgba(12, 12, 14, 0.2) #rgba(190, 190, 190, 0.1)
       card_box_shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
       card_box_shadow_color: 1px 1px 2px 0px rgba(255, 0, 0,0.3)
