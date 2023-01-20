@@ -26,6 +26,8 @@ mad_night:
       custom-card-color-orange: rgba(255,99,71,1)
       custom-icon-color-orange: rgba(255,99,71,1)
       custom-img-cell-color-orange: rgba(255,99,71,0.3)
+
+      background-button-in-card: rgba(26, 40, 55,0.7) 
       
       text_on: rgba(211,211,211,1)
       text_on_sidebar: rgba(211,211,211,1)
