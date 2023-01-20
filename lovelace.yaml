@@ -11,7 +11,7 @@ button_card_templates:
         - border-width: 1px
         - box-shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
   sidebar:
-    entity: weather.ta_ville_ou_est_ton_logement_domotisé
+    entity: weather.tu_mets_ta_ville
     show_entity_picture: true
     show_icon: true
     show_name: false
@@ -1136,7 +1136,7 @@ button_card_templates:
         - width: 16px
         - padding-bottom: 0px
       name:
-        - font-size: 10px
+        - font-size: 9px
       label:
         - font-size: 11px
       state:
@@ -2350,6 +2350,8 @@ button_card_templates:
       entity_picture:
         - width: 100%
       custom_fields:
+        jauge-cercle:
+          - width: 27%
         notification:
           - border-radius: 100%
           - position: absolute
@@ -2409,31 +2411,65 @@ button_card_templates:
     custom_fields:
       jauge-cercle:
         card:
-          type: custom:hatc-gauge-card
-          entity: sensor.iphone_aurel_battery_level
-          title:
-            name: false
-            icon: false
-          gauge:
-            state: false
-            font-size: 11px
-            icon-size: 13px
-            icon-color: severity
-            text-color: severity
-            max_value: 100
-            friendly_name: false
-            unit_of_measurement: false
-            severity:
-              - color: darkgrey
-              - color: rgb(70, 130, 180)
-                from: 100
-                to: 100
-              - color: rgb(255,215,0)
-                from: 31
-                to: 50
-              - color: rgb(180, 70, 70)
-                from: 0
-                to: 30
+          type: horizontal-stack
+          cards:
+            - type: conditional
+              conditions:
+                - entity: sensor.iphone_aurel_battery_state
+                  state: Not Charging
+              card:
+                type: custom:hatc-gauge-card
+                entity: sensor.iphone_aurel_battery_level
+                title:
+                  name: false
+                  icon: false
+                gauge:
+                  icon: false
+                  font-size: 11px
+                  text-color: severity
+                  max_value: 100
+                  friendly_name: false
+                  unit_of_measurement: false
+                  severity:
+                    - color: darkgrey
+                    - color: rgb(70, 130, 180)
+                      from: 100
+                      to: 100
+                    - color: rgb(255,215,0)
+                      from: 31
+                      to: 50
+                    - color: rgb(180, 70, 70)
+                      from: 0
+                      to: 30
+            - type: conditional
+              conditions:
+                - entity: sensor.iphone_aurel_battery_state
+                  state_not: Not Charging
+              card:
+                type: custom:hatc-gauge-card
+                entity: sensor.iphone_aurel_battery_level
+                title:
+                  name: false
+                  icon: false
+                gauge:
+                  state: false
+                  font-size: 11px
+                  icon-size: 13px
+                  icon-color: severity
+                  max_value: 100
+                  friendly_name: false
+                  unit_of_measurement: false
+                  severity:
+                    - color: darkgrey
+                    - color: rgb(70, 130, 180)
+                      from: 100
+                      to: 100
+                    - color: rgb(255,215,0)
+                      from: 31
+                      to: 50
+                    - color: rgb(180, 70, 70)
+                      from: 0
+                      to: 30
       bouton:
         card:
           type: horizontal-stack
@@ -2460,7 +2496,7 @@ button_card_templates:
               icon: |
                 [[[
                   if (states['sensor.iphone_activity'].state == 'Unknown')
-                    return "mdi:walk"
+                    return "mdi:human-handsdown"
                   if (states['sensor.iphone_activity'].state == 'Stationary')
                     return "mdi:human-male"
                   if (states['sensor.iphone_activity'].state == 'Automotive')
@@ -2495,6 +2531,8 @@ button_card_templates:
                          if (states['sensor.macbook_aurel_internal_battery_state'].state == "Charging" && states['sensor.macbook_aurel_internal_battery_level'].state != 100 )
                            return "var(--custom-img-cell-color-yellow)"
                          if (states['sensor.macbook_aurel_internal_battery_state'].state == "Charging" && states['sensor.macbook_aurel_internal_battery_level'].state == 100)
+                           return "var(--custom-img-cell-color-blue)"
+                         if (states['sensor.macbook_aurel_internal_battery_state'].state == "Full" )
                            return "var(--custom-img-cell-color-blue)"
                          return "rgba(43,53,66,0.6)"
                       ]]]
@@ -2549,31 +2587,65 @@ button_card_templates:
     custom_fields:
       jauge-cercle:
         card:
-          type: custom:hatc-gauge-card
-          entity: sensor.alex_iphone_battery_level_ha
-          title:
-            name: false
-            icon: false
-          gauge:
-            state: false
-            font-size: 11px
-            icon-size: 13px
-            icon-color: severity
-            text-color: severity
-            max_value: 100
-            friendly_name: false
-            unit_of_measurement: false
-            severity:
-              - color: darkgrey
-              - color: rgb(70, 130, 180)
-                from: 100
-                to: 100
-              - color: rgb(255,215,0)
-                from: 31
-                to: 50
-              - color: rgb(180, 70, 70)
-                from: 0
-                to: 30
+          type: horizontal-stack
+          cards:
+            - type: conditional
+              conditions:
+                - entity: sensor.alex_iphone_battery_state_ha
+                  state: Not Charging
+              card:
+                type: custom:hatc-gauge-card
+                entity: sensor.alex_iphone_battery_level_ha
+                title:
+                  name: false
+                  icon: false
+                gauge:
+                  icon: false
+                  font-size: 11px
+                  text-color: severity
+                  max_value: 100
+                  friendly_name: false
+                  unit_of_measurement: false
+                  severity:
+                    - color: darkgrey
+                    - color: rgb(70, 130, 180)
+                      from: 100
+                      to: 100
+                    - color: rgb(255,215,0)
+                      from: 31
+                      to: 50
+                    - color: rgb(180, 70, 70)
+                      from: 0
+                      to: 30
+            - type: conditional
+              conditions:
+                - entity: sensor.alex_iphone_battery_state_ha
+                  state_not: Not Charging
+              card:
+                type: custom:hatc-gauge-card
+                entity: sensor.alex_iphone_battery_level_ha
+                title:
+                  name: false
+                  icon: false
+                gauge:
+                  state: false
+                  font-size: 11px
+                  icon-size: 13px
+                  icon-color: severity
+                  max_value: 100
+                  friendly_name: false
+                  unit_of_measurement: false
+                  severity:
+                    - color: darkgrey
+                    - color: rgb(70, 130, 180)
+                      from: 100
+                      to: 100
+                    - color: rgb(255,215,0)
+                      from: 31
+                      to: 50
+                    - color: rgb(180, 70, 70)
+                      from: 0
+                      to: 30
       bouton:
         card:
           type: horizontal-stack
@@ -2594,13 +2666,13 @@ button_card_templates:
                   - line-height: 60%
                   - width: 35px
             - type: custom:button-card
-              entity: sensor.iphone_activity
+              entity: sensor.alex_iphone_activity_2
               template:
                 - carte_bouton
               icon: |
                 [[[
                   if (states['sensor.alex_iphone_activity_2'].state == 'Unknown')
-                    return "mdi:walk"
+                    return "mdi:human-handsdown"
                   if (states['sensor.alex_iphone_activity_2'].state == 'Stationary')
                     return "mdi:human-male"
                   if (states['sensor.alex_iphone_activity_2'].state == 'Automotive')
@@ -2635,6 +2707,8 @@ button_card_templates:
                          if (states['sensor.macbook_alex_internal_battery_state'].state == "Charging" && states['sensor.macbook_alex_internal_battery_level'].state != 100)
                            return "var(--custom-img-cell-color-gold)"
                          if (states['sensor.macbook_alex_internal_battery_state'].state == "Charging" && states['sensor.macbook_alex_internal_battery_level'].state == 100)
+                           return "var(--custom-img-cell-color-blue)"
+                         if (states['sensor.macbook_alex_internal_battery_state'].state == "Full" )
                            return "var(--custom-img-cell-color-blue)"
                          return "rgba(43,53,66,0.6)"
                       ]]]
@@ -3141,6 +3215,7 @@ button_card_templates:
         - font-size: 11px
         - font-weight: bold
         - margin-left: 1px
+        - padding-top: 03px
       name:
         - font-size: 11px
         - font-weight: bold
@@ -5516,15 +5591,49 @@ views:
                     template:
                       - carte_appareil_linge
                   - type: custom:button-card
-                    name: Lettres
+                    entity: input_boolean.courrier_releve
+                    name: Courrier
                     icon: mdi:email
-                    show_last_changed: true
+                    label: |
+                      [[[
+                        if( states['input_boolean.courrier_releve'].state == "on")
+                          return "Relevé à "+states['sensor.courrier_releve'].state
+                        return "Non relevé"
+                      ]]]
                     template:
                       - base
                       - base_large
                       - carte_appareil
                       - state_appareil
                       - state_unavailable
+                    custom_fields:
+                      bouton:
+                        card:
+                          type: horizontal-stack
+                          cards:
+                            - type: custom:button-card
+                              entity: input_boolean.courrier_releve
+                              template:
+                                - carte_bouton
+                                - carte_bouton_state
+                              icon: |
+                                [[[
+                                  if( states['input_boolean.courrier_releve'].state == "on")
+                                    return "mdi:toggle-switch"
+                                  return "mdi:toggle-switch-off"
+                                ]]]
+                              styles:
+                                icon:
+                                  - width: 20px
+                              tap_action:
+                                action: toggle
+                            - type: custom:button-card
+                              template:
+                                - carte_bouton
+                                - carte_bouton_state
+                              icon: mdi:door-closed
+                              tap_action:
+                                action: more-info
                   - type: custom:button-card
                     template:
                       - carte_appareil_imprimante
@@ -12433,23 +12542,19 @@ views:
                       gauge:
                         card:
                           entity: sensor.hum_parents
-              - square: false
-                columns: 1
-                type: grid
-                cards:
-                  - type: custom:button-card
-                    template:
-                      - base
-                      - state_porte
-                      - state_unavailable
-                    show_last_changed: true
-                    entity: binary_sensor.porte_chambre_parents
-                    name: Porte-fenêtre
+              - type: custom:button-card
+                template:
+                  - base
+                  - state_porte
+                  - state_unavailable
+                show_last_changed: true
+                entity: binary_sensor.porte_chambre_parents
+                name: Porte-fenêtre
               - type: custom:button-card
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Appareils" ]]]
+                  [[[ return "Ambiances lumineuses " ]]]
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
@@ -12485,6 +12590,11 @@ views:
                       service: light.turn_off
                       service_data:
                         entity_id: light.parents
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "lumières et prises" ]]]
               - square: false
                 columns: 2
                 type: grid
@@ -12564,7 +12674,7 @@ views:
             name: |
               [[[ return "Multimédia  " ]]]
           - square: false
-            columns: 2
+            columns: 1
             type: grid
             cards:
               - type: custom:button-card
@@ -12595,13 +12705,18 @@ views:
                       return 'Éteint'
                     return ''
                   ]]]
+                styles:
+                  custom_fields:
+                    jauge-cercle:
+                      - width: 15%
+                      - left: 85%
                 custom_fields:
                   jauge-cercle:
                     card:
                       type: conditional
                       conditions:
                         - entity: switch.tele_des_parents
-                          state: 'on'
+                          state: 'off'
                       card:
                         type: custom:hatc-gauge-card
                         entity: sensor.tv_parents_vol
@@ -12686,18 +12801,18 @@ views:
                 group: false
                 volume_stateless: false
                 toggle_power: true
-          - type: custom:mini-media-player
-            entity: media_player.chambre_des_parents
-            icon: mdi:speaker
-            info: scroll
-            artwork: material
-            hide:
-              volume: false
-              source: true
-              power: false
-              name: false
-              icon: true
-              controls: false
+              - type: custom:mini-media-player
+                entity: media_player.chambre_des_parents
+                icon: mdi:speaker
+                info: scroll
+                artwork: material
+                hide:
+                  volume: false
+                  source: true
+                  power: false
+                  name: false
+                  icon: true
+                  controls: false
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -12860,7 +12975,7 @@ views:
                                 from: 1020
                                 to: 1100
               - square: false
-                columns: 2
+                columns: 3
                 type: grid
                 cards:
                   - type: custom:button-card
@@ -12869,7 +12984,7 @@ views:
                     show_state: false
                     show_last_changed: true
                     template:
-                      - base
+                      - carte_badge
                       - state_porte
                       - state_unavailable
                   - type: custom:button-card
@@ -12878,7 +12993,7 @@ views:
                     show_state: false
                     show_last_changed: true
                     template:
-                      - base
+                      - carte_badge
                       - state_porte
                       - state_unavailable
                   - type: custom:button-card
@@ -12887,7 +13002,7 @@ views:
                     show_state: false
                     show_last_changed: true
                     template:
-                      - base
+                      - carte_badge
                       - state_mouv
                       - state_unavailable
               - type: custom:button-card
@@ -14186,7 +14301,7 @@ views:
           - type: custom:vertical-stack-in-card
             cards:
               - type: custom:button-card
-                entity: weather.ta_ville_ou_est_ton_logement_domotisé
+                entity: weather.tu_mets_ta_ville
                 show_entity_picture: true
                 show_icon: true
                 show_name: false
@@ -14697,7 +14812,7 @@ views:
                                                 from: 10.1
                                                 to: 100
               - type: custom:clock-weather-card
-                entity: weather.ta_ville_ou_est_ton_logement_domotisé
+                entity: weather.tu_mets_ta_ville
                 title: ''
                 sun_entity: sun.sun
                 weather_icon_type: fill
