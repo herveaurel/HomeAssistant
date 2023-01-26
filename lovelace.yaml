@@ -393,7 +393,7 @@ button_card_templates:
           - color: var(--text_on_info_sidebar)
           - white-space: normal
         jauge:
-          - padding: 15px 0px 0px 18px
+          - padding: 15px 0px 0px 17px
           - align-self: middle
           - white-space: normal
           - width: calc(90% + 0px)
@@ -1336,6 +1336,27 @@ button_card_templates:
           color_thresholds:
             - value: 0
               color: rgba(200,200,200,0.2)
+  carte_lumiere:
+    template:
+      - carte_badge
+      - state_lumiere
+    show_name: true
+    show_label: false
+    show_last_changed: true
+    styles:
+      img_cell:
+        - width: 40px
+        - height: 40px
+      label:
+        - padding-bottom: 40px
+      card:
+        - height: 110px
+        - box-shadow: |
+            [[[
+              if (entity.state == 'on')
+                return "0px 0px 10px 3px var(--button-card-light-color)"
+              return "1px 1px 1px 0px rgba(12, 12, 14,0.3)"
+            ]]]
   jauge_lumiere:
     custom_fields:
       lum:
@@ -1352,7 +1373,7 @@ button_card_templates:
       custom_fields:
         lum:
           - position: absolute
-          - top: 70%
+          - top: 78%
           - left: 51%
           - width: calc(90% + 1px)
           - transform: translate(-50%, calc(-50% + 10px))
@@ -7095,16 +7116,13 @@ views:
                 name: |
                   [[[ return "Séjour" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7114,19 +7132,13 @@ views:
                     name: Bureau
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
-                      - state_lumiere
-                    show_last_changed: true
+                      - carte_lumiere
                     entity: light.lampe_tv_salon
                     name: Lampe TV
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7136,11 +7148,8 @@ views:
                     name: Bandeau TV
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7150,11 +7159,8 @@ views:
                     name: Canapé
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7164,11 +7170,8 @@ views:
                     name: Lustre salon
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7178,11 +7181,8 @@ views:
                     name: Lustre SaM
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7192,11 +7192,8 @@ views:
                     name: Buffet
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7218,16 +7215,13 @@ views:
                 name: |
                   [[[ return "Entrée" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7236,11 +7230,8 @@ views:
                     entity: light.couloir
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7249,11 +7240,8 @@ views:
                     entity: light.entree
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7262,11 +7250,8 @@ views:
                     entity: light.aqara_hub_54e1
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7280,16 +7265,13 @@ views:
                 name: |
                   [[[ return "Chambre parents" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7299,11 +7281,8 @@ views:
                     name: Lustre
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7325,16 +7304,13 @@ views:
                 name: |
                   [[[ return "Chambre Tom" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7343,11 +7319,8 @@ views:
                     entity: light.lustre_tom
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7356,11 +7329,8 @@ views:
                     entity: light.chevet_tom
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7370,11 +7340,8 @@ views:
                     name: Bureau
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7389,16 +7356,13 @@ views:
                 name: |
                   [[[ return "Chambre Manon et Léane" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7408,11 +7372,8 @@ views:
                     name: Lustre
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7422,11 +7383,8 @@ views:
                     name: Manon
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7436,19 +7394,13 @@ views:
                     name: Bureau
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
-                      - state_lumiere
-                    show_last_changed: true
+                      - carte_lumiere
                     entity: switch.arbre_lumineux
                     name: Arbre
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7458,11 +7410,8 @@ views:
                     name: Lampadaire
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7477,16 +7426,13 @@ views:
                 name: |
                   [[[ return "Chambre Nina" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7496,11 +7442,8 @@ views:
                     name: Bureau
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7510,11 +7453,8 @@ views:
                     name: Lustre
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7524,11 +7464,8 @@ views:
                     name: Chevet
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                    show_last_changed: true
                     custom_fields:
                       lum:
                         card:
@@ -7543,134 +7480,105 @@ views:
           width: 280
         cards:
           - cards:
-              - cards:
+              - type: custom:button-card
+                template:
+                  - titre_section
+                entity: light.escaliers
+                name: |
+                  [[[ return "Escalier, palier et WC" ]]]
+              - square: false
+                columns: 4
+                type: grid
+                cards:
                   - type: custom:button-card
                     template:
-                      - titre_section
-                    entity: light.escaliers
-                    name: |
-                      [[[ return "Escalier, palier et WC" ]]]
-                  - square: false
-                    columns: 2
-                    type: grid
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - base
-                          - base_moyenne
-                          - jauge_lumiere
-                          - state_lumiere
-                        show_last_changed: true
-                        custom_fields:
-                          lum:
-                            card:
-                              type: custom:my-slider
-                              entity: light.escalier
-                        entity: light.escalier
-                        icon: mdi:stairs
-                      - type: custom:button-card
-                        template:
-                          - base
-                          - base_moyenne
-                          - jauge_lumiere
-                          - state_lumiere
-                        show_last_changed: true
-                        custom_fields:
-                          lum:
-                            card:
-                              type: custom:my-slider
-                              entity: light.palier
-                        entity: light.palier
-                      - type: custom:button-card
-                        template:
-                          - base
-                          - base_moyenne
-                          - jauge_lumiere
-                          - state_lumiere
-                        show_last_changed: true
-                        custom_fields:
-                          lum:
-                            card:
-                              type: custom:my-slider
-                              entity: light.wc_gauche
-                        entity: light.wc_gauche
-                      - type: custom:button-card
-                        template:
-                          - base
-                          - base_moyenne
-                          - jauge_lumiere
-                          - state_lumiere
-                        show_last_changed: true
-                        custom_fields:
-                          lum:
-                            card:
-                              type: custom:my-slider
-                              entity: light.wc_droit
-                        entity: light.wc_droit
+                      - carte_lumiere
+                      - jauge_lumiere
+                    custom_fields:
+                      lum:
+                        card:
+                          type: custom:my-slider
+                          entity: light.escalier
+                    entity: light.escalier
+                    icon: mdi:stairs
                   - type: custom:button-card
                     template:
-                      - titre_section
-                    name: |
-                      [[[ return "Garage" ]]]
-                  - square: false
-                    columns: 1
-                    type: grid
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - base
-                          - base_moyenne
-                          - jauge_lumiere
-                          - state_lumiere
-                        show_last_changed: true
-                        custom_fields:
-                          lum:
-                            card:
-                              type: custom:my-slider
-                              entity: light.cagibi
-                        entity: light.cagibi
+                      - carte_lumiere
+                      - jauge_lumiere
+                    custom_fields:
+                      lum:
+                        card:
+                          type: custom:my-slider
+                          entity: light.palier
+                    entity: light.palier
                   - type: custom:button-card
                     template:
-                      - titre_section
-                    entity: group.noel
-                    name: |
-                      [[[ return "Lumières de Noël " ]]]
-                  - square: false
-                    columns: 2
-                    type: grid
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - base
-                          - base_moyenne
-                          - state_lumiere
-                        show_last_changed: true
-                        entity: switch.sapin
-                      - type: custom:button-card
-                        template:
-                          - base
-                          - base_moyenne
-                          - state_lumiere
-                        show_last_changed: true
-                        entity: switch.guirlande_veranda
-                        name: Véranda
-                      - type: custom:button-card
-                        template:
-                          - base
-                          - base_moyenne
-                          - state_lumiere
-                        show_last_changed: true
-                        entity: switch.guirlande_etoiles
-                        name: Etoiles
-                      - type: custom:button-card
-                        template:
-                          - base
-                          - base_moyenne
-                          - state_lumiere
-                        show_last_changed: true
-                        entity: switch.guirlande_couloir
-                        name: Couloir
-                type: vertical-stack
+                      - carte_lumiere
+                      - jauge_lumiere
+                    custom_fields:
+                      lum:
+                        card:
+                          type: custom:my-slider
+                          entity: light.wc_gauche
+                    entity: light.wc_gauche
+                  - type: custom:button-card
+                    template:
+                      - carte_lumiere
+                      - jauge_lumiere
+                    custom_fields:
+                      lum:
+                        card:
+                          type: custom:my-slider
+                          entity: light.wc_droit
+                    entity: light.wc_droit
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Garage" ]]]
+              - square: false
+                columns: 4
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    template:
+                      - carte_lumiere
+                      - jauge_lumiere
+                    custom_fields:
+                      lum:
+                        card:
+                          type: custom:my-slider
+                          entity: light.cagibi
+                    entity: light.cagibi
+              - type: custom:button-card
+                template:
+                  - titre_section
+                entity: group.noel
+                name: |
+                  [[[ return "Lumières de Noël " ]]]
+              - square: false
+                columns: 4
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    template:
+                      - carte_lumiere
+                    entity: switch.sapin
+                  - type: custom:button-card
+                    template:
+                      - carte_lumiere
+                    entity: switch.guirlande_veranda
+                    name: Véranda
+                  - type: custom:button-card
+                    template:
+                      - carte_lumiere
+                    entity: switch.guirlande_etoiles
+                    name: Etoiles
+                  - type: custom:button-card
+                    template:
+                      - carte_lumiere
+                    entity: switch.guirlande_couloir
+                    name: Couloir
             type: vertical-stack
   - theme: Backend-selected
     title: Batteries
@@ -8544,7 +8452,7 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Ambiances lumineuses " ]]]
+                  [[[ return "Scènes" ]]]
               - type: grid
                 square: false
                 columns: 5
@@ -8857,191 +8765,99 @@ views:
                     tap_action:
                       action: call-service
                       service: automation.inter_ambiances_sejour
-        layout:
-          width: 280
-      - type: custom:layout-card
-        layout_type: masonry
-        cards:
-          - type: vertical-stack
-            cards:
               - type: custom:button-card
                 template:
                   - titre_section
                 name: |
                   [[[ return "Lumières" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
-                      - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
+                      - carte_lumiere
                       - jauge_lumiere
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_de_bureau
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lampe_de_bureau
                     name: Bureau
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
-                      - state_lumiere
-                      - state_unavailable
+                      - carte_lumiere
                     entity: light.lampe_tv_salon
                     name: Lampe TV
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.bandeau_led
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.bandeau_led
                     name: Bandeau TV
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_canape
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lampe_canape
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_salon
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lustre_salon
                     name: Lustre salon
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_salle_a_manger
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lustre_salle_a_manger
                     name: Lustre SàM
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.buffet
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.buffet
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampadaire
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lampadaire
+        layout:
+          width: 280
+      - type: custom:layout-card
+        layout_type: masonry
+        cards:
           - type: custom:button-card
             template:
               - titre_section
@@ -9165,11 +8981,6 @@ views:
                 entity: media_player.sejour
                 artwork: material
                 icon: mdi:speaker
-        layout:
-          width: 280
-      - type: custom:layout-card
-        layout_type: masonry
-        cards:
           - type: custom:button-card
             template:
               - titre_section
@@ -9182,6 +8993,11 @@ views:
               - entity: alarm_control_panel.camera_g3
               - entity: binary_sensor.mouv_camera_g3
             camera_image: camera.camera_hub_g3_2725
+        layout:
+          width: 280
+      - type: custom:layout-card
+        layout_type: masonry
+        cards:
           - square: false
             columns: 1
             type: grid
@@ -10248,7 +10064,7 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "lumières et appareils" ]]]
+                  [[[ return "Scènes" ]]]
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
@@ -10284,115 +10100,63 @@ views:
                       service: light.turn_off
                       service_data:
                         entity_id: light.tom
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "lumières et appareils" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
                     entity: light.lustre_tom
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    name: null
-                    icon: null
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_tom
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: light.chevet_tom
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    name: null
-                    icon: null
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet_tom
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: light.sonoff_10013f6d7e
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    name: null
-                    icon: null
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.sonoff_10013f6d7e
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: light.lampe_de_bureau_tom
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    name: null
-                    icon: null
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_de_bureau_tom
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
-                  - type: custom:button-card
-                    entity: switch.moustique_tom
-                    name: Prise moustique
-                    show_last_changed: true
-                    template:
-                      - base
-                      - base_moyenne
-                      - state_appareil
-                      - state_unavailable
+              - type: custom:button-card
+                entity: switch.moustique_tom
+                name: Prise moustique
+                show_last_changed: true
+                template:
+                  - base
+                  - state_appareil
+                  - state_unavailable
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -10649,7 +10413,7 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Lumières et appareils" ]]]
+                  [[[ return "Scènes" ]]]
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
@@ -10682,145 +10446,80 @@ views:
                       service: light.turn_off
                       service_data:
                         entity_id: light.manon_et_leane
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Lumières et appareils" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
                     entity: light.lustre_manon_et_leane
                     name: Lustre
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
-                    icon: null
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_manon_et_leane
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: light.chevet_manon
                     name: Chevet Manon
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet_manon
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: light.lampe_de_bureau_manon
                     name: Bureau Manon
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_de_bureau_manon
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: switch.arbre_lumineux
                     name: Arbre
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
-                      - state_lumiere
-                      - state_unavailable
+                      - carte_lumiere
                   - type: custom:button-card
                     entity: light.lampe_manon_et_leane
                     name: Lampe
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_manon_et_leane
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: light.chevet_leane
                     name: Chevet Lélé
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet_leane
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: switch.moustique_manon
                     name: Prise moustique
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
-                      - state_appareil
-                      - state_unavailable
+                      - carte_lumiere
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -11212,7 +10911,7 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Lumières et prise" ]]]
+                  [[[ return "Scènes" ]]]
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
@@ -11245,112 +10944,68 @@ views:
                       service: light.turn_on
                       service_data:
                         entity_id: light.nina
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Lumières et prise" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
                     entity: light.lampe_de_bureau_nina
                     name: Bureau
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampe_de_bureau_nina
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: light.lustre_nina
                     name: Lustre
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_nina
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: light.chevet_nina
                     name: Chevet
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet_nina
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                   - type: custom:button-card
                     entity: light.lampadaire_nina
                     name: Lampadaire
-                    show_state: false
-                    show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lampadaire_nina
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
-                  - type: custom:button-card
-                    entity: switch.moustique_nina
-                    name: Moustique
-                    show_state: false
-                    show_last_changed: true
-                    template:
-                      - base
-                      - base_moyenne
-                      - state_appareil
-                      - state_unavailable
+              - type: custom:button-card
+                entity: switch.moustique_nina
+                name: Moustique
+                show_state: false
+                show_last_changed: true
+                template:
+                  - base
+                  - state_appareil
+                  - state_unavailable
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -11577,51 +11232,29 @@ views:
             name: |
               [[[ return "Lumières" ]]]
           - square: false
-            columns: 2
+            columns: 4
             type: grid
             cards:
               - type: custom:button-card
                 entity: light.escalier
-                show_last_changed: true
                 template:
-                  - base
-                  - base_moyenne
+                  - carte_lumiere
                   - jauge_lumiere
-                  - state_lumiere
-                  - state_unavailable
                 custom_fields:
                   lum:
                     card:
                       type: custom:my-slider
                       entity: light.escalier
-                      radius: 5px
-                      height: 20px
-                      mainSliderColor: var(--button-card-light-color-no-temperature)
-                      thumbHorizontalPadding: 0px
-                      thumbVerticalPadding: 0px
-                      thumbWidth: 2px
-                      minSet: 1
               - type: custom:button-card
                 entity: light.palier
-                show_last_changed: true
                 template:
-                  - base
-                  - base_moyenne
+                  - carte_lumiere
                   - jauge_lumiere
-                  - state_lumiere
-                  - state_unavailable
                 custom_fields:
                   lum:
                     card:
                       type: custom:my-slider
                       entity: light.palier
-                      radius: 5px
-                      height: 20px
-                      mainSliderColor: var(--button-card-light-color-no-temperature)
-                      thumbHorizontalPadding: 0px
-                      thumbVerticalPadding: 0px
-                      thumbWidth: 2px
-                      minSet: 1
           - type: custom:button-card
             template:
               - titre_section
@@ -11657,7 +11290,7 @@ views:
             template:
               - titre_section
             name: |
-              [[[ return "Appareils" ]]]
+              [[[ return "Capteurs" ]]]
           - square: false
             columns: 2
             type: grid
@@ -11678,6 +11311,11 @@ views:
                   - carte_badge
                   - state_humidite
                 show_state: true
+          - type: custom:button-card
+            template:
+              - titre_section
+            name: |
+              [[[ return "Appareils" ]]]
           - square: false
             columns: 1
             type: grid
@@ -11864,97 +11502,49 @@ views:
                 name: |
                   [[[ return "Lumières" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.entree
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.entree
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.couloir
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.couloir
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.aqara_hub_54e1
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.aqara_hub_54e1
                     show_entity_picture: false
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.veranda
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.veranda
                     show_entity_picture: true
       - type: custom:layout-card
@@ -12070,12 +11660,9 @@ views:
             cards:
               - type: custom:button-card
                 icon: mdi:hand-water
-                show_last_changed: true
                 template:
-                  - base
-                  - base_moyenne
+                  - carte_lumiere
                   - jauge_lumiere
-                  - state_lumiere
                 custom_fields:
                   lum:
                     card:
@@ -12083,12 +11670,9 @@ views:
                       entity: light.lavabo
                 entity: light.lavabo
               - type: custom:button-card
-                show_last_changed: true
                 template:
-                  - base
-                  - base_moyenne
+                  - carte_lumiere
                   - jauge_lumiere
-                  - state_lumiere
                 custom_fields:
                   lum:
                     card:
@@ -12097,12 +11681,9 @@ views:
                 entity: light.wc_gauche
                 name: Spot gauche
               - type: custom:button-card
-                show_last_changed: true
                 template:
-                  - base
-                  - base_moyenne
+                  - carte_lumiere
                   - jauge_lumiere
-                  - state_lumiere
                 custom_fields:
                   lum:
                     card:
@@ -12165,7 +11746,7 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Ambiances lumineuses " ]]]
+                  [[[ return "Scènes" ]]]
               - type: horizontal-stack
                 cards:
                   - type: custom:button-card
@@ -12207,72 +11788,40 @@ views:
                 name: |
                   [[[ return "lumières et prises" ]]]
               - square: false
-                columns: 2
+                columns: 4
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.lustre_parents
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.lustre_parents
                     name: Lustre
                   - type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.chevet
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
                     entity: light.chevet
                     name: Chevet
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
-                      - state_tv
-                      - state_unavailable
-                    show_last_changed: true
+                      - carte_lumiere
                     entity: switch.tele_des_parents
                     icon: mdi:youtube-tv
                     name: Prise TV
                   - type: custom:button-card
                     template:
-                      - base
-                      - base_moyenne
-                      - state_appareil
-                      - state_unavailable
-                    show_last_changed: true
+                      - carte_lumiere
                     entity: switch.moustique_parents
       - type: custom:layout-card
         layout_type: masonry
@@ -12578,31 +12127,19 @@ views:
                 name: |
                   [[[ return "Lumière" ]]]
               - square: false
-                columns: 1
+                columns: 4
                 type: grid
                 cards:
                   - entity: light.cagibi
                     type: custom:button-card
-                    show_last_changed: true
-                    show_state: false
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_lumiere
                       - jauge_lumiere
-                      - state_lumiere
-                      - state_unavailable
                     custom_fields:
                       lum:
                         card:
                           type: custom:my-slider
                           entity: light.cagibi
-                          radius: 5px
-                          height: 20px
-                          mainSliderColor: var(--button-card-light-color-no-temperature)
-                          thumbHorizontalPadding: 0px
-                          thumbVerticalPadding: 0px
-                          thumbWidth: 2px
-                          minSet: 1
               - type: custom:button-card
                 template:
                   - titre_section
@@ -14916,3 +14453,4 @@ views:
                      box-shadow: none;
                      font-family: Avenir;
                    }
+
