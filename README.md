@@ -46,6 +46,20 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 ### CHANGELOG : journal des modifications
 
 
+### version 2023.1.4
+
+Changements :
+- 🎉 button-card: je commence à travailler avec les variables ! Simplification des codes, uniformité, automatisation, tout est mieux avec les variables! Plusieurs cartes et templates button card impactés : Pièces, personnes, TV, carte_badge ...
+- templates button-card: certains "state" passent en template pour diminuer le nombre de lignes du lovelace, comme "carte_bouton_state", ou "state_person" etc...
+- nouvelles double jauges pour les jauges température / humidité (voir capture)
+- carte Activité (sidebar) : boite aux lettres : ouverte / courrier relevé et en mode vacances : prochain passage de l’aspi prévu (voir capture) 
+- onglet Alarme: nouveau bouton pour le prochain passage d'aspi prévu en mode vacances (voir capture) 
+- onglet Lumières : changement des cartes pour un meilleur visuel (voir capture) 
+- quelques changements graphiques par ci par là comme par exemple : 
+    - inversmeent du gras entre name et label/state dans template "base" 
+    - les boutons des capteurs dans les cartes pièces
+
+
 ### version 2023.1.3
 
 Changements :
