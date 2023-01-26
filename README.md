@@ -45,6 +45,12 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 
 ### CHANGELOG : journal des modifications
 
+### version 2023.1.5
+
+Changements :
+- carte lumières : noouvelle carte, pour uniformiser toutes les cartes lumières, et gagner de la place avec un meilleur visuel 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_lumieres.jpg)
+
 
 ### version 2023.1.4
 
