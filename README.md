@@ -51,6 +51,7 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 Changements :
 - j'ai supprimé mon fichier sensor.yaml et j'ai remis cette partie à la racine de configuration.yaml suite à un soucis de refresh des templates. 
 - 🎉 button-card: je commence à travailler avec les variables ! Simplification des codes, uniformité, automatisation, tout est mieux avec les variables! Plusieurs cartes et templates button card impactés : Pièces, personnes, TV, carte_badge ...
+- cartes pièces : le graph est de retour, et les label beaucoup plus complets et automatisés grace aux variables 
 - templates button-card: certains "state" passent en template pour diminuer le nombre de lignes du lovelace, comme "carte_bouton_state", ou "state_person" etc...
 - nouvelles double jauges pour les jauges température / humidité (voir capture)
 - carte Activité (sidebar) : boite aux lettres : ouverte / courrier relevé et en mode vacances : prochain passage de l’aspi prévu (voir capture) 
