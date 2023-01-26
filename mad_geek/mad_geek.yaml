@@ -120,7 +120,7 @@ mad_geek:
       label-badge-red: var(--primary-color)
       label-badge-blue: var(--light-primary-color)
       # Cards colors
-      ha-card-background: linear-gradient(1deg, rgba(31, 43, 58,0.5), rgba(31, 43, 58,1))  #CARTES 
+      ha-card-background: linear-gradient(1deg, rgba(31, 43, 58,0.7), rgba(31, 43, 58,0.9))  #CARTES 
       card-background-color: rgba(26, 40, 55,1) #var(--secondary-background-color) #POPUP ET CARTES DANS MENU
       popup-background-color: rgba(14,19,28,0.8)
       paper-card-background-color: var(--ha-card-background)
