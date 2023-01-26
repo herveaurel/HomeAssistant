@@ -60,6 +60,7 @@ Changements :
 - quelques changements graphiques par ci par là comme par exemple : 
     - inversmeent du gras entre name et label/state dans template "base" 
     - les boutons des capteurs dans les cartes pièces
+    - modifications des couleurs des boutons en bas de la carte Activités
 
 
 ### version 2023.1.3
