@@ -562,6 +562,11 @@ button_card_templates:
         ]]]
       rappel: |
         [[[
+          if (states['sensor.rappel'].state == "unavailable")
+            return `<ha-icon
+              icon="mdi:reminder"
+              style="width: 16px; color: red; height: 16px; margin-right: 2px;">
+              </ha-icon><span><font color= red>Indisponible</span>`
           if (states['sensor.rappel'].state == "Aucun")
             return ""
           return `<ha-icon
@@ -575,7 +580,7 @@ button_card_templates:
             return `<ha-icon
               icon="mdi:alarm"
               style="width: 16px; color: red; height: 16px; margin-right: 2px;">
-              </ha-icon><span>Indisponible</span>`
+              </ha-icon><span><font color= red>Indisponible</span>`
           if (states['input_boolean.nilemato'].state == "off" && states['sensor.reveil'].state == "")
             return ""
           if (states['input_boolean.nilemato'].state == "off" && states['sensor.reveil'].state != "")
@@ -1017,6 +1022,38 @@ button_card_templates:
                 service: input_boolean.toggle
                 service_data:
                   entity_id: input_boolean.sidecar_show_maj
+  last_changed:
+    label: |
+      [[[
+        var last_changed = states[entity.entity_id].last_changed;
+        
+        var now = new Date();
+        var date = new Date(last_changed);
+        date.toLocaleString();
+        
+        var diff = (now - date) / 1000;
+        var days = Math.floor(diff / 86400);
+        diff = diff % 86400;
+        var hours = Math.floor(diff / 3600);
+        diff = diff % 3600;
+        var minutes = Math.floor(diff / 60);
+        var seconds = Math.floor(diff % 60);
+        
+        
+        if (days > 0) {
+           return days + "j " + hours + "h ";
+        }else{
+           if (hours > 0) {
+              return hours + "h " + "et " + minutes + "min";
+           } else {
+              if (minutes > 0) {
+                 return minutes + "min et " + seconds + "s";
+              } else {
+                 return seconds + "s";
+              }
+           }
+        }
+      ]]]
   base:
     show_icon: true
     show_name: true
@@ -1341,20 +1378,17 @@ button_card_templates:
       - carte_badge
       - state_lumiere
     show_name: true
-    show_label: false
-    show_last_changed: true
+    show_label: true
+    show_last_changed: false
     styles:
-      img_cell:
-        - width: 40px
-        - height: 40px
       label:
-        - padding-bottom: 40px
+        - padding-bottom: 15px
       card:
-        - height: 110px
+        - height: auto
         - box-shadow: |
             [[[
               if (entity.state == 'on')
-                return "0px 0px 10px 3px var(--button-card-light-color)"
+                return "0px 0px 7px 1px var(--button-card-light-color)"
               return "1px 1px 1px 0px rgba(12, 12, 14,0.3)"
             ]]]
   jauge_lumiere:
@@ -1363,7 +1397,7 @@ button_card_templates:
         card:
           type: custom:my-slider
           radius: 6px
-          height: 20px
+          height: 15px
           mainSliderColor: var(--button-card-light-color-no-temperature)
           thumbHorizontalPadding: 0px
           thumbVerticalPadding: 0px
@@ -1391,10 +1425,11 @@ button_card_templates:
     show_icon: true
     show_name: true
     show_state: false
-    show_label: false
+    show_label: true
     template:
       - police
       - style
+      - last_changed
     styles:
       img_cell:
         - border-radius: 50%
@@ -1617,6 +1652,43 @@ button_card_templates:
             text-color: lightgrey
             font-size: 20px
             friendly_name: true
+  carte_batterie:
+    template:
+      - carte_badge
+      - state_batterie
+      - state_unavailable
+    show_label: false
+    show_state: true
+    styles:
+      custom_fields:
+        gauge:
+          - z-index: 1
+          - position: absolute
+          - top: 21px
+          - left: 50%
+          - opacity: 100%
+          - width: calc(50px + 0px)
+          - transform: translate(-50%, calc(-50% + 0px))
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)
+          - '--ha-card-box-shadow': none
+          - '--ha-card-border-width': 0px
+    custom_fields:
+      gauge:
+        card:
+          type: custom:hatc-gauge-card
+          title:
+            name: false
+            icon: false
+          gauge:
+            icon: false
+            state: false
+            friendly_name: false
+            severity:
+              - color: grey
+              - color: rgb(180, 70, 70)
+                from: 0
+                to: 40
   state_jauge_air:
     state:
       - value: 65
@@ -1771,7 +1843,7 @@ button_card_templates:
   state_mouv:
     state:
       - value: 'on'
-        icon: mdi:human-greeting
+        icon: mdi:run-fast
         styles:
           card:
             - animation: ball-scale 0.2s
@@ -1866,6 +1938,7 @@ button_card_templates:
     state:
       - value: 25.9
         operator: '>'
+        icon: mdi:thermometer-chevron-up
         styles:
           card:
             - animation: ball-scale 0.2s
@@ -1875,6 +1948,7 @@ button_card_templates:
             - transition: 1s ease
       - value: 18.5
         operator: <
+        icon: mdi:thermometer-chevron-down
         styles:
           card:
             - animation: ball-scale 0.2s
@@ -1891,6 +1965,7 @@ button_card_templates:
     state:
       - value: 25
         operator: '>'
+        icon: mdi:thermometer-chevron-up
         styles:
           card:
             - animation: ball-scale 0.2s
@@ -1954,6 +2029,7 @@ button_card_templates:
             - transition: 1s ease
       - value: 150
         operator: <
+        icon: mdi:brightness-4
         styles:
           card:
             - animation: ball-scale 0.2s
@@ -2163,7 +2239,6 @@ button_card_templates:
             - transition: 1s ease
   state_batterie:
     show_state: true
-    show_last_changed: true
     styles:
       name:
         - font-size: 12px
@@ -3927,14 +4002,14 @@ views:
                   - type: horizontal-stack
                     cards:
                       - type: custom:button-card
-                        show_state: false
+                        show_label: false
                         template:
                           - carte_badge
                           - state_appareil
                           - state_unavailable
                         entity: input_boolean.nilemato
                       - type: custom:button-card
-                        show_state: false
+                        show_label: false
                         template:
                           - carte_badge
                           - state_appareil
@@ -3942,16 +4017,8 @@ views:
                         entity: automation.annonce_ecole
                         name: Ecole
                       - type: custom:button-card
-                        show_state: false
-                        template:
-                          - carte_badge
-                          - state_appareil
-                          - state_unavailable
-                        icon: mdi:glass-cocktail
-                        name: Invités
-                      - type: custom:button-card
                         name: Été
-                        show_state: false
+                        show_label: false
                         template:
                           - carte_badge
                           - state_appareil
@@ -3959,7 +4026,7 @@ views:
                         entity: input_boolean.belle_saison
                       - type: custom:button-card
                         name: Vacances
-                        show_state: false
+                        show_label: false
                         template:
                           - carte_badge
                           - state_appareil
@@ -6206,7 +6273,7 @@ views:
                       - type: custom:button-card
                         entity: script.aspi_walle_sejour
                         name: Séjour
-                        show_name: true
+                        show_label: false
                         template:
                           - carte_badge
                         tap_action:
@@ -6214,7 +6281,7 @@ views:
                       - type: custom:button-card
                         entity: script.aspi_salle_a_manger
                         name: SàM
-                        show_name: true
+                        show_label: false
                         template:
                           - carte_badge
                         tap_action:
@@ -6222,7 +6289,7 @@ views:
                       - type: custom:button-card
                         entity: script.aspi_walle_salon
                         name: Salon
-                        show_name: true
+                        show_label: false
                         template:
                           - carte_badge
                         tap_action:
@@ -6230,7 +6297,7 @@ views:
                       - type: custom:button-card
                         entity: script.aspi_walle_chambre_parents
                         name: Parents
-                        show_name: true
+                        show_label: false
                         template:
                           - carte_badge
                         tap_action:
@@ -6238,7 +6305,7 @@ views:
                       - type: custom:button-card
                         entity: script.aspi_walle_cuisine
                         name: Cuisine
-                        show_name: true
+                        show_label: false
                         template:
                           - carte_badge
                         tap_action:
@@ -6246,7 +6313,7 @@ views:
                       - type: custom:button-card
                         entity: script.aspi_walle_entree
                         name: Entrée
-                        show_name: true
+                        show_label: false
                         template:
                           - carte_badge
                         tap_action:
@@ -6254,7 +6321,7 @@ views:
                       - type: custom:button-card
                         entity: script.aspi_walle_tapis
                         name: Tapis
-                        show_name: true
+                        show_label: false
                         template:
                           - carte_badge
                         tap_action:
@@ -6262,7 +6329,7 @@ views:
                       - type: custom:button-card
                         entity: script.aspi_walle_couloir
                         name: Couloir
-                        show_name: true
+                        show_label: false
                         template:
                           - carte_badge
                         tap_action:
@@ -6428,7 +6495,7 @@ views:
                   - type: custom:button-card
                     entity: script.aspi_r2d2_chambre_tom
                     name: Tom
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -6436,7 +6503,7 @@ views:
                   - type: custom:button-card
                     entity: script.aspi_r2d2_chambre_manon_leane
                     name: Manon
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -6444,7 +6511,7 @@ views:
                   - type: custom:button-card
                     entity: script.aspi_r2d2_chambre_nina
                     name: Nina
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -6452,7 +6519,7 @@ views:
                   - type: custom:button-card
                     entity: script.aspi_r2d2_salle_de_bain
                     name: SdB
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -6460,7 +6527,7 @@ views:
                   - type: custom:button-card
                     entity: script.aspi_r2d2_palier
                     name: Palier
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -7616,9 +7683,7 @@ views:
                     entity: sensor.iphone_aurel_battery_level
                     name: Aurel
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
                     styles:
                       card:
                         - border-color: |
@@ -7627,13 +7692,15 @@ views:
                                  return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.iphone_aurel_battery_level
                   - type: custom:button-card
                     entity: sensor.ipad_aurel_battery_level
                     name: iPad
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
                     styles:
                       card:
                         - border-color: |
@@ -7642,13 +7709,15 @@ views:
                                  return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.ipad_aurel_battery_level
                   - type: custom:button-card
                     entity: sensor.macbook_aurel_internal_battery_level
                     name: Mac Aurel
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
                     styles:
                       card:
                         - border-color: |
@@ -7657,13 +7726,15 @@ views:
                                  return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.macbook_aurel_internal_battery_level
                   - type: custom:button-card
                     entity: sensor.alex_iphone_battery_level_ha
                     name: Alex
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
                     styles:
                       card:
                         - border-color: |
@@ -7672,13 +7743,15 @@ views:
                                  return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.alex_iphone_battery_level_ha
                   - type: custom:button-card
                     entity: sensor.macbook_alex_internal_battery_level
                     name: Mac Alex
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
                     styles:
                       card:
                         - border-color: |
@@ -7687,6 +7760,10 @@ views:
                                  return "rgba(255, 215, 0, 0.9)"
                                return "rgba(12, 12, 14, 0.2)"
                             ]]]
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.macbook_alex_internal_battery_level
               - type: custom:button-card
                 template:
                   - titre_section
@@ -7706,30 +7783,38 @@ views:
                     entity: sensor.aarlo_battery_level_sonnette
                     name: Sonnette
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.aarlo_battery_level_sonnette
                   - type: custom:button-card
                     entity: sensor.moniteur_qualite_air_batterie
                     name: Air
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.moniteur_qualite_air_batterie
                   - type: custom:button-card
                     entity: sensor.cube_aqara_batterie
                     name: Cube
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.cube_aqara_batterie
                   - type: custom:button-card
                     entity: sensor.vibrations_batterie
                     name: Vibrations
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.vibrations_batterie
               - type: custom:button-card
                 template:
                   - titre_section
@@ -7747,65 +7832,83 @@ views:
                 cards:
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.sejour_thermo_batterie
                     entity: sensor.sejour_thermo_batterie
                     name: Séjour
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.couloir_thermo_batterie
                     entity: sensor.couloir_thermo_batterie
                     name: Couloir
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.parents_thermo_batterie
                     entity: sensor.parents_thermo_batterie
                     name: Parents
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.cuisine_thermo_batterie
                     entity: sensor.cuisine_thermo_batterie
                     name: Cuisine
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.temp_sdb_battery_level
                     entity: sensor.temp_sdb_battery_level
                     name: SDB
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.tom_thermo_batterie
                     entity: sensor.tom_thermo_batterie
                     name: Tom
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.manon_thermo_batterie
                     entity: sensor.manon_thermo_batterie
                     name: Manon
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.nina_thermo_batterie
                     entity: sensor.nina_thermo_batterie
                     name: Nina
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.sonde_garage_batterie
                     entity: sensor.sonde_garage_batterie
                     name: Garage
       - type: custom:layout-card
@@ -7831,79 +7934,101 @@ views:
                 cards:
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_salon_batterie
                     entity: sensor.mouv_salon_batterie
                     name: Salon
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_salle_a_manger_batterie
                     entity: sensor.mouv_salle_a_manger_batterie
                     name: S. à M
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_couloir_batterie
                     entity: sensor.mouv_couloir_batterie
                     name: Couloir
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_garage_batterie
                     entity: sensor.mouv_garage_batterie
                     name: Garage
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_salle_d_eau_batterie
                     entity: sensor.mouv_salle_d_eau_batterie
                     name: Lavabo
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_escalier_batterie
                     entity: sensor.mouv_escalier_batterie
                     name: Escalier
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_palier_batterie
                     entity: sensor.mouv_palier_batterie
                     name: Palier
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_tom_batterie
                     entity: sensor.mouv_tom_batterie
                     name: Tom
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_manon_batterie
                     entity: sensor.mouv_manon_batterie
                     name: Manon
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_leane_batterie
                     entity: sensor.mouv_leane_batterie
                     name: Léane
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.mouv_nina_batterie
                     entity: sensor.mouv_nina_batterie
                     name: Nina
               - type: custom:button-card
@@ -7925,44 +8050,56 @@ views:
                     entity: sensor.porte_entree_batterie
                     name: Entrée
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.porte_entree_batterie
                   - type: custom:button-card
                     entity: sensor.porte_salle_a_manger_batterie
                     name: S. à M
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.porte_salle_a_manger_batterie
                   - type: custom:button-card
                     entity: sensor.porte_cagibi_batterie
                     name: Cagibi
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.porte_cagibi_batterie
                   - type: custom:button-card
                     entity: sensor.porte_garage_batterie
                     name: Garage
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.porte_garage_batterie
                   - type: custom:button-card
                     entity: sensor.porte_cuisine_batterie
                     name: Cuisine
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.porte_cuisine_batterie
                   - type: custom:button-card
                     entity: sensor.porte_chambre_parents_batterie
                     name: Parents
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.porte_chambre_parents_batterie
             type: vertical-stack
       - type: custom:layout-card
         layout_type: masonry
@@ -7987,114 +8124,146 @@ views:
                 cards:
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_ambiances_sejour_batterie
                     entity: sensor.inter_ambiances_sejour_batterie
                     name: Ambiances
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_salon_batterie
                     entity: sensor.inter_salon_batterie
                     name: Salon
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_salle_a_manger_batterie
                     entity: sensor.inter_salle_a_manger_batterie
                     name: S. à M
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_entree_batterie
                     entity: sensor.inter_entree_batterie
                     name: Entrée
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_couloir_batterie
                     entity: sensor.inter_couloir_batterie
                     name: Couloir
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_salle_d_eau_batterie
                     entity: sensor.inter_salle_d_eau_batterie
                     name: Lavabo
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_chambre_parents_batterie
                     entity: sensor.inter_chambre_parents_batterie
                     name: Parents
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_palier_batterie
                     entity: sensor.inter_palier_batterie
                     name: Palier
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_chambre_tom_batterie
                     entity: sensor.inter_chambre_tom_batterie
                     name: Tom
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_chevet_tom_batterie
                     entity: sensor.inter_chevet_tom_batterie
                     name: Tom chevet
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_chambre_nina_batterie
                     entity: sensor.inter_chambre_nina_batterie
                     name: Nina
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_chevet_nina_batterie
                     entity: sensor.inter_chevet_nina_batterie
                     name: Nina chevet
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_grande_chambre_batterie
                     entity: sensor.inter_grande_chambre_batterie
                     name: Filles
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_chevet_manon_batterie
                     entity: sensor.inter_chevet_manon_batterie
                     name: Manon chevet
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.inter_chevet_leane_batterie
                     entity: sensor.inter_chevet_leane_batterie
                     name: Léane chevet
                   - type: custom:button-card
                     template:
-                      - carte_badge
-                      - state_batterie
-                      - state_unavailable
+                      - carte_batterie
+                    custom_fields:
+                      gauge:
+                        card:
+                          entity: sensor.shellybutton1_98cdac2d5312_battery
                     entity: sensor.shellybutton1_98cdac2d5312_battery
                     name: Shelly
             type: vertical-stack
@@ -8232,34 +8401,9 @@ views:
               - arm_away
             entity: alarm_control_panel.aarlo_sonnette
           - square: false
-            columns: 2
+            columns: 1
             type: grid
             cards:
-              - type: custom:button-card
-                template:
-                  - base
-                  - base_moyenne
-                  - state_batterie
-                  - jauge_horizontal
-                  - state_unavailable
-                show_last_changed: false
-                show_state: true
-                entity: sensor.aarlo_battery_level_sonnette
-                name: Batterie
-                custom_fields:
-                  jauge-horizontal:
-                    card:
-                      type: custom:bar-card
-                      entities:
-                        - entity: sensor.aarlo_battery_level_sonnette
-                      max: 100
-                      severity:
-                        - color: rgb(176, 196, 222)
-                          from: 0
-                          to: 29.9
-                        - color: rgb(70, 130, 180)
-                          from: 30
-                          to: 100
               - type: custom:button-card
                 template:
                   - base
@@ -8290,10 +8434,18 @@ views:
             cards:
               - type: custom:button-card
                 template:
+                  - carte_batterie
+                entity: sensor.aarlo_battery_level_sonnette
+                name: Batterie
+                custom_fields:
+                  gauge:
+                    card:
+                      entity: sensor.aarlo_battery_level_sonnette
+              - type: custom:button-card
+                template:
                   - carte_badge
                   - state_mouv
                   - state_unavailable
-                show_last_changed: true
                 entity: binary_sensor.aarlo_motion_sonnette
                 name: Mouvement
               - type: custom:button-card
@@ -8301,8 +8453,8 @@ views:
                   - carte_badge
                   - state_appareil
                   - state_unavailable
-                show_last_changed: false
                 show_state: true
+                show_label: false
                 entity: sensor.aarlo_last_sonnette
                 name: Dernier
               - type: custom:button-card
@@ -8310,7 +8462,6 @@ views:
                   - carte_badge
                   - state_appareil
                   - state_unavailable
-                show_last_changed: true
                 entity: binary_sensor.aarlo_ding_sonnette
                 name: Ding !
               - type: custom:button-card
@@ -8318,7 +8469,6 @@ views:
                   - carte_badge
                   - state_appareil
                   - state_unavailable
-                show_last_changed: true
                 entity: switch.aarlo_snapshot_sonnette
                 name: Capture
               - type: custom:button-card
@@ -8326,7 +8476,7 @@ views:
                   - carte_badge
                   - state_appareil
                   - state_unavailable
-                show_last_changed: false
+                show_label: false
                 show_state: true
                 entity: sensor.aarlo_captured_today_sonnette
                 name: Aujourd'hui
@@ -8335,16 +8485,6 @@ views:
                   - carte_badge
                   - state_appareil
                   - state_unavailable
-                show_last_changed: false
-                show_state: true
-                entity: binary_sensor.aarlo_connected_sonnette
-                name: Statut
-              - type: custom:button-card
-                template:
-                  - carte_badge
-                  - state_appareil
-                  - state_unavailable
-                show_last_changed: true
                 entity: camera.aarlo_sonnette
                 name: Caméra
               - type: custom:button-card
@@ -8352,9 +8492,17 @@ views:
                   - carte_badge
                   - state_appareil
                   - state_unavailable
-                show_last_changed: true
                 entity: switch.aarlo_siren_sonnette
                 name: Sirène
+              - type: custom:button-card
+                template:
+                  - carte_badge
+                  - state_appareil
+                  - state_unavailable
+                show_label: false
+                show_state: true
+                entity: binary_sensor.aarlo_connected_sonnette
+                name: Statut
   - theme: Backend-selected
     subview: true
     icon: mdi:sofa
@@ -8388,6 +8536,7 @@ views:
                       - carte_badge
                       - state_temp
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.hum_sejour
                     name: |
@@ -8396,6 +8545,7 @@ views:
                       - carte_badge
                       - state_humidite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.plante_lum_dracaena
                     name: |
@@ -8404,6 +8554,7 @@ views:
                       - carte_badge
                       - state_luminosite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.plante_lum_pied_elephant
                     name: |
@@ -8412,6 +8563,7 @@ views:
                       - carte_badge
                       - state_luminosite
                     show_state: true
+                    show_label: false
               - square: false
                 columns: 4
                 type: grid
@@ -8421,7 +8573,6 @@ views:
                       - carte_badge
                       - state_porte
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.porte_salle_a_manger
                     name: Porte SàM
                   - type: custom:button-card
@@ -8429,7 +8580,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_salle_a_manger
                     name: Mouv SàM
                   - type: custom:button-card
@@ -8437,7 +8587,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_salon
                     name: Mouv Salon
                   - type: custom:button-card
@@ -8445,7 +8594,6 @@ views:
                       - carte_badge
                       - state_appareil
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_camera_g3
                     name: Caméra G3
               - type: custom:button-card
@@ -8460,7 +8608,7 @@ views:
                   - type: custom:button-card
                     entity: scene.ambiance_normale
                     name: Normale
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     styles:
@@ -8493,7 +8641,7 @@ views:
                   - type: custom:button-card
                     entity: scene.zen
                     name: Doux
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     styles:
@@ -8526,7 +8674,7 @@ views:
                   - type: custom:button-card
                     entity: scene.repas_devant_tv
                     name: Repas
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     styles:
@@ -8560,7 +8708,7 @@ views:
                     entity: scene.tv
                     name: TV
                     icon: mdi:television-play
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     styles:
@@ -8593,7 +8741,7 @@ views:
                   - type: custom:button-card
                     entity: scene.travail_dessin_2
                     name: Travail
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     styles:
@@ -8626,7 +8774,7 @@ views:
                   - type: custom:button-card
                     entity: scene.lecture
                     name: Lecture
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     styles:
@@ -8659,7 +8807,7 @@ views:
                   - type: custom:button-card
                     entity: script.apero_lum
                     name: Apéro
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     styles:
@@ -8692,7 +8840,7 @@ views:
                   - type: custom:button-card
                     entity: scene.anniversaire
                     name: Anniv
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     styles:
@@ -8725,7 +8873,7 @@ views:
                   - type: custom:button-card
                     entity: script.ambiance_repas_invites
                     name: Invités
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     styles:
@@ -8759,7 +8907,7 @@ views:
                     entity: automation.inter_ambiances_sejour
                     name: Foot
                     icon: mdi:flag
-                    show_name: true
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -9149,7 +9297,6 @@ views:
               - carte_badge
               - state_porte
               - state_unavailable
-            show_last_changed: true
             entity: binary_sensor.porte_entree
             name: Entrée
           - type: custom:button-card
@@ -9157,7 +9304,6 @@ views:
               - carte_badge
               - state_porte
               - state_unavailable
-            show_last_changed: true
             entity: binary_sensor.porte_salle_a_manger
             name: SaM
           - type: custom:button-card
@@ -9165,7 +9311,6 @@ views:
               - carte_badge
               - state_porte
               - state_unavailable
-            show_last_changed: true
             entity: binary_sensor.porte_cuisine
             name: Cuisine
           - type: custom:button-card
@@ -9173,7 +9318,6 @@ views:
               - carte_badge
               - state_porte
               - state_unavailable
-            show_last_changed: true
             entity: binary_sensor.porte_chambre_parents
             name: Parents
           - type: custom:button-card
@@ -9181,7 +9325,6 @@ views:
               - carte_badge
               - state_porte
               - state_unavailable
-            show_last_changed: true
             entity: binary_sensor.porte_cagibi
             name: Cagibi
           - type: custom:button-card
@@ -9189,7 +9332,6 @@ views:
               - carte_badge
               - state_porte
               - state_unavailable
-            show_last_changed: true
             entity: binary_sensor.porte_garage
             name: Garage
   - theme: Backend-selected
@@ -9224,7 +9366,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_salon
                     name: Salon
                   - type: custom:button-card
@@ -9232,7 +9373,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_salle_a_manger
                     name: Salle à manger
                   - type: custom:button-card
@@ -9240,7 +9380,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_couloir
                     name: Couloir
                   - type: custom:button-card
@@ -9248,7 +9387,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_salle_d_eau
                     name: Salle d'eau
                   - type: custom:button-card
@@ -9256,7 +9394,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_garage
                     name: Garage
                   - type: custom:button-card
@@ -9264,7 +9401,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_escalier
                     name: Escalier
                   - type: custom:button-card
@@ -9272,7 +9408,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_camera_g3
                     name: Caméra Salon
                   - type: custom:button-card
@@ -9280,7 +9415,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_camera_g2hpro
                     name: Caméra Garage
       - type: custom:layout-card
@@ -9304,7 +9438,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_tom
                     name: Tom
                   - type: custom:button-card
@@ -9312,7 +9445,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_manon
                     name: Manon
                   - type: custom:button-card
@@ -9320,7 +9452,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_leane
                     name: Léane
                   - type: custom:button-card
@@ -9328,7 +9459,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_nina
                     name: Nina
                   - type: custom:button-card
@@ -9336,7 +9466,6 @@ views:
                       - carte_badge
                       - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_palier
                     name: Palier
   - theme: Backend-selected
@@ -10035,6 +10164,7 @@ views:
                       - carte_badge
                       - state_temp
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.hum_tom
                     name: |
@@ -10043,6 +10173,7 @@ views:
                       - carte_badge
                       - state_humidite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.mouv_tom_luminosite
                     name: |
@@ -10051,11 +10182,11 @@ views:
                       - carte_badge
                       - state_luminosite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: binary_sensor.mouv_tom
                     name: |
                       [[[ return variables.var_name_mouv]]]
-                    show_last_changed: true
                     template:
                       - carte_badge
                       - state_mouv
@@ -10072,7 +10203,7 @@ views:
                     name: Jour
                     template:
                       - carte_badge
-                    show_name: true
+                    show_label: false
                     tap_action:
                       action: call-service
                       service: scene.turn_on
@@ -10083,18 +10214,19 @@ views:
                     name: Nuit
                     template:
                       - carte_badge
-                    show_name: true
+                    show_label: false
                     tap_action:
                       action: call-service
                       service: scene.turn_on
                       service_data:
                         entity_id: scene.tom_ambiance_nuit
                   - type: custom:button-card
+                    entity: light.tom
                     name: 'Tout éteindre '
                     icon: mdi:lightbulb-group-off
                     template:
                       - carte_badge
-                    show_name: true
+                    show_label: false
                     tap_action:
                       action: call-service
                       service: light.turn_off
@@ -10111,6 +10243,7 @@ views:
                 cards:
                   - type: custom:button-card
                     entity: light.lustre_tom
+                    name: Lustre
                     template:
                       - carte_lumiere
                       - jauge_lumiere
@@ -10121,6 +10254,7 @@ views:
                           entity: light.lustre_tom
                   - type: custom:button-card
                     entity: light.chevet_tom
+                    name: Chevet
                     template:
                       - carte_lumiere
                       - jauge_lumiere
@@ -10131,6 +10265,7 @@ views:
                           entity: light.chevet_tom
                   - type: custom:button-card
                     entity: light.sonoff_10013f6d7e
+                    name: Bureau
                     template:
                       - carte_lumiere
                       - jauge_lumiere
@@ -10141,6 +10276,7 @@ views:
                           entity: light.sonoff_10013f6d7e
                   - type: custom:button-card
                     entity: light.lampe_de_bureau_tom
+                    name: Lampe bureau
                     template:
                       - carte_lumiere
                       - jauge_lumiere
@@ -10152,9 +10288,9 @@ views:
               - type: custom:button-card
                 entity: switch.moustique_tom
                 name: Prise moustique
-                show_last_changed: true
                 template:
                   - base
+                  - last_changed
                   - state_appareil
                   - state_unavailable
       - type: custom:layout-card
@@ -10177,17 +10313,16 @@ views:
             name: |
               [[[ return "Réglages" ]]]
           - square: false
-            columns: 2
+            columns: 5
             type: grid
             cards:
               - type: custom:button-card
                 entity: sensor.tom_reveil
-                show_last_changed: false
+                show_label: false
                 show_name: true
                 show_state: true
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_unavailable
                 state:
                   - value: Grasse mat !
@@ -10199,53 +10334,45 @@ views:
                         - background-color: var(--custom-img-cell-color-blue)
                       icon:
                         - color: var(--custom-icon-color-blue)
-                      name:
-                        - color: var(--text_on)'
+                      state:
+                        - color: red
                 name: Réveil
                 icon: mdi:alarm
               - type: custom:button-card
                 entity: automation.reveil_tom
-                show_last_changed: true
                 show_name: true
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_appareil
                   - state_unavailable
                 name: Auto réveil
                 icon: mdi:progress-clock
               - type: custom:button-card
                 entity: automation.tom_allumage_auto
-                show_last_changed: true
                 show_name: true
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_appareil
                   - state_unavailable
-                name: ON auto chambre
+                name: ON auto
                 icon: mdi:lightbulb-on-outline
               - type: custom:button-card
                 entity: automation.tom_chambre_off_auto
-                show_last_changed: true
                 show_name: true
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_appareil
                   - state_unavailable
-                name: OFF auto chambre
+                name: OFF auto
                 icon: mdi:lightbulb-multiple-off
               - type: custom:button-card
                 entity: switch.tom_do_not_disturb_switch
-                show_last_changed: true
                 show_name: true
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_appareil
                   - state_unavailable
-                name: Alexa silence
+                name: Echo silence
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -10363,6 +10490,7 @@ views:
                       - carte_badge
                       - state_temp
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.hum_manon
                     name: |
@@ -10371,6 +10499,7 @@ views:
                       - carte_badge
                       - state_humidite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.mouv_manon_luminosite
                     name: |
@@ -10379,6 +10508,7 @@ views:
                       - carte_badge
                       - state_luminosite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.mouv_leane_luminosite
                     name: |
@@ -10387,6 +10517,7 @@ views:
                       - carte_badge
                       - state_luminosite
                     show_state: true
+                    show_label: false
               - square: false
                 columns: 2
                 type: grid
@@ -10395,7 +10526,6 @@ views:
                     entity: binary_sensor.mouv_manon
                     name: |
                       [[[ return variables.var_name_mouv+" Manon"]]]
-                    show_last_changed: true
                     template:
                       - carte_badge
                       - state_mouv
@@ -10404,7 +10534,6 @@ views:
                     entity: binary_sensor.mouv_leane
                     name: |
                       [[[ return variables.var_name_mouv+" Lélé"]]]
-                    show_last_changed: true
                     template:
                       - carte_badge
                       - state_mouv
@@ -10419,6 +10548,7 @@ views:
                   - type: custom:button-card
                     entity: scene.grande_chambre_ambiance_normale
                     name: Jour
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -10429,6 +10559,7 @@ views:
                   - type: custom:button-card
                     entity: scene.grande_chambre_ambiance_nuit
                     name: Nuit
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -10437,8 +10568,10 @@ views:
                       service_data:
                         entity_id: scene.grande_chambre_ambiance_nuit
                   - type: custom:button-card
+                    entity: light.manon_et_leane
                     name: Tout éteindre
                     icon: mdi:lightbulb-multiple-off
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -10638,7 +10771,6 @@ views:
             cards:
               - type: custom:button-card
                 entity: automation.manon_leane_chambre_off_auto
-                show_last_changed: true
                 show_name: true
                 template:
                   - carte_badge
@@ -10648,7 +10780,6 @@ views:
                 icon: mdi:lightbulb-off-outline
               - type: custom:button-card
                 entity: automation.manon_leane_chambre_allumage_auto
-                show_last_changed: true
                 show_name: true
                 template:
                   - carte_badge
@@ -10673,7 +10804,7 @@ views:
                     cards:
                       - type: custom:button-card
                         entity: sensor.manon_reveil
-                        show_last_changed: false
+                        show_label: false
                         show_name: true
                         show_state: true
                         template:
@@ -10689,13 +10820,12 @@ views:
                                 - background-color: var(--custom-img-cell-color-blue)
                               icon:
                                 - color: var(--custom-icon-color-blue)
-                              name:
-                                - color: var(--text_on)'
+                              state:
+                                - color: red'
                         name: Réveil Manon
                         icon: mdi:alarm
                       - type: custom:button-card
                         entity: automation.reveil_manon
-                        show_last_changed: true
                         show_name: true
                         template:
                           - carte_badge
@@ -10705,7 +10835,6 @@ views:
                         icon: mdi:progress-clock
                       - type: custom:button-card
                         entity: switch.manon_do_not_disturb_switch
-                        show_last_changed: true
                         show_name: true
                         template:
                           - carte_badge
@@ -10725,7 +10854,7 @@ views:
                     cards:
                       - type: custom:button-card
                         entity: sensor.leane_reveil
-                        show_last_changed: false
+                        show_label: false
                         show_name: true
                         show_state: true
                         template:
@@ -10742,13 +10871,12 @@ views:
                                 - background-color: var(--custom-img-cell-color-blue)
                               icon:
                                 - color: var(--custom-icon-color-blue)
-                              name:
-                                - color: var(--text_on)'
+                              state:
+                                - color: red
                         name: Réveil Léane
                         icon: mdi:alarm
                       - type: custom:button-card
                         entity: automation.reveil_leane
-                        show_last_changed: true
                         show_name: true
                         template:
                           - carte_badge
@@ -10758,7 +10886,6 @@ views:
                         icon: mdi:progress-clock
                       - type: custom:button-card
                         entity: switch.leane_do_not_disturb_switch
-                        show_last_changed: true
                         show_name: true
                         template:
                           - carte_badge
@@ -10882,6 +11009,7 @@ views:
                       - carte_badge
                       - state_temp
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.hum_nina
                     name: |
@@ -10890,6 +11018,7 @@ views:
                       - carte_badge
                       - state_humidite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.mouv_nina_luminosite
                     name: |
@@ -10898,11 +11027,11 @@ views:
                       - carte_badge
                       - state_luminosite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
-                    entity: binary_sensor.mouv_tom
+                    entity: binary_sensor.mouv_nina
                     name: |
                       [[[ return variables.var_name_mouv]]]
-                    show_last_changed: true
                     template:
                       - carte_badge
                       - state_mouv
@@ -10916,6 +11045,7 @@ views:
                 cards:
                   - type: custom:button-card
                     entity: scene.nina_ambiance_normale
+                    show_label: false
                     name: Jour
                     template:
                       - carte_badge
@@ -10926,6 +11056,7 @@ views:
                         entity_id: scene.nina_ambiance_normale
                   - type: custom:button-card
                     entity: scene.nina_ambiance_nuit
+                    show_label: false
                     name: Nuit
                     template:
                       - carte_badge
@@ -10935,8 +11066,10 @@ views:
                       service_data:
                         entity_id: scene.nina_ambiance_nuit
                   - type: custom:button-card
+                    entity: light.nina
                     name: 'Tout éteindre '
                     icon: mdi:lightbulb-multiple-off
+                    show_label: false
                     template:
                       - carte_badge
                     tap_action:
@@ -11001,9 +11134,9 @@ views:
                 entity: switch.moustique_nina
                 name: Moustique
                 show_state: false
-                show_last_changed: true
                 template:
                   - base
+                  - last_changed
                   - state_appareil
                   - state_unavailable
       - type: custom:layout-card
@@ -11026,16 +11159,15 @@ views:
             name: |
               [[[ return "Réglages" ]]]
           - square: false
-            columns: 2
+            columns: 5
             type: grid
             cards:
               - type: custom:button-card
                 entity: sensor.nina_reveil
                 show_state: true
-                show_last_changed: false
+                show_label: false
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_appareil
                   - state_unavailable
                 state:
@@ -11047,18 +11179,16 @@ views:
                       img_cell:
                         - background-color: var(--custom-img-cell-color-blue)
                       icon:
-                        - color: var(--custom-icon-color-blue)
-                      name:
-                        - color: var(--text_on)'
+                        - color: var(--custom-icon-color-blue)'
+                      state:
+                        - color: red
                 name: Réveil
                 icon: mdi:alarm
               - type: custom:button-card
                 entity: automation.reveil_nina
                 show_state: false
-                show_last_changed: true
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_appareil
                   - state_unavailable
                 name: Auto réveil
@@ -11066,10 +11196,8 @@ views:
               - type: custom:button-card
                 entity: automation.nina_chambre_allumage_auto
                 show_state: false
-                show_last_changed: true
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_appareil
                   - state_unavailable
                 name: ON auto
@@ -11077,24 +11205,20 @@ views:
               - type: custom:button-card
                 entity: automation.nina_chambre_off_auto
                 show_state: false
-                show_last_changed: true
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_appareil
                   - state_unavailable
                 name: OFF auto
                 icon: mdi:lightbulb-group-off
               - type: custom:button-card
                 entity: switch.nina_do_not_disturb_switch
-                show_last_changed: true
                 show_name: true
                 template:
-                  - base
-                  - base_petite
+                  - carte_badge
                   - state_appareil
                   - state_unavailable
-                name: Alexa silence
+                name: Echo silence
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -11207,11 +11331,11 @@ views:
                   - carte_badge
                   - state_luminosite
                 show_state: true
+                show_label: false
               - type: custom:button-card
                 entity: binary_sensor.mouv_escalier
                 name: Escalier
                 show_state: false
-                show_last_changed: true
                 template:
                   - carte_badge
                   - state_mouv
@@ -11220,7 +11344,6 @@ views:
                 entity: binary_sensor.mouv_palier
                 name: Palier
                 show_state: false
-                show_last_changed: true
                 template:
                   - carte_badge
                   - state_mouv
@@ -11232,7 +11355,7 @@ views:
             name: |
               [[[ return "Lumières" ]]]
           - square: false
-            columns: 4
+            columns: 2
             type: grid
             cards:
               - type: custom:button-card
@@ -11303,6 +11426,7 @@ views:
                   - carte_badge
                   - state_temp
                 show_state: true
+                show_label: false
               - type: custom:button-card
                 entity: sensor.hum_salle_de_bain
                 name: |
@@ -11311,6 +11435,7 @@ views:
                   - carte_badge
                   - state_humidite
                 show_state: true
+                show_label: false
           - type: custom:button-card
             template:
               - titre_section
@@ -11324,10 +11449,9 @@ views:
                 name: Chauffage
                 type: custom:button-card
                 show_state: false
-                show_last_changed: true
                 template:
                   - base
-                  - base_moyenne
+                  - last_changed
                   - state_appareil
                   - state_unavailable
           - type: custom:button-card
@@ -11473,6 +11597,7 @@ views:
                       - carte_badge
                       - state_temp
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.hum_couloir_rdc
                     name: |
@@ -11481,19 +11606,18 @@ views:
                       - carte_badge
                       - state_humidite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     template:
                       - carte_badge
                       - state_porte
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.porte_entree
                   - type: custom:button-card
                     template:
                       - carte_badge
-                      - state_porte
+                      - state_mouv
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.mouv_couloir
                     name: Couloir
               - type: custom:button-card
@@ -11642,18 +11766,14 @@ views:
     cards:
       - type: vertical-stack
         cards:
-          - square: false
-            columns: 1
-            type: grid
-            cards:
-              - type: custom:button-card
-                template:
-                  - base
-                  - state_mouv
-                  - state_unavailable
-                show_last_changed: true
-                entity: binary_sensor.mouv_salle_d_eau
-                name: Lavabo
+          - type: custom:button-card
+            template:
+              - base
+              - last_changed
+              - state_mouv
+              - state_unavailable
+            entity: binary_sensor.mouv_salle_d_eau
+            name: Lavabo
           - square: false
             columns: 3
             type: grid
@@ -11726,6 +11846,7 @@ views:
                       - carte_badge
                       - state_temp
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.hum_parents
                     name: |
@@ -11734,12 +11855,12 @@ views:
                       - carte_badge
                       - state_humidite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     template:
                       - carte_badge
                       - state_porte
                       - state_unavailable
-                    show_last_changed: true
                     entity: binary_sensor.porte_chambre_parents
                     name: Porte-fenêtre
               - type: custom:button-card
@@ -11754,7 +11875,7 @@ views:
                     name: Jour
                     template:
                       - carte_badge
-                    show_name: true
+                    show_label: false
                     tap_action:
                       action: call-service
                       service: scene.turn_on
@@ -11765,7 +11886,7 @@ views:
                     name: TV
                     template:
                       - carte_badge
-                    show_name: true
+                    show_label: false
                     tap_action:
                       action: call-service
                       service: script.turn_on
@@ -11773,10 +11894,11 @@ views:
                         entity_id: script.ambiance_cine_chevet_parents
                   - type: custom:button-card
                     name: 'Tout éteindre '
+                    entity: light.parents
                     icon: mdi:lightbulb-multiple-off
                     template:
                       - carte_badge
-                    show_name: true
+                    show_label: false
                     tap_action:
                       action: call-service
                       service: light.turn_off
@@ -12075,6 +12197,7 @@ views:
                       - carte_badge
                       - state_temp
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.sonde_garage_humidite
                     name: |
@@ -12083,12 +12206,14 @@ views:
                       - carte_badge
                       - state_humidite
                     show_state: true
+                    show_label: false
                   - type: custom:button-card
                     entity: sensor.sonde_garage_pression
                     name: pression
                     template:
                       - carte_badge
                     show_state: true
+                    show_label: false
               - square: false
                 columns: 3
                 type: grid
@@ -12097,7 +12222,6 @@ views:
                     entity: binary_sensor.porte_cagibi
                     name: Cagibi
                     show_state: false
-                    show_last_changed: true
                     template:
                       - carte_badge
                       - state_porte
@@ -12106,7 +12230,6 @@ views:
                     entity: binary_sensor.porte_garage
                     name: Garage
                     show_state: false
-                    show_last_changed: true
                     template:
                       - carte_badge
                       - state_porte
@@ -12116,7 +12239,6 @@ views:
                     name: |
                       [[[ return variables.var_name_mouv]]]
                     show_state: false
-                    show_last_changed: true
                     template:
                       - carte_badge
                       - state_mouv
@@ -12127,7 +12249,7 @@ views:
                 name: |
                   [[[ return "Lumière" ]]]
               - square: false
-                columns: 4
+                columns: 2
                 type: grid
                 cards:
                   - entity: light.cagibi
@@ -12140,15 +12262,6 @@ views:
                         card:
                           type: custom:my-slider
                           entity: light.cagibi
-              - type: custom:button-card
-                template:
-                  - titre_section
-                name: |
-                  [[[ return "Réglage" ]]]
-              - square: false
-                columns: 1
-                type: grid
-                cards:
                   - type: custom:button-card
                     entity: automation.cagibi_eclairage_off
                     name: OFF auto
@@ -12156,8 +12269,8 @@ views:
                     show_state: true
                     show_last_changed: true
                     template:
-                      - base
-                      - base_moyenne
+                      - carte_badge
+                      - last_changed
                       - state_appareil
                       - state_unavailable
       - type: custom:layout-card
@@ -14010,7 +14123,7 @@ views:
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14019,7 +14132,7 @@ views:
                     entity: input_boolean.sidecar_show_mode
                     name: Modes
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14028,7 +14141,7 @@ views:
                     entity: input_boolean.sidecar_show_porte
                     name: Portes
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14037,7 +14150,7 @@ views:
                     entity: input_boolean.sidecar_show_mouvement
                     name: Mouvements
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14046,7 +14159,7 @@ views:
                     entity: input_boolean.sidecar_show_lumiere
                     name: Lumières
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14055,7 +14168,7 @@ views:
                     entity: input_boolean.sidecar_show_autre
                     name: Appareils
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14064,7 +14177,7 @@ views:
                     entity: input_boolean.sidecar_show_air
                     name: Air
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14073,7 +14186,7 @@ views:
                     entity: input_boolean.sidecar_show_connecte
                     name: Connectés
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14082,7 +14195,7 @@ views:
                     entity: input_boolean.sidecar_show_courrier
                     name: Courrier
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14091,7 +14204,7 @@ views:
                     entity: input_boolean.sidecar_show_electricite
                     name: Électricité
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14100,7 +14213,7 @@ views:
                     entity: input_boolean.sidecar_show_gaz
                     name: Gaz
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14118,7 +14231,7 @@ views:
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14128,7 +14241,7 @@ views:
                     tap_action:
                       action: toggle
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14147,7 +14260,7 @@ views:
                 type: grid
                 cards:
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14158,7 +14271,7 @@ views:
                     tap_action:
                       action: toggle
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14169,7 +14282,7 @@ views:
                     tap_action:
                       action: toggle
                   - type: custom:button-card
-                    show_last_changed: false
+                    show_label: false
                     show_state: true
                     template:
                       - carte_badge
@@ -14283,7 +14396,7 @@ views:
                       - carte_jauge
                       - state_jauge_air
                       - state_unavailable
-                    show_last_changed: true
+                      - last_changed
                     styles:
                       label:
                         - font-size: 12px
@@ -14453,4 +14566,3 @@ views:
                      box-shadow: none;
                      font-family: Avenir;
                    }
-
