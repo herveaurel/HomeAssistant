@@ -45,6 +45,28 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 
 ### CHANGELOG : journal des modifications
 
+### version 2023.1.6
+
+Changements :
+
+- création d'un nouveau template 'last_changed" : agacé par le "il y a..." qui prend trop de place, ce template crée automtiquement un label personnalisé affichant avec précision la durée du last changed.
+    - valable que pour les "custom: button-card"
+    - il faut supprimer toutes les valeur "show_last_changed" de toutes les cartes
+    - se met de base quand c'est une carte lumiere ou badge, si on n'en veut pas il faut ajouter "show_label: false" dans la carte
+    - dans un autre type de carte, il faut ajouter "- last_changed" en template dans la carte 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/last_changed.jpg)
+
+- modifications du style des carte_lumiere : uniformité avec les autres cartes, et style automatique pour que les éléments se placent correctment peu importe la taille de la carte
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_lumieres.jpg)
+
+- carte lumière dans toutes les sous vues des pièces
+
+- nouvel agencement de certains onglets : les pièces, alarme etc...
+
+- nouvelle carte batterie
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_batterie.jpg)
+
+
 ### version 2023.1.5
 
 Changements :
