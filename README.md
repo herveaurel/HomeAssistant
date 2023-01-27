@@ -47,6 +47,8 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
 
 ### version 2023.1.6
 
+Note spéciale : Un très grand merci à mon ami André Fortuna Gouveia pour son coup de main, et ses jauges HATC-GAUGE-CARD dont voici le github : https://github.com/tagcashdev/hatc-gauge-card 👈🏼
+
 Changements :
 
 - création d'un nouveau template 'last_changed" : agacé par le "il y a..." qui prend trop de place, ce template crée automtiquement un label personnalisé affichant avec précision la durée du last changed.
@@ -65,8 +67,6 @@ Changements :
 
 - nouvelle carte batterie
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_batterie.jpg)
-
-Note spéciale : Un très grand merci à mon ami André Fortuna Gouveia pour son coup de main, et ses jauges HATC-GAUGE-CARD dont voici le github : https://github.com/tagcashdev/hatc-gauge-card 👈🏼
 
 
 ### version 2023.1.5
