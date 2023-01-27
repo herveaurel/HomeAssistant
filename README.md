@@ -67,11 +67,13 @@ Changements :
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_batterie.jpg)
 
 
+
 ### version 2023.1.5
 
 Changements :
 - carte lumières : noouvelle carte, pour uniformiser toutes les cartes lumières, et gagner de la place avec un meilleur visuel + contour lumineux afin de différencier avec les autres cartes allumées. 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_lumieres.jpg)
+
 
 
 ### version 2023.1.4
@@ -91,11 +93,14 @@ Changements :
     - modifications des couleurs des boutons en bas de la carte Activités
 
 
+
 ### version 2023.1.3
 
 Changements :
 - ajout de la valeur "var(--background-button-in-card)" dans chaque thèmes, pour la couleur du background des boutons dans les cartes. (une modification dans le thème s'applique instantanément sur tout le dashboard, plus pratique)
 - changement dans tout le lovelace du code couleur par cette valeur 
+
+
 
 ### version 2023.1.2
 
@@ -110,6 +115,8 @@ Changements :
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte-personne.jpg)
 
+
+
 ### version 2023.1.1
 
 Changements :
@@ -117,6 +124,8 @@ Changements :
 - ajout de traduction sur les erreurs des aspirateurs dans le template "systeme_avertissement"
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_meteo.jpg)
+
+
 
 ### 🎉 version 2023.1
 
