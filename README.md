@@ -24,18 +24,18 @@ Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées.
 
 ## 🚧 INSTALLATION
 
-Ce n'est pas du 1clik ! 
+Ce n'est pas du 1 click ! 
 
 Il faut quelques connaissances avant de se lancer. 
-- Installer quelques intégrations hacs necessaires au bon fonctionnnement.
+- Installer quelques intégrations HACS nécessaires au bon fonctionnnement.
 - Créer les bons sensor templates aussi, car je les utilise en masse et en appelle partout dans les cartes.
-- Savoir ou copier coller chaque partie, que ce soit les sensor templates, le contenu du lovelace, les templates button card... 
+- Savoir ou copier/coller chaque partie, que ce soit les sensor templates, le contenu du lovelace, les templates button card... 
 - Modifier les entités, supprimer celles en trop etc...
 
-Il faut adapter a sa config ! 🙂
+Il faut adapter à sa config ! 🙂
 
-Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur hacs :
-- l'onglet est parametré sur Type de vue : Horizontal (layout-card) / width: 350 / max_cols: 4
+Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur HACS :
+- l'onglet est paramétré sur Type de vue : Horizontal (layout-card) / width: 350 / max_cols: 4
 - une colonne "pile verticale" est imbriquée dans une carte "type: custom:layout-card" / "layout_type: masonry" / et a comme Layout options  "width: 280"
 
 
@@ -53,12 +53,12 @@ Changements :
 
 - création d'un nouveau template 'last_changed" : agacé par le "il y a..." qui prend trop de place, ce template crée automtiquement un label personnalisé affichant avec précision la durée du last changed.
     - valable que pour les "custom: button-card"
-    - il faut supprimer toutes les valeur "show_last_changed" de toutes les cartes
+    - il faut supprimer toutes les valeurs "show_last_changed" de toutes les cartes
     - se met de base quand c'est une carte lumiere ou badge, si on n'en veut pas il faut ajouter "show_label: false" dans la carte
     - dans un autre type de carte, il faut ajouter "- last_changed" en template dans la carte 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/last_changed.jpg)
 
-- modifications du style des carte_lumiere : uniformité avec les autres cartes, et style automatique pour que les éléments se placent correctment peu importe la taille de la carte
+- modifications du style des carte_lumiere : uniformité avec les autres cartes, et style automatique pour que les éléments se placent correctement peu importe la taille de la carte
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_lumieres.jpg)
 
 - carte lumière dans toutes les sous vues des pièces
@@ -72,7 +72,7 @@ Changements :
 ### version 2023.1.5
 
 Changements :
-- carte lumières : noouvelle carte, pour uniformiser toutes les cartes lumières, et gagner de la place avec un meilleur visuel + contour lumineux afin de différencier avec les autres cartes allumées. 
+- carte lumières : nouvelle carte, pour uniformiser toutes les cartes lumières, et gagner de la place avec un meilleur visuel + contour lumineux afin de différencier avec les autres cartes allumées. 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_lumieres.jpg)
 
 
@@ -82,14 +82,14 @@ Changements :
 Changements :
 - j'ai supprimé mon fichier sensor.yaml et j'ai remis cette partie à la racine de configuration.yaml suite à un soucis de refresh des templates. 
 - 🎉 button-card: je commence à travailler avec les variables ! Simplification des codes, uniformité, automatisation, tout est mieux avec les variables! Plusieurs cartes et templates button card impactés : Pièces, personnes, TV, carte_badge ...
-- cartes pièces : le graph est de retour, et les label beaucoup plus complets et automatisés grace aux variables 
+- cartes pièces : le graph est de retour, et les label beaucoup plus complets et automatisés grâce aux variables 
 - templates button-card: certains "state" passent en template pour diminuer le nombre de lignes du lovelace, comme "carte_bouton_state", ou "state_person" etc...
 - nouvelles double jauges pour les jauges température / humidité (voir capture)
 - carte Activité (sidebar) : boite aux lettres : ouverte / courrier relevé et en mode vacances : prochain passage de l’aspi prévu (voir capture) 
 - onglet Alarme: nouveau bouton pour le prochain passage d'aspi prévu en mode vacances (voir capture) 
 - onglet Lumières : changement des cartes pour un meilleur visuel (voir capture) 
 - quelques changements graphiques par ci par là comme par exemple : 
-    - inversmeent du gras entre name et label/state dans template "base" 
+    - inversement du gras entre name et label/state dans template "base" 
     - les boutons des capteurs dans les cartes pièces
     - modifications des couleurs des boutons en bas de la carte Activités
 
@@ -106,7 +106,7 @@ Changements :
 ### version 2023.1.2
 
 Changements :
-- corrections couleur de fond des boutons de mise a jour système, dans la carte Activité (template button card "sidebar")
+- corrections couleur de fond des boutons de mise à jour système, dans la carte Activité (template button card "sidebar")
 - corrections bugs sur les thèmes
 - améliorations de la carte Courrier : optoin "relevé courrier fait" via un bouton (un input, un sensor template), avec automatisation et notification avec choix de valider ou non le relevé lorsque le capteur de la boite s'active, ca sera parfait ! 
 
@@ -181,11 +181,11 @@ D'autres modifications viendront dans les prochaines mises à jour... 😇
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite2.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_activite3.jpg)
 
 🎉 Nouveautés :
-- Un tap sue les jauges dirige vers les sous vues associées. 
-- Un tap sur le bouton Adguard, switche automtiquemznt le ON/OFF
-- Un tap sur l'un des bouton de mise à jour, fait apparaitre / disparaitre le detail en dessous
+- Un tap sur les jauges dirige vers les sous vues associées. 
+- Un tap sur le bouton Adguard, switche automatiquement le ON/OFF
+- Un tap sur l'un des bouton de mise à jour, fait apparaitre / disparaitre le détail en dessous
 
-Afin de choisir les informations qui apparraissent dans la carte acticité : En haut à droite, un bouton ouvrant une sous-vue pour quelques réglages via un simple clic !
+Afin de choisir les informations qui apparraissent dans la carte activité : en haut à droite, un bouton ouvrant une sous-vue pour quelques réglages via un simple clic !
 Il est possible de choisir son thème, et de choisir ce qui sera affiché dans les informations dynamiques de la partie "Activité". 
 Pour cela, créer simplement des input.boolean, comme par exemple : 
 - input_boolean.sidecar_show_mode
@@ -212,7 +212,7 @@ Désormais l'icone d'une pièce prend la couleur réelle, ainsi qu'un dégradé 
 -----
 ## 😎 ONGLETS ET SOUS-VUES
 
-### Tableau de bord avec peu d'onglets...grace aux sous-vues ! J'en ai 30, voici des exemples : 
+### Tableau de bord avec peu d'onglets...grâce aux sous-vues ! J'en ai 30, voici des exemples : 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_1.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_2.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_alarme.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_4.jpg) 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_5.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_6.jpg) 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_7.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/popup_8.jpg)
@@ -252,7 +252,7 @@ Zigbee
 
 Bluetooth
 - capteurs plantes Xiaomi 
-- thermometres ronds à ecran Xiaomi 
+- thermometres ronds à écran Xiaomi 
 
 Wifi
 - Eclairage : ampoules couleurs, lampes de bureau, et bandeau led couleur Yeelight
@@ -276,7 +276,7 @@ Mes intégrations :
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations.jpg)
 
-Mes intégrations  hacs:
+Mes intégrations HACS:
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs.jpg)
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations_hacs2.jpg)
@@ -287,5 +287,5 @@ Mes intégrations  hacs:
 
 Si vous aimez , likez 🌟 mon repo !
 
-Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️ , dire merci 🙏 , me soutenir ❤️‍🩹, ou m'encourager 💪🏼, et devenir VIP ⭐️ pour une aide personnalisée par message privé :  https://www.paypal.com/paypalme/aaherve
+Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️, dire merci 🙏, me soutenir ❤️‍🩹, ou m'encourager 💪🏼, et devenir VIP ⭐️ pour une aide personnalisée par message privé : https://www.paypal.com/paypalme/aaherve
 Merci ! 
