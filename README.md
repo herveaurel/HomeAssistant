@@ -66,6 +66,7 @@ Changements :
 - nouvelle carte batterie
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/carte_batterie.jpg)
 
+Note spéciale : Un très grand merci à mon ami André Fortuna Gouveia pour son coup de main, et ses jauges HATC-GAUGE-CARD dont voici le github : https://github.com/tagcashdev/hatc-gauge-card 👈🏼
 
 
 ### version 2023.1.5
