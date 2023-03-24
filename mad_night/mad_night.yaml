@@ -5,7 +5,7 @@ mad_night:
       
       # Custom
       custom-blue: rgba(0, 118, 158,0.1)
-      custom-card-color-blue: rgba(0, 118, 158,1)
+      custom-card-color-blue: rgba(62,75,105,0.9) #rgba(0, 118, 158,0.8)
       custom-img-cell-color-blue: rgba(0, 118, 158,0.3)
       custom-icon-color-blue: rgba(0,191,255,1)
       custom-badge-color-blue: rgba(0, 118, 158,0.5) 
@@ -27,7 +27,9 @@ mad_night:
       custom-icon-color-orange: rgba(255,99,71,1)
       custom-img-cell-color-orange: rgba(255,99,71,0.3)
 
-      background-button-in-card: rgba(26, 40, 55,0.7) 
+      background-button-in-card: rgba(26, 35, 49,0) 
+      background-button-in-card-top: rgba(16, 30, 45,0.7)
+      
       
       text_on: rgba(211,211,211,1)
       text_on_sidebar: rgba(211,211,211,1)
@@ -83,7 +85,7 @@ mad_night:
       info-color: "#9b59b6"
       warning-color: "#f39c12"
       # Sidebar colors
-      sidebar-background-color: rgba(26, 40, 55,1)
+      sidebar-background-color: rgba(26, 35, 49,1)
       sidebar-icon-color: darkgrey #var(--light-primary-color)
       sidebar-text-color: darkgrey #var(--primary-text-color)
       sidebar-selected-background-color: var(--secondary-color)
@@ -115,8 +117,8 @@ mad_night:
       label-badge-red: var(--primary-color)
       label-badge-blue: var(--light-primary-color)
       # Cards colors
-      ha-card-background: linear-gradient(1deg, rgba(26, 40, 55,0.5), rgba(26, 40, 55,1))  #CARTES 
-      card-background-color: rgba(26, 40, 55,1) #POPUP ET CARTES DANS MENU
+      ha-card-background: linear-gradient(1deg, rgba(26, 35, 49,0.6), rgba(26, 35, 49,1))  #CARTES 
+      card-background-color: rgba(26, 35, 49,1) #POPUP ET CARTES DANS MENU
       popup-background-color: rgba(14,19,28,0.8)
       paper-card-background-color: var(--ha-card-background)
       paper-listbox-background-color: var(--primary-background-color)
@@ -126,8 +128,8 @@ mad_night:
       paper-toggle-button-unchecked-button-color: var(--disabled-color)
       paper-toggle-button-unchecked-bar-color: var(--primary-background-color)
       # Switch colors
-      switch-checked-color: var(--paper-toggle-button-checked-button-color)
-      switch-unchecked-button-color: var(--paper-toggle-button-unchecked-button-color)
+      switch-checked-color: rgba(0,191,255,1) #var(--paper-toggle-button-checked-button-color)
+      switch-unchecked-button-color: grey #var(--paper-toggle-button-unchecked-button-color)
       switch-unchecked-color: var(--paper-toggle-button-unchecked-bar-color)
       switch-unchecked-track-color: var(--paper-toggle-button-unchecked-bar-color)
       # Table colors
