@@ -1,3 +1,28 @@
+  - trigger:
+      - platform: event
+        event_type: motioneye.motion_detected
+        event_data:
+          device_id: 7a5f27c365478602e87cb61324b1801e
+    binary_sensor:
+      - name: Argus mouvement
+        auto_off: 29
+        state: "true"
+        device_class: motion
+
+  - trigger:
+      - platform: event
+        event_type: motioneye.motion_detected
+        event_data:
+          device_id: fcdd95e68438ab22faf213dd2a752fae
+    binary_sensor:
+      - name: Trackmix mouvement
+        auto_off: 29
+        state: "true"
+        device_class: motion
+
+       
+        
+        
   - sensor:
   
 ######GAZ
