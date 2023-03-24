@@ -45,7 +45,7 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur HACS :
 
 ### 🥳 Complètement revisité pour cette nouvelle version avril 2023 : 
 
-Cetet fois-ci, je ne peux pas proposer un changelog, c'est une nouvelle version. 
+Cette fois-ci, je ne peux pas proposer un changelog, c'est une nouvelle version !
 Je travaille dessus depuis des mois, j'ai réécrit énormément de choses : 
 
 - Réécriture complètes des templates button card  
