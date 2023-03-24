@@ -7,6 +7,14 @@
     entities:
       - camera.roborock_s50
       - camera.roborock_s6
+      - camera.entree_alarme_detection
+      - camera.sejour_alarme_detection
+      - camera.sonnette_alarme_detection
+      - camera.garage_alarme_detection
+      - camera.entree_detection
+      - camera.sejour_detection
+      - camera.sonnette_detection
+      - camera.garage_detection
     event_types:
 #      - call_service # Don't record service calls
 #      - deconz_event
