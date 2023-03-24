@@ -5,8 +5,11 @@
       - alarm_control_panel.aqara_hub_54e1_security_system
       - alarm_control_panel.clavier_alarme
     include_entities:
-      - camera.camera_hub_g3_2725
+      - lock.garage
+      - lock.serrure_entree
+      - camera.camera_sejour
       - camera.camera_g2hpro
+      - camera.camera_entree
       - climate.chauffage_parents
       - sensor.moniteur_qualite_air
       - switch.sirene_heiman
@@ -25,11 +28,11 @@
       - light.lustre_tom
       - light.chevet_tom
       - light.lampe_de_bureau_tom
+      - light.sonoff_10013f6d7e
       - light.lustre_nina
       - light.chevet_nina
       - light.lampadaire_nina
       - light.lampe_de_bureau_nina
-      - switch.guirlande_nina
       - light.lustre_manon_et_leane
       - light.lampe_manon_et_leane
       - light.chevet_leane
