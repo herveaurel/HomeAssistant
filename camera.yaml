@@ -8,13 +8,61 @@
 
 #############################################
 ##                                         ##
-##           Cam Xiaomi 360                ##
+##           Cam générques                 ##
 ##                                         ##
 ############################################# 
-#  - platform: generic
-#    still_image_url: http://192.168.1.24/jpg/image.jpg
-#    stream_source: rtsp://192.168.1.24:8554/substream
-#    name: Caméra salon
+
+####
+  - platform: local_file
+    file_path: /media/detections/verifications/camera.entree/verifiee.jpg 
+    name: entree_verifiee
+  - platform: local_file
+    file_path: /media/detections/verifications/camera.entreealarme/verifiee.jpg 
+    name: entreealarme_verifiee
+  - platform: local_file
+    file_path: /media/detections/verifications/camera.sejour/verifiee.jpg 
+    name: sejour_verifiee
+  - platform: local_file
+    file_path: /media/detections/verifications/camera.sejouralarme/verifiee.jpg 
+    name: sejouralarme_verifiee
+  - platform: local_file
+    file_path: /media/detections/verifications/camera.garage/verifiee.jpg 
+    name: garage_verifiee
+  - platform: local_file
+    file_path: /media/detections/verifications/camera.garagealarme/verifiee.jpg 
+    name: garagealarme_verifiee
+  - platform: local_file
+    file_path: /media/detections/verifications/camera.sonnette/verifiee.jpg 
+    name: sonnette_verifiee
+  - platform: local_file
+    file_path: /media/detections/verifications/camera.sonnettealarme/verifiee.jpg 
+    name: sonnettealarme_verifiee
+
+#### 
+  - platform: local_file
+    file_path: /media/detections/captures/entree_alarme_detection.jpg 
+    name: entreealarme_detection
+  - platform: local_file
+    file_path: /media/detections/captures/entree_detection.jpg 
+    name: entree_detection
+  - platform: local_file
+    file_path: /media/detections/captures/sejour_alarme_detection.jpg 
+    name: sejouralarme_detection
+  - platform: local_file
+    file_path: /media/detections/captures/sejour_detection.jpg 
+    name: sejour_detection
+  - platform: local_file
+    file_path: /media/detections/captures/garage_alarme_detection.jpg 
+    name: garagealarme_detection
+  - platform: local_file
+    file_path: /media/detections/captures/garage_detection.jpg 
+    name: garage_detection
+  - platform: local_file
+    file_path: /media/detections/captures/sonnette_alarme_detection.jpg 
+    name: sonnettealarme_detection
+  - platform: local_file
+    file_path: /media/detections/captures/sonnette_detection.jpg 
+    name: sonnette_detection 
     
 #############################################
 ##                                         ##
