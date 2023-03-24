@@ -10,7 +10,24 @@ cloud:
 api:
 wake_on_lan:
 discovery:
+stream:
+ffmpeg:
 
+# Customize
+homeassistant:
+  customize: !include customize.yaml
+  allowlist_external_dirs:
+    - /tmp
+    - /config/www
+    - /media
+    
+# Themes
+frontend:
+#  javascript_version: latest
+  themes: !include_dir_merge_named themes/
+  extra_module_url:
+    - /local/card-mod.js
+    
 #############################################
 ##                                         ##
 ##           Text to speech                ##
@@ -19,7 +36,7 @@ discovery:
 tts:
   - platform: google_translate
     language: 'fr'
-
+        
 #############################################
 ##                                         ##
 ##              Scinder                    ##
@@ -42,21 +59,6 @@ scene: !include scenes.yaml
 
 # Input Select
 input_text: !include input_text.yaml
-
-# Customize
-homeassistant:
-  customize: !include customize.yaml
-  allowlist_external_dirs:
-    - "/tmp"
-    - "/config/www/tmp"
-    - "/media/Sonnette"
-
-# Themes
-frontend:
-#  javascript_version: latest
-  themes: !include_dir_merge_named themes/
-  extra_module_url:
-    - /local/card-mod.js
 
 # ZHA
 zha: !include zha.yaml 
@@ -105,6 +107,9 @@ device_tracker: !include device_tracker.yaml
 
 # Alarme 
 alarm_control_panel: !include alarm_control_panel.yaml
+
+# Doods
+image_processing: !include doods.yaml
 
 # Switch 
 switch: !include switch.yaml
@@ -209,6 +214,44 @@ sensor:
   - platform: template
     sensors:
 
+      dans_2_heures:
+        friendly_name: exemple, dans 2 heures          
+        value_template: >-
+          {{(as_timestamp(states.input_boolean.lave_linge.last_changed) + (7200)) | timestamp_custom("%Hh%m",true)}}
+          
+      demain:
+        friendly_name: jour de demain          
+        value_template: >-
+          {% set demain = (as_timestamp(now())+ (86400)) | timestamp_custom("%A",true)
+            | replace('Monday', 'Lundi')
+            | replace('Tuesday', 'Mardi')
+            | replace('Wednesday', 'Mercredi')
+            | replace('Thursday', 'Jeudi')
+            | replace('Friday', 'Vendredi')
+            | replace('Saturday', 'Samedi')
+            | replace('Sunday', 'Dimanche') %}
+          {{ demain }}
+
+      serrure_entree_state_en_secondes:
+        friendly_name: Serrure entrée état en secondes        
+        value_template: >-
+         {{as_timestamp(now()) - as_timestamp(states.lock.serrure_entree.last_changed)}} 
+
+      porte_entree_state_en_secondes:
+        friendly_name: Porte entrée état en secondes        
+        value_template: >-
+         {{as_timestamp(now()) - as_timestamp(states.binary_sensor.porte_entree.last_changed)}}
+
+      serrure_garage_state_en_secondes:
+        friendly_name: Serrure garage état en secondes        
+        value_template: >-
+         {{as_timestamp(now()) - as_timestamp(states.lock.garage.last_changed)}} 
+
+      porte_garage_state_en_secondes:
+        friendly_name: Porte garage état en secondes        
+        value_template: >-
+         {{as_timestamp(now()) - as_timestamp(states.binary_sensor.porte_garage.last_changed)}}
+         
       aspi_mode_vacances_non_formate:
         friendly_name: passage aspi en mode vacances          
         value_template: >-
@@ -236,6 +279,17 @@ sensor:
         value_template: >-
           {{ as_timestamp(states.input_boolean.courrier_releve.last_changed) | timestamp_custom("%-Hh%M") }}
 
+      appareils_charges:
+        friendly_name: Appareils chargés          
+        value_template: >-
+         {% set charge = states | selectattr('entity_id', 'in', state_attr('group.appareils_charges','entity_id')) | selectattr('state','in',['','Full']) | map(attribute='name') | list %}
+         {% if charge | length == 1 %} 
+         Chargé : {{ charge[0] }} 
+         {% elif charge | length > 1 %}
+         Chargés : {{ charge[:-1] | join(' , ') }}{{' ,' if charge | length > 2 else ' '}} et {{ charge[-1]}} 
+         {% else %}
+         {% endif %}
+         
 ###### SOLEIL
       sun_elevation:
         friendly_name: Sun Elevation
@@ -381,6 +435,14 @@ sensor:
         value_template: >-
           {% set days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]  %}
           {{ days[now().weekday()] }}
+
+      date_mois:
+        entity_id: sensor.date
+        friendly_name: "date mois"
+        icon_template: mdi:calendar-today
+        value_template: >
+          {% set months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"] %}
+          {{  months[now().month-1] }}  
           
       date_simple:
         entity_id: sensor.date
@@ -747,17 +809,23 @@ sensor:
       calendar_famille_message:
         friendly_name: calendar.famille message
         value_template: "{{ state_attr('calendar.famille_famille' , 'message') }}"
-      calendar_famille_heure:
-        friendly_name: calendar.famille heure
+      calendar_famille_heure_debut:
+        friendly_name: calendar.famille heure début
         value_template: "{{ state_attr('calendar.famille_famille' , 'start_time') }}" 
-      calendar_famille_heure_formatee:
-        friendly_name: calendar.famille heure formatee
-        value_template: "{{as_timestamp(states('sensor.calendar_famille_heure')) | timestamp_custom('%-Hh%M', 'true') }}"        
+      calendar_famille_heure_fin:
+        friendly_name: calendar.famille heure fin
+        value_template: "{{ state_attr('calendar.famille_famille' , 'end_time') }}" 
+      calendar_famille_heure_debut_formatee:
+        friendly_name: calendar.famille heure début formatee
+        value_template: "{{as_timestamp(states('sensor.calendar_famille_heure_debut')) | timestamp_custom('%-Hh%M', 'true') }}"
+      calendar_famille_heure_fin_formatee:
+        friendly_name: calendar.famille heure fin formatee
+        value_template: "{{as_timestamp(states('sensor.calendar_famille_heure_fin')) | timestamp_custom('%-Hh%M', 'true') }}"  
       calendar_famille:
         friendly_name: calendar.famille 
         value_template: >- 
           {% if not is_state("sensor.calendar_famille_message", "unknown") -%} 
-            {{ states('sensor.calendar_famille_heure_formatee') }} : {{ states('sensor.calendar_famille_message') }}
+            {{ states('sensor.calendar_famille_heure_debut_formatee') }} - {{ states('sensor.calendar_famille_heure_fin_formatee') }} : {{ states('sensor.calendar_famille_message') }}
           {% else -%}  
             Aucun évènement
           {% endif -%} 
@@ -817,45 +885,65 @@ sensor:
         friendly_name: Anniversaire
         value_template: >-    
           {% if is_state("sensor.date_simple_v2", "22 Mars") -%}
-             Anniversaire Alex 
-          {% elif is_state("sensor.date_simple_v2", "9 Février") -%}
-            Anniversaire Anne  
+          {% set age  = states.sensor.date_annee.state | int - 1975 %}
+             Anniversaire Alex ({{ age }} ans)
+          {% elif is_state("sensor.date_simple_v2", "9 Fevrier") -%}
+          {% set age  = states.sensor.date_annee.state | int - 1987 %}
+            Anniversaire Anne ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "6 Mars") -%}
-            Anniversaire Yvan 
+          {% set age  = states.sensor.date_annee.state | int - 1973 %}
+            Anniversaire Yvan ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "25 Mars") -%}
-            Anniversaire Charlène 
+          {% set age  = states.sensor.date_annee.state | int - 1989 %}
+            Anniversaire Charlène ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "10 Mai") -%}
-              Anniversaire Mamie Janine 
+          {% set age  = states.sensor.date_annee.state | int - 1930 %}
+              Anniversaire Mamie Janine ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "30 Mai") -%}
-            Anniversaire Manon et Monique 
+          {% set age1  = states.sensor.date_annee.state | int - 2010 %}
+          {% set age2  = states.sensor.date_annee.state | int - 1952 %}
+            Anniversaire Manon ({{ age1 }} ans) et Monique ({{ age2 }} ans)
           {% elif is_state("sensor.date_simple_v2", "14 Juin") -%}
-            Anniversaire Papi Marco 
+          {% set age  = states.sensor.date_annee.state | int - 1955 %}
+            Anniversaire Papi Marco ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "29 Juin") -%}
-            Anniversaire Monika 
+          {% set age  = states.sensor.date_annee.state | int - 1971 %}
+            Anniversaire Monika ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "30 Juin") -%}
-            Anniversaire Aurel 
+          {% set age  = states.sensor.date_annee.state | int - 1980 %}
+            Anniversaire Aurel ({{ age }} ans) 
           {% elif is_state("sensor.date_simple_v2", "14 Juillet") -%}
-            Anniversaire Luc 
+          {% set age  = states.sensor.date_annee.state | int - 1952 %}
+            Anniversaire Luc ({{ age }} ans) 
           {% elif is_state("sensor.date_simple_v2", "31 Juillet") -%}
-            Anniversaire Léane et Mamé 
+          {% set age  = states.sensor.date_annee.state | int - 2011 %}
+            Anniversaire Léane ({{ age }} ans) et Mamé 
           {% elif is_state("sensor.date_simple_v2", "23 Octobre") -%}
-            Anniversaire Tom 
+          {% set age  = states.sensor.date_annee.state | int - 2007 %}
+            Anniversaire Tom ({{ age }} ans) 
           {% elif is_state("sensor.date_simple_v2", "29 Octobre") -%}
-            Anniversaire Grégoire 
+          {% set age  = states.sensor.date_annee.state | int - 2001 %}
+            Anniversaire Grégoire ({{ age }} ans) 
           {% elif is_state("sensor.date_simple_v2", "31 Ocotobre") -%}
-            Anniversaire Antoine 
+          {% set age  = states.sensor.date_annee.state | int - 1993 %}
+            Anniversaire Antoine ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "10 Décembre") -%}
-            Anniversaire Suzie 
+          {% set age  = states.sensor.date_annee.state | int - 1952 %}
+            Anniversaire Suzie ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "27 Décembre") -%}
-            Anniversaire Kevin 
+          {% set age  = states.sensor.date_annee.state | int - 1988 %}
+            Anniversaire Kevin ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "8 Janvier") -%}
-            Anniversaire Nina 
+          {% set age  = states.sensor.date_annee.state | int - 2013 %}
+            Anniversaire Nina  ({{ age }} ans)
           {% elif is_state("sensor.date_simple_v2", "1 Janvier") -%}
             Bonne année !
           {% elif is_state("sensor.date_simple_v2", "13 Janvier") -%}
-            Anniversaire Maxime  
+          {% set age  = states.sensor.date_annee.state | int - 1987 %}
+            Anniversaire Maxime ({{ age }} ans) 
           {% elif is_state("sensor.date_simple_v2", "29 Janvier") -%}
-            Anniversaire Nadège 
+          {% set age  = states.sensor.date_annee.state | int - 1964 %}
+            Anniversaire Nadège ({{ age }} ans) 
           {% else %}
             Aucun
           {%- endif %}
@@ -989,7 +1077,31 @@ sensor:
             | reject('in', ['undefined', 'unavailable'])
             | selectattr('entity_id', 'in', state_attr('group.connecte', 'entity_id'))|selectattr('state', 'equalto', 'home')
             | map(attribute='name') | list | count}}            
-          
+
+      compteur_serrures:
+        friendly_name: Compteur serrures ouvertes          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('group.serrures', 'entity_id'))|selectattr('state', 'equalto', 'unlocked')
+            | map(attribute='name') | list | count}} 
+            
+      serrure_ouverte:
+        friendly_name: serrures ouvertes          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('group.serrures', 'entity_id'))|selectattr('state', 'equalto', 'unlocked')
+            | map(attribute='name') | list | join(' , ')  }} 
+            
+      serrure_bloquee:
+        friendly_name: serrures bloquées          
+        value_template: >-
+            {{states                                  
+            | reject('in', ['undefined', 'unavailable'])
+            | selectattr('entity_id', 'in', state_attr('group.serrures', 'entity_id'))|selectattr('state', 'equalto', 'jammed')
+            | map(attribute='name') | list | join(' , ')  }} 
+            
 ###### MODES   
       compteur_modes:
         friendly_name: Compteur modes         
@@ -1243,15 +1355,12 @@ sensor:
       rappel:
         friendly_name: rappel         
         value_template: >-
-          {%  if not is_state("sensor.compteur_rappel", "14") %} 
+
             {% if not is_state("sensor.le_bureau_next_reminder", "unknown") -%}  
               Bureau : {{ state_attr('sensor.le_bureau_next_reminder' , 'reminder') }} le {{as_timestamp(states('sensor.le_bureau_next_reminder')) | timestamp_custom("%d/%m à %Hh%M") }} 
             {% endif -%}
             {% if not is_state("sensor.le_salon_next_reminder", "unknown") -%}  
               Salon : {{ state_attr('sensor.le_salon_next_reminder' , 'reminder') }} le {{as_timestamp(states('sensor.le_salon_next_reminder')) | timestamp_custom("%d/%m à %Hh%M") }}  
-            {% endif -%}
-            {% if not is_state("sensor.aurel_s_fire_tv_cube_next_reminder", "unknown") -%}  
-              Fire Cube : {{ state_attr('aurel_s_fire_tv_cube_next_reminder' , 'reminder') }} le {{as_timestamp(states('aurel_s_fire_tv_cube_next_reminder')) | timestamp_custom("%d/%m à %Hh%M") }}  
             {% endif -%}
             {% if not is_state("sensor.la_cuisine_next_reminder", "unknown") -%}  
               Cuisine : {{ state_attr('sensor.la_cuisine_next_reminder' , 'reminder') }} le {{as_timestamp(states('sensor.la_cuisine_next_reminder')) | timestamp_custom("%d/%m à %Hh%M") }}  
@@ -1277,9 +1386,7 @@ sensor:
             {% if not is_state("sensor.nina_next_reminder", "unknown") -%}  
               Nina : {{ state_attr('sensor.nina_next_reminder' , 'reminder') }} le {{as_timestamp(states('sensor.nina_next_reminder')) | timestamp_custom("%d/%m à %Hh%M") }} 
             {% endif -%}
-          {% else -%}
-            Aucun
-          {% endif -%}
+
           
 ###### APPAREILS HS AVERTISSEMENTS ET COMPTEURS
           
@@ -1974,6 +2081,15 @@ sensor:
           {%- else %}
           {%- endif %}
 
+###### SECHE LINGE        
+      seche_linge_duree:
+        friendly_name: seche-linge durée
+        value_template: >-   
+          {% if states.input_boolean.seche_linge.state == 'on' %}
+            {{ as_timestamp(states.input_boolean.seche_linge.last_changed) | timestamp_custom("%Hh%M") }}  
+          {%- else %}
+          {%- endif %}
+          
 ###### ASPIS
 
       walle_statut:
@@ -1993,6 +2109,7 @@ sensor:
         friendly_name: walle state (carte aspi)
         value_template: >- 
           {% set walle_state = states('vacuum.wall_e') 
+            | replace('unavailable', 'Indisponible')
             | replace('cleaning', 'Nettoyage')
             | replace('returning', 'Retour')
             | replace('error', '️ERREUR')
@@ -2004,7 +2121,8 @@ sensor:
       r2d2_state:
         friendly_name: r2d2 state (carte aspi)
         value_template: >- 
-          {% set r2d2_state = states('vacuum.r2d2') 
+          {% set r2d2_state = states('vacuum.r2d2')
+            | replace('unavailable', 'Indisponible')
             | replace('cleaning', 'Nettoyage')
             | replace('returning', 'Retour')
             | replace('error', '️ERREUR')
@@ -2061,16 +2179,32 @@ sensor:
 
               {% set time  = ((as_timestamp(now()) - as_timestamp(states.sensor.compteur_thermo_hs.last_changed)) /60) | round(0) %}
               {% if  states('sensor.compteur_thermo_hs') | float(0) > 4 and time > 5  -%}
-                  <b>Bluetooth HS</b> depuis {{ as_timestamp(states.sensor.compteur_thermo_hs.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.sensor.compteur_thermo_hs.last_changed)}})<br>
+                  Bluetooth HS</b> depuis {{ as_timestamp(states.sensor.compteur_thermo_hs.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.sensor.compteur_thermo_hs.last_changed)}})<br>
               {% else -%}
               {% endif -%}
-              
+
+              {% set serrure = states | selectattr('entity_id', 'in', state_attr('group.serrures','entity_id')) | selectattr('state','in',['','jammed']) | map(attribute='name') | list %}
+              {%- if serrure | length == 0 -%}
+              {%- elif serrure | length == 1 -%}
+               Serrure bloquée :</b> {{ serrure[0]}}<br>
+              {%- else -%}
+               Serrures bloquées :</b> {{ serrure[:-1] | join(', ') }}{{', ' if serrure | length > 1 else ' '}}et {{ serrure[-1]}}<br>
+               {%- endif -%}
+               
+              {% set serrure = states | selectattr('entity_id', 'in', state_attr('group.serrures','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
+              {%- if serrure | length == 0 -%}
+              {%- elif serrure | length == 1 -%}
+               Serrure HS :</b> {{ serrure[0]}}<br>
+              {%- else -%}
+               Serrures HS :</b> {{ serrure[:-1] | join(', ') }}{{', ' if serrure | length > 1 else ' '}}et {{ serrure[-1]}}<br>
+               {%- endif -%}
+               
               {% set cam = states | selectattr('entity_id', 'in', state_attr('group.cameras','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {%- if cam | length == 0 -%}
               {%- elif cam | length == 1 -%}
-               <b>Caméra HS :</b> {{ cam[0]}}<br>
+               Caméra HS :</b> {{ cam[0]}}<br>
               {%- else -%}
-               <b>Caméras HS :</b> {{ cam[:-1] | join(', ') }}{{', ' if cam | length > 1 else ' '}}et {{ cam[-1]}}<br>
+               Caméras HS :</b> {{ cam[:-1] | join(', ') }}{{', ' if cam | length > 1 else ' '}}et {{ cam[-1]}}<br>
                {%- endif -%}
 
               {% set time  = ((as_timestamp(now()) - as_timestamp(states.sensor.compteur_plante_hs.last_changed)) /60) | round(0) %}
@@ -2078,18 +2212,20 @@ sensor:
                 {% set plante = states | selectattr('entity_id', 'in', state_attr('group.plantes','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                 {%- if plante | length == 0 -%}
                 {%- elif plante | length == 1 -%}
-                 <b>Plante HS :</b> {{ plante[0]}}<br>
+                 Plante HS :</b> {{ plante[0]}}<br>
                 {%- else -%}
-                 <b>Plantes HS :</b> {{ plante[:-1] | join(', ') }}{{', ' if plante | length > 1 else ' '}}et {{ plante[-1]}}<br>
+                 Plantes HS :</b> {{ plante[:-1] | join(', ') }}{{', ' if plante | length > 1 else ' '}}et {{ plante[-1]}}<br>
                  {%- endif -%}
               {%- endif -%}
 
+            
+            
               {%- if states('sensor.compteur_lumieres_hs') | float(0) > 0  -%}
                {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('light.tout','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                {% if lum_hs | length == 1 -%} 
-              <b>Lumière HS :</b> {{ lum_hs[0] }}<br>
+              Lumière HS :</b> {{ lum_hs[0] }}<br>
                {% else -%}
-               <b>{{ states('sensor.compteur_lumieres_hs') }} lumières HS :</b> {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+               {{ states('sensor.compteur_lumieres_hs') }} lumières HS :</b> {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
                {% endif -%}
               {% else -%}
               {% endif -%}
@@ -2097,44 +2233,45 @@ sensor:
               {%- if states.input_boolean.noel.state == "on"  -%}
                {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.noel','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                {%- if open_doors | length == 1 -%} 
-               <b>Lumière Noël HS :</b> { open_doors[0] }}
+               Lumière Noël HS :</b> { open_doors[0] }}
                {%- elif open_doors | length > 1 -%}
-               <b>Lumières Noël HS :</b> {{ open_doors[:-1] | join(' , ') }} {{'' if open_doors | length == 2 else ' '}}et {{ open_doors[-1]}}
+               Lumières Noël HS :</b> {{ open_doors[:-1] | join(' , ') }} {{'' if open_doors | length == 2 else ' '}}et {{ open_doors[-1]}}
                {%- else -%}
                {%- endif -%}
               {%- else -%}
               {%- endif -%}
-
+              
+               
               {% set porte_hs = states | selectattr('entity_id', 'in', state_attr('binary_sensor.portes','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {%- if porte_hs | length == 0 -%} 
               {%- elif porte_hs | length == 1 -%} 
-               <b>Porte HS :</b> {{ porte_hs[0] }}<br>
+               Porte HS :</b> {{ porte_hs[0] }}<br>
               {%- else -%}
-               <b>Porte HS :</b> {{ porte_hs[:-1] | join(' , ') }}{{' ,' if porte_hs | length > 2 else ' '}} et {{ porte_hs[-1]}}<br>
+               Porte HS :</b> {{ porte_hs[:-1] | join(' , ') }}{{' ,' if porte_hs | length > 2 else ' '}} et {{ porte_hs[-1]}}<br>
               {%- endif -%}
 
               {% set mouv_hs = states | selectattr('entity_id', 'in', state_attr('binary_sensor.mouvements','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {%- if mouv_hs | length == 0 -%} 
               {%- elif mouv_hs | length == 1 -%} 
-               <b>Mouvement HS :</b> {{ mouv_hs[0] }}<br>
+               Mouvement HS :</b> {{ mouv_hs[0] }}<br>
               {%- else -%}
-               <b>Mouvements HS :</b> {{ mouv_hs[:-1] | join(' , ') }}{{' ,' if mouv_hs | length > 2 else ' '}} et {{ mouv_hs[-1]}}<br>
+               Mouvements HS :</b> {{ mouv_hs[:-1] | join(' , ') }}{{' ,' if mouv_hs | length > 2 else ' '}} et {{ mouv_hs[-1]}}<br>
               {%- endif -%}
 
               {% set moustique_hs = states | selectattr('entity_id', 'in', state_attr('group.moustiques','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {%- if moustique_hs | length == 0 -%} 
               {%- elif moustique_hs | length == 1 -%} 
-               <b>Prise anti-moustiques HS :</b> {{ moustique_hs[0] }}br>
+               Prise anti-moustiques HS :</b> {{ moustique_hs[0] }}<br>
               {%- else -%}
-               <b>Prises anti-moustiques :</b> {{ moustique_hs[:-1] | join(' , ') }}{{' ,' if moustique_hs | length > 2 else ' '}} et {{ moustique_hs[-1]}}<br>
+               Prises anti-moustiques :</b> {{ moustique_hs[:-1] | join(' , ') }}{{' ,' if moustique_hs | length > 2 else ' '}} et {{ moustique_hs[-1]}}<br>
               {%- endif -%}
            
               {%- if states('sensor.compteur_zigbee_hs') | float(0) > 0  -%}
                {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.zigbee','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                {% if lum_hs | length == 1 -%} 
-               <b>Appareil HS :</b> {{ lum_hs[0] }}<br>
+               Appareil HS :</b> {{ lum_hs[0] }}<br>
                {% else -%}
-                <b>Appareils HS :</b> {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+                Appareils HS :</b> {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
                {% endif -%}
               {% else -%}
               {% endif -%} 
@@ -2142,9 +2279,9 @@ sensor:
               {%- if states('sensor.compteur_echo_hs') | float(0) > 0  -%}
               {% set open_doors = states | selectattr('entity_id', 'in', state_attr('group.echos','entity_id')) | selectattr('state','in',['on','unavailable']) | map(attribute='name') | list %}
                {% if open_doors | length == 1 -%} 
-                <b>Echo HS :</b> {{ open_doors[0] }}<br>
+                Echo HS :</b> {{ open_doors[0] }}<br>
                {% else -%}
-                <b>{{ states('sensor.compteur_echo_hs') }} Echos HS :</b> {{ open_doors[:-1] | join(' , ') }}{{' ,' if open_doors | length > 2 else ' '}}et {{ open_doors[-1]}}<br>
+                {{ states('sensor.compteur_echo_hs') }} Echos HS :</b> {{ open_doors[:-1] | join(' , ') }}{{' ,' if open_doors | length > 2 else ' '}}et {{ open_doors[-1]}}<br>
                {% endif -%}
               {% endif -%}
 
@@ -2153,34 +2290,38 @@ sensor:
                {% set lum_hs = states | selectattr('entity_id', 'in', state_attr('group.thermo','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
                {% if lum_hs | length == 0 -%} 
                {% elif lum_hs | length == 1 -%} 
-               <b>Thermomètre HS</b> : {{ lum_hs[0] }}<br>
+               Thermomètre HS</b> : {{ lum_hs[0] }}<br>
                {% else -%}
-                <b>{{ states('sensor.compteur_thermo_hs') }} Thermomètres HS :</b> {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
+                {{ states('sensor.compteur_thermo_hs') }} Thermomètres HS :</b> {{ lum_hs[:-1] | join(' , ') }}{{' ,' if lum_hs | length > 2 else ' '}} et {{ lum_hs[-1]}}<br>
                {% endif -%}
               {% else -%}
               {% endif -%}
 
               {%- if states('sensor.disk_use_percent_home')| float(0) > 70.0 -%}
-              <b>Espace DD</b> {{states('sensor.disk_use_percent_home')}}%<br>
+               Espace DD : {{states('sensor.disk_use_percent_home')}}%<br>
               {% endif -%}             
-              {%- if states('sensor.cpu_temperature')| float(0) > 65 -%}
-               <b>CPU</b> {{states('sensor.cpu_temperature')}}°<br>
+              {%- if states('sensor.cpu_temperature')| float(0) > 70 -%}
+               RPI CPU : {{states('sensor.cpu_temperature')}}°<br>
               {% endif -%}
-
+              {%- if states('sensor.memory_use_percent')| float(0) > 70 -%}
+               RPI mémoire : {{states('sensor.memory_use_percent')}}%<br>
+              {% endif -%}
+              
               {%- if is_state('device_tracker.arlo_sonnette', 'not_home') -%}
-               <b>Sonnette Arlo déconnectée</b><br>
+               Sonnette</b> déconnectée<br>
               {% endif -%}
 
               {% set time  = ((as_timestamp(now()) - as_timestamp(states.vacuum.wall_e.last_changed)) /60) | round(0) %}
               {%- if states('vacuum.wall_e')  == 'unavailable' and time > 1 -%}
-                <b>Wall-E indisponible</b> depuis {{ as_timestamp(states.vacuum.wall_e.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.vacuum.wall_e.last_changed)}})<br>
+                Wall-E indisponible</b> depuis {{ as_timestamp(states.vacuum.wall_e.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.vacuum.wall_e.last_changed)}})<br>
               {% endif -%}
               {% set time  = ((as_timestamp(now()) - as_timestamp(states.vacuum.r2d2.last_changed)) /60) | round(0) %}
               {%- if states('vacuum.r2d2')  == 'unavailable' and time > 1 -%}
-                <b>R2D2 indisponible</b> depuis {{ as_timestamp(states.vacuum.r2d2.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.vacuum.r2d2.last_changed)}})<br>
+                R2D2 indisponible</b> depuis {{ as_timestamp(states.vacuum.r2d2.last_changed) | timestamp_custom("%Hh%M") }} ({{relative_time(states.vacuum.r2d2.last_changed)}})<br>
               {% endif -%}
               
               {% set walle_error = states('sensor.walle_error') 
+                | replace('Laser distance sensor error', 'Erreur du capteur laser. Essayez de tourner la tête du laser.')
                 | replace('Device stuck, clean area', 'coincé ou bloqué ! Retirez les obstacles')
                 | replace('Docking station not reachable', 'Impossible d atteindre la station de charge')
                 | replace('Charging fault', 'Impossible de charger correctement, assurez-vous que les surfaces de chargements sont propres')
@@ -2188,13 +2329,14 @@ sensor:
                 | replace('Clean hovering sensors, move robot', 'Problème avec les capteurs de dénivelé : nettoyez les détecteurs de dénivelé, éloignez le robot, et redémarrez-le.') %} 
               {% if is_state("vacuum.walle", "error") -%}
                 {% if is_state("sensor.walle_error", "unknown") -%}
-                <b>Wall-E :</b> {{ states('sensor.walle_error') }}
+                Wall-E :</b> {{ states('sensor.walle_error') }}<br>
                 {%- else -%}
-                <b>Wall-E :</b> {{ walle_error }}
+                Wall-E :</b> {{ walle_error }}<br>
                 {%- endif %}
               {%- endif %}  
               
-              {% set r2d2_error = states('sensor.r2d2_error') 
+              {% set r2d2_error = states('sensor.r2d2_error')
+                | replace('Laser distance sensor error', 'Erreur du capteur laser. Essayez de tourner la tête du laser.')
                 | replace('Device stuck, clean area', 'coincé ou bloqué ! Retirez les obstacles')
                 | replace('Docking station not reachable', 'Impossible d atteindre la station de charge')
                 | replace('Wheels on top of void, move robot', 'Roues suspendues, déplacez le robot')
@@ -2202,23 +2344,23 @@ sensor:
                 | replace('Clean hovering sensors, move robot', 'Problème avec les capteurs de dénivelé : nettoyez les détecteurs de dénivelé, éloignez le robot, et redémarrez-le.') %} 
               {% if is_state("vacuum.r2d2", "error") -%}
                 {% if is_state("sensor.r2d2_error", "unknown") -%}
-                R2D2 :</b> {{ states('sensor.r2d2_error') }}
+                R2D2 :</b> {{ states('sensor.r2d2_error') }}<br>
                 {%- else -%}
-                <b>R2D2 :</b> {{ r2d2_error }}
+                R2D2 :</b> {{ r2d2_error }}<br>
                 {%- endif %} 
               {%- endif %}  
 
               {%- if states('switch.lave_vaisselle_power')  == 'unavailable'  or 
               states('binary_sensor.lave_vaisselle_door')  == 'unavailable' -%}
-                <b>Lave-vaisselle HS</b><br>
+                Lave-vaisselle HS</b><br>
               {% endif -%} 
 
               {% set interr_hs = states | selectattr('entity_id', 'in', state_attr('group.interrupteurs','entity_id')) | selectattr('state','in',['','unavailable']) | map(attribute='name') | list %}
               {% if interr_hs | length == 0 -%}
               {% elif interr_hs | length == 1 -%}
-              <b>Interrupteur HS :</b> {{ interr_hs[0] }}
+              Interrupteur HS :</b> {{ interr_hs[0] }}<br>
               {% else -%}
-              <b>Interrupteurs HS :</b> {{ interr_hs[:-1] | join(' , ') }}{{' ,' if interr_hs | length > 2 else ' '}} et {{ interr_hs[-1]}}
+              Interrupteurs HS :</b> {{ interr_hs[:-1] | join(' , ') }}{{' ,' if interr_hs | length > 2 else ' '}} et {{ interr_hs[-1]}}<br>
               {% endif -%}
               
               {% set compteur_pile_faible =
@@ -2247,9 +2389,9 @@ sensor:
               | map(attribute='state') | list | join(' , ')%}
               {% if compteur_pile_faible | float(0) == 0 -%}
               {% elif compteur_pile_faible | float(0) == 1 -%}
-                  <b>Batterie faible :</b> {{ pile_faible }} {{ etat_pile_faible }}%
+                  Batterie faible :</b> {{ pile_faible }} {{ etat_pile_faible }}%
               {% else -%}
-                  <b>{{ compteur_pile_faible }} batteries faibles :</b> {{ pile_faible }}
+                  {{ compteur_pile_faible }} batteries faibles :</b> {{ pile_faible }}
               {% endif -%}
 
 
@@ -2264,7 +2406,6 @@ sensor:
           {% elif states('sensor.hacs') | float > 1 or states('binary_sensor.home_assistant_versions_update_available') == 'on' or states('update.home_assistant_operating_system_update')  == 'on' or states('update.home_assistant_supervisor_update') == 'on' -%}
           {%- endif -%}
             {%- if states('binary_sensor.home_assistant_versions_update_available') == 'on' or states('update.home_assistant_supervisor_update')  == 'on' or states('update.home_assistant_operating_system_update')  == 'on' %} 
-                <b>MàJ Home Assistant :</b><br>
                {%- if states('binary_sensor.home_assistant_versions_update_available') == 'on' %} 
                  HA Core {{state_attr('update.home_assistant_core_update','installed_version')}} -> {{ states('sensor.home_assistant_versions') }}<br>
                {%- endif -%}
@@ -2276,9 +2417,8 @@ sensor:
                {%- endif -%}
             {%- endif -%}
             {%- if states('sensor.hacs') | float > 1  %}
-                <b>MàJ Hacs :</b><br>
                 {% for repo in states.sensor.hacs.attributes.repositories -%}
-                {{ repo.display_name }} ({{ repo["available_version"] }})<br>
+                {{ repo.display_name }} ({{ repo["installed_version"] }}  👉🏼 {{ repo["available_version"] }})<br>
                 {% endfor %} 
           {%- else -%}
           {%- endif -%}    
@@ -2299,6 +2439,70 @@ sensor:
          
 ###### STATUT PERSON ET GPS POSITION
 
+      alex_trajet:
+        friendly_name: "Alex tps trajet"
+        value_template: >-
+          {% set km_domicile = states.sensor.alex_trajet_domicile.attributes.distance | round(1)  %}
+          {% set km_travail = states.sensor.alex_trajet_travail.attributes.distance | round(1)  %}
+          {% set route  = states.sensor.alex_trajet_domicile.attributes.route  %}
+          {% if  is_state("person.alex", "home")  -%}
+            {% if  is_state("sensor.date_jour", "Samedi") or is_state("sensor.date_jour", "Dimanche") or is_state("input_boolean.vacances", "on")-%}
+            Aucun
+            {% else %}
+            {{ states.sensor.alex_trajet_travail.state }} min ({{km_travail}}km) jusqu'au travail
+            {% endif %}
+          {% elif  not is_state("person.alex", "home")  -%}
+            {% if is_state("input_boolean.vacances", "on")-%}
+            Aucun
+            {% else %}
+            {{ states.sensor.alex_trajet_domicile.state }} min ({{km_domicile}}km) jusqu'au domicile 
+            {% endif %}
+          {% endif %}
+
+      aurel_trajet:
+        friendly_name: "Aurel tps trajet"
+        value_template: >-
+          {% set km_domicile = states.sensor.aurel_trajet_domicile.attributes.distance | round(1)  %}
+          {% set km_travail = states.sensor.aurel_trajet_travail.attributes.distance | round(1)  %}
+          {% set route  = states.sensor.aurel_trajet_domicile.attributes.route  %}
+          {% if  is_state("person.herve", "home")  -%}
+            {% if  is_state("sensor.date_jour", "Samedi") or is_state("sensor.date_jour", "Dimanche") or is_state("input_boolean.vacances", "on")-%}
+            Aucun
+            {% else %}
+            {{ states.sensor.aurel_trajet_travail.state }} min ({{km_travail}}km) jusqu'au travail
+            {% endif %}
+          {% elif  not is_state("person.herve", "home")  -%}
+            {% if is_state("input_boolean.vacances", "on")-%}
+            Aucun
+            {% else %}
+            {{ states.sensor.aurel_trajet_domicile.state }} min ({{km_domicile}}km) jusqu'au domicile 
+            {% endif %}
+          {% endif %}
+          
+      aurel_activite:
+        friendly_name: Aurel activité          
+        value_template: >-
+          {% set activite = states('sensor.iphone_activity')
+            | replace('Unknown', 'Mouvement')
+            | replace('Stationary', 'Stationnaire')
+            | replace('Automotive', 'Conduite')
+            | replace('Walking', 'Marche')
+            | replace('Running', 'Course')
+            | replace('Cycling', 'Vélo')%}
+          {{ activite }}
+          
+      alex_activite:
+        friendly_name: Alex activité          
+        value_template: >-
+          {% set activite = states('sensor.alex_iphone_activity_2')
+            | replace('Unknown', 'Mouvement')
+            | replace('Stationary', 'Stationnaire')
+            | replace('Automotive', 'Conduite')
+            | replace('Walking', 'Marche')
+            | replace('Running', 'Course')
+            | replace('Cycling', 'Vélo')%}
+          {{ activite }}
+          
       alex_gps:
         friendly_name: Alex GPS 
         value_template: >-      
