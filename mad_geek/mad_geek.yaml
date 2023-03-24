@@ -1,13 +1,12 @@
 mad_geek: 
 
       # Card color
-      custom-blue: rgba(0, 160, 214,0.1)
-      custom-card-color-blue: rgba(0, 160, 214,1)
+      custom-card-color-blue: rgba(62,75,105,0.6) 
       custom-img-cell-color-blue: rgba(0, 160, 214,0.3)
       custom-icon-color-blue: rgba(0,191,255,1)
       custom-badge-color-blue: rgba(0, 160, 214,0.5) 
       
-      custom-card-color-red: rgba(180, 70, 70,0.7)
+      custom-card-color-red: rgba(180, 70, 70,0.6)
       custom-img-cell-color-red: rgba(180, 70, 70,0.3)
       custom-icon-color-red: rgba(255, 0, 0,1)
       custom-badge-color-red: rgba(255,0,0,0.5)
@@ -24,7 +23,7 @@ mad_geek:
       custom-icon-color-orange: rgba(255,99,71,1)
       custom-img-cell-color-orange: rgba(255,99,71,0.3)
       
-      background-button-in-card: rgba(18, 28, 38,0.3) #rgba(43,53,66,0.6)
+      background-button-in-card: rgba(26, 35, 49,0) #rgba(43,53,66,0.6)
       
       card_border: rgba(12, 12, 14, 0.2) #rgba(190, 190, 190, 0.1)
       card_box_shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
@@ -43,7 +42,7 @@ mad_geek:
       icon_off: rgba(211,211,211,0.7)
       
       # img-cell color
-      pastille_off: rgba(18, 28, 38,0.6) #rgba(74,82,96,0.5) 
+      pastille_off: rgba(8, 18, 28,0.4) #rgba(74,82,96,0.5) 
       
       # Graphique
       graph_line: var(--custom-badge-color-blue) #'rgba(63, 81, 117, 1)'
@@ -72,7 +71,7 @@ mad_geek:
       light-primary-color: "#CECECE"
       accent-color: "#2187CC"
       graph-color: var(--primary-color)
-      primary-background-color: rgb(37, 59, 82) #"#223548" #ou rgb(31, 43, 58)    
+      primary-background-color: rgb(35, 46, 66) #"#223548" #ou rgb(31, 43, 58)    
       secondary-background-color: var(--primary-background-color)
       divider-color: "#223548"
       disabled-color: "#E8E9F3"
@@ -88,14 +87,14 @@ mad_geek:
       info-color: "#9b59b6"
       warning-color: "#f39c12"
       # Sidebar colors
-      sidebar-background-color: rgba(26, 40, 55,1) 
+      sidebar-background-color: rgba(26, 35, 49,1) 
       sidebar-icon-color: var(--light-primary-color)
       sidebar-text-color: var(--primary-text-color)
       sidebar-selected-background-color: var(--secondary-color)
       sidebar-selected-icon-color: var(--primary-color)
       sidebar-selected-text-color: var(--primary-text-color)
       # App Header
-      app-header-background-color: rgba(26, 40, 55,0.5)
+      app-header-background-color: rgba(26, 35, 49,0.5)
       app-header-icon-color: var(--light-primary-color)
       app-header-text-color: var(--primary-text-color)
       app-header-selection-bar-color: var(--primary-color)
@@ -120,8 +119,8 @@ mad_geek:
       label-badge-red: var(--primary-color)
       label-badge-blue: var(--light-primary-color)
       # Cards colors
-      ha-card-background: linear-gradient(1deg, rgba(31, 43, 58,0.7), rgba(31, 43, 58,0.9))  #CARTES 
-      card-background-color: rgba(26, 40, 55,1) #var(--secondary-background-color) #POPUP ET CARTES DANS MENU
+      ha-card-background: linear-gradient(1deg, rgba(26, 35, 49,0.6), rgba(26, 35, 49,1))  #CARTES 
+      card-background-color: rgba(26, 35, 49,1) #var(--secondary-background-color) #POPUP ET CARTES DANS MENU
       popup-background-color: rgba(14,19,28,0.8)
       paper-card-background-color: var(--ha-card-background)
       paper-listbox-background-color: var(--primary-background-color)
@@ -131,8 +130,8 @@ mad_geek:
       paper-toggle-button-unchecked-button-color: var(--disabled-color)
       paper-toggle-button-unchecked-bar-color: var(--primary-background-color)
       # Switch colors
-      switch-checked-color: var(--paper-toggle-button-checked-button-color)
-      switch-unchecked-button-color: var(--paper-toggle-button-unchecked-button-color)
+      switch-checked-color: rgba(0,191,255,1) #var(--paper-toggle-button-checked-button-color)
+      switch-unchecked-button-color: grey #var(--paper-toggle-button-unchecked-button-color)
       switch-unchecked-color: var(--paper-toggle-button-unchecked-bar-color)
       switch-unchecked-track-color: var(--paper-toggle-button-unchecked-bar-color)
       # Table colors
