@@ -10,3 +10,5 @@
     doorbell_silence: True
     siren_volume: 1
     siren_duration: 10
+    
+    
