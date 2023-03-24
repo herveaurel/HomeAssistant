@@ -7,7 +7,7 @@
   tfa_host: 'imap.gmail.com'
   tfa_username: !secret aarlo_tfa_username 
   tfa_password: !secret aarlo_tfa_password
-  save_media_to: "/media/Sonnette/${N}/${Y}/${m}/${d}/${T}"
+  save_media_to: "/media/Sonnette/${Y}/${m}/${F}-${T}"
   backend: sse
 #  reconnect_every: 90
 #  mode_api: v2
