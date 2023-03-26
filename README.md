@@ -38,12 +38,15 @@ Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur HACS :
 - l'onglet est paramétré sur Type de vue : Horizontal (layout-card) / width: 350 / max_cols: 4
 - une colonne "pile verticale" est imbriquée dans une carte "type: custom:layout-card" / "layout_type: masonry" / et a comme Layout options  "width: 280"
 
+Je conseille d'installer mrs thèmes, puis de copier les templates button card, et ensuite de commencer a copier des morceaux du lovelace. 
 
 -----
 
 ## ℹ️  PRESENTATION
 
 ### 🥳 Complètement revisité pour cette nouvelle version avril 2023 : 
+
+(Voir le changelog pour les modifications)
 
 Cette fois-ci, je ne peux pas proposer un changelog, c'est une nouvelle version !
 Je travaille dessus depuis des mois, j'ai réécrit énormément de choses : 
