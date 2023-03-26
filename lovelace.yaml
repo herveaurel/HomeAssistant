@@ -1483,6 +1483,38 @@ button_card_templates:
       action: toggle
     tap_action:
       action: more-info
+  carte_scene:
+    show_icon: true
+    show_name: true
+    show_state: false
+    show_label: false
+    template:
+      - police
+      - style_off
+      - last_changed
+      - state_unavailable
+    styles:
+      img_cell:
+        - border-radius: 10px
+        - width: 50px
+        - height: 40px
+        - background-color: var(--pastille_off)
+        - color: var(--text_systeme_info)
+        - margin-top: 0px
+      icon:
+        - width: 50%
+        - color: var(--icon_off)
+      name:
+        - font-size: 10px
+        - color: rgba(232,233,242,1)
+        - padding-top: 2%
+      card:
+        - border-radius: 10px
+        - height: auto
+    double_tap_action:
+      action: toggle
+    tap_action:
+      action: more-info
   carte_ronde:
     show_icon: true
     show_name: false
@@ -9970,47 +10002,6 @@ views:
                           - style_off
                         show_label: true
                         show_name: true
-              - type: divider
-                style:
-                  height: 0.5px
-                  width: 100%
-                  margin-left: auto
-                  margin-right: auto
-                  margin-top: 15px
-                  margin-bottom: 15px
-                  background: rgba(255,255,255,0.3)
-              - type: custom:paper-buttons-row
-                buttons:
-                  - name: Noelink
-                    style:
-                      name:
-                        font-size: 14px
-                        font-weight: 500
-                  - icon: mdi:play
-                    layout: icon
-                    tap_action:
-                      action: call-service
-                      service: script.neolink_start
-                    style:
-                      icon:
-                        margin-left: 90px
-                        '--mdc-icon-size': 22px
-                  - icon: mdi:stop
-                    layout: icon
-                    tap_action:
-                      action: call-service
-                      service: script.neolink_stop
-                    style:
-                      icon:
-                        margin-right: 20px
-                        '--mdc-icon-size': 22px
-                style: |
-                  div.flex-box {
-                    margin-top: -6px;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                  }
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -10626,17 +10617,14 @@ views:
                           - type: custom:button-card
                             entity: scene.ambiance_normale
                             template:
-                              - carte_badge
-                              - style_off
-                            show_label: false
-                            show_name: false
+                              - carte_scene
                             styles:
                               icon:
                                 - color: |
                                     [[[
                                        if( states['sensor.ambiances_sejour'].state == "Normale")
                                          return "var(--custom-icon-color-gold)"
-                                       return "var(--icon_off)"
+                                       return "var(--custom-icon-color-gold)"
                                     ]]]
                               img_cell:
                                 - background-color: |
@@ -10652,19 +10640,12 @@ views:
                                 entity_id: scene.ambiance_normale
                           - type: custom:button-card
                             entity: scene.zen
+                            name: Doux
                             template:
-                              - carte_badge
-                              - style_off
-                            show_label: false
-                            show_name: false
+                              - carte_scene
                             styles:
                               icon:
-                                - color: |
-                                    [[[
-                                       if( states['sensor.ambiances_sejour'].state == "Doux")
-                                         return "var(--custom-icon-color-blue)"
-                                       return "var(--icon_off)"
-                                    ]]]
+                                - color: var(--custom-icon-color-blue)
                               img_cell:
                                 - background-color: |
                                     [[[
@@ -10681,18 +10662,10 @@ views:
                             entity: scene.repas_devant_tv
                             name: Repas
                             template:
-                              - carte_badge
-                              - style_off
-                            show_label: false
-                            show_name: false
+                              - carte_scene
                             styles:
                               icon:
-                                - color: |
-                                    [[[
-                                       if( states['sensor.ambiances_sejour'].state == "Repas TV")
-                                         return "var(--custom-icon-color-orange)"
-                                       return "var(--icon_off)"
-                                    ]]]
+                                - color: var(--custom-icon-color-orange)
                               img_cell:
                                 - background-color: |
                                     [[[
@@ -10710,23 +10683,15 @@ views:
                             name: TV
                             icon: mdi:television-play
                             template:
-                              - carte_badge
-                              - style_off
-                            show_label: false
-                            show_name: false
+                              - carte_scene
                             styles:
                               icon:
-                                - color: |
-                                    [[[
-                                       if( states['sensor.ambiances_sejour'].state == "TV")
-                                         return "var(--custom-icon-color-orange)"
-                                       return "var(--icon_off)"
-                                    ]]]
+                                - color: var(--custom-icon-color-red)
                               img_cell:
                                 - background-color: |
                                     [[[
                                        if( states['sensor.ambiances_sejour'].state == "TV")
-                                         return "var(--custom-img-cell-color-orange)"
+                                         return "var(--custom-img-cell-color-red)"
                                        return "var(--pastille_off)"
                                     ]]] 
                             tap_action:
@@ -10735,42 +10700,11 @@ views:
                               service_data:
                                 entity_id: scene.tv
                           - type: custom:button-card
-                            entity: script.ambiance_repas_invites
-                            name: Invités
-                            template:
-                              - carte_badge
-                              - style_off
-                            show_label: false
-                            show_name: false
-                            styles:
-                              icon:
-                                - color: |
-                                    [[[
-                                       if( states['sensor.ambiances_sejour'].state == "Repas invités")
-                                         return "var(--custom-icon-color-gold)"
-                                       return "var(--icon_off)"
-                                    ]]]
-                              img_cell:
-                                - background-color: |
-                                    [[[
-                                       if( states['sensor.ambiances_sejour'].state == "Repas invités")
-                                         return "var(--custom-img-cell-color-gold)"
-                                       return "var(--pastille_off)"
-                                    ]]] 
-                            tap_action:
-                              action: call-service
-                              service: script.turn_on
-                              service_data:
-                                entity_id: script.ambiance_repas_invites
-                          - type: custom:button-card
                             entity: light.sejour
-                            name: Séjour
+                            name: 'OFF'
                             icon: mdi:lightbulb-off
                             template:
-                              - carte_badge
-                              - style_off
-                            show_label: false
-                            show_name: false
+                              - carte_scene
                             tap_action:
                               action: call-service
                               service: light.turn_off
@@ -10778,13 +10712,10 @@ views:
                                 entity_id: light.sejour
                           - type: custom:button-card
                             entity: group.scenes_sejour
-                            name: Scènes séjour
+                            name: Autres
                             icon: mdi:plus
                             template:
-                              - carte_badge
-                              - style_off
-                            show_label: false
-                            show_name: false
+                              - carte_scene
                   - type: custom:button-card
                     template:
                       - titre_section
@@ -13503,11 +13434,33 @@ views:
         cards:
           - type: entities
             entities:
-              - type: custom:button-card
-                template:
-                  - titre_section
-                name: |
-                  [[[ return "Annonces " ]]]
+              - type: custom:paper-buttons-row
+                buttons:
+                  - icon: mdi:speaker-message
+                    layout: icon|name
+                    name: Annonces
+                    style:
+                      name:
+                        margin-left: 18px
+                        font-size: 15px
+                        font-weight: 600
+                      icon:
+                        '--mdc-icon-size': 20px
+                  - icon: mdi:close
+                    layout: icon
+                    tap_action:
+                      action: navigate
+                      navigation_path: /
+                    style:
+                      icon:
+                        '--mdc-icon-size': 15px
+                style: |
+                  div.flex-box {
+                    margin-top: -6px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  }
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 style: |
@@ -13523,56 +13476,38 @@ views:
                         name: A table
                         type: custom:button-card
                         template:
-                          - carte_badge
+                          - carte_scene
                           - state_bleu
-                          - style_off
-                        show_label: false
-                        show_name: true
                       - entity: script.gouter
                         name: Goûter
                         type: custom:button-card
                         template:
-                          - carte_badge
+                          - carte_scene
                           - state_bleu
-                          - style_off
-                        show_label: false
-                        show_name: true
                       - entity: script.1590760144160
                         name: Fin écran
                         type: custom:button-card
                         template:
-                          - carte_badge
+                          - carte_scene
                           - state_bleu
-                          - style_off
-                        show_label: false
-                        show_name: true
                       - entity: script.annonce_au_lit
                         name: Coucher filles
                         type: custom:button-card
                         template:
-                          - carte_badge
+                          - carte_scene
                           - state_bleu
-                          - style_off
-                        show_label: false
-                        show_name: true
                       - entity: script.tom_va_se_coucher
                         name: Coucher Tom
                         type: custom:button-card
                         template:
-                          - carte_badge
+                          - carte_scene
                           - state_bleu
-                          - style_off
-                        show_label: false
-                        show_name: true
                       - entity: script.reveille_tom_annonce_alexa
                         name: Réveiller Tom
                         type: custom:button-card
                         template:
-                          - carte_badge
+                          - carte_scene
                           - state_bleu
-                          - style_off
-                        show_label: false
-                        show_name: true
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -13580,11 +13515,38 @@ views:
         cards:
           - type: entities
             entities:
+              - type: custom:paper-buttons-row
+                buttons:
+                  - icon: mdi:message
+                    layout: icon|name
+                    name: Annonces personnalisées pièces
+                    style:
+                      name:
+                        margin-left: 18px
+                        font-size: 15px
+                        font-weight: 600
+                      icon:
+                        '--mdc-icon-size': 20px
+                  - icon: mdi:close
+                    layout: icon
+                    tap_action:
+                      action: navigate
+                      navigation_path: /
+                    style:
+                      icon:
+                        '--mdc-icon-size': 15px
+                style: |
+                  div.flex-box {
+                    margin-top: -6px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  }
               - type: custom:button-card
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Annonces personnalisées" ]]]
+                  [[[ return "Salle de bain" ]]]
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 cards:
@@ -13637,6 +13599,32 @@ views:
                           border-radius: 100px;
                           float: right;
                         }
+              - type: custom:mini-media-player
+                entity: media_player.la_salle_de_bain
+                artwork: none
+                icon: mdi:speaker
+                hide:
+                  source: true
+                  icon: true
+                  name: true
+                  power: true
+                  play_pause: true
+                  controls: true
+                  next: true
+                  prev: true
+                  play_stop: true
+                  progress: true
+                  state_label: true
+                  info: true
+                toggle_power: false
+                info: null
+                volume_stateless: false
+                group: true
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Séjour" ]]]
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 cards:
@@ -13689,6 +13677,66 @@ views:
                           border-radius: 100px;
                           float: right;
                         }
+              - type: custom:mini-media-player
+                entity: media_player.sejour
+                artwork: none
+                icon: mdi:speaker
+                hide:
+                  source: true
+                  icon: true
+                  name: true
+                  power: true
+                  play_pause: true
+                  controls: true
+                  next: true
+                  prev: true
+                  play_stop: true
+                  progress: true
+                  state_label: true
+                  info: true
+                toggle_power: false
+                info: null
+                volume_stateless: false
+                group: true
+      - type: custom:layout-card
+        layout_type: masonry
+        layout:
+          width: 280
+        cards:
+          - type: entities
+            entities:
+              - type: custom:paper-buttons-row
+                buttons:
+                  - icon: mdi:message
+                    layout: icon|name
+                    name: Annonces personnalisées chambres
+                    style:
+                      name:
+                        margin-left: 18px
+                        font-size: 15px
+                        font-weight: 600
+                      icon:
+                        '--mdc-icon-size': 20px
+                  - icon: mdi:close
+                    layout: icon
+                    tap_action:
+                      action: navigate
+                      navigation_path: /
+                    style:
+                      icon:
+                        '--mdc-icon-size': 15px
+                style: |
+                  div.flex-box {
+                    margin-top: -6px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  }
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Chambre de Tom" ]]]
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 cards:
@@ -13741,6 +13789,32 @@ views:
                           border-radius: 100px;
                           float: right;
                         }
+              - type: custom:mini-media-player
+                entity: media_player.tom
+                artwork: none
+                icon: mdi:speaker
+                hide:
+                  source: true
+                  icon: true
+                  name: true
+                  power: true
+                  play_pause: true
+                  controls: true
+                  next: true
+                  prev: true
+                  play_stop: true
+                  progress: true
+                  state_label: true
+                  info: true
+                toggle_power: false
+                info: null
+                volume_stateless: false
+                group: true
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Chambre de Manon et Lélé" ]]]
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 cards:
@@ -13793,6 +13867,32 @@ views:
                           border-radius: 100px;
                           float: right;
                         }
+              - type: custom:mini-media-player
+                entity: media_player.chambre_de_manon_et_leane
+                artwork: none
+                icon: mdi:speaker
+                hide:
+                  source: true
+                  icon: true
+                  name: true
+                  power: true
+                  play_pause: true
+                  controls: true
+                  next: true
+                  prev: true
+                  play_stop: true
+                  progress: true
+                  state_label: true
+                  info: true
+                toggle_power: false
+                info: null
+                volume_stateless: false
+                group: true
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Chambre de Nina" ]]]
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 cards:
@@ -13845,6 +13945,27 @@ views:
                           border-radius: 100px;
                           float: right;
                         }
+              - type: custom:mini-media-player
+                entity: media_player.nina
+                artwork: none
+                icon: mdi:speaker
+                hide:
+                  source: true
+                  icon: true
+                  name: true
+                  power: true
+                  play_pause: true
+                  controls: true
+                  next: true
+                  prev: true
+                  play_stop: true
+                  progress: true
+                  state_label: true
+                  info: true
+                toggle_power: false
+                info: null
+                volume_stateless: false
+                group: true
             show_header_toggle: false
   - theme: Backend-selected
     title: Tom
@@ -13972,11 +14093,12 @@ views:
                     cards:
                       - type: custom:button-card
                         entity: scene.tom_ambiance_normale
-                        name: Jour
-                        show_label: false
-                        show_name: false
+                        name: Normal
                         template:
-                          - carte_badge
+                          - carte_scene
+                        styles:
+                          icon:
+                            - color: gold
                         tap_action:
                           action: call-service
                           service: scene.turn_on
@@ -13985,23 +14107,22 @@ views:
                       - type: custom:button-card
                         entity: scene.tom_ambiance_nuit
                         name: Nuit
-                        show_label: false
-                        show_name: false
                         template:
-                          - carte_badge
+                          - carte_scene
+                        styles:
+                          icon:
+                            - color: dodgerblue
                         tap_action:
                           action: call-service
                           service: scene.turn_on
                           service_data:
                             entity_id: scene.tom_ambiance_nuit
                       - type: custom:button-card
-                        name: 'Tout éteindre '
+                        name: 'OFF'
                         entity: light.tom
                         icon: mdi:lightbulb-multiple-off
-                        show_label: false
-                        show_name: false
                         template:
-                          - carte_badge
+                          - carte_scene
                         tap_action:
                           action: call-service
                           service: light.turn_off
@@ -14519,11 +14640,12 @@ views:
                     cards:
                       - type: custom:button-card
                         entity: scene.grande_chambre_ambiance_normale
-                        name: Jour
-                        show_label: false
-                        show_name: false
+                        name: Normal
                         template:
-                          - carte_badge
+                          - carte_scene
+                        styles:
+                          icon:
+                            - color: gold
                         tap_action:
                           action: call-service
                           service: scene.turn_on
@@ -14532,23 +14654,22 @@ views:
                       - type: custom:button-card
                         entity: scene.grande_chambre_ambiance_nuit
                         name: Nuit
-                        show_label: false
-                        show_name: false
                         template:
-                          - carte_badge
+                          - carte_scene
+                        styles:
+                          icon:
+                            - color: dodgerblue
                         tap_action:
                           action: call-service
                           service: scene.turn_on
                           service_data:
                             entity_id: scene.grande_chambre_ambiance_nuit
                       - type: custom:button-card
-                        name: 'Tout éteindre '
+                        name: 'OFF'
                         entity: light.manon_et_leane
                         icon: mdi:lightbulb-multiple-off
-                        show_label: false
-                        show_name: false
                         template:
-                          - carte_badge
+                          - carte_scene
                         tap_action:
                           action: call-service
                           service: light.turn_off
@@ -15083,11 +15204,12 @@ views:
                     cards:
                       - type: custom:button-card
                         entity: scene.nina_ambiance_normale
-                        name: Jour
-                        show_label: false
-                        show_name: false
+                        name: Normal
                         template:
-                          - carte_badge
+                          - carte_scene
+                        styles:
+                          icon:
+                            - color: gold
                         tap_action:
                           action: call-service
                           service: scene.turn_on
@@ -15096,10 +15218,11 @@ views:
                       - type: custom:button-card
                         entity: scene.nina_ambiance_douce
                         name: Doux
-                        show_label: false
-                        show_name: false
                         template:
-                          - carte_badge
+                          - carte_scene
+                        styles:
+                          icon:
+                            - color: pink
                         tap_action:
                           action: call-service
                           service: scene.turn_on
@@ -15108,23 +15231,22 @@ views:
                       - type: custom:button-card
                         entity: scene.nina_ambiance_nuit
                         name: Nuit
-                        show_label: false
-                        show_name: false
                         template:
-                          - carte_badge
+                          - carte_scene
+                        styles:
+                          icon:
+                            - color: dodgerblue
                         tap_action:
                           action: call-service
                           service: scene.turn_on
                           service_data:
                             entity_id: scene.nina_ambiance_nuit
                       - type: custom:button-card
-                        name: 'Tout éteindre '
+                        name: 'OFF'
                         entity: light.nina
                         icon: mdi:lightbulb-multiple-off
-                        show_label: false
-                        show_name: false
                         template:
-                          - carte_badge
+                          - carte_scene
                         tap_action:
                           action: call-service
                           service: light.turn_off
@@ -16642,10 +16764,12 @@ views:
                     cards:
                       - type: custom:button-card
                         entity: scene.chambre_parents_ambiance_normale
-                        show_label: false
-                        show_name: false
                         template:
-                          - carte_badge
+                          - carte_scene
+                        name: Normal
+                        styles:
+                          icon:
+                            - color: gold
                         tap_action:
                           action: call-service
                           service: scene.turn_on
@@ -16653,24 +16777,23 @@ views:
                             entity_id: scene.chambre_parents_ambiance_normale
                       - type: custom:button-card
                         entity: script.ambiance_cine_chevet_parents
-                        name: Jour
-                        show_label: false
-                        show_name: false
+                        name: Ciné
                         template:
-                          - carte_badge
+                          - carte_scene
+                        styles:
+                          icon:
+                            - color: purple
                         tap_action:
                           action: call-service
                           service: script.turn_on
                           service_data:
                             entity_id: script.ambiance_cine_chevet_parents
                       - type: custom:button-card
-                        name: 'Tout éteindre '
+                        name: 'OFF'
                         entity: light.parents
                         icon: mdi:lightbulb-multiple-off
-                        show_label: false
-                        show_name: false
                         template:
-                          - carte_badge
+                          - carte_scene
                         tap_action:
                           action: call-service
                           service: light.turn_off
@@ -17300,9 +17423,9 @@ views:
             entities:
               - type: custom:paper-buttons-row
                 buttons:
-                  - icon: mdi:home-assistant
+                  - icon: mdi:update
                     layout: icon|name
-                    name: Home Assistant
+                    name: Mises à jour
                     style:
                       name:
                         margin-left: 18px
@@ -17325,49 +17448,6 @@ views:
                     justify-content: space-between;
                     align-items: center;
                   }
-              - type: custom:vertical-stack-in-card
-                horizontal: true
-                style: |
-                  ha-card { 
-                    padding: 5px;
-                  }
-                cards:
-                  - type: custom:button-card
-                    entity: sensor.uptime_ha
-                    name: Démarrage
-                    icon: mdi:restart
-                    show_label: false
-                    show_state: true
-                    template:
-                      - carte_badge
-                      - state_unavailable
-                  - type: custom:button-card
-                    entity: sensor.cpu_temperature
-                    name: CPU
-                    show_label: false
-                    show_state: true
-                    template:
-                      - carte_badge
-                      - state_bleu_rouge
-                      - state_unavailable
-                  - type: custom:button-card
-                    entity: sensor.memory_use_percent
-                    name: Mémoire
-                    show_label: false
-                    show_state: true
-                    template:
-                      - carte_badge
-                      - state_bleu_rouge
-                      - state_unavailable
-                  - type: custom:button-card
-                    entity: sensor.processor_use_percent
-                    name: Processeur
-                    show_label: false
-                    show_state: true
-                    template:
-                      - carte_badge
-                      - state_bleu_rouge
-                      - state_unavailable
           - square: false
             columns: 2
             type: grid
@@ -17843,9 +17923,9 @@ views:
             entities:
               - type: custom:paper-buttons-row
                 buttons:
-                  - icon: mdi:cog-clockwise
+                  - icon: mdi:home-assistant
                     layout: icon|name
-                    name: Maintenance
+                    name: Système
                     style:
                       name:
                         margin-left: 18px
@@ -17872,7 +17952,7 @@ views:
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Appareils" ]]]
+                  [[[ return "Raspberry" ]]]
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 style: |
@@ -17901,6 +17981,63 @@ views:
                               if (entity.state == 'off')
                                 return "var(--custom-icon-color-blue)"
                             ]]]
+                  - type: custom:button-card
+                    entity: sensor.uptime_ha
+                    name: Démarrage
+                    icon: mdi:restart
+                    show_label: false
+                    show_state: true
+                    template:
+                      - carte_badge
+                      - state_unavailable
+                  - type: custom:button-card
+                    entity: sensor.cpu_temperature
+                    name: CPU
+                    show_label: false
+                    show_state: true
+                    template:
+                      - carte_badge
+                      - state_bleu_rouge
+                      - state_unavailable
+                  - type: custom:button-card
+                    entity: sensor.memory_use_percent
+                    name: Mémoire
+                    show_label: false
+                    show_state: true
+                    template:
+                      - carte_badge
+                      - state_bleu_rouge
+                      - state_unavailable
+                  - type: custom:button-card
+                    entity: sensor.processor_use_percent
+                    name: Processeur
+                    show_label: false
+                    show_state: true
+                    template:
+                      - carte_badge
+                      - state_bleu_rouge
+                      - state_unavailable
+              - type: divider
+                style:
+                  height: 0.5px
+                  width: 100%
+                  margin-left: auto
+                  margin-right: auto
+                  margin-top: 15px
+                  margin-bottom: 15px
+                  background: rgba(255,255,255,0.3)
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Livebox & Tenda Nova" ]]]
+              - type: custom:vertical-stack-in-card
+                horizontal: true
+                style: |
+                  ha-card { 
+                    padding: 5px;
+                  }
+                cards:
                   - type: custom:button-card
                     entity: binary_sensor.wan_status
                     name: Livebox
@@ -17939,11 +18076,20 @@ views:
                       - state_unavailable
                     show_state: true
                     show_label: false
+              - type: divider
+                style:
+                  height: 0.5px
+                  width: 100%
+                  margin-left: auto
+                  margin-right: auto
+                  margin-top: 15px
+                  margin-bottom: 15px
+                  background: rgba(255,255,255,0.3)
               - type: custom:button-card
                 template:
                   - titre_section
                 name: |
-                  [[[ return "Reboot" ]]]
+                  [[[ return "Maintenance" ]]]
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 style: |
@@ -17952,8 +18098,8 @@ views:
                   }
                 cards:
                   - type: custom:button-card
-                    entity: script.redemarrer_le_pont_tenda_nova
-                    name: Reboot du pont
+                    entity: script.backup_full_ha
+                    name: Sauvegarde HA
                     template:
                       - carte_badge
                       - state_bleu
@@ -17961,15 +18107,14 @@ views:
                     show_label: false
                     tap_action:
                       confirmation:
-                        text: '[[[ return `Reboot le pont Tenda ?` ]]]'
+                        text: '[[[ return `Sauvegarde HA ?` ]]]'
                       action: call-service
                       service: script.turn_on
                       service_data:
-                        entity_id: script.redemarrer_le_pont_tenda_nova
-                    show_state: false
+                        entity_id: script.backup_full_ha
                   - type: custom:button-card
                     entity: script.restart_ha
-                    name: Reboot HA
+                    name: Restart HA
                     icon: mdi:reload-alert
                     template:
                       - carte_badge
@@ -17983,6 +18128,22 @@ views:
                       service: script.turn_on
                       service_data:
                         entity_id: script.restart_ha
+                  - type: custom:button-card
+                    entity: script.redemarrer_le_pont_tenda_nova
+                    name: Reboot Tenda
+                    template:
+                      - carte_badge
+                      - state_bleu
+                      - state_unavailable
+                    show_label: false
+                    tap_action:
+                      confirmation:
+                        text: '[[[ return `Reboot le pont Tenda ?` ]]]'
+                      action: call-service
+                      service: script.turn_on
+                      service_data:
+                        entity_id: script.redemarrer_le_pont_tenda_nova
+                    show_state: false
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -19053,11 +19214,11 @@ views:
                 styles:
                   img_cell:
                     - border-radius: 0%
-                    - width: 80px
-                    - height: 80px
+                    - width: 70px
+                    - height: 70px
                     - position: absolute
                     - top: 0%
-                    - left: 5%
+                    - left: 15%
                     - background-color: transparent
                     - color: transparent
                     - border-color: transparent
@@ -19068,9 +19229,10 @@ views:
                     - grid-template-areas: |
                         "date"
                         "meteo"
-                        "temp"
-                        "bouton"
+                        "temp"        
+                        "bouton"        
                         "jauge"
+                        "alerte"
                     - grid-template-columns: 1fr
                     - grid-template-rows: >-
                         min-content min-content min-content min-content 
@@ -19084,18 +19246,32 @@ views:
                     date:
                       - padding: 0px 0px 0px 20px
                       - font-weight: bold
-                      - font-size: 15px
+                      - font-size: 13px
                       - color: lightgrey
                       - text-align: center
                       - white-space: normal
+                    meteo:
+                      - padding: 0px 0px 0px 20px
+                      - font-weight: bold
+                      - font-size: 13px
+                      - color: lightgrey
+                      - text-align: center
                     temp:
                       - padding: 0px 0px 0px 20px
                       - font-weight: bold
                       - font-size: 25px
                       - color: lightgrey
                       - text-align: center
-                    bouton:
+                    alerte:
                       - padding: 10px 0px 0px 0px
+                      - white-space: normal
+                      - width: calc(100% + 1px)
+                      - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+                      - '--ha-card-background': rgba(0, 0, 0, 0.0)
+                      - '--ha-card-box-shadow': none
+                      - '--ha-card-border-width': 0px
+                    bouton:
+                      - padding: 10px 0px 0px 10px
                       - white-space: normal
                       - width: calc(100% + 1px)
                       - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
@@ -19109,23 +19285,235 @@ views:
                       - '--ha-card-background': rgba(0, 0, 0, 0.0)
                       - '--ha-card-box-shadow': none
                 custom_fields:
-                  date: >
-                    [[[ return states['sensor.date_simple'].state+",
-                    "+states['sensor.weather_conditions'].state ]]]
+                  date: |
+                    [[[ return states['sensor.date_simple'].state ]]]
+                  meteo: |
+                    [[[ return states['sensor.weather_conditions'].state ]]]
                   temp: >
                     [[[ return states['sensor.weather_temperature_v2'].state +"°
                     " ]]]
+                  alerte:
+                    card:
+                      type: custom:vertical-stack-in-card
+                      horizontal: true
+                      cards:
+                        - type: custom:button-card
+                          entity: sensor.weather_alert_vent_violent
+                          name: Vent violent
+                          icon: mdi:weather-windy
+                          template:
+                            - carte_scene
+                          styles:
+                            icon:
+                              - color: |
+                                  [[[
+                                     if( states['sensor.weather_alert_vent_violent'].state == "Jaune")
+                                       return "gold"
+                                     if( states['sensor.weather_alert_vent_violent'].state == "Orange")
+                                       return "orange" 
+                                     if( states['sensor.weather_alert_vent_violent'].state == "Rouge")
+                                       return "red"                          
+                                     return ""
+                                  ]]]
+                            img_cell:
+                              - background-color: |
+                                  [[[
+                                     if( states['sensor.weather_alert_vent_violent'].state == "Jaune")
+                                       return "var(--custom-img-cell-color-gold)" 
+                                     if( states['sensor.weather_alert_vent_violent'].state == "Orange")
+                                       return "var(--custom-img-cell-color-orange)" 
+                                     if( states['sensor.weather_alert_vent_violent'].state == "Rouge")
+                                       return "var(--custom-img-cell-color-red)"                          
+                                     return "var(--pastille_off)"
+                                  ]]]
+                        - type: custom:button-card
+                          entity: sensor.49_weather_alert
+                          name: Inondation
+                          icon: mdi:waves
+                          template:
+                            - carte_scene
+                          styles:
+                            icon:
+                              - color: |
+                                  [[[
+                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Jaune")
+                                       return "gold"
+                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Orange")
+                                       return "orange" 
+                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Rouge")
+                                       return "red"                          
+                                     return ""
+                                  ]]]
+                            img_cell:
+                              - background-color: |
+                                  [[[
+                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Jaune")
+                                       return "var(--custom-img-cell-color-gold)" 
+                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Orange")
+                                       return "var(--custom-img-cell-color-orange)" 
+                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Rouge")
+                                       return "var(--custom-img-cell-color-red)"                          
+                                     return "var(--pastille_off)"
+                                  ]]]
+                        - type: custom:button-card
+                          entity: sensor.49_weather_alert
+                          name: Orages
+                          icon: mdi:weather-lightning
+                          template:
+                            - carte_scene
+                          styles:
+                            icon:
+                              - color: |
+                                  [[[
+                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Jaune")
+                                       return "gold"
+                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Orange")
+                                       return "orange" 
+                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Rouge")
+                                       return "red"                          
+                                     return ""
+                                  ]]]
+                            img_cell:
+                              - background-color: |
+                                  [[[
+                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Jaune")
+                                       return "var(--custom-img-cell-color-gold)" 
+                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Orange")
+                                       return "var(--custom-img-cell-color-orange)" 
+                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Rouge")
+                                       return "var(--custom-img-cell-color-red)"                          
+                                     return "var(--pastille_off)"
+                                  ]]]
+                        - type: custom:button-card
+                          entity: sensor.weather_alert_pluie_inondation
+                          name: Pluie
+                          icon: mdi:weather-pouring
+                          template:
+                            - carte_scene
+                          styles:
+                            icon:
+                              - color: |
+                                  [[[
+                                     if( states['sensor.weather_alert_pluie_inondation'].state == "Jaune")
+                                       return "gold"
+                                     if(states['sensor.weather_alert_pluie_inondation'].state == "Orange")
+                                       return "orange" 
+                                     if( states['sensor.weather_alert_pluie_inondation'].state == "Rouge")
+                                       return "red"                          
+                                     return ""
+                                  ]]]
+                            img_cell:
+                              - background-color: |
+                                  [[[
+                                     if( states['sensor.weather_alert_pluie_inondation'].state == "Jaune")
+                                       return "var(--custom-img-cell-color-gold)" 
+                                     if( states['sensor.weather_alert_pluie_inondation'].state== "Orange")
+                                       return "var(--custom-img-cell-color-orange)" 
+                                     if( states['sensor.weather_alert_pluie_inondation'].state == "Rouge")
+                                       return "var(--custom-img-cell-color-red)"                          
+                                     return "var(--pastille_off)"
+                                  ]]]
+                        - type: custom:button-card
+                          entity: sensor.weather_alert_neige_verglas
+                          name: Neige Verglas
+                          icon: mdi:weather-snowy-heavy
+                          template:
+                            - carte_scene
+                          styles:
+                            icon:
+                              - color: |
+                                  [[[
+                                     if( states['sensor.weather_alert_neige_verglas'].state == "Jaune")
+                                       return "gold"
+                                     if(states['sensor.weather_alert_neige_verglas'].state == "Orange")
+                                       return "orange" 
+                                     if( states['sensor.weather_alert_neige_verglas'].state == "Rouge")
+                                       return "red"                          
+                                     return ""
+                                  ]]]
+                            img_cell:
+                              - background-color: |
+                                  [[[
+                                     if( states['sensor.weather_alert_neige_verglas'].state == "Jaune")
+                                       return "var(--custom-img-cell-color-gold)" 
+                                     if( states['sensor.weather_alert_neige_verglas'].state== "Orange")
+                                       return "var(--custom-img-cell-color-orange)" 
+                                     if( states['sensor.weather_alert_neige_verglas'].state == "Rouge")
+                                       return "var(--custom-img-cell-color-red)"                          
+                                     return "var(--pastille_off)"
+                                  ]]]
+                        - type: custom:button-card
+                          entity: sensor.weather_alert_grand_froid
+                          name: Grand froid
+                          icon: mdi:thermometer-minus
+                          template:
+                            - carte_scene
+                          styles:
+                            icon:
+                              - color: |
+                                  [[[
+                                     if( states['sensor.weather_alert_grand_froid'].state == "Jaune")
+                                       return "gold"
+                                     if(states['sensor.weather_alert_grand_froid'].state == "Orange")
+                                       return "orange" 
+                                     if( states['sensor.weather_alert_grand_froid'].state == "Rouge")
+                                       return "red"                          
+                                     return ""
+                                  ]]]
+                            img_cell:
+                              - background-color: |
+                                  [[[
+                                     if( states['sensor.weather_alert_grand_froid'].state == "Jaune")
+                                       return "var(--custom-img-cell-color-gold)" 
+                                     if( states['sensor.weather_alert_grand_froid'].state == "Orange")
+                                       return "var(--custom-img-cell-color-orange)" 
+                                     if( states['sensor.weather_alert_grand_froid'].state == "Rouge")
+                                       return "var(--custom-img-cell-color-red)"                          
+                                     return "var(--pastille_off)"
+                                  ]]]
                   bouton:
                     card:
                       type: horizontal-stack
                       cards:
+                        - type: custom:button-card
+                          entity: sensor.saison
+                          show_state: true
+                          show_label: false
+                          template:
+                            - police
+                            - base
+                          name: Saison
+                          icon: |
+                            [[[
+                              if (states['sensor.saison'].state == 'Printemps')
+                                return 'mdi:flower'
+                              if (states['sensor.saison'].state == 'Été')
+                                return 'mdi:weather-sunny'
+                              if (states['sensor.saison'].state == 'Automne')
+                                return 'mdi:leaf'
+                              if (states['sensor.saison'].state == 'Hiver')
+                                return 'mdi:snowflake'                    
+                                  ]]]
+                          styles:
+                            icon:
+                              - color: |
+                                  [[[
+                                    if (states['sensor.saison'].state == 'Printemps')
+                                      return 'rgb(154,205,50)'
+                                    if (states['sensor.saison'].state == 'Été')
+                                      return 'rgb(255,215,0)'
+                                    if (states['sensor.saison'].state == 'Automne')
+                                      return 'grey'
+                                    if (states['sensor.saison'].state == 'Hiver')
+                                      return 'rgb(0,191,255)'                          
+                                  ]]]
                         - type: custom:button-card
                           entity: sensor.weather_soleil_v2
                           show_state: true
                           show_label: false
                           template:
                             - police
-                            - carte_badge
+                            - base
                           name: |
                             [[[
                               if (states['sun.sun'].state == 'below_horizon')
@@ -19147,52 +19535,6 @@ views:
                                     return 'rgb(123,104,238)'
                                   ]]]
                         - type: custom:button-card
-                          entity: sensor.49_weather_alert
-                          name: Alerte
-                          icon: mdi:alert
-                          show_label: true
-                          label: |
-                            [[[
-                              return states['sensor.weather_alerte'].state
-                            ]]]
-                          template:
-                            - police
-                            - carte_badge
-                          styles:
-                            img_cell:
-                              - background-color: |
-                                  [[[
-                                    if (states['sensor.weather_alerte_couleur_v2'].state == 'Vigilance Jaune')
-                                      return 'var(--custom-img-cell-color-gold)'
-                                    if (states['sensor.weather_alerte_couleur_v2'].state == 'Vigilance Orange')
-                                      return 'var(--custom-img-cell-color-orange)'
-                                    if (states['sensor.weather_alerte_couleur_v2'].state == 'Vigilance Rouge')
-                                      return 'var(--custom-img-cell-color-red)'
-                                    return 'var(--pastille_off)'
-                                  ]]]
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['sensor.weather_alerte_couleur_v2'].state == 'Vigilance Jaune')
-                                      return 'var(--custom-icon-color-yellow)'
-                                    if (states['sensor.weather_alerte_couleur_v2'].state == 'Vigilance Orange')
-                                      return 'var(--custom-icon-color-orange)'
-                                    if (states['sensor.weather_alerte_couleur_v2'].state == 'Vigilance Rouge')
-                                      return 'var(--custom-icon-color-red)'
-                                    return 'var(--icon_off)'
-                                  ]]]
-                            label:
-                              - color: |
-                                  [[[
-                                    if (states['sensor.weather_alerte_couleur_v2'].state == 'Vigilance Jaune')
-                                      return 'yellow'
-                                    if (states['sensor.weather_alerte_couleur_v2'].state == 'Vigilance Orange')
-                                      return 'orange'
-                                    if (states['sensor.weather_alerte_couleur_v2'].state == 'Vigilance Rouge')
-                                      return 'red'
-                                    return 'var(--text_on)'
-                                  ]]]
-                        - type: custom:button-card
                           entity: sensor.weather_temp_min_max
                           name: Demain
                           icon: mdi:thermometer
@@ -19200,7 +19542,7 @@ views:
                           show_label: false
                           template:
                             - police
-                            - carte_badge
+                            - base
                           styles:
                             img_cell:
                               - background-color: |
