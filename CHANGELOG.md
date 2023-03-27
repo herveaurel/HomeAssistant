@@ -1,5 +1,14 @@
 ## ℹ️  CHANGELOG
 
+
+### 27 / 03 / 2023 : 
+
+- Ajouts d'icones dans le label des pièces 
+- Amélioration du state_person pour une meilleure cohérence des couleurs 
+
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/changelog2.jpg)
+
+
 ### 26 / 03 / 2023 : 
 
 - Nouveaux boutons pour les scènes  "carte_scene" (qui serviront aussi ailleurs)
