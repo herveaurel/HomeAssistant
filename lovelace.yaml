@@ -1254,9 +1254,8 @@ button_card_templates:
         if( entity.state == "off")
           return variables.var_label
         var lum = states[entity.entity_id].attributes.brightness/2.54;
-        var roundLum = Math.round(lum * 1) / 1;
-        return variables.var_label + " - " + roundLum + "%"
-      ]]]
+        var roundLum = `<ha-icon icon="mdi:lightbulb-multiple" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +""+ Math.round(lum * 1) / 1;
+        return variables.var_label + "  " + roundLum + "%" ]]]
     styles:
       label:
         - color: |
@@ -1505,6 +1504,7 @@ button_card_templates:
         - width: 50%
         - color: var(--icon_off)
       name:
+        - font-weight: bold
         - font-size: 10px
         - color: rgba(232,233,242,1)
         - padding-top: 2%
@@ -1813,8 +1813,14 @@ button_card_templates:
       - operator: template
         value: >-
           [[[ return entity.state == "Atoll" || entity.state == "Travail" ||
-          entity.state == "Collège" || entity.state == "Lycée" || entity.state
-          != "home" || entity.state == "off" ]]]
+          entity.state == "Collège" || entity.state == "Lycée"  ]]]
+        styles:
+          label:
+            - color: rgb(103,173,91)
+          state:
+            - color: rgb(103,173,91)
+      - operator: template
+        value: '[[[ return  entity.state != "home" || entity.state == "off" ]]]'
         styles:
           label:
             - color: var(--custom-icon-color-red)
@@ -3853,8 +3859,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_sejour'].state == 'unavailable')
-                                return "?"
-                              return states['sensor.temp_sejour'].state +"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` + " ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` + states['sensor.temp_sejour'].state +"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -3919,8 +3925,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.moniteur_qualite_air_temperature'].state == 'unavailable')
-                                return "?"
-                              return states['sensor.moniteur_qualite_air_temperature'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.moniteur_qualite_air_temperature'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -3999,8 +4005,8 @@ views:
                         label: |
                           [[[ 
                             if (states['sensor.temp_cuisine'].state == 'unavailable')
-                              return "?"
-                            return states['sensor.temp_cuisine'].state+"°"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
+                            return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` + states['sensor.temp_cuisine'].state+"°"
                           ]]]
                         variables:
                           var_temp: |
@@ -4049,7 +4055,7 @@ views:
                           var_label: |
                             [[[
                               if (entity.state == "on")
-                                return 'Allumé'
+                                return ''
                               return 'Éteint '
                             ]]]
                           var_temp: |
@@ -4086,8 +4092,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_parents'].state == 'unavailable')
-                                return "?"
-                              return states['sensor.temp_parents'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_parents'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4148,8 +4154,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.sonde_garage_temperature'].state == 'unavailable')
-                                return "?"
-                              return states['sensor.sonde_garage_temperature'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.sonde_garage_temperature'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4225,8 +4231,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_tom'].state == 'unavailable')
-                                return "?"
-                              return states['sensor.temp_tom'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_tom'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4284,8 +4290,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_manon'].state == 'unavailable')
-                                return "?"
-                              return states['sensor.temp_manon'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_manon'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4348,8 +4354,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_nina'].state == 'unavailable')
-                                return "?"
-                              return states['sensor.temp_nina'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_nina'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4401,8 +4407,8 @@ views:
                         label: |
                           [[[
                               if (states['sensor.temp_sejour'].state == 'unavailable')
-                                return "?"
-                              return states['sensor.temp_salle_de_bain'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_salle_de_bain'].state+"°"
                           ]]]
                         variables:
                           var_temp: |
@@ -10874,77 +10880,17 @@ views:
                   - titre_section
                 name: |
                   [[[ return "TV" ]]]
-              - type: custom:button-card
+              - type: custom:mini-media-player
                 entity: media_player.tv_salon
-                name: TV Salon
-                variables:
-                  var_source: |
-                    [[[ 
-                      return states['sensor.tv_salon_vol'].state+ "% - "+states['sensor.tv_salon_source'].state 
-                    ]]]
-                template:
-                  - base
-                  - carte_tv
-                  - state_carte
-                  - state_unavailable
-                custom_fields:
-                  bouton2:
-                    card:
-                      type: horizontal-stack
-                      cards:
-                        - type: custom:button-card
-                          template:
-                            - carte_bouton
-                            - carte_bouton_state_tv_salon
-                          icon: |
-                            [[[
-                              if (states['media_player.tv_salon'].state == 'on' && states['sensor.tv_salon_sortie_audio'].state == 'Casque')
-                              return "mdi-headphones"
-                              if (states['media_player.tv_salon'].state == 'on' && states['sensor.tv_salon_sortie_audio'].state == 'TV')
-                              return "mdi:television"
-                              if (states['media_player.tv_salon'].state == 'on' && states['sensor.tv_salon_sortie_audio'].state == 'Barre de son')
-                                return "mdi:speaker-bluetooth"
-                              return "mdi:television"
-                            ]]]
-                        - type: custom:button-card
-                          entity: script.tv_salon_chaine_bas
-                          template:
-                            - carte_bouton
-                            - carte_bouton_state_tv_salon
-                        - type: custom:button-card
-                          entity: script.tv_salon_chaine_haut
-                          template:
-                            - carte_bouton
-                            - carte_bouton_state_tv_salon
-                  bouton:
-                    card:
-                      type: horizontal-stack
-                      cards:
-                        - type: custom:button-card
-                          entity: script.tv_salon_volume_mute
-                          template: carte_bouton
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['media_player.tv_salon'].attributes.is_volume_muted == true)
-                                      return 'red';
-                                    return "grey"
-                                  ]]]
-                        - type: custom:button-card
-                          entity: script.tv_salon_volume_bas
-                          template:
-                            - carte_bouton
-                            - carte_bouton_state_tv_salon
-                        - type: custom:button-card
-                          entity: script.tv_salon_volume_haut
-                          template:
-                            - carte_bouton
-                            - carte_bouton_state_tv_salon
-                double_tap_action:
-                  action: call-service
-                  service: script.tv_salon_on_off
-                  service_data: null
+                group: false
+                sound_mode: full
+                artwork: material
+                toggle_power: false
+                source: icon
+                hide:
+                  icon: true
+                name: TV salon
+                volume_stateless: true
               - type: divider
                 style:
                   height: 0.5px
@@ -16206,7 +16152,7 @@ views:
                         name: Serrure
                         template:
                           - carte_badge
-                          - state_serrure
+                          - state_bleu_rouge
                           - style_off
                         show_label: true
                         show_name: true
@@ -17252,7 +17198,7 @@ views:
                     template:
                       - base
                       - last_changed
-                      - state_alarme
+                      - state_bleu_rouge
                       - state_unavailable
                   - type: custom:button-card
                     entity: input_select.lave_linge
@@ -17961,6 +17907,20 @@ views:
                   }
                 cards:
                   - type: custom:button-card
+                    entity: sensor.uptime_ha
+                    name: Démarrage
+                    icon: mdi:restart
+                    show_label: false
+                    show_state: true
+                    template:
+                      - carte_badge
+                      - state_unavailable
+                    styles:
+                      img_cell:
+                        - background-color: var(--custom-img-cell-color-blue)
+                      icon:
+                        - color: var(--custom-icon-color-blue)
+                  - type: custom:button-card
                     entity: binary_sensor.rpi_power_status
                     name: Alim RPI
                     template:
@@ -17981,15 +17941,6 @@ views:
                               if (entity.state == 'off')
                                 return "var(--custom-icon-color-blue)"
                             ]]]
-                  - type: custom:button-card
-                    entity: sensor.uptime_ha
-                    name: Démarrage
-                    icon: mdi:restart
-                    show_label: false
-                    show_state: true
-                    template:
-                      - carte_badge
-                      - state_unavailable
                   - type: custom:button-card
                     entity: sensor.cpu_temperature
                     name: CPU
@@ -18101,7 +18052,7 @@ views:
                     entity: script.backup_full_ha
                     name: Sauvegarde HA
                     template:
-                      - carte_badge
+                      - carte_scene
                       - state_bleu
                       - state_unavailable
                     show_label: false
@@ -18117,7 +18068,7 @@ views:
                     name: Restart HA
                     icon: mdi:reload-alert
                     template:
-                      - carte_badge
+                      - carte_scene
                       - state_bleu
                       - state_unavailable
                     show_label: false
@@ -18132,7 +18083,7 @@ views:
                     entity: script.redemarrer_le_pont_tenda_nova
                     name: Reboot Tenda
                     template:
-                      - carte_badge
+                      - carte_scene
                       - state_bleu
                       - state_unavailable
                     show_label: false
@@ -18144,6 +18095,35 @@ views:
                       service_data:
                         entity_id: script.redemarrer_le_pont_tenda_nova
                     show_state: false
+              - type: divider
+                style:
+                  height: 0.5px
+                  width: 100%
+                  margin-left: auto
+                  margin-right: auto
+                  margin-top: 15px
+                  margin-bottom: 15px
+                  background: rgba(255,255,255,0.3)
+              - type: custom:button-card
+                template:
+                  - titre_section
+                name: |
+                  [[[ return "Surveillance" ]]]
+              - type: custom:vertical-stack-in-card
+                horizontal: true
+                style: |
+                  ha-card { 
+                    padding: 5px;
+                  }
+                cards:
+                  - type: markdown
+                    content: |-
+                      <b>{% if states('sensor.systeme_avertissement')  == ""  %}
+                       Tout est OK ✅  {% else %}<font color= red>{{ states.sensor.systeme_avertissement.state }}  {%- endif %} 
+                    style: |
+                      ha-card {
+                        font-size: 90%;
+                        font-family: Avenir;
       - type: custom:layout-card
         layout_type: masonry
         layout:
@@ -20356,4 +20336,3 @@ views:
                       navigation_path: /
                     hold_action:
                       action: none
-
