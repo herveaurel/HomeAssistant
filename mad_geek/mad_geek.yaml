@@ -30,6 +30,7 @@ mad_geek:
       card_box_shadow_color: 1px 1px 2px 0px rgba(255, 0, 0,0.3)
       
       # Text color
+      titre_carte: rgb(70, 130, 180)
       text_on: rgba(211,211,211,1)
       text_on_sidebar: rgba(211,211,211,1)
       text_on_info_sidebar: rgba(211,211,211,0.8)

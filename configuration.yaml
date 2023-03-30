@@ -214,6 +214,16 @@ sensor:
   - platform: template
     sensors:
 
+      saison:
+        friendly_name: saisons en francais          
+        value_template: >-
+          {% set saison = (states.sensor.season.state )
+            | replace('summer', 'Été')
+            | replace('spring', 'Printemps')
+            | replace('autumn', 'Automne')
+            | replace('winter', 'Hiver') %}
+          {{ saison }}
+          
       dans_2_heures:
         friendly_name: exemple, dans 2 heures          
         value_template: >-

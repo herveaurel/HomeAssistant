@@ -9,7 +9,7 @@ button_card_templates:
         - border-color: rgba(12, 12, 14, 0.2)
         - border-style: outset
         - border-width: 1px
-        - box-shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
+        - box-shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.5)
   style_off:
     styles:
       card:
@@ -1044,25 +1044,23 @@ button_card_templates:
         - margin-left: 9px
       state:
         - white-space: normal
-        - color: lightgrey
+        - color: darkgrey
         - justify-self: start
         - align-self: end
         - font-weight: bold
         - text-align: left
         - font-size: 12px
-        - filter: opacity(90%)
         - margin-left: 9px
         - line-height: 110%
         - margin-top: 0px
       label:
         - white-space: normal
-        - color: lightgrey
+        - color: darkgrey
         - justify-self: start
         - align-self: start
         - text-align: left
         - font-weight: bold
         - font-size: 12px
-        - filter: opacity(90%)
         - margin-left: 9px
         - margin-bottom: 2px
         - line-height: 110%
@@ -1179,7 +1177,7 @@ button_card_templates:
           [[[ return entity.state == "on" || entity.state == "home" ||
           entity.state == "heat" || entity.state == "Run" || entity.state ==
           "armed_away" || entity.state == "playing" || entity.state == "veille"
-          ]]]
+          || entity.state == "Wi-Fi" ]]]
         styles:
           icon:
             - color: lightgrey
@@ -1254,7 +1252,7 @@ button_card_templates:
         if( entity.state == "off")
           return variables.var_label
         var lum = states[entity.entity_id].attributes.brightness/2.54;
-        var roundLum = `<ha-icon icon="mdi:lightbulb-multiple" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +""+ Math.round(lum * 1) / 1;
+        var roundLum = `<ha-icon icon="mdi:lightbulb-multiple" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +""+ Math.round(lum * 1) / 1;
         return variables.var_label + "  " + roundLum + "%" ]]]
     styles:
       label:
@@ -1264,7 +1262,7 @@ button_card_templates:
                 return 'var(--custom-icon-color-blue)'
               if (variables.var_temp > 26.9)
                 return 'var(--custom-icon-color-red)'
-              return ""
+              return "darkgrey"
             ]]]
       custom_fields:
         notification:
@@ -1812,20 +1810,27 @@ button_card_templates:
     state:
       - operator: template
         value: >-
-          [[[ return entity.state == "Atoll" || entity.state == "Travail" ||
-          entity.state == "Collège" || entity.state == "Lycée"  ]]]
+          [[[ return entity.state == "home" || entity.state == "Maison" ||
+          entity.state == "Présent"  ]]]
         styles:
           label:
-            - color: rgb(103,173,91)
+            - color: darkgrey
           state:
-            - color: rgb(103,173,91)
+            - color: darkgrey
       - operator: template
-        value: '[[[ return  entity.state != "home" || entity.state == "off" ]]]'
+        value: '[[[ return  entity.state == "not_home" || entity.state == "off" ]]]'
         styles:
           label:
             - color: var(--custom-icon-color-red)
           state:
             - color: var(--custom-icon-color-red)
+      - operator: template
+        value: '[[[ return  entity.state != "not_home" ]]]'
+        styles:
+          label:
+            - color: rgb(103,173,91)
+          state:
+            - color: rgb(103,173,91)
   state_alarme:
     state:
       - value: disarmed
@@ -1967,7 +1972,8 @@ button_card_templates:
           entity.state == "cleaning" || entity.state == "returning" ||
           entity.state == "idle" || entity.state == "paused" || entity.state ==
           "veille" || entity.state == "idle"  || entity.state == "playing" ||
-          entity.state == "printing" || entity.state == "stopped" ]]]
+          entity.state == "printing" || entity.state == "stopped" ||
+          entity.state == "Wi-Fi"]]]
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-blue)
@@ -2117,6 +2123,20 @@ button_card_templates:
   state_unavailable:
     state:
       - value: unavailable
+        styles:
+          card:
+            - border-color: rgba(255, 0, 0, 0.5)
+            - opacity: 100%
+          icon:
+            - color: var(--custom-icon-color-red)
+            - animation: blink 0.8s ease infinite
+          name:
+            - color: red
+          label:
+            - color: red
+          state:
+            - color: red
+      - value: jammed
         styles:
           card:
             - border-color: rgba(255, 0, 0, 0.5)
@@ -2325,6 +2345,18 @@ button_card_templates:
           type: horizontal-stack
           cards:
             - type: custom:button-card
+              entity: sensor.iphone_aurel_connection_type
+              template:
+                - carte_bouton
+              styles:
+                icon:
+                  - color: |
+                      [[[
+                        if (states['sensor.iphone_aurel_connection_type'].state == 'Wi-Fi')
+                          return "lightgrey"
+                        return "red"
+                      ]]]
+            - type: custom:button-card
               entity: sensor.iphone_activity
               variables:
                 var_activity: |
@@ -2447,6 +2479,18 @@ button_card_templates:
         card:
           type: horizontal-stack
           cards:
+            - type: custom:button-card
+              entity: sensor.alex_iphone_connection_type_2
+              template:
+                - carte_bouton
+              styles:
+                icon:
+                  - color: |
+                      [[[
+                        if (states['sensor.alex_iphone_connection_type_2'].state == 'Wi-Fi')
+                          return "lightgrey"
+                        return "red"
+                      ]]]
             - type: custom:button-card
               entity: sensor.alex_iphone_activity_2
               variables:
@@ -2945,12 +2989,12 @@ button_card_templates:
       name:
         - font-size: 14px
         - font-weight: bold
-        - color: var(--text_on)
+        - color: darkgrey
         - justify-self: start
       label:
         - font-size: 14px
         - font-weight: bold
-        - color: var(--text_on)
+        - color: darkgrey
         - justify-self: start
       card:
         - height: auto
@@ -3124,10 +3168,10 @@ views:
                         entity: sensor.compteur_home
                         name: Personnes
                         icon: |
-                          [[[
-                            if (states['sensor.compteur_home'].state == 0)
-                              return "mdi:home-off" 
-                            return "mdi:home"
+                          [[[ 
+                            if (states['sensor.compteur_home'].state == 1 && states['person.alex'].state == "home")
+                              return "mdi:face-woman"
+                            return "mdi:face-man"
                           ]]]
                         template:
                           - badge
@@ -3166,6 +3210,7 @@ views:
                         template:
                           - badge
                           - style
+                          - state_unavailable
                         label: |
                           [[[
                             return states['sensor.compteur_serrures'].state
@@ -3222,6 +3267,12 @@ views:
                         template:
                           - badge
                           - style
+                        icon: |
+                          [[[ 
+                            if (states['binary_sensor.mouvements'].state == "on")
+                              return "mdi:run-fast"
+                            return "mdi:human-male"
+                          ]]]
                         label: |
                           [[[return states['sensor.compteur_mouvement'].state]]]
                         styles:
@@ -3859,8 +3910,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_sejour'].state == 'unavailable')
-                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` + " ?"
-                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` + states['sensor.temp_sejour'].state +"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` + " ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` + states['sensor.temp_sejour'].state +"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -3925,8 +3976,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.moniteur_qualite_air_temperature'].state == 'unavailable')
-                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
-                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.moniteur_qualite_air_temperature'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +states['sensor.moniteur_qualite_air_temperature'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -3980,6 +4031,7 @@ views:
                                   template:
                                     - carte_bouton
                                     - carte_bouton_state
+                                    - state_unavailable
                                   tap_action:
                                     action: more-info
                                   double_tap_action:
@@ -4005,8 +4057,8 @@ views:
                         label: |
                           [[[ 
                             if (states['sensor.temp_cuisine'].state == 'unavailable')
-                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
-                            return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` + states['sensor.temp_cuisine'].state+"°"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +" ?"
+                            return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` + states['sensor.temp_cuisine'].state+"°"
                           ]]]
                         variables:
                           var_temp: |
@@ -4092,8 +4144,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_parents'].state == 'unavailable')
-                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
-                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_parents'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +states['sensor.temp_parents'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4154,8 +4206,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.sonde_garage_temperature'].state == 'unavailable')
-                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
-                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.sonde_garage_temperature'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +states['sensor.sonde_garage_temperature'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4193,6 +4245,7 @@ views:
                                   template:
                                     - carte_bouton
                                     - carte_bouton_state
+                                    - state_unavailable
                                   tap_action:
                                     action: more-info
                                   double_tap_action:
@@ -4231,8 +4284,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_tom'].state == 'unavailable')
-                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
-                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_tom'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +states['sensor.temp_tom'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4290,8 +4343,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_manon'].state == 'unavailable')
-                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
-                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_manon'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +states['sensor.temp_manon'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4354,8 +4407,8 @@ views:
                           var_label: |
                             [[[ 
                               if (states['sensor.temp_nina'].state == 'unavailable')
-                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
-                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_nina'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +states['sensor.temp_nina'].state+"°"
                             ]]]
                           var_temp: |
                             [[[ 
@@ -4407,8 +4460,8 @@ views:
                         label: |
                           [[[
                               if (states['sensor.temp_sejour'].state == 'unavailable')
-                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +" ?"
-                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: lightgrey; "> </ha-icon>` +states['sensor.temp_salle_de_bain'].state+"°"
+                                return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +" ?"
+                              return `<ha-icon icon="mdi:thermometer" style="width: 12px; height: 12px; color: darkgrey; "> </ha-icon>` +states['sensor.temp_salle_de_bain'].state+"°"
                           ]]]
                         variables:
                           var_temp: |
@@ -4448,7 +4501,7 @@ views:
                           var_label: |
                             [[[
                               if (entity.state == "on")
-                                return states['sensor.mouv_palier_lum'].state+"lx"
+                                return ""
                               return 'Éteint '
                             ]]]
                           var_temp: |
@@ -4483,7 +4536,7 @@ views:
                           var_label: |
                             [[[
                               if (entity.state == "on")
-                                return states['sensor.mouv_palier_lum'].state+"lx"
+                                return ""
                               return 'Éteint '
                             ]]]
                           var_temp: |
@@ -6060,7 +6113,7 @@ views:
                         - color: |
                             [[[
                               if (states["sensor.maj"].state == "Aucune mise à jour") 
-                                return ''
+                                return 'darkgrey'
                               return 'var(--custom-icon-color-blue)'
                             ]]]
                       img_cell:
@@ -6204,7 +6257,7 @@ views:
                         - color: |
                             [[[
                               if (states["sensor.electricite_conso_veille"].state == "-1.0") return 'var(--custom-icon-color-red)'
-                              else return ''
+                              else return 'darkgrey'
                             ]]]
                       img_cell:
                         - background-color: |
@@ -6350,6 +6403,7 @@ views:
                             - type: custom:button-card
                               entity: sensor.plante_hum_dracaena
                               name: Dracaena
+                              icon: mdi:water
                               template:
                                 - carte_systeme_info
                                 - carte_systeme_info_plante_state
@@ -6364,6 +6418,7 @@ views:
                             - type: custom:button-card
                               entity: sensor.plante_hum_pied_elephant
                               name: Pied Eleph
+                              icon: mdi:water
                               template:
                                 - carte_systeme_info
                                 - carte_systeme_info_plante_state
@@ -6378,6 +6433,7 @@ views:
                             - type: custom:button-card
                               entity: sensor.plante_citro_humidite
                               name: Citronnier
+                              icon: mdi:water
                               template:
                                 - carte_systeme_info
                                 - carte_systeme_info_plante_state
@@ -9831,8 +9887,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -10025,8 +10083,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -10117,8 +10177,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                     tap_action:
                       action: navigate
                       navigation_path: /media-browser
@@ -10316,8 +10378,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -10468,8 +10532,10 @@ views:
                             margin-left: 18px
                             font-size: 15px
                             font-weight: 600
+                            color: var(--titre_carte)
                           icon:
                             '--mdc-icon-size': 20px
+                            color: var(--titre_carte)
                       - icon: mdi:close
                         layout: icon
                         tap_action:
@@ -11099,8 +11165,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -11155,6 +11223,15 @@ views:
                   }
                 cards:
                   - type: custom:button-card
+                    entity: sensor.iphone_aurel_battery_level
+                    name: iPhone
+                    template:
+                      - carte_badge
+                      - state_batterie
+                      - style_off
+                    show_label: false
+                    show_name: true
+                  - type: custom:button-card
                     entity: sensor.aurel_activite
                     name: Activité
                     template:
@@ -11196,16 +11273,7 @@ views:
                               if (entity.state == 'Conduite')
                                 return "var(--custom-img-cell-color-red)"
                               return 'var(--custom-img-cell-color-blue)'
-                            ]]]        
-                  - type: custom:button-card
-                    entity: sensor.iphone_aurel_battery_level
-                    name: iPhone
-                    template:
-                      - carte_badge
-                      - state_batterie
-                      - style_off
-                    show_label: false
-                    show_name: true
+                            ]]] 
                   - type: custom:button-card
                     entity: sensor.macbook_aurel_internal_battery_level
                     name: MacBook
@@ -11259,8 +11327,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -11410,8 +11480,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -11508,8 +11580,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -11699,8 +11773,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -11921,8 +11997,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -13247,8 +13325,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -13293,8 +13373,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                     tap_action:
                       action: call-service
                       service: switch.toggle
@@ -13943,8 +14025,10 @@ views:
                             margin-left: 18px
                             font-size: 15px
                             font-weight: 600
+                            color: var(--titre_carte)
                           icon:
                             '--mdc-icon-size': 20px
+                            color: var(--titre_carte)
                       - icon: mdi:close
                         layout: icon
                         tap_action:
@@ -14464,8 +14548,10 @@ views:
                             margin-left: 18px
                             font-size: 15px
                             font-weight: 600
+                            color: var(--titre_carte)
                           icon:
                             '--mdc-icon-size': 20px
+                            color: var(--titre_carte)
                       - icon: mdi:close
                         layout: icon
                         tap_action:
@@ -15051,8 +15137,10 @@ views:
                             margin-left: 18px
                             font-size: 15px
                             font-weight: 600
+                            color: var(--titre_carte)
                           icon:
                             '--mdc-icon-size': 20px
+                            color: var(--titre_carte)
                       - icon: mdi:close
                         layout: icon
                         tap_action:
@@ -15560,8 +15648,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -15780,8 +15870,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -16083,8 +16175,10 @@ views:
                             margin-left: 18px
                             font-size: 15px
                             font-weight: 600
+                            color: var(--titre_carte)
                           icon:
                             '--mdc-icon-size': 20px
+                            color: var(--titre_carte)
                       - icon: mdi:close
                         layout: icon
                         tap_action:
@@ -16316,8 +16410,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -16487,8 +16583,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -17377,8 +17475,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -17877,8 +17977,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -18119,7 +18221,7 @@ views:
                   - type: markdown
                     content: |-
                       <b>{% if states('sensor.systeme_avertissement')  == ""  %}
-                       Tout est OK ✅  {% else %}<font color= red>{{ states.sensor.systeme_avertissement.state }}  {%- endif %} 
+                       ✅ Tout est OK   {% else %}<font color= red>{{ states.sensor.systeme_avertissement.state }}  {%- endif %} 
                     style: |
                       ha-card {
                         font-size: 90%;
@@ -18141,8 +18243,10 @@ views:
                         margin-left: 18px
                         font-size: 15px
                         font-weight: 600
+                        color: var(--titre_carte)
                       icon:
                         '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
                   - icon: mdi:close
                     layout: icon
                     tap_action:
@@ -19119,628 +19223,633 @@ views:
     cards:
       - type: custom:layout-card
         layout_type: masonry
+        layout:
+          width: 350
         cards:
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: custom:button-card
-                entity: weather.ta_ville
-                show_entity_picture: true
-                show_icon: true
-                show_name: false
-                show_state: false
-                show_label: false
-                template:
-                  - police
-                  - style
-                entity_picture: |
-                  [[[
-                    if ((entity.state == 'sunny') && (states['sun.sun'].state == 'above_horizon'))
-                      return "/local/weather/icones animes/clear-day.svg"
-                    if ((entity.state == 'sunny') || (entity.state == 'clear-night') && (states['sun.sun'].state == 'below_horizon'))
-                      return "/local/weather/icones animes/clear-night.svg"  
+          - type: entities
+            entities:
+              - type: custom:paper-buttons-row
+                buttons:
+                  - icon: mdi:weather-sunny
+                    layout: icon|name
+                    name: >-
+                      {{ states('sensor.date_jour') }} {{
+                      states('sensor.date_numero') }} : {{
+                      states('sensor.weather_conditions') }}
+                    style:
+                      name:
+                        margin-left: 18px
+                        font-size: 15px
+                        font-weight: 600
+                        color: var(--titre_carte)
+                      icon:
+                        '--mdc-icon-size': 20px
+                        color: var(--titre_carte)
+                  - icon: mdi:close
+                    layout: icon
+                    tap_action:
+                      action: navigate
+                      navigation_path: /
+                    style:
+                      icon:
+                        '--mdc-icon-size': 15px
+                style: |
+                  div.flex-box {
+                    margin-top: -6px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  }
+              - type: custom:vertical-stack-in-card
+                horizontal: true
+                cards:
+                  - type: custom:button-card
+                    entity: weather.ta_ville
+                    show_entity_picture: true
+                    show_icon: true
+                    show_name: false
+                    show_state: false
+                    show_label: false
+                    template:
+                      - police
+                      - style_off
+                    entity_picture: |
+                      [[[
+                        if ((entity.state == 'sunny') && (states['sun.sun'].state == 'above_horizon'))
+                          return "/local/weather/icones animes/clear-day.svg"
+                        if ((entity.state == 'sunny') || (entity.state == 'clear-night') && (states['sun.sun'].state == 'below_horizon'))
+                          return "/local/weather/icones animes/clear-night.svg"  
 
-                    if ((entity.state == 'lightning-rainy') && (states['sun.sun'].state == 'above_horizon'))
-                      return "/local/weather/icones animes/thunderstorms-day-rain.svg"
-                    if ((entity.state == 'lightning-rainy') || (entity.state == 'clear-night') && (states['sun.sun'].state == 'below_horizon'))
-                      return "/local/weather/icones animes/thunderstorms-night-rain.svg"
+                        if ((entity.state == 'lightning-rainy') && (states['sun.sun'].state == 'above_horizon'))
+                          return "/local/weather/icones animes/thunderstorms-day-rain.svg"
+                        if ((entity.state == 'lightning-rainy') || (entity.state == 'clear-night') && (states['sun.sun'].state == 'below_horizon'))
+                          return "/local/weather/icones animes/thunderstorms-night-rain.svg"
 
-                    if ((entity.state == 'fog') && (states['sun.sun'].state == 'above_horizon'))
-                      return "/local/weather/icones animes/fog-day.svg"             
-                    if ((entity.state == 'fog') && (states['sun.sun'].state == 'below_horizon'))
-                      return "/local/weather/icones animes/fog-night.svg"
+                        if ((entity.state == 'fog') && (states['sun.sun'].state == 'above_horizon'))
+                          return "/local/weather/icones animes/fog-day.svg"             
+                        if ((entity.state == 'fog') && (states['sun.sun'].state == 'below_horizon'))
+                          return "/local/weather/icones animes/fog-night.svg"
 
-                    if ((entity.state == 'partlycloudy') && (states['sun.sun'].state == 'above_horizon'))
-                      return "/local/weather/icones animes/partly-cloudy-day.svg"                    
-                    if ((entity.state == 'partlycloudy') && (states['sun.sun'].state == 'below_horizon'))
-                      return "/local/weather/icones animes/partly-cloudy-night.svg"  
+                        if ((entity.state == 'partlycloudy') && (states['sun.sun'].state == 'above_horizon'))
+                          return "/local/weather/icones animes/partly-cloudy-day.svg"                    
+                        if ((entity.state == 'partlycloudy') && (states['sun.sun'].state == 'below_horizon'))
+                          return "/local/weather/icones animes/partly-cloudy-night.svg"  
 
-                    if ((entity.state == 'rainy') && (states['sun.sun'].state == 'above_horizon'))
-                      return "/local/weather/icones animes/partly-cloudy-day-rain.svg"                      
-                    if ((entity.state == 'rainy') && (states['sun.sun'].state == 'below_horizon'))
-                      return "/local/weather/icones animes/partly-cloudy-night-rain.svg" 
+                        if ((entity.state == 'rainy') && (states['sun.sun'].state == 'above_horizon'))
+                          return "/local/weather/icones animes/partly-cloudy-day-rain.svg"                      
+                        if ((entity.state == 'rainy') && (states['sun.sun'].state == 'below_horizon'))
+                          return "/local/weather/icones animes/partly-cloudy-night-rain.svg" 
 
-                    if ((entity.state == 'lightning') && (states['sun.sun'].state == 'above_horizon'))
-                      return "/local/weather/icones animes/thunderstorms-day.svg"                      
-                    if ((entity.state == 'lightning') && (states['sun.sun'].state == 'below_horizon'))
-                      return "/local/weather/icones animes/thunderstorms-night.svg" 
+                        if ((entity.state == 'lightning') && (states['sun.sun'].state == 'above_horizon'))
+                          return "/local/weather/icones animes/thunderstorms-day.svg"                      
+                        if ((entity.state == 'lightning') && (states['sun.sun'].state == 'below_horizon'))
+                          return "/local/weather/icones animes/thunderstorms-night.svg" 
 
-                    if (entity.state == 'clear-night')
-                      return "/local/weather/icones animes/clear-night.svg";
+                        if (entity.state == 'clear-night')
+                          return "/local/weather/icones animes/clear-night.svg";
 
-                    if (entity.state == 'sleet')
-                      return "/local/weather/icones animes/sleet.svg";  
+                        if (entity.state == 'sleet')
+                          return "/local/weather/icones animes/sleet.svg";  
 
-                    if (entity.state == 'pouring')
-                      return "/local/weather/icones animes/umbrella.svg"; 
+                        if (entity.state == 'pouring')
+                          return "/local/weather/icones animes/umbrella.svg"; 
 
-                    if (entity.state == 'snowy-rainy')
-                      return "/local/weather/icones animes/sleet.svg";  
+                        if (entity.state == 'snowy-rainy')
+                          return "/local/weather/icones animes/sleet.svg";  
 
-                    if (entity.state == 'snow')
-                      return "/local/weather/icones animes/snow.svg"; 
+                        if (entity.state == 'snow')
+                          return "/local/weather/icones animes/snow.svg"; 
 
-                    if (entity.state == 'snowy')
-                      return "/local/weather/icones animes/snow.svg"; 
+                        if (entity.state == 'snowy')
+                          return "/local/weather/icones animes/snow.svg"; 
 
-                    if (entity.state == 'cloudy')
-                      return "/local/weather/icones animes/cloudy.svg"; 
+                        if (entity.state == 'cloudy')
+                          return "/local/weather/icones animes/cloudy.svg"; 
 
-                    if (entity.state == 'wind')
-                      return "/local/weather/icones animes/wind.svg"; 
+                        if (entity.state == 'wind')
+                          return "/local/weather/icones animes/wind.svg"; 
 
-                    if (entity.state == 'hail')
-                      return "/local/weather/icones animes/hail.svg"; 
-                  ]]]
-                styles:
-                  img_cell:
-                    - border-radius: 0%
-                    - width: 70px
-                    - height: 70px
-                    - position: absolute
-                    - top: 0%
-                    - left: 15%
-                    - background-color: transparent
-                    - color: transparent
-                    - border-color: transparent
-                    - box-shadow: transparent
-                  entity_picture:
-                    - width: 90%
-                  grid:
-                    - grid-template-areas: |
-                        "date"
-                        "meteo"
-                        "temp"        
-                        "bouton"        
-                        "jauge"
-                        "alerte"
-                    - grid-template-columns: 1fr
-                    - grid-template-rows: >-
-                        min-content min-content min-content min-content 
-                        min-content 1fr
-                    - gap: 0%
-                    - overflow: hidden
-                  card:
-                    - padding: 3% 0% 2% 0%
-                    - font-size: 13px
-                  custom_fields:
-                    date:
-                      - padding: 0px 0px 0px 20px
-                      - font-weight: bold
-                      - font-size: 13px
-                      - color: lightgrey
-                      - text-align: center
-                      - white-space: normal
-                    meteo:
-                      - padding: 0px 0px 0px 20px
-                      - font-weight: bold
-                      - font-size: 13px
-                      - color: lightgrey
-                      - text-align: center
-                    temp:
-                      - padding: 0px 0px 0px 20px
-                      - font-weight: bold
-                      - font-size: 25px
-                      - color: lightgrey
-                      - text-align: center
-                    alerte:
-                      - padding: 10px 0px 0px 0px
-                      - white-space: normal
-                      - width: calc(100% + 1px)
-                      - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-                      - '--ha-card-background': rgba(0, 0, 0, 0.0)
-                      - '--ha-card-box-shadow': none
-                      - '--ha-card-border-width': 0px
-                    bouton:
-                      - padding: 10px 0px 0px 10px
-                      - white-space: normal
-                      - width: calc(100% + 1px)
-                      - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-                      - '--ha-card-background': rgba(0, 0, 0, 0.0)
-                      - '--ha-card-box-shadow': none
-                      - '--ha-card-border-width': 0px
-                    jauge:
-                      - padding: 10px 0px 0px 0px
-                      - width: calc(100% + 0px)
-                      - '--ha-card-border-width': 0px
-                      - '--ha-card-background': rgba(0, 0, 0, 0.0)
-                      - '--ha-card-box-shadow': none
-                custom_fields:
-                  date: |
-                    [[[ return states['sensor.date_simple'].state ]]]
-                  meteo: |
-                    [[[ return states['sensor.weather_conditions'].state ]]]
-                  temp: >
-                    [[[ return states['sensor.weather_temperature_v2'].state +"°
-                    " ]]]
-                  alerte:
-                    card:
-                      type: custom:vertical-stack-in-card
-                      horizontal: true
-                      cards:
-                        - type: custom:button-card
-                          entity: sensor.weather_alert_vent_violent
-                          name: Vent violent
-                          icon: mdi:weather-windy
-                          template:
-                            - carte_scene
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                     if( states['sensor.weather_alert_vent_violent'].state == "Jaune")
-                                       return "gold"
-                                     if( states['sensor.weather_alert_vent_violent'].state == "Orange")
-                                       return "orange" 
-                                     if( states['sensor.weather_alert_vent_violent'].state == "Rouge")
-                                       return "red"                          
-                                     return ""
-                                  ]]]
-                            img_cell:
-                              - background-color: |
-                                  [[[
-                                     if( states['sensor.weather_alert_vent_violent'].state == "Jaune")
-                                       return "var(--custom-img-cell-color-gold)" 
-                                     if( states['sensor.weather_alert_vent_violent'].state == "Orange")
-                                       return "var(--custom-img-cell-color-orange)" 
-                                     if( states['sensor.weather_alert_vent_violent'].state == "Rouge")
-                                       return "var(--custom-img-cell-color-red)"                          
-                                     return "var(--pastille_off)"
-                                  ]]]
-                        - type: custom:button-card
-                          entity: sensor.49_weather_alert
-                          name: Inondation
-                          icon: mdi:waves
-                          template:
-                            - carte_scene
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Jaune")
-                                       return "gold"
-                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Orange")
-                                       return "orange" 
-                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Rouge")
-                                       return "red"                          
-                                     return ""
-                                  ]]]
-                            img_cell:
-                              - background-color: |
-                                  [[[
-                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Jaune")
-                                       return "var(--custom-img-cell-color-gold)" 
-                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Orange")
-                                       return "var(--custom-img-cell-color-orange)" 
-                                     if( states['sensor.49_weather_alert'].attributes.Inondation == "Rouge")
-                                       return "var(--custom-img-cell-color-red)"                          
-                                     return "var(--pastille_off)"
-                                  ]]]
-                        - type: custom:button-card
-                          entity: sensor.49_weather_alert
-                          name: Orages
-                          icon: mdi:weather-lightning
-                          template:
-                            - carte_scene
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Jaune")
-                                       return "gold"
-                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Orange")
-                                       return "orange" 
-                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Rouge")
-                                       return "red"                          
-                                     return ""
-                                  ]]]
-                            img_cell:
-                              - background-color: |
-                                  [[[
-                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Jaune")
-                                       return "var(--custom-img-cell-color-gold)" 
-                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Orange")
-                                       return "var(--custom-img-cell-color-orange)" 
-                                     if( states['sensor.49_weather_alert'].attributes.Orages == "Rouge")
-                                       return "var(--custom-img-cell-color-red)"                          
-                                     return "var(--pastille_off)"
-                                  ]]]
-                        - type: custom:button-card
-                          entity: sensor.weather_alert_pluie_inondation
-                          name: Pluie
-                          icon: mdi:weather-pouring
-                          template:
-                            - carte_scene
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                     if( states['sensor.weather_alert_pluie_inondation'].state == "Jaune")
-                                       return "gold"
-                                     if(states['sensor.weather_alert_pluie_inondation'].state == "Orange")
-                                       return "orange" 
-                                     if( states['sensor.weather_alert_pluie_inondation'].state == "Rouge")
-                                       return "red"                          
-                                     return ""
-                                  ]]]
-                            img_cell:
-                              - background-color: |
-                                  [[[
-                                     if( states['sensor.weather_alert_pluie_inondation'].state == "Jaune")
-                                       return "var(--custom-img-cell-color-gold)" 
-                                     if( states['sensor.weather_alert_pluie_inondation'].state== "Orange")
-                                       return "var(--custom-img-cell-color-orange)" 
-                                     if( states['sensor.weather_alert_pluie_inondation'].state == "Rouge")
-                                       return "var(--custom-img-cell-color-red)"                          
-                                     return "var(--pastille_off)"
-                                  ]]]
-                        - type: custom:button-card
-                          entity: sensor.weather_alert_neige_verglas
-                          name: Neige Verglas
-                          icon: mdi:weather-snowy-heavy
-                          template:
-                            - carte_scene
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                     if( states['sensor.weather_alert_neige_verglas'].state == "Jaune")
-                                       return "gold"
-                                     if(states['sensor.weather_alert_neige_verglas'].state == "Orange")
-                                       return "orange" 
-                                     if( states['sensor.weather_alert_neige_verglas'].state == "Rouge")
-                                       return "red"                          
-                                     return ""
-                                  ]]]
-                            img_cell:
-                              - background-color: |
-                                  [[[
-                                     if( states['sensor.weather_alert_neige_verglas'].state == "Jaune")
-                                       return "var(--custom-img-cell-color-gold)" 
-                                     if( states['sensor.weather_alert_neige_verglas'].state== "Orange")
-                                       return "var(--custom-img-cell-color-orange)" 
-                                     if( states['sensor.weather_alert_neige_verglas'].state == "Rouge")
-                                       return "var(--custom-img-cell-color-red)"                          
-                                     return "var(--pastille_off)"
-                                  ]]]
-                        - type: custom:button-card
-                          entity: sensor.weather_alert_grand_froid
-                          name: Grand froid
-                          icon: mdi:thermometer-minus
-                          template:
-                            - carte_scene
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                     if( states['sensor.weather_alert_grand_froid'].state == "Jaune")
-                                       return "gold"
-                                     if(states['sensor.weather_alert_grand_froid'].state == "Orange")
-                                       return "orange" 
-                                     if( states['sensor.weather_alert_grand_froid'].state == "Rouge")
-                                       return "red"                          
-                                     return ""
-                                  ]]]
-                            img_cell:
-                              - background-color: |
-                                  [[[
-                                     if( states['sensor.weather_alert_grand_froid'].state == "Jaune")
-                                       return "var(--custom-img-cell-color-gold)" 
-                                     if( states['sensor.weather_alert_grand_froid'].state == "Orange")
-                                       return "var(--custom-img-cell-color-orange)" 
-                                     if( states['sensor.weather_alert_grand_froid'].state == "Rouge")
-                                       return "var(--custom-img-cell-color-red)"                          
-                                     return "var(--pastille_off)"
-                                  ]]]
-                  bouton:
-                    card:
-                      type: horizontal-stack
-                      cards:
-                        - type: custom:button-card
-                          entity: sensor.saison
-                          show_state: true
-                          show_label: false
-                          template:
-                            - police
-                            - base
-                          name: Saison
-                          icon: |
+                        if (entity.state == 'hail')
+                          return "/local/weather/icones animes/hail.svg"; 
+                      ]]]
+                    styles:
+                      img_cell:
+                        - border-radius: 0%
+                        - width: 70px
+                        - height: 70px
+                        - position: absolute
+                        - top: 0%
+                        - left: 20%
+                        - background-color: transparent
+                        - color: transparent
+                        - border-color: transparent
+                        - box-shadow: transparent
+                      entity_picture:
+                        - width: 90%
+                      grid:
+                        - grid-template-areas: |
+                            "temp"        
+                        - grid-template-columns: 1fr
+                        - grid-template-rows: >-
+                            min-content min-content min-content min-content 
+                            min-content 1fr
+                        - gap: 0%
+                        - overflow: hidden
+                      card:
+                        - padding: 3% 0% 2% 0%
+                        - font-size: 13px
+                      custom_fields:
+                        temp:
+                          - padding: 0px 0px 0px 20px
+                          - font-weight: bold
+                          - font-size: 25px
+                          - color: lightgrey
+                          - text-align: center
+                    custom_fields:
+                      temp: >
+                        [[[ return states['sensor.weather_temperature_v2'].state
+                        +"° " ]]]
+              - type: custom:vertical-stack-in-card
+                horizontal: true
+                style: |
+                  ha-card { 
+                    padding: 5px;
+                  }
+                cards:
+                  - type: custom:button-card
+                    entity: sensor.saison
+                    show_state: true
+                    show_label: false
+                    template:
+                      - police
+                      - base
+                    name: Saison
+                    icon: |
+                      [[[
+                        if (states['sensor.saison'].state == 'Printemps')
+                          return 'mdi:flower'
+                        if (states['sensor.saison'].state == 'Été')
+                          return 'mdi:weather-sunny'
+                        if (states['sensor.saison'].state == 'Automne')
+                          return 'mdi:leaf'
+                        if (states['sensor.saison'].state == 'Hiver')
+                          return 'mdi:snowflake'                    
+                            ]]]
+                    styles:
+                      icon:
+                        - color: |
                             [[[
                               if (states['sensor.saison'].state == 'Printemps')
-                                return 'mdi:flower'
+                                return 'rgb(154,205,50)'
                               if (states['sensor.saison'].state == 'Été')
-                                return 'mdi:weather-sunny'
+                                return 'rgb(255,215,0)'
                               if (states['sensor.saison'].state == 'Automne')
-                                return 'mdi:leaf'
+                                return 'grey'
                               if (states['sensor.saison'].state == 'Hiver')
-                                return 'mdi:snowflake'                    
-                                  ]]]
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['sensor.saison'].state == 'Printemps')
-                                      return 'rgb(154,205,50)'
-                                    if (states['sensor.saison'].state == 'Été')
-                                      return 'rgb(255,215,0)'
-                                    if (states['sensor.saison'].state == 'Automne')
-                                      return 'grey'
-                                    if (states['sensor.saison'].state == 'Hiver')
-                                      return 'rgb(0,191,255)'                          
-                                  ]]]
-                        - type: custom:button-card
-                          entity: sensor.weather_soleil_v2
-                          show_state: true
-                          show_label: false
-                          template:
-                            - police
-                            - base
-                          name: |
+                                return 'rgb(0,191,255)'                          
+                            ]]]
+                  - type: custom:button-card
+                    entity: sensor.weather_soleil_v2
+                    show_state: true
+                    show_label: false
+                    template:
+                      - police
+                      - base
+                    name: |
+                      [[[
+                        if (states['sun.sun'].state == 'below_horizon')
+                          return 'Levé'
+                        return 'Couché'
+                            ]]]
+                    icon: |
+                      [[[
+                        if (states['sun.sun'].state == 'below_horizon')
+                          return 'mdi:weather-sunset'
+                        return 'mdi:moon-waning-crescent'
+                            ]]]
+                    styles:
+                      icon:
+                        - color: |
                             [[[
                               if (states['sun.sun'].state == 'below_horizon')
-                                return 'Levé'
-                              return 'Couché'
-                                  ]]]
-                          icon: |
+                                return 'orange'
+                              return 'rgb(123,104,238)'
+                            ]]]
+                  - type: custom:button-card
+                    entity: sensor.weather_temp_min_max
+                    name: Demain
+                    icon: mdi:thermometer
+                    show_state: true
+                    show_label: false
+                    template:
+                      - police
+                      - base
+                    styles:
+                      img_cell:
+                        - background-color: |
                             [[[
-                              if (states['sun.sun'].state == 'below_horizon')
-                                return 'mdi:weather-sunset'
-                              return 'mdi:moon-waning-crescent'
-                                  ]]]
-                          styles:
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['sun.sun'].state == 'below_horizon')
-                                      return 'orange'
-                                    return 'rgb(123,104,238)'
-                                  ]]]
-                        - type: custom:button-card
-                          entity: sensor.weather_temp_min_max
-                          name: Demain
-                          icon: mdi:thermometer
-                          show_state: true
-                          show_label: false
-                          template:
-                            - police
-                            - base
-                          styles:
-                            img_cell:
-                              - background-color: |
-                                  [[[
-                                    if (states['sensor.weather_temp_max_v2'].state > 20)
-                                      return 'var(--custom-img-cell-color-red)'
-                                    if (states['sensor.weather_temp_max_v2'].state < 10)
-                                      return 'var(--custom-img-cell-color-blue)'
-                                    return 'var(--pastille_off)'
-                                  ]]]
-                            icon:
-                              - color: |
-                                  [[[
-                                    if (states['sensor.weather_temp_max_v2'].state > 20)
-                                      return 'var(--custom-icon-color-red)'
-                                    if (states['sensor.weather_temp_max_v2'].state < 10)
-                                      return 'var(--custom-icon-color-blue)'
-                                    return 'var(--icon_off)'
-                                  ]]]
-                  jauge:
-                    card:
-                      type: horizontal-stack
-                      cards:
-                        - type: custom:button-card
-                          template:
-                            - base_moyenne
-                          styles:
-                            custom_fields:
-                              bouton:
-                                - position: absolute
-                                - top: 40%
-                                - left: 50%
-                                - width: calc(98% + 0px)
-                                - transform: translate(-50%, calc(-50% + 10px))
-                                - '--ha-card-border-width': 0px
+                              if (states['sensor.weather_temp_max_v2'].state > 20)
+                                return 'var(--custom-img-cell-color-red)'
+                              if (states['sensor.weather_temp_max_v2'].state < 10)
+                                return 'var(--custom-img-cell-color-blue)'
+                              return 'var(--pastille_off)'
+                            ]]]
+                      icon:
+                        - color: |
+                            [[[
+                              if (states['sensor.weather_temp_max_v2'].state > 20)
+                                return 'var(--custom-icon-color-red)'
+                              if (states['sensor.weather_temp_max_v2'].state < 10)
+                                return 'var(--custom-icon-color-blue)'
+                              return 'var(--icon_off)'
+                            ]]]
+              - type: custom:vertical-stack-in-card
+                horizontal: true
+                cards:
+                  - square: false
+                    columns: 6
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.weather_temperature_v2
+                        name: 🌡️
+                        units: °C
+                        template:
+                          - carte_jauge
+                          - state_unavailable
+                        styles:
+                          name:
+                            - font-size: 11px
+                          state:
+                            - font-size: 11px
                           custom_fields:
-                            bouton:
-                              card:
-                                square: false
-                                columns: 6
-                                type: grid
-                                cards:
-                                  - type: custom:button-card
-                                    entity: sensor.weather_temperature_v2
-                                    name: 🌡️
-                                    units: °C
-                                    template:
-                                      - carte_jauge
-                                      - state_unavailable
-                                    styles:
-                                      name:
-                                        - font-size: 11px
-                                      state:
-                                        - font-size: 11px
-                                      custom_fields:
-                                        gauge:
-                                          - width: calc(125% + 0px)
-                                    custom_fields:
-                                      gauge:
-                                        card:
-                                          entity: sensor.weather_temperature_v2
-                                          gauge:
-                                            max_value: 50
-                                            min_value: -10
-                                            severity:
-                                              - color: rgb(176, 196, 222)
-                                                from: 0
-                                                to: 14.9
-                                              - color: rgb(70, 130, 180)
-                                                from: 15
-                                                to: 26
-                                              - color: rgb(180, 70, 70)
-                                                from: 26.1
-                                                to: 50
-                                  - type: custom:button-card
-                                    entity: sensor.weather_conditions_vent
-                                    name: 💨
-                                    units: km/h
-                                    template:
-                                      - carte_jauge
-                                      - state_unavailable
-                                    styles:
-                                      name:
-                                        - font-size: 11px
-                                      state:
-                                        - font-size: 10px
-                                      custom_fields:
-                                        gauge:
-                                          - width: calc(125% + 0px)
-                                    custom_fields:
-                                      gauge:
-                                        card:
-                                          entity: sensor.weather_conditions_vent
-                                          gauge:
-                                            max_value: 100
-                                            min_value: 0
-                                            severity:
-                                              - color: rgb(70, 130, 180)
-                                                from: 0
-                                                to: 40
-                                              - color: rgb(180, 70, 70)
-                                                from: 41.1
-                                                to: 100
-                                  - type: custom:button-card
-                                    entity: sensor.weather_conditions_ciel
-                                    name: ☁️
-                                    units: '%'
-                                    template:
-                                      - carte_jauge
-                                      - state_unavailable
-                                    styles:
-                                      name:
-                                        - font-size: 11px
-                                      state:
-                                        - font-size: 11px
-                                      custom_fields:
-                                        gauge:
-                                          - width: calc(125% + 0px)
-                                    custom_fields:
-                                      gauge:
-                                        card:
-                                          entity: sensor.weather_conditions_ciel
-                                          gauge:
-                                            max_value: 100
-                                            min_value: 0
-                                            severity:
-                                              - color: rgb(70, 130, 180)
-                                                from: 0
-                                                to: 60
-                                              - color: rgb(180, 70, 70)
-                                                from: 60.1
-                                                to: 100
-                                  - type: custom:button-card
-                                    entity: sensor.weather_conditions_pluie
-                                    name: ☔️
-                                    units: '%'
-                                    template:
-                                      - carte_jauge
-                                      - state_unavailable
-                                    styles:
-                                      name:
-                                        - font-size: 11px
-                                      state:
-                                        - font-size: 11px
-                                      custom_fields:
-                                        gauge:
-                                          - width: calc(125% + 0px)
-                                    custom_fields:
-                                      gauge:
-                                        card:
-                                          entity: sensor.weather_conditions_pluie
-                                          gauge:
-                                            max_value: 100
-                                            min_value: 0
-                                            severity:
-                                              - color: rgb(70, 130, 180)
-                                                from: 0
-                                                to: 30
-                                              - color: rgb(180, 70, 70)
-                                                from: 30.1
-                                                to: 100
-                                  - type: custom:button-card
-                                    entity: sensor.weather_conditions_uv
-                                    name: ☀️
-                                    template:
-                                      - carte_jauge
-                                      - state_unavailable
-                                    styles:
-                                      name:
-                                        - font-size: 11px
-                                      state:
-                                        - font-size: 11px
-                                      custom_fields:
-                                        gauge:
-                                          - width: calc(125% + 0px)
-                                    custom_fields:
-                                      gauge:
-                                        card:
-                                          entity: sensor.weather_conditions_uv
-                                          gauge:
-                                            max_value: 12
-                                            min_value: 0
-                                            severity:
-                                              - color: rgb(70, 130, 180)
-                                                from: 0
-                                                to: 5
-                                              - color: rgb(180, 70, 70)
-                                                from: 6
-                                                to: 12
-                                  - type: custom:button-card
-                                    entity: sensor.weather_conditions_neige
-                                    name: ❄️
-                                    units: '%'
-                                    template:
-                                      - carte_jauge
-                                      - state_unavailable
-                                    styles:
-                                      name:
-                                        - font-size: 11px
-                                      state:
-                                        - font-size: 11px
-                                      custom_fields:
-                                        gauge:
-                                          - width: calc(125% + 0px)
-                                    custom_fields:
-                                      gauge:
-                                        card:
-                                          entity: sensor.weather_conditions_neige
-                                          gauge:
-                                            max_value: 100
-                                            min_value: 0
-                                            severity:
-                                              - color: rgb(70, 130, 180)
-                                                from: 0
-                                                to: 10
-                                              - color: rgb(180, 70, 70)
-                                                from: 10.1
-                                                to: 100
+                            gauge:
+                              - width: calc(125% + 0px)
+                        custom_fields:
+                          gauge:
+                            card:
+                              entity: sensor.weather_temperature_v2
+                              gauge:
+                                max_value: 50
+                                min_value: -10
+                                severity:
+                                  - color: rgb(176, 196, 222)
+                                    from: 0
+                                    to: 14.9
+                                  - color: rgb(70, 130, 180)
+                                    from: 15
+                                    to: 26
+                                  - color: rgb(180, 70, 70)
+                                    from: 26.1
+                                    to: 50
+                      - type: custom:button-card
+                        entity: sensor.weather_conditions_vent
+                        name: 💨
+                        units: km/h
+                        template:
+                          - carte_jauge
+                          - state_unavailable
+                        styles:
+                          name:
+                            - font-size: 11px
+                          state:
+                            - font-size: 10px
+                          custom_fields:
+                            gauge:
+                              - width: calc(125% + 0px)
+                        custom_fields:
+                          gauge:
+                            card:
+                              entity: sensor.weather_conditions_vent
+                              gauge:
+                                max_value: 100
+                                min_value: 0
+                                severity:
+                                  - color: rgb(70, 130, 180)
+                                    from: 0
+                                    to: 40
+                                  - color: rgb(180, 70, 70)
+                                    from: 41.1
+                                    to: 100
+                      - type: custom:button-card
+                        entity: sensor.weather_conditions_ciel
+                        name: ☁️
+                        units: '%'
+                        template:
+                          - carte_jauge
+                          - state_unavailable
+                        styles:
+                          name:
+                            - font-size: 11px
+                          state:
+                            - font-size: 11px
+                          custom_fields:
+                            gauge:
+                              - width: calc(125% + 0px)
+                        custom_fields:
+                          gauge:
+                            card:
+                              entity: sensor.weather_conditions_ciel
+                              gauge:
+                                max_value: 100
+                                min_value: 0
+                                severity:
+                                  - color: rgb(70, 130, 180)
+                                    from: 0
+                                    to: 60
+                                  - color: rgb(180, 70, 70)
+                                    from: 60.1
+                                    to: 100
+                      - type: custom:button-card
+                        entity: sensor.weather_conditions_pluie
+                        name: ☔️
+                        units: '%'
+                        template:
+                          - carte_jauge
+                          - state_unavailable
+                        styles:
+                          name:
+                            - font-size: 11px
+                          state:
+                            - font-size: 11px
+                          custom_fields:
+                            gauge:
+                              - width: calc(125% + 0px)
+                        custom_fields:
+                          gauge:
+                            card:
+                              entity: sensor.weather_conditions_pluie
+                              gauge:
+                                max_value: 100
+                                min_value: 0
+                                severity:
+                                  - color: rgb(70, 130, 180)
+                                    from: 0
+                                    to: 30
+                                  - color: rgb(180, 70, 70)
+                                    from: 30.1
+                                    to: 100
+                      - type: custom:button-card
+                        entity: sensor.weather_conditions_uv
+                        name: ☀️
+                        template:
+                          - carte_jauge
+                          - state_unavailable
+                        styles:
+                          name:
+                            - font-size: 11px
+                          state:
+                            - font-size: 11px
+                          custom_fields:
+                            gauge:
+                              - width: calc(125% + 0px)
+                        custom_fields:
+                          gauge:
+                            card:
+                              entity: sensor.weather_conditions_uv
+                              gauge:
+                                max_value: 12
+                                min_value: 0
+                                severity:
+                                  - color: rgb(70, 130, 180)
+                                    from: 0
+                                    to: 5
+                                  - color: rgb(180, 70, 70)
+                                    from: 6
+                                    to: 12
+                      - type: custom:button-card
+                        entity: sensor.weather_conditions_neige
+                        name: ❄️
+                        units: '%'
+                        template:
+                          - carte_jauge
+                          - state_unavailable
+                        styles:
+                          name:
+                            - font-size: 11px
+                          state:
+                            - font-size: 11px
+                          custom_fields:
+                            gauge:
+                              - width: calc(125% + 0px)
+                        custom_fields:
+                          gauge:
+                            card:
+                              entity: sensor.weather_conditions_neige
+                              gauge:
+                                max_value: 100
+                                min_value: 0
+                                severity:
+                                  - color: rgb(70, 130, 180)
+                                    from: 0
+                                    to: 10
+                                  - color: rgb(180, 70, 70)
+                                    from: 10.1
+                                    to: 100
+              - type: custom:vertical-stack-in-card
+                horizontal: true
+                cards:
+                  - type: custom:button-card
+                    entity: sensor.weather_alert_vent_violent
+                    name: Vent
+                    icon: mdi:weather-windy
+                    template:
+                      - carte_scene
+                    styles:
+                      name:
+                        - color: |
+                            [[[
+                               if( states['sensor.weather_alert_vent_violent'].state == "Jaune")
+                                 return "gold"
+                               if( states['sensor.weather_alert_vent_violent'].state == "Orange")
+                                 return "orange" 
+                               if( states['sensor.weather_alert_vent_violent'].state == "Rouge")
+                                 return "red"                          
+                               if( states['sensor.weather_alert_vent_violent'].state == "Vert")
+                                 return "darkgrey"  
+                            ]]]            
+                      icon:
+                        - color: |
+                            [[[
+                               if( states['sensor.weather_alert_vent_violent'].state == "Jaune")
+                                 return "gold"
+                               if( states['sensor.weather_alert_vent_violent'].state == "Orange")
+                                 return "orange" 
+                               if( states['sensor.weather_alert_vent_violent'].state == "Rouge")
+                                 return "red"                          
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: transparent
+                  - type: custom:button-card
+                    entity: sensor.49_weather_alert
+                    name: Inondation
+                    icon: mdi:waves
+                    template:
+                      - carte_scene
+                    styles:
+                      name:
+                        - color: |
+                            [[[
+                               if( states['sensor.49_weather_alert'].attributes.Inondation == "Jaune")
+                                 return "gold"
+                               if( states['sensor.49_weather_alert'].attributes.Inondation == "Orange")
+                                 return "orange" 
+                               if( states['sensor.49_weather_alert'].attributes.Inondation == "Rouge")
+                                 return "red"                          
+                               if( states['sensor.49_weather_alert'].attributes.Inondation == "Vert")
+                                 return "darkgrey" 
+                            ]]]              
+                      icon:
+                        - color: |
+                            [[[
+                               if( states['sensor.49_weather_alert'].attributes.Inondation == "Jaune")
+                                 return "gold"
+                               if( states['sensor.49_weather_alert'].attributes.Inondation == "Orange")
+                                 return "orange" 
+                               if( states['sensor.49_weather_alert'].attributes.Inondation == "Rouge")
+                                 return "red"                          
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: transparent
+                  - type: custom:button-card
+                    entity: sensor.49_weather_alert
+                    name: Orages
+                    icon: mdi:weather-lightning
+                    template:
+                      - carte_scene
+                    styles:
+                      name:
+                        - color: |
+                            [[[
+                               if( states['sensor.49_weather_alert'].attributes.Orages == "Jaune")
+                                 return "gold"
+                               if( states['sensor.49_weather_alert'].attributes.Orages == "Orange")
+                                 return "orange" 
+                               if( states['sensor.49_weather_alert'].attributes.Orages == "Rouge")
+                                 return "red"                          
+                               if( states['sensor.49_weather_alert'].attributes.Orages == "Vert")
+                                 return "darkgrey"
+                            ]]]              
+                      icon:
+                        - color: |
+                            [[[
+                               if( states['sensor.49_weather_alert'].attributes.Orages == "Jaune")
+                                 return "gold"
+                               if( states['sensor.49_weather_alert'].attributes.Orages == "Orange")
+                                 return "orange" 
+                               if( states['sensor.49_weather_alert'].attributes.Orages == "Rouge")
+                                 return "red"                          
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: transparent
+                  - type: custom:button-card
+                    entity: sensor.weather_alert_pluie_inondation
+                    name: Pluie
+                    icon: mdi:weather-pouring
+                    template:
+                      - carte_scene
+                    styles:
+                      name:
+                        - color: |
+                            [[[
+                               if( states['sensor.weather_alert_pluie_inondation'].state == "Jaune")
+                                 return "gold"
+                               if(states['sensor.weather_alert_pluie_inondation'].state == "Orange")
+                                 return "orange" 
+                               if( states['sensor.weather_alert_pluie_inondation'].state == "Rouge")
+                                 return "red"                          
+                               if( states['sensor.weather_alert_pluie_inondation'].state == "Vert")
+                                 return "darkgrey" 
+                            ]]]              
+                      icon:
+                        - color: |
+                            [[[
+                               if( states['sensor.weather_alert_pluie_inondation'].state == "Jaune")
+                                 return "gold"
+                               if(states['sensor.weather_alert_pluie_inondation'].state == "Orange")
+                                 return "orange" 
+                               if( states['sensor.weather_alert_pluie_inondation'].state == "Rouge")
+                                 return "red"                          
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: transparent
+                  - type: custom:button-card
+                    entity: sensor.weather_alert_neige_verglas
+                    name: Neige/Verglas
+                    icon: mdi:weather-snowy-heavy
+                    template:
+                      - carte_scene
+                    styles:
+                      name:
+                        - color: |
+                            [[[
+                               if( states['sensor.weather_alert_neige_verglas'].state == "Jaune")
+                                 return "gold"
+                               if(states['sensor.weather_alert_neige_verglas'].state == "Orange")
+                                 return "orange" 
+                               if( states['sensor.weather_alert_neige_verglas'].state == "Rouge")
+                                 return "red"                          
+                               if( states['sensor.weather_alert_neige_verglas'].state == "Vert")
+                                 return "darkgrey"  
+                            ]]]              
+                      icon:
+                        - color: |
+                            [[[
+                               if( states['sensor.weather_alert_neige_verglas'].state == "Jaune")
+                                 return "gold"
+                               if(states['sensor.weather_alert_neige_verglas'].state == "Orange")
+                                 return "orange" 
+                               if( states['sensor.weather_alert_neige_verglas'].state == "Rouge")
+                                 return "red"                          
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: transparent
+                  - type: custom:button-card
+                    entity: sensor.weather_alert_grand_froid
+                    name: Froid
+                    icon: mdi:thermometer-minus
+                    template:
+                      - carte_scene
+                    styles:
+                      name:
+                        - color: |
+                            [[[
+                               if( states['sensor.weather_alert_grand_froid'].state == "Jaune")
+                                 return "gold"
+                               if(states['sensor.weather_alert_grand_froid'].state == "Orange")
+                                 return "orange" 
+                               if( states['sensor.weather_alert_grand_froid'].state == "Rouge")
+                                 return "red"                          
+                               if( states['sensor.weather_alert_grand_froid'].state == "Vert")
+                                 return "darkgrey" 
+                            ]]]              
+                      icon:
+                        - color: |
+                            [[[
+                               if( states['sensor.weather_alert_grand_froid'].state == "Jaune")
+                                 return "gold"
+                               if(states['sensor.weather_alert_grand_froid'].state == "Orange")
+                                 return "orange" 
+                               if( states['sensor.weather_alert_grand_froid'].state == "Rouge")
+                                 return "red"                          
+                               return ""
+                            ]]]
+                      img_cell:
+                        - background-color: transparent
+              - type: divider
+                style:
+                  height: 0.5px
+                  width: 100%
+                  margin-left: auto
+                  margin-right: auto
+                  margin-top: 15px
+                  margin-bottom: 15px
+                  background: rgba(255,255,255,0.3)
               - type: custom:clock-weather-card
                 entity: weather.ta_ville
                 title: ''
@@ -19768,19 +19877,64 @@ views:
                   ha-card {
                     font-size: 80%;
                     font-family: Avenir;
-        layout:
-          width: 300
-      - type: custom:layout-card
-        layout_type: masonry
-        cards:
-          - initial_view: dayGridMonth
-            type: calendar
-            entities:
-              - calendar.famille_famille
-              - calendar.calendrier_calendrier
-              - calendar.poubelles_poubelles
-        layout:
-          width: 300
+      - type: entities
+        entities:
+          - type: custom:paper-buttons-row
+            buttons:
+              - icon: mdi:calendar
+                layout: icon|name
+                name: '{{ states(''sensor.date_simple'') }}'
+                style:
+                  name:
+                    margin-left: 18px
+                    font-size: 15px
+                    font-weight: 600
+                    color: var(--titre_carte)
+                  icon:
+                    '--mdc-icon-size': 20px
+                    color: var(--titre_carte)
+              - icon: mdi:close
+                layout: icon
+                tap_action:
+                  action: navigate
+                  navigation_path: /
+                style:
+                  icon:
+                    '--mdc-icon-size': 15px
+            style: |
+              div.flex-box {
+                margin-top: -6px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+          - type: custom:vertical-stack-in-card
+            horizontal: true
+            cards:
+              - type: markdown
+                content: >-
+                  <b><font color= darkgrey>Prochain événement aujourd'hui 
+                  :</font>
+
+                  {% if states('sensor.calendar_famille')  == "Aucun évènement" 
+                  -%}
+                    Aucun 
+                  {% else %}
+                   {{ states.sensor.calendar_famille.state }}  
+                  {%- endif %} 
+                style: |
+                  ha-card {
+                    font-size: 90%;
+                    font-family: Avenir;
+          - type: custom:vertical-stack-in-card
+            horizontal: true
+            cards:
+              - initial_view: dayGridMonth
+                type: calendar
+                entities:
+                  - calendar.famille_famille
+                  - calendar.calendrier_calendrier
+                  - calendar.poubelles_poubelles
   - theme: Backend-selected
     title: Air
     path: air
@@ -20005,7 +20159,7 @@ views:
       - type: custom:layout-card
         layout_type: masonry
         layout:
-          width: 280
+          width: 350
         cards:
           - type: entities
             entities:
@@ -20336,3 +20490,4 @@ views:
                       navigation_path: /
                     hold_action:
                       action: none
+

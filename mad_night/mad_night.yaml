@@ -30,7 +30,7 @@ mad_night:
       background-button-in-card: rgba(26, 35, 49,0) 
       background-button-in-card-top: rgba(16, 30, 45,0.7)
       
-      
+      titre_carte: rgb(70, 130, 180)
       text_on: rgba(211,211,211,1)
       text_on_sidebar: rgba(211,211,211,1)
       text_on_info_sidebar: rgba(211,211,211,0.8)

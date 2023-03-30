@@ -1,6 +1,16 @@
 ## ℹ️  CHANGELOG
 
 
+### 30 / 03 / 2023 : 
+
+- Ajouts de couleurs sur les titres des colonnes
+- Amélioration du state_person pour une meilleure cohérence des couleurs 
+- Réécriture des cartes météo et agenda 
+- mise a jour des thèmes
+
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/changelog3.jpg)
+
+
 ### 27 / 03 / 2023 : 
 
 - Ajouts d'icones dans le label des pièces 
