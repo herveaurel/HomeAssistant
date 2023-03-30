@@ -69,7 +69,9 @@ D'autres modifications viendront comme d'habirude, au rythme de mes idées... �
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/themes.jpg)
 
 Quasiment chaque bouton renvoie à une sous vue. 
+
 Par exemple, le bouton réglage en bas à droite de la carte Activité, permet de choisir en 1 clic les informations qui doivent etre affichées sur la carte. 😊
+
 Quelques exemples de configurations possibles : 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/activite.jpg)
