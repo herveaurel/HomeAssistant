@@ -80,9 +80,7 @@ Quelques exemples de configurations possibles :
 
 ##  ONGLETS
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/onglets.jpg)
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/alarme.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/alarme.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/lumieres.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/aspis.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/temp.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/elec.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/batteries.jpg)
 
 -----
 ## SOUS-VUES
