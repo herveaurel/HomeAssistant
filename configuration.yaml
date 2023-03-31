@@ -673,7 +673,7 @@ sensor:
           {% if not is_state("sensor.49_weather_alert", "Vert") -%}
           {%- endif %} 
           {% if is_state("sensor.weather_alert_grand_froid", "Jaune") -%} 
-          Grand froid {%- endif %}  
+          Froid {%- endif %}  
           {% if is_state("sensor.weather_alert_canicule", "Jaune") -%} 
           Canicule {%- endif %} 
           {% if is_state("sensor.weather_alert_neige_verglas", "Jaune") -%} 
@@ -683,11 +683,11 @@ sensor:
           {% if is_state("sensor.weather_alert_orages", "Jaune") -%} 
           Orages{%- endif %}  
           {% if is_state("sensor.weather_alert_vent_violent", "Jaune") -%} 
-          Vent violent{%- endif %}  
+          Vent{%- endif %}  
           {% if is_state("sensor.weather_alert_pluie_inondation", "Jaune") -%} 
           Pluie / Inondation{%- endif %}
           {% if is_state("sensor.weather_alert_grand_froid", "Orange") -%} 
-          Grand froid {%- endif %}
+          Froid {%- endif %}
           {% if is_state("sensor.weather_alert_canicule", "Orange") -%} 
           Canicule {%- endif %}
           {% if is_state("sensor.weather_alert_neige_verglas", "Orange") -%} 
@@ -695,13 +695,13 @@ sensor:
           {% if is_state("sensor.weather_alert_inondation", "Orange") -%} 
           Inondation{%- endif %}  
           {% if is_state("sensor.weather_alert_orages", "Orange") -%} 
-          ⚡️ Orages{%- endif %}  
+          Orages{%- endif %}  
           {% if is_state("sensor.weather_alert_vent_violent", "Orange") -%} 
-          Vent violent{%- endif %}  
+          Vent{%- endif %}  
           {% if is_state("sensor.weather_alert_pluie_inondation", "Orange") -%} 
           Pluie / Inondation{%- endif %}
           {% if is_state("sensor.weather_alert_grand_froid", "Rouge") -%} 
-          Grand froid {%- endif %}  
+          Froid {%- endif %}  
           {% if is_state("sensor.weather_alert_canicule", "Rouge") -%} 
           Canicule {%- endif %}  
           {% if is_state("sensor.weather_alert_neige_verglas", "Rouge") -%} 
@@ -711,7 +711,7 @@ sensor:
           {% if is_state("sensor.weather_alert_orages", "Rouge") -%} 
           Orages{%- endif %}  
           {% if is_state("sensor.weather_alert_vent_violent", "Rouge") -%} 
-          Vent violent{%- endif %}  
+          Vent{%- endif %}  
           {% if is_state("sensor.weather_alert_pluie_inondation", "Rouge") -%} 
           Pluie / Inondation{%- endif %}
 
@@ -1168,16 +1168,16 @@ sensor:
         value_template: >-
           {%- if is_state("input_boolean.reveils", "on") -%} 
             {%- if not is_state("sensor.tom_next_alarm", "unknown") -%}
-              Tom {{ states('sensor.tom_reveil') }}{{ ('  ') }}
+              Tom : {{ states('sensor.tom_reveil') }}{{ (' / ') }}
             {%- endif -%}
             {%- if not is_state("sensor.manon_next_alarm", "unknown") -%}  
-              Manon {{ states('sensor.manon_reveil') }}{{ ('  ') }}
+              Manon : {{ states('sensor.manon_reveil') }}{{ (' / ') }}
             {%- endif -%}
             {% if not is_state("sensor.leane_next_alarm", "unknown") -%}
-              Léane {{ states('sensor.leane_reveil') }}{{ ('  ') }}
+              Léane : {{ states('sensor.leane_reveil') }}{{ (' / ') }}
             {%- endif -%}
             {% if not is_state("sensor.nina_next_alarm", "unknown") -%} 
-              Nina {{ states('sensor.nina_reveil') }}
+              Nina : {{ states('sensor.nina_reveil') }}
             {%- endif %}
           {%- elif is_state("input_boolean.reveils", "off") and is_state("input_boolean.nilemato", "on") -%}
              Aucun réveil
@@ -1186,8 +1186,8 @@ sensor:
       tom_reveil_annonce:
         friendly_name: Tom Réveil annonce Alexa       
         value_template: >-
-          {% if not is_state("sensor.tom_reveil", "Grasse mat !") -%} 
-            Demain, réveil à {{ states.sensor.tom_reveil.state }}
+          {% if not is_state("sensor.tom_reveil", "Grasse mat !") and is_state("schedule.week_end", "off") -%} 
+            Réveil programmé pour, {{ states.sensor.tom_reveil.state }}
           {%- endif %}
           
       filles_reveil_annonce:
@@ -1196,14 +1196,14 @@ sensor:
           {% if not is_state("sensor.reveil", "Aucun") -%} 
             
           {%- endif %}
-          {% if not is_state("sensor.nina_reveil", "Grasse mat !") -%} 
-            Nina, réveil à {{ states.sensor.nina_reveil.state }}.
+          {% if not is_state("sensor.nina_reveil", "Grasse mat !") and is_state("schedule.week_end", "off")-%} 
+            Nina, réveil programmé pour, {{ states.sensor.nina_reveil.state }}.
           {%- endif %} 
-          {% if not is_state("sensor.leane_reveil", "Grasse mat !") -%} 
-            Léane, réveil à {{ states.sensor.leane_reveil.state }}.
+          {% if not is_state("sensor.leane_reveil", "Grasse mat !") and is_state("schedule.week_end", "off")-%} 
+            Léane, réveil programmé pour, {{ states.sensor.leane_reveil.state }}.
           {%- endif %}
-          {% if not is_state("sensor.manon_reveil", "Grasse mat !") -%} 
-            Manon, réveil à {{ states.sensor.manon_reveil.state }}.
+          {% if not is_state("sensor.manon_reveil", "Grasse mat !") and is_state("schedule.week_end", "off")-%} 
+            Manon, réveil programmé pour, {{ states.sensor.manon_reveil.state }}.
           {%- endif %}          
 
       tom_reveil:
@@ -1212,7 +1212,15 @@ sensor:
           {% if states('sensor.tom_next_alarm') == 'unknown' %}
             Grasse mat !
           {% else -%}
-            {{as_timestamp(states('sensor.tom_next_alarm')) | timestamp_custom('%Hh%M') }}
+            {% set reveil = as_timestamp(states('sensor.tom_next_alarm')) | timestamp_custom('%A %Hh%M')
+            | replace('Monday', 'lundi')
+            | replace('Tuesday', 'mardi')
+            | replace('Wednesday', 'mercredi')
+            | replace('Thursday', 'jeudi')
+            | replace('Friday', 'vendredi')
+            | replace('Saturday', 'samedi')
+            | replace('Sunday', 'dimanche') %}
+            {{ reveil }}
           {% endif %}
       tom_reveil_date:
         friendly_name: Réveil Tom
@@ -1224,7 +1232,15 @@ sensor:
           {% if states('sensor.manon_next_alarm') == 'unknown' %}
             Grasse mat !
           {% else -%}
-            {{as_timestamp(states('sensor.manon_next_alarm')) | timestamp_custom('%Hh%M') }}
+            {% set reveil = as_timestamp(states('sensor.manon_next_alarm')) | timestamp_custom('%A %Hh%M')
+            | replace('Monday', 'lundi')
+            | replace('Tuesday', 'mardi')
+            | replace('Wednesday', 'mercredi')
+            | replace('Thursday', 'jeudi')
+            | replace('Friday', 'vendredi')
+            | replace('Saturday', 'samedi')
+            | replace('Sunday', 'dimanche') %}
+            {{ reveil }}            
           {% endif %}
 
           
@@ -1234,7 +1250,15 @@ sensor:
           {% if states('sensor.leane_next_alarm') == 'unknown' %}
             Grasse mat !
           {% else -%}
-            {{as_timestamp(states('sensor.leane_next_alarm')) | timestamp_custom('%Hh%M') }}
+            {% set reveil = as_timestamp(states('sensor.leane_next_alarm')) | timestamp_custom('%A %Hh%M')
+            | replace('Monday', 'lundi')
+            | replace('Tuesday', 'mardi')
+            | replace('Wednesday', 'mercredi')
+            | replace('Thursday', 'jeudi')
+            | replace('Friday', 'vendredi')
+            | replace('Saturday', 'samedi')
+            | replace('Sunday', 'dimanche') %}
+            {{ reveil }} 
           {% endif %}
           
       nina_reveil:
@@ -1243,7 +1267,15 @@ sensor:
           {% if states('sensor.nina_next_alarm') == 'unknown' %}
             Grasse mat !
           {% else -%}
-            {{as_timestamp(states('sensor.nina_next_alarm')) | timestamp_custom('%Hh%M') }}
+            {% set reveil = as_timestamp(states('sensor.nina_next_alarm')) | timestamp_custom('%A %Hh%M')
+            | replace('Monday', 'lundi')
+            | replace('Tuesday', 'mardi')
+            | replace('Wednesday', 'mercredi')
+            | replace('Thursday', 'jeudi')
+            | replace('Friday', 'vendredi')
+            | replace('Saturday', 'samedi')
+            | replace('Sunday', 'dimanche') %}
+            {{ reveil }} 
           {% endif %}
           
       compteur_reveil_off:
@@ -1946,6 +1978,8 @@ sensor:
         value_template: >- 
           {% if states.media_player.tv_salon.attributes.sound_output == "headphone" %} 
             Casque
+          {% elif states.media_player.tv_salon.attributes.sound_output == "tv_speaker_bluetooth" %} 
+            TV + casque            
           {% elif states.media_player.tv_salon.attributes.sound_output == "tv_speaker" %} 
             TV
           {% elif states.media_player.tv_salon.attributes.sound_output == "external_optical" %}
