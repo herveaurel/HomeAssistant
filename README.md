@@ -82,6 +82,7 @@ Quelques exemples de configurations possibles :
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/onglets.jpg)
 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/alarme.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/alarme.jpg)
 
 -----
 ## SOUS-VUES
