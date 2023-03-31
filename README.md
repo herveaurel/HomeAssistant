@@ -87,7 +87,7 @@ Quelques exemples de configurations possibles :
 
 ### Tableau de bord avec peu d'onglets...grâce aux sous-vues ! J'en ai 30, voici des exemples : 
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/alarme.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/personnes.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/securite.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/sejour.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/agenda.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/annonces.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/systeme.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/invites.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/alarme.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/personnes.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/securite.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/sejour.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/agenda.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/annonces.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/systeme.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/invites.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/plantes.jpg)
 
 
 ---------------------
