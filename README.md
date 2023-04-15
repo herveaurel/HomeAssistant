@@ -149,7 +149,7 @@ Mes modules :
 Mes intégrations :
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations1.png)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations1.png)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations2.png)
 
 Mes intégrations HACS:
 
