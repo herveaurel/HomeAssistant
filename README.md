@@ -60,7 +60,7 @@ Je travaille dessus depuis des mois, j'ai réécrit énormément de choses :
 
 Et beaucoup d'autres changements ! 🤪
 
-D'autres modifications viendront comme d'habirude, au rythme de mes idées... 😇
+D'autres modifications viendront comme d'habitude, au rythme de mes idées... 😇
 
 -----
 
