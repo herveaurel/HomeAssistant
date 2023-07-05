@@ -1,6 +1,6 @@
-#########################################################
-#  COPIE INTEGRALE DE MON LOVELACE DEPUIS L'EDITEUR UI  #
-#########################################################
+########################################################
+COPIE INTEGRALE DE MON LOVELACE EN MODE EDITION UI
+#######################################################
 
 button_card_templates:
   police:
@@ -196,7 +196,7 @@ button_card_templates:
           type: horizontal-stack
           cards:
             - type: custom:button-card
-              entity: weather.ta_ville
+              entity: weather.beaucouze
               icon: mdi:weather-cloudy
               show_name: false
               show_label: true
@@ -379,6 +379,7 @@ button_card_templates:
           - '--ha-card-background': rgba(0, 0, 0, 0.0)
           - '--ha-card-box-shadow': none
         titre_programme:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - padding: 15px 0px 01px 0px
           - font-weight: bold
           - font-style: null
@@ -387,6 +388,7 @@ button_card_templates:
           - color: var(--titre_carte)
           - white-space: normal
         alerte:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - color: |
               [[[
                 if (states['sensor.49_weather_alert'].state == 'Jaune')
@@ -409,6 +411,7 @@ button_card_templates:
           - text-align: left
           - white-space: normal
         anniv:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: |
               [[[
                 if (states['sensor.anniversaire'].state == 'Aucun')
@@ -422,6 +425,7 @@ button_card_templates:
           - color: lightgrey
           - white-space: normal
         calendrier:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px darkgrey solid
           - padding: 0px 0px 0px 0px
           - padding-left: 8px
@@ -435,6 +439,7 @@ button_card_templates:
           - text-align: left
           - white-space: normal
         poubelle:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px darkgrey solid
           - padding: 0px 0px 0px 0px
           - padding-left: 8px
@@ -448,6 +453,7 @@ button_card_templates:
           - text-align: left
           - white-space: normal
         titre_avertissement:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - padding: |
               [[[
                 if (states['sensor.systeme_avertissement'].state == '')
@@ -460,6 +466,7 @@ button_card_templates:
           - color: rgb(180, 70, 70)
           - white-space: normal
         device_hs:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px rgb(180, 70, 70) solid
           - padding: |
               [[[
@@ -472,6 +479,7 @@ button_card_templates:
           - white-space: normal
           - text-align: left
         titre_activite:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - padding: 10px 0px 01px 0px
           - font-weight: bold
           - justifiy-self: start
@@ -479,6 +487,7 @@ button_card_templates:
           - color: var(--titre_carte)
           - white-space: normal
         serrure:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - white-space: normal
           - text-align: left
@@ -486,6 +495,7 @@ button_card_templates:
           - justifiy-self: start
           - color: lightgrey
         aspi_mode_vacances:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - white-space: normal
           - text-align: left
@@ -493,6 +503,7 @@ button_card_templates:
           - justifiy-self: start
           - color: lightgrey
         moustique:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - white-space: normal
           - text-align: left
@@ -500,6 +511,7 @@ button_card_templates:
           - justifiy-self: start
           - color: lightgrey
         reveil:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - white-space: normal
           - text-align: left
@@ -512,6 +524,7 @@ button_card_templates:
                 return 'lightgrey';
               ]]]
         courrier:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - white-space: normal
           - text-align: left
@@ -519,6 +532,7 @@ button_card_templates:
           - justifiy-self: start
           - color: lightgrey
         air:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - white-space: normal
           - text-align: left
@@ -526,6 +540,7 @@ button_card_templates:
           - justifiy-self: start
           - color: lightgrey
         lumiere:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -538,6 +553,7 @@ button_card_templates:
           - white-space: normal
           - text-align: left
         mouvement:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -550,6 +566,7 @@ button_card_templates:
               ]]]
           - white-space: normal
         porte:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -562,6 +579,7 @@ button_card_templates:
               ]]]
           - white-space: normal
         rappel:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -574,6 +592,7 @@ button_card_templates:
                 return 'lightgrey';
               ]]]
         enedis:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -581,6 +600,7 @@ button_card_templates:
           - color: lightgrey
           - white-space: normal
         gaz:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -588,6 +608,7 @@ button_card_templates:
           - color: lightgrey
           - white-space: normal
         modes:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -595,6 +616,7 @@ button_card_templates:
           - color: lightgrey
           - white-space: normal
         appareils_connectes:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -602,6 +624,7 @@ button_card_templates:
           - color: lightgrey
           - white-space: normal
         appareils_charges:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px var(--titre_carte) solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -623,6 +646,7 @@ button_card_templates:
           - '--ha-card-background': rgba(0, 0, 0, 0.0)
           - '--ha-card-box-shadow': none
         titre_maj:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - padding: |
               [[[
                 if (states['sensor.maj'].state == 'Aucune mise à jour' || states['input_boolean.sidecar_show_maj'].state == 'off')
@@ -636,6 +660,7 @@ button_card_templates:
           - color: var(--titre_carte)
           - white-space: normal
         maj:
+          - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - border-left: 2px grey solid
           - padding: 0px 0px 0px 08px
           - justifiy-self: start
@@ -1326,6 +1351,10 @@ button_card_templates:
         - text-align: start
         - width: 40px
         - height: 40px
+        - border-color: rgba(12, 12, 14, 0.2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       icon:
         - width: 50%
         - color: var(--icon_off)
@@ -1779,6 +1808,10 @@ button_card_templates:
         - height: 40px
         - background-color: var(--pastille_off)
         - margin-top: 2px
+        - border-color: rgba(12, 12, 14, 0.2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       label:
         - font-size: 10px
       name:
@@ -1815,6 +1848,10 @@ button_card_templates:
         - background-color: var(--pastille_off)
         - color: var(--text_systeme_info)
         - margin-top: 2px
+        - border-color: rgba(12, 12, 14, 0.2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       icon:
         - width: 50%
         - color: var(--icon_off)
@@ -1902,6 +1939,10 @@ button_card_templates:
         - height: 35px
         - background-color: var(--pastille_off)
         - color: var(--text_systeme_info)
+        - border-color: rgba(12, 12, 14, 0.2)
+        - border-style: outset
+        - border-width: 1px
+        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       icon:
         - width: 55%
         - color: var(--icon_off)
@@ -2563,14 +2604,14 @@ button_card_templates:
     state:
       - operator: template
         value: >-
-          [[[ return entity.state >= 65 || entity.state == "off" || entity.state
+          [[[ return entity.state >= 85 || entity.state == "off" || entity.state
           == "not_home" || entity.state == "unlocked" ]]]
         styles:
           icon:
             - color: var(--custom-icon-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
-      - value: 60
+      - value: 65
         operator: '>='
         styles:
           icon:
@@ -3490,6 +3531,7 @@ button_card_templates:
           - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - z-index: 2
         programme:
+          - color: var(--text_on)
           - top: 35%
           - left: 06%
           - font-weight: 500
@@ -3505,6 +3547,7 @@ button_card_templates:
           - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
           - z-index: 4
         duree:
+          - color: var(--text_on)
           - top: 67%
           - left: 69%
           - font-size: 11px
@@ -3937,6 +3980,7 @@ views:
                             }
                   style: |
                     ha-card {
+                      background: none;
                       margin: -17px 20px 5px 20px;
                       overflow: hidden !important;
                       border-radius: 24px !important;
@@ -11703,6 +11747,10 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
+                style: |
+                  ha-card { 
+                    background: var(--secondary-background-color);    
+                  }
                 header:
                   show: true
                   title: Séjour
@@ -15631,6 +15679,10 @@ views:
                   margin-bottom: 15px
                   background: rgba(255,255,255,0.3)
               - type: custom:apexcharts-card
+                style: |
+                  ha-card { 
+                    background: var(--secondary-background-color);    
+                  }
                 header:
                   show: true
                   title: Chambre Tom
@@ -16405,6 +16457,10 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
+                style: |
+                  ha-card { 
+                    background: var(--secondary-background-color);    
+                  }
                 header:
                   show: true
                   title: Chambre Manon et Léane
@@ -17084,6 +17140,10 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
+                style: |
+                  ha-card { 
+                    background: var(--secondary-background-color);    
+                  }
                 header:
                   show: true
                   title: Chambre Nina
@@ -17691,6 +17751,10 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
+                style: |
+                  ha-card { 
+                    background: var(--secondary-background-color);    
+                  }
                 header:
                   show: true
                   title: Salle de bain
@@ -18199,6 +18263,10 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
+                style: |
+                  ha-card { 
+                    background: var(--secondary-background-color);    
+                  }
                 header:
                   show: true
                   title: Couloir
@@ -18853,6 +18921,10 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
+                style: |
+                  ha-card { 
+                    background: var(--secondary-background-color);    
+                  }
                 header:
                   show: true
                   title: Chambre parents
@@ -19314,6 +19386,10 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
+                style: |
+                  ha-card { 
+                    background: var(--secondary-background-color);    
+                  }
                 header:
                   show: true
                   title: Garage
@@ -20445,6 +20521,10 @@ views:
                                 color: '#264b96'
                     columns: 2
               - type: custom:apexcharts-card
+                style: |
+                  ha-card { 
+                    background: var(--secondary-background-color);    
+                  }
                 header:
                   show: true
                   title: Raspberry
@@ -21911,7 +21991,7 @@ views:
                         cards:
                           - type: custom:meteofrance-weather-card
                             entity: weather.maison
-                            rainForecastEntity: sensor.ta_ville_next_rain_2
+                            rainForecastEntity: sensor.beaucouze_next_rain_2
                             current: false
                             one_hour_forecast: true
                             forecast: false
@@ -21923,7 +22003,7 @@ views:
                                 font-family: Avenir;
                                 color: var(--text_off);
                           - type: custom:meteofrance-weather-card
-                            entity: weather.ta_ville
+                            entity: weather.beaucouze
                             number_of_forecasts: '5'
                             current: false
                             details: false
@@ -21944,7 +22024,7 @@ views:
                           margin-bottom: 15px
                           background: rgba(255,255,255,0.3)
                       - type: custom:clock-weather-card
-                        entity: weather.ta_ville
+                        entity: weather.beaucouze
                         title: ''
                         sun_entity: sun.sun
                         weather_icon_type: fill
@@ -22780,6 +22860,15 @@ views:
                       navigation_path: /
                     hold_action:
                       action: none
-
-
-
+  - theme: Backend-selected
+    title: test
+    path: test
+    icon: mdi:test-tube
+    layout:
+      width: 350
+      max_cols: 4
+    type: custom:horizontal-layout
+    visible:
+      - user: 76afcf1927a948b19530bcbf1074ac59
+    badges: []
+    cards: []
