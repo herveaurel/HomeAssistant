@@ -75,7 +75,11 @@
       - scene.tv
       - script.apero_lum
       - scene.travail_dessin_2
-      - binary_sensor.boite_aux_lettres
+      - binary_sensor.presence_sejour_fp2
+      - binary_sensor.presence_bureau_fp2
+      - binary_sensor.presence_salon_fp2
+      - binary_sensor.presence_salon_fp2
+      - binary_sensor.presence_sam_fp2
       - binary_sensor.mouv_salle_a_manger
       - binary_sensor.mouv_salon
       - binary_sensor.mouv_escalier   
@@ -102,6 +106,7 @@
       - person.herve
       - person.alex
       - person.tom
+      - person.manon
 #      - media_player.maman
 #      - media_player.la_salle_de_bain
       - vacuum.wall_e

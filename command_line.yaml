@@ -1,0 +1,31 @@
+  - binary_sensor:
+      name: 'Home assistant  online'
+      command: curl -s https://www.google.com > /dev/null && echo on || echo off
+      scan_interval: 180
+
+
+##############################
+#GRDF gaz
+##############################
+  - sensor:
+      name: GRDF consommation gaz
+      command: "/config/gazpar/gazpar_ha.sh sensor"
+      scan_interval: 100000000
+      unit_of_measurement: "kWh"
+      json_attributes:
+        - conso_m3
+        - index_kWh
+        - index_m3
+        - coeffConversion
+        - date
+        - log
+      value_template: '{{ value_json.conso_kWh }}'
+
+##############################
+#Sensor Temp CPU 
+##############################      
+  - sensor:
+      name: CPU Temperature
+      command: "cat /sys/class/thermal/thermal_zone0/temp"
+      unit_of_measurement: "°C"
+      value_template: '{{ value | multiply(0.001) | round(1) }}'

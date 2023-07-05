@@ -74,6 +74,7 @@
     token: !secret s6_token
     username: !secret xiaomi_username
     password: !secret xiaomi_password
+    auto_update: false
     name: "Roborock S6"
     draw: ['all']
     attributes:
@@ -136,6 +137,7 @@
     token: !secret s50_token
     username: !secret xiaomi_username
     password: !secret xiaomi_password
+    auto_update: false
     name: "Roborock S50"
     draw: ['all']
     attributes:

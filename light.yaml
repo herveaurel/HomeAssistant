@@ -1,0 +1,9 @@
+#  - platform: switch
+#    name: Lampe tv salon
+#    entity_id: switch.lampe_tv_salon
+#  - platform: switch
+#    name: Guirlande Nina
+#    entity_id: switch.guirlande_nina  
+#  - platform: switch
+#    name: Arbre lumineux
+#    entity_id: switch.arbre_lumineux

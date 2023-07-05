@@ -4,4 +4,5 @@
 
     sync_media: 'cp -R /config/www/cameras/ /media'
     copy_entree_video: 'cp /media/detections/captures/detection.mp4 /media/detections/verifications/camera.entreealarme/historique_videos/$(date +"%Y-%m-%d.%H:%M:%S").mp4'
-    nettoyage_historiques_media: 'find /media/detections/verifications/camera.*/historique -depth -mindepth 1 -mtime +10 -delete'
+    nettoyage_historiques_media: 'find /media/detections/verifications/camera.*/historique -depth -mindepth 1 -mtime +5 -delete'
+    nettoyage_aqara_media: 'find /media/aqara_video*/* -depth -mindepth 1 -mtime +5 -delete'

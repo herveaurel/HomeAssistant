@@ -1,3 +1,29 @@
+presence_sejour:
+    entities:
+      - binary_sensor.presence_bureau_fp2
+      - binary_sensor.presence_canape_fp2
+      - binary_sensor.presence_salon_fp2
+      - binary_sensor.presence_sam_fp2
+
+
+tout:
+    entities:
+      - light.tout
+      - group.serrures
+      - group.cameras
+      - group.plantes
+      - binary_sensor.portes
+      - binary_sensor.mouvements
+      - group.moustiques
+      - group.zigbee
+      - group.echos
+      - group.thermo
+      - group.tv
+      - group.aspis
+      - group.interrupteurs
+      - switch.lave_vaisselle_power
+      - device_tracker.arlo_sonnette
+      
 scenes_sejour: 
     entities:
       - scene.ambiance_normale
@@ -61,7 +87,10 @@ Autre:
     entities:
       - switch.radiateur
       - input_boolean.imprimante
-      - switch.moustiques
+      - switch.moustique_parents
+      - switch.moustique_tom
+      - switch.moustique_nina
+      - switch.moustique_manon
 
 portes_garage:
     entities:
@@ -149,16 +178,8 @@ Echos:
 TV:
     entities:
       - media_player.tv_salon
-      - media_player.cube_tv
-      - media_player.fire_tv_stick_4k
       - switch.tele_des_parents
     icon: mdi:television-play
-    
-PC Tablette:
-    entities:
-      - device_tracker.pc_a_on_2
-      - device_tracker.galaxy_tab_a
-    icon: mdi:tablet
 
 Réveils:
     entities:
@@ -228,10 +249,12 @@ Person:
       - person.herve
       - person.alex
       - person.tom
+      - person.manon
       
 Enfants:
     entities:
       - person.tom
+      - person.manon
       - device_tracker.tom_mac_ping
       - device_tracker.manon_tab_ping
       - device_tracker.leane_tab_ping
@@ -258,6 +281,23 @@ Alex_Connecté:
 enfants_connecte:
     entities:
       - device_tracker.tom_mac_ping
+      - device_tracker.manon_tab_ping
+      - device_tracker.leane_tab_ping
+      - device_tracker.nina_tab_ping
+
+MacBook: 
+    entities:
+      - device_tracker.aurel_mac_ping
+      - device_tracker.alex_mac_ping
+      - device_tracker.tom_mac_ping
+      
+Appareils_connectes: 
+    entities:
+      - device_tracker.aurel_mac_ping
+      - device_tracker.alex_mac_ping
+      - device_tracker.tom_mac_ping
+      - device_tracker.liseuse_alex
+      - device_tracker.aurel_ipad_box
       - device_tracker.manon_tab_ping
       - device_tracker.leane_tab_ping
       - device_tracker.nina_tab_ping

@@ -1,121 +1,131 @@
   actions:
     - name: alarme_off
-      background_color: "black"
+      background_color: "#b44646"
       label:
         text: "Désarmer"
-        color: "grey"
+        color: "black"
       icon:
         icon: mdi:shield-off
-        color: "grey"
+        color: "black"
     - name: alarme_on
-      background_color: "black"
+      background_color: "#b44646"
       label:
         text: "Armer Absent"
-        color: "red"
+        color: "black"
       icon:
         icon: mdi:shield-lock
-        color: "red"
+        color: "black"
     - name: alarme_nuit_on
-      background_color: "black"
+      background_color: "#b44646"
       label:
         text: "Armer Nuit"
-        color: "dodgerblue"
+        color: "black"
       icon:
-        icon: mdi:shield-lock
-        color: "dodgerblue"
+        icon: mdi:shield-home
+        color: "black"
+    - name: sonnette_alarme
+      background_color: "#b44646"
+      label:
+        text: "Sonnette"
+        color: "black"
+      icon:
+        icon: mdi:cctv
+        color: "black"
     - name: ambiance_normale
-      background_color: "black"
+      background_color: "#d4af37"
       label:
         text: "Normale"
-        color: "gold"
+        color: "black"
       icon:
         icon: mdi:ceiling-light-multiple
-        color: "gold"
+        color: "black"
     - name: ambiance_douce
-      background_color: "black"
+      background_color: "#d4af37"
       label:
         text: "Doux"
-        color: "violet"
+        color: "black"
       icon:
         icon: mdi:sofa
-        color: "violet"
+        color: "black"
     - name: ambiance_tv
-      background_color: "black"
+      background_color: "#d4af37"
       label:
         text: "TV"
-        color: "red"
+        color: "black"
       icon:
         icon: mdi:television
-        color: "red"
+        color: "black"
     - name: ambiance_repas
-      background_color: "black"
+      background_color: "#d4af37"
       label:
         text: "Repas"
-        color: "orange"
+        color: "black"
       icon:
         icon: mdi:food
-        color: "orange"        
+        color: "black"        
     - name: ambiance_repas
-      background_color: "black"
+      background_color: "#d4af37"
       label:
         text: "Repas"
-        color: "orange"
+        color: "black"
       icon:
         icon: mdi:food
-        color: "orange"
+        color: "black"
     - name: tout_eteindre
-      background_color: "black"
+      background_color: "#d4af37"
       label:
         text: "Tout éteindre"
-        color: "grey"
+        color: "black"
       icon:
         icon: mdi:lightbulb-group-off
-        color: "grey"
+        color: "black"
     - name: fin_ecran
-      background_color: "black"
+      background_color: "#4682b4"
       label:
         text: "Fin des écrans"
-        color: "lightgrey"
+        color: "black"
       icon:
         icon: phu:rooms-mancave
-        color: "lightgrey"
+        color: "black"
     - name: a_table
-      background_color: "black"
+      background_color: "#4682b4"
       label:
         text: "A table"
-        color: "lightgrey"
+        color: "black"
       icon:
         icon: mdi:hamburger
-        color: "lightgrey"
+        color: "black"
     - name: gouter
-      background_color: "black"
+      background_color: "#4682b4"
       label:
         text: "Gouter"
-        color: "lightgrey"
+        color: "black"
       icon:
         icon: mdi:food-croissant
-        color: "lightgrey"
+        color: "black"
     - name: filles_coucher
-      background_color: "black"
+      background_color: "#4682b4"
       label:
         text: "Filles au lit"
-        color: "lightgrey"
+        color: "black"
       icon:
         icon: mdi:sleep
-        color: "lightgrey"
+        color: "black"
     - name: tom_coucher
-      background_color: "black"
+      background_color: "#4682b4"
       label:
         text: "Tom au lit"
-        color: "lightgrey"
+        color: "black"
       icon:
         icon: mdi:bed
-        color: "lightgrey"
+        color: "black"
     - name: tom_reveil
-      background_color: "black"
+      background_color: "#4682b4"
       label:
         text: "Tom réveil"
-        color: "lightgrey"
+        color: "black"
       icon:
         icon: mdi:alarm-snooze
-        color: "lightgrey"
+        color: "black"
+
+        
