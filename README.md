@@ -44,50 +44,25 @@ Je conseille d'installer mrs thèmes, puis de copier les templates button card, 
 
 ## ℹ️  PRESENTATION
 
-### 🥳 Complètement revisité pour cette nouvelle version avril 2023 : 
+### 🥳 Complètement revisité pour cette nouvelle version juillet 2023 : 
 
-(Voir le changelog pour les modifications)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)
 
-Cette fois-ci, je ne peux pas proposer un changelog, c'est une nouvelle version !
-Je travaille dessus depuis des mois, j'ai réécrit énormément de choses : 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)
 
-- Réécriture complètes des templates button card  
-- Modifications des templates  
-- Modifications des cartes  
-- Nouvelles cartes  
-- Modifications des thèmes
-- Utilisation des jauges HATC-GAUGE-CARD, développées par mon ami André Fortuna Gouveia, dont voici le github : https://github.com/tagcashdev/hatc-gauge-card
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)
 
-Et beaucoup d'autres changements ! 🤪
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)
 
-D'autres modifications viendront comme d'habitude, au rythme de mes idées... 😇
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)
 
------
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/06.jpg)
 
-##  THEMES ET TABLEAU DE BORD
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/07.jpg)
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/themes.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/08.jpg)
 
-Quasiment chaque bouton renvoie à une sous vue. 
-
-Par exemple, le bouton réglage en bas à droite de la carte Activité, permet de choisir en 1 clic les informations qui doivent etre affichées sur la carte. 😊
-
-Quelques exemples de configurations possibles : 
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/activite.jpg)
-
------
-
-##  ONGLETS
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/lumieres.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/aspis.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/temp.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/elec.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/batteries.jpg)
-
------
-## SOUS-VUES
-
-### Tableau de bord avec peu d'onglets...grâce aux sous-vues ! J'en ai 30, voici des exemples : 
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/alarme.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/personnes.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/securite.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/sejour.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/agenda.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/annonces.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/systeme.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/invites.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/plantes.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/09.jpg)
 
 
 ---------------------
@@ -98,7 +73,7 @@ Quelques exemples de configurations possibles :
 - Clé USB Sonoff Zigbee 3.0
 - Dongle Bluetooth Sena Parani UD100
 - Box Internet Orange Livebox 4
-- 2 cubes Tenda Nova MW6 parametrés en pont 
+- 2 cubes Tenda Nova MW6 et 1 MW12 parametrés en pont 
 
 J'utilise Alexa en vocal, et Maison Apple sur l'Apple Watch
 
@@ -131,8 +106,10 @@ Wifi
 - Eclairage : ampoules couleurs, lampes de bureau, et bandeau led couleur Yeelight
 - Sonnette Arlo Video Doorbell
 - TV LG
+- Apple TV
+- Capteur de présence Aqara FP2
 - Alexa : Fire TV, Fire Cube, Echos Dot et Show 
-- Imprimante Canon 
+- Imprimante Canon G5050
 - Ruban led Sonoff intérieur 
 - Lave-vaisselle Siemens 
 - Aspirateurs : Roborock S50 et S6
@@ -140,6 +117,8 @@ Wifi
 - Caméra Aqara Hub G3
 - Caméra Aqara Hub G2H Pro
 - Caméra Reolink Argus 3
+- Caméra Sonoff Slim
+
 
 
 Mes modules :
@@ -163,5 +142,7 @@ Mes intégrations HACS:
 
 Si vous aimez , likez 🌟 mon repo !
 
-Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️, dire merci 🙏, me soutenir ❤️‍🩹, ou m'encourager 💪🏼, et devenir VIP ⭐️ pour une aide personnalisée par message privé : https://www.paypal.com/paypalme/aaherve
+Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️, dire merci 🙏, me soutenir ❤️‍🩹 ... et pour une aide personnalisée par message privé : 
+https://www.paypal.com/paypalme/aaherve
+
 Merci ! 
