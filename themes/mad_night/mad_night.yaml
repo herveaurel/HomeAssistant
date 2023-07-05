@@ -69,7 +69,7 @@ mad_night:
       accent-color: "#2187CC"
       graph-color: var(--primary-color)
       primary-background-color: black #"#223548"
-      secondary-background-color: darkslategrey #var(--primary-background-color)
+      secondary-background-color: rgb(30, 30, 30) #var(--primary-background-color)
       divider-color: "#223548"
       disabled-color: "#E8E9F3"
       # Text colors
@@ -128,7 +128,7 @@ mad_night:
       paper-toggle-button-unchecked-bar-color: var(--primary-background-color)
       # Switch colors
       switch-checked-color: rgba(0,191,255,1) #var(--paper-toggle-button-checked-button-color)
-      switch-unchecked-button-color: grey #var(--paper-toggle-button-unchecked-button-color)
+      switch-unchecked-button-color: var(--paper-toggle-button-unchecked-button-color)
       switch-unchecked-color: var(--paper-toggle-button-unchecked-bar-color)
       switch-unchecked-track-color: var(--paper-toggle-button-unchecked-bar-color)
       # Table colors
@@ -150,7 +150,7 @@ mad_night:
       # Code Editor
       code-editor-background-color: "#2f3542"
       codemirror-property: "#16a085"
-      mdc-text-field-fill-color: darkslategrey #var(--primary-background-color)
+      mdc-text-field-fill-color: rgb(10,10,10) #var(--primary-background-color)
       mdc-text-field-ink-color: var(--primary-text-color)
       mdc-text-field-label-ink-color: var(--primary-text-color)
       input-fill-color: darkslategrey #var(--primary-background-color)
