@@ -22780,40 +22780,6 @@ views:
                       navigation_path: /
                     hold_action:
                       action: none
-  - theme: Backend-selected
-    title: test
-    path: test
-    icon: mdi:test-tube
-    layout:
-      width: 350
-      max_cols: 4
-    type: custom:horizontal-layout
-    visible:
-      - user: 76afcf1927a948b19530bcbf1074ac59
-    badges:
-      - entity: vacuum.wall_e
-        style: |
-          @keyframes blinker { 50% { opacity: 0; } }
-          :host {
-            --label-badge-red: 
-              {% if is_state('vacuum.wall_e', 'cleaning') %} firebrick;
-              {% else %} rgba(0,191,205,0.5) {% endif %};
-            animation: 
-              {% if is_state('vacuum.wall_e', 'cleaning')  %}
-                blinker 1s linear infinite;
-              {% endif %};
-          }      
-      - entity: vacuum.r2d2
-        style: |
-          @keyframes blinker { 50% { opacity: 0; } }
-          :host {
-            --label-badge-red: 
-              {% if is_state('vacuum.r2d2', 'cleaning') %} firebrick;
-              {% else %} rgba(0,191,205,0.5) {% endif %};
-            animation: 
-              {% if is_state('vacuum.r2d2', 'cleaning')  %}
-                blinker 1s linear infinite;
-              {% endif %};
-          } 
-    cards: []
+
+
 
