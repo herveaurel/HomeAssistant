@@ -41,10 +41,10 @@ mad_day:
       icon_off: rgba(232,233,242,0.8)
       
       # img-cell color
-      pastille_off: rgba(30,40,60,1) #rgba(14,19,28,0.6)  
+      pastille_off: var(--primary-background-color) #rgba(30,40,60,1) 
       
       # Graphique
-      graph_line: var(--custom-badge-color-blue) 
+      graph_line: var(--custom-color-blue) 
      
       # Fonts
       primary-font-family: "Avenir" 
@@ -117,7 +117,7 @@ mad_day:
       label-badge-red: var(--primary-color)
       label-badge-blue: var(--light-primary-color)
       # Cards colors
-      ha-card-background: 'linear-gradient(145deg, rgba(49, 60, 80, 0.4), rgba(56, 69, 93, 0.9)'   #CARTES 
+      ha-card-background: 'linear-gradient(-145deg, rgba(49, 60, 80, 0.4), rgba(56, 69, 93, 0.9)'   #CARTES 
       card-background-color: var(--primary-background-color)   #POPUP ET CARTES DANS MENU
       popup-background-color: rgba(14,19,28,0.8)
       paper-card-background-color: var(--ha-card-background)
