@@ -1,6 +1,4 @@
-########################################################
-COPIE INTEGRALE DE MON LOVELACE EN MODE EDITION UI
-#######################################################
+## C0PIE INTEGRALE DE MON TABLEAU DE BORD VIA LE MODE EDITION UI ##
 
 button_card_templates:
   police:
@@ -196,7 +194,7 @@ button_card_templates:
           type: horizontal-stack
           cards:
             - type: custom:button-card
-              entity: weather.beaucouze
+              entity: weather.ta_ville
               icon: mdi:weather-cloudy
               show_name: false
               show_label: true
@@ -373,7 +371,7 @@ button_card_templates:
           - padding: 0px 0px 0px 0px
           - align-self: middle
           - white-space: normal
-          - width: calc(98% + 0px)
+          - width: calc(100% + 0px)
           - '--ha-card-border-width': 0px
           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
           - '--ha-card-background': rgba(0, 0, 0, 0.0)
@@ -1351,10 +1349,6 @@ button_card_templates:
         - text-align: start
         - width: 40px
         - height: 40px
-        - border-color: rgba(12, 12, 14, 0.2)
-        - border-style: outset
-        - border-width: 1px
-        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       icon:
         - width: 50%
         - color: var(--icon_off)
@@ -1533,7 +1527,8 @@ button_card_templates:
           [[[ return entity.state == "on" || entity.state == "home" ||
           entity.state == "heat" || entity.state == "Run" || entity.state ==
           "armed_away" || entity.state == "playing" || entity.state == "veille"
-          || entity.state == "Wi-Fi"  ]]]
+          || entity.state == "Wi-Fi"  || entity.state == "Mouvement" ||
+          entity.state == "Marche" ]]]
         styles:
           icon:
             - color: var(--custom-icon-color-blue)
@@ -1551,9 +1546,8 @@ button_card_templates:
       - operator: template
         value: >-
           [[[ return entity.state == "unlocked" || entity.state == "Cellular" ||
-          entity.state == "Conduite" || entity.state == "Vélo" || entity.state
-          == "Marche" || entity.state == "Course" || entity.state == "Mouvement"
-          ]]]
+          entity.state == "Conduite" || entity.state == "Vélo"  || entity.state
+          == "Course"  ]]]
         styles:
           icon:
             - color: var(--custom-icon-color-red)
@@ -1740,6 +1734,7 @@ button_card_templates:
     styles:
       custom_fields:
         graph:
+          - opacity: 80%
           - position: absolute
           - top: 40%
           - left: 50%
@@ -1767,7 +1762,7 @@ button_card_templates:
             labels: false
           color_thresholds:
             - value: 0
-              color: rgba(200,200,200,0.15)
+              color: var(--graph_line)
   carte_piece_jauge_hum:
     custom_fields:
       jauge-cercle:
@@ -1808,10 +1803,6 @@ button_card_templates:
         - height: 40px
         - background-color: var(--pastille_off)
         - margin-top: 2px
-        - border-color: rgba(12, 12, 14, 0.2)
-        - border-style: outset
-        - border-width: 1px
-        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       label:
         - font-size: 10px
       name:
@@ -1848,10 +1839,6 @@ button_card_templates:
         - background-color: var(--pastille_off)
         - color: var(--text_systeme_info)
         - margin-top: 2px
-        - border-color: rgba(12, 12, 14, 0.2)
-        - border-style: outset
-        - border-width: 1px
-        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       icon:
         - width: 50%
         - color: var(--icon_off)
@@ -1939,10 +1926,6 @@ button_card_templates:
         - height: 35px
         - background-color: var(--pastille_off)
         - color: var(--text_systeme_info)
-        - border-color: rgba(12, 12, 14, 0.2)
-        - border-style: outset
-        - border-width: 1px
-        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       icon:
         - width: 55%
         - color: var(--icon_off)
@@ -2057,9 +2040,9 @@ button_card_templates:
               - color: grey
               - color: var(--custom-icon-color-blue)
                 from: 0
-                to: 18.4
+                to: 18.9
               - color: var(--custom-icon-color-red)
-                from: 26.9
+                from: 25.9
                 to: 50
       gauge_hum:
         card:
@@ -2076,7 +2059,7 @@ button_card_templates:
             max_value: 100
             friendly_name: true
             severity:
-              - color: darkgrey
+              - color: grey
               - color: var(--custom-icon-color-blue)
                 from: 0
                 to: 39.9
@@ -2143,6 +2126,10 @@ button_card_templates:
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-blue)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           state:
             - color: var(--custom-icon-color-blue)
           icon:
@@ -2152,6 +2139,10 @@ button_card_templates:
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-orange)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           state:
             - color: var(--custom-icon-color-orange)
           icon:
@@ -2161,6 +2152,10 @@ button_card_templates:
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-orange)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           state:
             - color: var(--custom-icon-color-orange)
           icon:
@@ -2203,6 +2198,10 @@ button_card_templates:
                   
                   return 'rgb(' + color + ',0.3)';
                 ]]]
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: |-
                 [[[ 
@@ -2279,6 +2278,10 @@ button_card_templates:
             - background-color: var(--custom-card-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-red)
       - value: arming
@@ -2288,6 +2291,10 @@ button_card_templates:
             - background-color: var(--custom-card-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-red)
       - operator: template
@@ -2300,6 +2307,10 @@ button_card_templates:
             - background-color: var(--custom-card-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-red)
             - animation: blink 1s ease infinite
@@ -2313,6 +2324,10 @@ button_card_templates:
             - color: var(--custom-icon-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       - value: 25.9
         operator: '>'
         icon: mdi:thermometer-chevron-up
@@ -2321,6 +2336,10 @@ button_card_templates:
             - color: var(--custom-icon-color-orange)
           img_cell:
             - background-color: var(--custom-img-cell-color-orange)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       - value: 18.9
         operator: <
         icon: mdi:thermometer-chevron-down
@@ -2329,6 +2348,10 @@ button_card_templates:
             - color: var(--custom-icon-color-blue)
           img_cell:
             - background-color: var(--custom-img-cell-color-blue)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       - value: 25.9
         operator: <
         styles: null
@@ -2365,6 +2388,10 @@ button_card_templates:
             - color: var(--custom-icon-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           state:
             - font-weight: bold
       - value: 10
@@ -2374,6 +2401,10 @@ button_card_templates:
             - color: rgba(30,144,255,1)
           img_cell:
             - background-color: var(--custom-img-cell-color-blue)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           state:
             - font-weight: bold
   state_humidite:
@@ -2385,6 +2416,10 @@ button_card_templates:
             - color: var(--custom-icon-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       - value: 40
         operator: <
         styles:
@@ -2392,6 +2427,10 @@ button_card_templates:
             - color: var(--custom-icon-color-blue)
           img_cell:
             - background-color: var(--custom-img-cell-color-blue)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
   state_humidite_simple:
     state:
       - value: 70
@@ -2413,6 +2452,10 @@ button_card_templates:
             - color: var(--custom-icon-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       - value: 30
         operator: <
         icon: mdi:brightness-4
@@ -2421,6 +2464,10 @@ button_card_templates:
             - color: var(--custom-icon-color-blue)
           img_cell:
             - background-color: var(--custom-img-cell-color-blue)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
   state_reveil:
     state:
       - operator: template
@@ -2452,6 +2499,10 @@ button_card_templates:
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-blue)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-blue)
       - operator: template
@@ -2476,6 +2527,10 @@ button_card_templates:
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-red)
       - operator: template
@@ -2499,6 +2554,10 @@ button_card_templates:
             - background-color: var(--custom-color-blue)
           img_cell:
             - background-color: var(--custom-img-cell-color-blue)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-blue)
       - operator: template
@@ -2522,6 +2581,10 @@ button_card_templates:
             - background-color: var(--custom-card-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-red)
       - operator: template
@@ -2550,6 +2613,10 @@ button_card_templates:
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-orange)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-orange)
           state:
@@ -2559,6 +2626,10 @@ button_card_templates:
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-red)
           state:
@@ -2568,6 +2639,10 @@ button_card_templates:
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           name:
             - color: var(--custom-icon-color-red)
           icon:
@@ -2578,6 +2653,10 @@ button_card_templates:
         styles:
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
           icon:
             - color: var(--custom-icon-color-red)
             - animation: blink 1s ease infinite
@@ -2611,6 +2690,10 @@ button_card_templates:
             - color: var(--custom-icon-color-red)
           img_cell:
             - background-color: var(--custom-img-cell-color-red)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       - value: 65
         operator: '>='
         styles:
@@ -2618,6 +2701,10 @@ button_card_templates:
             - color: var(--custom-icon-color-gold)
           img_cell:
             - background-color: var(--custom-img-cell-color-gold)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
       - operator: template
         value: >-
           [[[ return entity.state < 30 || entity.state == "on" || entity.state
@@ -2627,6 +2714,10 @@ button_card_templates:
             - color: var(--custom-icon-color-blue)
           img_cell:
             - background-color: var(--custom-img-cell-color-blue)
+            - border-color: rgba(12, 12, 14, 0.2)
+            - border-style: outset
+            - border-width: 1px
+            - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
   state_unavailable:
     state:
       - value: unavailable
@@ -2766,13 +2857,13 @@ button_card_templates:
   carte_personne_var_device:
     styles:
       card:
-        - border-color: |
+        - border: |
             [[[
+              if (variables.var_level  < 30)
+                return " 1px solid rgba(255, 0, 0, 0.8) "            
               if (variables.var_level  < 50)
-                return "rgb(249,167,62,0.7)"
-              if (variables.var_level  < 20)
-                return "rgb(255,0,0,0.7)"
-              return "rgba(12, 12, 14, 0.2)"
+                return " 1px dashed rgba(255, 0, 0, 0.8) "            
+              return ""
             ]]]
     tap_action:
       action: navigate
@@ -3757,10 +3848,10 @@ button_card_templates:
           - left: 50%
           - width: calc(100% + 15px)
           - transform: translate(-50%, calc(-50% + 10px))
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)"
-          - '--ha-card-box-shadow': none
           - '--ha-card-border-width': 0px
+          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+          - '--ha-card-background': rgba(0, 0, 0, 0.0)
+          - '--ha-card-box-shadow': none
         graph_bar:
           - position: absolute
           - top: 88%
@@ -4018,8 +4109,8 @@ views:
                   ha-card { 
                     margin-top: -15px !important;
                     margin-bottom: 5px !important;
-                    padding: 10px 5px 10px 5px;
-                    border-radius: 20px !important;
+                    padding: 10px 3px 10px 3px;
+                    border-radius: 24px !important;
                     margin-left: 30px;
                     margin-right: 30px;
                     background: var(--ha-card-background);
@@ -4057,6 +4148,7 @@ views:
                           ]]]
                         styles:
                           icon:
+                            - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
                             - animation: |
                                 [[[
                                   if (states['alarm_control_panel.alarme'].state == "arming")
@@ -4087,6 +4179,7 @@ views:
                         icon: mdi:doorbell-video
                         styles:
                           icon:
+                            - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
                             - color: |
                                 [[[
                                   if (states['alarm_control_panel.aarlo_sonnette'].state == "disarmed")
@@ -4118,6 +4211,7 @@ views:
                           ]]]          
                         styles:
                           icon:
+                            - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
                             - color: |
                                 [[[
                                   if (states['group.serrures'].state == 'unlocked')
@@ -4147,6 +4241,7 @@ views:
                           ]]]        
                         styles:
                           icon:
+                            - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
                             - color: |
                                 [[[
                                   if (states['binary_sensor.portes'].state == 'on')
@@ -4173,6 +4268,7 @@ views:
                           ]]]          
                         styles:
                           icon:
+                            - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
                             - color: |
                                 [[[
                                   if (states['binary_sensor.mouvements'].state == 'on')
@@ -7011,6 +7107,10 @@ views:
                                 return 'var(--pastille_off)'
                               return 'var(--custom-img-cell-color-blue)'
                             ]]]
+                        - border-color: rgba(12, 12, 14, 0.2)
+                        - border-style: outset
+                        - border-width: 1px
+                        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                       icon:
                         - color: |
                             [[[
@@ -7075,7 +7175,7 @@ views:
                               entity: sensor.cpu_temperature
                           height: 100
                           line_width: 4
-                          lower_bound: 8
+                          lower_bound: 20
                           points_per_hour: 1
                           hours_to_show: 24
                           show:
@@ -7140,6 +7240,10 @@ views:
                               if (states["sensor.electricite_cout_jour_avec_abo"].state >= 3 && states["sensor.electricite_cout_jour_avec_abo"].state < 4) return 'var(--custom-img-cell-color-red)';
                               else return 'var(--custom-img-cell-color-red)';
                             ]]]
+                        - border-color: rgba(12, 12, 14, 0.2)
+                        - border-style: outset
+                        - border-width: 1px
+                        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                       icon:
                         - color: |
                             [[[
@@ -7253,6 +7357,10 @@ views:
                                 return 'var(--pastille_off)'
                               return 'var(--custom-img-cell-color-red)'
                             ]]]
+                        - border-color: rgba(12, 12, 14, 0.2)
+                        - border-style: outset
+                        - border-width: 1px
+                        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                       icon:
                         - color: |
                             [[[
@@ -7304,7 +7412,7 @@ views:
                               entity: sensor.temp_moyenne_rdc
                           height: 100
                           line_width: 4
-                          lower_bound: 8
+                          lower_bound: 20
                           points_per_hour: 1
                           hours_to_show: 24
                           show:
@@ -7344,6 +7452,10 @@ views:
                               if (states['sensor.plante_citro_humidite'].state < 5 || states['sensor.plante_hum_pied_elephant'].state < 1 || states['sensor.plante_hum_dracaena'].state < 5) return 'var(--custom-img-cell-color-red)'
                               else return 'var(--pastille_off)';
                             ]]]
+                        - border-color: rgba(12, 12, 14, 0.2)
+                        - border-style: outset
+                        - border-width: 1px
+                        - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                       icon:
                         - color: |
                             [[[
@@ -7391,7 +7503,7 @@ views:
                               entity: sensor.plante_hum_dracaena
                           height: 100
                           line_width: 4
-                          lower_bound: 8
+                          lower_bound: 20
                           points_per_hour: 1
                           hours_to_show: 24
                           show:
@@ -11747,10 +11859,6 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
-                style: |
-                  ha-card { 
-                    background: var(--secondary-background-color);    
-                  }
                 header:
                   show: true
                   title: Séjour
@@ -15679,10 +15787,6 @@ views:
                   margin-bottom: 15px
                   background: rgba(255,255,255,0.3)
               - type: custom:apexcharts-card
-                style: |
-                  ha-card { 
-                    background: var(--secondary-background-color);    
-                  }
                 header:
                   show: true
                   title: Chambre Tom
@@ -16457,10 +16561,6 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
-                style: |
-                  ha-card { 
-                    background: var(--secondary-background-color);    
-                  }
                 header:
                   show: true
                   title: Chambre Manon et Léane
@@ -17140,10 +17240,6 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
-                style: |
-                  ha-card { 
-                    background: var(--secondary-background-color);    
-                  }
                 header:
                   show: true
                   title: Chambre Nina
@@ -17751,10 +17847,6 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
-                style: |
-                  ha-card { 
-                    background: var(--secondary-background-color);    
-                  }
                 header:
                   show: true
                   title: Salle de bain
@@ -18263,10 +18355,6 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
-                style: |
-                  ha-card { 
-                    background: var(--secondary-background-color);    
-                  }
                 header:
                   show: true
                   title: Couloir
@@ -18921,10 +19009,6 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
-                style: |
-                  ha-card { 
-                    background: var(--secondary-background-color);    
-                  }
                 header:
                   show: true
                   title: Chambre parents
@@ -19386,10 +19470,6 @@ views:
                     align-items: center;
                   }
               - type: custom:apexcharts-card
-                style: |
-                  ha-card { 
-                    background: var(--secondary-background-color);    
-                  }
                 header:
                   show: true
                   title: Garage
@@ -20521,10 +20601,6 @@ views:
                                 color: '#264b96'
                     columns: 2
               - type: custom:apexcharts-card
-                style: |
-                  ha-card { 
-                    background: var(--secondary-background-color);    
-                  }
                 header:
                   show: true
                   title: Raspberry
@@ -21991,7 +22067,7 @@ views:
                         cards:
                           - type: custom:meteofrance-weather-card
                             entity: weather.maison
-                            rainForecastEntity: sensor.beaucouze_next_rain_2
+                            rainForecastEntity: sensor.ta_ville_next_rain_2
                             current: false
                             one_hour_forecast: true
                             forecast: false
@@ -22003,7 +22079,7 @@ views:
                                 font-family: Avenir;
                                 color: var(--text_off);
                           - type: custom:meteofrance-weather-card
-                            entity: weather.beaucouze
+                            entity: weather.ta_ville
                             number_of_forecasts: '5'
                             current: false
                             details: false
@@ -22024,7 +22100,7 @@ views:
                           margin-bottom: 15px
                           background: rgba(255,255,255,0.3)
                       - type: custom:clock-weather-card
-                        entity: weather.beaucouze
+                        entity: weather.ta_ville
                         title: ''
                         sun_entity: sun.sun
                         weather_icon_type: fill
@@ -22174,6 +22250,8 @@ views:
                     padding: 1px;
                     background: none;
                     box-shadow: none;
+                    margin: 20px;
+                    margin-top: 5px !important;
                   }
                 cards:
                   - type: grid
@@ -22199,11 +22277,11 @@ views:
                                 max_value: 5500
                                 unit_of_measurement: ppb
                                 severity:
-                                  - color: darkgrey
-                                  - color: var(--custom-icon-color-blue)
+                                  - color: grey
+                                  - color: dodgerblue
                                     from: 65
                                     to: 220
-                                  - color: orange
+                                  - color: gold
                                     from: 221
                                     to: 660
                                   - color: orange
@@ -22245,8 +22323,8 @@ views:
                               gauge:
                                 max_value: 100
                                 severity:
-                                  - color: darkgrey
-                                  - color: var(--custom-icon-color-blue)
+                                  - color: grey
+                                  - color: dodgerblue
                                     from: 96.1
                                     to: 98.7
                                   - color: yellow
@@ -22298,11 +22376,14 @@ views:
                       }
                     cards:
                       - type: custom:button-card
+                        entity: sensor.moniteur_qualite_air
                         template:
                           - police
-                        show_name: false
-                        show_label: true
-                        label: |
+                        show_name: true
+                        show_label: false
+                        show_icon: false
+                        show_last_changed: true
+                        name: |
                           [[[
                             if (states['sensor.qualite_air_pourcentage'].state >= 98.8  )
                               return 'Excellent'
@@ -22317,8 +22398,12 @@ views:
                             return ''
                           ]]]
                         styles:
+                          name:
+                            - font-size: 15px
+                            - padding: 0%
+                            - white-space: normal
                           label:
-                            - font-size: 14px
+                            - font-size: 12px
                             - padding: 0%
                             - white-space: normal
                           card:
@@ -22327,7 +22412,7 @@ views:
                             - background: none
                 style: |
                   ha-card { 
-                    margin-top: -12px !important;
+                    margin-top: -35px !important;
                     margin-bottom: 5px !important;
                     padding: 8px 30px 8px 30px;
                     border-radius: 20px !important;
@@ -22409,8 +22494,7 @@ views:
                         color: red
                 style: |
                   ha-card {
-                     --ha-card-background: var(--secondary-background-color);
-                     box-shadow: none;
+
                      font-family: Avenir;
                    }
   - theme: Backend-selected
