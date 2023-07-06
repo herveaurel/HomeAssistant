@@ -42,7 +42,7 @@ mad_night:
       
       pastille_off: rgba(0, 0, 0,0.5) #rgba(48,57,70,1)
       
-      graph_line: var(--custom-badge-color-blue) 
+      graph_line: var(--custom-color-blue) 
      
       # Fonts
       primary-font-family: "Avenir" 
@@ -128,9 +128,9 @@ mad_night:
       paper-toggle-button-unchecked-bar-color: var(--primary-background-color)
       # Switch colors
       switch-checked-color: rgba(0,191,255,1) #var(--paper-toggle-button-checked-button-color)
-      switch-unchecked-button-color: var(--paper-toggle-button-unchecked-button-color)
-      switch-unchecked-color: var(--paper-toggle-button-unchecked-bar-color)
-      switch-unchecked-track-color: var(--paper-toggle-button-unchecked-bar-color)
+      switch-unchecked-button-color: darkgrey #var(--paper-toggle-button-unchecked-button-color)
+      switch-unchecked-color: darkgrey #var(--paper-toggle-button-unchecked-bar-color)
+      switch-unchecked-track-color: darkgrey #var(--paper-toggle-button-unchecked-bar-color)
       # Table colors
       table-row-background-color: var(--divider-color)
       table-row-alternative-background-color: var(--secondary-color)
@@ -153,7 +153,7 @@ mad_night:
       mdc-text-field-fill-color: rgb(10,10,10) #var(--primary-background-color)
       mdc-text-field-ink-color: var(--primary-text-color)
       mdc-text-field-label-ink-color: var(--primary-text-color)
-      input-fill-color: darkslategrey #var(--primary-background-color)
+      input-fill-color: black #var(--primary-background-color)
       input-ink-color: var(--primary-text-color)
       input-label-ink-color: var(--primary-text-color)
       input-disabled-fill-color: darkslategrey #var(--primary-background-color)
