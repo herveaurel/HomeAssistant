@@ -48,6 +48,8 @@ Je conseille d'installer mrs thèmes, puis de copier les templates button card, 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)
 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-1.jpg)
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)
