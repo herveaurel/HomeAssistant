@@ -1,4 +1,7 @@
-## C0PIE INTEGRALE DE MON TABLEAU DE BORD VIA LE MODE EDITION UI ##
+######################################################################
+# COPIE INTEGRALE DE MON LOVELACE VIA EDITEUR DE CONFIGURATION UI #
+######################################################################
+
 
 button_card_templates:
   police:
@@ -3731,10 +3734,12 @@ button_card_templates:
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
       card:
         - height: 12px
-        - padding: 0%
+        - padding: 0px
+        - margin-top: 5px
         - border-radius: 0px
         - line-height: 100%
         - '--ha-card-border-width': 0px
+        - background: none
     tap_action:
       action: more-info
     double-tap_action:
@@ -4109,7 +4114,7 @@ views:
                   ha-card { 
                     margin-top: -15px !important;
                     margin-bottom: 5px !important;
-                    padding: 10px 3px 10px 3px;
+                    padding: 3px 3px 3px 3px;
                     border-radius: 24px !important;
                     margin-left: 30px;
                     margin-right: 30px;
@@ -4130,41 +4135,76 @@ views:
                           - style_off
                         show_name: false
                         show_label: false
-                        icon: |
-                          [[[
-                            if (states['alarm_control_panel.alarme'].state == "disarmed" )
-                              return "mdi:shield-off";
-                            if (states['alarm_control_panel.alarme'].state == "armed_away" )
-                              return "mdi:shield-lock";
-                            if (states['alarm_control_panel.alarme'].state == "armed_home" )
-                              return "mdi:shield-home";
-                            if (states['alarm_control_panel.alarme'].state == "armed_night" )
-                              return "mdi:shield-moon";
-                            if (states['alarm_control_panel.alarme'].state == "arming" )
-                              return "mdi:shield-half-full";
-                            if (states['alarm_control_panel.alarme'].state == "triggered" )
-                              return "mdi:shield-alert";
-                            return "mdi:shield-off";
-                          ]]]
                         styles:
+                          img_cell:
+                            - height: 35px
+                            - width: 35px
+                            - border-radius: 50px
+                            - background-color: transparent
                           icon:
+                            - color: var(--icon_off)
+                            - width: 20px
                             - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
-                            - animation: |
-                                [[[
-                                  if (states['alarm_control_panel.alarme'].state == "arming")
-                                    return 'blink 0.8s ease infinite' 
-                                  if (states['alarm_control_panel.alarme'].state == "triggered")
-                                    return 'blink 0.8s ease infinite'                        
-                                  return ''
-                                ]]]
-                            - color: |
-                                [[[
-                                  if (states['alarm_control_panel.alarme'].state == "arming")
-                                    return 'gold'  
-                                  if (states['alarm_control_panel.alarme'].state == "disarmed")
-                                    return 'var(--icon_off)'                        
-                                  return 'var(--custom-icon-color-red)'
-                                ]]] 
+                        state:
+                          - value: disarmed
+                            icon: mdi:shield-off
+                          - value: armed_away
+                            icon: mdi:shield-lock
+                            styles:
+                              img_cell:
+                                - background-color: var(--custom-img-cell-color-red)
+                                - border-color: rgba(12, 12, 14, 0.2)
+                                - border-style: outset
+                                - border-width: 1px
+                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
+                              icon:
+                                - color: var(--custom-icon-color-red)
+                          - value: armed_home
+                            icon: mdi:shield-home
+                            styles:
+                              img_cell:
+                                - background-color: var(--custom-img-cell-color-red)
+                                - border-color: rgba(12, 12, 14, 0.2)
+                                - border-style: outset
+                                - border-width: 1px
+                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
+                              icon:
+                                - color: var(--custom-icon-color-red)
+                          - value: armed_night
+                            icon: mdi:shield-moon-outline
+                            styles:
+                              img_cell:
+                                - background-color: var(--custom-img-cell-color-red)
+                                - border-color: rgba(12, 12, 14, 0.2)
+                                - border-style: outset
+                                - border-width: 1px
+                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
+                              icon:
+                                - color: var(--custom-icon-color-red)
+                          - value: arming
+                            icon: mdi:shield-half-full
+                            styles:
+                              img_cell:
+                                - background-color: var(--custom-img-cell-color-gold)
+                                - border-color: rgba(12, 12, 14, 0.2)
+                                - border-style: outset
+                                - border-width: 1px
+                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
+                              icon:
+                                - color: var(--custom-icon-color-gold)
+                                - animation: blink 0.8s ease infinite
+                          - value: triggered
+                            icon: mdi:shield-alert
+                            styles:
+                              img_cell:
+                                - background-color: var(--custom-img-cell-color-red)
+                                - border-color: rgba(12, 12, 14, 0.2)
+                                - border-style: outset
+                                - border-width: 1px
+                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
+                              icon:
+                                - color: var(--custom-icon-color-red)
+                                - animation: blink 0.8s ease infinite
                       - type: custom:button-card
                         tap_action:
                           action: navigate
@@ -4178,50 +4218,27 @@ views:
                         show_label: false
                         icon: mdi:doorbell-video
                         styles:
+                          img_cell:
+                            - height: 35px
+                            - width: 35px
+                            - border-radius: 50px
+                            - background-color: transparent
                           icon:
+                            - color: var(--icon_off)
+                            - width: 20px
                             - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
-                            - color: |
-                                [[[
-                                  if (states['alarm_control_panel.aarlo_sonnette'].state == "disarmed")
-                                    return 'var(--icon_off)'                      
-                                  return 'var(--custom-icon-color-red)'
-                                ]]]  
-                      - type: custom:button-card
-                        tap_action:
-                          action: navigate
-                          navigation_path: /lovelace/porte_mouv_serrure
-                        double_tap_action:
-                          action: more-info
-                        entity: group.serrures
-                        template:
-                          - style_off
-                        show_name: false
-                        show_label: false
-                        label: |
-                          [[[ 
-                            if (states['group.serrures'].state == 'unlocked')
-                              return "Dévrouillée"
-                            return "Vérouillée"
-                          ]]]
-                        icon: |
-                          [[[
-                            if (states['group.serrures'].state == 'unlocked')
-                              return "mdi:lock-open";
-                            return "mdi:lock";
-                          ]]]          
-                        styles:
-                          icon:
-                            - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
-                            - color: |
-                                [[[
-                                  if (states['group.serrures'].state == 'unlocked')
-                                    return 'var(--custom-icon-color-red)'                      
-                                  return 'var(--icon_off)'
-                                ]]] 
-                            - animation: |
-                                [[[
-                                  if (states['lock.serrure_entree'].state == 'jammed' || states['lock.garage'].state == 'jammed')
-                                    return 'blink 0.8s ease infinite'                     
+                        state:
+                          - value: disarmed
+                          - value: armed_away
+                            styles:
+                              img_cell:
+                                - background-color: var(--custom-img-cell-color-red)
+                                - border-color: rgba(12, 12, 14, 0.2)
+                                - border-style: outset
+                                - border-width: 1px
+                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
+                              icon:
+                                - color: var(--custom-icon-color-red)
                       - type: custom:button-card
                         tap_action:
                           action: navigate
@@ -4240,15 +4257,75 @@ views:
                             return "mdi:door-closed";
                           ]]]        
                         styles:
+                          img_cell:
+                            - height: 35px
+                            - width: 35px
+                            - border-radius: 50px
+                            - background-color: transparent
                           icon:
+                            - color: var(--icon_off)
+                            - width: 20px
                             - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
-                            - color: |
+                        state:
+                          - value: 'off'
+                            icon: mdi:door-open
+                          - value: 'on'
+                            icon: mdi:door-open
+                            styles:
+                              img_cell:
+                                - background-color: var(--custom-img-cell-color-red)
+                                - border-color: rgba(12, 12, 14, 0.2)
+                                - border-style: outset
+                                - border-width: 1px
+                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
+                              icon:
+                                - color: var(--custom-icon-color-red)
+                      - type: custom:button-card
+                        tap_action:
+                          action: navigate
+                          navigation_path: /lovelace/porte_mouv_serrure
+                        double_tap_action:
+                          action: more-info
+                        entity: group.serrures
+                        template:
+                          - style_off
+                        show_name: false
+                        show_label: false
+                        label: |
+                          [[[ 
+                            if (states['group.serrures'].state == 'unlocked')
+                              return "Dévrouillée"
+                            return "Vérouillée"
+                          ]]]        
+                        styles:
+                          img_cell:
+                            - height: 35px
+                            - width: 35px
+                            - border-radius: 50px
+                            - background-color: transparent
+                          icon:
+                            - color: var(--icon_off)
+                            - width: 20px
+                            - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
+                            - animation: |
                                 [[[
-                                  if (states['binary_sensor.portes'].state == 'on')
-                                    return 'var(--custom-icon-color-red)'                      
-                                  return 'var(--icon_off)'
+                                  if (states['lock.serrure_entree'].state == 'jammed' || states['lock.garage'].state == 'jammed')
+                                    return 'blink 0.8s ease infinite'  
                                 ]]]
-                                     
+                        state:
+                          - value: locked
+                            icon: mdi:lock
+                          - value: unlocked
+                            icon: mdi:lock-open
+                            styles:
+                              img_cell:
+                                - background-color: var(--custom-img-cell-color-red)
+                                - border-color: rgba(12, 12, 14, 0.2)
+                                - border-style: outset
+                                - border-width: 1px
+                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
+                              icon:
+                                - color: var(--custom-icon-color-red)
                       - type: custom:button-card
                         tap_action:
                           action: navigate
@@ -4260,22 +4337,30 @@ views:
                           - style_off
                         show_name: false
                         show_label: false
-                        icon: |
-                          [[[
-                            if (states['binary_sensor.mouvements'].state == 'on')
-                              return "mdi:run-fast";
-                            return "mdi:human-male";
-                          ]]]          
                         styles:
+                          img_cell:
+                            - height: 35px
+                            - width: 35px
+                            - border-radius: 50px
+                            - background-color: transparent
                           icon:
+                            - color: var(--icon_off)
+                            - width: 20px
                             - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
-                            - color: |
-                                [[[
-                                  if (states['binary_sensor.mouvements'].state == 'on')
-                                    return 'var(--custom-icon-color-red)'                      
-                                  return 'var(--icon_off)'
-                                ]]]
-                                     
+                        state:
+                          - value: 'off'
+                            icon: mdi:human-male
+                          - value: 'on'
+                            icon: mdi:run-fast
+                            styles:
+                              img_cell:
+                                - background-color: var(--custom-img-cell-color-red)
+                                - border-color: rgba(12, 12, 14, 0.2)
+                                - border-style: outset
+                                - border-width: 1px
+                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
+                              icon:
+                                - color: var(--custom-icon-color-red)
               - type: custom:button-card
                 template:
                   - sidebar
@@ -9810,66 +9895,78 @@ views:
                     padding: 4px;
                   }
                 cards:
-                  - type: custom:button-card
-                    entity: alarm_control_panel.alarme
-                    name: Alarme
-                    label: |
-                      [[[ 
-                        if (entity.state == "disarmed" || entity.state == "armed_away" || entity.state == "armed_home" || entity.state == "armed_night") 
-                          return states['sensor.alarme_maison_statut'].state
-                        if (entity.state == "triggered" || entity.state == "pending") 
-                          return states['sensor.alarme_maison_statut'].state
-                        if (entity.state == "arming")  
-                          return states['sensor.alarme_maison_statut'].state
-                      ]]]
-                    icon: |
-                      [[[
-                        if (entity.state == "disarmed" )
-                          return "mdi:shield-off";
-                        if (entity.state == "armed_away" )
-                          return "mdi:shield-lock";
-                        if (entity.state == "armed_home" )
-                          return "mdi:shield-home";
-                        if (entity.state == "armed_night" )
-                          return "mdi:shield-moon";
-                        if (entity.state == "arming" )
-                          return "mdi:shield-half-full";
-                        if (entity.state == "triggered" )
-                          return "mdi:shield-alert";
-                        return "mdi:shield-off";
-                      ]]]
-                    template:
-                      - base
-                      - state_rouge
-                      - state_unavailable
-                    tap_action:
-                      action: more-info
-                    double_tap_action:
-                      action: navigate
-                      navigation_path: /lovelace/Alarmes
-                  - type: custom:button-card
-                    entity: alarm_control_panel.aarlo_sonnette
-                    template:
-                      - base
-                      - state_rouge
-                      - state_unavailable
-                    name: |
-                      [[[ return "Sonnette"]]]
-                    label: |
-                      [[[ 
-                        return states['sensor.alarme_sonnette_statut'].state
-                      ]]] 
-                    icon: phu:arlo-video-doorbell
-                    tap_action:
-                      action: more-info
-                    double_tap_action:
-                      action: navigate
-                      navigation_path: /lovelace/Alarmes
-                    custom_fields:
-                      notification: >
-                        [[[ return
-                        Math.floor(states['sensor.aarlo_battery_level_sonnette'].state
-                        ) ]]]
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 5px;
+                      }
+                    cards:
+                      - type: custom:button-card
+                        entity: alarm_control_panel.alarme
+                        name: Alarme
+                        label: |
+                          [[[ 
+                            if (entity.state == "disarmed" || entity.state == "armed_away" || entity.state == "armed_home" || entity.state == "armed_night") 
+                              return states['sensor.alarme_maison_statut'].state
+                            if (entity.state == "triggered" || entity.state == "pending") 
+                              return states['sensor.alarme_maison_statut'].state
+                            if (entity.state == "arming")  
+                              return states['sensor.alarme_maison_statut'].state
+                          ]]]
+                        icon: |
+                          [[[
+                            if (entity.state == "disarmed" )
+                              return "mdi:shield-off";
+                            if (entity.state == "armed_away" )
+                              return "mdi:shield-lock";
+                            if (entity.state == "armed_home" )
+                              return "mdi:shield-home";
+                            if (entity.state == "armed_night" )
+                              return "mdi:shield-moon";
+                            if (entity.state == "arming" )
+                              return "mdi:shield-half-full";
+                            if (entity.state == "triggered" )
+                              return "mdi:shield-alert";
+                            return "mdi:shield-off";
+                          ]]]
+                        template:
+                          - base
+                          - state_rouge
+                          - state_unavailable
+                        tap_action:
+                          action: more-info
+                        double_tap_action:
+                          action: navigate
+                          navigation_path: /lovelace/Alarmes
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 5px;
+                      }
+                    cards:
+                      - type: custom:button-card
+                        entity: alarm_control_panel.aarlo_sonnette
+                        template:
+                          - base
+                          - state_rouge
+                          - state_unavailable
+                        name: |
+                          [[[ return "Sonnette"]]]
+                        label: |
+                          [[[ 
+                            return states['sensor.alarme_sonnette_statut'].state
+                          ]]] 
+                        icon: phu:arlo-video-doorbell
+                        tap_action:
+                          action: more-info
+                        double_tap_action:
+                          action: navigate
+                          navigation_path: /lovelace/Alarmes
+                        custom_fields:
+                          notification: >
+                            [[[ return
+                            Math.floor(states['sensor.aarlo_battery_level_sonnette'].state
+                            ) ]]]
               - type: custom:button-card
                 template:
                   - titre_section
