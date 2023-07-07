@@ -4,7 +4,6 @@
 
 
 
-
 button_card_templates:
   police:
     styles:
@@ -48,8 +47,8 @@ button_card_templates:
         - background: |-
             [[[
               if (states['sun.sun'].state == 'above_horizon')
-                return "linear-gradient(180deg, rgba(36, 46, 66, 0.5) 55%, rgba(0,191,255, 0.1) 70%, rgba(0,191,255, 0.3) 100%)"
-              return "linear-gradient(180deg, rgba(0,0,0, 0.5) 45%, rgba(0,175,255, 0.1) 65%, rgba(0,175,255, 0.3) 100%)"
+                return "linear-gradient(180deg, rgba(36, 46, 66, 0) 55%, rgba(0,191,255, 0.1) 65%, rgba(0,191,255, 0.3) 90%)"
+              return "linear-gradient(180deg, rgba(0,0,0, 0.5) 55%, rgba(0,175,255, 0.1) 65%, rgba(0,175,255, 0.3) 90%)"
             ]]]
       custom_fields:
         date:
@@ -277,7 +276,7 @@ button_card_templates:
                   - font-size: 13px
                   - margin: '-5px'
                 entity_picture:
-                  - width: 120%
+                  - width: 100%
               tap_action:
                 action: navigate
                 navigation_path: /lovelace/Agenda
@@ -298,7 +297,7 @@ button_card_templates:
                   - font-size: 13px
                   - margin: '-5px'
                 icon:
-                  - width: 24px
+                  - width: 22px
               state:
                 - value: 24.9
                   operator: '>'
@@ -374,9 +373,7 @@ button_card_templates:
       custom_fields:
         devices:
           - padding: 0px 0px 0px 0px
-          - align-self: middle
-          - white-space: normal
-          - width: calc(100% + 0px)
+          - width: calc(98% + 0px)
           - '--ha-card-border-width': 0px
           - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
           - '--ha-card-background': rgba(0, 0, 0, 0.0)
@@ -2793,8 +2790,6 @@ button_card_templates:
       label:
         - padding-right: 10px
       custom_fields:
-        jauge-cercle:
-          - width: 27%
         notification:
           - border-radius: 100%
           - position: absolute
@@ -2865,11 +2860,11 @@ button_card_templates:
         - border: |
             [[[
               if (variables.var_state  == "Charging")
-                return " 1px dashed rgba(255, 255, 0, 0.8) " 
+                return " 1px dashed rgba(255, 255, 0, 1) " 
               if (variables.var_state  == "Full")
-                return " 1px dashed rgba(255, 0, 0, 0.8) "                
+                return " 1px dashed rgba(255, 0, 0, 1) "                
               if (variables.var_level  < 30)
-                return " 1px solid rgba(255, 0, 0, 0.8) "                        
+                return " 1px solid rgba(255, 0, 0, 1) "                        
               return ""
             ]]]
     tap_action:
@@ -2887,70 +2882,49 @@ button_card_templates:
     custom_fields:
       jauge-cercle:
         card:
-          type: horizontal-stack
-          cards:
-            - type: conditional
-              conditions:
-                - entity: sensor.iphone_aurel_battery_state
-                  state: Not Charging
-              card:
-                type: custom:hatc-gauge-card
-                entity: sensor.iphone_aurel_battery_level
-                title:
-                  name: false
-                  icon: false
-                gauge:
-                  icon: false
-                  font-size: 11px
-                  text-color: severity
-                  max_value: 100
-                  friendly_name: false
-                  unit_of_measurement: false
-                  severity:
-                    - color: var(--text_off)
-                    - color: dodgerblue
-                      from: 99
-                      to: 51
-                    - color: gold
-                      from: 31
-                      to: 50
-                    - color: red
-                      from: 0
-                      to: 30
-            - type: conditional
-              conditions:
-                - entity: sensor.iphone_aurel_battery_state
-                  state_not: Not Charging
-              card:
-                type: custom:hatc-gauge-card
-                entity: sensor.iphone_aurel_battery_level
-                title:
-                  name: false
-                  icon: false
-                gauge:
-                  state: false
-                  font-size: 11px
-                  icon-size: 13px
-                  icon-color: yellow
-                  icon: mdi:flash
-                  max_value: 100
-                  friendly_name: false
-                  unit_of_measurement: false
-                  severity:
-                    - color: var(--text_off)
-                    - color: dodgerblue
-                      from: 99
-                      to: 51
-                    - color: gold
-                      from: 31
-                      to: 50
-                    - color: red
-                      from: 0
-                      to: 30
+          type: custom:hatc-gauge-card
+          entity: sensor.iphone_aurel_battery_level
+          title:
+            name: false
+            icon: false
+          gauge:
+            icon: false
+            font-size: 11px
+            text-color: severity
+            max_value: 100
+            friendly_name: false
+            unit_of_measurement: false
+            severity:
+              - color: var(--text_off)
+              - color: dodgerblue
+                from: 99
+                to: 51
+              - color: gold
+                from: 31
+                to: 50
+              - color: red
+                from: 0
+                to: 30
       bouton:
         card:
           type: horizontal-stack
           cards:
+            - type: custom:button-card
+              entity: device_tracker.iphone_aurel_ha
+              template:
+                - carte_bouton
+                - carte_bouton_state
+                - carte_personne_var_device
+              variables:
+                var_state: |
+                  [[[ 
+                    return states['sensor.iphone_aurel_battery_state'].state 
+                  ]]]
+                var_level: |
+                  [[[ 
+                    return states['sensor.iphone_aurel_battery_level'].state 
+                  ]]]
+              icon: mdi:cellphone
             - type: custom:button-card
               entity: sensor.iphone_aurel_connection_type
               template:
@@ -3019,70 +2993,49 @@ button_card_templates:
     custom_fields:
       jauge-cercle:
         card:
-          type: horizontal-stack
-          cards:
-            - type: conditional
-              conditions:
-                - entity: sensor.alex_iphone_battery_state_ha
-                  state: Not Charging
-              card:
-                type: custom:hatc-gauge-card
-                entity: sensor.alex_iphone_battery_level_ha
-                title:
-                  name: false
-                  icon: false
-                gauge:
-                  icon: false
-                  font-size: 11px
-                  text-color: severity
-                  max_value: 100
-                  friendly_name: false
-                  unit_of_measurement: false
-                  severity:
-                    - color: var(--text_off)
-                    - color: dodgerblue
-                      from: 99
-                      to: 51
-                    - color: gold
-                      from: 31
-                      to: 50
-                    - color: red
-                      from: 0
-                      to: 30
-            - type: conditional
-              conditions:
-                - entity: sensor.alex_iphone_battery_state_ha
-                  state_not: Not Charging
-              card:
-                type: custom:hatc-gauge-card
-                entity: sensor.alex_iphone_battery_level_ha
-                title:
-                  name: false
-                  icon: false
-                gauge:
-                  state: false
-                  font-size: 11px
-                  icon-size: 13px
-                  icon-color: yellow
-                  icon: mdi:flash
-                  max_value: 100
-                  friendly_name: false
-                  unit_of_measurement: false
-                  severity:
-                    - color: var(--text_off)
-                    - color: dodgerblue
-                      from: 99
-                      to: 51
-                    - color: gold
-                      from: 31
-                      to: 50
-                    - color: red
-                      from: 0
-                      to: 30
+          type: custom:hatc-gauge-card
+          entity: sensor.alex_iphone_battery_level_ha
+          title:
+            name: false
+            icon: false
+          gauge:
+            icon: false
+            font-size: 11px
+            text-color: severity
+            max_value: 100
+            friendly_name: false
+            unit_of_measurement: false
+            severity:
+              - color: var(--text_off)
+              - color: dodgerblue
+                from: 99
+                to: 51
+              - color: gold
+                from: 31
+                to: 50
+              - color: red
+                from: 0
+                to: 30
       bouton:
         card:
           type: horizontal-stack
           cards:
+            - type: custom:button-card
+              entity: device_tracker.alex_iphone_ha
+              template:
+                - carte_bouton
+                - carte_bouton_state
+                - carte_personne_var_device
+              variables:
+                var_state: |
+                  [[[ 
+                    return states['sensor.alex_iphone_battery_state_ha'].state 
+                  ]]]
+                var_level: |
+                  [[[ 
+                    return states['sensor.alex_iphone_battery_level_ha'].state 
+                  ]]]
+              icon: mdi:cellphone
             - type: custom:button-card
               entity: sensor.alex_iphone_connection_type_2
               template:
@@ -3991,7 +3944,7 @@ views:
                               - font-size: 13px
                               - margin: '-5px'
                             icon:
-                              - width: 24px
+                              - width: 22px
                               - color: |
                                   [[[
                                     if (states['sensor.qualite_air_pourcentage'].state >= 96.1 && states['sensor.qualite_air_pourcentage'].state <= 98.7)
@@ -5419,42 +5372,23 @@ views:
                           type: horizontal-stack
                           cards:
                             - type: custom:button-card
-                              entity: media_player.apple_tv_sejour
-                              icon: |
-                                [[[           
-                                  if( states['media_player.apple_tv_sejour'].attributes.app_id == "com.netflix.Netflix")
-                                        return "phu:netflix"
-                                  if( states['media_player.apple_tv_sejour'].attributes.app_id == "com.plexapp.plex")
-                                        return "mdi:plex"
-                                  if( states['media_player.apple_tv_sejour'].attributes.app_id == "com.amazon.aiv.AIVApp")
-                                        return "phu:amazon-logo"
-                                  if( states['media_player.apple_tv_sejour'].attributes.app_id == "com.google.ios.youtube")
-                                        return "mdi:youtube"
-                                  if( states['media_player.apple_tv_sejour'].attributes.app_id == "com.google.ios.youtubekids")
-                                        return "mdi:youtube"                    
-                                  if( states['media_player.apple_tv_sejour'].attributes.app_id == "tv.molotov.MolotovAppProd")
-                                        return "mdi:television-play" 
-                                  if( states['media_player.apple_tv_sejour'].attributes.app_id == "com.allocine.applifrance")
-                                        return "mdi:filmstrip"                     
-                                  return "mdi:apple"
-                                ]]]
-                              styles:
-                                card:
-                                  - background-color: |
-                                      [[[
-                                        if (states['media_player.apple_tv_sejour'].state  == "playing")
-                                          return 'var(--custom-img-cell-color-blue)'
-                                        return ""
-                                      ]]]
-                                icon:
-                                  - color: |
-                                      [[[
-                                        if (states['media_player.apple_tv_sejour'].state  == "playing")
-                                          return 'var(--custom-icon-color-blue)';
-                                        return "var(--icon_off)"
-                                      ]]]              
+                              tap_action:
+                                action: call-service
+                                service: script.tv_salon_chaine_bas
+                                service_data: null
+                              entity: script.tv_salon_chaine_bas
                               template:
                                 - carte_bouton
+                                - carte_bouton_state_tv_salon
+                            - type: custom:button-card
+                              tap_action:
+                                action: call-service
+                                service: script.tv_salon_chaine_haut
+                                service_data: null
+                              entity: script.tv_salon_chaine_haut
+                              template:
+                                - carte_bouton
+                                - carte_bouton_state_tv_salon
                             - type: custom:button-card
                               tap_action:
                                 action: call-service
@@ -9905,7 +9839,7 @@ views:
                 cards:
                   - type: grid
                     square: false
-                    columns: 4
+                    columns: 2
                     cards:
                       - type: custom:button-card
                         entity: person.herve
@@ -9913,7 +9847,7 @@ views:
                         label: |
                           [[[return states["sensor.aurel_gps_simple"].state]]]
                         template:
-                          - carte_badge
+                          - base
                           - state_person
                           - style_off
                         show_entity_picture: true
@@ -9932,7 +9866,7 @@ views:
                         label: |
                           [[[return states["sensor.alex_gps_simple"].state]]]
                         template:
-                          - carte_badge
+                          - base
                           - state_person
                           - style_off
                         show_entity_picture: true
@@ -9951,7 +9885,7 @@ views:
                         label: |
                           [[[return states["sensor.tom_gps"].state]]]
                         template:
-                          - carte_badge
+                          - base
                           - state_person
                           - style_off
                         show_entity_picture: true
@@ -9970,7 +9904,7 @@ views:
                         label: |
                           [[[return states["sensor.manon_gps"].state]]]
                         template:
-                          - carte_badge
+                          - base
                           - state_person
                           - style_off
                         show_entity_picture: true
@@ -21694,7 +21628,7 @@ views:
                               - font-size: 12px
                               - margin: '-5px'
                             icon:
-                              - width: 24px
+                              - width: 22px
                         - type: custom:button-card
                           entity: sensor.weather_couche_soleil
                           icon: mdi:moon-waning-crescent
@@ -21713,7 +21647,7 @@ views:
                               - font-size: 12px
                               - margin: '-5px'
                             icon:
-                              - width: 24px
+                              - width: 22px
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 style: |
@@ -21721,7 +21655,7 @@ views:
                     margin-top: -15px !important;
                     margin-bottom: 5px !important;
                     padding: 10px 4px 10px 4px;
-                    border-radius: 20px !important;
+                    border-radius: 24px !important;
                     margin-left: 30px;
                     margin-right: 30px;
                     background: var(--ha-card-background);
@@ -22408,15 +22342,15 @@ views:
                         name: |
                           [[[
                             if (states['sensor.qualite_air_pourcentage'].state >= 98.8  )
-                              return 'Excellent !'
+                              return 'Excellent'
                             if (states['sensor.qualite_air_pourcentage'].state < 98.8 && states['sensor.qualite_air_pourcentage'].state > 96 )
-                              return 'Correct : aération recommandée'
+                              return 'Correct'
                             if (states['sensor.qualite_air_pourcentage'].state <= 96 && states['sensor.qualite_air_pourcentage'].state > 88 )
-                              return 'Moyen : aération intense recommandée'
+                              return 'Moyen'
                             if (states['sensor.qualite_air_pourcentage'].state <= 88 && states['sensor.qualite_air_pourcentage'].state > 60 )
-                              return 'Mauvais : aération intense nécessaire'
+                              return 'Mauvais'
                             if (states['sensor.qualite_air_pourcentage'].state <= 60  )
-                              return 'Danger ! Aération intense nécessaire !'
+                              return 'Danger'
                             return ''
                           ]]]
                         styles:
