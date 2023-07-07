@@ -3,6 +3,8 @@
 ######################################################################
 
 
+
+
 button_card_templates:
   police:
     styles:
@@ -46,8 +48,8 @@ button_card_templates:
         - background: |-
             [[[
               if (states['sun.sun'].state == 'above_horizon')
-                return "radial-gradient(ellipse at 1% -10%, rgba(36, 46, 66, 0.5) 20%, rgba(0,191,255, 0.1) 45%, rgba(0,191,255, 0.3) 67%)"
-              return "radial-gradient(ellipse at 1% -10%, rgba(0,0,0, 0.5) 35%, rgba(0,175,255, 0.1) 45%, rgba(0,175,255, 0.3) 67%)"
+                return "linear-gradient(180deg, rgba(36, 46, 66, 0.5) 55%, rgba(0,191,255, 0.1) 70%, rgba(0,191,255, 0.3) 100%)"
+              return "linear-gradient(180deg, rgba(0,0,0, 0.5) 45%, rgba(0,175,255, 0.1) 65%, rgba(0,175,255, 0.3) 100%)"
             ]]]
       custom_fields:
         date:
@@ -956,7 +958,7 @@ button_card_templates:
             details: false
             style: |
               ha-card { 
-                #margin: 12% 0 2% !important;
+                margin: 0 20px 0 20px !important;
                 background: rgba(0,0,0,0);
                 box-shadow: none;
                 padding: 0 !important;
@@ -1984,12 +1986,12 @@ button_card_templates:
             - color: var(--custom-icon-color-red)
     styles:
       name:
-        - font-size: 80%
+        - font-size: 12px
       state:
-        - font-size: 100%
+        - font-size: 15px
         - font-weight: bold
       label:
-        - font-size: 85%
+        - font-size: 11px
         - font-weight: bold
         - color: |
             [[[
@@ -2079,14 +2081,14 @@ button_card_templates:
     show_label: true
     styles:
       name:
-        - font-size: 90%
+        - font-size: 12px
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
       state:
-        - font-size: 130%
+        - font-size: 15px
         - font-weight: bold
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
       label:
-        - font-size: 90%
+        - font-size: 11px
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
       custom_fields:
         gauge:
@@ -2862,10 +2864,12 @@ button_card_templates:
       card:
         - border: |
             [[[
+              if (variables.var_state  == "Charging")
+                return " 1px dashed rgba(255, 255, 0, 0.8) " 
+              if (variables.var_state  == "Full")
+                return " 1px dashed rgba(255, 0, 0, 0.8) "                
               if (variables.var_level  < 30)
-                return " 1px solid rgba(255, 0, 0, 0.8) "            
-              if (variables.var_level  < 50)
-                return " 1px dashed rgba(255, 0, 0, 0.8) "            
+                return " 1px solid rgba(255, 0, 0, 0.8) "                        
               return ""
             ]]]
     tap_action:
@@ -4077,7 +4081,7 @@ views:
                   style: |
                     ha-card {
                       background: none;
-                      margin: -17px 20px 5px 20px;
+                      margin: -15px 20px 5px 20px;
                       overflow: hidden !important;
                       border-radius: 24px !important;
                     }
@@ -4105,7 +4109,7 @@ views:
                       type: custom:aarlo-glance
                   style: |
                     ha-card {
-                      margin: -17px 20px 5px 20px;
+                      margin: -15px 20px 5px 20px;
                       overflow: hidden !important;
                       border-radius: 24px !important;
                     }
@@ -4114,7 +4118,7 @@ views:
                   ha-card { 
                     margin-top: -15px !important;
                     margin-bottom: 5px !important;
-                    padding: 3px 3px 3px 3px;
+                    padding: 10px 9px 10px 3px;
                     border-radius: 24px !important;
                     margin-left: 30px;
                     margin-right: 30px;
@@ -4136,11 +4140,6 @@ views:
                         show_name: false
                         show_label: false
                         styles:
-                          img_cell:
-                            - height: 35px
-                            - width: 35px
-                            - border-radius: 50px
-                            - background-color: transparent
                           icon:
                             - color: var(--icon_off)
                             - width: 20px
@@ -4151,57 +4150,27 @@ views:
                           - value: armed_away
                             icon: mdi:shield-lock
                             styles:
-                              img_cell:
-                                - background-color: var(--custom-img-cell-color-red)
-                                - border-color: rgba(12, 12, 14, 0.2)
-                                - border-style: outset
-                                - border-width: 1px
-                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                               icon:
                                 - color: var(--custom-icon-color-red)
                           - value: armed_home
                             icon: mdi:shield-home
                             styles:
-                              img_cell:
-                                - background-color: var(--custom-img-cell-color-red)
-                                - border-color: rgba(12, 12, 14, 0.2)
-                                - border-style: outset
-                                - border-width: 1px
-                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                               icon:
                                 - color: var(--custom-icon-color-red)
                           - value: armed_night
                             icon: mdi:shield-moon-outline
                             styles:
-                              img_cell:
-                                - background-color: var(--custom-img-cell-color-red)
-                                - border-color: rgba(12, 12, 14, 0.2)
-                                - border-style: outset
-                                - border-width: 1px
-                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                               icon:
                                 - color: var(--custom-icon-color-red)
                           - value: arming
                             icon: mdi:shield-half-full
                             styles:
-                              img_cell:
-                                - background-color: var(--custom-img-cell-color-gold)
-                                - border-color: rgba(12, 12, 14, 0.2)
-                                - border-style: outset
-                                - border-width: 1px
-                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                               icon:
                                 - color: var(--custom-icon-color-gold)
                                 - animation: blink 0.8s ease infinite
                           - value: triggered
                             icon: mdi:shield-alert
                             styles:
-                              img_cell:
-                                - background-color: var(--custom-img-cell-color-red)
-                                - border-color: rgba(12, 12, 14, 0.2)
-                                - border-style: outset
-                                - border-width: 1px
-                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                               icon:
                                 - color: var(--custom-icon-color-red)
                                 - animation: blink 0.8s ease infinite
@@ -4218,11 +4187,6 @@ views:
                         show_label: false
                         icon: mdi:doorbell-video
                         styles:
-                          img_cell:
-                            - height: 35px
-                            - width: 35px
-                            - border-radius: 50px
-                            - background-color: transparent
                           icon:
                             - color: var(--icon_off)
                             - width: 20px
@@ -4231,12 +4195,6 @@ views:
                           - value: disarmed
                           - value: armed_away
                             styles:
-                              img_cell:
-                                - background-color: var(--custom-img-cell-color-red)
-                                - border-color: rgba(12, 12, 14, 0.2)
-                                - border-style: outset
-                                - border-width: 1px
-                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                               icon:
                                 - color: var(--custom-icon-color-red)
                       - type: custom:button-card
@@ -4257,11 +4215,6 @@ views:
                             return "mdi:door-closed";
                           ]]]        
                         styles:
-                          img_cell:
-                            - height: 35px
-                            - width: 35px
-                            - border-radius: 50px
-                            - background-color: transparent
                           icon:
                             - color: var(--icon_off)
                             - width: 20px
@@ -4272,12 +4225,6 @@ views:
                           - value: 'on'
                             icon: mdi:door-open
                             styles:
-                              img_cell:
-                                - background-color: var(--custom-img-cell-color-red)
-                                - border-color: rgba(12, 12, 14, 0.2)
-                                - border-style: outset
-                                - border-width: 1px
-                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                               icon:
                                 - color: var(--custom-icon-color-red)
                       - type: custom:button-card
@@ -4298,11 +4245,6 @@ views:
                             return "Vérouillée"
                           ]]]        
                         styles:
-                          img_cell:
-                            - height: 35px
-                            - width: 35px
-                            - border-radius: 50px
-                            - background-color: transparent
                           icon:
                             - color: var(--icon_off)
                             - width: 20px
@@ -4318,12 +4260,6 @@ views:
                           - value: unlocked
                             icon: mdi:lock-open
                             styles:
-                              img_cell:
-                                - background-color: var(--custom-img-cell-color-red)
-                                - border-color: rgba(12, 12, 14, 0.2)
-                                - border-style: outset
-                                - border-width: 1px
-                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                               icon:
                                 - color: var(--custom-icon-color-red)
                       - type: custom:button-card
@@ -4338,11 +4274,6 @@ views:
                         show_name: false
                         show_label: false
                         styles:
-                          img_cell:
-                            - height: 35px
-                            - width: 35px
-                            - border-radius: 50px
-                            - background-color: transparent
                           icon:
                             - color: var(--icon_off)
                             - width: 20px
@@ -4353,12 +4284,6 @@ views:
                           - value: 'on'
                             icon: mdi:run-fast
                             styles:
-                              img_cell:
-                                - background-color: var(--custom-img-cell-color-red)
-                                - border-color: rgba(12, 12, 14, 0.2)
-                                - border-style: outset
-                                - border-width: 1px
-                                - box-shadow: 1px 1px 2px 0px rgba(10, 10, 10,0.4)
                               icon:
                                 - color: var(--custom-icon-color-red)
               - type: custom:button-card
@@ -22483,15 +22408,15 @@ views:
                         name: |
                           [[[
                             if (states['sensor.qualite_air_pourcentage'].state >= 98.8  )
-                              return 'Excellent'
+                              return 'Excellent !'
                             if (states['sensor.qualite_air_pourcentage'].state < 98.8 && states['sensor.qualite_air_pourcentage'].state > 96 )
-                              return 'Correct'
+                              return 'Correct : aération recommandée'
                             if (states['sensor.qualite_air_pourcentage'].state <= 96 && states['sensor.qualite_air_pourcentage'].state > 88 )
-                              return 'Moyen'
+                              return 'Moyen : aération intense recommandée'
                             if (states['sensor.qualite_air_pourcentage'].state <= 88 && states['sensor.qualite_air_pourcentage'].state > 60 )
-                              return 'Mauvais'
+                              return 'Mauvais : aération intense nécessaire'
                             if (states['sensor.qualite_air_pourcentage'].state <= 60  )
-                              return 'Danger'
+                              return 'Danger ! Aération intense nécessaire !'
                             return ''
                           ]]]
                         styles:
