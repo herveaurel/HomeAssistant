@@ -1,50 +1,50 @@
 # HomeAssistant
 
-Groupe français Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
+French group Home Assistant : https://www.facebook.com/groups/homeassistantgroupefrance
 
 ## 🤓 Mad Geek 
-Mon tableau de bord compatible avec PC, smartphone, tablette
+My dashboard compatible with PC, smartphone, tablet
 
 -----
 
 ## ℹ️  INTRODUCTION
 
-Voici ma configuration  :
+Content  :
 
-- Tableau de bord (lovelace UI mode) PC, mobile, tablette
-- configuration et templates
-- thèmes jour et nuit
+- lovelace UI mode
+- Custom light and dark themes
 
-Je ne suis pas un expert, je suis simplement un passionné, les codes ne sont certainement pas écrits de la meilleure façon, mais j'ai réalisé ceci avec mes petites connaissances.
-J'écris tout moi-même donc soyez indulgents ! 😊
+I'm not an expert, I'm just a hobbyist. 
+The code is certainly not written in the best way, but I created this with my limited knowledge. 
+I write everything myself, so please be understanding! 😊
 
-Je modifie régulièrement les détails, ou quand j'ai des nouvelles idées. 
+I regularly make changes to the details or when I have new ideas.
 
 -----
 
 ## 🚧 INSTALLATION
 
-Ce n'est pas du 1 click ! 
+It's not a one-click setup!
 
-Il faut quelques connaissances avant de se lancer. 
-- Installer quelques intégrations HACS nécessaires au bon fonctionnnement.
-- Créer les bons sensor templates aussi, car je les utilise en masse et en appelle partout dans les cartes.
-- Savoir ou copier/coller chaque partie, que ce soit les sensor templates, le contenu du lovelace, les templates button card... 
-- Modifier les entités, supprimer celles en trop etc...
+Some knowledge is required before diving in:
 
-Il faut adapter à sa config ! 🙂
+- Install a few HACS integrations necessary for proper functionality.
+- Create the right sensor templates because I use them extensively and call them throughout the cards.
+- Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
+- Adjust the entities, remove the unnecessary ones, etc.
 
-Dashboard réalisé en 4 colonnes, grâce à "layout card" disponible sur HACS :
-- l'onglet est paramétré sur Type de vue : Horizontal (layout-card) / width: 350 / max_cols: 4
-- une colonne "pile verticale" est imbriquée dans une carte "type: custom:layout-card" / "layout_type: masonry" / et a comme Layout options  "width: 280"
+You need to adapt it to your configuration! 🙂
 
-Je conseille d'installer mrs thèmes, puis de copier les templates button card, et ensuite de commencer a copier des morceaux du lovelace. 
+Dashboard created in 4 columns, thanks to the "layout card" available on HACS:
+- The tab is configured with View Type: Horizontal (layout-card) / width: 350 / max_cols: 4
+- A "vertical stack" column is nested within a card with "type: custom:layout-card" / "layout_type: masonry" / and has Layout options "width: 280"
+
+I recommend installing mrs themes, then copying the button card templates, and then starting to copy pieces of Lovelace.
 
 -----
 
-## ℹ️  PRESENTATION
-
-### 🥳 Complètement revisité pour cette nouvelle version juillet 2023 : 
+## ℹ️  IMAGES
+ 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)
 
@@ -72,79 +72,18 @@ Je conseille d'installer mrs thèmes, puis de copier les templates button card, 
 ## 🖥️ SETUP 
 
 - Raspberry 4 + SSD
-- Clé USB Sonoff Zigbee 3.0
-- Dongle Bluetooth Sena Parani UD100
-- Box Internet Orange Livebox 4
-- 2 cubes Tenda Nova MW6 et 1 MW12 parametrés en pont 
+- USB Sonoff Zigbee 3.0
+- Bluetooth Sena Parani UD100
+- Orange Livebox 4
+- Tenda Nova MW6 and 1 MW12 
 
-J'utilise Alexa en vocal, et Maison Apple sur l'Apple Watch
-
-## 🔧 Mes appareils 
-
-Zigbee
-- Capteurs portes : Xiaomi et Aqara
-- Capteurs mouvements : Xiaomi et Aqara
-- Capteurs vibration : Xiaomi et Aqara
-- Eclairage : ampoule Hue, ampoule GLEDOPTO, ampoules Trust International B.V, ampoules JunYu, ampoules INNR, ampoule TZ3000_keabpigv, bandeau led LEDVANCE
-- Prises : Xiaomi, Osram
-- Sirène Heiman
-- Interrupteurs : bouton Wireless Switch Xiaomi 
-- Thermometre rond à écran Orvibo
-- Cube Aqara
-- Moniteur de qualité de l'air Aqara
-- Détecteur de fuite Aqara
-- Capteur température Aqara
-- Guide de rideau Aqara
-- Tête thermostatique de radiateur Aqara
-- Sirène Zigbee Frient
-- Clavier Zigbee Frient
-
-Bluetooth
-- capteurs plantes Xiaomi 
-- thermometres ronds à écran Xiaomi 
-- serrures Switchbot
-
-Wifi
-- Eclairage : ampoules couleurs, lampes de bureau, et bandeau led couleur Yeelight
-- Sonnette Arlo Video Doorbell
-- TV LG
-- Apple TV
-- Capteur de présence Aqara FP2
-- Alexa : Fire TV, Fire Cube, Echos Dot et Show 
-- Imprimante Canon G5050
-- Ruban led Sonoff intérieur 
-- Lave-vaisselle Siemens 
-- Aspirateurs : Roborock S50 et S6
-- Interrupteur Shelly
-- Caméra Aqara Hub G3
-- Caméra Aqara Hub G2H Pro
-- Caméra Reolink Argus 3
-- Caméra Sonoff Slim
-
-
-
-Mes modules :
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/modules.png)
-
-Mes intégrations :
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations1.png)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/integrations2.png)
-
-Mes intégrations HACS:
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/hacs-integrations.png)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/hacs-interface1.png)
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/hacs-interface2.png)
+I use Alexa for voice commands and Apple Home on the Apple Watch.
 
 ---------------------
 
 ## ⭐️ VIP 
 
-Si vous aimez , likez 🌟 mon repo !
+If you like it, please give my repo a star! 🌟
 
-Si vous souhaitez m'offrir une petite bière 🍺 ou un café ☕️, dire merci 🙏, me soutenir ❤️‍🩹 ... et pour une aide personnalisée par message privé : 
+If you'd like to buy me a beer 🍺 or a coffee ☕️, say thanks 🙏, show some love ❤️‍🩹 : 
 https://www.paypal.com/paypalme/aaherve
-
-Merci ! 
