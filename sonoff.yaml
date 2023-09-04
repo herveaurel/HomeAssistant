@@ -1,2 +1,0 @@
-  username: !secret sonoff_username
-  password: !secret sonoff_password
