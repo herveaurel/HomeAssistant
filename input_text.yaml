@@ -1,6 +1,0 @@
-  grdf_user:
-    initial: !secret grdf_user
-  grdf_pwd:
-    initial: !secret grdf_pwd
-  grdf_pce:
-    initial: !secret grdf_pce
