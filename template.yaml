@@ -1,0 +1,65 @@
+
+  - sensor:
+
+        
+###### ELECTRICITE 
+      - name: "electricite conso veille"
+        unit_of_measurement: 'kWh'      
+        state: >   
+          {{ states.sensor.myenedis_09397539765420.attributes.day_1 |float| round(2)}}
+        icon: "mdi:flash"
+        device_class: "energy"
+        state_class: "measurement"
+        
+      - name: "electricite conso kwh arrondie"
+        unit_of_measurement: 'kWh'      
+        state: >   
+          {{ states.sensor.myenedis_09397539765420.state |float| round(2)}}
+        icon: "mdi:flash"
+        device_class: "energy"
+        state_class: "total_increasing"
+        
+      - name: "electricite cout jour avec abo"
+        unit_of_measurement: 'EUR /kWh'      
+        state: >   
+          {{ (states.sensor.myenedis_09397539765420.state|float*0.2276+0.415)|float|round(2) }}
+        icon: "mdi:flash"
+        device_class: "monetary"
+        state_class: "total_increasing"
+        
+      - name: "electricite cout semaine avec abo"
+        unit_of_measurement: 'EUR'      
+        state: >   
+          {{ (states.sensor.myenedis_09397539765420.attributes.current_week|float*0.2276+3.11)|float|round(2) }}
+        icon: "mdi:flash"
+        device_class: "monetary"
+        state_class: "total_increasing"
+        
+      - name: "electricite cout mois avec abo"
+        unit_of_measurement: 'EUR'      
+        state: >   
+          {{ (states.sensor.myenedis_09397539765420.attributes.current_month|float*0.2276+12.44)|float|round(2) }}
+        icon: "mdi:flash"
+        device_class: "monetary"
+        state_class: "total_increasing"
+        
+      - name: "electricite cout annee avec abo"
+        unit_of_measurement: 'EUR'      
+        state: >   
+          {{ (states.sensor.myenedis_09397539765420.attributes.current_year|float*0.2276+149.28)|float|round(2) }}
+        icon: "mdi:flash"
+        device_class: "monetary"
+        state_class: "total_increasing"
+
+###### MONITEUR QUALITE AIR 
+      - name: "moniteur qualite air temp arrondie"
+        unit_of_measurement: '°C'      
+        state: >   
+          {{ states.sensor.moniteur_qualite_air_temperature.state |float| round(2)}}
+        icon: "mdi:thermometer"
+        device_class: "temperature"
+        state_class: "measurement"        
+        
+        
+        
+          
