@@ -19,7 +19,7 @@ I'm not an expert, I'm just a hobbyist.
 The code is certainly not written in the best way, but I created this with my limited knowledge. 
 I write everything myself, so please be understanding! 😊
 
-There will be changes as I regularly evolve my dashboard with my ideas.
+👉🏼 There will be changes as I regularly evolve my dashboard with my ideas.
 
 -----
 
