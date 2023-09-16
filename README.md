@@ -78,6 +78,8 @@ And then starting to copy pieces of Lovelace.
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/10.jpg)
 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg)
+
 
 
 And more ! 
