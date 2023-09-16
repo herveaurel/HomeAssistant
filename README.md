@@ -41,7 +41,9 @@ Dashboard created in 4 columns, thanks to the "layout card" available on HACS:
 - The tab is configured with View Type: Horizontal (layout-card) / width: 350 / max_cols: 4
 - A "vertical stack" column is nested within a card with "type: custom:layout-card" / "layout_type: masonry" / and has Layout options "width: 280"
 
-I recommend installing mrs themes, then copying the button card templates, and then starting to copy pieces of Lovelace.
+I recommend that you install and use my themes for perfect optimization of my codes. If you prefer to use other themes, copy the "Additions for my lovelace" part into your favorite theme. 
+then copying the button card templates.
+And then starting to copy pieces of Lovelace.
 
 -----
 
