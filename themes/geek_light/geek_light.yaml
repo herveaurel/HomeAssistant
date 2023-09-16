@@ -1,0 +1,351 @@
+## Inspired by Noctis theme by aaFFekopp
+
+geek_light: 
+
+      ########## Additions for my lovelace ##########
+      # Colors
+      
+      color-blue: rgb(0,191,255) 
+      color-medium-blue: rgb(68, 115, 180) 
+      color-dark-blue: rgb(38, 75, 150)      
+      color-card-blue:  rgba(0,191,255,0.2) #rgba(135,206,235,0.3) 
+      color-img-cell-blue:  rgba(0,191,255,0.2) #rgba(135,206,235,0.3) 
+      color-icon-blue: rgba(0,191,255,1)
+      
+      color-red: rgb(255,0,0)
+      color-dark-red: rgb(191, 33, 47)
+      color-dark-red-2: rgb(180, 70, 70)
+      color-card-red: rgba(180, 70, 70,0.2)
+      color-img-cell-red: rgba(180, 70, 70,0.4)
+      color-icon-red: rgba(255, 0, 0,1)
+      
+      color-gold: rgb(255,215,0)
+      color-card-gold: rgba(255,215,0,0.2)
+      color-img-cell-gold: rgba(255,215,0,0.4)
+      color-icon-gold: rgba(255,215,0,1)
+      
+      color-yellow: rgb(249,167,62)
+      color-card-yellow: rgba(249,167,62,0.2)
+      color-img-cell-yellow: rgba(249,167,62,0.4)
+      color-icon-yellow: rgba(255,255,0,1)
+      
+      color-orange: rgb(249, 167, 62)
+      color-card-orange: rgba(214, 144, 54,0.2)
+      color-icon-orange: rgba(249, 167, 62,1)
+      color-img-cell-orange: rgba(214, 144, 54,0.4)
+
+      color-green: rgb(39, 179, 118)
+      color-card-green: rgba(39, 179, 118,0.2)
+      color-icon-green: rgba(47, 212, 140,1)
+      color-img-cell-green: rgba(39, 179, 118,0.4)      
+      
+      
+      # Style
+      card_border: rgba(12, 12, 14, 0.2) #rgba(190, 190, 190, 0.1)
+      card_box_shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
+      card_box_shadow_color: 1px 1px 2px 0px rgba(255, 0, 0,0.3)
+      bar-card-border-radius: 10px
+      
+      # Text color
+      title: rgb(110, 170, 220)
+      text-on: rgba(232,233,242,1)
+      text-off: rgba(232,233,242,1)
+      
+      # Icon color
+      icon-on: rgba(0,0,0,1)
+      icon-off: rgba(232,233,242,0.8)
+      
+      # img-cell color
+      img-cell-off: var(--primary-background-color) 
+      
+      # Chart
+      graph-line: var(--color-blue)
+      
+      ########## Theme ##########      
+      # Fonts
+      primary-font-family: 'Avenir'
+      paper-font-common-base_-_font-family: "var(--primary-font-family)"
+      paper-font-common-code_-_font-family: "var(--primary-font-family)"
+      paper-font-body1_-_font-family: "var(--primary-font-family)"
+      paper-font-subhead_-_font-family: "var(--primary-font-family)"
+      paper-font-headline_-_font-family: "var(--primary-font-family)"
+      paper-font-caption_-_font-family: "var(--primary-font-family)"
+      paper-font-title_-_font-family: "var(--primary-font-family)"
+      ha-card-header-font-family: "var(--primary-font-family)"
+    
+      # Text
+      text-color: '#ffffff' 
+      primary-text-color: 'var(--text-color)'
+      text-primary-color: 'var(--text-color)'
+      secondary-text-color: "#BAC0C6"
+      text-medium-light-color: '#A0A2A8'
+      text-medium-color: '#80828A'
+      disabled-text-color: '#626569'
+      primary-color: 'var(--accent-color)'
+      text-light-primary-color: 'var(--text-color)'
+    
+      # Text Fields an Dropdown
+      mdc-text-field-fill-color: '#2e3b53'
+      mdc-text-field-ink-color: 'var(--text-color)'
+      mdc-select-fill-color: '#2e3b53'
+      mdc-text-field-label-ink-color: 'var(--secondary-text-color)'
+      input-fill-color: 'var(--background-color)'
+      input-ink-color: 'var(--text-color)'
+      input-label-ink-color: 'var(--text-color)'
+      input-disabled-fill-color: 'var(--background-color)'
+      input-disabled-ink-color: 'var(--disabled-text-color)'
+      input-disabled-label-ink-color: 'var(--disabled-text-color)'
+      input-idle-line-color: 'var(--background-color)'
+      input-dropdown-icon-color: 'var(--secondary-text-color)'
+      input-hover-line-color: 'var(--primary-color)'
+      code-editor-background-color: '#222c40'
+      codemirror-property: 'var(--accent-color)'
+      
+      # Main Colors Header
+      app-header-background-color: '#242e42'
+      app-header-icon-color: var(--light-primary-color)
+      app-header-text-color: darkgrey #var(--primary-text-color)
+      app-header-selection-bar-color: var(--primary-color)
+      app-header-selection-color: var(--secondar-color)      
+      header-height: 48px
+      accent-color: '#1A89F5'
+      accent-medium-color: 'var(--accent-color)'
+      
+      # Background
+      background-color: '#242e42'
+      primary-background-color: 'var(--background-color)'
+      background-color-2: '#20293c' 
+      secondary-background-color: 'none'
+      markdown-code-background-color: 'var(--background-color)'
+
+      # Card
+      card-background-color: 'rgba(43,55,78,1)' #'var(--ha-card-background)'
+      ha-card-background: 'rgba(48,60,83,1)' #'linear-gradient(145deg, rgba(49, 60, 80, 0.8), rgba(56, 69, 93, 1)' #'linear-gradient(145deg, #273246, #2e3b53)' #'rgba(43,55,78,1)' #'linear-gradient(145deg, #273246, #2e3b53)'
+      ha-card-box-shadow: "3px 3px 13px -6px rgba(17,35,52,1)"
+      ha-card-border-radius: "20px"
+      border-radius: "5px"
+      ha-card-border-color: 'rgba(0,0,0,0)'
+      ha-card-border-width: '0'
+    
+      # Dialog
+      ha-dialog-border-radius: "10px"
+      
+      
+      # Icons
+      paper-item-icon-color: '#EBEBEB'
+      paper-item-icon-active-color: 'var(--accent-color)'
+    
+      # RGB States
+      rgb-state-default-color: '26, 137, 245'
+      rgb-accent-color: 'var(--rgb-state-default-color)'
+      # rgb-state-light-color: 'var(--rgb-state-default-color)'
+      # rgb-state-switch-color: 'var(--rgb-state-default-color)'
+      # rgb-state-automation-color: 'var(--rgb-state-default-color)'
+      # rgb-state-binary-sensor-color: 'var(--rgb-state-default-color)'
+      # rgb-state-cover-color: 'var(--rgb-state-default-color)'
+      # rgb-state-fan-color: 'var(--rgb-state-default-color)'
+      # rgb-state-group-color: 'var(--rgb-state-default-color)'
+      # rgb-state-humidifier-color: 'var(--rgb-state-default-color)'
+      # rgb-state-input-boolean-color: 'var(--rgb-state-default-color)'
+      # rgb-state-media-player-color: 'var(--rgb-state-default-color)'
+      # rgb-state-remote-color: 'var(--rgb-state-default-color)'
+      # rgb-state-script-color: 'var(--rgb-state-default-color)'
+      # rgb-state-timer-color: 'var(--rgb-state-default-color)'
+      # rgb-state-vacuum-color: 'var(--rgb-state-default-color)'
+      # rgb-state-alarm-armed-color: var(--rgb-red-color)
+      # rgb-state-alarm-arming-color: var(--rgb-orange-color)
+      # rgb-state-alarm-disarmed-color: var(--rgb-grey-color)
+      # rgb-state-alarm-pending-color: var(--rgb-orange-color)
+      # rgb-state-alarm-triggered-color: var(--rgb-red-color)
+      # rgb-state-alert-color: var(--rgb-red-color)
+      # rgb-state-binary-sensor-alerting-color: var(--rgb-red-color)
+      # rgb-state-calendar-color: var(--rgb-blue-color)
+      # rgb-state-camera-color: var(--rgb-blue-color)
+      # rgb-state-climate-auto-color: var(--rgb-green-color)
+      # rgb-state-climate-cool-color: var(--rgb-blue-color)
+      # rgb-state-climate-dry-color: var(--rgb-orange-color)
+      # rgb-state-climate-fan-only-color: var(--rgb-cyan-color)
+      # rgb-state-climate-heat-color: var(--rgb-deep-orange-color)
+      # rgb-state-climate-heat-cool-color: var(--rgb-amber-color)
+      # rgb-state-climate-idle-color: var(--rgb-disabled-color)
+      # rgb-state-lock-jammed-color: var(--rgb-red-color)
+      # rgb-state-lock-locked-color: var(--rgb-red-color)
+      # rgb-state-lock-pending-color: var(--rgb-orange-color)
+      # rgb-state-lock-unlocked-color: var(--rgb-red-color)
+      # rgb-state-person-home-color: var(--rgb-green-color)
+      # rgb-state-person-zone-color: var(--rgb-blue-color)
+      # rgb-state-person-not-home-color: var(--rgb-grey-color)
+      # rgb-state-sensor-battery-high-color: var(--rgb-green-color)
+      # rgb-state-sensor-battery-low-color: var(--rgb-red-color)
+      # rgb-state-sensor-battery-medium-color: var(--rgb-orange-color)
+      # rgb-state-sensor-battery-unknown-color: var(--rgb-disabled-color)
+      # rgb-state-siren-color: var(--rgb-red-color)
+      # rgb-state-sun-day-color: var(--rgb-amber-color)
+      # rgb-state-sun-night-color: var(--rgb-deep-purple-color)
+      # rgb-state-update-color: var(--rgb-green-color)
+      # rgb-state-update-installing-color: var(--rgb-orange-color)
+      # rgb-state-light-color: 'var(--rgb-state-default-color)'
+      # rgb-state-switch-color: 'var(--rgb-state-default-color)'
+      # rgb-state-automation-color: 'var(--rgb-state-default-color)'
+      # rgb-state-binary-sensor-color: 'var(--rgb-state-default-color)'
+      # rgb-state-cover-color: 'var(--rgb-state-default-color)'
+      # rgb-state-fan-color: 'var(--rgb-state-default-color)'
+      # rgb-state-group-color: 'var(--rgb-state-default-color)'
+      # rgb-state-humidifier-color: 'var(--rgb-state-default-color)'
+      # rgb-state-input-boolean-color: 'var(--rgb-state-default-color)'
+      # rgb-state-media-player-color: 'var(--rgb-state-default-color)'
+      # rgb-state-remote-color: 'var(--rgb-state-default-color)'
+      # rgb-state-script-color: 'var(--rgb-state-default-color)'
+      # rgb-state-timer-color: 'var(--rgb-state-default-color)'
+      # rgb-state-vacuum-color: 'var(--rgb-state-default-color)'
+      # error-color: #db4437
+      # warning-color: #ffa600
+      # success-color: #43a047
+      # info-color: #039be5
+    
+      # State Colors
+      state-active-color: '#1A89F5'
+      state-red-color: '#FC937E'
+      state-green-color: '#00CA8B'
+      state-orange-color: '#F7D88B'
+      state-alarm_control_panel-armed_away-color: 'var(--state-green-color)'
+      state-alarm_control_panel-armed_custom_bypass-color: 'var(--state-green-color)'
+      state-alarm_control_panel-armed_home-color: 'var(--state-green-color)'
+      state-alarm_control_panel-armed_night-color: 'var(--state-green-color)'
+      state-alarm_control_panel-armed_vacation-color: 'var(--state-green-color)'
+      state-alarm_control_panel-arming-color: 'var(--state-orange-color)'
+      state-alarm_control_panel-disarming-color: 'var(--state-orange-color)'
+      state-alarm_control_panel-pending-color: 'var(--state-orange-color)'
+      state-alarm_control_panel-triggered-color: 'var(--state-red-color)'
+      state-alert-off-color: var(--paper-item-icon-color)
+      state-alert-on-color: 'var(--state-red-color)'
+      state-automation-active-color: 'var(--accent-color)'
+      state-binary_sensor-active-color: 'var(--accent-color)'
+      state-binary_sensor-battery-on-color: 'var(--state-red-color)'
+      state-binary_sensor-carbon_monoxide-on-color: 'var(--state-red-color)'
+      state-binary_sensor-gas-on-color: 'var(--state-red-color)'
+      state-binary_sensor-heat-on-color: 'var(--state-red-color)'
+      state-binary_sensor-lock-on-color: 'var(--state-red-color)'
+      state-binary_sensor-moisture-on-color: 'var(--state-red-color)'
+      state-binary_sensor-problem-on-color: var(--state-red-color)
+      state-binary_sensor-safety-on-color: 'var(--state-red-color)'
+      state-binary_sensor-smoke-on-color: 'var(--state-red-color)'
+      state-binary_sensor-sound-on-color: 'var(--state-red-color)'
+      state-binary_sensor-tamper-on-color: 'var(--state-red-color)'
+      state-climate-auto-color: 'var(--accent-color)'
+      state-climate-cool-color: 'var(--accent-color)'
+      state-climate-dry-color: 'var(--accent-color)'
+      state-climate-fan_only-color: 'var(--accent-color)'
+      state-climate-heat-color: 'var(--state-orange-color)'
+      state-climate-heat-cool-color: 'var(--accent-color)'
+      state-cover-active-color: 'var(--accent-color)'
+      state-device_tracker-active-color: 'var(--accent-color)'
+      state-device_tracker-home-color: 'var(--accent-color)'
+      state-fan-active-color: 'var(--accent-color)'
+      state-group-active-color: 'var(--accent-color)'
+      state-humidifier-active-color: 'var(--accent-color)'
+      state-input_boolean-active-color: 'var(--accent-color)'
+      state-light-active-color: 'var(--accent-color)'
+      state-lock-jammed-color: 'var(--state-red-color)'
+      state-lock-locked-color: 'var(--accent-color)'
+      state-lock-pending-color: 'var(--state-orange-color)'
+      state-lock-unlocked-color: var(--paper-item-icon-color)
+      state-media_player-active-color: 'var(--accent-color)'
+      state-person-active-color: 'var(--accent-color)'
+      state-person-home-color: 'var(--accent-color)'
+      state-plant-active-color: 'var(--state-red-color)'
+      state-siren-active-color: 'var(--state-red-color)'
+      state-sun-above_horizon-color: 'var(--amber-color)'
+      state-sun-below_horizon-color: 'var(--indigo-color)'
+      state-switch-active-color: 'var(--accent-color)'
+      state-update-active-color: 'var(--accent-color)'
+      state-vacuum-active-color: 'var(--accent-color)'
+      state-sensor-battery-high-color: 'var(--accent-color)'
+      state-sensor-battery-low-color: 'var(--state-red-color)'
+      state-sensor-battery-medium-color: 'var(--state-orange-color)'
+      
+      # Sidebar
+      sidebar-background-color: 'var(--background-color)'
+      sidebar-icon-color: '#98a7b9'
+      sidebar-selected-icon-color: 'var(--accent-color)'
+      sidebar-selected-text-color: 'var(--text-color)'
+      paper-listbox-background-color: 'var(--sidebar-background-color)'
+      divider-color: 'var(--background-color)'
+      light-primary-color: 'var(--ha-card-background)'
+    
+      # Sliders
+      paper-slider-knob-color: 'var(--accent-color)'
+      paper-slider-pin-color: 'var(--background-color-2)'
+      paper-slider-active-color: 'var(--accent-color)'
+      paper-slider-container-color: 'var(--background-color-2)'
+    
+      # Toggle:
+      paper-toggle-button-checked-bar-color: 'var(--accent-color)'
+      mdc-theme-primary: 'var(--accent-color)'
+    
+      # Switch
+      switch-unchecked-color: '#70889e'
+      switch-checked-button-color: 'var(--accent-color)'
+      switch-unchecked-track-color: 'var(--background-color-2)'
+      switch-checked-track-color: 'var(--background-color-2)'
+    
+      # Radio Button
+      paper-radio-button-checked-color: 'var(--accent-color)'
+    
+      # Popups
+      more-info-header-background: 'var(--secondary-background-color)'
+      paper-dialog-background-color: var(--background-color)' #'rgba(47,59,82,0.9)'
+      popup-border-radius: "10px"
+
+    
+      # Tables
+      table-row-background-color: 'var(--background-color)'
+      table-row-alternative-background-color: 'var(--ha-card-background)'
+    
+      # Badges
+      label-badge-background-color: 'var(--background-color)'
+      label-badge-text-color: 'var(--text-primary-color)'
+      label-badge-red: 'rgba(73,85,108,1)'
+      label-badge-blue: 'rgba(26,137,245,1)'
+      label-badge-green: 'rgba(0,202,139,1)'
+      label-badge-yellow: 'rgba(222,176,107,1)'
+    
+      paper-input-container-focus-color: 'var(--accent-color)'
+      
+      # Custom Header
+      ch-background: 'var(--background-color)'
+      ch-active-tab-color: 'var(--accent-color)'
+      ch-notification-dot-color: 'var(--accent-color)'
+      ch-all-tabs-color: 'var(--sidebar-icon-color)'
+      ch-tab-indicator-color: 'var(--accent-color)'
+    
+      # Mini Mediaplayer
+      mini-media-player-base-color: 'var(--text-color)'
+      mini-media-player-accent-color: 'var(--accent-color)'
+      mini-media-player-button-color: 'var(--ha-card-background)'
+    
+      # Alarm
+      alarm-color-armed: 'rgba(247,53,67,1)'
+
+      # Card-Mod #####################################################################
+      # Uncomment the Code below if you have card-mod installed and want blur effect #
+      ################################################################################
+    
+      card-mod-theme: geek_light
+      card-mod-more-info-yaml: |
+       $: |
+         .mdc-dialog .mdc-dialog__scrim {
+           backdrop-filter: blur(15px);
+           -webkit-backdrop-filter: blur(15px);
+           background: rgba(0,0,0,0.1);
+         } 
+         .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+           box-shadow: none !important;
+           border-radius: var(--ha-card-border-radius);
+         }
+       .: |
+         :host {
+           --ha-card-box-shadow: none;
+         }    
+
+    
