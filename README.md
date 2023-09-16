@@ -14,6 +14,7 @@ Content  :
 
 - lovelace UI mode
 - Custom light and dark themes
+- Sensor and template files
 
 I'm not an expert, I'm just a hobbyist. 
 The code is certainly not written in the best way, but I created this with my limited knowledge. 
