@@ -76,21 +76,29 @@ Some knowledge is required before diving in:
 
   The unavoidable :
   
-  [lovelace-card-mod ](https://github.com/thomasloven/lovelace-card-mod) : Add CSS styles
+  [lovelace-card-mod ](https://github.com/thomasloven/lovelace-card-mod) 
+  Add CSS styles
   
-  [lovelace-layout-card ](https://github.com/thomasloven/lovelace-layout-card) : Get more control over the placement of lovelace cards
+  [lovelace-layout-card ](https://github.com/thomasloven/lovelace-layout-card) 
+  Get more control over the placement of lovelace cards
   
-  [vertical-stack-in-card ](https://github.com/ofekashery/vertical-stack-in-card) : to group multiple cards into a single sleek card
+  [vertical-stack-in-card ](https://github.com/ofekashery/vertical-stack-in-card) 
+  To group multiple cards into a single sleek card
   
-  [button-card ](https://github.com/custom-cards/button-card) : Lovelace button-card
+  [button-card ](https://github.com/custom-cards/button-card) 
+  Lovelace button-card
   
-  [apexcharts-card](https://github.com/RomRider/apexcharts-card) : higly customizable graph card
+  [apexcharts-card](https://github.com/RomRider/apexcharts-card) 
+  Higly customizable graph card
   
-  [Lovelace Mini Graph Card](https://github.com/kalkih/mini-graph-card) : Minimalistic graph card
+  [Lovelace Mini Graph Card](https://github.com/kalkih/mini-graph-card) 
+  Minimalistic graph card
   
-  [Paper Buttons Row](https://github.com/jcwillox/lovelace-paper-buttons-row) : Adds highly configurable buttons that use actions and per-state styling
+  [Paper Buttons Row](https://github.com/jcwillox/lovelace-paper-buttons-row) 
+  Adds highly configurable buttons that use actions and per-state styling
   
-  [bar-card](https://github.com/custom-cards/bar-card) : Customizable Animated Bar card
+  [bar-card](https://github.com/custom-cards/bar-card) 
+  Customizable Animated Bar card
 
 - Create the right sensor templates because I use them extensively and call them throughout the cards.
 - Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
