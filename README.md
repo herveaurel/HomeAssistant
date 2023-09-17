@@ -16,11 +16,11 @@ Content  :
 - Custom light and dark themes
 - Sensor and template files
 
-I'm not an expert, I'm just a hobbyist. 
-The code is certainly not written in the best way, but I created this with my limited knowledge. 
-I write everything myself, so please be understanding! 😊
+I'm not an expert, I'm just a hobbyist.  
+The code is certainly not written in the best way, but I created this with my limited knowledge.  
+I write everything myself, so please be understanding! 😊  
 
-👉🏼 There will be changes as I regularly evolve my dashboard with my ideas.
+👉🏼 There will be changes as I regularly evolve my dashboard with my ideas.  
 
 
 
@@ -57,9 +57,7 @@ I write everything myself, so please be understanding! 😊
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/10.jpg)
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg)
-
-
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg)  
 
 And more ! 
 
@@ -149,7 +147,6 @@ I love them! Thanks to him!
 
 ## VIP 
 
-If you like it, please give my repo a star! 🌟
-
+If you like it, please give my repo a star! 🌟  
 [If you'd like to buy me a beer 🍺 or a coffee ☕️, say thanks 🙏, show some love ❤️‍🩹 ](https://www.paypal.com/paypalme/aaherve)
 
