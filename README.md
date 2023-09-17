@@ -90,7 +90,7 @@ The unavoidable :
 
 [Paper Buttons Row](https://github.com/jcwillox/lovelace-paper-buttons-row) 
 
-
+[bar-card](https://github.com/custom-cards/bar-card) 
 
 - Create the right sensor templates because I use them extensively and call them throughout the cards.
 - Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
