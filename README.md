@@ -77,12 +77,19 @@ Some knowledge is required before diving in:
 The unavoidable :
 
 [lovelace-card-mod ](https://github.com/thomasloven/lovelace-card-mod) 
+
 [lovelace-layout-card ](https://github.com/thomasloven/lovelace-layout-card) 
+
 [vertical-stack-in-card ](https://github.com/ofekashery/vertical-stack-in-card) 
+
 [button-card ](https://github.com/custom-cards/button-card) 
+
 [apexcharts-card](https://github.com/RomRider/apexcharts-card) 
+
 [Lovelace Mini Graph Card](https://github.com/kalkih/mini-graph-card) 
+
 [Paper Buttons Row](https://github.com/jcwillox/lovelace-paper-buttons-row) 
+
 
 
 - Create the right sensor templates because I use them extensively and call them throughout the cards.
