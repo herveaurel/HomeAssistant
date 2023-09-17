@@ -2,13 +2,13 @@
 
  [French group Home Assistant](https://github.com/Clooos/Bubble-Card)
 
-## 🤓 Mad Geek 
+## Mad Geek 
 My dashboard compatible with PC, smartphone, tablet
 
 -----
 
 
-## ℹ️  INTRODUCTION
+## INTRODUCTION
 
 Content  :
 
@@ -24,32 +24,9 @@ I write everything myself, so please be understanding! 😊
 
 -----
 
-## 🚧 INSTALLATION
 
-It's not a one-click setup!
 
-Some knowledge is required before diving in:
-
-- Install a few HACS integrations necessary for proper functionality.
-- Create the right sensor templates because I use them extensively and call them throughout the cards.
-- Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
-- Adjust the entities, remove the unnecessary ones, etc.
-
-You need to adapt it to your configuration! 🙂
-
-Dashboard created in 4 columns, thanks to the "layout card" available on HACS:
-- The tab is configured with View Type: Horizontal (layout-card) / width: 350 / max_cols: 4
-- A "vertical stack" column is nested within a card with "type: custom:layout-card" / "layout_type: masonry" / and has Layout options "width: 280"
-
-I recommend that you install and use my themes for perfect optimization of my codes. If you prefer to use other themes, copy the "Additions for my lovelace" part into your favorite theme. 
-
-Then copying the button card templates.
-
-And then starting to copy pieces of Lovelace.
-
------
-
-## ℹ️  IMAGES
+## SCREENSHOTS
  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)
@@ -89,7 +66,33 @@ And more !
 
 ---------------------
 
-## 🖥️ SETUP 
+##  INSTALLATION
+
+It's not a one-click setup!
+
+Some knowledge is required before diving in:
+
+- Install a few HACS integrations necessary for proper functionality.
+- Create the right sensor templates because I use them extensively and call them throughout the cards.
+- Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
+- Adjust the entities, remove the unnecessary ones, etc.
+
+You need to adapt it to your configuration! 🙂
+
+Dashboard created in 4 columns, thanks to the "layout card" available on HACS:
+- The tab is configured with View Type: Horizontal (layout-card) / width: 350 / max_cols: 4
+- A "vertical stack" column is nested within a card with "type: custom:layout-card" / "layout_type: masonry" / and has Layout options "width: 280"
+
+I recommend that you install and use my themes for perfect optimization of my codes. If you prefer to use other themes, copy the "Additions for my lovelace" part into your favorite theme. 
+
+Then copying the button card templates.
+
+And then starting to copy pieces of Lovelace.
+
+-----
+
+
+## SETUP 
 
 - Raspberry 4 + SSD
 - USB Sonoff Zigbee 3.0
@@ -102,7 +105,7 @@ I use Alexa for voice commands and Apple Home on the Apple Watch.
 
 ---------------------
 
-## ❤️ THANKS
+## THANKS
 
 I work alone, I code almost everything with 'custom:button-card', I invent a lot of things, and lately, I've modernized my Dashboard, inspired by the wonderful work of my friend Quentin Cloos.
 I don't copy his codes, I replicate them in my own way.
@@ -116,7 +119,7 @@ I love them! Thanks to him!  [HATC-GAUGE-CARD ](https://github.com/tagcashdev/ha
 
 ---------------------
 
-## ⭐️ VIP 
+## VIP 
 
 If you like it, please give my repo a star! 🌟
 
