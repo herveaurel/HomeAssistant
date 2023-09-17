@@ -72,7 +72,11 @@ It's not a one-click setup!
 
 Some knowledge is required before diving in:
 
-- Install a few HACS integrations necessary for proper functionality.
+- Install a few HACS integrations necessary for proper functionality. The unavoidable :
+
+ [lovelace-card-mod ](https://github.com/thomasloven/lovelace-card-mod) -  [lovelace-layout-card ](https://github.com/thomasloven/lovelace-layout-card) - [vertical-stack-in-card ](https://github.com/ofekashery/vertical-stack-in-card) - [button-card ](https://github.com/custom-cards/button-card) -  [apexcharts-card](https://github.com/RomRider/apexcharts-card) - [Lovelace Mini Graph Card](https://github.com/kalkih/mini-graph-card) -  [Paper Buttons Row](https://github.com/jcwillox/lovelace-paper-buttons-row) 
+
+
 - Create the right sensor templates because I use them extensively and call them throughout the cards.
 - Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
 - Adjust the entities, remove the unnecessary ones, etc.
@@ -88,7 +92,6 @@ I recommend that you install and use my themes for perfect optimization of my co
 Then copying the button card templates.
 
 And then starting to copy pieces of Lovelace.
-
 
 
 
