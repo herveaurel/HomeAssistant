@@ -75,28 +75,28 @@ Some knowledge is required before diving in:
   The unavoidable :
   
   [lovelace-card-mod ](https://github.com/thomasloven/lovelace-card-mod)  
-  Add CSS styles
+  _Add CSS styles_
   
   [lovelace-layout-card ](https://github.com/thomasloven/lovelace-layout-card)  
-  Get more control over the placement of lovelace cards
+  _Get more control over the placement of lovelace cards_
   
   [vertical-stack-in-card ](https://github.com/ofekashery/vertical-stack-in-card)  
-  To group multiple cards into a single sleek card
+  _To group multiple cards into a single sleek card_
   
   [button-card ](https://github.com/custom-cards/button-card)  
-  Lovelace button-card
+  _Lovelace button-card_
   
   [apexcharts-card](https://github.com/RomRider/apexcharts-card)  
-  Higly customizable graph card
+  _Higly customizable graph card_
   
   [Lovelace Mini Graph Card](https://github.com/kalkih/mini-graph-card)  
-  Minimalistic graph card
+  _Minimalistic graph card_
   
   [Paper Buttons Row](https://github.com/jcwillox/lovelace-paper-buttons-row)  
-  Adds highly configurable buttons that use actions and per-state styling
+  _Adds highly configurable buttons that use actions and per-state styling_
   
   [bar-card](https://github.com/custom-cards/bar-card)  
-  Customizable Animated Bar card
+  _Customizable Animated Bar card_
 
 - Create the right sensor templates because I use them extensively and call them throughout the cards.
 - Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
