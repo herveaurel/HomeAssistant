@@ -5,7 +5,7 @@
 ## Mad Geek 
 My dashboard compatible with PC, smartphone, tablet
 
------
+
 
 
 ## INTRODUCTION
@@ -22,7 +22,7 @@ I write everything myself, so please be understanding! 😊
 
 👉🏼 There will be changes as I regularly evolve my dashboard with my ideas.
 
------
+
 
 
 
@@ -64,7 +64,7 @@ I write everything myself, so please be understanding! 😊
 And more ! 
 
 
----------------------
+
 
 ##  INSTALLATION
 
@@ -89,7 +89,7 @@ Then copying the button card templates.
 
 And then starting to copy pieces of Lovelace.
 
------
+
 
 
 ## SETUP 
@@ -103,7 +103,7 @@ And then starting to copy pieces of Lovelace.
 I use Alexa for voice commands and Apple Home on the Apple Watch.
 
 
----------------------
+
 
 ## THANKS
 
