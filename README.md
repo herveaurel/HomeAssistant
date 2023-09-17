@@ -87,8 +87,6 @@ And then starting to copy pieces of Lovelace.
 And more ! 
 
 
-
-
 ---------------------
 
 ## 🖥️ SETUP 
@@ -122,5 +120,5 @@ I love them! Thanks to him!  [HATC-GAUGE-CARD ](https://github.com/tagcashdev/ha
 
 If you like it, please give my repo a star! 🌟
 
-If you'd like to buy me a beer 🍺 or a coffee ☕️, say thanks 🙏, show some love ❤️‍🩹 : 
-https://www.paypal.com/paypalme/aaherve
+[If you'd like to buy me a beer 🍺 or a coffee ☕️, say thanks 🙏, show some love ❤️‍🩹 ](https://www.paypal.com/paypalme/aaherve)
+
