@@ -8,7 +8,7 @@ My dashboard compatible with PC, smartphone, tablet
 
 
 
-## INTRODUCTION
+# INTRODUCTION
 
 Content  :
 
@@ -26,7 +26,7 @@ I write everything myself, so please be understanding! 😊
 
 
 
-## SCREENSHOTS
+# SCREENSHOTS
  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
@@ -64,7 +64,7 @@ And more !
 
 
 
-##  INSTALLATION
+# INSTALLATION
 
 **It's not a one-click setup!**
 
@@ -124,7 +124,7 @@ And then starting to copy pieces of Lovelace.
 
 
 
-## SETUP 
+# SETUP 
 
 - Raspberry 4 + SSD
 - USB Sonoff Zigbee 3.0
@@ -137,7 +137,7 @@ I use Alexa for voice commands and Apple Home on the Apple Watch.
 
 
 
-## THANKS
+# THANKS
 
 I work alone, I code almost everything with 'custom:button-card', I invent a lot of things, and lately, I've modernized my Dashboard, inspired by the wonderful work of my friend Quentin Cloos.
 I don't copy his codes, I replicate them in my own way.
@@ -147,13 +147,11 @@ I invite you to take a look at his work, it's exceptional!
 
 Do you know the amazing gauges developed by André Fortuna Gouveia?
 I love them! Thanks to him!    
-[HATC-GAUGE-CARD ](https://github.com/tagcashdev/hatc-gauge-card)
-
-
+[HATC-GAUGE-CARD ](https://github.com/tagcashdev/hatc-gauge-card)  
 
 ---------------------
 
-## VIP 
+# VIP 
 
 If you like it, please give my repo a star! 🌟  
 [If you'd like to buy me a beer 🍺 or a coffee ☕️, say thanks 🙏, show some love ❤️‍🩹 ](https://www.paypal.com/paypalme/aaherve)
