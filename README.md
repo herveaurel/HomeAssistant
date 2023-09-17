@@ -8,7 +8,7 @@ My dashboard compatible with PC, smartphone, tablet
 
 
 
-# INTRODUCTION
+## INTRODUCTION
 
 Content  :
 
@@ -26,7 +26,7 @@ I write everything myself, so please be understanding! 😊
 
 
 
-# SCREENSHOTS
+## SCREENSHOTS
  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
@@ -64,7 +64,7 @@ And more !
 
 
 
-# INSTALLATION
+## INSTALLATION
 
 **It's not a one-click setup!**
 
@@ -124,7 +124,7 @@ And then starting to copy pieces of Lovelace.
 
 
 
-# SETUP 
+## SETUP 
 
 - Raspberry 4 + SSD
 - USB Sonoff Zigbee 3.0
@@ -151,7 +151,7 @@ I love them! Thanks to him!
 
 ---------------------
 
-# VIP 
+## VIP 
 
 If you like it, please give my repo a star! 🌟  
 [If you'd like to buy me a beer 🍺 or a coffee ☕️, say thanks 🙏, show some love ❤️‍🩹 ](https://www.paypal.com/paypalme/aaherve)
