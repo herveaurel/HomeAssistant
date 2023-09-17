@@ -29,33 +29,33 @@ I write everything myself, so please be understanding! 😊
 ## SCREENSHOTS
  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-11.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-11.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-12.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-12.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-1.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-1.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04-1.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04-1.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/06.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/06.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/07.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/07.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/08.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/08.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/09.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/09.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/10.jpg)
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/10.jpg)  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg)  
 
@@ -102,11 +102,11 @@ Some knowledge is required before diving in:
 - Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
 - Adjust the entities, remove the unnecessary ones, etc.
 
-You need to adapt it to your configuration! 🙂
+You need to adapt it to your configuration! 
 
 Dashboard created in 4 columns, thanks to the "layout card" available on HACS:
 - The tab is configured with View Type: Horizontal (layout-card) / width: 350 / max_cols: 4
-- A "vertical stack" column is nested within a card with "type: custom:layout-card" / "layout_type: masonry" / and has Layout options "width: 280"  
+- A "vertical stack" column is nested within a card with :   
 
 ````
 type: custom:layout-card
