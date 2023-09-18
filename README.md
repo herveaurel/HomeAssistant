@@ -12,7 +12,7 @@ My dashboard compatible with PC, smartphone, tablet
 
 Content  :
 
-- lovelace UI mode
+- lovelace UI mode : lovelace.yaml is a full copy from the HA UI editor. 
 - Custom light and dark themes
 - Sensor and template files
 
