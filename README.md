@@ -30,32 +30,20 @@ I write everything myself, so please be understanding! 😊
  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-11.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-12.jpg)  
-
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-11.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-12.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-1.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04-1.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/06.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/07.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/08.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/09.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/10.jpg)  
-
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg)  
+
 
 And more ! 
 
