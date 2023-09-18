@@ -31,9 +31,7 @@ I write everything myself, so please be understanding! 😊
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
 
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-11.jpg)  
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-12.jpg)  
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-11.jpg) ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-12.jpg)  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-1.jpg)  
 
