@@ -146,7 +146,7 @@ button_card_templates:
         - padding: 0px
       state:
         - color: var(--text-on)
-        - font-size: 13px
+        - font-size: 14px
         - padding: 6px
         - margin-left: '-3px'
       label:
@@ -665,7 +665,7 @@ button_card_templates:
           hours_to_show: 48
           line_width: 2
           points_per_hour: 4
-          height: 220
+          height: 200
           show:
             extrema: false
             state: false
@@ -679,7 +679,7 @@ button_card_templates:
              }
     styles:
       card:
-        - height: 210px
+        - height: 190px
       custom_fields:
         title:
           - top: 0%
@@ -704,7 +704,7 @@ button_card_templates:
           - '--ha-card-box-shadow': none
           - '--ha-card-border-width': 0px
         state:
-          - top: 27%
+          - top: 24%
           - left: 0%
           - width: 100%
           - position: absolute
@@ -715,7 +715,7 @@ button_card_templates:
           - '--ha-card-box-shadow': none
           - '--ha-card-border-width': 0px
         graph:
-          - top: 50%
+          - top: 60%
           - left: 0%
           - width: 100%
           - position: absolute
@@ -747,13 +747,13 @@ button_card_templates:
     show_name: false
     show_label: false
     show_state: true
-    show_icon: false
+    show_icon: true
     styles:
       state:
-        - font-size: 23px
+        - font-size: 16px
         - font-weight: 500
         - color: rgba(255,255,255,0.8)
-        - letter-spacing: '-1px'
+        - letter-spacing: '-0px'
   climate_last_changed_card:
     show_name: false
     show_last_changed: true
@@ -1318,7 +1318,8 @@ button_card_templates:
           [[[ return entity.state == "on" || entity.state == "home" ||
           entity.state == "cleaning" || entity.state == "returning"  ||
           entity.state == "playing"  || entity.state == "Wi-Fi" || entity.state
-          > 0 ]]]
+          > 0 || entity.state == "Mouvement" || entity.state == "Marche" ||
+          entity.state == "Vélo"  || entity.state == "Course"]]]
         styles:
           img_cell:
             - background-color: var(--color-card-blue)
@@ -1360,7 +1361,9 @@ button_card_templates:
         value: >-
           [[[ return entity.state == "on" || entity.state == "home" ||
           entity.state == "cleaning" || entity.state == "returning"  ||
-          entity.state == "playing"  || entity.state == "Wi-Fi" ]]]
+          entity.state == "playing"  || entity.state == "Wi-Fi" || entity.state
+          == "Mouvement" || entity.state == "Marche" || entity.state == "Vélo" 
+          || entity.state == "Course"]]]
         styles:
           card:
             - background-color: var(--color-card-blue)
@@ -3076,7 +3079,7 @@ views:
                         "info3"
                         "info4"
                     - grid-template-columns: 1fr
-                    - grid-template-rows: min-content min-content min-content 1fr
+                    - grid-template-rows: min-content 1fr
                   card:
                     - padding-top: 01%
                     - border-radius: 24px
@@ -3096,9 +3099,9 @@ views:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
                     info2:
                       - position: absolute
-                      - top: 32px
+                      - top: 30px
                       - left: 20px
-                      - font-size: 25px
+                      - font-size: 28px
                       - font-weight: bold
                       - font-style: null
                       - text-align: left
@@ -3114,8 +3117,8 @@ views:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
                     info4:
                       - padding-right: 18px
-                      - padding-top: 5px
-                      - font-size: 25px
+                      - padding-top: 15px
+                      - font-size: 26px
                       - font-weight: bold
                       - text-align: right
                       - color: var(--text-on)
@@ -3123,7 +3126,7 @@ views:
                     entity_picture:
                       - position: absolute
                       - width: 24%
-                      - top: 28px
+                      - top: 30px
                       - left: 58%
                       - opacity: 100%
                       - '--ha-card-border-width': 0px
@@ -3133,7 +3136,7 @@ views:
                     temp:
                       - position: absolute
                       - top: 7%
-                      - left: 62%
+                      - left: 61%
                       - width: calc(100% + 0px)
                       - '--ha-card-border-width': 0px
                       - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
@@ -3655,7 +3658,7 @@ views:
                     - overflow: hidden
                   card:
                     - '-webkit-tap-highlight-color': rgba(0,0,0,0)
-                    - padding: 3px 15px 02px 15px
+                    - padding: 3px 8px 02px 8px
                     - line-height: 147%
                     - font-size: 14px
                     - border-radius: 25px
@@ -3688,11 +3691,11 @@ views:
                       - color: |
                           [[[
                             if (states['sensor.49_weather_alert'].state == 'Jaune')
-                              return 'yellow'
+                              return 'var(--color-gold)'
                             if (states['sensor.49_weather_alert'].state == 'Orange')
-                              return 'orange'
+                              return 'var(--color-orange)'
                             if (states['sensor.49_weather_alert'].state == 'Rouge')
-                              return 'red'
+                              return 'var(--color-red)'
                             return ''
                           ]]]
                       - border-left: |
@@ -3759,11 +3762,11 @@ views:
                       - font-weight: bold
                       - justifiy-self: start
                       - text-align: left
-                      - color: rgb(180, 70, 70)
+                      - color: var(--color-dark-red)
                       - white-space: normal
                     avertissement_rpi:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-                      - border-left: 2px var(--color-red) solid
+                      - border-left: 2px var(--color-dark-red) solid
                       - padding: |
                           [[[
                             if (states['sensor.averissement_rpi'].state == '')
@@ -3771,7 +3774,7 @@ views:
                             return "0px 0px 0px 08px" ;
                           ]]]
                       - justifiy-self: start
-                      - color: red
+                      - color: var(--color-red)
                       - white-space: normal
                       - text-align: left
                     titre_avertissement_serrures_bloquees:
@@ -3785,11 +3788,11 @@ views:
                       - font-weight: bold
                       - justifiy-self: start
                       - text-align: left
-                      - color: rgb(180, 70, 70)
+                      - color: var(--color-dark-red)
                       - white-space: normal
                     serrures_bloquees:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-                      - border-left: 2px var(--color-red) solid
+                      - border-left: 2px var(--color-dark-red) solid
                       - padding: |
                           [[[
                             if (states['sensor.serrures_bloquees'].state == '')
@@ -3797,7 +3800,7 @@ views:
                             return "0px 0px 0px 08px" ;
                           ]]]
                       - justifiy-self: start
-                      - color: red
+                      - color: var(--color-red)
                       - white-space: normal
                       - text-align: left
                     titre_avertissement_erreur_aspi:
@@ -3811,11 +3814,11 @@ views:
                       - font-weight: bold
                       - justifiy-self: start
                       - text-align: left
-                      - color: rgb(180, 70, 70)
+                      - color: var(--color-dark-red)
                       - white-space: normal
                     erreur_aspi:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-                      - border-left: 2px var(--color-red) solid
+                      - border-left: 2px var(--color-dark-red) solid
                       - padding: |
                           [[[
                             if (states['sensor.erreur_aspi'].state == '')
@@ -3823,7 +3826,7 @@ views:
                             return "0px 0px 0px 08px" ;
                           ]]]
                       - justifiy-self: start
-                      - color: red
+                      - color: var(--color-red)
                       - white-space: normal
                       - text-align: left
                     titre_avertissement:
@@ -3837,11 +3840,11 @@ views:
                       - font-weight: bold
                       - justifiy-self: start
                       - text-align: left
-                      - color: rgb(180, 70, 70)
+                      - color: var(--color-dark-red)
                       - white-space: normal
                     device_hs:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-                      - border-left: 2px var(--color-red) solid
+                      - border-left: 2px var(--color-dark-red) solid
                       - padding: |
                           [[[
                             if (states['sensor.systeme_avertissement'].state == '')
@@ -3849,7 +3852,7 @@ views:
                             return "0px 0px 0px 08px" ;
                           ]]]
                       - justifiy-self: start
-                      - color: red
+                      - color: var(--color-red)
                       - white-space: normal
                       - text-align: left
                     titre_batterie_faible:
@@ -3863,11 +3866,11 @@ views:
                       - font-weight: bold
                       - justifiy-self: start
                       - text-align: left
-                      - color: rgb(180, 70, 70)
+                      - color: var(--color-dark-red)
                       - white-space: normal
                     batterie_faible:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-                      - border-left: 2px var(--color-red) solid
+                      - border-left: 2px var(--color-dark-red) solid
                       - padding: |
                           [[[
                             if (states['sensor.systeme_avertissement'].state == '')
@@ -3875,7 +3878,7 @@ views:
                             return "0px 0px 0px 08px" ;
                           ]]]
                       - justifiy-self: start
-                      - color: red
+                      - color: var(--color-red)
                       - white-space: normal
                       - text-align: left
                     titre_activite:
@@ -4191,7 +4194,7 @@ views:
                       if (states['group.appareils'].state == 'off' || states['input_boolean.header_show_appareils'].state == 'off')
                         return ""
                       return `<ha-icon
-                        icon="mdi:bee"
+                        icon="mdi:connection"
                         style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;"> 
                         </ha-icon><span> ${states['sensor.appareils'].state}</span>`
                     ]]]
@@ -4227,7 +4230,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="mdi:run"
-                        style="width: 16px; color: var(--color-icon-orange); height: 16px; margin-right: 2px;">
+                        style="width: 16px; color: var(--color-red); height: 16px; margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.mouv_on'].state}</span>`
                     ]]]
                   porte: |
@@ -4236,7 +4239,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="mdi:door-open"
-                        style="width: 16px; color: var(--color-icon-orange); height: 16px; margin-right: 2px;">
+                        style="width: 16px; color: var(--color-icon-red); height: 16px; margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.porte_on'].state}</span>`
                     ]]]
                   rappel: |
@@ -5277,7 +5280,7 @@ views:
                         icon: phu:rooms-bathroom
                         label: |
                           [[[
-                              if (states['sensor.temp_sejour'].state == 'unavailable')
+                              if (states['sensor.temp_salle_de_bain'].state == 'unavailable')
                                 return " ?"
                               return states['sensor.temp_salle_de_bain'].state+"°"
                           ]]]
@@ -7461,6 +7464,12 @@ views:
                   }
                 cards:
                   - type: custom:xiaomi-vacuum-map-card
+                    style: |
+                      ha-card {
+                        color: var(--text-off);
+                        font-size: 13px;
+                        --mdc-icon-size: 18px;
+                       }      
                     entity: vacuum.r2d2
                     map_source:
                       camera: camera.roborock_s50
@@ -10972,6 +10981,9 @@ views:
                         template:
                           - ball_card
                           - card_state
+                          - custom_state
+                        show_state: false
+                        show_label: true
                         icon: |
                           [[[
                             if (entity.state == 'Mouvement')
@@ -11147,6 +11159,9 @@ views:
                         template:
                           - ball_card
                           - card_state
+                          - custom_state
+                        show_state: false
+                        show_label: true
                         icon: |
                           [[[
                               if (entity.state == 'Mouvement')
@@ -16111,11 +16126,14 @@ views:
                 style: |
                   ha-card { 
                     background-color: var(--card-background-color);
-                    padding: 2px;
                     box-shadow: none;
                   }   
                 cards:
                   - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                      }         
                     cards:
                       - type: custom:mini-media-player
                         entity: media_player.chambre_de_manon_et_leane
@@ -16123,27 +16141,30 @@ views:
                         icon: mdi:speaker
                         hide:
                           source: true
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                      }         
+                    cards:
                       - type: custom:mini-media-player
                         entity: media_player.manon
                         artwork: material
                         icon: mdi:speaker
                         hide:
                           source: true
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                      }         
+                    cards:
                       - type: custom:mini-media-player
                         entity: media_player.leane
                         artwork: material
                         icon: mdi:speaker
                         hide:
                           source: true
-              - type: divider
-                style:
-                  height: 0.5px
-                  width: 100%
-                  margin-left: auto
-                  margin-right: auto
-                  margin-top: 15px
-                  margin-bottom: 15px
-                  background: rgba(255,255,255,0.3)
               - type: custom:button-card
                 template:
                   - title_card
@@ -19509,12 +19530,22 @@ views:
                         justify-content: space-between;
                         align-items: center;
                       }
-                  - type: custom:mini-media-player
-                    entity: media_player.le_garage
-                    artwork: material
-                    icon: mdi:speaker
-                    hide:
-                      source: true
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        padding: 2px;
+                        box-shadow: none;
+                      }   
+                    cards:
+                      - type: custom:vertical-stack-in-card
+                        cards:
+                          - type: custom:mini-media-player
+                            entity: media_player.le_garage
+                            artwork: material
+                            icon: mdi:speaker
+                            hide:
+                              source: true
               - type: entities
                 entities:
                   - type: custom:paper-buttons-row
@@ -21671,8 +21702,8 @@ views:
                   }
                 cards:
                   - type: custom:meteofrance-weather-card
-                    entity: weather.beaucouze
-                    rainForecastEntity: sensor.beaucouze_next_rain_2
+                    entity: weather.ta_ville
+                    rainForecastEntity: sensor.ta_ville_next_rain_2
                     current: true
                     one_hour_forecast: false
                     forecast: false
@@ -21816,8 +21847,8 @@ views:
                               icon:
                                 - color: var(--color-icon-red)
                   - type: custom:meteofrance-weather-card
-                    entity: weather.beaucouze
-                    rainForecastEntity: sensor.beaucouze_next_rain_2
+                    entity: weather.ta_ville
+                    rainForecastEntity: sensor.ta_ville_next_rain_2
                     current: false
                     one_hour_forecast: true
                     forecast: false
@@ -21830,17 +21861,17 @@ views:
                         color: var(--text-off);
                     number_of_forecasts: '5'
                   - type: custom:meteofrance-weather-card
-                    entity: weather.beaucouze
+                    entity: weather.ta_ville
                     number_of_forecasts: '5'
                     current: false
                     details: false
                     one_hour_forecast: true
                     alert_forecast: true
-                    rainChanceEntity: sensor.beaucouze_daily_precipitation
-                    uvEntity: sensor.beaucouze_uv_2
-                    cloudCoverEntity: sensor.beaucouze_cloud_cover
-                    freezeChanceEntity: sensor.beaucouze_freeze_chance_2
-                    snowChanceEntity: sensor.beaucouze_snow_chance_2
+                    rainChanceEntity: sensor.ta_ville_daily_precipitation
+                    uvEntity: sensor.ta_ville_uv_2
+                    cloudCoverEntity: sensor.ta_ville_cloud_cover
+                    freezeChanceEntity: sensor.ta_ville_freeze_chance_2
+                    snowChanceEntity: sensor.ta_ville_snow_chance_2
                     alertEntity: sensor.49_weather_alert
                     style: |
                       ha-card {
@@ -21962,7 +21993,7 @@ views:
                        }
                         
                   - type: custom:clock-weather-card
-                    entity: weather.beaucouze
+                    entity: weather.ta_ville
                     title: ''
                     sun_entity: sun.sun
                     weather_icon_type: fill
@@ -22918,4 +22949,13 @@ views:
     visible:
       - user: 76afcf1927a948b19530bcbf1074ac59
     badge_cards: []
-    cards: []
+    cards:
+      - type: custom:button-card
+        template:
+          - ball_card
+        name: Home Assistant - Groupe français
+        show_label: true
+        show_state: false
+        icon: mdi:home-assistant
+        label: Bon courage à tous !
+
