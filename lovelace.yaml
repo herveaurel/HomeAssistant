@@ -1,10 +1,3 @@
-#########################################
-#                                                                                             
-#  This file is a full copy from the HA UI editor.    					       
-#											
-#########################################
-
-
 button_card_templates:
   police:
     styles:
@@ -97,7 +90,11 @@ button_card_templates:
         if( entity.state == "playing")          
           return  "En cours"  
         if( entity.state == "standby")          
-          return  "Éteint"              
+          return  "Éteint" 
+        if( entity.state == "Cellular")          
+          return  "Cellulaire"
+        if( entity.state == "Stationnaire")          
+          return  "Rien"           
         return entity.state ]]]
         
   last_changed:
@@ -1327,8 +1324,8 @@ button_card_templates:
             - color: var(--color-icon-blue)
       - operator: template
         value: >-
-          [[[ return entity.state == "Cellulaire"  || entity.state == "Conduite"
-          ]]]
+          [[[ return entity.state == "Cellular"  || entity.state == "Conduite"
+          || entity.state == "not_home" ]]]
         styles:
           img_cell:
             - background-color: var(--color-card-red)
@@ -10932,14 +10929,15 @@ views:
                 style: |
                   ha-card { 
                     background-color: var(--card-background-color);
-                    box-shadow: none
-                    border-radius: var(--ha-card-border-radius) !important;;
+                    box-shadow: none;
+                    border-radius: var(--ha-card-border-radius) !important;
                   }   
                 cards:
                   - type: custom:vertical-stack-in-card
                     style: |
                       ha-card { 
-                        margin-bottom: 2px;
+                        border-radius: 50px;
+                        margin: 2px;
                       }        
                     cards:
                       - entity: person.herve
@@ -10956,51 +10954,8 @@ views:
                         styles:
                           entity_picture:
                             - width: 100%
-                  - type: custom:vertical-stack-in-card
-                    style: |
-                      ha-card { 
-                        margin-bottom: 2px;
-                      }        
-                    cards:
-                      - entity: sensor.aurel_trajet
-                        type: custom:button-card
-                        icon: mdi:car
-                        name: Temps de trajet
-                        template:
-                          - ball_card
-                          - card_state
-                  - type: custom:vertical-stack-in-card
-                    style: |
-                      ha-card { 
-                        margin-bottom: 2px;
-                      }        
-                    cards:
-                      - type: custom:button-card
-                        entity: sensor.aurel_activite
-                        name: Activité
-                        template:
-                          - ball_card
-                          - card_state
-                          - custom_state
-                        show_state: false
-                        show_label: true
-                        icon: |
-                          [[[
-                            if (entity.state == 'Mouvement')
-                              return "mdi:human-handsdown"
-                            if (entity.state == 'Stationnaire')
-                              return "mdi:human-male"
-                            if (entity.state == 'Conduite')
-                              return "mdi:car"
-                            if (entity.state == 'Marche')
-                              return "mdi:walk"
-                            if (entity.state == 'Course')
-                              return "mdi:run-fast"
-                            if (entity.state == 'Vélo')
-                              return "mdi:bike"
-                            return ""
-                          ]]]                    
               - type: custom:vertical-stack-in-card
+                horizontal: true
                 style: |
                   ha-card { 
                     background-color: var(--card-background-color);
@@ -11008,31 +10963,91 @@ views:
                   }   
                 cards:
                   - type: custom:vertical-stack-in-card
-                    horizontal: true
                     style: |
                       ha-card { 
-                        background-color: var(--card-background-color);
-                        box-shadow: none;
-                      }  
+                        margin: 2px;
+                      }        
                     cards:
                       - type: custom:button-card
-                        variables:
-                          entity: sensor.iphone_aurel_battery_level
-                        name: iPhone
                         template:
-                          - battery_level_card
+                          - sub_button
+                          - sub_button_state
+                        entity: sensor.iphone_aurel_connection_type
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                      }        
+                    cards:
                       - type: custom:button-card
-                        name: MacBook
                         template:
-                          - battery_level_card
-                        variables:
-                          entity: sensor.macbook_aurel_internal_battery_level
+                          - sub_button
+                          - sub_button_state
+                        entity: sensor.aurel_activite
+                        icon: |
+                          [[[
+                              if (entity.state == 'Mouvement')
+                                return "mdi:human-handsdown"
+                              if (entity.state == 'Stationnaire')
+                                return "mdi:human-male"
+                              if (entity.state == 'Conduite')
+                                return "mdi:car"
+                              if (entity.state == 'Marche')
+                                return "mdi:walk"
+                              if (entity.state == 'Course')
+                                return "mdi:run-fast"
+                              if (entity.state == 'Vélo')
+                                return "mdi:bike"
+                              return ""
+                          ]]] 
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                      }        
+                    cards:
                       - type: custom:button-card
-                        variables:
-                          entity: sensor.ipad_aurel_battery_level
-                        name: iPad
                         template:
-                          - battery_level_card
+                          - sub_button
+                          - sub_button_state
+                        entity: device_tracker.macbook_aurel
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                      }        
+                    cards:
+                      - type: custom:button-card
+                        template:
+                          - sub_button
+                          - sub_button_state
+                        entity: device_tracker.aurel_ipad_box
+              - type: custom:vertical-stack-in-card
+                horizontal: true
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                    box-shadow: none;
+                  }   
+                cards:
+                  - type: custom:button-card
+                    variables:
+                      entity: sensor.iphone_aurel_battery_level
+                    name: iPhone
+                    template:
+                      - battery_level_card
+                  - type: custom:button-card
+                    variables:
+                      entity: sensor.macbook_aurel_internal_battery_level
+                    name: MacBook
+                    template:
+                      - battery_level_card
+                  - type: custom:button-card
+                    variables:
+                      entity: sensor.ipad_aurel_battery_level
+                    name: iPad
+                    template:
+                      - battery_level_card
               - type: custom:vertical-stack-in-card
                 style: |
                   ha-card { 
@@ -11040,7 +11055,7 @@ views:
                     background-color: var(--card-background-color);
                     box-shadow: none;
                     overflow: visible !important;
-                  }     
+                  }   
                 cards:
                   - type: history-graph
                     entities:
@@ -11052,11 +11067,34 @@ views:
                       ha-card { 
                         border-radius: 24px !important;
 
-                      } 
+                      }
               - type: custom:vertical-stack-in-card
                 style: |
                   ha-card { 
-                    background-color: var(--card-background-color);        
+                    background-color: var(--card-background-color);
+                    box-shadow: none;
+                    border-radius: var(--ha-card-border-radius) !important;
+                  }   
+                cards:
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                        border-radius: 50px;
+                      }        
+                    cards:
+                      - entity: sensor.aurel_trajet
+                        type: custom:button-card
+                        icon: mdi:car
+                        name: Temps de trajet
+                        template:
+                          - ball_card
+                          - card_state
+              - type: custom:vertical-stack-in-card
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                    padding: 2px;
                     box-shadow: none;
                   }   
                 cards:
@@ -11069,7 +11107,7 @@ views:
                         aspect_ratio: '1.5'
                         style: |
                           ha-card { 
-                            border-radius: 28px !important;               
+                            border-radius: 28px !important;
                           }        
             show_header_toggle: true
       - type: custom:layout-card
@@ -11121,7 +11159,8 @@ views:
                   - type: custom:vertical-stack-in-card
                     style: |
                       ha-card { 
-                        margin-bottom: 2px;
+                        border-radius: 50px;
+                        margin: 2px;
                       }        
                     cards:
                       - entity: person.alex
@@ -11138,30 +11177,36 @@ views:
                         styles:
                           entity_picture:
                             - width: 100%
+              - type: custom:vertical-stack-in-card
+                horizontal: true
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                    box-shadow: none;
+                  }   
+                cards:
                   - type: custom:vertical-stack-in-card
                     style: |
                       ha-card { 
-                        margin-bottom: 2px;
+                        margin: 2px;
                       }        
                     cards:
-                      - entity: sensor.alex_trajet
-                        type: custom:button-card
-                        icon: mdi:car
-                        name: Temps de trajet
+                      - type: custom:button-card
                         template:
-                          - ball_card
-                          - card_state
+                          - sub_button
+                          - sub_button_state
+                        entity: sensor.alex_iphone_connection_type_2
                   - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                      }        
                     cards:
                       - type: custom:button-card
-                        entity: sensor.alex_activite
-                        name: Activité
                         template:
-                          - ball_card
-                          - card_state
-                          - custom_state
-                        show_state: false
-                        show_label: true
+                          - sub_button
+                          - sub_button_state
+                        entity: sensor.alex_activite
                         icon: |
                           [[[
                               if (entity.state == 'Mouvement')
@@ -11177,34 +11222,49 @@ views:
                               if (entity.state == 'Vélo')
                                 return "mdi:bike"
                               return ""
-                          ]]]
+                          ]]] 
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                      }        
+                    cards:
+                      - type: custom:button-card
+                        template:
+                          - sub_button
+                          - sub_button_state
+                        entity: device_tracker.macbook_alex
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                      }        
+                    cards:
+                      - type: custom:button-card
+                        template:
+                          - sub_button
+                          - sub_button_state
+                        entity: device_tracker.liseuse_alex
               - type: custom:vertical-stack-in-card
+                horizontal: true
                 style: |
                   ha-card { 
                     background-color: var(--card-background-color);
                     box-shadow: none;
                   }   
                 cards:
-                  - type: custom:vertical-stack-in-card
-                    style: |
-                      ha-card { 
-                        background-color: var(--card-background-color);
-                        box-shadow: none;
-                      }         
-                    horizontal: true
-                    cards:
-                      - type: custom:button-card
-                        variables:
-                          entity: sensor.alex_iphone_battery_level_ha
-                        name: iPhone
-                        template:
-                          - battery_level_card
-                      - type: custom:button-card
-                        variables:
-                          entity: sensor.macbook_alex_internal_battery_level
-                        name: MacBook
-                        template:
-                          - battery_level_card
+                  - type: custom:button-card
+                    variables:
+                      entity: sensor.alex_iphone_battery_level_ha
+                    name: iPhone
+                    template:
+                      - battery_level_card
+                  - type: custom:button-card
+                    variables:
+                      entity: sensor.macbook_alex_internal_battery_level
+                    name: MacBook
+                    template:
+                      - battery_level_card
               - type: custom:vertical-stack-in-card
                 style: |
                   ha-card { 
@@ -11225,6 +11285,28 @@ views:
                         border-radius: 24px !important;
 
                       }
+              - type: custom:vertical-stack-in-card
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                    box-shadow: none;
+                    border-radius: var(--ha-card-border-radius) !important;
+                  }   
+                cards:
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                        border-radius: 50px;
+                      }        
+                    cards:
+                      - entity: sensor.alex_trajet
+                        type: custom:button-card
+                        icon: mdi:car
+                        name: Temps de trajet
+                        template:
+                          - ball_card
+                          - card_state
               - type: custom:vertical-stack-in-card
                 style: |
                   ha-card { 
@@ -11292,6 +11374,10 @@ views:
                   }   
                 cards:
                   - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        border-radius: 50px !important;
+                      }        
                     cards:
                       - entity: person.tom
                         name: Tom
@@ -11309,47 +11395,39 @@ views:
                           entity_picture:
                             - width: 100%
               - type: custom:vertical-stack-in-card
+                horizontal: true
                 style: |
                   ha-card { 
                     background-color: var(--card-background-color);
                     box-shadow: none;
-                  }    
-                horizontal: true
+                  }   
                 cards:
                   - type: custom:vertical-stack-in-card
                     style: |
                       ha-card { 
                         margin: 2px;
-                      }         
+                      }        
                     cards:
                       - type: custom:button-card
                         entity: device_tracker.iphone_tom_box
                         icon: mdi:cellphone
                         name: iPhone
                         template:
-                          - ball_card
-                          - card_state
-                        show_label: true
-                        show_state: false
-                        label: |
-                          [[[
-                             if (states["person.tom"].state == "home")
-                               return "Présent" 
-                             return "Absent"
-                          ]]]
+                          - sub_button
+                          - sub_button_state
                   - type: custom:vertical-stack-in-card
                     style: |
                       ha-card { 
                         margin: 2px;
-                      }         
+                      }        
                     cards:
                       - type: custom:button-card
                         entity: device_tracker.tom_mac_ping
                         icon: mdi:laptop
                         name: MacBook
                         template:
-                          - ball_card
-                          - card_state
+                          - sub_button
+                          - sub_button_state
                         label: |
                           [[[
                              if (states["device_tracker.tom_mac_ping"].state == "home")
@@ -11387,6 +11465,7 @@ views:
                     style: |
                       ha-card { 
                         margin: 2px;
+                        border-radius: 50px !important;
                       }         
                     cards:
                       - type: custom:button-card
@@ -11401,6 +11480,7 @@ views:
                     style: |
                       ha-card { 
                         margin: 2px;
+                        border-radius: 50px !important;
                       }         
                     cards:
                       - type: custom:button-card
@@ -11456,6 +11536,10 @@ views:
                   }   
                 cards:
                   - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        border-radius: 50px !important;
+                      }       
                     cards:
                       - entity: person.manon
                         name: Manon
@@ -11473,51 +11557,39 @@ views:
                           entity_picture:
                             - width: 100%
               - type: custom:vertical-stack-in-card
+                horizontal: true
                 style: |
                   ha-card { 
                     background-color: var(--card-background-color);
                     box-shadow: none;
-                  }    
-                horizontal: true
+                  }   
                 cards:
                   - type: custom:vertical-stack-in-card
                     style: |
                       ha-card { 
                         margin: 2px;
-                      }         
+                      }        
                     cards:
                       - type: custom:button-card
                         entity: device_tracker.iphone_manon
                         icon: mdi:cellphone
                         name: iPhone
                         template:
-                          - ball_card
-                          - card_state
-                        label: |
-                          [[[
-                             if (states["person.manon"].state == "home")
-                               return "Présent" 
-                             return "Absent"
-                          ]]]
+                          - sub_button
+                          - sub_button_state
                   - type: custom:vertical-stack-in-card
                     style: |
                       ha-card { 
                         margin: 2px;
-                      }         
+                      }        
                     cards:
                       - type: custom:button-card
                         entity: device_tracker.manon_tab_ping
                         icon: mdi:tablet
                         name: Tablette
                         template:
-                          - ball_card
-                          - card_state
-                        label: |
-                          [[[
-                             if (states["device_tracker.manon_tab_ping"].state == "home")
-                               return "Présent" 
-                             return "Absent"
-                          ]]]
+                          - sub_button
+                          - sub_button_state
               - type: custom:vertical-stack-in-card
                 style: |
                   ha-card { 
@@ -22958,4 +23030,3 @@ views:
         show_state: false
         icon: mdi:home-assistant
         label: Bon courage à tous !
-
