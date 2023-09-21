@@ -20,11 +20,6 @@ button_card_templates:
   custom_state:
     show_state: false
     show_label: true
-    styles:
-      label:
-        - font-size: 13px
-        - font-weight: bold
-        - margin-bottom: 5px
     label: |
       [[[
         if( entity.state == "unavailable")
@@ -194,7 +189,6 @@ button_card_templates:
         - background-color: var(--img-cell-off)
         - border-radius: 50%
         - place-self: start
-        - text-align: start
         - width: 40px
         - height: 40px
         - border-color: rgba(12, 12, 14, 0.2)
@@ -206,11 +200,10 @@ button_card_templates:
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
       name:
         - color: var(--text-off)
-        - align-self: start
         - justify-self: start
         - text-align: left
-        - font-weight: null
-        - font-size: 14px
+        - font-weight: 600
+        - font-size: 13px
         - margin-left: 8px
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
         - margin-top: 2%
@@ -218,8 +211,7 @@ button_card_templates:
         - white-space: normal
         - color: var(--text-off)
         - justify-self: start
-        - align-self: end
-        - font-weight: bold
+        - font-weight: null
         - text-align: left
         - font-size: 13px
         - margin-left: 8px
@@ -229,14 +221,13 @@ button_card_templates:
         - white-space: normal
         - color: var(--text-off)
         - justify-self: start
-        - align-self: start
         - text-align: left
-        - font-weight: bold
-        - font-size: 12px
+        - font-weight: null
+        - font-size: 13px
         - margin-left: 8px
+        - margin-bottom: 5px
         - line-height: 110%
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-        - padding-bottom: 2%
       card:
         - padding: 5px
         - font-size: 100%
@@ -277,7 +268,7 @@ button_card_templates:
           - border-radius: 50%
           - position: absolute
           - left: 33px
-          - top: 3%
+          - top: 4%
           - height: 15px
           - width: 15px
           - font-size: 85%
@@ -470,28 +461,14 @@ button_card_templates:
     icon: '[[[ return variables.icon ]]]'
     template:
       - base
-      - police
     show_state: true
     show_label: false
     styles:
-      grid:
-        - grid-template-areas: '"i n" "i s" "i l"'
-        - grid-template-rows: min-content min-content min-content
-        - grid-template-columns: min-content min-content auto
       img_cell:
         - place-self: center
-      state:
-        - font-size: 13px
-        - padding: 2px
-        - white-space: null
-      label:
-        - font-size: 13px
-        - padding: 0px
-        - white-space: null
-        - margin-bottom: 5px
       card:
         - border-radius: 50px
-        - padding: 4px 3px 4px 4px
+        - padding: 7px 2px 7px 7px
     double_tap_action:
       action: toggle
     tap_action:
@@ -538,18 +515,20 @@ button_card_templates:
         - color: var(--icon-off)
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
       label:
-        - font-weight: null
-        - font-size: 11px
+        - font-weight: 600
+        - font-size: 12px
         - color: var(--text-on)
         - margin-top: 05px
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+        - white-space: normal
       state:
         - font-weight: 600
-        - font-size: 11px
+        - font-size: 12px
         - color: var(--text-on)
+        - margin-top: 05px
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
       name:
-        - font-weight: null
+        - font-weight: 600
         - font-size: 12px
         - color: var(--text-on)
         - margin-top: 02px
@@ -594,12 +573,6 @@ button_card_templates:
           entity: '[[[ return variables.temp ]]]'
           name: '[[[ return variables.name ]]]'
           icon: '[[[ return variables.icon ]]]'
-      time:
-        card:
-          type: custom:button-card
-          entity: '[[[ return variables.temp ]]]'
-          template:
-            - climate_last_changed_card
       state:
         card:
           type: horizontal-stack
@@ -607,12 +580,12 @@ button_card_templates:
             - type: custom:button-card
               entity: '[[[ return variables.temp ]]]'
               template:
-                - climate_mini_card_card
+                - climate_mini_card
                 - temperature_mini_card_state
             - type: custom:button-card
               entity: '[[[ return variables.hum ]]]'
               template:
-                - climate_mini_card_card
+                - climate_mini_card
                 - humidity_mini_card_state
       graph:
         card:
@@ -621,48 +594,22 @@ button_card_templates:
           align_icon: left
           entities:
             - entity: '[[[ return variables.temp ]]]'
-              show_state: false
+              show_state: true
               show_legend: false
+              color: var(--color-orange)
             - entity: sensor.night_state
-              color: gray
+              color: darkgray
               name: Night
               show_legend: false
               show_line: false
               show_points: false
               y_axis: secondary
-          color_thresholds:
-            - value: 0
-              color: var(--color-blue)
-            - color: var(--color-blue)
-            - color: var(--color-blue)
-            - color: var(--color-blue)
-            - color: var(--color-blue)
-            - value: 19
-              color: var(--color-green)
-            - color: var(--color-green)
-            - color: var(--color-green)
-            - color: var(--color-green)
-            - color: var(--color-green)
-            - value: 25
-              color: var(--color-orange)
-            - color: var(--color-orange)
-            - color: var(--color-orange)
-            - color: var(--color-orange)
-            - color: var(--color-orange)
-            - value: 27
-              color: var(--color-red)
-            - color: var(--color-red)
-            - color: var(--color-red)
-            - color: var(--color-red)
-            - color: var(--color-red)
-            - value: 30
-              color: var(--color-dark-red)
+          height: 150
           font_size: 80
           hour24: true
           hours_to_show: 48
           line_width: 2
-          points_per_hour: 4
-          height: 200
+          points_per_hour: 2
           show:
             extrema: false
             state: false
@@ -672,7 +619,6 @@ button_card_templates:
             ha-card {
                font-family: Avenir;
                color: var(--text-off);
-               margin-top: -10px;
              }
     styles:
       card:
@@ -689,19 +635,8 @@ button_card_templates:
           - '--ha-card-background': rgba(0, 0, 0, 0.0)
           - '--ha-card-box-shadow': none
           - '--ha-card-border-width': 0px
-        time:
-          - top: 11%
-          - left: 0%
-          - width: 100%
-          - position: absolute
-          - opacity: 100%
-          - z-index: 2
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)
-          - '--ha-card-box-shadow': none
-          - '--ha-card-border-width': 0px
         state:
-          - top: 24%
+          - top: 27%
           - left: 0%
           - width: 100%
           - position: absolute
@@ -728,6 +663,7 @@ button_card_templates:
     show_icon: false
     show_name: true
     show_state: false
+    show_last_changed: true
     styles:
       name:
         - font-size: 15px
@@ -736,34 +672,24 @@ button_card_templates:
         - font-weight: 600
         - color: rgba(255,255,255,0.6)
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+      label:
+        - font-size: 12px
+        - padding-top: 02px
+        - left: 10px
+        - color: rgba(255,255,255,0.5)
+        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
       card:
         - padding: 5px 5px 5px 5px
-  climate_mini_card_card:
+  climate_mini_card:
     template:
       - mini_card
     show_name: false
     show_label: false
     show_state: true
-    show_icon: true
     styles:
       state:
-        - font-size: 16px
-        - font-weight: 500
+        - font-size: 14px
         - color: rgba(255,255,255,0.8)
-        - letter-spacing: '-0px'
-  climate_last_changed_card:
-    show_name: false
-    show_last_changed: true
-    show_icon: false
-    styles:
-      label:
-        - justify-self: middle
-        - font-size: 11px
-        - font-style: italic
-        - color: rgba(255,255,255,0.5)
-        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-      card:
-        - padding: 05px 0px 05px 0px
   battery_level_card:
     entity: '[[[ return variables.entity ]]]'
     show_icon: false
@@ -816,13 +742,28 @@ button_card_templates:
         - height: 60px
       name:
         - font-size: 13px
-        - padding-bottom: 13px
+        - padding-bottom: 15px
+        - color: var(--text-off)
       custom_fields:
         barre:
           - top: 40%
           - left: '-51%'
           - width: 100%
           - position: absolute
+    state:
+      - value: 30.1
+        operator: <
+        styles:
+          name:
+            - color: var(--color-red)
+            - font-weight: 500
+          card:
+            - animation: blink 1s ease infinite
+      - value: 50.1
+        operator: <
+        styles:
+          name:
+            - color: var(--color-gold)
   scene_card:
     show_name: true
     show_label: false
@@ -971,10 +912,6 @@ button_card_templates:
       - operator: template
         value: '[[[ return  entity.state != "not_home" ]]]'
         styles:
-          label:
-            - color: var(--color-green)
-          state:
-            - color: var(--color-green)
           card:
             - background-color: var(--color-card-green)
       - operator: template
@@ -2890,13 +2827,15 @@ button_card_templates:
         - height: 35px
         - width: auto
         - padding: 1px 8px 1px 4px
-        - border-radius: 30px
+        - border-radius: 50px
       img_cell:
         - background-color: var(--img-cell-off)
         - border-radius: 50%
         - width: 25px
         - height: 25px
+        - place-self: center
       icon:
+        - color: var(--icon-off)
         - width: 18px
         - margin-bottom: 1px
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
@@ -2904,14 +2843,16 @@ button_card_templates:
         - width: 90%
       label:
         - font-size: 12px
-        - font-weight: bold
+        - font-weight: 600
         - margin-left: 5px
         - padding-top: 0px
+        - color: var(--text-off)
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
       name:
-        - font-size: 11px
-        - font-weight: bold
+        - font-size: 12px
+        - font-weight: 600
         - margin-left: 1px
+        - color: var(--text-off)
         - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
     double_tap_action:
       action: more-info
@@ -3776,12 +3717,6 @@ views:
                       - text-align: left
                     titre_avertissement_serrures_bloquees:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-                      - padding: |
-                          [[[
-                            if (states['sensor.serrures_bloquees'].state == '')
-                              return "0px 0px 0px 0px" ;
-                            return "10px 0px 01px 0px" ;
-                          ]]]       
                       - font-weight: bold
                       - justifiy-self: start
                       - text-align: left
@@ -3790,12 +3725,7 @@ views:
                     serrures_bloquees:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
                       - border-left: 2px var(--color-dark-red) solid
-                      - padding: |
-                          [[[
-                            if (states['sensor.serrures_bloquees'].state == '')
-                              return "0px 0px 0px 0px" ;
-                            return "0px 0px 0px 08px" ;
-                          ]]]
+                      - padding-left: 8px
                       - justifiy-self: start
                       - color: var(--color-red)
                       - white-space: normal
@@ -3868,12 +3798,7 @@ views:
                     batterie_faible:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
                       - border-left: 2px var(--color-dark-red) solid
-                      - padding: |
-                          [[[
-                            if (states['sensor.systeme_avertissement'].state == '')
-                              return "0px 0px 0px 0px" ;
-                            return "0px 0px 0px 08px" ;
-                          ]]]
+                      - padding-left: 8px
                       - justifiy-self: start
                       - color: var(--color-red)
                       - white-space: normal
@@ -10073,55 +9998,74 @@ views:
                             box-shadow: none;
                           }           
                         cards:
-                          - type: grid
-                            columns: 5
-                            square: false
+                          - type: custom:vertical-stack-in-card
+                            horizontal: true
+                            style: |
+                              ha-card { 
+                                background-color: var(--card-background-color);
+                                padding: 2px;
+                                box-shadow: none;
+                              }           
                             cards:
-                              - type: custom:button-card
-                                entity: binary_sensor.presence_sejour_fp2
-                                template:
-                                  - mini_card
-                                  - mini_card_state
-                                  - no_style
-                                show_label: false
-                                show_name: true
-                              - type: custom:button-card
-                                entity: binary_sensor.presence_bureau_fp2
-                                icon: mdi:laptop
-                                template:
-                                  - mini_card
-                                  - mini_card_state
-                                  - no_style
-                                show_label: false
-                                show_name: true
-                              - type: custom:button-card
-                                entity: binary_sensor.presence_salon_fp2
-                                icon: mdi:television
-                                template:
-                                  - mini_card
-                                  - mini_card_state
-                                  - no_style
-                                show_label: false
-                                show_name: true
-                              - type: custom:button-card
-                                entity: binary_sensor.presence_canape_fp2
-                                icon: mdi:sofa
-                                template:
-                                  - mini_card
-                                  - mini_card_state
-                                  - no_style
-                                show_label: false
-                                show_name: true
-                              - type: custom:button-card
-                                entity: binary_sensor.presence_sam_fp2
-                                icon: mdi:silverware
-                                name: SàM
-                                template:
-                                  - mini_card
-                                  - mini_card_state
-                                  - no_style
-                                show_label: false
-                                show_name: true
+                              - type: custom:vertical-stack-in-card
+                                style: |
+                                  ha-card { 
+                                    margin: 2px;
+                                  }           
+                                cards:
+                                  - type: custom:button-card
+                                    entity: binary_sensor.presence_sejour_fp2
+                                    template:
+                                      - sub_button
+                                      - sub_button_state
+                              - type: custom:vertical-stack-in-card
+                                style: |
+                                  ha-card { 
+                                    margin: 2px;
+                                  }           
+                                cards:
+                                  - type: custom:button-card
+                                    entity: binary_sensor.presence_bureau_fp2
+                                    icon: mdi:desk-lamp
+                                    template:
+                                      - sub_button
+                                      - sub_button_state
+                              - type: custom:vertical-stack-in-card
+                                style: |
+                                  ha-card { 
+                                    margin: 2px;
+                                  }           
+                                cards:
+                                  - type: custom:button-card
+                                    entity: binary_sensor.presence_salon_fp2
+                                    icon: mdi:television
+                                    template:
+                                      - sub_button
+                                      - sub_button_state
+                              - type: custom:vertical-stack-in-card
+                                style: |
+                                  ha-card { 
+                                    margin: 2px;
+                                  }           
+                                cards:
+                                  - type: custom:button-card
+                                    entity: binary_sensor.presence_canape_fp2
+                                    icon: mdi:sofa
+                                    template:
+                                      - sub_button
+                                      - sub_button_state
+                              - type: custom:vertical-stack-in-card
+                                style: |
+                                  ha-card { 
+                                    margin: 2px;
+                                  }           
+                                cards:
+                                  - type: custom:button-card
+                                    entity: binary_sensor.presence_sam_fp2
+                                    icon: mdi:silverware
+                                    template:
+                                      - sub_button
+                                      - sub_button_state
                   - type: custom:button-card
                     template:
                       - title_card
@@ -10751,12 +10695,12 @@ views:
                     cards:
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - temperature_mini_card_state
                         entity: sensor.temp_sejour
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - humidity_mini_card_state
                         entity: sensor.hum_sejour
                   - type: custom:apexcharts-card
@@ -10870,10 +10814,6 @@ views:
                           legend_value: false
                         group_by:
                           func: last
-                  - type: custom:button-card
-                    entity: sensor.temp_sejour
-                    template:
-                      - climate_last_changed_card
         layout:
           width: 280
   - theme: Backend-selected
@@ -10946,6 +10886,9 @@ views:
                         show_label: true
                         show_name: true
                         show_entity_picture: true
+                        name: >
+                          [[[return states["sensor.aurel_duree"].state 
+                          ]]]            
                         label: |
                           [[[return states["sensor.aurel_gps"].state  ]]]
                         template:
@@ -11169,6 +11112,9 @@ views:
                         show_label: true
                         show_name: true
                         show_entity_picture: true
+                        name: >
+                          [[[return states["sensor.alex_duree"].state 
+                          ]]]             
                         label: |
                           [[[return states["sensor.alex_gps"].state  ]]]
                         template:
@@ -11380,12 +11326,14 @@ views:
                       }        
                     cards:
                       - entity: person.tom
-                        name: Tom
                         type: custom:button-card
                         show_state: false
                         show_label: true
                         show_name: true
                         show_entity_picture: true
+                        name: >
+                          [[[return states["sensor.tom_duree"].state 
+                          ]]]             
                         label: |
                           [[[return states["sensor.tom_gps"].state ]]]
                         template:
@@ -11542,7 +11490,8 @@ views:
                       }       
                     cards:
                       - entity: person.manon
-                        name: Manon
+                        name: |
+                          [[[return states["sensor.manon_duree"].state  ]]] 
                         type: custom:button-card
                         show_state: false
                         show_label: true
@@ -11667,17 +11616,18 @@ views:
                       }       
                     cards:
                       - entity: person.leane
-                        name: Léane (tablette)
+                        name: |
+                          [[[return states["sensor.leane_duree"].state  ]]] 
                         type: custom:button-card
                         show_state: false
                         show_label: true
-                        show_name: false
+                        show_name: true
                         show_entity_picture: true
                         label: |
                           [[[
                             if (states['device_tracker.leane_tab_ping'].state == 'home')
-                              return "Allumée"+"<br>  "+states["sensor.leane_duree"].state
-                            return "Eteint"+"<br>  "+states["sensor.leane_duree"].state
+                              return "Allumée"
+                            return "Eteint"
                           ]]]
                         template:
                           - ball_card
@@ -11735,17 +11685,18 @@ views:
                       - type: custom:vertical-stack-in-card
                         cards:
                           - entity: person.nina
-                            name: Nina (tablette)
+                            name: |
+                              [[[return states["sensor.nina_duree"].state  ]]] 
                             type: custom:button-card
                             show_state: false
-                            show_name: false
+                            show_name: true
                             show_label: true
                             show_entity_picture: true
                             label: |
                               [[[
                                 if (states['device_tracker.nina_tab_ping'].state == 'home')
-                                  return "Allumée"+"<br>  "+states["sensor.nina_duree"].state
-                                return "Eteint"+"<br>  "+states["sensor.nina_duree"].state
+                                  return "Allumée"
+                                return "Eteint"
                               ]]]
                             template:
                               - ball_card
@@ -12350,14 +12301,13 @@ views:
                   - type: custom:vertical-stack-in-card
                     style: |
                       ha-card {           
-                        margin: -13px 20px 10px 20px !important;
+                        margin: -5px 0px 10px 0px !important;
                         box-shadow: none !important;
                         background-color: transparent;     
                       }
                     cards:
                       - type: custom:button-card
                         name: Pile
-                        show_name: false
                         template:
                           - battery_level_card
                         variables:
@@ -12465,14 +12415,13 @@ views:
                   - type: custom:vertical-stack-in-card
                     style: |
                       ha-card {           
-                        margin: -16px 20px 10px 20px !important;
+                        margin: -10px 0px 10px 0px !important;
                         box-shadow: none !important;
                         background-color: transparent;     
                       }
                     cards:
                       - type: custom:button-card
                         name: Pile
-                        show_name: false
                         template:
                           - battery_level_card
                         variables:
@@ -15659,12 +15608,12 @@ views:
                     cards:
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - temperature_mini_card_state
                         entity: sensor.temp_tom_arrondie
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - humidity_mini_card_state
                         entity: sensor.hum_tom_arrondie
                   - type: custom:apexcharts-card
@@ -15778,10 +15727,6 @@ views:
                           legend_value: false
                         group_by:
                           func: last
-                  - type: custom:button-card
-                    entity: sensor.temp_tom
-                    template:
-                      - climate_last_changed_card
   - theme: Backend-selected
     subview: true
     path: Manon Léane
@@ -16565,12 +16510,12 @@ views:
                     cards:
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - temperature_mini_card_state
                         entity: sensor.temp_manon_arrondie
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - humidity_mini_card_state
                         entity: sensor.hum_manon_arrondie
                   - type: custom:apexcharts-card
@@ -16684,10 +16629,6 @@ views:
                           legend_value: false
                         group_by:
                           func: last
-                  - type: custom:button-card
-                    entity: sensor.temp_manon
-                    template:
-                      - climate_last_changed_card
   - theme: Backend-selected
     path: Nina
     subview: true
@@ -17320,12 +17261,12 @@ views:
                     cards:
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - temperature_mini_card_state
                         entity: sensor.temp_nina_arrondie
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - humidity_mini_card_state
                         entity: sensor.hum_nina_arrondie
                   - type: custom:apexcharts-card
@@ -17439,10 +17380,6 @@ views:
                           legend_value: false
                         group_by:
                           func: last
-                  - type: custom:button-card
-                    entity: sensor.temp_nina
-                    template:
-                      - climate_last_changed_card
   - theme: Backend-selected
     title: Escalier
     path: Escalier
@@ -17942,12 +17879,12 @@ views:
                     cards:
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - temperature_mini_card_state
                         entity: sensor.temp_salle_de_bain
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - humidity_mini_card_state
                         entity: sensor.hum_salle_de_bain
                   - type: custom:apexcharts-card
@@ -18061,10 +17998,6 @@ views:
                           legend_value: false
                         group_by:
                           func: last
-                  - type: custom:button-card
-                    entity: sensor.temp_salle_de_bain
-                    template:
-                      - climate_last_changed_card
   - theme: Backend-selected
     title: Entrée
     subview: true
@@ -18442,12 +18375,12 @@ views:
                     cards:
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - temperature_mini_card_state
                         entity: sensor.temp_couloir_arrondie
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - humidity_mini_card_state
                         entity: sensor.hum_couloir_arrondie
                   - type: custom:apexcharts-card
@@ -18561,10 +18494,6 @@ views:
                           legend_value: false
                         group_by:
                           func: last
-                  - type: custom:button-card
-                    entity: sensor.temp_couloir_rdc
-                    template:
-                      - climate_last_changed_card
   - theme: Backend-selected
     title: Lavabo
     subview: true
@@ -19191,12 +19120,12 @@ views:
                     cards:
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - temperature_mini_card_state
                         entity: sensor.temp_parents_arrondie
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - humidity_mini_card_state
                         entity: sensor.hum_parents_arrondie
                   - type: custom:apexcharts-card
@@ -19310,10 +19239,6 @@ views:
                           legend_value: false
                         group_by:
                           func: last
-                  - type: custom:button-card
-                    entity: sensor.temp_parents
-                    template:
-                      - climate_last_changed_card
   - theme: Backend-selected
     subview: true
     title: Garage
@@ -19723,17 +19648,17 @@ views:
                     cards:
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - temperature_mini_card_state
                         entity: sensor.sonde_garage_temperature
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                           - humidity_mini_card_state
                         entity: sensor.sonde_garage_humidite
                       - type: custom:button-card
                         template:
-                          - climate_mini_card_card
+                          - climate_mini_card
                         entity: sensor.sonde_garage_pression
                   - type: custom:apexcharts-card
                     style: |
@@ -19846,10 +19771,6 @@ views:
                           legend_value: false
                         group_by:
                           func: last
-                  - type: custom:button-card
-                    entity: sensor.sonde_garage_temperature
-                    template:
-                      - climate_last_changed_card
   - theme: Backend-selected
     subview: true
     title: Système
@@ -21774,8 +21695,8 @@ views:
                   }
                 cards:
                   - type: custom:meteofrance-weather-card
-                    entity: weather.ta_ville
-                    rainForecastEntity: sensor.ta_ville_next_rain_2
+                    entity: weather.ville
+                    rainForecastEntity: sensor.ville_next_rain_2
                     current: true
                     one_hour_forecast: false
                     forecast: false
@@ -21919,8 +21840,8 @@ views:
                               icon:
                                 - color: var(--color-icon-red)
                   - type: custom:meteofrance-weather-card
-                    entity: weather.ta_ville
-                    rainForecastEntity: sensor.ta_ville_next_rain_2
+                    entity: weather.ville
+                    rainForecastEntity: sensor.ville_next_rain_2
                     current: false
                     one_hour_forecast: true
                     forecast: false
@@ -21933,17 +21854,17 @@ views:
                         color: var(--text-off);
                     number_of_forecasts: '5'
                   - type: custom:meteofrance-weather-card
-                    entity: weather.ta_ville
+                    entity: weather.ville
                     number_of_forecasts: '5'
                     current: false
                     details: false
                     one_hour_forecast: true
                     alert_forecast: true
-                    rainChanceEntity: sensor.ta_ville_daily_precipitation
-                    uvEntity: sensor.ta_ville_uv_2
-                    cloudCoverEntity: sensor.ta_ville_cloud_cover
-                    freezeChanceEntity: sensor.ta_ville_freeze_chance_2
-                    snowChanceEntity: sensor.ta_ville_snow_chance_2
+                    rainChanceEntity: sensor.ville_daily_precipitation
+                    uvEntity: sensor.ville_uv_2
+                    cloudCoverEntity: sensor.ville_cloud_cover
+                    freezeChanceEntity: sensor.ville_freeze_chance_2
+                    snowChanceEntity: sensor.ville_snow_chance_2
                     alertEntity: sensor.49_weather_alert
                     style: |
                       ha-card {
@@ -22065,7 +21986,7 @@ views:
                        }
                         
                   - type: custom:clock-weather-card
-                    entity: weather.ta_ville
+                    entity: weather.ville
                     title: ''
                     sun_entity: sun.sun
                     weather_icon_type: fill
