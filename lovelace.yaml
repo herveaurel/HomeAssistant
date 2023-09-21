@@ -325,7 +325,7 @@ button_card_templates:
       card:
         - border-radius: 12px
         - height: 30px
-        - padding: 01px
+        - padding: 1px
         - line-height: 77%
       icon:
         - color: var(--icon-off)
@@ -565,38 +565,56 @@ button_card_templates:
     tap_action:
       action: more-info
   climat_card:
+    entity: '[[[ return variables.temp ]]]'
+    show_name: false
+    show_icon: false
+    template:
+      - temperature_state
     custom_fields:
       title:
         card:
           type: custom:button-card
           template:
-            - climate_title_card
+            - title_card
           entity: '[[[ return variables.temp ]]]'
           name: '[[[ return variables.name ]]]'
-          icon: '[[[ return variables.icon ]]]'
-      state:
+          show_last_changed: true
+          styles:
+            name:
+              - justify-self: center
+              - color: var(--text-off)
+            label:
+              - justify-self: center
+              - color: var(--text-off)
+              - font-size: 10px
+      sensor:
         card:
           type: horizontal-stack
           cards:
             - type: custom:button-card
-              entity: '[[[ return variables.temp ]]]'
               template:
-                - climate_mini_card
+                - mini_card
                 - temperature_mini_card_state
+              show_state: true
+              entity: '[[[ return variables.temp ]]]'
             - type: custom:button-card
-              entity: '[[[ return variables.hum ]]]'
               template:
-                - climate_mini_card
+                - mini_card
                 - humidity_mini_card_state
+              show_state: true
+              entity: '[[[ return variables.hum ]]]'
       graph:
         card:
           type: custom:mini-graph-card
+          name: Couloir
+          icon: mdi:spotlight
           align_header: left
           align_icon: left
           entities:
             - entity: '[[[ return variables.temp ]]]'
               show_state: true
               show_legend: false
+              state_adaptive_color: true
               color: var(--color-orange)
             - entity: sensor.night_state
               color: darkgray
@@ -605,92 +623,48 @@ button_card_templates:
               show_line: false
               show_points: false
               y_axis: secondary
-          height: 150
+          height: 200
           font_size: 80
           hour24: true
           hours_to_show: 48
           line_width: 2
           points_per_hour: 2
           show:
+            state_adaptive_color: true
             extrema: false
             state: false
             icon: false
             name: false
           style: |
             ha-card {
+               background: transparent;
                font-family: Avenir;
                color: var(--text-off);
+               border-color: transparent;
+               box-shadow: none;
              }
     styles:
       card:
-        - height: 190px
+        - height: 200px
       custom_fields:
         title:
-          - top: 0%
-          - left: 0%
-          - width: 100%
           - position: absolute
-          - opacity: 100%
-          - z-index: 2
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)
-          - '--ha-card-box-shadow': none
-          - '--ha-card-border-width': 0px
-        state:
-          - top: 27%
-          - left: 0%
           - width: 100%
-          - position: absolute
+          - top: 05px
+          - left: 0%
           - opacity: 100%
-          - z-index: 2
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)
-          - '--ha-card-box-shadow': none
-          - '--ha-card-border-width': 0px
+        sensor:
+          - position: absolute
+          - width: 100%
+          - top: 20%
+          - left: 0%
+          - opacity: 100%
         graph:
-          - top: 60%
-          - left: 0%
-          - width: 100%
           - position: absolute
+          - width: 100%
+          - top: 50%
+          - left: 0%
           - opacity: 100%
-          - z-index: 2
-          - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
-          - '--ha-card-background': rgba(0, 0, 0, 0.0)
-          - '--ha-card-box-shadow': none
-          - '--ha-card-border-width': 0px
-  climate_title_card:
-    template:
-      - police
-    show_icon: false
-    show_name: true
-    show_state: false
-    show_last_changed: true
-    styles:
-      name:
-        - font-size: 15px
-        - padding-top: 02px
-        - left: 10px
-        - font-weight: 600
-        - color: rgba(255,255,255,0.6)
-        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-      label:
-        - font-size: 12px
-        - padding-top: 02px
-        - left: 10px
-        - color: rgba(255,255,255,0.5)
-        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-      card:
-        - padding: 5px 5px 5px 5px
-  climate_mini_card:
-    template:
-      - mini_card
-    show_name: false
-    show_label: false
-    show_state: true
-    styles:
-      state:
-        - font-size: 14px
-        - color: rgba(255,255,255,0.8)
   battery_level_card:
     entity: '[[[ return variables.entity ]]]'
     show_icon: false
@@ -942,7 +916,7 @@ button_card_templates:
             - background-color: var(--color-img-cell-red)
           card:
             - background-color: var(--color-card-red)
-      - value: 24.9
+      - value: 23.9
         operator: '>'
         icon: mdi:thermometer-chevron-up
         styles:
@@ -962,9 +936,6 @@ button_card_templates:
             - background-color: var(--color-img-cell-blue)
           card:
             - background-color: var(--color-card-blue)
-      - value: 25.9
-        operator: <
-        styles: null
       - operator: template
         value: >-
           [[[ return entity.state == "unavailable"   || entity.state ==
@@ -992,7 +963,7 @@ button_card_templates:
             - color: var(--color-icon-red)
           img_cell:
             - background-color: var(--color-img-cell-red)
-      - value: 24.9
+      - value: 23.9
         operator: '>'
         icon: mdi:thermometer-chevron-up
         styles:
@@ -1012,9 +983,6 @@ button_card_templates:
             - color: var(--color-icon-blue)
           img_cell:
             - background-color: var(--color-img-cell-blue)
-      - value: 25.9
-        operator: <
-        styles: null
       - operator: template
         value: >-
           [[[ return entity.state == "unavailable"   || entity.state ==
@@ -19343,6 +19311,30 @@ views:
                           }          
                         cards:
                           - type: custom:button-card
+                            entity: binary_sensor.mouv_garage
+                            name: null
+                            template:
+                              - ball_card
+                              - security_card_state
+                              - last_changed
+                            show_label: true
+                            show_state: false
+                  - type: custom:vertical-stack-in-card
+                    horizontal: true
+                    style: |
+                      ha-card { 
+                        box-shadow: none;
+                        background-color: var(--card-background-color);        
+                      }          
+                    cards:
+                      - type: custom:vertical-stack-in-card
+                        style: |
+                          ha-card { 
+                            margin: 2px; 
+                            border-radius: 50px !important;
+                          }          
+                        cards:
+                          - type: custom:button-card
                             entity: binary_sensor.porte_cagibi
                             name: null
                             template:
@@ -22433,8 +22425,9 @@ views:
                         template:
                           - ball_card
                           - card_state
-                        entity: automation.annonce_ecole
-                        name: Annonce École
+                        entity: group.enfants_au_lit
+                        name: Enfants au lit
+                        icon: mdi:bed-clock
               - type: custom:vertical-stack-in-card
                 horizontal: true
                 style: |
@@ -22522,6 +22515,19 @@ views:
                           - ball_card
                           - card_state
                         entity: input_boolean.halloween
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 0 3px 0 3px;
+                        border-radius: 50px !important;
+                      }
+                    cards:
+                      - type: custom:button-card
+                        template:
+                          - ball_card
+                          - card_state
+                        entity: automation.annonce_ecole
+                        name: Annonce École
       - type: custom:layout-card
         layout_type: masonry
         layout:
