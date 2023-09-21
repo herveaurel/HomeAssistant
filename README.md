@@ -1,6 +1,6 @@
 # HomeAssistant
 
- [French group Home Assistant](https://github.com/Clooos/Bubble-Card)
+ [French group Home Assistant](https://www.facebook.com/groups/homeassistantgroupefrance)
 
 ## Mad Geek 
 My dashboard compatible with PC, smartphone, tablet
