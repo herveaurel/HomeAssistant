@@ -6,7 +6,7 @@ Button card template updates:
 3. ball_card
 4. mini_card
 5. person_state
-6. cliamte_card
+6. climate_card
 
 Apex graphics in rooms subviews
 
