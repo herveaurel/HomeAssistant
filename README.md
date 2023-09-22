@@ -48,6 +48,10 @@ I write everything myself, so please be understanding! 😊
 And more ! 
 
 
+## CHANGELOG  
+
+**Read the CHANGELOG file** : Updated on 09-22-2023  
+
 
 
 ## INSTALLATION
