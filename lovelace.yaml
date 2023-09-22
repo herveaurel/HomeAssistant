@@ -603,11 +603,9 @@ button_card_templates:
                 - humidity_mini_card_state
               show_state: true
               entity: '[[[ return variables.hum ]]]'
-      graph:
+      graph_sensor:
         card:
           type: custom:mini-graph-card
-          name: Couloir
-          icon: mdi:spotlight
           align_header: left
           align_icon: left
           entities:
@@ -616,19 +614,19 @@ button_card_templates:
               show_legend: false
               state_adaptive_color: true
               color: var(--color-orange)
-            - entity: sensor.night_state
-              color: darkgray
-              name: Night
+            - entity: '[[[ return variables.hum ]]]'
+              show_state: true
               show_legend: false
-              show_line: false
-              show_points: false
+              state_adaptive_color: true
+              color: var(--color-blue)
               y_axis: secondary
           height: 200
           font_size: 80
           hour24: true
           hours_to_show: 48
           line_width: 2
-          points_per_hour: 2
+          points_per_hour: 1
+          smoothing: true
           show:
             state_adaptive_color: true
             extrema: false
@@ -643,9 +641,42 @@ button_card_templates:
                border-color: transparent;
                box-shadow: none;
              }
+      graph_night:
+        card:
+          type: custom:mini-graph-card
+          align_header: left
+          align_icon: left
+          entities:
+            - entity: sensor.night_state
+              color: darkgray
+              name: Night
+              show_legend: false
+              show_line: false
+              show_points: false
+          height: 200
+          font_size: 80
+          hour24: true
+          hours_to_show: 48
+          line_width: 2
+          points_per_hour: 2
+          smoothing: true
+          show:
+            state_adaptive_color: true
+            extrema: false
+            state: false
+            icon: false
+            name: false
+          style: |
+            ha-card {
+               background: transparent;
+               font-family: Avenir;
+               color: var(--text-off);
+               border-color: transparent;
+               box-shadow: none;
+             }             
     styles:
       card:
-        - height: 200px
+        - height: 190px
       custom_fields:
         title:
           - position: absolute
@@ -659,10 +690,16 @@ button_card_templates:
           - top: 20%
           - left: 0%
           - opacity: 100%
-        graph:
+        graph_sensor:
           - position: absolute
           - width: 100%
-          - top: 50%
+          - top: 52%
+          - left: 0%
+          - opacity: 100%
+        graph_night:
+          - position: absolute
+          - width: 100%
+          - top: 52%
           - left: 0%
           - opacity: 100%
   battery_level_card:
@@ -916,16 +953,16 @@ button_card_templates:
             - background-color: var(--color-img-cell-red)
           card:
             - background-color: var(--color-card-red)
-      - value: 23.9
+      - value: 24.9
         operator: '>'
         icon: mdi:thermometer-chevron-up
         styles:
           icon:
-            - color: var(--color-icon-orange)
+            - color: var(--color-icon-yellow)
           img_cell:
-            - background-color: var(--color-img-cell-orange)
+            - background-color: var(--color-img-cell-yellow)
           card:
-            - background-color: var(--color-card-orange)
+            - background-color: var(--color-card-yellow)
       - value: 18.9
         operator: <
         icon: mdi:thermometer-chevron-down
@@ -963,7 +1000,7 @@ button_card_templates:
             - color: var(--color-icon-red)
           img_cell:
             - background-color: var(--color-img-cell-red)
-      - value: 23.9
+      - value: 24.9
         operator: '>'
         icon: mdi:thermometer-chevron-up
         styles:
@@ -4154,7 +4191,7 @@ views:
                           </ha-icon><span><font color= red> Réveils indisponibles</span>`
                       if (states['input_boolean.nilemato'].state == "off" && states['sensor.reveil'].state == "")
                         return ""
-                      if (states['input_boolean.nilemato'].state == "off" && states['sensor.reveil'].state != "")
+                      if (states['input_boolean.nilemato'].state == "off" && states['sensor.reveil'].state != "Aucun réveil")
                       return `<ha-icon
                         icon="mdi:alarm"
                         style="width: 16px; color: var(--color-icon-red); height: 16px; margin-right: 2px;">
@@ -10653,25 +10690,6 @@ views:
                     background-color: var(--card-background-color);
                   }
                 cards:
-                  - type: custom:vertical-stack-in-card
-                    horizontal: true
-                    style: |
-                      ha-card { 
-                        background-color: var(--ha-card-background);
-                        box-shadow: none !important;
-                        border-radius: 0px !important;
-                      }        
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - temperature_mini_card_state
-                        entity: sensor.temp_sejour
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - humidity_mini_card_state
-                        entity: sensor.hum_sejour
                   - type: custom:apexcharts-card
                     style: |
                       ha-card {
@@ -10679,7 +10697,7 @@ views:
                          margin: 0px -10px -5px -10px;
                        }      
                     header:
-                      show: false
+                      show: true
                       title: ''
                       show_states: true
                       colorize_states: true
@@ -15573,25 +15591,6 @@ views:
                     background-color: var(--card-background-color);
                   }
                 cards:
-                  - type: custom:vertical-stack-in-card
-                    horizontal: true
-                    style: |
-                      ha-card { 
-                        background-color: var(--ha-card-background);
-                        box-shadow: none !important;
-                        border-radius: 0px !important;
-                      }        
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - temperature_mini_card_state
-                        entity: sensor.temp_tom_arrondie
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - humidity_mini_card_state
-                        entity: sensor.hum_tom_arrondie
                   - type: custom:apexcharts-card
                     style: |
                       ha-card {
@@ -15599,7 +15598,7 @@ views:
                          margin: 0px -10px -5px -10px;
                        }      
                     header:
-                      show: false
+                      show: true
                       title: ''
                       show_states: true
                       colorize_states: true
@@ -16475,25 +16474,6 @@ views:
                     background-color: var(--card-background-color);
                   }
                 cards:
-                  - type: custom:vertical-stack-in-card
-                    horizontal: true
-                    style: |
-                      ha-card { 
-                        background-color: var(--ha-card-background);
-                        box-shadow: none !important;
-                        border-radius: 0px !important;
-                      }        
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - temperature_mini_card_state
-                        entity: sensor.temp_manon_arrondie
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - humidity_mini_card_state
-                        entity: sensor.hum_manon_arrondie
                   - type: custom:apexcharts-card
                     style: |
                       ha-card {
@@ -16501,7 +16481,7 @@ views:
                          margin: 0px -10px -5px -10px;
                        }      
                     header:
-                      show: false
+                      show: true
                       title: ''
                       show_states: true
                       colorize_states: true
@@ -17225,26 +17205,6 @@ views:
                     background-color: var(--card-background-color);
                   }
                 cards:
-                  - type: custom:vertical-stack-in-card
-                    horizontal: true
-                    style: |
-                      ha-card { 
-                        background-color: var(--ha-card-background);
-                        box-shadow: none !important;
-                        border-radius: 0px !important;
-                        
-                      }        
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - temperature_mini_card_state
-                        entity: sensor.temp_nina_arrondie
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - humidity_mini_card_state
-                        entity: sensor.hum_nina_arrondie
                   - type: custom:apexcharts-card
                     style: |
                       ha-card {
@@ -17252,7 +17212,7 @@ views:
                          margin: 0px -10px -5px -10px;
                        }      
                     header:
-                      show: false
+                      show: true
                       title: ''
                       show_states: true
                       colorize_states: true
@@ -18340,25 +18300,6 @@ views:
                     background-color: var(--card-background-color);
                   }
                 cards:
-                  - type: custom:vertical-stack-in-card
-                    horizontal: true
-                    style: |
-                      ha-card { 
-                        background-color: var(--ha-card-background);
-                        box-shadow: none !important;
-                        border-radius: 0px !important;
-                      }        
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - temperature_mini_card_state
-                        entity: sensor.temp_couloir_arrondie
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - humidity_mini_card_state
-                        entity: sensor.hum_couloir_arrondie
                   - type: custom:apexcharts-card
                     style: |
                       ha-card {
@@ -18366,7 +18307,7 @@ views:
                          margin: 0px -10px -5px -10px;
                        }      
                     header:
-                      show: false
+                      show: true
                       title: ''
                       show_states: true
                       colorize_states: true
@@ -19085,25 +19026,6 @@ views:
                     background-color: var(--card-background-color);
                   }
                 cards:
-                  - type: custom:vertical-stack-in-card
-                    horizontal: true
-                    style: |
-                      ha-card { 
-                        background-color: var(--ha-card-background);
-                        box-shadow: none !important;
-                        border-radius: 0px !important;
-                      }        
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - temperature_mini_card_state
-                        entity: sensor.temp_parents_arrondie
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - humidity_mini_card_state
-                        entity: sensor.hum_parents_arrondie
                   - type: custom:apexcharts-card
                     style: |
                       ha-card {
@@ -19111,7 +19033,7 @@ views:
                          margin: 0px -10px -5px -10px;
                        }      
                     header:
-                      show: false
+                      show: true
                       title: ''
                       show_states: true
                       colorize_states: true
@@ -19637,29 +19559,6 @@ views:
                     background-color: var(--card-background-color);
                   }
                 cards:
-                  - type: custom:vertical-stack-in-card
-                    horizontal: true
-                    style: |
-                      ha-card { 
-                        background-color: var(--ha-card-background);
-                        box-shadow: none !important;
-                        border-radius: 0px !important;
-                      }        
-                    cards:
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - temperature_mini_card_state
-                        entity: sensor.sonde_garage_temperature
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                          - humidity_mini_card_state
-                        entity: sensor.sonde_garage_humidite
-                      - type: custom:button-card
-                        template:
-                          - climate_mini_card
-                        entity: sensor.sonde_garage_pression
                   - type: custom:apexcharts-card
                     style: |
                       ha-card {
@@ -19667,7 +19566,7 @@ views:
                          margin: 0px -10px -5px -10px;
                        }      
                     header:
-                      show: false
+                      show: true
                       title: ''
                       show_states: true
                       colorize_states: true
