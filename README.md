@@ -2,6 +2,7 @@
 
  [French group Home Assistant](https://www.facebook.com/groups/homeassistantgroupefrance)
 
+
 ## Mad Geek 
 My dashboard compatible with PC, smartphone, tablet
 
@@ -50,7 +51,8 @@ And more !
 
 ## CHANGELOG  
 
-**Read the CHANGELOG file** : Updated on 09-22-2023  
+
+ [**Read the CHANGELOG file** ](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md) : Updated on 09-22-2023  
 
 
 
