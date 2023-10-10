@@ -1,7 +1,320 @@
 
   - sensor:
 
+###### PRONOTE
+##MANON
+      - name: Dernière mise à jour de Pronote Manon
+        unique_id: sensor.derniere_mise_a_jour_de_pronote_manon
+        icon: "mdi:update"
+        state: "{{ state_attr('sensor.pronote_NAME_manon','updated_at').strftime('%d-%m-%Y à %H:%M') }}"  
         
+      - name: Début des cours de Manon - Demain
+        unique_id: sensor.debut_des_cours_de_manon_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_manon_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_manon_timetable_tomorrow', 'day_start_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %}                  
+
+      - name: Fin des cours de Manon - Demain
+        unique_id: sensor.fin_des_cours_de_manon_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >- 
+                {% if state_attr('sensor.pronote_NAME_manon_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_manon_timetable_tomorrow', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %} 
+            
+      - name: Date début des cours de Manon - Demain
+        unique_id: sensor.date_debut_des_cours_de_manon_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >- 
+                {% if state_attr('sensor.pronote_NAME_manon_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {%- set date = state_attr('sensor.pronote_NAME_manon_timetable_tomorrow', 'day_start_at').strftime('%A %H:%M') 
+                    | replace('Monday', 'L.')
+                    | replace('Tuesday', 'M.')
+                    | replace('Wednesday', 'Me.')
+                    | replace('Thursday', 'J.')
+                    | replace('Friday', 'V.')
+                    | replace('Saturday', 'S.')
+                    | replace('Sunday', 'D.') %}
+                 {{ date }}
+                {% else %}
+                 non
+                {% endif %}
+
+      - name: Journée de cours de Manon - Demain
+        unique_id: sensor.journée_de_cours_de_manon_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_manon_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_manon_timetable_tomorrow', 'day_start_at').strftime('%H:%M')}} - {{state_attr('sensor.pronote_NAME_manon_timetable_tomorrow', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %} 
+                
+      - name: Début des cours de Manon - Aujourd'hui
+        unique_id: sensor.debut_des_cours_de_manon_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_manon_timetable_today', 'lessons')[0] is defined %}
+                  {{state_attr('sensor.pronote_NAME_manon_timetable_today', 'day_start_at').strftime('%H:%M')}}
+                {% else %}
+                   Pas cours
+                {% endif %} 
+
+      - name: Fin des cours de Manon - Aujourd'hui
+        unique_id: sensor.fin_des_cours_de_manon_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >- 
+                {% if state_attr('sensor.pronote_NAME_manon_timetable_today', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_manon_timetable_today', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %} 
+               
+                                
+      - name: Date début des cours de Manon - Aujourd'hui
+        unique_id: sensor.date_debut_des_cours_de_manon_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >- 
+                {% if state_attr('sensor.pronote_NAME_manon_timetable_today', 'lessons')[0] is defined %}
+                 {%- set date = state_attr('sensor.pronote_NAME_manon_timetable_today', 'day_start_at').strftime('%A %H:%M') 
+                    | replace('Monday', 'L.')
+                    | replace('Tuesday', 'M.')
+                    | replace('Wednesday', 'Me.')
+                    | replace('Thursday', 'J.')
+                    | replace('Friday', 'V.')
+                    | replace('Saturday', 'S.')
+                    | replace('Sunday', 'D.') %}
+                 {{ date }}
+                {% else %}
+                 non
+                {% endif %}
+                
+      - name: Journée de cours de Manon - Aujourd'hui
+        unique_id: sensor.journée_de_cours_de_manon_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_manon_timetable_today', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_manon_timetable_today', 'day_start_at').strftime('%H:%M')}} - {{state_attr('sensor.pronote_NAME_manon_timetable_today', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %}                
+
+##TOM
+      - name: Dernière mise à jour de Pronote Tom
+        unique_id: sensor.derniere_mise_a_jour_de_pronote_tom
+        icon: "mdi:update"
+        state: "{{ state_attr('sensor.pronote_NAME_tom','updated_at').strftime('%d-%m-%Y à %H:%M') }}"  
+        
+      - name: Début des cours de Tom - Demain
+        unique_id: sensor.debut_des_cours_de_tom_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_tom_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_tom_timetable_tomorrow', 'day_start_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %}                  
+
+      - name: Fin des cours de Tom - Demain
+        unique_id: sensor.fin_des_cours_de_tom_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >-  
+                {% if state_attr('sensor.pronote_NAME_tom_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_tom_timetable_tomorrow', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %} 
+            
+      - name: Date début des cours de Tom - Demain
+        unique_id: sensor.date_debut_des_cours_de_tom_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >- 
+                {% if state_attr('sensor.pronote_NAME_tom_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {%- set date = state_attr('sensor.pronote_NAME_tom_timetable_tomorrow', 'day_start_at').strftime('%A %H:%M') 
+                    | replace('Monday', 'L.')
+                    | replace('Tuesday', 'M.')
+                    | replace('Wednesday', 'Me.')
+                    | replace('Thursday', 'J.')
+                    | replace('Friday', 'V.')
+                    | replace('Saturday', 'S.')
+                    | replace('Sunday', 'D.') %}
+                 {{ date }}
+                {% else %}
+                 non
+                {% endif %}
+
+      - name: Journée de cours de Tom - Demain
+        unique_id: sensor.journée_de_cours_de_tom_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_tom_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_tom_timetable_tomorrow', 'day_start_at').strftime('%H:%M')}} - {{state_attr('sensor.pronote_NAME_tom_timetable_tomorrow', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %}
+                
+      - name: Début des cours de Tom - Aujourd'hui
+        unique_id: sensor.debut_des_cours_de_tom_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_tom_timetable_today', 'lessons')[0] is defined %}
+                    {{state_attr('sensor.pronote_NAME_tom_timetable_today', 'day_start_at').strftime('%H:%M')}}
+                {% else %}
+                    Pas cours
+                {% endif %} 
+
+      - name: Fin des cours de Tom - Aujourd'hui
+        unique_id: sensor.fin_des_cours_de_tom_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >-  
+                {% if state_attr('sensor.pronote_NAME_tom_timetable_today', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_tom_timetable_today', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %} 
+               
+                 
+                 
+      - name: Date début des cours de Tom - Aujourd'hui
+        unique_id: sensor.date_debut_des_cours_de_tom_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >- 
+                {% if state_attr('sensor.pronote_NAME_tom_timetable_today', 'lessons')[0] is defined %}
+                 {%- set date = state_attr('sensor.pronote_NAME_tom_timetable_today', 'day_start_at').strftime('%A %H:%M') 
+                    | replace('Monday', 'L.')
+                    | replace('Tuesday', 'M.')
+                    | replace('Wednesday', 'Me.')
+                    | replace('Thursday', 'J.')
+                    | replace('Friday', 'V.')
+                    | replace('Saturday', 'S.')
+                    | replace('Sunday', 'D.') %}
+                 {{ date }}
+                {% else %}
+                 non
+                {% endif %}
+                
+      - name: Journée de cours de Tom - Aujourd'hui
+        unique_id: sensor.journée_de_cours_de_tom_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_tom_timetable_today', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_tom_timetable_today', 'day_start_at').strftime('%H:%M')}} - {{state_attr('sensor.pronote_NAME_tom_timetable_today', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %}                 
+                
+##LEANE
+      - name: Dernière mise à jour de Pronote Léane
+        unique_id: sensor.derniere_mise_a_jour_de_pronote_leane
+        icon: "mdi:update"
+        state: "{{ state_attr('sensor.pronote_NAME_l_ane','updated_at').strftime('%d-%m-%Y à %H:%M') }}"  
+        
+      - name: Début des cours de Léane - Demain
+        unique_id: sensor.debut_des_cours_de_leane_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_l_ane_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_l_ane_timetable_tomorrow', 'day_start_at').strftime('%H:%M')}}
+                {% else %}
+                  Pas cours
+                {% endif %}                  
+        
+        
+      - name: Date début des cours de Léane - Demain
+        unique_id: sensor.date_debut_des_cours_de_leane_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >- 
+                {% if state_attr('sensor.pronote_NAME_l_ane_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {%- set date = state_attr('sensor.pronote_NAME_l_ane_timetable_tomorrow', 'day_start_at').strftime('%A %H:%M') 
+                    | replace('Monday', 'L.')
+                    | replace('Tuesday', 'M.')
+                    | replace('Wednesday', 'Me.')
+                    | replace('Thursday', 'J.')
+                    | replace('Friday', 'V.')
+                    | replace('Saturday', 'S.')
+                    | replace('Sunday', 'D.') %}
+                 {{ date }}
+                {% else %}
+                 non
+                {% endif %}
+
+      - name: Fin des cours de Léane - Demain
+        unique_id: sensor.fin_des_cours_de_leane_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >-
+                {% if state_attr('sensor.pronote_NAME_l_ane_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_l_ane_timetable_tomorrow', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %} 
+
+      - name: Journée de cours de Léane - Demain
+        unique_id: sensor.journée_de_cours_de_leane_demain
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_l_ane_timetable_tomorrow', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_l_ane_timetable_tomorrow', 'day_start_at').strftime('%H:%M')}} - {{state_attr('sensor.pronote_NAME_l_ane_timetable_tomorrow', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %}
+                
+      - name: Début des cours de Léane - Aujourd'hui
+        unique_id: sensor.debut_des_cours_de_leane_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_l_ane_timetable_today', 'lessons')[0] is defined %}
+                    {{state_attr('sensor.pronote_NAME_l_ane_timetable_today', 'day_start_at').strftime('%H:%M')}}
+                {% else %}
+                    Pas cours
+                {% endif %}     
+
+      - name: Fin des cours de Léane - Aujourd'hui
+        unique_id: sensor.fin_des_cours_de_leane_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >-
+                {% if state_attr('sensor.pronote_NAME_l_ane_timetable_today', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_l_ane_timetable_today', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %}            
+               
+                         
+        
+        
+      - name: Date début des cours de Léane - Aujourd'hui
+        unique_id: sensor.date_debut_des_cours_de_leane_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >- 
+                {% if state_attr('sensor.pronote_NAME_l_ane_timetable_today', 'lessons')[0] is defined %}
+                 {%- set date = state_attr('sensor.pronote_NAME_l_ane_timetable_today', 'day_start_at').strftime('%A %H:%M') 
+                    | replace('Monday', 'L.')
+                    | replace('Tuesday', 'M.')
+                    | replace('Wednesday', 'Me.')
+                    | replace('Thursday', 'J.')
+                    | replace('Friday', 'V.')
+                    | replace('Saturday', 'S.')
+                    | replace('Sunday', 'D.') %}
+                 {{ date }}
+                {% else %}
+                 non
+                {% endif %}
+
+      - name: Journée de cours de Léane - Aujourd'hui
+        unique_id: sensor.journée_de_cours_de_leane_aujourd_hui
+        icon: "mdi:clock-time-five-outline"
+        state: >-            
+                {% if state_attr('sensor.pronote_NAME_l_ane_timetable_today', 'lessons')[0] is defined %}
+                 {{state_attr('sensor.pronote_NAME_l_ane_timetable_today', 'day_start_at').strftime('%H:%M')}} - {{state_attr('sensor.pronote_NAME_l_ane_timetable_today', 'day_end_at').strftime('%H:%M')}}
+                {% else %}
+                 Pas cours
+                {% endif %}                  
+                
 ###### ELECTRICITE 
       - name: "electricite conso veille"
         unit_of_measurement: 'kWh'      
