@@ -21594,8 +21594,8 @@ views:
                   }
                 cards:
                   - type: custom:meteofrance-weather-card
-                    entity: weather.ville
-                    rainForecastEntity: sensor.ville_next_rain_2
+                    entity: weather.beaucouze
+                    rainForecastEntity: sensor.beaucouze_next_rain_2
                     current: true
                     one_hour_forecast: false
                     forecast: false
@@ -21739,8 +21739,8 @@ views:
                               icon:
                                 - color: var(--color-icon-red)
                   - type: custom:meteofrance-weather-card
-                    entity: weather.ville
-                    rainForecastEntity: sensor.ville_next_rain_2
+                    entity: weather.beaucouze
+                    rainForecastEntity: sensor.beaucouze_next_rain_2
                     current: false
                     one_hour_forecast: true
                     forecast: false
@@ -21753,17 +21753,17 @@ views:
                         color: var(--text-off);
                     number_of_forecasts: '5'
                   - type: custom:meteofrance-weather-card
-                    entity: weather.ville
+                    entity: weather.beaucouze
                     number_of_forecasts: '5'
                     current: false
                     details: false
                     one_hour_forecast: true
                     alert_forecast: true
-                    rainChanceEntity: sensor.ville_daily_precipitation
-                    uvEntity: sensor.ville_uv_2
-                    cloudCoverEntity: sensor.ville_cloud_cover
-                    freezeChanceEntity: sensor.ville_freeze_chance_2
-                    snowChanceEntity: sensor.ville_snow_chance_2
+                    rainChanceEntity: sensor.beaucouze_daily_precipitation
+                    uvEntity: sensor.beaucouze_uv_2
+                    cloudCoverEntity: sensor.beaucouze_cloud_cover
+                    freezeChanceEntity: sensor.beaucouze_freeze_chance_2
+                    snowChanceEntity: sensor.beaucouze_snow_chance_2
                     alertEntity: sensor.49_weather_alert
                     style: |
                       ha-card {
@@ -21885,7 +21885,7 @@ views:
                        }
                         
                   - type: custom:clock-weather-card
-                    entity: weather.ville
+                    entity: weather.beaucouze
                     title: ''
                     sun_entity: sun.sun
                     weather_icon_type: fill
