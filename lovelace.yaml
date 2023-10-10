@@ -776,6 +776,129 @@ button_card_templates:
         styles:
           name:
             - color: var(--color-gold)
+  multimedia_card:
+    template:
+      - style
+    aspect_ratio: 1/1
+    show_entity_picture: true
+    icon: |-
+      [[[
+        if (entity.state == 'playing' )
+          return ""
+        if (entity.state != 'playing' )
+          return "mdi:speaker"
+      ]]]
+    label: |-
+      [[[
+        if (entity.state == 'playing' )
+          return "En cours"
+        if (entity.state != 'playing' )
+          return "Eteint"
+      ]]]
+    styles:
+      entity_picture:
+        - width: 100%
+      custom_fields:
+        notification:
+          - border-radius: 50%
+          - position: absolute
+          - left: 21%
+          - top: 03%
+          - height: 10%
+          - width: 10%
+          - font-size: 85%
+          - line-height: 137%
+          - font-weight: null
+        cartes:
+          - position: absolute
+          - border-radius: 50%
+          - top: 44.5%
+          - left: 50%
+          - width: calc(100% + 03px)
+          - transform: translate(-50%, calc(-50% + 10px))
+  title_card:
+    show_icon: false
+    show_name: true
+    show_state: false
+    show_label: true
+    template:
+      - police
+    styles:
+      name:
+        - color: var(--title)
+        - font-size: 15px
+        - font-weight: 500
+        - justify-self: start
+        - padding-top: 01%
+        - margin-left: 2%
+        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+      label:
+        - color: var(--text-off)
+        - font-size: 15px
+        - font-weight: 500
+        - justify-self: start
+        - padding-top: 01%
+        - margin-left: 2%
+        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+      card:
+        - height: auto
+        - padding: 0%
+        - border-radius: 0px
+        - line-height: 100%
+        - '--ha-card-border-width': 0px
+    tap_action:
+      action: toggle
+    double-tap_action:
+      action: more-info
+    style:
+      .: |
+        ha-card {
+            --ha-card-background: none !important;
+            box-shadow: none !important;
+            font-family: Avenir
+            border-width: 0px
+  badge_card:
+    template:
+      - police
+    show_name: false
+    show_label: true
+    show_icon: true
+    styles:
+      grid:
+        - grid-template-areas: '"i n l" '
+      card:
+        - height: 35px
+        - width: auto
+        - padding: 1px 8px 1px 4px
+        - border-radius: 50px
+      img_cell:
+        - background-color: var(--img-cell-off)
+        - border-radius: 50%
+        - width: 25px
+        - height: 25px
+        - place-self: center
+      icon:
+        - color: var(--icon-off)
+        - width: 18px
+        - margin-bottom: 1px
+        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+      entity_picture:
+        - width: 90%
+      label:
+        - font-size: 12px
+        - font-weight: 600
+        - margin-left: 5px
+        - padding-top: 0px
+        - color: var(--text-off)
+        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+      name:
+        - font-size: 12px
+        - font-weight: 600
+        - margin-left: 1px
+        - color: var(--text-off)
+        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+    double_tap_action:
+      action: more-info
   scene_card:
     show_name: true
     show_label: false
@@ -932,7 +1055,7 @@ button_card_templates:
           "unknown" ]]]
         styles:
           card:
-            - border-color: var(--color-red)
+            - border-color: var(--color-card-red)
             - background-color: var(--color-card-red)
           img_cell:
             - background-color: var(--color-img-cell-red)
@@ -980,7 +1103,7 @@ button_card_templates:
         styles:
           card:
             - border-color: rgba(255, 0, 0, 0.5)
-            - background-color: var(--color-red)
+            - background-color: var(--color-card-red)
           img_cell:
             - background-color: var(--color-img-cell-red)
           icon:
@@ -1930,6 +2053,7 @@ button_card_templates:
     entity: switch.lave_vaisselle_power
     name: Vaisselle
     icon: phu:rooms-dining
+    show_label: true
     template:
       - base
       - base_high
@@ -1937,13 +2061,13 @@ button_card_templates:
       - card_state
     label: |
       [[[
-        if (states['switch.lave_vaisselle_power'].state == "on" &&states['switch.lave_vaisselle_program_machinecare'].state == "on")
+        if (states['switch.lave_vaisselle_power'].state == "on" && states['switch.lave_vaisselle_program_machinecare'].state == "on")
           return "Entretien"+"<br>"+states['sensor.lave_vaisselle'].state
-        if (states['switch.lave_vaisselle_power'].state == "on" &&states['switch.lave_vaisselle_program_machinecare'].state == "off")
+        if (states['switch.lave_vaisselle_power'].state == "on" && states['switch.lave_vaisselle_program_machinecare'].state == "off")
           return states['sensor.lave_vaisselle'].state
         if (states['switch.lave_vaisselle_power'].state == "off")
           return "Éteint "
-        return "" 
+        return states['sensor.lave_vaisselle'].state 
       ]]]
     tap_action:
       action: more-info
@@ -2298,9 +2422,9 @@ button_card_templates:
           - left: 06%
           - font-weight: 600
           - font-size: 12px
-          - font-style: italic
+          - font-style: null
           - position: absolute
-          - text-transform: full-width
+          - text-transform: capitalize
           - text-align: left
           - max-height: 40px
           - line-height: 13px
@@ -2739,129 +2863,6 @@ button_card_templates:
       action: toggle
     tap_action:
       action: more-info
-  multimedia_card:
-    template:
-      - style
-    aspect_ratio: 1/1
-    show_entity_picture: true
-    icon: |-
-      [[[
-        if (entity.state == 'playing' )
-          return ""
-        if (entity.state != 'playing' )
-          return "mdi:speaker"
-      ]]]
-    label: |-
-      [[[
-        if (entity.state == 'playing' )
-          return "En cours"
-        if (entity.state != 'playing' )
-          return "Eteint"
-      ]]]
-    styles:
-      entity_picture:
-        - width: 100%
-      custom_fields:
-        notification:
-          - border-radius: 50%
-          - position: absolute
-          - left: 21%
-          - top: 03%
-          - height: 10%
-          - width: 10%
-          - font-size: 85%
-          - line-height: 137%
-          - font-weight: null
-        cartes:
-          - position: absolute
-          - border-radius: 50%
-          - top: 44.5%
-          - left: 50%
-          - width: calc(100% + 03px)
-          - transform: translate(-50%, calc(-50% + 10px))
-  title_card:
-    show_icon: false
-    show_name: true
-    show_state: false
-    show_label: true
-    template:
-      - police
-    styles:
-      name:
-        - color: var(--title)
-        - font-size: 15px
-        - font-weight: 500
-        - justify-self: start
-        - padding-top: 01%
-        - margin-left: 2%
-        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-      label:
-        - color: var(--text-off)
-        - font-size: 15px
-        - font-weight: 500
-        - justify-self: start
-        - padding-top: 01%
-        - margin-left: 2%
-        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-      card:
-        - height: auto
-        - padding: 0%
-        - border-radius: 0px
-        - line-height: 100%
-        - '--ha-card-border-width': 0px
-    tap_action:
-      action: toggle
-    double-tap_action:
-      action: more-info
-    style:
-      .: |
-        ha-card {
-            --ha-card-background: none !important;
-            box-shadow: none !important;
-            font-family: Avenir
-            border-width: 0px
-  badge_card:
-    template:
-      - police
-    show_name: false
-    show_label: true
-    show_icon: true
-    styles:
-      grid:
-        - grid-template-areas: '"i n l" '
-      card:
-        - height: 35px
-        - width: auto
-        - padding: 1px 8px 1px 4px
-        - border-radius: 50px
-      img_cell:
-        - background-color: var(--img-cell-off)
-        - border-radius: 50%
-        - width: 25px
-        - height: 25px
-        - place-self: center
-      icon:
-        - color: var(--icon-off)
-        - width: 18px
-        - margin-bottom: 1px
-        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-      entity_picture:
-        - width: 90%
-      label:
-        - font-size: 12px
-        - font-weight: 600
-        - margin-left: 5px
-        - padding-top: 0px
-        - color: var(--text-off)
-        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-      name:
-        - font-size: 12px
-        - font-weight: 600
-        - margin-left: 1px
-        - color: var(--text-off)
-        - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-    double_tap_action:
-      action: more-info
   system_card:
     aspect_ratio: 1/1
     template:
@@ -3124,7 +3125,11 @@ views:
                       entity: sensor.temp_maison
                       icon: mdi:home-thermometer-outline
                       label: |
-                        [[[ return states['sensor.temp_maison'].state+"°"]]]
+                        [[[ 
+                           if (states['sensor.temp_maison'].state == "unavailable")
+                             return "HS"
+                            return states['sensor.temp_maison'].state+"°" 
+                        ]]]        
                       template:
                         - info_header
                       layout: icon_label
@@ -3570,7 +3575,7 @@ views:
                         "titre_avertissement"
                         "device_hs" 
                         "titre_batterie_faible"
-                        "batterie_faible"           
+                        "batterie_faible"
                         "titre_activite"        
                         "serrure"
                         "electricite"
@@ -3579,12 +3584,14 @@ views:
                         "porte"
                         "lumiere"
                         "rappel"
-                        "reveil"
                         "appareils"
                         "aspi_mode_vacances"
                         "appareils_charges"
                         "appareils_connectes"
                         "modes"
+                        "titre_enfants"
+                        "reveils_et_cours_off"
+                        "reveils_et_cours_on"        
                         "titre_savoir"
                         "savoir"            
                         "titre_maj"
@@ -3809,6 +3816,37 @@ views:
                       - color: var(--color-red)
                       - white-space: normal
                       - text-align: left
+                    titre_enfants:
+                      - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+                      - padding: |
+                          [[[
+                            if (states['input_boolean.nilemato'].state == "off" && states['input_boolean.reveils'].state == "off" )
+                              return "0px 0px 0px 0px" ;
+                            return "10px 0px 01px 0px" ;
+                          ]]]  
+                      - font-weight: bold
+                      - justifiy-self: start
+                      - text-align: left
+                      - color: var(--title)
+                      - white-space: normal
+                    reveils_et_cours_off:
+                      - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+                      - border-left: 2px var(--color-blue) solid
+                      - white-space: normal
+                      - text-align: left
+                      - padding: 0px 0px 0px 08px
+                      - justifiy-self: start
+                      - color: lightgrey
+                    reveils_et_cours_on:
+                      - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
+                      - border-left: 2px var(--color-blue) solid
+                      - padding: 0px 0px 0px 0px
+                      - left: 200px
+                      - width: calc(100% + 0px)
+                      - '--ha-card-border-width': 0px
+                      - '--paper-card-background-color': rgba(0, 0, 0, 0.0)
+                      - '--ha-card-background': rgba(0, 0, 0, 0.0)
+                      - '--ha-card-box-shadow': none
                     titre_activite:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
                       - padding: 10px 0px 01px 0px
@@ -3849,19 +3887,6 @@ views:
                       - padding: 0px 0px 0px 08px
                       - justifiy-self: start
                       - color: lightgrey
-                    reveil:
-                      - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
-                      - border-left: 2px var(--color-blue) solid
-                      - white-space: normal
-                      - text-align: left
-                      - padding: 0px 0px 0px 08px
-                      - justifiy-self: start
-                      - color: |
-                          [[[
-                            if (states['input_boolean.nilemato'].state == "on" && states['sensor.tom_reveil'].state == "unknown")
-                              return 'var(--color-red)';
-                            return 'var(--text-on)';
-                          ]]]
                     courrier:
                       - filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3))
                       - border-left: 2px var(--color-blue) solid
@@ -4078,7 +4103,178 @@ views:
                       if (states['sensor.batterie_faible'].state == '')
                         return "" 
                       return states['sensor.batterie_faible'].state ;
-                    ]]]      
+                    ]]]
+                  titre_enfants: |
+                    [[[ 
+                      if (states['input_boolean.nilemato'].state == "off" && states['input_boolean.reveils'].state == "off")
+                        return ""
+                      if (states['input_boolean.nilemato'].state == "off" && states['input_boolean.reveils'].state == "on")
+                        return "Enfants absents"
+                      return "Réveils et cours"
+                    ]]]
+                  reveils_et_cours_off: |
+                    [[[ 
+                      if (states['input_boolean.nilemato'].state == "on" && states['sensor.verif_reveils_cours'].state == "off")
+                        return "Aucun réveil ni cours"
+                      if (states['input_boolean.nilemato'].state == "off" && states['input_boolean.reveils'].state == "on")
+                        return "<b>Attention, des réveils sont programmés</b>"
+                      return ""
+                    ]]]  
+                  reveils_et_cours_on:
+                    card:
+                      type: conditional
+                      conditions:
+                        - entity: sensor.verif_reveils_cours
+                          state: 'on'
+                        - entity: input_boolean.nilemato
+                          state: 'on'
+                      card:
+                        type: markdown
+                        content: |2-
+                           <table>
+                           <tr>
+                            {%- set time = states.sensor.time.state -%}
+
+                            {%- set reveil_tom = not is_state('sensor.tom_reveil', 'Grasse mat !') -%}
+                            {%- set tom_debut_cours = states.sensor.debut_des_cours_de_tom_aujourd_hui.state -%}
+                            {%- set tom_aujourdhui = not is_state('sensor.debut_des_cours_de_tom_aujourd_hui', 'Pas cours') -%}    
+                            {%- set tom_demain = not is_state('sensor.debut_des_cours_de_tom_demain', 'Pas cours') -%}             
+                            {%- set fin_tom = states.sensor.fin_des_cours_de_tom_aujourd_hui.state -%}
+                            {%- set tom_modif_aujourdhui = states.sensor.pronote_NAME_tom_timetable_today.attributes.canceled_lessons_counter  -%}
+                            {%- set tom_modif_demain = states.sensor.pronote_NAME_tom_timetable_tomorrow.attributes.canceled_lessons_counter  -%}
+
+                            {%- set reveil_manon = not is_state('sensor.manon_reveil', 'Grasse mat !') -%}
+                            {%- set manon_debut_cours = states.sensor.debut_des_cours_de_manon_aujourd_hui.state -%}
+                            {%- set manon_aujourdhui = not is_state('sensor.debut_des_cours_de_manon_aujourd_hui', 'Pas cours') -%}    
+                            {%- set manon_demain = not is_state('sensor.debut_des_cours_de_manon_demain', 'Pas cours') -%} 
+                            {%- set fin_manon = states.sensor.fin_des_cours_de_manon_aujourd_hui.state -%}
+                            {%- set manon_modif_aujourdhui = states.sensor.pronote_NAME_manon_timetable_today.attributes.canceled_lessons_counter  -%}
+                            {%- set manon_modif_demain = states.sensor.pronote_NAME_manon_timetable_tomorrow.attributes.canceled_lessons_counter  -%}
+
+                            {%- set reveil_leane = not is_state('sensor.leane_reveil', 'Grasse mat !') -%}
+                            {%- set leane_debut_cours = states.sensor.debut_des_cours_de_leane_aujourd_hui.state -%}
+                            {%- set leane_aujourdhui = not is_state('sensor.debut_des_cours_de_leane_aujourd_hui', 'Pas cours') -%}    
+                            {%- set leane_demain = not is_state('sensor.debut_des_cours_de_leane_demain', 'Pas cours') -%}
+                            {%- set fin_leane = states.sensor.fin_des_cours_de_leane_aujourd_hui.state -%}
+                            {%- set leane_modif_aujourdhui = states.sensor.pronote_NAME_l_ane_timetable_today.attributes.canceled_lessons_counter  -%}
+                            {%- set leane_modif_demain = states.sensor.pronote_NAME_l_ane_timetable_tomorrow.attributes.canceled_lessons_counter  -%}            
+
+                            {%- set reveil_nina = not is_state('sensor.nina_reveil', 'Grasse mat !') -%}
+                            
+                            
+                            <td><b>Tom</td>
+
+                            <td><b>{%- if reveil_tom == True -%}<font color = #00bfff>{%- else -%}<font color = "grey">{%- endif -%}<ha-icon icon="mdi:clock"></ha-icon></td>    
+                            <td>{%- if reveil_tom == True -%}{{ states.sensor.tom_reveil_court.state }}{%- else -%}<font color = grey>Aucun{%- endif -%}</td>
+                            <td><b>{%- if tom_aujourdhui == True and time < fin_tom -%}<font color = "#00bfff">{%- else -%}<font color = "grey">{%- endif -%}<ha-icon icon="mdi:pen"></ha-icon></td>
+                            <td>{%- if tom_aujourdhui == True -%}
+                                  {%- if time < fin_tom -%}
+                                  {{ states.sensor.date_debut_des_cours_de_tom_aujourd_hui.state }} - {{ states.sensor.fin_des_cours_de_tom_aujourd_hui.state }}
+                                  {%- else -%}
+                                    {%- if tom_demain == True -%}
+                                    <font color = darkgrey>{{ states.sensor.date_debut_des_cours_de_tom_demain.state }} - {{ states.sensor.fin_des_cours_de_tom_demain.state }} 
+                                    {%- elif tom_demain == False -%}
+                                    <font color = grey>Pas cours
+                                    {%- endif -%}</font>            
+                                  {%- endif -%}
+                                {%- elif tom_aujourdhui == False -%}               
+                                  {%- if tom_demain == True -%}
+                                  <font color = darkgrey>{{ states.sensor.date_debut_des_cours_de_tom_demain.state }} - {{ states.sensor.fin_des_cours_de_tom_demain.state }} 
+                                  {%- elif tom_demain == False -%}
+                                  <font color = grey>Pas cours
+                                  {%- endif -%}
+                                {%- endif -%}</td>
+                                
+                            <tr>
+                            
+                            <td><b>Manon</td>           
+                            <td><b>{%- if reveil_manon == True -%}<font color = "#00bfff">{%- else -%}<font color = "grey">{%- endif -%}<ha-icon icon="mdi:clock"></ha-icon></td>    
+                            <td>{%- if reveil_manon == True -%}{{ states.sensor.manon_reveil_court.state }}{%- else -%}<font color = grey>Aucun{%- endif -%}</td>  
+                            <td><b>{%- if manon_aujourdhui == True and time < fin_manon -%}<font color = "#00bfff">{%- else -%}<font color = "grey">{%- endif -%}<ha-icon icon="mdi:pen"></ha-icon></td>  
+                            <td>{%- if manon_aujourdhui == True -%}
+                                  {%- if time < fin_manon -%}
+                                  {{ states.sensor.date_debut_des_cours_de_manon_aujourd_hui.state }} - {{ states.sensor.fin_des_cours_de_manon_aujourd_hui.state }}
+                                  {%- else -%}
+                                    {%- if manon_demain == True -%}
+                                    <font color = darkgrey>{{ states.sensor.date_debut_des_cours_de_manon_demain.state }} - {{ states.sensor.fin_des_cours_de_manon_demain.state }} 
+                                    {%- elif manon_demain == False -%}
+                                    <font color = grey>Pas cours
+                                    {%- endif -%}</font>            
+                                  {%- endif -%}
+                                {%- elif manon_aujourdhui == False -%}               
+                                  {%- if manon_demain == True -%}
+                                  <font color = darkgrey>{{ states.sensor.date_debut_des_cours_de_manon_demain.state }} - {{ states.sensor.fin_des_cours_de_manon_demain.state }} 
+                                  {%- elif manon_demain == False -%}
+                                  <font color = grey>Pas cours
+                                  {%- endif -%}
+                                {%- endif -%}</td>
+                                
+
+                            <tr>
+                            <td><b>Léane</td>      
+                            <td><b>{%- if reveil_leane == True -%}<font color = "#00bfff">{%- else -%}<font color = "grey">{%- endif -%}<ha-icon icon="mdi:clock"></ha-icon></td>    
+                            <td>{%- if reveil_leane == True -%}{{ states.sensor.leane_reveil_court.state }}{%- else -%}<font color = grey>Aucun{%- endif -%}</td>
+                            <td><b>{%- if leane_aujourdhui == True and time < fin_leane -%}<font color = "#00bfff">{%- else -%}<font color = "grey">{%- endif -%}<ha-icon icon="mdi:pen"></ha-icon></td>
+                            <td>{%- if leane_aujourdhui == True -%}
+                                  {%- if time < fin_leane -%}
+                                  {{ states.sensor.date_debut_des_cours_de_leane_aujourd_hui.state }} - {{ states.sensor.fin_des_cours_de_leane_aujourd_hui.state }}
+                                  {%- else -%}
+                                    {%- if leane_demain == True -%}
+                                    <font color = darkgrey>{{ states.sensor.date_debut_des_cours_de_leane_demain.state }} - {{ states.sensor.fin_des_cours_de_leane_demain.state }} 
+                                    {%- elif leane_demain == False -%}
+                                    <font color = grey>Pas cours
+                                    {%- endif -%}</font>            
+                                  {%- endif -%}
+                                {%- elif leane_aujourdhui == False -%}               
+                                  {%- if leane_demain == True -%}
+                                  <font color = darkgrey>{{ states.sensor.date_debut_des_cours_de_leane_demain.state }} - {{ states.sensor.fin_des_cours_de_leane_demain.state }} 
+                                  {%- elif leane_demain == False -%}
+                                  <font color = grey>Pas cours
+                                  {%- endif -%}
+                                {%- endif -%}</td>
+                                
+                            <tr>
+                            
+                            <td><b>Nina</td>
+                            <td><b>{%- if reveil_nina == True -%}<font color = "#00bfff">{%- else -%}<font color = "grey">{%- endif -%}<ha-icon icon="mdi:clock"></ha-icon></td>            
+                            <td>{%- if reveil_nina == True -%}{{ states.sensor.nina_reveil_court.state }}{%- else -%}<font color = grey>Aucun{%- endif -%}</td> 
+                            
+                        card_mod:
+                          style:
+                            .: |
+                              ha-card ha-markdown {
+                                padding: 0px;
+                                --mdc-icon-size: 13px;
+                              }
+                              ha-card ha-markdown.no-header {
+                                padding: 0px;
+                              }
+                            ha-markdown$: |
+                              table{
+                                border-collapse: collapse;
+                                font-weight:normal;
+                                font-size: 13px;
+                                font-family: Avenir;
+                                color: var(--text-on);
+                                letter-spacing: 0px;
+                                width: auto;
+                                outline: 0px solid #393c3d;
+                                margin-top: 0px;
+                              } td {
+                                  padding: 0px 0px 0px 8px;
+                                  text-align: left;  
+                              }
+                              tr {
+                                  border-bottom: none;
+                                  line-height: 19px;      
+                              }
+                              span {
+                                  padding: 5px;
+                              }
+                              tr:nth-child(n+1) > td:nth-child(1) {
+                                text-align: left;
+                                padding: 0px 0px 0px 10px;
+                              }
                   titre_activite: |
                     [[[ return "Infos" 
                     ]]]
@@ -4090,7 +4286,7 @@ views:
                         return ""        
                       return `<ha-icon
                         icon="mdi:flash"
-                        style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-blue); margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.electricite_cout_jour_avec_abo'].state} € (${states["sensor.electricite_conso_kwh_arrondie"].state} kWh)</span>`
                     ]]]    
                   serrure: |
@@ -4099,13 +4295,13 @@ views:
                         return ""
                       return `<ha-icon
                         icon="mdi:lock-open"
-                        style="width: 16px; color: var(--color-icon-orange); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-orange);  margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.serrure_ouverte'].state}</span>`
                       if (states['lock.garage'].state == 'jammed' || states['input_boolean.header_show_serrures'].state == 'off')
                         return ""
                       return `<ha-icon
                         icon="mdi:lock-alert"
-                        style="width: 16px; color: var(--color-icon-red); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-red); margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.serrure_bloquee'].state}</span>`
                     ]]]
                   aspi_mode_vacances: |
@@ -4114,7 +4310,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="phu:roborock"
-                        style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-blue);  margin-right: 2px;">
                         </ha-icon><span>Prochain nettoyage : ${states['sensor.aspi_mode_vacances'].state}</span>`
                     ]]]
                   appareils: |
@@ -4123,7 +4319,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="mdi:connection"
-                        style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;"> 
+                        style="width: 14px; color: var(--color-icon-blue);  margin-right: 2px;"> 
                         </ha-icon><span> ${states['sensor.appareils'].state}</span>`
                     ]]]
                   courrier: |
@@ -4135,12 +4331,12 @@ views:
                       if (states['input_boolean.header_show_courrier'].state == 'on' && states['input_boolean.courrier_releve'].state == 'on')
                         return `<ha-icon
                           icon="mdi:email"
-                          style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
+                          style="width: 14px; color: var(--color-icon-blue);  margin-right: 2px;">
                           </ha-icon><span>Courrier relevé à ${states['sensor.courrier_releve'].state}</span>`
                       if (states['input_boolean.header_show_courrier'].state == 'on' && states['input_boolean.boite_aux_lettres_ouverte'].state == 'on')
                         return `<ha-icon
                           icon="mdi:email"
-                          style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
+                          style="width: 14px; color: var(--color-icon-blue);  margin-right: 2px;">
                           </ha-icon><span>Boîte aux lettres ouverte à ${states['sensor.boite_aux_lettres_ouvertee'].state}</span>`
                     ]]]
                   lumiere: |
@@ -4149,7 +4345,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="phu:bulb-group-filament-candle"
-                        style="width: 16px; color: var(--color-icon-yellow); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-blue); margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.lumiere_etat'].state}</span>`
                     ]]]
                   mouvement: |
@@ -4158,7 +4354,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="mdi:run"
-                        style="width: 16px; color: var(--color-red); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-blue);  margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.mouv_on'].state}</span>`
                     ]]]
                   porte: |
@@ -4167,7 +4363,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="mdi:door-open"
-                        style="width: 16px; color: var(--color-icon-red); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-blue);  margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.porte_on'].state}</span>`
                     ]]]
                   rappel: |
@@ -4179,34 +4375,8 @@ views:
                         return ""            
                       return `<ha-icon
                         icon="mdi:reminder"
-                        style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-blue);  margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.rappel'].state}</span>`
-                    ]]]
-                  reveil: |
-                    [[[
-                      if (states['input_boolean.nilemato'].state == "on" && states['sensor.tom_reveil'].state == "unavailable")
-                        return `<ha-icon
-                          icon="mdi:alarm"
-                          style="width: 16px; color: var(--color-icon-red); height: 16px; margin-right: 2px;">
-                          </ha-icon><span><font color= red> Réveils indisponibles</span>`
-                      if (states['input_boolean.nilemato'].state == "off" && states['sensor.reveil'].state == "")
-                        return ""
-                      if (states['input_boolean.nilemato'].state == "off" && states['sensor.reveil'].state != "Aucun réveil")
-                      return `<ha-icon
-                        icon="mdi:alarm"
-                        style="width: 16px; color: var(--color-icon-red); height: 16px; margin-right: 2px;">
-                        </ha-icon><span><font color= red> Réveils enfants programmés</span>`
-                      if (states['input_boolean.nilemato'].state == "on" && states['sensor.reveil'].state == "" )
-                      return `<ha-icon
-                        icon="mdi:alarm"
-                        style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
-                        </ha-icon><span> Aucun réveil</span>`
-                      if (states['input_boolean.nilemato'].state == "on" && states['sensor.reveil'].state != "" )
-                      return `<ha-icon
-                        icon="mdi:alarm"
-                        style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
-                        </ha-icon><span> ${states['sensor.reveil_court'].state}</span>`
-
                     ]]]
                   appareils_charges: |
                     [[[
@@ -4214,7 +4384,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="mdi:battery-charging-100"
-                        style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-blue);  margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.appareils_charges'].state}</span>`
                     ]]]
                   appareils_connectes: |
@@ -4223,7 +4393,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="mdi:laptop"
-                        style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-blue);  margin-right: 2px;">
                         </ha-icon><span> ${states['sensor.appareils_connectes'].state}</span>` 
                     ]]]
                   modes: |
@@ -4232,7 +4402,7 @@ views:
                         return ""
                       return `<ha-icon
                         icon="mdi:order-bool-descending-variant"
-                        style="width: 16px; color: var(--color-icon-blue); height: 16px; margin-right: 2px;">
+                        style="width: 14px; color: var(--color-icon-blue);  margin-right: 2px; ">
                         </ha-icon><span> ${states['sensor.modes'].state}</span>`
                     ]]]
                   titre_maj: |
@@ -4513,7 +4683,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.la_cuisine_next_timer
@@ -4529,7 +4699,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.le_salon_next_timer
@@ -4545,7 +4715,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.aurel_s_fire_tv_cube_next_timer
@@ -4561,7 +4731,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.la_salle_de_bain_next_timer
@@ -4577,7 +4747,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.papa_next_timer
@@ -4593,7 +4763,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.maman_next_timer
@@ -4609,7 +4779,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.tom_next_timer
@@ -4625,7 +4795,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.nina_next_timer
@@ -4641,7 +4811,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.leane_next_timer
@@ -4657,7 +4827,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
                   - type: conditional
                     conditions:
                       - entity: sensor.manon_next_timer
@@ -4673,7 +4843,7 @@ views:
                       show_label: false
                       show_last_update: false
                       template:
-                        - base
+                        - ball_card
       - type: custom:layout-card
         layout_type: masonry
         cards:
@@ -7110,6 +7280,2337 @@ views:
             type: vertical-stack
         layout:
           width: 280
+  - title: Pronote
+    path: pronote
+    icon: mdi:account-school
+    type: custom:horizontal-layout
+    layout:
+      width: 350
+      max_cols: 4
+    badges: []
+    cards:
+      - type: custom:layout-card
+        layout_type: masonry
+        layout:
+          width: 300
+        cards:
+          - type: entities
+            entities:
+              - type: custom:button-card
+                template:
+                  - title_card
+                name: >
+                  [[[ return "Tom -
+                  "+states['sensor.pronote_NAME_tom'].attributes.class_name ]]]
+                styles:
+                  name:
+                    - justify-self: null
+                    - font-size: 19px
+                    - font-weight: 600
+                  label:
+                    - justify-self: null
+                    - font-size: 14px
+                    - color: var(--text-off)
+                  custom_fields:
+                    entity_picture:
+                      - position: absolute
+                      - width: 35%
+                label: >
+                  [[[ return "Aujourd'hui : " +
+                  states['sensor.journee_de_cours_de_tom_aujourd_hui'].state+
+                  "<br>" + "Demain : " +
+                  states['sensor.journee_de_cours_de_tom_demain'].state]]]
+                custom_fields:
+                  entity_picture:
+                    card:
+                      type: custom:button-card
+                      entity: person.tom
+                      template:
+                        - no_style
+                      show_name: false
+                      show_state: false
+                      show_entity_picture: true
+                      styles:
+                        entity_picture:
+                          - border-radius: 50%
+              - type: custom:vertical-stack-in-card
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                    box-shadow: none;
+                    border-radius: 20px !important;
+                  }   
+                cards:
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 0px 5px 0px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_tom_timetable_period
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+                            <div>Emploi du temps</div> {% set months =
+                            ["Janvier","Février", "Mars", "Avril", "Mai",
+                            "Juin", "Juillet", "Août", "Septembre", "Octobre",
+                            "Novembre", "Décembre"] %}
+
+                            {% set days = ["Lundi", "Mardi", "Mercredi",
+                            "Jeudi", "Vendredi", "Samedi", "Dimanche"] %}
+
+                            {% set weeknum = now().strftime("%W") %} 
+
+
+                            <table>
+                              {% set items = state_attr('sensor.pronote_NAME_tom_timetable_period','lessons') %}
+                              <tbody>
+                                {%- for i in range(0, items | count, 1) -%}
+                                  {% if (items[i].start_at - now().today()).days > 4 %}
+                                    {% continue %}
+                                  {% endif %}
+
+                                  {%- if i == 0 -%}
+                                    <tr><td colspan="5"><b>{{ days[items[i].start_at.strftime('%w')| int - 1] }} {{ items[i].start_at.strftime("%d") }}</b></td></tr>
+                                  {%- endif -%}
+
+                                  {%- if items[i].start_at.strftime("%F") > items[i-1].start_at.strftime("%F") -%} 
+                                    <tr><td colspan="5"><b>{{ days[items[i].start_at.strftime('%w')| int - 1] }} {{ items[i].start_at.strftime("%d") }}</b></td></tr>
+                                  {%- endif -%}
+
+                                  <tr>
+                                  {%- if items[i].canceled != True -%}
+                                      <td>{{ items[i].start_time }}<br />{{ items[i].end_time }}</td>
+                                      <td>
+                                        {%- if as_timestamp(items[i].end_at) | timestamp_local < as_timestamp(now()) | timestamp_local -%}
+                                          <del>
+                                        {%- endif -%}
+                                        {%- if as_timestamp(items[i].start_at) | timestamp_local <= as_timestamp(now()) | timestamp_local and as_timestamp(items[i].end_at) | timestamp_local >= as_timestamp(now()) | timestamp_local -%}
+                                          <mark></mark>
+                                        {%- else -%}
+                                          <span></span>
+                                        {%- endif -%}
+                                        {%- if as_timestamp(items[i].end_at) | timestamp_local < as_timestamp(now()) | timestamp_local -%}
+                                          </del>
+                                        {%- endif -%}
+                                      </td>
+                                      <td>{{ items[i].lesson }}<br /> <span>{{ items[i].classroom }}</td>
+                                  {%- else -%}
+                                    <td><del>{{ items[i].start_time }}<br />{{ items[i].end_time }}</del></td>
+                                    <td><del><mark></mark></del></td>
+                                    <td><del>{{ items[i].lesson }} <span>{{ items[i].status }}</span></del></td>
+                                  {%- endif -%}
+                                  </tr>
+                               {% endfor %}
+                             </tbody>
+                            </table>
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding:05px
+                                }
+                              ha-markdown$: |
+                                ha-markdown-element {
+                                  display: inline-block;
+                                  height: 300px;
+                                  overflow-y: scroll;
+                                  width: 100%;
+                                }
+                                @media only screen and (min-height: 600px) {
+                                  ha-markdown-element {
+                                    height: 400px;
+                                  }
+                                }
+                                div {
+                                  background-color: var(--card-background-color);
+                                  border-radius: 30px;   
+                                  padding: 10px;
+                                  text-align: center;
+                                  color: var(--title);
+                                  font-weight:600;
+                                  font-size: 15px;
+                                  font-family: Avenir; 
+                                }
+                                table{
+                                  border-spacing: 0px;
+                                  font-size: 0.9em;
+                                  font-family: Roboto;
+                                  width: 100%;
+                                  outline: 0px solid #393c3d;
+                                  margin-top:5px;
+                                }
+                                caption {
+                                  text-align: center;
+                                  font-weight: bold;
+                                  font-size: 1.2em;
+                                }
+                                td:first-of-type {
+                                  width:;
+                                }
+                                td:nth-of-type(2)>span {
+                                  display: block;
+                                  background-color: lightgrey;
+                                  border-radius: 40% / 10%;
+                                  width: 0.5em;
+                                  height: 3em;
+                                  padding: 0px;
+                                }
+                                td:nth-of-type(2)>del>mark {
+                                  display: block;
+                                  background-color: #EC4B34;
+                                  border-radius: 40% / 10%;
+                                  width: 0.5em;
+                                  height: 3em;
+                                  padding: 0px;
+                                }
+                                td:nth-of-type(2)>del>span {
+                                  display: none;
+                                }
+                                td:nth-of-type(2)>mark {
+                                  display: block;
+                                  background-color: #009767;
+                                  border-radius: 40% / 10%;
+                                  width: 0.5em;
+                                  height: 3em;
+                                  padding: 0px;
+                                }
+                                td:last-of-type {
+                                  width: 90%;
+                                }
+                                td:last-of-type span {
+                                  display: inline-block;
+                                  padding: 0%;
+                                  width: 97%;
+                                  text-align: right;
+                                }
+                                td {
+                                  padding: 5px 10px 5px 10px;
+                                  margin-bottom: 3px;
+                                  text-align: left;
+                                  border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                  border-bottom: 0px solid #1c2020;
+                                }
+                                tr:nth-of-type(even) {
+                                  background-color: rgb(54, 54, 54, 0.3);
+                                }
+                                tr:last-of-type {
+                                  border-bottom: transparent;          }*
+                                mark {
+                                  background: #009767;
+                                  color: #222627;
+                                  border-radius: 5px;
+                                  padding: 5px;
+                                }
+                                span {
+                                  padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_tom_evaluations
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+                            <div>Evaluations</div> {% set items =
+                            state_attr('sensor.pronote_NAME_tom_evaluations','evaluations')%}
+                            <table width='100%'>
+                              <tbody>
+                              {% for i in range(0, items | count, 1) %}
+                              <tr><td width='20%'>{{ items[i].date.strftime("%d-%m") }}</td><td width='60%'>{{ items[i].subject }}</td><td width='30%'>
+                              {% set acquisitions = items[i].acquisitions %}
+                              {% for j in range(0,acquisitions|count,1) %}
+                              {% if acquisitions[j].level == 'Très bonne maîtrise' %}💚
+                              {% elif acquisitions[j].level == 'Maîtrise satisfaisante' %}🟢
+                              {% elif acquisitions[j].level == "Presque maîtrisé" %}🟡
+                              {% elif acquisitions[j].level == "Début de maîtrise" %}🟡
+                              {% elif acquisitions[j].level == 'Maîtrise fragile'  %}🟠
+                              {% elif acquisitions[j].level == 'Maîtrise insuffisante'  %}🔴    
+                              {% elif acquisitions[j].level == 'Absent'  %}❌
+                              {% else %}?
+                              {% endif %}{% endfor %}</td></tr>
+                              {% endfor %}
+                            </tbody> </table>
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px;
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px;
+                                }
+                              ha-markdown$: |
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;   
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1em;
+                                  font-family: Roboto;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 0px 5px 0px 5px;
+                                    text-align: left;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                    line-height: 4px;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.3);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_tom_grades
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: |2-
+                             <div>Notes
+                             </div><table>
+                              {% set items = state_attr('sensor.pronote_NAME_tom_grades','grades')%}
+                              <tr>
+                              <td><h4>Date<h3></td>
+                              <td><h4>Cours</td>
+                              <td><h4>Note</td>
+                              <td><h4>Class</td>
+                              <td><h4>Max</td>
+                              <td><h4>Min</td>
+
+                              </tr>
+                              {% for i in range(0, items | count, 1) %}
+                              <tr>    
+                              <td>{{ items[i].date }}</td>
+                              <td>{% if items[i].subject == "ANGLAIS LV1 > ANGLAIS LV1" %}ANGLAIS
+                              {% elif items[i].subject == "NUMERIQUE SC.INFORM." %}NUM. SC.INFO
+                              {% elif items[i].subject == "SC. ECONO.& SOCIALES" %}SC. ECO.& SOCIO.
+                              {% elif items[i].subject == "MATHEMATIQUES" %}MATHS
+                              {% elif items[i].subject == "HISTOIRE-GEOGRAPHIE" %}HIST-GEO
+                              {% elif items[i].subject == "SCIENCES VIE & TERRE" %}SVT
+                              {% elif items[i].subject == "ED.PHYSIQUE & SPORT." %}EPS
+                              {% else %}{{ items[i].subject }}
+                              {% endif %}</td>
+                              <td>{% if items[i].grade == "Absent" %}❌{% else %}{{ items[i].grade_out_of }}{% endif %}</td>
+                              <td>{{ items[i].class_average }}</td>
+                              <td>{{ items[i].max }}</td>
+                              <td>{{ items[i].min }}</td>
+                             </tr>
+                            {% endfor %}
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                h1 {
+                                    font-weight: normal;
+                                    font-size: 24px;
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;   
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1.em;
+                                  font-family: Roboto;
+                                  letter-spacing: -1px;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 0px 5px 0px 5px;
+                                    text-align: center;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                    line-height: 25px;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.5);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: #222627;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_tom_averages
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: |2-
+                              <div>Moyennes</div><table>
+                                {% set items = state_attr('sensor.pronote_NAME_tom_averages','averages')%}
+                              <tr>
+                              <td><h4>Matière<h3></td>
+                              <td><h4>Moyenne élève</td>
+                              <td><h4>Moyenne classe</td>
+                              <td><h4>Min</td>
+                              <td><h4>Max</td>
+                              </tr>
+                              {% for i in range(0, items | count, 1) %}
+                              <tr>    
+
+                              <td>{% if items[i].subject == "ANGLAIS LV1 > ANGLAIS LV1" %}ANGLAIS
+                              {% elif items[i].subject == "NUMERIQUE SC.INFORM." %}NUM. SC.INFO
+                              {% elif items[i].subject == "SC. ECONO.& SOCIALES" %}SC. ECO.& SOCIO.
+                              {% elif items[i].subject == "MATHEMATIQUES" %}MATHS
+                              {% elif items[i].subject == "HISTOIRE-GEOGRAPHIE" %}HIST-GEO
+                              {% elif items[i].subject == "SCIENCES VIE & TERRE" %}SVT
+                              {% elif items[i].subject == "ED.PHYSIQUE & SPORT." %}EPS
+                              {% else %}{{ items[i].subject }}{% endif %}</td>
+                              <td>{{ items[i].average }} / {{ items[i].out_of }}</td>
+                              <td>{{ items[i].class }}</td>
+                              <td>{{ items[i].min }}</td>
+                              <td>{{ items[i].max }}</td>
+                             </tr>
+                            {% endfor %}
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                h1 {
+                                    font-weight: normal;
+                                    font-size: 24px;
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;  
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1.em;
+                                  font-family: Roboto;
+                                  letter-spacing: -1px;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 0px 4px 0px 4px;
+                                    text-align: center;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                    line-height: 25px;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.5);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+1) > td:nth-child(1) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_tom_homework
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: |-
+                            <div>Devoirs</div>
+                            <table>
+                                <tbody>
+                                    {% set items = state_attr('sensor.pronote_NAME_tom_homework','homework') %}
+                                    {%-for i in range(0, items | count, 1) -%}
+                                    <tr>
+                                        <td>
+                                        {%- if items[i].done == true -%}
+                                            <mark>
+                                            {{items[i].date.strftime("%d/%m")}}
+                                            </mark>
+                                        {%- else -%}
+                                            <span>
+                                            {{items[i].date.strftime("%d/%m")}}
+                                            </span>
+                                        {% endif %}</td>              
+                                        <td>{{items[i].subject}}</td>
+                                        <td>{{items[i].description}}</td>
+                                    </tr>
+                                    {% endfor %}
+                              </tbody>
+                            </table>
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px;
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px;
+                                }
+                              ha-markdown$: |
+                                ha-markdown-element {
+                                  display: inline-block;
+                                  height: 300px;
+                                  overflow-y: scroll;
+                                  width: 100%;
+                                }
+                                @media only screen and (min-height: 600px) {
+                                  ha-markdown-element {
+                                    height: 400px;
+                                  }
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;  
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1em;
+                                  font-family: Roboto;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 5px 5px 5px 5px;
+                                    text-align: left;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.5);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 15px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 15px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_tom_absences
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+                            <div>Absences</div><table>  {% set items =
+                            state_attr('sensor.pronote_NAME_tom_absences','absences')
+                            %} {% for i in range(0, items | count, 1) %} <tr>
+                            {%- if items[i].justified == True -%} <td> <mark> {{
+                            items[i].from.strftime("%d-%m") }}</mark></td> {%
+                            else %} <td> <span>{{
+                            items[i].from.strftime("%d-%m") }}</span></td>  {%-
+                            endif -%}  <td>{{ items[i].hours }}</td> <td>{{
+                            items[i].reason }}</td> {% endfor %}
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px;
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px;
+                                }
+                              ha-markdown$: |
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;   
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-family: Roboto;
+                                  width: 100%;
+                                  outline: 0px solid #393c3d;
+                                  margin-top:5px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 5px 10px 5px 10px;
+                                    text-align: left;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.3);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;          }*
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.derniere_mise_a_jour_de_pronote_tom
+                        template:
+                          - title_card
+                        show_state: true
+                        name: MàJ
+                        layout: name_state
+                        styles:
+                          name:
+                            - justify-self: null
+                            - font-size: 12px
+                            - color: var(--text-off)
+                          state:
+                            - justify-self: null
+                            - font-size: 12px
+                            - color: var(--text-on)
+      - type: custom:layout-card
+        layout_type: masonry
+        layout:
+          width: 300
+        cards:
+          - type: entities
+            entities:
+              - type: custom:button-card
+                template:
+                  - title_card
+                name: >
+                  [[[ return "Manon -
+                  "+states['sensor.pronote_NAME_manon'].attributes.class_name
+                  ]]]
+                styles:
+                  name:
+                    - justify-self: null
+                    - font-size: 19px
+                    - font-weight: 600
+                  label:
+                    - justify-self: null
+                    - font-size: 14px
+                    - color: var(--text-off)
+                  custom_fields:
+                    entity_picture:
+                      - position: absolute
+                      - width: 35%
+                label: >
+                  [[[ return "Aujourd'hui : " +
+                  states['sensor.journee_de_cours_de_manon_aujourd_hui'].state+
+                  "<br>" + "Demain : " +
+                  states['sensor.journee_de_cours_de_manon_demain'].state]]]
+                custom_fields:
+                  entity_picture:
+                    card:
+                      type: custom:button-card
+                      entity: person.manon
+                      template:
+                        - no_style
+                      show_name: false
+                      show_state: false
+                      show_entity_picture: true
+                      styles:
+                        entity_picture:
+                          - border-radius: 50%
+              - type: custom:vertical-stack-in-card
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                    box-shadow: none;
+                    border-radius: 20px !important;
+                  }   
+                cards:
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_manon_timetable_period
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+                            <div>Emploi du temps</div> {% set months =
+                            ["Janvier","Février", "Mars", "Avril", "Mai",
+                            "Juin", "Juillet", "Août", "Septembre", "Octobre",
+                            "Novembre", "Décembre"] %}
+
+                            {% set days = ["Lundi", "Mardi", "Mercredi",
+                            "Jeudi", "Vendredi", "Samedi", "Dimanche"] %}
+
+                            {% set weeknum = now().strftime("%W") %} 
+
+
+                            <table>
+                              {% set items = state_attr('sensor.pronote_NAME_manon_timetable_period','lessons') %}
+                              <tbody>
+                                {%- for i in range(0, items | count, 1) -%}
+                                  {% if (items[i].start_at - now().today()).days > 4 %}
+                                    {% continue %}
+                                  {% endif %}
+
+                                  {%- if i == 0 -%}
+                                    <tr><td colspan="5"><b>{{ days[items[i].start_at.strftime('%w')| int - 1] }} {{ items[i].start_at.strftime("%d") }}</b></td></tr>
+                                  {%- endif -%}
+
+                                  {%- if items[i].start_at.strftime("%F") > items[i-1].start_at.strftime("%F") -%} 
+                                    <tr><td colspan="5"><b>{{ days[items[i].start_at.strftime('%w')| int - 1] }} {{ items[i].start_at.strftime("%d") }}</b></td></tr>
+                                  {%- endif -%}
+
+                                  <tr>
+                                  {%- if items[i].canceled != True -%}
+                                      <td>{{ items[i].start_time }}<br />{{ items[i].end_time }}</td>
+                                      <td>
+                                        {%- if as_timestamp(items[i].end_at) | timestamp_local < as_timestamp(now()) | timestamp_local -%}
+                                          <del>
+                                        {%- endif -%}
+                                        {%- if as_timestamp(items[i].start_at) | timestamp_local <= as_timestamp(now()) | timestamp_local and as_timestamp(items[i].end_at) | timestamp_local >= as_timestamp(now()) | timestamp_local -%}
+                                          <mark></mark>
+                                        {%- else -%}
+                                          <span></span>
+                                        {%- endif -%}
+                                        {%- if as_timestamp(items[i].end_at) | timestamp_local < as_timestamp(now()) | timestamp_local -%}
+                                          </del>
+                                        {%- endif -%}
+                                      </td>
+                                      <td>{{ items[i].lesson }}<br /> <span>{{ items[i].classroom }}</td>
+                                  {%- else -%}
+                                    <td><del>{{ items[i].start_time }}<br />{{ items[i].end_time }}</del></td>
+                                    <td><del><mark></mark></del></td>
+                                    <td><del>{{ items[i].lesson }} <span>{{ items[i].status }}</span></del></td>
+                                  {%- endif -%}
+                                  </tr>
+                               {% endfor %}
+                             </tbody>
+                            </table>
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding:05px
+                                }
+                              ha-markdown$: |
+                                ha-markdown-element {
+                                  display: inline-block;
+                                  height: 300px;
+                                  overflow-y: scroll;
+                                  width: 100%;
+                                }
+                                @media only screen and (min-height: 600px) {
+                                  ha-markdown-element {
+                                    height: 400px;
+                                  }
+                                }
+                                div {
+                                  background-color: var(--card-background-color);
+                                  border-radius: 30px;   
+                                  padding: 10px;
+                                  text-align: center;
+                                  color: var(--title);
+                                  font-weight:600;
+                                  font-size: 15px;
+                                  font-family: Avenir; 
+                                }
+                                table{
+                                  border-spacing: 0px;
+                                  font-size: 0.9em;
+                                  font-family: Roboto;
+                                  width: 100%;
+                                  outline: 0px solid #393c3d;
+                                  margin-top:5px;
+                                }
+                                caption {
+                                  text-align: center;
+                                  font-weight: bold;
+                                  font-size: 1.2em;
+                                }
+                                td:first-of-type {
+                                  width:;
+                                }
+                                td:nth-of-type(2)>span {
+                                  display: block;
+                                  background-color: lightgrey;
+                                  border-radius: 40% / 10%;
+                                  width: 0.5em;
+                                  height: 3em;
+                                  padding: 0px;
+                                }
+                                td:nth-of-type(2)>del>mark {
+                                  display: block;
+                                  background-color: #EC4B34;
+                                  border-radius: 40% / 10%;
+                                  width: 0.5em;
+                                  height: 3em;
+                                  padding: 0px;
+                                }
+                                td:nth-of-type(2)>del>span {
+                                  display: none;
+                                }
+                                td:nth-of-type(2)>mark {
+                                  display: block;
+                                  background-color: #009767;
+                                  border-radius: 40% / 10%;
+                                  width: 0.5em;
+                                  height: 3em;
+                                  padding: 0px;
+                                }
+                                td:last-of-type {
+                                  width: 90%;
+                                }
+                                td:last-of-type span {
+                                  display: inline-block;
+                                  padding: 0%;
+                                  width: 97%;
+                                  text-align: right;
+                                }
+                                td {
+                                  padding: 5px 10px 5px 10px;
+                                  margin-bottom: 3px;
+                                  text-align: left;
+                                  border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                  border-bottom: 0px solid #1c2020;
+                                }
+                                tr:nth-of-type(even) {
+                                  background-color: rgb(54, 54, 54, 0.3);
+                                }
+                                tr:last-of-type {
+                                  border-bottom: transparent;          }*
+                                mark {
+                                  background: #009767;
+                                  color: #222627;
+                                  border-radius: 5px;
+                                  padding: 5px;
+                                }
+                                span {
+                                  padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_manon_evaluations
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+                            <div>Evaluations</div> {% set items =
+                            state_attr('sensor.pronote_NAME_manon_evaluations','evaluations')%}
+                            <table width='100%'>
+                              <tbody>
+                              {% for i in range(0, items | count, 1) %}
+                              <tr><td width='15%'>{{ items[i].date.strftime("%d-%m") }}</td><td width='40%'>{{ items[i].subject }}</td><td width='30%'>
+                              {% set acquisitions = items[i].acquisitions %}
+                              {% for j in range(0,acquisitions|count,1) %}{% if acquisitions[j].level == 'Très bonne maîtrise' %}💚{% elif acquisitions[j].level == 'Maîtrise satisfaisante' %}🟢{% elif acquisitions[j].level == "Presque maîtrisé" %}🟡{% elif acquisitions[j].level == "Début de maîtrise" %}🟡{% elif acquisitions[j].level == 'Maîtrise fragile'  %}🟠{% elif acquisitions[j].level == 'Maîtrise insuffisante'  %}🔴{% elif acquisitions[j].level == 'Absent'  %}❌{% else %}?{% endif %}{% endfor %}</td></tr>
+                              {% endfor %}
+                            </tbody> </table>
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                h1 {
+                                    font-weight: normal;
+                                    font-size: 24px;
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;   
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1em;
+                                  font-family: Roboto;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 0px 5px 0px 5px;
+                                    text-align: left;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                    line-height: 4px;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.3);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: #009767;
+                                    color: #222627;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_manon_grades
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: |2-
+                                <div>Notes</div><table> 
+                                {% set items = state_attr('sensor.pronote_NAME_manon_grades','grades')%}
+                              <tr>
+                              <td><h4>Date<h3></td>
+                              <td><h4>Cours</td>
+                              <td><h4>Note</td>
+                              <td><h4>Class</td>
+                              <td><h4>Max</td>
+                              <td><h4>Min</td>
+                              </tr>
+                              {% for i in range(0, items | count, 1) %}
+                              <tr>    
+                              <td>{{ items[i].date }}</td>
+                              <td>{{ items[i].subject }}</td>
+                              <td>{% if items[i].grade == "Absent" %}❌{% else %}{{ items[i].grade_out_of }}{% endif %}</td>
+                              <td>{{ items[i].class_average }}</td>
+                              <td>{{ items[i].max }}</td>
+                              <td>{{ items[i].min }}</td>
+                             </tr>
+                            {% endfor %}
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                h1 {
+                                    font-weight: normal;
+                                    font-size: 24px;
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;   
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1.em;
+                                  font-family: Roboto;
+                                  letter-spacing: -1px;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 0px 5px 0px 5px;
+                                    text-align: center;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                    line-height: 25px;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.5);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: #222627;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_manon_averages
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: |2-
+                              <div>Moyennes</div><table>
+                                {% set items = state_attr('sensor.pronote_NAME_manon_averages','averages')%}
+                              <tr>
+                              <td><h4>Matière<h3></td>
+                              <td><h4>Moyenne élève</td>
+                              <td><h4>Moyenne classe</td>
+                              <td><h4>Min</td>
+                              <td><h4>Max</td>
+                              </tr>
+                              {% for i in range(0, items | count, 1) %}
+                              <tr>    
+
+                              <td>{{ items[i].subject }}</td>
+                              <td>{{ items[i].average }} / {{ items[i].out_of }}</td>
+                              <td>{{ items[i].class }}</td>
+                              <td>{{ items[i].min }}</td>
+                              <td>{{ items[i].max }}</td>
+                             </tr>
+                            {% endfor %}
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                h1 {
+                                    font-weight: normal;
+                                    font-size: 24px;
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;  
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1.em;
+                                  font-family: Roboto;
+                                  letter-spacing: -1px;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 0px 4px 0px 4px;
+                                    text-align: center;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                    line-height: 25px;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.5);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+1) > td:nth-child(1) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_manon_homework
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+
+
+                            <div>{{states.sensor.devoirs_manon_next_day.state}}</div>
+
+                            <table>
+                                <tbody>
+                                    {% set items = state_attr('sensor.pronote_NAME_manon_homework','homework') %}
+                                    {%-for i in range(0, items | count, 1) -%}
+                                    <tr>
+                                        <td>
+                                        {%- if items[i].done == true -%}
+                                            <mark>
+                                            {{items[i].date.strftime("%d/%m")}}
+                                            </mark>
+                                        {%- else -%}
+                                            <span>
+                                            {{items[i].date.strftime("%d/%m")}}
+                                            </span>
+                                        {% endif %}</td>              
+                                        <td>{{items[i].subject}}</td>
+                                        <td>{{items[i].description}}</td>
+                                    </tr>
+                                    {% endfor %}
+                              </tbody>
+                            </table>
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                ha-markdown-element {
+                                  display: inline-block;
+                                  height: 300px;
+                                  overflow-y: scroll;
+                                  width: 100%;
+                                }
+                                @media only screen and (min-height: 600px) {
+                                  ha-markdown-element {
+                                    height: 400px;
+                                  }
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;  
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1em;
+                                  font-family: Roboto;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 5px 5px 5px 5px;
+                                    text-align: left;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.5);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 15px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: ##000000;
+                                    border-radius: 15px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_manon_absences
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+                            <div>Absences</div><table>  {% set items =
+                            state_attr('sensor.pronote_NAME_manon_absences','absences')
+                            %} {% for i in range(0, items | count, 1) %} <tr>
+                            {%- if items[i].justified == True -%} <td> <mark> {{
+                            items[i].from.strftime("%d-%m") }}</mark></td> {%
+                            else %} <td> <span>{{
+                            items[i].from.strftime("%d-%m") }}</span></td>  {%-
+                            endif -%}  <td>{{ items[i].hours }}</td> <td>{{
+                            items[i].reason }}</td> {% endfor %}
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding:05px
+                                }
+                              ha-markdown$: |
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;  
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;e:1.2em;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-family: Roboto;
+                                  width: 100%;
+                                  outline: 0px solid #393c3d;
+                                  margin-top:5px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 5px 10px 5px 10px;
+                                    text-align: left;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.3);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;          }*
+                                mark {
+                                    background: var(--color-blue);
+                                    color: #222627;
+                                    border-radius: 5px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 5px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.derniere_mise_a_jour_de_pronote_manon
+                        template:
+                          - title_card
+                        show_state: true
+                        name: MàJ
+                        layout: name_state
+                        styles:
+                          name:
+                            - justify-self: null
+                            - font-size: 12px
+                            - color: var(--text-off)
+                          state:
+                            - justify-self: null
+                            - font-size: 12px
+                            - color: var(--text-on)
+      - type: custom:layout-card
+        layout_type: masonry
+        layout:
+          width: 300
+        cards:
+          - type: entities
+            entities:
+              - type: custom:button-card
+                template:
+                  - title_card
+                name: >
+                  [[[ return "Léane -
+                  "+states['sensor.pronote_NAME_l_ane'].attributes.class_name
+                  ]]]
+                styles:
+                  name:
+                    - justify-self: null
+                    - font-size: 19px
+                    - font-weight: 600
+                  label:
+                    - justify-self: null
+                    - font-size: 14px
+                    - color: var(--text-off)
+                  custom_fields:
+                    entity_picture:
+                      - position: absolute
+                      - width: 35%
+                label: >
+                  [[[ return "Aujourd'hui : " +
+                  states['sensor.journee_de_cours_de_leane_aujourd_hui'].state+
+                  "<br>" + "Demain : " +
+                  states['sensor.journee_de_cours_de_leane_demain'].state]]]
+                custom_fields:
+                  entity_picture:
+                    card:
+                      type: custom:button-card
+                      entity: person.leane
+                      template:
+                        - no_style
+                      show_name: false
+                      show_state: false
+                      show_entity_picture: true
+                      styles:
+                        entity_picture:
+                          - border-radius: 50%
+              - type: custom:vertical-stack-in-card
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                    box-shadow: none;
+                    border-radius: 20px !important;
+                  }   
+                cards:
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_l_ane_timetable_period
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+                            <div>Emploi du temps</div> {% set months =
+                            ["Janvier","Février", "Mars", "Avril", "Mai",
+                            "Juin", "Juillet", "Août", "Septembre", "Octobre",
+                            "Novembre", "Décembre"] %}
+
+                            {% set days = ["Lundi", "Mardi", "Mercredi",
+                            "Jeudi", "Vendredi", "Samedi", "Dimanche"] %}
+
+                            {% set weeknum = now().strftime("%W") %} 
+
+
+                            <table>
+                              {% set items = state_attr('sensor.pronote_NAME_l_ane_timetable_period','lessons') %}
+                              <tbody>
+                                {%- for i in range(0, items | count, 1) -%}
+                                  {% if (items[i].start_at - now().today()).days > 4 %}
+                                    {% continue %}
+                                  {% endif %}
+
+                                  {%- if i == 0 -%}
+                                    <tr><td colspan="5"><b>{{ days[items[i].start_at.strftime('%w')| int - 1] }} {{ items[i].start_at.strftime("%d") }}</b></td></tr>
+                                  {%- endif -%}
+
+                                  {%- if items[i].start_at.strftime("%F") > items[i-1].start_at.strftime("%F") -%} 
+                                    <tr><td colspan="5"><b>{{ days[items[i].start_at.strftime('%w')| int - 1] }} {{ items[i].start_at.strftime("%d") }}</b></td></tr>
+                                  {%- endif -%}
+
+                                  <tr>
+                                  {%- if items[i].canceled != True -%}
+                                      <td>{{ items[i].start_time }}<br />{{ items[i].end_time }}</td>
+                                      <td>
+                                        {%- if as_timestamp(items[i].end_at) | timestamp_local < as_timestamp(now()) | timestamp_local -%}
+                                          <del>
+                                        {%- endif -%}
+                                        {%- if as_timestamp(items[i].start_at) | timestamp_local <= as_timestamp(now()) | timestamp_local and as_timestamp(items[i].end_at) | timestamp_local >= as_timestamp(now()) | timestamp_local -%}
+                                          <mark></mark>
+                                        {%- else -%}
+                                          <span></span>
+                                        {%- endif -%}
+                                        {%- if as_timestamp(items[i].end_at) | timestamp_local < as_timestamp(now()) | timestamp_local -%}
+                                          </del>
+                                        {%- endif -%}
+                                      </td>
+                                      <td>{{ items[i].lesson }}<br /> <span>{{ items[i].classroom }}</td>
+                                  {%- else -%}
+                                    <td><del>{{ items[i].start_time }}<br />{{ items[i].end_time }}</del></td>
+                                    <td><del><mark></mark></del></td>
+                                    <td><del>{{ items[i].lesson }} <span>{{ items[i].status }}</span></del></td>
+                                  {%- endif -%}
+                                  </tr>
+                               {% endfor %}
+                             </tbody>
+                            </table>
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding:05px
+                                }
+                              ha-markdown$: |
+                                ha-markdown-element {
+                                  display: inline-block;
+                                  height: 300px;
+                                  overflow-y: scroll;
+                                  width: 100%;
+                                }
+                                @media only screen and (min-height: 600px) {
+                                  ha-markdown-element {
+                                    height: 400px;
+                                  }
+                                }
+                                div {
+                                  background-color: var(--card-background-color);
+                                  border-radius: 30px;   
+                                  padding: 10px;
+                                  text-align: center;
+                                  color: var(--title);
+                                  font-weight:600;
+                                  font-size: 15px;
+                                  font-family: Avenir; 
+                                }
+                                table{
+                                  border-spacing: 0px;
+                                  font-size: 0.9em;
+                                  font-family: Roboto;
+                                  width: 100%;
+                                  outline: 0px solid #393c3d;
+                                  margin-top:5px;
+                                }
+                                caption {
+                                  text-align: center;
+                                  font-weight: bold;
+                                  font-size: 1.2em;
+                                }
+                                td:first-of-type {
+                                  width:;
+                                }
+                                td:nth-of-type(2)>span {
+                                  display: block;
+                                  background-color: lightgrey;
+                                  border-radius: 40% / 10%;
+                                  width: 0.5em;
+                                  height: 3em;
+                                  padding: 0px;
+                                }
+                                td:nth-of-type(2)>del>mark {
+                                  display: block;
+                                  background-color: #EC4B34;
+                                  border-radius: 40% / 10%;
+                                  width: 0.5em;
+                                  height: 3em;
+                                  padding: 0px;
+                                }
+                                td:nth-of-type(2)>del>span {
+                                  display: none;
+                                }
+                                td:nth-of-type(2)>mark {
+                                  display: block;
+                                  background-color: #009767;
+                                  border-radius: 40% / 10%;
+                                  width: 0.5em;
+                                  height: 3em;
+                                  padding: 0px;
+                                }
+                                td:last-of-type {
+                                  width: 90%;
+                                }
+                                td:last-of-type span {
+                                  display: inline-block;
+                                  padding: 0%;
+                                  width: 97%;
+                                  text-align: right;
+                                }
+                                td {
+                                  padding: 5px 10px 5px 10px;
+                                  margin-bottom: 3px;
+                                  text-align: left;
+                                  border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                  border-bottom: 0px solid #1c2020;
+                                }
+                                tr:nth-of-type(even) {
+                                  background-color: rgb(54, 54, 54, 0.3);
+                                }
+                                tr:last-of-type {
+                                  border-bottom: transparent;          }*
+                                mark {
+                                  background: #009767;
+                                  color: #222627;
+                                  border-radius: 5px;
+                                  padding: 5px;
+                                }
+                                span {
+                                  padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_l_ane_evaluations
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+                            <div>Evaluations</div> {% set items =
+                            state_attr('sensor.pronote_NAME_l_ane_evaluations','evaluations')%}
+                            <table width='100%'>
+                              <tbody>
+                              {% for i in range(0, items | count, 1) %}
+                              <tr><td width='15%'>{{ items[i].date.strftime("%d-%m") }}</td><td width='40%'>{{ items[i].subject }}</td><td width='30%'>
+                              {% set acquisitions = items[i].acquisitions %}
+                              {% for j in range(0,acquisitions|count,1) %}{% if acquisitions[j].level == 'Très bonne maîtrise' %}💚{% elif acquisitions[j].level == 'Maîtrise satisfaisante' %}🟢{% elif acquisitions[j].level == "Presque maîtrisé" %}🟡{% elif acquisitions[j].level == "Début de maîtrise" %}🟡{% elif acquisitions[j].level == 'Maîtrise fragile'  %}🟠{% elif acquisitions[j].level == 'Maîtrise insuffisante'  %}🔴{% elif acquisitions[j].level == 'Absent'  %}❌{% else %}?{% endif %}{% endfor %}</td></tr>
+                              {% endfor %}
+                            </tbody> </table>
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 0px
+                                }
+                              ha-markdown$: |
+                                h1 {
+                                    font-weight: normal;
+                                    font-size: 24px;
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px; 
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1em;
+                                  font-family: Roboto;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 0px 5px 0px 5px;
+                                    text-align: left;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                    line-height: 4px;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.3);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_l_ane_grades
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: |2-
+                              <div>Notes</div><table>
+                                {% set items = state_attr('sensor.pronote_NAME_l_ane_grades','grades')%}
+                              <tr>
+                              <td><h4>Date<h3></td>
+                              <td><h4>Cours</td>
+                              <td><h4>Note</td>
+                              <td><h4>Class</td>
+                              <td><h4>Max</td>
+                              <td><h4>Min</td>
+                              </tr>
+                              {% for i in range(0, items | count, 1) %}
+                              <tr>    
+                              <td>{{ items[i].date }}</td>
+                              <td>{{ items[i].subject }}</td>
+                              <td>{% if items[i].grade == "Absent" %}❌{% else %}{{ items[i].grade_out_of }}{% endif %}</td>
+                              <td>{{ items[i].class_average }}</td>
+                              <td>{{ items[i].max }}</td>
+                              <td>{{ items[i].min }}</td>
+                             </tr>
+                            {% endfor %}
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                h1 {
+                                    font-weight: normal;
+                                    font-size: 24px;
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;  
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1.em;
+                                  font-family: Roboto;
+                                  letter-spacing: -1px;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 0px 4px 0px 4px;
+                                    text-align: center;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                    line-height: 25px;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.5);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_l_ane_averages
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: |2-
+                              <div>Moyennes</div><table>
+                                {% set items = state_attr('sensor.pronote_NAME_l_ane_averages','averages')%}
+                              <tr>
+                              <td><h4>Matière<h3></td>
+                              <td><h4>Moyenne élève</td>
+                              <td><h4>Moyenne classe</td>
+                              <td><h4>Min</td>
+                              <td><h4>Max</td>
+                              </tr>
+                              {% for i in range(0, items | count, 1) %}
+                              <tr>    
+
+                              <td>{{ items[i].subject }}</td>
+                              <td>{{ items[i].average }} / {{ items[i].out_of }}</td>
+                              <td>{{ items[i].class }}</td>
+                              <td>{{ items[i].min }}</td>
+                              <td>{{ items[i].max }}</td>
+                             </tr>
+                            {% endfor %}
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                h1 {
+                                    font-weight: normal;
+                                    font-size: 24px;
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;  
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1.em;
+                                  font-family: Roboto;
+                                  letter-spacing: -1px;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 0px 4px 0px 4px;
+                                    text-align: center;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                    line-height: 25px;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.5);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+1) > td:nth-child(1) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_l_ane_homework
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+
+
+                            <div>{{states.sensor.devoirs_leane_next_day.state}}</div>
+
+                            <table>
+                                <tbody>
+                                    {% set items = state_attr('sensor.pronote_NAME_l_ane_homework','homework') %}
+                                    {%-for i in range(0, items | count, 1) -%}
+                                    <tr>
+                                        <td>
+                                        {%- if items[i].done == true -%}
+                                            <mark>
+                                            {{items[i].date.strftime("%d/%m")}}
+                                            </mark>
+                                        {%- else -%}
+                                            <span>
+                                            {{items[i].date.strftime("%d/%m")}}
+                                            </span>
+                                        {% endif %}</td>              
+                                        <td>{{items[i].subject}}</td>
+                                        <td>{{items[i].description}}</td>
+                                    </tr>
+                                    {% endfor %}
+                              </tbody>
+                            </table>
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                ha-markdown-element {
+                                  display: inline-block;
+                                  height: 300px;
+                                  overflow-y: scroll;
+                                  width: 100%;
+                                }
+                                @media only screen and (min-height: 600px) {
+                                  ha-markdown-element {
+                                    height: 400px;
+                                  }
+                                }
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;  
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-weight:normal;
+                                  font-size:1em;
+                                  font-family: Roboto;
+                                  width: auto;
+                                  outline: 0px solid #393c3d;
+                                  margin-top: 10px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+                                } td {
+                                    padding: 5px 5px 5px 5px;
+                                    text-align: left;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.5);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;
+                                }
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 15px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 15px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.pronote_NAME_l_ane_absences
+                            state_not: unavailable
+                        card:
+                          type: markdown
+                          content: >-
+                            <div>Absences</div><table>  {% set items =
+                            state_attr('sensor.pronote_NAME_l_ane_absences','absences')
+                            %} {% for i in range(0, items | count, 1) %} <tr>
+                            {%- if items[i].justified == True -%} <td> <mark> {{
+                            items[i].from.strftime("%d-%m") }}</mark></td> {%
+                            else %} <td> <span>{{
+                            items[i].from.strftime("%d-%m") }}</span></td>  {%-
+                            endif -%}  <td>{{ items[i].hours }}</td> <td>{{
+                            items[i].reason }}</td> {% endfor %}
+                          card_mod:
+                            style:
+                              .: |
+                                ha-card ha-markdown {
+                                  padding:0px
+                                }
+                                ha-card ha-markdown.no-header {
+                                  padding: 05px
+                                }
+                              ha-markdown$: |
+                                div {
+                                    background-color: var(--card-background-color);
+                                    border-radius: 30px;   
+                                    padding: 10px;
+                                    text-align: center;
+                                    color: var(--title);
+                                    font-weight:600;
+                                    font-size: 15px;
+                                    font-family: Avenir;
+
+                                }
+                                table{
+                                  border-collapse: collapse;
+                                  font-family: Roboto;
+                                  width: 100%;
+                                  outline: 0px solid #393c3d;
+                                  margin-top:5px;
+                                } caption {
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 1em;
+                                } td {
+                                    padding: 5px 10px 5px 10px;
+                                    text-align: left;
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr {
+                                    border-bottom: 0px solid #1c2020;
+                                }
+                                tr:nth-of-type(even) {
+                                    background-color: rgb(54, 54, 54, 0.3);
+                                }
+                                tr:last-of-type {
+                                    border-bottom: transparent;          }*
+                                mark {
+                                    background: var(--color-blue);
+                                    color: ##000000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    background: rgb(180, 70, 70);
+                                    color: #00000;
+                                    border-radius: 10px;
+                                    padding: 5px;
+                                }
+                                span {
+                                    padding: 5px;
+                                }
+                                tr:nth-child(n+2) > td:nth-child(2) {
+                                  text-align: left;
+                                }
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        background-color: var(--card-background-color);
+                        box-shadow: none ;
+                        border-radius: 20px !important;
+                        margin: 5px 1px 5px 1px;
+                      }      
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.derniere_mise_a_jour_de_pronote_leane
+                        template:
+                          - title_card
+                        show_state: true
+                        name: MàJ
+                        layout: name_state
+                        styles:
+                          name:
+                            - justify-self: null
+                            - font-size: 12px
+                            - color: var(--text-off)
+                          state:
+                            - justify-self: null
+                            - font-size: 12px
+                            - color: var(--text-on)
   - theme: Backend-selected
     icon: mdi:broom
     path: Aspis
@@ -7254,6 +9755,11 @@ views:
                     map_locked: true
                     two_finger_pan: false
               - type: custom:vertical-stack-in-card
+                style: |
+                  ha-card { 
+                    padding: 4px;
+                    border-radius: 30px !important;
+                  }
                 cards:
                   - type: custom:button-card
                     icon: mdi:calendar
@@ -21591,11 +24097,12 @@ views:
                 style: |
                   ha-card { 
                     background-color: var(--card-background-color);
+                    border-radius: var(--ha-card-border-radius) !important;
                   }
                 cards:
                   - type: custom:meteofrance-weather-card
-                    entity: weather.beaucouze
-                    rainForecastEntity: sensor.beaucouze_next_rain_2
+                    entity: weather.ta_ville
+                    rainForecastEntity: sensor.ta_ville_next_rain_2
                     current: true
                     one_hour_forecast: false
                     forecast: false
@@ -21608,6 +24115,53 @@ views:
                         font-family: Avenir;
                         color: var(--text-off);
                     number_of_forecasts: '5'
+              - type: custom:vertical-stack-in-card
+                horizontal: true
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                        border-radius: 50px !important;
+
+                      }       
+                    cards:
+                      - type: custom:button-card
+                        entity: sun.sun
+                        show_name: true
+                        show_state: false
+                        show_label: true
+                        label: |
+                          [[[ return states['sensor.weather_soleil'].state]]]
+                        name: Soleil
+                        template:
+                          - ball_card
+                  - type: custom:vertical-stack-in-card
+                    style: |
+                      ha-card { 
+                        margin: 2px;
+                        border-radius: 50px !important;
+
+                      }       
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.moon_phase
+                        show_name: true
+                        show_label: false
+                        name: Lune
+                        template:
+                          - ball_card
+              - type: custom:vertical-stack-in-card
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                  }
+                cards:
                   - type: custom:vertical-stack-in-card
                     horizontal: true
                     style: |
@@ -21618,20 +24172,6 @@ views:
                         box-shadow: none;
                       }
                     cards:
-                      - type: custom:button-card
-                        entity: sensor.weather_soleil
-                        icon: |
-                          [[[
-                              if (states['sun.sun'].state == 'above_horizon' )
-                              return 'mdi:weather-night';
-                            return 'mdi:weather-sunset';
-                          ]]]
-                        show_name: false
-                        show_label: true
-                        label: |
-                          [[[ return states['sensor.weather_soleil'].state ]]]
-                        template:
-                          - mini_card
                       - type: custom:button-card
                         entity: sensor.weather_temp_max
                         icon: mdi:thermometer-chevron-up
@@ -21739,8 +24279,8 @@ views:
                               icon:
                                 - color: var(--color-icon-red)
                   - type: custom:meteofrance-weather-card
-                    entity: weather.beaucouze
-                    rainForecastEntity: sensor.beaucouze_next_rain_2
+                    entity: weather.ta_ville
+                    rainForecastEntity: sensor.ta_ville_next_rain_2
                     current: false
                     one_hour_forecast: true
                     forecast: false
@@ -21753,17 +24293,17 @@ views:
                         color: var(--text-off);
                     number_of_forecasts: '5'
                   - type: custom:meteofrance-weather-card
-                    entity: weather.beaucouze
+                    entity: weather.ta_ville
                     number_of_forecasts: '5'
                     current: false
                     details: false
                     one_hour_forecast: true
                     alert_forecast: true
-                    rainChanceEntity: sensor.beaucouze_daily_precipitation
-                    uvEntity: sensor.beaucouze_uv_2
-                    cloudCoverEntity: sensor.beaucouze_cloud_cover
-                    freezeChanceEntity: sensor.beaucouze_freeze_chance_2
-                    snowChanceEntity: sensor.beaucouze_snow_chance_2
+                    rainChanceEntity: sensor.ta_ville_daily_precipitation
+                    uvEntity: sensor.ta_ville_uv_2
+                    cloudCoverEntity: sensor.ta_ville_cloud_cover
+                    freezeChanceEntity: sensor.ta_ville_freeze_chance_2
+                    snowChanceEntity: sensor.ta_ville_snow_chance_2
                     alertEntity: sensor.49_weather_alert
                     style: |
                       ha-card {
@@ -21883,9 +24423,15 @@ views:
                          margin-top: -10px;
                          font-family: Avenir;
                        }
-                        
+              - type: custom:vertical-stack-in-card
+                style: |
+                  ha-card { 
+                    background-color: var(--card-background-color);
+                    border-radius: var(--ha-card-border-radius) !important;
+                  }
+                cards:
                   - type: custom:clock-weather-card
-                    entity: weather.beaucouze
+                    entity: weather.ta_ville
                     title: ''
                     sun_entity: sun.sun
                     weather_icon_type: fill
@@ -22859,8 +25405,7 @@ views:
       - type: custom:button-card
         template:
           - ball_card
-        name: Home Assistant - Groupe français
         show_label: true
-        show_state: false
-        icon: mdi:home-assistant
+        name: MadGeek par Aurel RV
         label: Bon courage à tous !
+        icon: mdi:home-assistant
