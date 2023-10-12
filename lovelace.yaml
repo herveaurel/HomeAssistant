@@ -6993,7 +6993,7 @@ views:
                       action: navigate
                       navigation_path: /lovelace/systeme
                   - type: custom:button-card
-                    entity: sensor.myenedis_09397539765420
+                    entity: sensor.myenedis_09xxxxxxxxx5420
                     name: Électricité
                     icon: mdi:flash
                     template:
@@ -7087,7 +7087,7 @@ views:
                         card:
                           type: custom:mini-graph-card
                           entities:
-                            - entity: sensor.myenedis_09397539765420
+                            - entity: sensor.myenedis_09xxxxxxxxx5420
                               color: rgba(0,191,255,0.4)
                           group_by: date
                           height: 100
@@ -10447,8 +10447,8 @@ views:
                     cards:
                       - type: custom:content-card-linky
                         nbJoursAffichage: '7'
-                        entity: sensor.myenedis_09397539765420
-                        ewEntity: sensor.myenedis_09397539765420_ecowatt
+                        entity: sensor.myenedis_09xxxxxxxxx5420
+                        ewEntity: sensor.myenedis_09xxxxxxxxx5420_ecowatt
                         titleName: Électricité (hors abo)
                         showDayName: short
                         showInTableUnit: false
