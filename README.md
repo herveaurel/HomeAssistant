@@ -34,7 +34,7 @@ I have created two distinct themes, and I switch between them using automation b
 The television card is a massive effort in button card template and sensor template. I am pleased with the outcome!  
 For this card, you need :
  - sensor template
--  template button card "base"
+-  template button card 'base'
 -  template button card "tv_card"
 -  template button card "media_controls" (for controls buttons)
 -  template button card "tv_NAME-TV_card" (with entities)  
