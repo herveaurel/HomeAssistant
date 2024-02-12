@@ -40,7 +40,7 @@ For this card, you need :
 -  template button card "tv_NAME-TV_card" (with entities)  
 After that, writing the card in the dashboard is very simple!  
 
-````
+```yaml
 type: custom:button-card
 template:
   - tv_NAME-TV_card
@@ -98,7 +98,7 @@ A new card entirely written in the "decluttering-template" format!
 We need to create a sensor template to retrieve volume information.   
 After that, writing the card in the dashboard is very simple!
 
-````
+```yaml
 type: custom:decluttering-card
 template: music
 variables:
@@ -179,7 +179,7 @@ Dashboard created in 4 columns, thanks to the "layout card" available on HACS:
 - The tab is configured with View Type: Horizontal (layout-card) / width: 350 / max_cols: 4
 - A "vertical stack" column is nested within a card with :   
 
-````
+```yaml
 type: custom:layout-card
 layout_type: masonry
 layout:
