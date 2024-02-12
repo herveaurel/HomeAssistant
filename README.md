@@ -70,8 +70,8 @@ I utilize smartphone sensors, Proximity and Waze integrations, as well as severa
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/12.jpg)  
-A new card entirely written in the "button card" template called "vacuum_header"!  
-I love it!  
+A new card entirely written in the "button card" template called "vacuum_header"! I love it!   
+Paired with the slightly customized "custom:xiaomi-vacuum-map-card", it's perfect!  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/13.jpg)  
 
