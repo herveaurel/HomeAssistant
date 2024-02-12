@@ -124,6 +124,7 @@ It's a brilliant trick!
 Because an picture card doesn't refresh on its own...  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
+*I see that I've chosen the wrong title for this screenshot... It's supposed to be 'Person Card,' of course! I'll correct it later... 😄*   
 This Person card is full of surprises!  
 I utilize smartphone sensors, Proximity and Waze integrations, as well as several sensor templates.  
 Refer to template button card `person_complete_card`  
