@@ -26,7 +26,7 @@ I write everything myself, so please be understanding! 😊
 
 
 
-## SCREENSHOTS
+## DASHBOARD
  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
@@ -35,20 +35,50 @@ I have created two distinct themes, and I switch between them using automation b
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/06.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/07.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/09.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/10.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg) 
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/12.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/13.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/14.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/15.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/16.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/17.jpg)  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/18.jpg)  
 
 
