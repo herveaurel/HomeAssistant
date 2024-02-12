@@ -132,7 +132,7 @@ And more !
 
 ## INSTALLATION
 
-**It's not a one-click setup!**
+⚠️ **It's not a one-click setup!**
 
 Some knowledge is required before diving in:
 
