@@ -38,7 +38,7 @@ I have created two distinct themes, and I switch between them using automation b
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)  
-
+Clicking on the 'cog' icon at the bottom of the "Activity" card takes you to the settings sub-view. This is where you can choose the elements that the Activity card should display. All elements are dynamic, so if they are activated but do not contain any information, the card will not display them. For example, if I choose to display lights in the menu, the card will only display the "Lights" line if there are any lights turned on. This allows for a less cluttered card.
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)  
 
