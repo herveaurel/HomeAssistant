@@ -171,6 +171,47 @@ variables:
 ````  
   
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/16.jpg)  
+In the bathroom, I've created `Water Sounds` but it wasn't simple.
+I'm using water sound detection via the Alexa Echo.
+But it doesn't come up in Home Assistant.
+So, I did this:
+ - I created and injected an `input_button` into Alexa : `input_button.bruits_de_l_eau`
+ - I created and injected an `input_boolean` into HA : `input_boolean.bruits_deau_sdb`
+ - I created a routine in Alexa that activates the `input_button` when water is detected.
+ - Automatisation Home Assistant : 
+```yaml
+alias: Bruits d’eau sdb
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - input_button.bruits_de_l_eau
+  - platform: template
+    value_template: >-
+      {{as_timestamp(now()) -
+      as_timestamp(states.input_button.bruits_de_l_eau.last_changed) > 80  }}
+condition: []
+action:
+  - if:
+      - condition: template
+        value_template: >-
+          {{as_timestamp(now()) -
+          as_timestamp(states.input_button.bruits_de_l_eau.last_changed) > 80 
+          }}
+    then:
+      - service: input_boolean.turn_off
+        data: {}
+        target:
+          entity_id: input_boolean.bruits_deau_sdb
+    else:
+      - service: input_boolean.turn_on
+        data: {}
+        target:
+          entity_id: input_boolean.bruits_deau_sdb
+mode: restart
+````  
+
+Then, I created a `history-graph` card and an `custom:apexcharts-card`  based on the `input_boolean.bruits_deau_sdb`, and now I can cry while looking at my children's abuses! 😩  
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/17.jpg)  
