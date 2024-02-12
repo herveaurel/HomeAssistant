@@ -35,7 +35,7 @@ I write everything myself, so please be understanding! 😊
 1. Themes :  
 I have created two distinct themes, and I switch between them using automation based on sunlight.  
 
-2. Televison :  
+2. Television :  
 The television card is a massive effort in button card template and sensor template. I am pleased with the outcome!  
 For this card, you need :
    - sensor template
