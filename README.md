@@ -34,10 +34,10 @@ I have created two distinct themes, and I switch between them using automation b
 The television card is a massive effort in button card template and sensor template. I am pleased with the outcome!  
 For this card, you need :
  - sensor template
--  template button card 'base'
--  template button card "tv_card"
--  template button card "media_controls" (for controls buttons)
--  template button card "tv_NAME-TV_card" (with entities)  
+-  template button card `base`
+-  template button card `tv_card`
+-  template button card `media_controls` (for controls buttons)
+-  template button card `tv_NAME-TV_card` (with entities)  
 After that, writing the card in the dashboard is very simple!  
 
 ```yaml
@@ -82,10 +82,10 @@ I utilize smartphone sensors, Proximity and Waze integrations, as well as severa
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/12.jpg)  
-A new card entirely written in the "button card" template called "vacuum_header"!  
-And in the template button card named "vacuum_name," you'll need to modify your entities. After that, everything will be automatic.   
+A new card entirely written in the "button card" template called `vacuum_header`!  
+And in the template button card named `vacuum_name` you'll need to modify your entities. After that, everything will be automatic.   
 I love it!   
-Paired with the slightly customized "custom:xiaomi-vacuum-map-card", it's perfect!  
+Paired with the slightly customized `custom:xiaomi-vacuum-map-card`, it's perfect!  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/13.jpg)  
 
@@ -94,7 +94,7 @@ Paired with the slightly customized "custom:xiaomi-vacuum-map-card", it's perfec
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/15.jpg)  
-A new card entirely written in the "decluttering-template" format!  
+A new card entirely written in the decluttering-template` format!  
 We need to create a sensor template to retrieve volume information.   
 After that, writing the card in the dashboard is very simple!
 
