@@ -27,8 +27,7 @@ I write everything myself, so please be understanding! 😊
 
 
 ## DASHBOARD
- 
-<img width="2048" alt="Mad Geek themes" src="https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg">  
+  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
 I have created two distinct themes, and I switch between them using automation based on sunlight.
