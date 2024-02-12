@@ -59,6 +59,7 @@ If a lighting scene is in progress, and only 4 out of 10 lights are on, the gaug
 Here's what's needed: 
     - a light group for the room, exemple :  `light.kitchen`
     - input_number, exemple : `input_number.brightness_kitchen`
+    - in the dashboard card, call the template : `room_card_slider` 
     - automation : 
 
 ```yaml
@@ -103,8 +104,7 @@ action:
       - if:
           - condition: state
             ...etc...
-````  
-    - in the dashboard card, call the template : `room_card_slider`  
+````   
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)  
