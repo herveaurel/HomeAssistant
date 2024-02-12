@@ -176,9 +176,9 @@ Some knowledge is required before diving in:
 
 You need to adapt it to your configuration! 
 
-Dashboard created in 4 columns, thanks to the "layout card" available on HACS:
-- The tab is configured with View Type: Horizontal (layout-card) / width: 350 / max_cols: 4
-- A "vertical stack" column is nested within a card with :   
+Dashboard created in 4 columns, thanks to the ayout card` available on HACS:
+- The tab is configured with View Type: `Horizontal (layout-card` / width: 350 / max_cols: 4
+- A `vertical stack` column is nested within a card with :   
 
 ```yaml
 type: custom:layout-card
@@ -211,7 +211,7 @@ I use Alexa for voice commands and Apple Home on the Apple Watch.
 
 ## THANKS
 
-I work alone, I code almost everything with 'custom:button-card', I invent a lot of things, and lately, I've modernized my Dashboard, inspired by the wonderful work of my friend Quentin Cloos.
+I work alone, I code almost everything with `custom:button-card`, I invent a lot of things, and lately, I've modernized my Dashboard, inspired by the wonderful work of my friend Quentin Cloos.
 I don't copy his codes, I replicate them in my own way.
 I invite you to take a look at his work, it's exceptional!   
 [Mobile First ](https://github.com/clooos/Home-Assistant-Mobile-First) and [Bubble Card](https://github.com/Clooos/Bubble-Card).
