@@ -33,6 +33,7 @@ I write everything myself, so please be understanding! 😊
 I have created two distinct themes, and I switch between them using automation based on sunlight.
 
 
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)  
