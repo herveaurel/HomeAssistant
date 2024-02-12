@@ -3,7 +3,7 @@
  [French group Home Assistant](https://www.facebook.com/groups/homeassistantgroupefrance)
 
 
-## Mad Geek 
+## Mad Geek 2024
 My dashboard compatible with PC, smartphone, tablet
 
 
@@ -26,23 +26,26 @@ I write everything myself, so please be understanding! 😊
 
 
 
-
 ## SCREENSHOTS
  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-11.jpg)![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-12.jpg)  
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01-1.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)  
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04-1.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/06.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/07.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/09.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/10.jpg)  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg) 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/12.jpg)  
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/13.jpg)  
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/14.jpg)  
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/15.jpg)  
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/16.jpg)  
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/17.jpg)  
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/18.jpg)  
 
 
 
@@ -52,7 +55,7 @@ And more !
 ## CHANGELOG  
 
 
- [**Read the CHANGELOG file** ](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md) : Updated on 09-22-2023  
+ [**Read the CHANGELOG file** ](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md) : I'll be back !  
 
 
 
@@ -66,6 +69,9 @@ Some knowledge is required before diving in:
 
   The unavoidable :
   
+  [Decluttering Card ](https://github.com/custom-cards/decluttering-card)  
+  _Reuse multiple times the same card configuration with variables to declutter your config_
+
   [lovelace-card-mod ](https://github.com/thomasloven/lovelace-card-mod)  
   _Add CSS styles_
   
@@ -89,6 +95,9 @@ Some knowledge is required before diving in:
   
   [bar-card](https://github.com/custom-cards/bar-card)  
   _Customizable Animated Bar card_
+
+  [swipe-card](https://github.com/bramkragten/swipe-card)  
+  _A Lovelace card that uses swiper to create a touch slider that lets you flick through multiple cards_
 
 - Create the right sensor templates because I use them extensively and call them throughout the cards.
 - Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
