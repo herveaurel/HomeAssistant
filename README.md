@@ -225,5 +225,5 @@ I love them! Thanks to him!
 ## VIP 
 
 If you like it, please give my repo a star! 🌟  
-[If you'd like to buy me a beer 🍺 or a coffee ☕️, say thanks 🙏, show some love ❤️‍🩹 ](https://www.paypal.com/paypalme/aaherve)
+If you'd like to buy me a beer 🍺 or a coffee ☕️, say thanks 🙏, show some love ❤️‍🩹 [PayPal](https://img.shields.io/badge/Donate-PayPal-blue?logo=paypal)](https://www.paypal.com/paypalme/aaherve)
 
