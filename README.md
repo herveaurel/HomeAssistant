@@ -4,9 +4,12 @@
 
 
 ## Mad Geek 2024
-My dashboard compatible with PC, smartphone, tablet
+My dashboard compatible with PC, smartphone, tablet  
 
 
+## Table of contents
+
+**[`Installation`](#INSTALLATION)** | **[`Changelog`](#CHANGELOG)** | **[`Setup`](#SETUP)** | **[`Thanks`](#THANKS)** | **[`VIP`](#VIP)** |
 
 
 ## INTRODUCTION
@@ -208,7 +211,7 @@ I use Alexa for voice commands and Apple Home on the Apple Watch.
 
 
 
-# THANKS
+## THANKS
 
 I work alone, I code almost everything with 'custom:button-card', I invent a lot of things, and lately, I've modernized my Dashboard, inspired by the wonderful work of my friend Quentin Cloos.
 I don't copy his codes, I replicate them in my own way.
