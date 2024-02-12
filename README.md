@@ -32,9 +32,11 @@ I write everything myself, so please be understanding! 😊
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
 
-1. THEMES : I have created two distinct themes, and I switch between them using automation based on sunlight.  
+1. Themes :  
+I have created two distinct themes, and I switch between them using automation based on sunlight.  
 
-2. TELEVISION : The television card is a massive effort in button card template and sensor template. I am pleased with the outcome!  
+2. Televison :  
+The television card is a massive effort in button card template and sensor template. I am pleased with the outcome!  
 For this card, you need :
    - sensor template
    -  template button card `base`
@@ -47,7 +49,63 @@ For this card, you need :
 type: custom:button-card
 template:
   - tv_NAME-TV_card
-````   
+````    
+
+3. Brightness Gauge :  
+On the room cards, the brightness gauges are very special...
+A room has several lights, and the gauge controls all the lights, which I didn't want ! 
+Indeed, the ideal was to find a way to control only the lights that are already turned on!
+If a lighting scene is in progress, and only 4 out of 10 lights are on, the gauge only affects those 4 lights! Brilliant!
+Here's what's needed: 
+    - a light group for the room, exemple :  `light.kitchen`
+    - input_number, exemple : `input_number.brightness_kitchen`
+    - automation : 
+
+```yaml
+alias: Brightness gauge kitchen
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - input_number.brightness_kitchen
+    to: null
+  - platform: state
+    entity_id:
+      - light.kitchen 
+    to: "off"
+condition: []
+action:
+  - if:
+      - condition: state
+        entity_id: light.kitchen
+        state: "off"
+    then:
+      - service: input_number.set_value
+        metadata: {}
+        data:
+          value: 1
+        target:
+          entity_id: input_number.brightness_kitchen
+    else:
+      - variables:
+          value: "{{ states('input_number.brightness_kitchen') | int }}"
+      - if:
+          - condition: state
+            entity_id: light.bubl1
+            state: "on"
+        then:
+          - service: light.turn_on
+            data:
+              transition: 2
+              brightness_pct: "{{ value }}"
+            target:
+              entity_id: light.bulb1
+      - if:
+          - condition: state
+            ...etc...
+````  
+    - in the dashboard card, call the template : `room_card_slider`  
+
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)  
 
