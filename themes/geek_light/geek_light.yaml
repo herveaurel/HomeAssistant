@@ -1,65 +1,115 @@
 ## Inspired by Noctis theme by aaFFekopp
 
 geek_light: 
-
       ########## Additions for my lovelace ##########
       # Colors
-      
-      color-blue: rgb(0,191,255) 
-      color-medium-blue: rgb(68, 115, 180) 
-      color-dark-blue: rgb(38, 75, 150)      
-      color-card-blue:  rgba(0,191,255,0.2) #rgba(135,206,235,0.3) 
-      color-img-cell-blue:  rgba(0,191,255,0.2) #rgba(135,206,235,0.3) 
-      color-icon-blue: rgba(0,191,255,1)
-      
-      color-red: rgb(255,0,0)
-      color-dark-red: rgb(191, 33, 47)
-      color-dark-red-2: rgb(180, 70, 70)
-      color-card-red: rgba(180, 70, 70,0.2)
-      color-img-cell-red: rgba(180, 70, 70,0.4)
-      color-icon-red: rgba(255, 0, 0,1)
-      
-      color-gold: rgb(255,215,0)
-      color-card-gold: rgba(255,215,0,0.2)
-      color-img-cell-gold: rgba(255,215,0,0.4)
-      color-icon-gold: rgba(255,215,0,1)
-      
-      color-yellow: rgb(249,167,62)
-      color-card-yellow: rgba(249,167,62,0.2)
-      color-img-cell-yellow: rgba(249,167,62,0.4)
-      color-icon-yellow: rgba(255,255,0,1)
-      
-      color-orange: rgb(249, 167, 62)
-      color-card-orange: rgba(214, 144, 54,0.2)
-      color-icon-orange: rgba(249, 167, 62,1)
-      color-img-cell-orange: rgba(214, 144, 54,0.4)
 
-      color-green: rgb(39, 179, 118)
-      color-card-green: rgba(39, 179, 118,0.2)
-      color-icon-green: rgba(47, 212, 140,1)
-      color-img-cell-green: rgba(39, 179, 118,0.4)      
+      # Color tint transparancy
+      tint1: "1"
+      tint2: "0.3"
+      tint3: "0.15"
       
+      # Color RGB
+      ##Black
+      black-rgb: 0,0,0
+      ##White
+      white-rgb: 255,255,255
+      ##Grey
+      grey-rgb: 128,128,128
+      ##Blue
+      blue-rgb: 0,191,255
+      ocean-blue-rgb: 70, 130, 180
+      dark-blue-rgb: 38, 75, 150
+      ##Red
+      red-rgb: 240,49,39
+      ##Gold
+      gold-rgb: 255,215,0
+      ##Yellow
+      yellow-rgb: 255, 218, 120 
+      ##Orange
+      orange-rgb: 249, 167, 62
+      ##Green
+      green-rgb: 39, 179, 118
+      #Purple
+      purple-rgb: 239, 177, 255
+      
+      # Color variables
+      ## Blue
+      blue: rgb(var(--blue-rgb))
+      icon-blue: rgba(var(--blue-rgb),var(--tint1))
+      img-cell-blue: rgba(var(--blue-rgb),var(--tint2))
+      card-blue: rgba(var(--blue-rgb),var(--tint3))
+      ocean-blue: rgb(var(--ocean-blue-rgb))
+      dark-blue: rgb(var(--dark-blue-rgb))
+      scene-blue: rgba(var(--dark-blue-rgb),0.6)
+      
+      ##Red
+      red: rgb(var(--red-rgb))
+      icon-red: rgba(var(--red-rgb),var(--tint1))
+      img-cell-red: rgba(var(--red-rgb),var(--tint2))
+      card-red: rgba(var(--red-rgb),var(--tint3))
+      scene-red: rgba(var(--red-rgb),0.6)
+      
+      
+      ##Yellow
+      yellow: rgb(var(--yellow-rgb))
+      icon-yellow: rgba(var(--yellow-rgb),var(--tint1))
+      img-cell-yellow: rgba(var(--yellow-rgb),var(--tint2))
+      card-yellow: rgba(var(--yellow-rgb),var(--tint3))
+      scene-yellow: rgba(var(--yellow-rgb),0.6)
+      
+      ##Orange
+      orange: rgb(var(--orange-rgb))
+      icon-orange: rgba(var(--orange-rgb),var(--tint1))
+      img-cell-orange: rgba(var(--orange-rgb),var(--tint2))
+      card-orange: rgba(var(--orange-rgb),var(--tint3))
+      scene-orange: rgba(var(--orange-rgb),0.6)
+      
+      ##Green
+      green: rgb(var(--green-rgb))
+      icon-green: rgba(var(--green-rgb),var(--tint1))
+      img-cell-green: rgba(var(--green-rgb),var(--tint2))
+      card-green: rgba(var(--green-rgb),var(--tint3))
+      scene-green: rgba(var(--green-rgb),0.6)
+      
+      ##Purple
+      purple: rgb(var(--purple-rgb))
+      scene-purple: rgba(var(--purple-rgb),0.4)
+      
+      ##Black
+      black: rgb(var(--black-rgb))
+      
+      ##Grey
+      grey: rgb(var(--grey-rgb))
+      
+      ##White
+      white: rgb(var(--white-rgb))
+      
+      # Text color
+      title: rgba(var(--ocean-blue-rgb),var(--tint1))
+      text-on: rgba(var(--white-rgb),0.9)
+      text-off: rgba(var(--white-rgb),0.6)
+      
+      # Icon color
+      icon-on: rgba(var(--black-rgb),var(--tint1))
+      icon-off: rgba(var(--white-rgb),0.6)
+      
+      # img-cell color
+      img-cell-off: 'var(--background-color)' 
+      
+      # Chart
+      graph-line: var(--ocean-blue)
+      
+      # Notification
+      notification: rgba(var(--black-rgb),var(--tint2))
       
       # Style
       card_border: rgba(12, 12, 14, 0.2) #rgba(190, 190, 190, 0.1)
-      card_box_shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
+      card_box_shadow: 1px 1px 5px -6px rgba(10, 10, 10,0.5)
       card_box_shadow_color: 1px 1px 2px 0px rgba(255, 0, 0,0.3)
       bar-card-border-radius: 10px
       
-      # Text color
-      title: rgb(110, 170, 220)
-      text-on: rgba(232,233,242,1)
-      text-off: rgba(232,233,242,1)
-      
-      # Icon color
-      icon-on: rgba(0,0,0,1)
-      icon-off: rgba(232,233,242,0.8)
-      
-      # img-cell color
-      img-cell-off: var(--primary-background-color) 
-      
-      # Chart
-      graph-line: var(--color-blue)
+
       
       ########## Theme ##########      
       # Fonts
@@ -102,28 +152,28 @@ geek_light:
       codemirror-property: 'var(--accent-color)'
       
       # Main Colors Header
-      app-header-background-color: '#242e42'
+      app-header-background-color: 'var(--background-color)' #'#242e42'
       app-header-icon-color: var(--light-primary-color)
       app-header-text-color: darkgrey #var(--primary-text-color)
       app-header-selection-bar-color: var(--primary-color)
       app-header-selection-color: var(--secondar-color)      
-      header-height: 48px
+      header-height: 35px
       accent-color: '#1A89F5'
       accent-medium-color: 'var(--accent-color)'
       
       # Background
-      background-color: '#242e42'
+      background-color: rgb(33, 43, 63) #'#242e42'
       primary-background-color: 'var(--background-color)'
       background-color-2: '#20293c' 
       secondary-background-color: 'none'
       markdown-code-background-color: 'var(--background-color)'
 
       # Card
-      card-background-color: 'rgba(43,55,78,1)' #'var(--ha-card-background)'
-      ha-card-background: 'rgba(48,60,83,1)' #'linear-gradient(145deg, rgba(49, 60, 80, 0.8), rgba(56, 69, 93, 1)' #'linear-gradient(145deg, #273246, #2e3b53)' #'rgba(43,55,78,1)' #'linear-gradient(145deg, #273246, #2e3b53)'
+      card-background-color: rgb(40, 51, 72) #'rgba(43,55,78,1)' #'var(--ha-card-background)'
+      ha-card-background: rgb(45, 56, 78) #'rgba(48,60,83,1)' #'linear-gradient(145deg, rgba(49, 60, 80, 0.8), rgba(56, 69, 93, 1)' #'linear-gradient(145deg, #273246, #2e3b53)' #'rgba(43,55,78,1)' #'linear-gradient(145deg, #273246, #2e3b53)'
       ha-card-box-shadow: "3px 3px 13px -6px rgba(17,35,52,1)"
-      ha-card-border-radius: "20px"
-      border-radius: "5px"
+      ha-card-border-radius: "24px"
+      border-radius: "7px"
       ha-card-border-color: 'rgba(0,0,0,0)'
       ha-card-border-width: '0'
     
@@ -138,70 +188,6 @@ geek_light:
       # RGB States
       rgb-state-default-color: '26, 137, 245'
       rgb-accent-color: 'var(--rgb-state-default-color)'
-      # rgb-state-light-color: 'var(--rgb-state-default-color)'
-      # rgb-state-switch-color: 'var(--rgb-state-default-color)'
-      # rgb-state-automation-color: 'var(--rgb-state-default-color)'
-      # rgb-state-binary-sensor-color: 'var(--rgb-state-default-color)'
-      # rgb-state-cover-color: 'var(--rgb-state-default-color)'
-      # rgb-state-fan-color: 'var(--rgb-state-default-color)'
-      # rgb-state-group-color: 'var(--rgb-state-default-color)'
-      # rgb-state-humidifier-color: 'var(--rgb-state-default-color)'
-      # rgb-state-input-boolean-color: 'var(--rgb-state-default-color)'
-      # rgb-state-media-player-color: 'var(--rgb-state-default-color)'
-      # rgb-state-remote-color: 'var(--rgb-state-default-color)'
-      # rgb-state-script-color: 'var(--rgb-state-default-color)'
-      # rgb-state-timer-color: 'var(--rgb-state-default-color)'
-      # rgb-state-vacuum-color: 'var(--rgb-state-default-color)'
-      # rgb-state-alarm-armed-color: var(--rgb-red-color)
-      # rgb-state-alarm-arming-color: var(--rgb-orange-color)
-      # rgb-state-alarm-disarmed-color: var(--rgb-grey-color)
-      # rgb-state-alarm-pending-color: var(--rgb-orange-color)
-      # rgb-state-alarm-triggered-color: var(--rgb-red-color)
-      # rgb-state-alert-color: var(--rgb-red-color)
-      # rgb-state-binary-sensor-alerting-color: var(--rgb-red-color)
-      # rgb-state-calendar-color: var(--rgb-blue-color)
-      # rgb-state-camera-color: var(--rgb-blue-color)
-      # rgb-state-climate-auto-color: var(--rgb-green-color)
-      # rgb-state-climate-cool-color: var(--rgb-blue-color)
-      # rgb-state-climate-dry-color: var(--rgb-orange-color)
-      # rgb-state-climate-fan-only-color: var(--rgb-cyan-color)
-      # rgb-state-climate-heat-color: var(--rgb-deep-orange-color)
-      # rgb-state-climate-heat-cool-color: var(--rgb-amber-color)
-      # rgb-state-climate-idle-color: var(--rgb-disabled-color)
-      # rgb-state-lock-jammed-color: var(--rgb-red-color)
-      # rgb-state-lock-locked-color: var(--rgb-red-color)
-      # rgb-state-lock-pending-color: var(--rgb-orange-color)
-      # rgb-state-lock-unlocked-color: var(--rgb-red-color)
-      # rgb-state-person-home-color: var(--rgb-green-color)
-      # rgb-state-person-zone-color: var(--rgb-blue-color)
-      # rgb-state-person-not-home-color: var(--rgb-grey-color)
-      # rgb-state-sensor-battery-high-color: var(--rgb-green-color)
-      # rgb-state-sensor-battery-low-color: var(--rgb-red-color)
-      # rgb-state-sensor-battery-medium-color: var(--rgb-orange-color)
-      # rgb-state-sensor-battery-unknown-color: var(--rgb-disabled-color)
-      # rgb-state-siren-color: var(--rgb-red-color)
-      # rgb-state-sun-day-color: var(--rgb-amber-color)
-      # rgb-state-sun-night-color: var(--rgb-deep-purple-color)
-      # rgb-state-update-color: var(--rgb-green-color)
-      # rgb-state-update-installing-color: var(--rgb-orange-color)
-      # rgb-state-light-color: 'var(--rgb-state-default-color)'
-      # rgb-state-switch-color: 'var(--rgb-state-default-color)'
-      # rgb-state-automation-color: 'var(--rgb-state-default-color)'
-      # rgb-state-binary-sensor-color: 'var(--rgb-state-default-color)'
-      # rgb-state-cover-color: 'var(--rgb-state-default-color)'
-      # rgb-state-fan-color: 'var(--rgb-state-default-color)'
-      # rgb-state-group-color: 'var(--rgb-state-default-color)'
-      # rgb-state-humidifier-color: 'var(--rgb-state-default-color)'
-      # rgb-state-input-boolean-color: 'var(--rgb-state-default-color)'
-      # rgb-state-media-player-color: 'var(--rgb-state-default-color)'
-      # rgb-state-remote-color: 'var(--rgb-state-default-color)'
-      # rgb-state-script-color: 'var(--rgb-state-default-color)'
-      # rgb-state-timer-color: 'var(--rgb-state-default-color)'
-      # rgb-state-vacuum-color: 'var(--rgb-state-default-color)'
-      # error-color: #db4437
-      # warning-color: #ffa600
-      # success-color: #43a047
-      # info-color: #039be5
     
       # State Colors
       state-active-color: '#1A89F5'
@@ -266,9 +252,10 @@ geek_light:
       
       # Sidebar
       sidebar-background-color: 'var(--background-color)'
-      sidebar-icon-color: '#98a7b9'
-      sidebar-selected-icon-color: 'var(--accent-color)'
-      sidebar-selected-text-color: 'var(--text-color)'
+      sidebar-icon-color: 'var(--icon-off)' 
+      sidebar-selected-icon-color: 'var(--blue)'
+      sidebar-text-color: 'var(--icon-off)'
+      sidebar-selected-text-color: 'var(--blue)' 
       paper-listbox-background-color: 'var(--sidebar-background-color)'
       divider-color: 'var(--background-color)'
       light-primary-color: 'var(--ha-card-background)'

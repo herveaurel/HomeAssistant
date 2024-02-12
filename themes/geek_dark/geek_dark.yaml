@@ -1,65 +1,113 @@
-## Inspired by Noctis theme by aaFFekopp
-
 geek_dark: 
      
       ########## Additions for my lovelace ##########
       # Colors
 
-      color-blue: rgb(0,191,255) 
-      color-medium-blue: rgb(68, 115, 180) 
-      color-dark-blue: rgb(38, 75, 150)      
-      color-card-blue:  rgba(0, 162, 217,0.2) #rgba(135,206,235,0.3) 
-      color-img-cell-blue:  rgba(0, 162, 217,0.4) #rgba(135,206,235,0.3) 
-      color-icon-blue: rgba(0,191,255,1)
-
-      color-red: rgb(255,0,0)
-      color-dark-red: rgb(191, 33, 47)
-      color-dark-red-2: rgb(180, 70, 70)     
-      color-card-red: rgba(180, 70, 70,0.2)
-      color-img-cell-red: rgba(180, 70, 70,0.4)
-      color-icon-red: rgba(255, 0, 0,1)
+      # Color tint transparancy
+      tint1: "1"
+      tint2: "0.3"
+      tint3: "0.15"
       
-      color-gold: rgb(255,215,0)
-      color-card-gold: rgba(255,255,0,0.2)
-      color-img-cell-gold: rgba(255,255,0,0.4)
-      color-icon-gold: rgba(255,215,0,1)
+      # Color RGB
+      ##Black
+      black-rgb: 0,0,0
+      ##White
+      white-rgb: 255,255,255
+      ##Grey
+      grey-rgb: 128,128,128
+      ##Blue
+      blue-rgb: 0,191,255
+      ocean-blue-rgb: 70, 130, 180
+      dark-blue-rgb: 38, 75, 150
+      ##Red
+      red-rgb: 240,49,39
+      ##Gold
+      gold-rgb: 255,215,0
+      ##Yellow
+      yellow-rgb: 255, 218, 120 
+      ##Orange
+      orange-rgb: 249, 167, 62
+      ##Green
+      green-rgb: 39, 179, 118
+      #Purple
+      purple-rgb: 239, 177, 255
       
-      color-yellow: rgb(249,167,62)
-      color-card-yellow: rgba(249,167,62,0.2)
-      color-img-cell-yellow: rgba(249,167,62,0.4)
-      color-icon-yellow: rgba(255,215,0,1)
-
-      color-orange: rgb(249, 167, 62)      
-      color-card-orange: rgba(249, 167, 62,0.2)
-      color-icon-orange: rgba(249, 167, 62,1)
-      color-img-cell-orange: rgba(249, 167, 62,0.4)
-
-      color-green: rgb(39, 179, 118)
-      color-card-green: rgba(39, 179, 118,0.2)
-      color-icon-green: rgba(47, 212, 140,1)
-      color-img-cell-green: rgba(39, 179, 118,0.4)
+      # Color variables
+      ## Blue
+      blue: rgb(var(--blue-rgb))
+      icon-blue: rgba(var(--blue-rgb),var(--tint1))
+      img-cell-blue: rgba(var(--ocean-blue-rgb),var(--tint2))
+      card-blue: rgba(var(--blue-rgb),var(--tint3))
+      ocean-blue: rgb(var(--ocean-blue-rgb))
+      dark-blue: rgb(var(--dark-blue-rgb))
+      scene-blue: rgba(var(--dark-blue-rgb),0.6)
       
+      ##Red
+      red: rgb(var(--red-rgb))
+      icon-red: rgba(var(--red-rgb),var(--tint1))
+      img-cell-red: rgba(var(--red-rgb),var(--tint2))
+      card-red: rgba(var(--red-rgb),var(--tint3))
+      scene-red: rgba(var(--red-rgb),0.6)
+      
+      
+      ##Yellow
+      yellow: rgb(var(--yellow-rgb))
+      icon-yellow: rgba(var(--yellow-rgb),var(--tint1))
+      img-cell-yellow: rgba(var(--yellow-rgb),var(--tint2))
+      card-yellow: rgba(var(--yellow-rgb),var(--tint3))
+      scene-yellow: rgba(var(--yellow-rgb),0.6)
+      
+      ##Orange
+      orange: rgb(var(--orange-rgb))
+      icon-orange: rgba(var(--orange-rgb),var(--tint1))
+      img-cell-orange: rgba(var(--orange-rgb),var(--tint2))
+      card-orange: rgba(var(--orange-rgb),var(--tint3))
+      scene-orange: rgba(var(--orange-rgb),0.6)
+      
+      ##Green
+      green: rgb(var(--green-rgb))
+      icon-green: rgba(var(--green-rgb),var(--tint1))
+      img-cell-green: rgba(var(--green-rgb),var(--tint2))
+      card-green: rgba(var(--green-rgb),var(--tint3))
+      scene-green: rgba(var(--green-rgb),0.6)
+      
+      ##Purple
+      purple: rgb(var(--purple-rgb))
+      scene-purple: rgba(var(--purple-rgb),0.4)
+
+      ##Black
+      black: rgb(var(--black-rgb))
+      
+      ##Grey
+      grey: rgb(var(--grey-rgb))
+      
+      ##White
+      white: rgb(var(--white-rgb))
+      
+      # Text color
+      title: rgba(var(--ocean-blue-rgb),0.8)
+      text-on: rgba(var(--white-rgb),0.7)
+      text-off: rgba(var(--white-rgb),0.5)
+      
+      # Icon color
+      icon-on: rgba(var(--black-rgb),var(--tint1))
+      icon-off: rgba(var(--white-rgb),0.5)
+      
+      # img-cell color
+      img-cell-off: 'var(--background-color)' 
+      
+      # Chart
+      graph-line: var(--ocean-blue)
+
+      # Notification
+      notification: rgba(var(--black-rgb),var(--tint2))      
+
       #Style
       card_border: rgba(12, 12, 14, 0.2) 
       card_box_shadow: 1px 1px 2px 0px rgba(12, 12, 14,0.3)
       card_box_shadow_color: 1px 1px 2px 0px rgba(255, 0, 0,0.3)
       bar-card-border-radius: 7px
-      
-      # Text color
-      title: rgb(70, 130, 180)
-      text-on: rgba(211,211,211,1)
-      text-off: rgba(211,211,211,0.9)
-      
-      # Icon color
-      icon-on: rgba(0,0,0,1)
-      icon-off: rgba(232,233,242,0.5)
-      
-      # img-cell color
-      img-cell-off: var(--primary-background-color) 
-      
-      # Chart
-      graph-line: rgb(70, 130, 180)
-      
+
       ########## Theme ##########       
       # Fonts
       primary-font-family: 'Avenir'
@@ -106,23 +154,23 @@ geek_dark:
       app-header-text-color: darkgrey #var(--primary-text-color)
       app-header-selection-bar-color: var(--primary-color)
       app-header-selection-color: var(--secondar-color)      
-      header-height: 48px
+      header-height: 35px
       accent-color: rgb(17, 96, 173) #'#1A89F5'
       accent-medium-color: 'var(--accent-color)'
       
       # Background
-      background-color: rgb(35,33,48) 
+      background-color: "#0f1216" 
       primary-background-color: 'var(--background-color)'
-      background-color-2: rgb(35,33,48)  #'#20293c' 
+      background-color-2: 'var(--background-color)' #rgb(35,33,48)  
       secondary-background-color: 'none'
       markdown-code-background-color: 'var(--background-color)'
 
       # Card
-      card-background-color: rgb(40,38,53) 
-      ha-card-background: rgb(45,43,58) 
+      card-background-color: "#15161F" #rgb(34,32,48)  
+      ha-card-background: '#1c1b2a' #"#171A21" #rgb(38,36,51) 
       ha-card-box-shadow: "3px 3px 13px -6px rgba(17,35,52,1)"
-      ha-card-border-radius: "20px"
-      border-radius: "5px"
+      ha-card-border-radius: "24px"
+      border-radius: "7px"
       ha-card-border-color: 'rgba(0,0,0,0)'
       ha-card-border-width: '0'
     
@@ -131,7 +179,7 @@ geek_dark:
       
       
       # Icons
-      paper-item-icon-color: var(--icon_off) #'#EBEBEB'
+      paper-item-icon-color: var(--icon-off) #'#EBEBEB'
       paper-item-icon-active-color: 'var(--accent-color)'
     
       # RGB States
@@ -265,9 +313,10 @@ geek_dark:
       
       # Sidebar
       sidebar-background-color: 'var(--background-color)'
-      sidebar-icon-color: '#98a7b9'
-      sidebar-selected-icon-color: 'var(--accent-color)'
-      sidebar-selected-text-color: 'var(--text-color)'
+      sidebar-icon-color: 'var(--icon-off)' 
+      sidebar-selected-icon-color: 'var(--ocean-blue)'
+      sidebar-text-color: 'var(--icon-off)'
+      sidebar-selected-text-color: 'var(--ocean-blue)' 
       paper-listbox-background-color: 'var(--sidebar-background-color)'
       divider-color: 'var(--background-color)'
       light-primary-color: 'var(--ha-card-background)'
