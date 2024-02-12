@@ -101,7 +101,10 @@ variables:
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/18.jpg)  
-
+This is one of the widely used French systems to have all the information about a child's schooling: the agenda, grades, evaluations, averages, homework assignments, punishments, tardiness, and more.  
+All of this is made possible thanks to the fantastic work of  [delphiki ](https://github.com/delphiki) :
+-  [Pronote ](https://github.com/delphiki/hass-pronote) 
+-  [Pronote Cards ](https://github.com/delphiki/lovelace-pronote)  
 
 
 And more ! 
