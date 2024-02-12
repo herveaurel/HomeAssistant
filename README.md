@@ -1,10 +1,8 @@
-# HomeAssistant
+# Mad Geek 2024
+My dashboard compatible with PC, smartphone, tablet  
+ 
 
 [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/groups/homeassistantgroupefrance) [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/paypalme/aaherve)  
-
-
-## Mad Geek 2024
-My dashboard compatible with PC, smartphone, tablet  
 
 
 ## Table of contents
