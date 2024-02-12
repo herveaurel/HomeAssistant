@@ -1,9 +1,6 @@
 # HomeAssistant
 
-[![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/groups/homeassistantgroupefrance) [![PayPal](https://img.shields.io/badge/Donate-PayPal-blue?logo=paypal)](https://www.paypal.com/paypalme/aaherve)  
-
-
- [French group Home Assistant](https://www.facebook.com/groups/homeassistantgroupefrance)  
+[![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/groups/homeassistantgroupefrance) [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/paypalme/aaherve)  
 
 
 ## Mad Geek 2024
