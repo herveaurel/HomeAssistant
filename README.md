@@ -31,8 +31,20 @@ I write everything myself, so please be understanding! 😊
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
 I have created two distinct themes, and I switch between them using automation based on sunlight.
+The television card is a massive effort in button card template and sensor template. I am pleased with the outcome!  
+For this card, you need :
+ - sensor template
+-  template button card "base"
+-  template button card "tv_card"
+-  template button card "media_controls" (for controls buttons)
+-  template button card "tv_NAME-TV_card" (with entities)  
+After that, writing the card in the dashboard is very simple!  
 
-
+````
+type: custom:button-card
+template:
+  - tv_NAME-TV_card
+````   
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/02.jpg)  
 
