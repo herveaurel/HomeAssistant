@@ -51,7 +51,7 @@ template:
   - tv_NAME-TV_card
 ````    
 
-3. Brightness Gauge :  
+3. Magic Brightness Gauge :  
 On the room cards, the brightness gauges are very special...
 A room has several lights, and the gauge controls all the lights, which I didn't want ! 
 Indeed, the ideal was to find a way to control only the lights that are already turned on!
