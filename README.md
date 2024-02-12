@@ -111,9 +111,9 @@ action:
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)  
-Clicking on the `cog`icon at the bottom of the `Activity card` takes you to the `settings sub-view`.  
-This is where you can choose the elements that the `Activity card` should display.  
-All elements are dynamic, so if they are activated but do not contain any information, the card will not display them.  
+- Clicking on the `cog`icon at the bottom of the `Activity card` takes you to the `settings sub-view`.   
+- This is where you can choose the elements that the `Activity card` should display.   
+All elements are dynamic, so if they are activated but do not contain any information, the card will not display them.   
 For example, if I choose to display lights in the menu, the card will only display the "Lights" line if there are any lights turned on.  
 This allows for a less cluttered card.  
 
@@ -156,9 +156,9 @@ Paired with the slightly customized `custom:xiaomi-vacuum-map-card`, it's perfec
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/15.jpg)  
-A new card entirely written in the decluttering-template` format!  
-We need to create a sensor template to retrieve volume information.   
-After that, writing the card in the dashboard is very simple!
+- A new card entirely written in the decluttering-template` format!  
+- We need to create a sensor template to retrieve volume information.   
+- After that, writing the card in the dashboard is very simple!
 
 ```yaml
 type: custom:decluttering-card
