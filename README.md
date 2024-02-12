@@ -51,7 +51,8 @@ It's a brilliant trick!
 Because an picture card doesn't refresh on its own...  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
-
+This Person card is full of surprises!  
+I utilize smartphone sensors, Proximity and Waze integrations, as well as several sensor templates.  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/06.jpg)  
 
@@ -69,7 +70,8 @@ Because an picture card doesn't refresh on its own...
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/12.jpg)  
-
+Une nouvelle carte entièrement écrite en template buttun card "vacuum_header" !   
+J'adore !  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/13.jpg)  
 
@@ -78,8 +80,18 @@ Because an picture card doesn't refresh on its own...
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/15.jpg)  
+A new card entirely written in the "decluttering-template" format!  
+We need to create a sensor template to retrieve volume information.   
+After that, writing the card in the dashboard is very simple!
 
-
+````
+type: custom:decluttering-card
+template: music
+variables:
+  - entity: media_player.la_salle_de_bain
+  - gauge: sensor.salle_de_bain_progression
+````  
+  
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/16.jpg)  
 
 
