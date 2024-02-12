@@ -111,8 +111,8 @@ action:
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)  
-Clicking on the 'cog' icon at the bottom of the "Activity" card takes you to the settings sub-view.  
-This is where you can choose the elements that the Activity card should display.  
+Clicking on the `cog`icon at the bottom of the `Activity card` takes you to the `settings sub-view`.  
+This is where you can choose the elements that the `Activity card` should display.  
 All elements are dynamic, so if they are activated but do not contain any information, the card will not display them.  
 For example, if I choose to display lights in the menu, the card will only display the "Lights" line if there are any lights turned on.  
 This allows for a less cluttered card.  
@@ -126,6 +126,7 @@ Because an picture card doesn't refresh on its own...
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
 This Person card is full of surprises!  
 I utilize smartphone sensors, Proximity and Waze integrations, as well as several sensor templates.  
+Refer to template button card `person_complete_card`
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/06.jpg)  
 
@@ -230,14 +231,16 @@ Some knowledge is required before diving in:
   [swipe-card](https://github.com/bramkragten/swipe-card)  
   _A Lovelace card that uses swiper to create a touch slider that lets you flick through multiple cards_
 
-- Create the right sensor templates because I use them extensively and call them throughout the cards.
-- Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.
-- Adjust the entities, remove the unnecessary ones, etc.
+- I advise you to copy all the `decluttering templates` and `button card templates`. Create the right `sensor templates` :  I use them extensively and call them throughout the cards.  
 
-You need to adapt it to your configuration! 
+- Know where to copy and paste each part, whether it's the sensor templates, the contents of Lovelace, or the button card templates.  
 
-Dashboard created in 4 columns, thanks to the ayout card` available on HACS:
-- The tab is configured with View Type: `Horizontal (layout-card` / width: 350 / max_cols: 4
+- Adjust the entities, remove the unnecessary ones, etc...  
+
+You need to adapt it to your configuration!   
+
+Dashboard created in 4 columns, thanks to the ayout card` available on HACS:  
+- The tab is configured with View Type: `Horizontal layout-card` / width: 350 / max_cols: 4
 - A `vertical stack` column is nested within a card with :   
 
 ```yaml
@@ -249,8 +252,6 @@ cards:
 ````
 
 I recommend that you install and use my themes for perfect optimization of my codes. If you prefer to use other themes, copy the "Additions for my lovelace" part into your favorite theme. 
-
-Then copying the button card templates.
 
 And then starting to copy pieces of Lovelace.
 
