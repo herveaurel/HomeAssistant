@@ -1,6 +1,9 @@
 # HomeAssistant
 
- [French group Home Assistant](https://www.facebook.com/groups/homeassistantgroupefrance)
+[![PayPal](https://img.shields.io/badge/Donate-PayPal-blue?logo=paypal)](https://www.paypal.com/paypalme/aaherve)  
+
+
+ [French group Home Assistant](https://www.facebook.com/groups/homeassistantgroupefrance)  
 
 
 ## Mad Geek 2024
@@ -9,7 +12,7 @@ My dashboard compatible with PC, smartphone, tablet
 
 ## Table of contents
 
-**[`Installation`](#INSTALLATION)** | **[`Changelog`](#CHANGELOG)** | **[`Setup`](#SETUP)** | **[`Thanks`](#THANKS)** | **[`VIP`](#VIP)** |
+**[`Dashboard`](#DASHBOARD)** | **[`Installation`](#INSTALLATION)** | **[`Changelog`](#CHANGELOG)** | **[`Setup`](#SETUP)** | **[`Thanks`](#THANKS)** | **[`VIP`](#VIP)** 
 
 
 ## INTRODUCTION
