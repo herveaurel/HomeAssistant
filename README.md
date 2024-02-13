@@ -7,7 +7,7 @@ My dashboard compatible with PC, smartphone, tablet
 
 ## Table of contents
 
-**[`Dashboard`](#DASHBOARD)** | **[`Installation`](#INSTALLATION)** | **[`Changelog`](#CHANGELOG)** | **[`Setup`](#SETUP)** | **[`Thanks`](#THANKS)** | **[`VIP`](#VIP)** 
+**[`Dashboard`](#DASHBOARD)** | **[`Installation`](#INSTALLATION)** | **[`Changelog`](#CHANGELOG)** | **[`Setup`](#SETUP)** | **[`Thanks`](#THANKS)** | **[`Donate`](#DONATE)** 
 
 
 ## INTRODUCTION
@@ -330,7 +330,7 @@ I love them! Thanks to him!
 
 ---------------------
 
-## VIP 
+## DONATE 
 
 If you like it, please give my repo a star! 🌟  
 To buy me a beer 🍺 , coffee ☕️, say thanks 🙏, or show some love ❤️‍🩹   
