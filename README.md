@@ -166,6 +166,34 @@ Wall-E (Roborock S6) and R2-D2 (Roborock S50) can work properly !
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/14.jpg)  
+For information on the duration of the lights being on today, yesterday, and this week :  
+- Exemple for Today, in `sensor.yaml`, create `history_stats` :   
+```yaml
+  - platform: history_stats
+    name: Lumières allumées durée aujourd'hui 
+    entity_id: light.tout
+    state: "on"
+    type: time
+    start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+    end: "{{ now() }}"
+````  
+
+- In `sensor.yaml`, create `sensor template` :   
+```yaml
+  - platform: template
+    sensors:
+      duree_lumieres_allumees:
+        friendly_name: Durée des lumières allumées aujourd'hui          
+        value_template: >-
+            {% set heures_str = states.sensor.lumieres_allumees_duree_aujourd_hui.state %}
+            {% set heures = heures_str | float %}
+            
+            {%- set heures_int = heures | int -%}
+            {%- set minutes = (heures * 60) - (heures_int * 60) -%}
+            {%- set secondes = (heures * 3600) % 60 -%}
+            
+            {% if heures_int >= 1 %}{{ heures_int | int }}h {% endif %}{% if minutes >= 1 %}{{ minutes | int }}min {% endif %}{{ secondes | int }}sec
+````  
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/15.jpg)  
