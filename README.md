@@ -32,13 +32,18 @@ I write everything myself, so please be understanding! 😊
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 1. Themes :  
+
 I have created two distinct themes, and I switch between them using automation based on sunlight.  
 
 2. Television :  
+
 The television card is a massive effort in button card template and sensor template. I am pleased with the outcome!  
+
 For this card, you need :
+
    - sensor template
    -  template button card `base`
    -  template button card `tv_card`
@@ -53,11 +58,17 @@ template:
 ````    
 
 3. Magic Brightness Gauge :  
+
 On the room cards, the brightness gauges are very special...
+
 A room has several lights, and the gauge controls all the lights, which I didn't want ! 
+
 Indeed, the ideal was to find a way to control only the lights that are already turned on!
+
 If a lighting scene is in progress, and only 4 out of 10 lights are on, the gauge only affects those 4 lights! Brilliant!
+
 Here's what's needed: 
+
     - a light group for the room, exemple :  `light.kitchen`
     - input_number, exemple : `input_number.brightness_kitchen`
     - in the dashboard card, call the template : `room_card_slider` 
@@ -154,6 +165,7 @@ camera.yaml
 ⚠️ Be sure to read the [CHANGELOG file ](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md)  for the `Proximity` integration  
 <details>  
  <summary>Click to view the information</summary>  
+
 This Person card is full of surprises!  
 
 I utilize smartphone sensors, Proximity and Waze integrations, as well as several sensor templates.  
