@@ -376,6 +376,15 @@ And then starting to copy pieces of Lovelace.
 
 I use Alexa for voice commands and Apple Home on the Apple Watch.
 
+| Computer Devices | Model | 
+| --- | --- | 
+| Raspberry |  `Raspberry Pi 4B 4G` | 
+| SSD |  `Crucial BX500 240Go CT240BX500SSD1` | 
+| Zigbee | `SONOFF ZigBee 3.0 USB Dongle Plus, TI CC2652P Coordinator` and `Conbee II` |  
+| Bluetooth | `Sena Parani UD100` |  
+| USB Extension Cable | `UGREEN` |
+| Modem | `Orange-Sosh Livebox 4` |  
+| Mesh WiFi Router | `Tenda Nova MW6` and `Tenda Nova MW12` |  
 
 
 
