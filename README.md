@@ -285,8 +285,9 @@ mode: single
 icon: mdi:speaker-message
 ````  
 
-And more ! 
-
+---
+And many other things ! 
+--- 
 
 ## CHANGELOG  
 
