@@ -152,8 +152,8 @@ camera.yaml
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
 ⚠️ Be sure to read the [CHANGELOG file ](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md)  for the `Proximity` integration  
-<details>
- <summary>Click to view the information</summary>
+<details>  
+ <summary>Click to view the information</summary>  
 This Person card is full of surprises!  
 I utilize smartphone sensors, Proximity and Waze integrations, as well as several sensor templates.  
 Refer to template button card `person_complete_card`  
