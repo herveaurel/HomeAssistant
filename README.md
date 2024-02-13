@@ -125,22 +125,30 @@ action:
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/03.jpg)  
 <details>
  <summary>Click to view the information</summary>
+
 - Clicking on the `cog`icon ⚙️  at the bottom of the `Activity card` takes you to the `settings sub-view`.   
+
 - This is where you can choose the elements that the `Activity card` should display, with simple `input boolean`, for example `input.boolean_light`  
+
 All elements are dynamic with  `conditional card`, so if they are activated but do not contain any information, the Activity card will not display them. 
+
 For example, if I choose to display lights in the menu, the card will only display the "Lights" line if there are any lights turned on.  
+
 This allows for a less cluttered card.  
 
 I have divided my Activity card into 4 categories:
+
 - Program : Family calendar, Drash can calendar, Bhirtday, School holidays  
 - Alert : All warnings from my system (sensor template)  
 - Home : Everything that is turned on, activated  
 - Information : All updates (HA, HACS, etc...) and if there are none, as well as no warnings, I receive an information message from [Savoir Inutile](https://www.savoir-inutile.com/)  
 
 The small round and colorful dots next to the calendar icon, trash cans, and electricity consumption are indicators : 
+
 - calendar : Blue if the event is today.  
 - Trash can : The color of the trash can (green or yellow) if I need to take it out today.  
 - Electricity consumption :  Blue: normal consumption / Yellow: moderate / Orange: high / Red: very high.  
+
 </details>  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)  
