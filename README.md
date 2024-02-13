@@ -159,6 +159,7 @@ A new card entirely written in the "button card" template called `vacuum_header`
 And in the template button card named `vacuum_name` you'll need to modify your entities. After that, everything will be automatic.   
 I love it!   
 Paired with the slightly customized `custom:xiaomi-vacuum-map-card`, it's perfect!  
+I have also created `scripts`, which I have injected into `Alexa`, to control robots by voice and do much more than just 'vacuuming' !  [My French documentation)](https://github.com/herveaurel/Docs/tree/main/Aspirateur)  
 Wall-E (Roborock S6) and R2-D2 (Roborock S50) can work properly !  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/13.jpg)  
