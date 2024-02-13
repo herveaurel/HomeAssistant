@@ -197,7 +197,7 @@ For information on the duration of the lights being on today, yesterday, and thi
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/15.jpg)  
-- A new card entirely written in the decluttering-template` format!  
+- A new card entirely written in the `decluttering-template` format!  
 - We need to create a sensor template to retrieve volume information.   
 - After that, writing the card in the dashboard is very simple!
 
