@@ -233,7 +233,7 @@ And more !
 ## CHANGELOG  
 
 
- [**Read the CHANGELOG file** ](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md) : 2024-02-13  
+ [**Read the CHANGELOG file** ](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md) 
 
 
 
