@@ -368,14 +368,6 @@ And then starting to copy pieces of Lovelace.
 
 ## SETUP 
 
-- Raspberry 4 + SSD
-- USB Sonoff Zigbee 3.0
-- Bluetooth Sena Parani UD100
-- Orange Livebox 4
-- Tenda Nova MW6 and 1 MW12 
-
-I use Alexa for voice commands and Apple Home on the Apple Watch.
-
 | Computer Devices | Model | 
 | --- | --- | 
 | Raspberry |  `Raspberry Pi 4B 4G` | 
@@ -385,6 +377,9 @@ I use Alexa for voice commands and Apple Home on the Apple Watch.
 | USB Extension Cable | `UGREEN` |
 | Modem | `Orange-Sosh Livebox 4` |  
 | Mesh WiFi Router | `Tenda Nova MW6` and `Tenda Nova MW12` |  
+| Voice control | `Alexa` |  
+
+I use `Apple Home` on my cellular Apple Watch to have a mini dashboard on my wrist !
 
 
 
