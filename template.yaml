@@ -20,7 +20,20 @@
             {% endif %} 
             
   - sensor:
-  
+
+###### PROXIMITY
+      - name: Proximity Alex
+        unique_id: sensor.proximity_alex
+        icon: "mdi:compass"
+        state: >-
+          {{ (states('sensor.distance_alex') | float / 1000) | round(2)}} km - {{ states('sensor.direction_du_deplacement_de_alex') | replace('unknown', 'Inconnu') | replace('stationary', 'Stationnaire') | replace('arrived', 'Arrivé') | replace('away_from', "S'éloigne") | replace('towards', "S'approche")}} 
+
+      - name: Proximity Aurel
+        unique_id: sensor.proximity_aurel
+        icon: "mdi:compass"
+        state: >-
+          {{ (states('sensor.distance_aurel') | float / 1000) | round(2)}} km - {{ states('sensor.direction_du_deplacement_de_aurel') | replace('unknown', 'Inconnu') | replace('stationary', 'Stationnaire') | replace('arrived', 'Arrivé') | replace('away_from', "S'éloigne") | replace('towards', "S'approche")}} 
+        
 ###### TEMPERATURE
       - name: Température basse
         unique_id: sensor.temp_basse
