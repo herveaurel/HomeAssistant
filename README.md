@@ -391,6 +391,12 @@ Do you know the amazing gauges developed by André Fortuna Gouveia ?
 I love them! Thanks to him !     
 [HATC-GAUGE-CARD ](https://github.com/tagcashdev/hatc-gauge-card)   
 
+Do you know [Rounded ](https://community.home-assistant.io/t/rounded-dashboard-guide/543043) by Leon ?  
+I discovered his work by chance, and I find it fantastic !  
+Great ideas that I have adapted, congratulations to him !  
+
+I love the  [Noctis theme ](https://github.com/aFFekopp/noctis), I've learned a lot thanks to it, and I've been able to create my own themes! Thank you to aFFekopp ! 
+
 ---------------------
 
 ## DONATE 
