@@ -117,6 +117,12 @@ All elements are dynamic with  `conditional card`, so if they are activated but 
 For example, if I choose to display lights in the menu, the card will only display the "Lights" line if there are any lights turned on.  
 This allows for a less cluttered card.  
 
+I have divided my Activity card into 3 categories:
+- Program : Family calendar, Drash can calendar, Bhirtday, School holidays
+- Alert : All warnings from my system (sensor template)
+Home : Everything that is turned on, activated
+Information : All updates (HA, HACS, etc...) and if there are none, as well as no warnings, I receive an information message from [Savoir Inutile](https://www.savoir-inutile.com/)  
+
 The small round and colorful dots next to the calendar icon, trash cans, and electricity consumption are indicators : 
 - calendar : Blue if the event is today.  
 - Trash can : The color of the trash can (green or yellow) if I need to take it out today.  
