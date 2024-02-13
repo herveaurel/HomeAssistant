@@ -32,7 +32,7 @@ I write everything myself, so please be understanding! 😊
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
 <details>
- <summary>Click to read the explanations</summary>
+ <summary>Click to view the information</summary>
 1. Themes :  
 I have created two distinct themes, and I switch between them using automation based on sunlight.  
 
