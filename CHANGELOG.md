@@ -9,7 +9,6 @@ The integration is now in the UI and removed from the YAML configuration.
 The entity names are different.  
     - I created a sensor template for each person: `sensor.proximity_NAME`  
     - I modified the person card to `person_complete_card` 
-    - I modified the `proximity` variable in the dashboard card  
-    - I removed the `gps` variable from the dashboard card  
+    - I modified the `proximity` variable in the dashboard card   
 
 ---
