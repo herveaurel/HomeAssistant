@@ -286,7 +286,9 @@ icon: mdi:speaker-message
 ````  
 
 ---
-And many other things ! 
+
+And many other things !  
+
 --- 
 
 ## CHANGELOG  
