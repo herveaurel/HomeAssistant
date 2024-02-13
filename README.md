@@ -266,7 +266,7 @@ All of this is made possible thanks to the fantastic work of  [delphiki ](https:
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/19.jpg)   
-To send personalized voice announcements, you need to create a `input_text` and a `script`.  
+To send personalized voice announcements, you need to install [alexa_media_player](https://github.com/alandtse/alexa_media_player)   and to create a `input_text` and a `script`.  
 Here's an example for my bathroom: 
 
 - `input_text`, exemple : `input_text.annonce_dans_salle_de_bain`
@@ -320,6 +320,9 @@ Some knowledge is required before diving in:
   [button-card ](https://github.com/custom-cards/button-card)  
   _Lovelace button-card_
   
+  [alexa_media_player](https://github.com/alandtse/alexa_media_player)  
+  _Allow control of Amazon Alexa devices_
+
   [apexcharts-card](https://github.com/RomRider/apexcharts-card)  
   _Higly customizable graph card_
   
