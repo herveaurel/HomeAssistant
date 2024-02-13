@@ -6656,7 +6656,7 @@ views:
                           - color: |
                               [[[ 
                                 if (states['sensor.calendrier_famille_date'].state == states['sensor.date_numero'].state )
-                                  return "var(--ocean-blue)"
+                                  return "var(--blue)"
                                 return "transparent"
                               ]]]
                         name:
@@ -6721,7 +6721,7 @@ views:
                               [[[ 
                                 if (states['calendar.dechets_menagers'].state == "on")
                                   return "var(--green)"
-                                if (states['calendar.dechets_menagers'].state == "on")
+                                if (states['calendar.tri_selectif'].state == "on")
                                   return "var(--yellow)"
                                 return "transparent"
                               ]]]
