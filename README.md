@@ -121,7 +121,13 @@ This allows for a less cluttered card.
 The third column consists of camera recordings.  
 To ensure that the images refresh in real-time, I created generic camera entities.  
 It's a brilliant trick!   
-Because an picture card doesn't refresh on its own...  
+Because an picture card doesn't refresh on its own...   
+```yaml
+camera.yaml
+  - platform: local_file
+    file_path: /media/detections/verifications/camera.entree/verifiee.jpg 
+    name: entree_verifiee
+````  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
 *I see that I've chosen the wrong title for this screenshot... It's supposed to be 'Person Card,' of course! I'll correct it later... 😄*   
