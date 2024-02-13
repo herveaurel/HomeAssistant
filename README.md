@@ -122,7 +122,7 @@ The third column consists of camera recordings.
 To ensure that the images refresh in real-time, I created generic camera entities.  
 It's a brilliant trick!   
 Because an picture card doesn't refresh on its own...   
-And I use  [Doods2, My French documentation](https://github.com/herveaurel/Docs/tree/main/Doods2) 
+And I use  [Doods2 (My French documentation)](https://github.com/herveaurel/Docs/tree/main/Doods2) 
 
 ```yaml
 camera.yaml
