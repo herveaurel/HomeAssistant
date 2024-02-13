@@ -153,11 +153,16 @@ The small round and colorful dots next to the calendar icon, trash cans, and ele
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)  
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 The third column consists of camera recordings.  
+
 To ensure that the images refresh in real-time, I created generic camera entities.  
+
 It's a brilliant trick!   
+
 Because an picture card doesn't refresh on its own...   
+
 And I use  [Doods2 (My French documentation)](https://github.com/herveaurel/Docs/tree/main/Doods2) for human recognition.  
 
 ```yaml
@@ -171,6 +176,7 @@ camera.yaml
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/05.jpg)  
 ⚠️ Be sure to read the [CHANGELOG file ](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md)  for the `Proximity` integration  
+
 <details>  
  <summary>Click to view the information</summary>  
 
@@ -191,13 +197,16 @@ The icon is automatically the one chosen during the creation of a zone! And I've
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/07.jpg)  
 <details>
  <summary>Click to view the information</summary>
+
 I use two weather integrations :
+
 - `Meteorologisk institutt (Met.no)`
 - `Météo France`  
 
 For the family calendar, I retrieve information from the Apple Family Sharing calendar using the integration `CalDAV`  
 
 For the trash bins, I have created a `local calendar` for each type of bin.   
+
 </details>  
 
 
@@ -206,28 +215,38 @@ For the trash bins, I have created a `local calendar` for each type of bin.
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/10.jpg)  
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 The gauges are created using the template button card: `climat_card`.  
+
 You need to install [apexcharts-card](https://github.com/RomRider/apexcharts-card) for it to work.  
+
 </details>  
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg) 
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 Similar to the lights tab, I like to find all my devices on a sub-view page.  
+
 </details>  
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/12.jpg)  
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 A new card entirely written in the "button card" template called `vacuum_header`!  
+
 And in the template button card named `vacuum_name` you'll need to modify your entities. After that, everything will be automatic.   
-I love it!   
-Paired with the slightly customized `custom:xiaomi-vacuum-map-card`, it's perfect!  
+
+I love it! Paired with the slightly customized `custom:xiaomi-vacuum-map-card`, it's perfect!  
+
 I have also created `scripts`, which I have injected into `Alexa`, to control robots by voice and do much more than just 'vacuuming' ! [(My French documentation)](https://github.com/herveaurel/Docs/tree/main/Aspirateur)  
+
 Wall-E (Roborock S6) and R2-D2 (Roborock S50) can work properly !  
+
 </details>  
 
 
@@ -236,9 +255,12 @@ Wall-E (Roborock S6) and R2-D2 (Roborock S50) can work properly !
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/14.jpg)  
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 For information on the duration of the lights being on today, yesterday, and this week :  
+
 - Exemple for Today, in `sensor.yaml`, create `history_stats` :   
+
 ```yaml
   - platform: history_stats
     name: Lumières allumées durée aujourd'hui 
@@ -250,6 +272,7 @@ For information on the duration of the lights being on today, yesterday, and thi
 ````  
 
 - In `sensor.yaml`, create `sensor template` :   
+
 ```yaml
   - platform: template
     sensors:
@@ -270,7 +293,8 @@ For information on the duration of the lights being on today, yesterday, and thi
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/15.jpg)  
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 - A new card entirely written in the `decluttering-template` format : `music`!  
 - We need to create a sensor template to retrieve volume information.   
 - After that, writing the card in the dashboard is very simple!
@@ -287,15 +311,22 @@ variables:
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/16.jpg)  
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 In the bathroom, I've created `Water Sounds` but it wasn't simple.
+
 I'm using water sound detection via the Alexa Echo.
+
 But it doesn't come up in Home Assistant.
+
 So, I did this:
+
  - I created and injected an `input_button` into Alexa : `input_button.bruits_de_l_eau`
  - I created and injected an `input_boolean` into HA : `input_boolean.bruits_deau_sdb`
  - I created a routine in Alexa that activates the `input_button` when water is detected.
+
  - Automatisation Home Assistant : 
+
 ```yaml
 alias: Bruits d’eau sdb
 description: ""
@@ -329,6 +360,7 @@ mode: restart
 ````  
 
 Then, I created a `history-graph` card and an `custom:apexcharts-card`  based on the `input_boolean.bruits_deau_sdb`, and now I can cry while looking at my children's abuses! 😩  
+
 </details>  
 
 
@@ -337,19 +369,25 @@ Then, I created a `history-graph` card and an `custom:apexcharts-card`  based on
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/18.jpg)  
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 This is one of the widely used French systems to have all the information about a child's schooling: the agenda, grades, evaluations, averages, homework assignments, punishments, tardiness, and more.  
+
 All of this is made possible thanks to the fantastic work of  [delphiki ](https://github.com/delphiki) :
+
 -  [Pronote ](https://github.com/delphiki/hass-pronote) 
 -  [Pronote Cards ](https://github.com/delphiki/lovelace-pronote)   
+
 </details>  
 
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/19.jpg)   
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 To send personalized voice announcements, you need to install [alexa_media_player](https://github.com/alandtse/alexa_media_player)   and to create a `input_text` and a `script`.  
+
 Here's an example for my bathroom: 
 
 - `input_text`, exemple : `input_text.annonce_dans_salle_de_bain`
@@ -372,12 +410,15 @@ icon: mdi:speaker-message
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/20.jpg)   
 <details>
- <summary>Click to view the information</summary>
+ <summary>Click to view the information</summary>  
+
 1. 1st column: HA startup duration (`Uptime` integration)+ Raspberry and SSD performance (`System Monitor`Integration)   
 
 2. 2nd column: 3 parts:   
+
   - RPI power supply + modem status + Mesh WiFi Router states  
   - Scripts for: backup + restart HA + restart Mesh WiFi Router + reboot Alexa Media Player integration (sometimes needed to update alarm information)  
+
 ```yaml
 alias: Backup full HA
 sequence:
@@ -397,6 +438,7 @@ mode: single
   - System-wide warnings  
 
 3. 3rd column: All updates (HA, HACS, add-ons, etc...). The circular gauges represent the used RAM. To have this entity, it needs to be enabled (disabled by default) in the `Home Assistant Supervisor`integration.  
+
 </details>  
 
 ---
