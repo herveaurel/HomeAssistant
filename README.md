@@ -303,6 +303,9 @@ mode: single
 icon: mdi:speaker-message
 ````  
 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/20.jpg)   
+
+
 ---
 
 And many other things !  
