@@ -172,7 +172,7 @@ You need to install [apexcharts-card](https://github.com/RomRider/apexcharts-car
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg) 
-
+Similar to the lights tab, I like to find all my devices on a sub-view page.  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/12.jpg)  
 A new card entirely written in the "button card" template called `vacuum_header`!  
