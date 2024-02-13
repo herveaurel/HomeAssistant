@@ -155,8 +155,11 @@ camera.yaml
 <details>  
  <summary>Click to view the information</summary>  
 This Person card is full of surprises!  
+
 I utilize smartphone sensors, Proximity and Waze integrations, as well as several sensor templates.  
+
 Refer to template button card `person_complete_card`  
+
 The icon is automatically the one chosen during the creation of a zone! And I've set a default icon if the zone is unknown.  
 </details>   
 
