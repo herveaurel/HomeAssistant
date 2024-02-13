@@ -10394,7 +10394,7 @@ views:
                   - type: custom:decluttering-card
                     template: header
                     variables:
-                      - name: Tel, tablettes, orids
+                      - name: Tel, tablettes, ordis
                       - icon: mdi:cellphone-charging
                   - type: custom:button-card
                     template:
@@ -18755,7 +18755,7 @@ views:
                                 name: |
                                   [[[
                                     const trend = states['sensor.air_tendance_icon'].state;
-                                    return "Particlues "+ trend
+                                    return "Particules "+ trend
                                   ]]]
                                 label: |
                                   [[[
@@ -18998,7 +18998,7 @@ views:
                                 name: |
                                   [[[
                                     const trend = states['sensor.air_tendance_icon'].state;
-                                    return "Particlues "+ trend
+                                    return "Particules "+ trend
                                   ]]]
                                 label: |
                                   [[[
