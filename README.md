@@ -372,7 +372,7 @@ And then starting to copy pieces of Lovelace.
 | --- | --- | 
 | Raspberry |  `Raspberry Pi 4B 4G` | 
 | SSD |  `Crucial BX500 240Go CT240BX500SSD1` | 
-| Zigbee | `SONOFF ZigBee 3.0 USB Dongle Plus, TI CC2652P Coordinator` and `Conbee II` |  
+| Zigbee | `SONOFF ZigBee 3.0 USB Dongle Plus, TI CC2652P Coordinator` (ZHA) and `Conbee II` (zigbee2MQTT) |  
 | Bluetooth | `Sena Parani UD100` |  
 | USB Extension Cable | `UGREEN` |
 | Modem | `Orange-Sosh Livebox 4` |  
