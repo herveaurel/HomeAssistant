@@ -133,6 +133,8 @@ The small round and colorful dots next to the calendar icon, trash cans, and ele
 </details>  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/04.jpg)  
+<details>
+ <summary>Click to view the information</summary>
 The third column consists of camera recordings.  
 To ensure that the images refresh in real-time, I created generic camera entities.  
 It's a brilliant trick!   
