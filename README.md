@@ -304,11 +304,11 @@ icon: mdi:speaker-message
 ````  
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/20.jpg)   
-1. 1st column: HA startup duration (`Uptime` integration)+ Raspberry and SSD performance (`System Monitor`Integration) 
+1. 1st column: HA startup duration (`Uptime` integration)+ Raspberry and SSD performance (`System Monitor`Integration)   
+
 2. 2nd column: 3 parts:   
   - RPI power supply + modem status + Mesh WiFi Router states  
   - Scripts for: backup + restart HA + restart Mesh WiFi Router + reboot Alexa Media Player integration (sometimes needed to update alarm information)  
-
 ```yaml
 alias: Backup full HA
 sequence:
@@ -324,7 +324,8 @@ sequence:
   - service: homeassistant.restart
     data: {}
 mode: single
-````  
+````   
+  - System-wide warnings  
 
 3. 3rd column: All updates (HA, HACS, add-ons, etc...). The circular gauges represent the used RAM. To have this entity, it needs to be enabled (disabled by default) in the `Home Assistant Supervisor`integration.  
 
