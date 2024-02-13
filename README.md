@@ -297,7 +297,7 @@ And more !
 
 ## INSTALLATION
 
-⚠️ **It's not a one-click setup!**
+⚠️ **I am not a developer. It's not a one-click setup!**
 
 Some knowledge is required before diving in:
 
