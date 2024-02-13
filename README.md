@@ -266,7 +266,24 @@ All of this is made possible thanks to the fantastic work of  [delphiki ](https:
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/19.jpg)   
+To send personalized voice announcements, you need to create a `input_text` and a `script`.  
+Here's an example for my bathroom: 
 
+- `input_text`, exemple : `input_text.annonce_dans_salle_de_bain`
+- `script`
+```yaml
+alias: Annonce dans salle de bain
+sequence:
+  - data:
+      data:
+        type: announce
+      message: "{{ states.input_text.annonce_dans_salle_de_bain.state}}"
+      target:
+        - media_player.la_salle_de_bain
+    service: notify.alexa_media
+mode: single
+icon: mdi:speaker-message
+````  
 
 And more ! 
 
