@@ -117,7 +117,7 @@ All elements are dynamic with  `conditional card`, so if they are activated but 
 For example, if I choose to display lights in the menu, the card will only display the "Lights" line if there are any lights turned on.  
 This allows for a less cluttered card.  
 
-I have divided my Activity card into 3 categories:
+I have divided my Activity card into 4 categories:
 - Program : Family calendar, Drash can calendar, Bhirtday, School holidays  
 - Alert : All warnings from my system (sensor template)  
 - Home : Everything that is turned on, activated  
