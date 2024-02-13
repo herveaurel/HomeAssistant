@@ -149,6 +149,8 @@ The icon is automatically the one chosen during the creation of a zone! And I've
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/10.jpg)  
+The gauges are created using the template button card: `climat_card`.
+You need to install [apexcharts-card](https://github.com/RomRider/apexcharts-card) for it to work.  
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/11.jpg) 
