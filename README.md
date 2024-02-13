@@ -154,6 +154,13 @@ The icon is automatically the one chosen during the creation of a zone! And I've
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/07.jpg)  
+I use two weather integrations :
+- `Meteorologisk institutt (Met.no)`
+- `Météo France`  
+
+For the family calendar, I retrieve information from the Apple Family Sharing calendar using the integration `CalDAV`  
+
+For the trash bins, I have created a `local calendar` for each type of bin.   
 
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/09.jpg)  
