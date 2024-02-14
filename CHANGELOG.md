@@ -12,3 +12,7 @@ The entity names are different.
     - I modified the `proximity` variable in the dashboard card   
 
 ---
+
+## 2024-02-14  
+
+- Reduce font-size of the time to avoid text being cut off at the top
