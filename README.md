@@ -7,8 +7,8 @@ My dashboard compatible with PC, smartphone, tablet
 
 ## Table of contents <!-- omit in toc -->
 
-- **[`Dashboard and Explanations`](#DASHBOARD)** 
-- **[`Installation`](#INSTALLATION)** 
+- [`Dashboard and Explanations`](#DASHBOARD)
+- **[Installation](#INSTALLATION)** 
 - **[`Changelog 2024-02-14`](#CHANGELOG)** 
 - **[`Setup`](#SETUP)** 
 - **[`Thanks`](#THANKS)** 
