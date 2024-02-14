@@ -37,13 +37,26 @@ I write everything myself, so please be understanding! 😊
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
 <details>
- <summary>Click to view the information</summary> 
+ <summary>Click to view the information</summary>   
 
-1. Themes :  
+1. Dashboard created in 4 columns, thanks to the ayout card` available on HACS:  
+
+- The tab is configured with View Type: `Horizontal layout-card` / width: 350 / max_cols: 4
+- A `vertical stack` column is nested within a card with :   
+
+```yaml
+type: custom:layout-card
+layout_type: masonry
+layout:
+  width: 280
+cards:
+````
+
+2. Themes :  
 
 I have created two distinct themes, and I switch between them using automation based on sunlight.  
 
-2. Television :  
+3. Television :  
 
 The television card is a massive effort in button card template and sensor template. I am pleased with the outcome!  
 
@@ -62,7 +75,7 @@ template:
   - tv_NAME-TV_card
 ````    
 
-3. Magic Brightness Gauge :  
+4. Magic Brightness Gauge :  
 
 On the room cards, the brightness gauges are very special...
 
@@ -510,17 +523,7 @@ Some knowledge is required before diving in:
 
 You need to adapt it to your configuration!   
 
-Dashboard created in 4 columns, thanks to the ayout card` available on HACS:  
-- The tab is configured with View Type: `Horizontal layout-card` / width: 350 / max_cols: 4
-- A `vertical stack` column is nested within a card with :   
 
-```yaml
-type: custom:layout-card
-layout_type: masonry
-layout:
-  width: 280
-cards:
-````
 
 I recommend that you install and use my themes for perfect optimization of my codes. If you prefer to use other themes, copy the "Additions for my lovelace" part into your favorite theme. 
 
