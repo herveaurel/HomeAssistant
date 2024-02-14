@@ -6226,7 +6226,7 @@ views:
                                 card:
                                   - line-height: 20px
                                 label:
-                                  - font-size: 25px
+                                  - font-size: 20px
                                   - font-weight: 600
                             - type: custom:button-card
                               tap_action:
