@@ -37,7 +37,7 @@ I write everything myself, so please be understanding! 😊
 
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/01.jpg)  
 <details>
- <summary><span style="color:blue;">Click to view the information</span></summary> 
+ <summary>Click to view the information</summary> 
 
 1. Themes :  
 
