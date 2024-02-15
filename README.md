@@ -1,4 +1,4 @@
-# Mad Geek 2024 <!-- omit in toc -->
+# Mad Geek 2024.1.3c<!-- omit in toc -->
 My dashboard compatible with PC, smartphone, tablet  
  
 
@@ -7,7 +7,7 @@ My dashboard compatible with PC, smartphone, tablet
 
 ## Table of contents <!-- omit in toc -->
 
-**[Dashboard and Explanations](#DASHBOARD)**  |  **[Installation](#INSTALLATION)**  |  **[Changelog 2024-02-15](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md)**  |  **[Setup](#SETUP)**  |  **[Thanks](#THANKS)**  |  **[Donate](#DONATE)**   
+**[Dashboard and Explanations](#DASHBOARD)**  |  **[Installation](#INSTALLATION)**  |  **[Changelog](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md)**  |  **[Setup](#SETUP)**  |  **[Thanks](#THANKS)**  |  **[Donate](#DONATE)**   
 
 
 ## INTRODUCTION
