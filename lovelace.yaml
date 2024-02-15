@@ -18195,13 +18195,16 @@ views:
                                     - color: var(--text-off)
                                     - color: var(--blue)
                                       from: 0
-                                      to: 10
-                                    - color: var(--yellow)
-                                      from: 10.1
                                       to: 15
-                                    - color: var(--red)
+                                    - color: var(--green)
                                       from: 15.1
-                                      to: 30
+                                      to: 25
+                                    - color: var(--yellow)
+                                      from: 25.1
+                                      to: 27
+                                    - color: var(--red)
+                                      from: 27.1
+                                      to: 40
                                 card_mod:
                                   style: |
                                     ha-card {  
