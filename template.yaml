@@ -26,14 +26,37 @@
         unique_id: sensor.proximity_alex
         icon: "mdi:compass"
         state: >-
-          {{ (states('sensor.distance_alex') | float / 1000) | round(2)}} km - {{ states('sensor.direction_du_deplacement_de_alex') | replace('unknown', 'Inconnu') | replace('stationary', 'Stationnaire') | replace('arrived', 'Arrivé') | replace('away_from', "S'éloigne") | replace('towards', "S'approche")}} 
-
+            {% set person = states.person.alex.state %}
+            {% if person == "home" %}
+              {{ states('sensor.direction_du_deplacement_de_alex_travail') | replace('unknown', '') | replace('stationary', '') | replace('arrived', '') | replace('away_from', "S'éloigne -") | replace('towards', "S'approche -")}} {{ (states('sensor.distance_alex_travail') | float(0) / 1000) | round(2)}} km           
+            {% else %}       
+              {{ states('sensor.direction_du_deplacement_de_alex_domicile') | replace('unknown', '') | replace('stationary', '') | replace('arrived', '') | replace('away_from', "S'éloigne -") | replace('towards', "S'approche -")}} {{ (states('sensor.distance_alex_domicile') | float(0) / 1000) | round(2)}} km           
+            {% endif %}
+            
       - name: Proximity Aurel
         unique_id: sensor.proximity_aurel
         icon: "mdi:compass"
         state: >-
-          {{ (states('sensor.distance_aurel') | float / 1000) | round(2)}} km - {{ states('sensor.direction_du_deplacement_de_aurel') | replace('unknown', 'Inconnu') | replace('stationary', 'Stationnaire') | replace('arrived', 'Arrivé') | replace('away_from', "S'éloigne") | replace('towards', "S'approche")}} 
-        
+            {% set person = states.person.herve.state %}
+            {% if person == "home" %}
+              {{ states('sensor.direction_du_deplacement_de_aurel_travail') | replace('unknown', '') | replace('stationary', '') | replace('arrived', '') | replace('away_from', "S'éloigne -") | replace('towards', "S'approche -")}} {{ (states('sensor.distance_aurel_travail') | float(0) / 1000) | round(2)}} km           
+            {% else %}       
+              {{ states('sensor.direction_du_deplacement_de_aurel_domicile') | replace('unknown', '') | replace('stationary', '') | replace('arrived', '') | replace('away_from', "S'éloigne -") | replace('towards', "S'approche -")}} {{ (states('sensor.distance_aurel_domicile') | float(0) / 1000) | round(2)}} km           
+            {% endif %}
+            
+      - name: Proximity Tom
+        unique_id: sensor.proximity_tom
+        icon: "mdi:compass"
+        state: >-
+          {{ states('sensor.direction_du_deplacement_de_tom') | replace('unknown', '') | replace('stationary', '') | replace('arrived', '') | replace('away_from', "S'éloigne -") | replace('towards', "S'approche -")}} {{ (states('sensor.distance_tom') | float(0) / 1000) | round(2)}} km
+
+      - name: Proximity Manon
+        unique_id: sensor.proximity_Manon
+        icon: "mdi:compass"
+        state: >-
+          {{ states('sensor.direction_du_deplacement_de_manon') | replace('unknown', '') | replace('stationary', '') | replace('arrived', '') | replace('away_from', "S'éloigne -") | replace('towards', "S'approche -")}} {{ (states('sensor.distance_manon') | float(0) / 1000) | round(2)}} km  
+                              
+                       
 ###### TEMPERATURE
       - name: Température basse
         unique_id: sensor.temp_basse
@@ -626,8 +649,8 @@
       - name: Linky mise à jour
         icon: "mdi:update"
         state: >-
-            {% if state_attr('sensor.linky_093xxxxxxx5420_consumption', 'lastUpdate') is defined %}
-             {{ as_timestamp(states.sensor.linky_093xxxxxxx5420_consumption.attributes.lastUpdate) | timestamp_custom("%d-%m-%Y à %Hh%M") }}
+            {% if state_attr('sensor.linky_09xxxxxxxxxx420_consumption', 'lastUpdate') is defined %}
+             {{ as_timestamp(states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.lastUpdate) | timestamp_custom("%d-%m-%Y à %Hh%M") }}
             {% else %}
             {% endif %}              
 
@@ -635,11 +658,11 @@
       - name: Linky verif j1
         icon: "mdi:flash"
         state: >- 
-              {% set linky_updtate = as_timestamp(states.sensor.linky_093xxxxxxx5420_consumption.attributes.lastUpdate) | timestamp_custom("%Y-%m-%d") %}
-              {% set linky_date_veille = as_timestamp(states.sensor.linky_093xxxxxxx5420_consumption.attributes.yesterdayDate) | timestamp_custom("%Y-%m-%d") %} 
+              {% set linky_updtate = as_timestamp(states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.lastUpdate) | timestamp_custom("%Y-%m-%d") %}
+              {% set linky_date_veille = as_timestamp(states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.yesterdayDate) | timestamp_custom("%Y-%m-%d") %} 
               {% set date_veille = (as_timestamp(now()) - 86400) | timestamp_custom('%Y-%m-%d') %}              
               {% set date = states.sensor.date.state %}
-              {% set conso = states.sensor.linky_093xxxxxxx5420_consumption.attributes.day_1 %}
+              {% set conso = states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.day_1 %}
                 {% if (linky_updtate == date) and (conso != 0.0 ) and (linky_date_veille == date_veille) and states.sensor.time.state > "04:00" %}
                   true 
                 {% else %}
@@ -649,7 +672,7 @@
       - name: "electricite conso veille"
         unit_of_measurement: 'kWh'      
         state: >   
-          {{ states.sensor.linky_093xxxxxxx5420_consumption.attributes.day_1 |float| round(2)}}
+          {{ states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.day_1 |float| round(2)}}
         icon: "mdi:flash"
         device_class: "energy"
         state_class: "total_increasing"
@@ -657,7 +680,7 @@
       - name: "electricite conso j2"
         unit_of_measurement: 'kWh'      
         state: >   
-          {{ states.sensor.linky_093xxxxxxx5420_consumption.attributes.day_2 |float| round(2)}}
+          {{ states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.day_2 |float| round(2)}}
         icon: "mdi:flash"
         device_class: "energy"
         state_class: "total_increasing"
@@ -666,7 +689,7 @@
       - name: "electricite conso j3"
         unit_of_measurement: 'kWh'      
         state: >   
-          {{ states.sensor.linky_093xxxxxxx5420_consumption.attributes.day_3 |float| round(2)}}
+          {{ states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.day_3 |float| round(2)}}
         icon: "mdi:flash"
         device_class: "energy"
         state_class: "total_increasing"
@@ -675,7 +698,7 @@
       - name: "electricite conso j4"
         unit_of_measurement: 'kWh'      
         state: >   
-          {{ states.sensor.linky_093xxxxxxx5420_consumption.attributes.day_4 |float| round(2)}}
+          {{ states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.day_4 |float| round(2)}}
         icon: "mdi:flash"
         device_class: "energy"
         state_class: "total_increasing"
@@ -684,7 +707,7 @@
       - name: "electricite conso j5"
         unit_of_measurement: 'kWh'      
         state: >   
-          {{ states.sensor.linky_093xxxxxxx5420_consumption.attributes.day_5 |float| round(2)}}
+          {{ states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.day_5 |float| round(2)}}
         icon: "mdi:flash"
         device_class: "energy"
         state_class: "total_increasing"
@@ -693,7 +716,7 @@
       - name: "electricite conso j6"
         unit_of_measurement: 'kWh'      
         state: >   
-          {{ states.sensor.linky_093xxxxxxx5420_consumption.attributes.day_6 |float| round(2)}}
+          {{ states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.day_6 |float| round(2)}}
         icon: "mdi:flash"
         device_class: "energy"
         state_class: "total_increasing"
@@ -702,7 +725,7 @@
       - name: "electricite conso j7"
         unit_of_measurement: 'kWh'      
         state: >   
-          {{ states.sensor.linky_093xxxxxxx5420_consumption.attributes.day_7 | float | round(2) }}
+          {{ states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.day_7 | float | round(2) }}
         icon: "mdi:flash"
         device_class: "energy"
         state_class: "total"  
@@ -711,7 +734,7 @@
       - name: "electricite conso semaine"
         unit_of_measurement: 'kWh'      
         state: >   
-          {{ states.sensor.linky_093xxxxxxx5420_consumption.attributes.current_week |float| round(2)}}
+          {{ states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.current_week |float| round(2)}}
         icon: "mdi:flash"
         device_class: "energy"
         state_class: "total"
@@ -721,7 +744,7 @@
       - name: "electricite conso kwh arrondie"
         unit_of_measurement: 'kWh'      
         state: >   
-          {{ states.sensor.linky_093xxxxxxx5420_consumption.state |float| round(2)}}
+          {{ states.sensor.linky_09xxxxxxxxxx420_consumption.state |float| round(2)}}
         icon: "mdi:flash"
         device_class: "energy"
         state_class: "total"
@@ -729,7 +752,7 @@
       - name: "electricite cout jour avec abo"
         unit_of_measurement: 'EUR /kWh'      
         state: >   
-          {{ (states.sensor.linky_093xxxxxxx5420_consumption.state|float*0.2276+0.415)|float|round(2) }}
+          {{ (states.sensor.linky_09xxxxxxxxxx420_consumption.state|float * states.input_number.prix_electricite.state|float + (states.input_number.prix_abo_electricite.state|float*12/365))|float|round(2) }}
         icon: "mdi:flash"
         device_class: "monetary"
         state_class: "total"
@@ -737,7 +760,7 @@
       - name: "electricite cout semaine avec abo"
         unit_of_measurement: 'EUR'      
         state: >   
-          {{ (states.sensor.linky_093xxxxxxx5420_consumption.attributes.current_week|float*0.2276+3.11)|float|round(2) }}
+          {{ (states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.current_week|float * states.input_number.prix_electricite.state|float + (states.input_number.prix_abo_electricite.state|float*12/52))|float|round(2) }}
         icon: "mdi:flash"
         device_class: "monetary"
         state_class: "total"
@@ -745,7 +768,7 @@
       - name: "electricite cout mois avec abo"
         unit_of_measurement: 'EUR'      
         state: >   
-          {{ (states.sensor.linky_093xxxxxxx5420_consumption.attributes.current_month|float*0.2276+12.44)|float|round(2) }}
+          {{ (states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.current_month|float * states.input_number.prix_electricite.state|float + (states.input_number.prix_abo_electricite.state|float))|float|round(2) }}
         icon: "mdi:flash"
         device_class: "monetary"
         state_class: "total"
@@ -753,7 +776,7 @@
       - name: "electricite cout annee avec abo"
         unit_of_measurement: 'EUR'      
         state: >   
-          {{ (states.sensor.linky_093xxxxxxx5420_consumption.attributes.current_year|float*0.2276+149.28)|float|round(2) }}
+          {{ (states.sensor.linky_09xxxxxxxxxx420_consumption.attributes.current_year|float * states.input_number.prix_electricite.state|float + (states.input_number.prix_abo_electricite.state|float*12))|float|round(2) }}
         icon: "mdi:flash"
         device_class: "monetary"
         state_class: "total"
