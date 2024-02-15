@@ -195,7 +195,13 @@ camera.yaml
 
 This Person card is full of surprises!  
 
-I am using the sensors from the phones with the `Home Assistant mobile app` or the sensors from the `Apple iCloud integration` for my children, `Proximity` and `Waze` integrations, as well as several sensor templates.  
+I am using :  
+
+- the sensors from the phones with the `Home Assistant mobile app` 
+- the sensors from the `Apple iCloud integration` for my children. 
+- `Proximity` 
+- `Waze` 
+- as well as several `sensor templates`.  
 
 Refer to template button card `person_complete_card`  
 
