@@ -36,7 +36,13 @@ I write everything myself, so please be understanding! 😊
 
 1. Dashboard created in 4 columns, thanks to the ayout card` available on HACS:  
 
-- The tab is configured with View Type: `Horizontal layout-card` / width: 350 / max_cols: 4
+- The tab is configured with `View Type`: `Horizontal layout-card` and : 
+
+```yaml
+width: 350
+max_cols: 4
+````
+
 - A `vertical stack` column is nested within a card with :   
 
 ```yaml
