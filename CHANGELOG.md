@@ -36,3 +36,7 @@ The entity names are different.
 - Modification of the sensor template `sensor.xxx_trajet`.  
 - Modification of the sensor template `sensor.xxx_gps` for children (I now use the `Apple iCloud integration to locate them because they do not have the Home Assistant app on their phone).  
 - Modification of the `variables` in the Person cards on the Person tab.
+
+3. Weather card
+
+- Correction of the units for the sky, rain, and snow sensors.
