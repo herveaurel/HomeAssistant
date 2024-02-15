@@ -3110,7 +3110,7 @@ button_card_templates:
             - background-color: var(--img-cell-red)
           icon:
             - color: var(--icon-red)
-            - animation: blink 0.8s ease infinite
+            - animation: blink 0.8s ease infinite 
           name:
             - color: var(--icon-red)
   electricity_state:
