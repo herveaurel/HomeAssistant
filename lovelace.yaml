@@ -18325,7 +18325,7 @@ views:
                           label: >
                             [[[ return
                             states['sensor.weather_conditions_ciel'].state + "
-                            km/h" ]]]  
+                            %" ]]]  
                           custom_fields:
                             barre:
                               card:
@@ -18356,7 +18356,7 @@ views:
                           label: >
                             [[[ return
                             states['sensor.weather_conditions_pluie'].state + "
-                            km/h" ]]]  
+                            %" ]]]  
                           custom_fields:
                             barre:
                               card:
@@ -18418,7 +18418,7 @@ views:
                           label: >
                             [[[ return
                             states['sensor.weather_conditions_neige'].state + "
-                            km/h" ]]]  
+                            %" ]]]  
                           custom_fields:
                             barre:
                               card:
