@@ -40,3 +40,4 @@ The entity names are different.
 3. Weather card
 
 - Correction of the units for the sky, rain, and snow sensors.
+- Modification of the thresholds and colors of the temperature gauge.
