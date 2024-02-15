@@ -145,7 +145,7 @@
           
           
       next_day_manon:
-            value_template: "{{state_attr('sensor.pronote_gargam_manon_timetable_next_day','lessons')[0].start_at.strftime('%Y-%m-%d')}}"
+            value_template: "{{state_attr('sensor.pronote_xxx_manon_timetable_next_day','lessons')[0].start_at.strftime('%Y-%m-%d')}}"
             unique_id: sensor.next_day_manon
             friendly_name: "Prochain Jour de cours Manon"
             
@@ -153,8 +153,8 @@
             unique_id: sensor.devoirs_manon_next_day
             friendly_name: "Devoirs Manon" 
             value_template: "{% set devoirs = namespace(total = 0,fait=0,restant=0) %}
-                              {% for state in range(states('sensor.pronote_gargam_manon_homework') | int)  %}
-                                {% set homework = state_attr('sensor.pronote_gargam_manon_homework','homework')[state] %}
+                              {% for state in range(states('sensor.pronote_xxx_manon_homework') | int)  %}
+                                {% set homework = state_attr('sensor.pronote_xxx_manon_homework','homework')[state] %}
                                 {% if homework.date | string == states('sensor.next_day_manon') %}
                                 {% if homework.done  == true  %}
                                   {% set devoirs.fait = devoirs.fait + 1 %}
@@ -166,16 +166,16 @@
                               {{ devoirs.restant  | int != 0 }}"
             attribute_templates:
               devoirs_totaux:  "{% set devoirs = namespace(total = 0) %}
-                              {% for state in range(states('sensor.pronote_gargam_manon_homework') | int)  %}
-                                {% set homework = state_attr('sensor.pronote_gargam_manon_homework','homework')[state] %}
+                              {% for state in range(states('sensor.pronote_xxx_manon_homework') | int)  %}
+                                {% set homework = state_attr('sensor.pronote_xxx_manon_homework','homework')[state] %}
                                 {% if homework.date | string == states('sensor.next_day_manon') %}
                                 {% set devoirs.total = devoirs.total + 1 %}
                                 {%- endif  %}
                               {%- endfor %}
                               {{devoirs.total}}"
               devoirs_faits:  "{% set devoirs = namespace(fait = 0) %}
-                              {% for state in range(states('sensor.pronote_gargam_manon_homework') | int)  %}
-                                {% set homework = state_attr('sensor.pronote_gargam_manon_homework','homework')[state] %}
+                              {% for state in range(states('sensor.pronote_xxx_manon_homework') | int)  %}
+                                {% set homework = state_attr('sensor.pronote_xxx_manon_homework','homework')[state] %}
                                 {% if homework.date | string == states('sensor.next_day_manon') %}
                                   {% if homework.done  == true  %}
                                     {% set devoirs.fait = devoirs.fait + 1 %}
@@ -184,7 +184,7 @@
                               {%- endfor %}
                               {{ devoirs.fait}}"
               devoirs_restants:  "{{state_attr('sensor.devoirs_manon','devoirs_totaux') |int - state_attr('sensor.devoirs_manon','devoirs_faits') |int}}"
-              pour_le: "{{state_attr('sensor.pronote_gargam_manon_timetable_next_day','lessons')[0].start_at.strftime('%Y-%m-%d') }}" 
+              pour_le: "{{state_attr('sensor.pronote_xxx_manon_timetable_next_day','lessons')[0].start_at.strftime('%Y-%m-%d') }}" 
               
       devoirs_manon_next_day:
         friendly_name: Devoirs manon pour le prochain jour         
@@ -210,7 +210,7 @@
             {% endif %}        
         
       next_day_leane:
-            value_template: "{{state_attr('sensor.pronote_gargam_l_ane_timetable_next_day','lessons')[0].start_at.strftime('%Y-%m-%d')}}"
+            value_template: "{{state_attr('sensor.pronote_xxx_l_ane_timetable_next_day','lessons')[0].start_at.strftime('%Y-%m-%d')}}"
             unique_id: sensor.next_day_leane
             friendly_name: "Prochain Jour de cours Léane"
             
@@ -218,8 +218,8 @@
             unique_id: sensor.devoirs_leane_next_day
             friendly_name: "Devoirs Léane" 
             value_template: "{% set devoirs = namespace(total = 0,fait=0,restant=0) %}
-                              {% for state in range(states('sensor.pronote_gargam_l_ane_homework') | int)  %}
-                                {% set homework = state_attr('sensor.pronote_gargam_l_ane_homework','homework')[state] %}
+                              {% for state in range(states('sensor.pronote_xxx_l_ane_homework') | int)  %}
+                                {% set homework = state_attr('sensor.pronote_xxx_l_ane_homework','homework')[state] %}
                                 {% if homework.date | string == states('sensor.next_day_leane') %}
                                 {% if homework.done  == true  %}
                                   {% set devoirs.fait = devoirs.fait + 1 %}
@@ -231,16 +231,16 @@
                               {{ devoirs.restant  | int != 0 }}"
             attribute_templates:
               devoirs_totaux:  "{% set devoirs = namespace(total = 0) %}
-                              {% for state in range(states('sensor.pronote_gargam_l_ane_homework') | int)  %}
-                                {% set homework = state_attr('sensor.pronote_gargam_l_ane_homework','homework')[state] %}
+                              {% for state in range(states('sensor.pronote_xxx_l_ane_homework') | int)  %}
+                                {% set homework = state_attr('sensor.pronote_xxx_l_ane_homework','homework')[state] %}
                                 {% if homework.date | string == states('sensor.next_day_leane') %}
                                 {% set devoirs.total = devoirs.total + 1 %}
                                 {%- endif  %}
                               {%- endfor %}
                               {{devoirs.total}}"
               devoirs_faits:  "{% set devoirs = namespace(fait = 0) %}
-                              {% for state in range(states('sensor.pronote_gargam_l_ane_homework') | int)  %}
-                                {% set homework = state_attr('sensor.pronote_gargam_l_ane_homework','homework')[state] %}
+                              {% for state in range(states('sensor.pronote_xxx_l_ane_homework') | int)  %}
+                                {% set homework = state_attr('sensor.pronote_xxx_l_ane_homework','homework')[state] %}
                                 {% if homework.date | string == states('sensor.next_day_leane') %}
                                   {% if homework.done  == true  %}
                                     {% set devoirs.fait = devoirs.fait + 1 %}
@@ -249,7 +249,7 @@
                               {%- endfor %}
                               {{ devoirs.fait}}"
               devoirs_restants:  "{{state_attr('sensor.devoirs_leane','devoirs_totaux') |int - state_attr('sensor.devoirs_leane','devoirs_faits') |int}}"
-              pour_le: "{{state_attr('sensor.pronote_gargam_l_ane_timetable_next_day','lessons')[0].start_at.strftime('%Y-%m-%d') }}"                              
+              pour_le: "{{state_attr('sensor.pronote_xxx_l_ane_timetable_next_day','lessons')[0].start_at.strftime('%Y-%m-%d') }}"                              
 
       devoirs_leane_next_day:
         friendly_name: Devoirs leane pour le prochain jour         
@@ -651,18 +651,18 @@
         friendly_name: "Weather Température"
         unit_of_measurement: "°C"
         value_template: >-          
-          {% if states.weather.country.state == "unavailable" -%}
+          {% if states.weather.ville.state == "unavailable" -%}
             {{ state_attr('weather.maison' , 'temperature') }}
           {% else -%}
-            {{ state_attr('weather.country' , 'temperature') }}
+            {{ state_attr('weather.ville' , 'temperature') }}
           {% endif -%} 
 
       weather_conditions:
         value_template: >-
-            {% set meteo = states('weather.country') %}
+            {% set meteo = states('weather.ville') %}
             {% set traduction = {'cloudy':'Nuageux', 'rainy':'Pluvieux', 'partlycloudy':'Un peu nuageux', 'clear-night':'Nuit claire', 'fog':'Brouillard', 'hail':'Grêle', 'lightning-rainy':'Pluie orageuse', 'lightning':'Orages', 'pouring':'Fortes pluies', 'snowy-rainy':'Neigeux', 'snowy':'Neigeux', 'sunny':'Ensoleillé', 'windy-variant':'Venteux', 'windy':'Venteux', 'exceptional':'Exceptionel'}%}
             
-            {% if not state_attr('weather.country', 'temperature') == 'Indisponible' -%}
+            {% if not state_attr('weather.ville', 'temperature') == 'Indisponible' -%}
               {% if meteo == 'lightning-rainy' -%}
                 Pluies orageuses
               {% else -%}
@@ -674,28 +674,28 @@
 
       weather_conditions_pluie:
         value_template: >-          
-            {% set precip = states('sensor.country_rain_chance_2') | float(0) %}
+            {% set precip = states('sensor.ville_rain_chance_2') | float(0) %}
             {{ precip }}   
           
       weather_conditions_neige:
         value_template: >-          
-            {% set snow = states('sensor.country_snow_chance_2') | float(0) %}
+            {% set snow = states('sensor.ville_snow_chance_2') | float(0) %}
             {{ snow }}
 
           
       weather_conditions_ciel:
         value_template: >-        
-            {% set ciel = states('sensor.country_cloud_cover') | float(0) %}
+            {% set ciel = states('sensor.ville_cloud_cover') | float(0) %}
             {{ ciel }}
 
       weather_conditions_vent:
         value_template: >-        
-          {% set vent = state_attr('weather.country', 'wind_speed') | float(0) %}
+          {% set vent = state_attr('weather.ville', 'wind_speed') | float(0) %}
           {{ vent }}
           
       weather_conditions_uv:
         value_template: >-        
-            {% set uv = states('sensor.country_uv_2') | float(0) | round %}
+            {% set uv = states('sensor.ville_uv_2') | float(0) | round %}
             {{ uv if uv > 5 else uv }}
   
           
@@ -2782,39 +2782,27 @@
             {%- set entities = expand('group.person') | selectattr('state', 'eq', 'home') | map(attribute='name') | list -%}
             {{ entities | join(', ') if entities else 'Personne' }}        
          
-###### STATUT PERSON ET GPS POSITION
+###### STATUT PERSON AND GPS POSITION
 
       alex_trajet:
         friendly_name: "Alex tps trajet"
         value_template: >-
-            {% set alex = states.person.alex %}
-            {% set trajet = alex.state == "home" and not is_state("sensor.date_jour", "Samedi") and not is_state("sensor.date_jour", "Dimanche") and not is_state("input_boolean.vacances", "on") %}
-            {% set km_domicile = states.sensor.alex_trajet_domicile.attributes.distance | round(1) %}
-            {% set km_travail = states.sensor.alex_trajet_travail.attributes.distance | round(1) %}
-            
-            {% if trajet %}
-              Travail : {{ states.sensor.alex_trajet_travail.state }} min ({{ km_travail }}km)
-            {% elif alex.state != "home" and not is_state("input_boolean.vacances", "on") %}
-              Domicile : {{ states.sensor.alex_trajet_domicile.state }} min ({{ km_domicile }}km)
-            {% else %}
-              Aucun
-            {% endif %}
+            {% set person = states.person.alex.state %}
+            {% if person == "home" %}
+              {{ states.sensor.alex_trajet_travail.state }}
+            {% else %}       
+              {{ states.sensor.alex_trajet_domicile.state }}
+            {% endif %}  
 
       aurel_trajet:
         friendly_name: "Aurel tps trajet"
         value_template: >-
-            {% set aurel = states.person.herve %}
-            {% set trajet_travail = aurel.state == "home" and not is_state("sensor.date_jour", "Samedi") and not is_state("sensor.date_jour", "Dimanche") and not is_state("input_boolean.vacances", "on") %}
-            {% set km_domicile = states.sensor.aurel_trajet_domicile.attributes.distance | round(1) %}
-            {% set km_travail = states.sensor.aurel_trajet_travail.attributes.distance | round(1) %}
-            
-            {% if trajet_travail %}
-              Travail : {{ states.sensor.aurel_trajet_travail.state }} min ({{ km_travail }}km)
-            {% elif aurel.state != "home" and not is_state("input_boolean.vacances", "on") %}
-              Domicile : {{ states.sensor.aurel_trajet_domicile.state }} min ({{ km_domicile }}km)
-            {% else %}
-              Aucun
-            {% endif %}
+            {% set person = states.person.herve.state %}
+            {% if person == "home" %}
+              {{ states.sensor.aurel_trajet_travail.state }}
+            {% else %}       
+              {{ states.sensor.aurel_trajet_domicile.state }}
+            {% endif %}  
 
 
           
@@ -2915,22 +2903,21 @@
         value_template: >-      
             {% if states.person.tom.state == "home" %}
               Maison
+            {% elif states.person.tom.state == "not_home" %}
+              Absent              
             {% else %}
-              Absent
-            {% endif %}           
+              {{ states.person.tom.state }}
+            {% endif %}          
           
-      aurel_heure:
-        friendly_name: Aurel heure
+      tom_iphone_battery_state:    
+        friendly_name: Tom état de la batterie de l'iPhone
         value_template: >-      
-          {{ as_timestamp(states.person.herve.last_changed) | timestamp_custom("%d/%m à %Hh%M") }}
-      alex_heure:    
-        friendly_name: Alex heure
+          {{ (states.sensor.iphone_tom_batterie_apple.attributes.battery_status)  }} 
+
+      manon_iphone_battery_state:    
+        friendly_name: Manon état de la batterie de l'iPhone
         value_template: >-      
-          {{ as_timestamp(states.person.alex.last_changed) | timestamp_custom("%d/%m à %Hh%M") }}
-      tom_heure:    
-        friendly_name: Tom heure
-        value_template: >-      
-          {{ as_timestamp(states.person.tom.last_changed) | timestamp_custom("%d/%m à %Hh%M") }}
+          {{ (states.sensor.iphone_manon_batterie_apple.attributes.battery_status)  }} 
           
       aurel_duree:
         friendly_name: "Aurel duree"  
@@ -2989,11 +2976,13 @@
       manon_gps:
         friendly_name: Manon GPS
         value_template: >-      
-          {% if states.person.manon.state == "home" %}
-            Maison
-          {%- else -%}
-            Absente
-          {%- endif %}
+            {% if states.person.manon.state == "home" %}
+              Maison
+            {% elif states.person.manon.state == "not_home" %}
+              Absent              
+            {% else %}
+              {{ states.person.manon.state }}
+            {% endif %}
           
       manon_duree:
         friendly_name: "manon duree"
