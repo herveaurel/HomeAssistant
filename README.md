@@ -7,7 +7,7 @@ My dashboard compatible with PC, smartphone, tablet
 
 ## Table of contents <!-- omit in toc -->
 
-**[Dashboard and Explanations](#DASHBOARD)**  |  **[Installation](#INSTALLATION)**  |  **[Changelog 2024-02-15](#CHANGELOG)**  |  **[Setup](#SETUP)**  |  **[Thanks](#THANKS)**  |  **[Donate](#DONATE)**   
+**[Dashboard and Explanations](#DASHBOARD)**  |  **[Installation](#INSTALLATION)**  |  **[Changelog 2024-02-15](https://github.com/herveaurel/HomeAssistant/blob/main/CHANGELOG.md)**  |  **[Setup](#SETUP)**  |  **[Thanks](#THANKS)**  |  **[Donate](#DONATE)**   
 
 
 ## INTRODUCTION
