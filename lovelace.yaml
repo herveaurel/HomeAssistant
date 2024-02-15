@@ -1438,7 +1438,7 @@ button_card_templates:
   weather_icon:
     entity_picture: |
       [[[
-        var weather = states['weather.country'].state;
+        var weather = states['weather.ville'].state;
         if ((weather == 'sunny') && (states['sun.sun'].state == 'above_horizon'))
           return "/local/weather/icones animes/clear-day.svg"
         if ((weather == 'sunny') || (weather == 'clear-night') && (states['sun.sun'].state == 'below_horizon'))
@@ -2054,19 +2054,19 @@ button_card_templates:
 
         if (verifCoursAujourdhui) {
           if (time < FinCoursAujourdhui) {
-            return `<span style="font-size: 0.45em; vertical-align: middle;">🔵</span> ${DebutCoursAujourdhui} - ${FinCoursAujourdhui}`;
+            return `<span style="font-size: 0.45em; vertical-align: middle;">🔵 </span>${DebutCoursAujourdhui} - ${FinCoursAujourdhui}`;
           } else { 
             if (verifCoursDemain) {
-              return `<span style="font-size: 0.45em; vertical-align: middle;">🟡</span> ${DateCoursDemain} - ${FinCoursDemain}`;
+              return `<span style="font-size: 0.45em; vertical-align: middle;">🟡 </span>${DateCoursDemain} - ${FinCoursDemain}`;
             } else {
-              return `<span style="font-size: 0.45em; vertical-align: middle;">🔴</span> Pas cours`;
+              return `<span style="font-size: 0.45em; vertical-align: middle;">🔴 </span>Pas cours`;
             }
           }
         } else {
           if (verifCoursDemain) {
-            return `<span style="font-size: 0.45em; vertical-align: middle;">🟡</span> ${DateCoursDemain} - ${FinCoursDemain}`;
+            return `<span style="font-size: 0.45em; vertical-align: middle;">🟡 </span>${DateCoursDemain} - ${FinCoursDemain}`;
           } else {
-            return `<span style="font-size: 0.45em; vertical-align: middle;">🔴</span> Pas cours`;
+            return `<span style="font-size: 0.45em; vertical-align: middle;">🔴 </span>Pas cours`;
           }
         }
       ]]]
@@ -3119,33 +3119,33 @@ button_card_templates:
         - background-color: |
             [[[
               if (states["sensor.linky_verif_j1"].state == "false") return ''
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 6) return 'var(--card-green)';          
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 9) return 'var(--card-blue)';
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 12) return 'var(--card-yellow)'; 
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 15) return 'var(--card-orange)';
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state >= 15) return 'var(--card-red)';          
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 6) return 'var(--card-green)';          
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 9) return 'var(--card-blue)';
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 12) return 'var(--card-yellow)'; 
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 15) return 'var(--card-orange)';
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state >= 15) return 'var(--card-red)';          
               else return 'var(--img-cell-red)';
             ]]]
       img_cell:
         - background-color: |
             [[[
               if (states["sensor.linky_verif_j1"].state == "false") return 'var(--img-cell-off)'
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 6) return 'var(--img-cell-green)';          
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 9) return 'var(--img-cell-blue)';
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 12) return 'var(--img-cell-yellow)'; 
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 15) return 'var(--img-cell-orange)';
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state >= 15) return 'var(--img-cell-red)';          
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 6) return 'var(--img-cell-green)';          
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 9) return 'var(--img-cell-blue)';
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 12) return 'var(--img-cell-yellow)'; 
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 15) return 'var(--img-cell-orange)';
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state >= 15) return 'var(--img-cell-red)';          
               else return 'var(--img-cell-red)';
             ]]]
       icon:
         - color: |
             [[[
               if (states["sensor.linky_verif_j1"].state == "false") return 'var(--icon-off)'
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 6) return 'var(--icon-green)';          
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 9) return 'var(--icon-blue)';
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 12) return 'var(--icon-yellow)'; 
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 15) return 'var(--icon-orange)';
-              if (states["sensor.linky_0939xxxxxxx5420_consumption"].state >= 15) return 'var(--icon-red)';          
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 6) return 'var(--icon-green)';          
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 9) return 'var(--icon-blue)';
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 12) return 'var(--icon-yellow)'; 
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 15) return 'var(--icon-orange)';
+              if (states["sensor.linky_093xxxxxxxx5420_consumption"].state >= 15) return 'var(--icon-red)';          
               else return 'var(--img-cell-red)';
             ]]]   
   air_state:
@@ -4000,80 +4000,20 @@ button_card_templates:
               show_label: false
               entity: '[[[ return variables.phone_tracker ]]]'
               icon: mdi:cellphone
-            - type: custom:button-card
-              template:
-                - mini_card
-                - mini_card_state
-              show_label: false
-              entity: '[[[  return variables.phone_connection ]]]'
-            - type: custom:button-card
-              template:
-                - mini_card
-                - mini_card_state
-              show_label: false
-              entity: '[[[  return variables.phone_activity ]]]'
-            - type: custom:button-card
-              template:
-                - mini_card
-                - mini_card_state
-              show_label: false
-              entity: '[[[  return variables.phone_focus ]]]'
       gps:
         card:
-          type: horizontal-stack
-          cards:
-            - type: custom:button-card
-              entity: '[[[  return variables.gps ]]]'
-              template:
-                - person_gps_button
-              label: |
-                [[[ 
-                  var attributes = variables.proximity.attributes.dir_of_travel ;
-                  var entity = variables.proximity.state;                
-                  if (attributes == "not set")
-                    return entity+" km"
-                  if (attributes == "arrived")
-                    return entity+" km" 
-                  if (attributes == "towards")
-                    return entity+" km - " + "En approche"
-                  if (attributes== "away_from")
-                    return entity+" km - " + "S'éloigne"
-                  if (attributes == "unknown")
-                    return entity+" km"
-                  if (attributes == "stationary")
-                    return entity+" km - " + "Stationnaire"
-                ]]]           
-              name: Distance
-              tap_action:
-                action: more-info
-              styles:
-                card:
-                  - background-color: |
-                      [[[ 
-                        if (variables.proximity > 0)
-                          return "var(--img-cell-red)"
-                        return "rgba(var(--black-rgb),var(--tint2))"
-                      ]]] 
-            - type: custom:button-card
-              template:
-                - person_gps_button
-              label: |
-                [[[  
-                  if (states[entity.entity_id].state == 'home')
-                    return variables.trajet_travail +" min"
-                  return variables.trajet_domicile +" min"
-                ]]]
-              name: |
-                [[[  
-                  if (states[entity.entity_id].state == 'home')
-                    return "Travail"
-                    return "Domicile"
-                ]]]
-              tap_action:
-                action: more-info
-              styles:
-                card:
-                  - background-color: rgba(var(--black-rgb),var(--tint2))
+          type: custom:button-card
+          template:
+            - person_gps_button
+          label: >-
+            [[[  return  variables.proximity + " - " + variables.trajet + " min"
+            ]]]
+          name: '[[[  return "Trajet vers le " + variables.destination  ]]]'
+          tap_action:
+            action: more-info
+          styles:
+            card:
+              - background-color: rgba(var(--black-rgb),var(--tint2))
       map:
         card:
           type: map
@@ -4082,169 +4022,6 @@ button_card_templates:
           dark_mode: true
           aspect_ratio: '2'
           hours_to_show: 24
-  child_complete_card:
-    template:
-      - police
-    icon: |
-      [[[
-        if (states[entity.entity_id].state == 'home')
-          return "mdi:home"
-        return "mdi:home-export-outline"                 
-      ]]] 
-    show_entity_picture: false
-    show_name: false
-    tap_action:
-      action: more-info
-    styles:
-      grid:
-        - grid-template-areas: '"info" "sensor" '
-        - grid-template-columns: 1fr
-        - grid-template-rows: min-content 25px
-      card:
-        - padding: 10px
-        - position: relative
-        - '--mdc-ripple-press-opacity': 0
-        - background-color: var(--card-background-color)
-        - box-shadow: none
-      img_cell:
-        - position: absolute
-      icon:
-        - width: 30%
-        - top: '-15%'
-        - opacity: 0.4
-        - filter: blur(7px)
-        - color: |
-            [[[
-              if (states[entity.entity_id].state == 'home')
-                return "var(--ocean-blue)"
-              if (states[entity.entity_id].state == 'not_home')
-                return "var(--icon-orange)" 
-              return "var(--icon-green)"                 
-            ]]] 
-    custom_fields:
-      info:
-        card:
-          type: custom:button-card
-          entity: '[[[  return variables.entity ]]]'
-          show_entity_picture: true
-          entity_picture: null
-          name: |
-            [[[ return entity.attributes.friendly_name 
-            ]]]
-          label: '[[[  return variables.state ]]]'
-          show_label: true
-          show_icon: true
-          custom_fields:
-            info: '[[[ return variables.time ]]]'
-          styles:
-            grid:
-              - grid-template-areas: '"i gutter n" "i gutter l" "i gutter info"'
-              - grid-template-columns: min-content 15px 1fr
-              - grid-template-rows: min-content auto
-            card:
-              - background: none
-              - box-shadow: none
-              - border-radius: 0
-              - padding: 0px 35px 25px 8px
-              - '--mdc-ripple-press-opacity': 0
-            img_cell:
-              - width: 65px
-              - height: 65px
-              - border-radius: 15px
-            icon:
-              - width: 100%
-              - height: 100%
-              - color: var(--dark-blue)
-            name:
-              - font-size: 13px
-              - opacity: 1
-              - font-weight: 500
-              - color: var(--text-on)
-              - width: 100%
-              - text-align: left
-              - align-self: end
-              - filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.9))
-            label:
-              - white-space: normal
-              - font-size: 13px
-              - font-weight: 600
-              - color: |
-                  [[[
-                    if (states[entity.entity_id].state == 'home')
-                      return "var(--ocean-blue)"
-                    if (states[entity.entity_id].state == 'not_home')
-                      return "var(--text-on)" 
-                    return "var(--icon-green)"                 
-                  ]]]              
-              - opacity: 1
-              - width: 100%
-              - text-align: left
-              - align-self: center
-              - filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.9))
-            custom_fields:
-              info:
-                - white-space: normal
-                - font-weight: 500
-                - color: var(--text-on)
-                - font-size: 11px
-                - opacity: 1
-                - font-style: italic
-                - width: 90%
-                - text-align: left
-                - align-self: start
-                - filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.4))
-                - max-height: 35px
-      sensor:
-        card:
-          type: horizontal-stack
-          cards:
-            - type: custom:button-card
-              entity: '[[[  return variables.entity ]]]'
-              template:
-                - mini_card
-                - mini_card_state
-              show_label: false
-              icon: |
-                [[[ 
-                  var f_n_zone = states[entity.entity_id].state;
-
-                  // Supprime les accents
-                  var b="áàâäãåçéèêëíïîìñóòôöõúùûüýÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝ",
-                  c="aaaaaaceeeeiiiinooooouuuuyAAAAAACEEEEIIIINOOOOOUUUUY",
-                  d="";
-                  for(var i = 0, j = f_n_zone.length; i < j; i++) {
-                    var e = f_n_zone.substr(i, 1);
-                    d += (b.indexOf(e) !== -1) ? c.substr(b.indexOf(e), 1) : e;
-                  }
-                  // Remplace " - " par "_"
-                  var id_zone = d.replaceAll(' - ', '_');
-                  // Remplace les espaces restants par "_"
-                  id_zone = id_zone.replaceAll(' ', '_');
-                  // Transforme le texte en minuscule 
-                  id_zone = id_zone.toLowerCase();
-
-                  if(states["zone." + id_zone] == undefined){
-                    return "mdi:home-export-outline"; 
-                  } else {
-                    return states["zone." + id_zone].attributes.icon; 
-                  }
-                ]]]
-              styles:
-                icon:
-                  - color: |
-                      [[[
-                        if (states[entity.entity_id].state == 'home')
-                          return "var(--ocean-blue)"
-                        if (states[entity.entity_id].state == 'not_home')
-                          return "var(--icon-orange)" 
-                        return "var(--icon-green)"                 
-                      ]]] 
-            - type: custom:button-card
-              template:
-                - mini_card
-                - mini_card_state
-              show_label: false
-              entity: '[[[ return variables.info_1 ]]]'
   person_card:
     show_entity_picture: true
     show_state: false
@@ -4327,7 +4104,7 @@ button_card_templates:
             [[[
               if (variables.var_state  == "Charging")
                 return " 0.5px solid var(--yellow) " 
-              if (variables.var_state  == "Full")
+              if (variables.var_state  == "Full" || variables.var_state  == "Charged")
                 return " 0.5px dashed var(--red) "                
               if (variables.var_level  < 30)
                 return " 0.5px solid var(--red) "                        
@@ -4394,11 +4171,6 @@ button_card_templates:
                   ]]]
               icon: mdi:cellphone
             - type: custom:button-card
-              entity: sensor.iphone_aurel_connection_type
-              template:
-                - sub_button
-                - sub_button_state
-            - type: custom:button-card
               entity: sensor.aurel_activite
               variables:
                 var_activity: |
@@ -4434,11 +4206,11 @@ button_card_templates:
               variables:
                 var_state: |
                   [[[ 
-                    return states['sensor.ipad_aurel_battery_state'].state 
+                    return states['sensor.aurel_ipad_batterie_apple'].attributes.battery_status 
                   ]]]
                 var_level: |
                   [[[ 
-                    return states['sensor.ipad_aurel_battery_level'].state 
+                    return states['sensor.aurel_ipad_batterie_apple'].state 
                   ]]]
                 var_ping: |
                   [[[ 
@@ -4507,11 +4279,6 @@ button_card_templates:
                   ]]]
               icon: mdi:cellphone
             - type: custom:button-card
-              entity: sensor.iphone_alex_connection_type
-              template:
-                - sub_button
-                - sub_button_state
-            - type: custom:button-card
               entity: sensor.alex_activite
               variables:
                 var_activity: |
@@ -4561,6 +4328,33 @@ button_card_templates:
     template:
       - person_card
     custom_fields:
+      jauge-cercle:
+        card:
+          type: custom:hatc-gauge-card
+          entity: sensor.iphone_tom_batterie_apple
+          card:
+            height: 30px
+          title:
+            name: false
+            icon: false
+          gauge:
+            icon: false
+            font-size: 11px
+            text-color: severity
+            max_value: 100
+            friendly_name: false
+            unit_of_measurement: false
+            severity:
+              - color: var(--text-off)
+              - color: var(--blue)
+                from: 99
+                to: 51
+              - color: var(--yellow)
+                from: 31
+                to: 50
+              - color: var(--red)
+                from: 0
+                to: 30
       bouton:
         card:
           type: horizontal-stack
@@ -4571,11 +4365,20 @@ button_card_templates:
                 var_ping: |
                   [[[ 
                     return states['device_tracker.iphone_tom_box'].state 
+                  ]]]             
+                var_state: |
+                  [[[ 
+                    return states['sensor.iphone_tom_batterie_apple'].attributes.battery_status 
                   ]]]
+                var_level: |
+                  [[[ 
+                    return states['sensor.iphone_tom_batterie_apple'].state 
+                  ]]]                  
               icon: mdi:cellphone
               template:
                 - sub_button
                 - sub_button_state
+                - person_card_var_device
             - type: custom:button-card
               entity: device_tracker.macbook_air_de_tom
               icon: mdi:laptop
@@ -4605,6 +4408,33 @@ button_card_templates:
     template:
       - person_card
     custom_fields:
+      jauge-cercle:
+        card:
+          type: custom:hatc-gauge-card
+          entity: sensor.iphone_manon_batterie_apple
+          card:
+            height: 30px
+          title:
+            name: false
+            icon: false
+          gauge:
+            icon: false
+            font-size: 11px
+            text-color: severity
+            max_value: 100
+            friendly_name: false
+            unit_of_measurement: false
+            severity:
+              - color: var(--text-off)
+              - color: var(--blue)
+                from: 99
+                to: 51
+              - color: var(--yellow)
+                from: 31
+                to: 50
+              - color: var(--red)
+                from: 0
+                to: 30
       bouton:
         card:
           type: horizontal-stack
@@ -4616,10 +4446,19 @@ button_card_templates:
                   [[[ 
                     return states['device_tracker.iphone_manon'].state 
                   ]]]
+                var_state: |
+                  [[[ 
+                    return states['sensor.iphone_manon_batterie_apple'].attributes.battery_status 
+                  ]]]
+                var_level: |
+                  [[[ 
+                    return states['sensor.iphone_manon_batterie_apple'].state 
+                  ]]]                  
               icon: mdi:cellphone
               template:
                 - sub_button
                 - sub_button_state
+                - person_card_var_device
             - type: custom:button-card
               entity: device_tracker.tablette_manon
               icon: mdi:tablet
@@ -6232,7 +6071,7 @@ views:
                               tap_action:
                                 action: navigate
                                 navigation_path: /lovelace/Calendrier
-                              entity: weather.country
+                              entity: weather.ville
                               label: >
                                 [[[return
                                 states['sensor.weather_temperature'].state + "°
@@ -6719,7 +6558,7 @@ views:
                         bubble:
                           - color: |
                               [[[ 
-                                if (states['calendar.dechets_menagers'].state == "on")
+                                if (states['calendar.dechets_menagers'].state == "on" )
                                   return "var(--green)"
                                 if (states['calendar.tri_selectif'].state == "on")
                                   return "var(--yellow)"
@@ -7254,7 +7093,7 @@ views:
                       type: custom:button-card
                       template:
                         - sensor_activity_card
-                      entity: sensor.linky_0939xxxxxxx5420_consumption
+                      entity: sensor.linky_093xxxxxxxx5420_consumption
                       name: Conso électrique
                       label: >
                         [[[ return
@@ -7272,11 +7111,11 @@ views:
                             - color: |
                                 [[[ 
                                   if (states["sensor.linky_verif_j1"].state == "false") return ''
-                                  if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 6) return 'transparent';          
-                                  if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 9) return 'var(--blue)';
-                                  if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 12) return 'var(--yellow)'; 
-                                  if (states["sensor.linky_0939xxxxxxx5420_consumption"].state < 15) return 'var(--orange)';
-                                  if (states["sensor.linky_0939xxxxxxx5420_consumption"].state >= 15) return 'var(--red)';          
+                                  if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 6) return 'transparent';          
+                                  if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 9) return 'var(--blue)';
+                                  if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 12) return 'var(--yellow)'; 
+                                  if (states["sensor.linky_093xxxxxxxx5420_consumption"].state < 15) return 'var(--orange)';
+                                  if (states["sensor.linky_093xxxxxxxx5420_consumption"].state >= 15) return 'var(--red)';          
                                   else return 'transparent';
                                 ]]]        
                   - type: conditional
@@ -7378,7 +7217,10 @@ views:
                       entity: sensor.web_scrape
                       name: Le saviez-vous ?
                       label: |
-                        [[[ return states['sensor.web_scrape'].state ]]]    
+                        [[[ return states['sensor.web_scrape'].state ]]]
+                      styles:
+                        label:
+                          - font-style: italic
                       icon: mdi:newspaper-variant-outline
                   - type: custom:vertical-stack-in-card
                     horizontal: true
@@ -8596,7 +8438,7 @@ views:
                       action: navigate
                       navigation_path: /lovelace/systeme
                   - type: custom:button-card
-                    entity: sensor.linky_0939xxxxxxx5420_consumption
+                    entity: sensor.linky_093xxxxxxxx5420_consumption
                     name: Électricité
                     icon: mdi:flash
                     template:
@@ -9558,9 +9400,10 @@ views:
     subview: false
     layout:
       width: 350
-      max_cols: 3
+      max_cols: 4
     type: custom:horizontal-layout
     badge_cards: []
+    badges: []
     cards:
       - type: custom:layout-card
         layout_type: masonry
@@ -10416,10 +10259,10 @@ views:
                                 - battery_level_card
                             - type: custom:button-card
                               variables:
-                                entity: sensor.ipad_aurel_battery_level
+                                entity: sensor.aurel_ipad_batterie_apple
                                 charge: >-
                                   [[[ return
-                                  states['sensor.ipad_aurel_battery_state'].state
+                                  states['sensor.aurel_ipad_batterie_apple'].attributes.battery_status
                                   ]]]
                               template:
                                 - battery_level_card
@@ -10447,6 +10290,26 @@ views:
                                 charge: >-
                                   [[[ return
                                   states['sensor.macbook_alex_internal_battery_state'].state
+                                  ]]]
+                              template:
+                                - battery_level_card
+                            - type: custom:button-card
+                              name: iPhone Tom
+                              variables:
+                                entity: sensor.iphone_tom_batterie_apple
+                                charge: >-
+                                  [[[ return
+                                  states['sensor.iphone_tom_batterie_apple'].attributes.battery_status
+                                  ]]]
+                              template:
+                                - battery_level_card
+                            - type: custom:button-card
+                              name: iPhone Manon
+                              variables:
+                                entity: sensor.iphone_manon_batterie_apple
+                                charge: >-
+                                  [[[ return
+                                  states['sensor.iphone_manon_batterie_apple'].attributes.battery_status
                                   ]]]
                               template:
                                 - battery_level_card
@@ -10909,7 +10772,7 @@ views:
                   info:
                     card:
                       type: custom:content-card-linky
-                      entity: sensor.linky_0939xxxxxxx5420_consumption
+                      entity: sensor.linky_093xxxxxxxx5420_consumption
                       showHistory: true
                       showHeader: true
                       showPeakOffPeak: false
@@ -10965,7 +10828,29 @@ views:
                       square: false
                       cards:
                         - type: custom:button-card
-                          entity: sensor.linky_0939xxxxxxx5420_consumption
+                          template:
+                            - ball_card
+                          entity: input_number.prix_electricite
+                          show_label: true
+                          show_state: false
+                          name: Prix du kWh
+                          label: >
+                            [[[ return
+                            states['input_number.prix_electricite'].state + "
+                            €"]]]
+                        - type: custom:button-card
+                          template:
+                            - ball_card
+                          entity: input_number.prix_abo_electricite
+                          show_label: true
+                          show_state: false
+                          name: Prix de l'abo
+                          label: >
+                            [[[ return
+                            states['input_number.prix_abo_electricite'].state +
+                            " €"]]]          
+                        - type: custom:button-card
+                          entity: sensor.linky_093xxxxxxxx5420_consumption
                           icon: mdi:calendar-today
                           template:
                             - ball_card
@@ -10978,22 +10863,10 @@ views:
                               +"€"]]] 
                           label: >
                             [[[ return
-                            states['sensor.linky_0939xxxxxxx5420_consumption'].state
+                            states['sensor.linky_093xxxxxxxx5420_consumption'].state
                             +" kWh"]]] 
                         - type: custom:button-card
-                          entity: sensor.linky_0939xxxxxxx5420_consumption
-                          name: Max hier
-                          template:
-                            - ball_card
-                            - electricity_state
-                          show_label: true
-                          show_state: false
-                          label: >
-                            [[[ return
-                            states['sensor.linky_0939xxxxxxx5420_consumption'].attributes.yesterdayConsumptionMaxPower
-                            +" kWh"]]]           
-                        - type: custom:button-card
-                          entity: sensor.linky_0939xxxxxxx5420_consumption
+                          entity: sensor.linky_093xxxxxxxx5420_consumption
                           icon: mdi:view-week
                           template:
                             - ball_card
@@ -11005,7 +10878,7 @@ views:
                               +"€"]]]
                           label: >
                             [[[ return
-                            states['sensor.linky_0939xxxxxxx5420_consumption'].attributes.current_week
+                            states['sensor.linky_093xxxxxxxx5420_consumption'].attributes.current_week
                             +" kWh"]]]              
                           styles:
                             img_cell:
@@ -11013,7 +10886,7 @@ views:
                             icon:
                               - color: var(--icon-blue)
                         - type: custom:button-card
-                          entity: sensor.linky_0939xxxxxxx5420_consumption
+                          entity: sensor.linky_093xxxxxxxx5420_consumption
                           icon: mdi:calendar-month
                           template:
                             - ball_card
@@ -11025,7 +10898,7 @@ views:
                               +"€"]]]
                           label: >
                             [[[ return
-                            states['sensor.linky_0939xxxxxxx5420_consumption'].attributes.current_month
+                            states['sensor.linky_093xxxxxxxx5420_consumption'].attributes.current_month
                             +" kWh"]]] 
                           styles:
                             img_cell:
@@ -11033,7 +10906,7 @@ views:
                             icon:
                               - color: var(--icon-blue)
                         - type: custom:button-card
-                          entity: sensor.linky_0939xxxxxxx5420_consumption
+                          entity: sensor.linky_093xxxxxxxx5420_consumption
                           icon: mdi:calendar
                           template:
                             - ball_card
@@ -11045,7 +10918,7 @@ views:
                               +"€"]]] 
                           label: >
                             [[[ return
-                            states['sensor.linky_0939xxxxxxx5420_consumption'].attributes.current_year
+                            states['sensor.linky_093xxxxxxxx5420_consumption'].attributes.current_year
                             +" kWh"]]] 
                           styles:
                             img_cell:
@@ -11053,7 +10926,50 @@ views:
                             icon:
                               - color: var(--icon-blue)
                         - type: custom:button-card
-                          entity: sensor.linky_0939xxxxxxx5420_consumption
+                          entity: sensor.linky_093xxxxxxxx5420_consumption
+                          name: Max hier
+                          template:
+                            - ball_card
+                            - electricity_state
+                          show_label: true
+                          show_state: false
+                          label: >
+                            [[[ return
+                            (states['sensor.linky_093xxxxxxxx5420_consumption'].attributes.yesterdayConsumptionMaxPower
+                            / 1000) + " kVA"; ]]]  
+                          styles:
+                            card:
+                              - background-color: |
+                                  [[[
+                                    var sensor = (states['sensor.linky_093xxxxxxxx5420_consumption'].attributes.yesterdayConsumptionMaxPower/1000);
+                                    if (sensor < 2) return 'var(--card-green)';          
+                                    if (sensor < 3) return 'var(--card-blue)';
+                                    if (sensor < 4) return 'var(--card-yellow)'; 
+                                    if (sensor < 6) return 'var(--card-orange)';
+                                    if (sensor >= 6) return 'var(--card-red)';          
+                                  ]]]
+                            img_cell:
+                              - background-color: |
+                                  [[[
+                                    var sensor = (states['sensor.linky_093xxxxxxxx5420_consumption'].attributes.yesterdayConsumptionMaxPower/1000);
+                                    if (sensor < 2) return 'var(--img-cell-green)';          
+                                    if (sensor < 3) return 'var(--img-cell-blue)';
+                                    if (sensor < 4) return 'var(--img-cell-yellow)'; 
+                                    if (sensor < 6) return 'var(--img-cell-orange)';
+                                    if (sensor >= 6) return 'var(--img-cell-red)'; 
+                                  ]]]
+                            icon:
+                              - color: |
+                                  [[[
+                                    var sensor = (states['sensor.linky_093xxxxxxxx5420_consumption'].attributes.yesterdayConsumptionMaxPower/1000);
+                                    if (sensor < 2) return 'var(--icon-green)';          
+                                    if (sensor < 3) return 'var(--icon-blue)';
+                                    if (sensor < 4) return 'var(--icon-yellow)'; 
+                                    if (sensor < 6) return 'var(--icon-orange)';
+                                    if (sensor >= 6) return 'var(--icon-red)'; 
+                                  ]]]  
+                        - type: custom:button-card
+                          entity: sensor.linky_093xxxxxxxx5420_consumption
                           name: Souscription
                           template:
                             - ball_card
@@ -11061,7 +10977,7 @@ views:
                           show_state: false
                           label: >
                             [[[ return
-                            states['sensor.linky_0939xxxxxxx5420_consumption'].attributes.subscribed_power
+                            states['sensor.linky_093xxxxxxxx5420_consumption'].attributes.subscribed_power
                             ]]] 
                           styles:
                             img_cell:
@@ -11152,7 +11068,7 @@ views:
                         standard_format: false
                         colorize_states: true
                       series:
-                        - entity: sensor.linky_0939xxxxxxx5420_consumption
+                        - entity: sensor.linky_093xxxxxxxx5420_consumption
                           yaxis_id: first
                           type: column
                           offset: +1d
@@ -12452,16 +12368,42 @@ views:
                   phone_focus: binary_sensor.iphone_aurel_focus
                   gps: sensor.aurel_gps
                   time: '[[[ return states[''sensor.aurel_duree''].state ]]]'
-                  proximity: '[[[ return states["proximity.aurel"]  ]]]'
+                  proximity: '[[[ return states["sensor.proximity_aurel"].state  ]]]'
+                  trajet: '[[[ return states[''sensor.aurel_trajet''].state ]]]'
                   trajet_travail: >-
                     [[[ return (states["sensor.aurel_trajet_travail"].state ) 
                     ]]]
                   trajet_domicile: >-
                     [[[ return (states["sensor.aurel_trajet_domicile"].state ) 
                     ]]]
+                  destination: >-
+                    [[[ if (states['person.herve'].state == "home") { return
+                    "travail" } else { return "domicile" } ]]]
                 entity: '[[[  return variables.entity ]]]'
                 template:
                   - person_complete_card
+                custom_fields:
+                  sensor:
+                    card:
+                      cards:
+                        - type: custom:button-card
+                          template:
+                            - mini_card
+                            - mini_card_state
+                          show_label: false
+                          entity: '[[[  return variables.phone_connection ]]]'
+                        - type: custom:button-card
+                          template:
+                            - mini_card
+                            - mini_card_state
+                          show_label: false
+                          entity: '[[[  return variables.phone_activity ]]]'
+                        - type: custom:button-card
+                          template:
+                            - mini_card
+                            - mini_card_state
+                          show_label: false
+                          entity: '[[[  return variables.phone_focus ]]]'
               - type: custom:button-card
                 template:
                   - around_card
@@ -12480,7 +12422,7 @@ views:
                           name: |
                             [[[
                               var name = "iPad";
-                              var charge = states['sensor.ipad_aurel_battery_state'].state;
+                              var charge = states['sensor.aurel_ipad_batterie_apple'].attributes.battery_status;
                               if ( charge == "Charging" || charge == "Charged" || charge == "Full"   )
                                 return `<span> ${name} </span><ha-icon
                                 icon="mdi:flash"
@@ -12492,7 +12434,7 @@ views:
                             jauge-cercle:
                               card:
                                 type: custom:hatc-gauge-card
-                                entity: sensor.ipad_aurel_battery_level
+                                entity: sensor.aurel_ipad_batterie_apple
                                 card:
                                   height: 35px
                                 title:
@@ -12587,16 +12529,36 @@ views:
                   phone_focus: binary_sensor.iphone_alex_focus
                   gps: sensor.alex_gps
                   time: '[[[ return states[''sensor.alex_duree''].state ]]]'
-                  proximity: '[[[ return states["proximity.alex"]  ]]]'
-                  trajet_travail: >-
-                    [[[ return (states["sensor.alex_trajet_travail"].state ) 
-                    ]]]
-                  trajet_domicile: >-
-                    [[[ return (states["sensor.alex_trajet_domicile"].state ) 
-                    ]]]
+                  proximity: '[[[ return states["sensor.proximity_alex"].state  ]]]'
+                  trajet: '[[[ return states[''sensor.alex_trajet''].state ]]]'
+                  destination: >-
+                    [[[ if (states['person.alex'].state == "home") { return
+                    "travail" } else { return "domicile" } ]]]
                 entity: '[[[  return variables.entity ]]]'
                 template:
                   - person_complete_card
+                custom_fields:
+                  sensor:
+                    card:
+                      cards:
+                        - type: custom:button-card
+                          template:
+                            - mini_card
+                            - mini_card_state
+                          show_label: false
+                          entity: '[[[  return variables.phone_connection ]]]'
+                        - type: custom:button-card
+                          template:
+                            - mini_card
+                            - mini_card_state
+                          show_label: false
+                          entity: '[[[  return variables.phone_activity ]]]'
+                        - type: custom:button-card
+                          template:
+                            - mini_card
+                            - mini_card_state
+                          show_label: false
+                          entity: '[[[  return variables.phone_focus ]]]'
               - type: custom:button-card
                 template:
                   - around_card
@@ -12664,112 +12626,94 @@ views:
         layout:
           width: 290
         cards:
-          - type: vertical-stack
-            cards:
-              - type: entities
-                card_mod:
-                  style: |
-                    ha-card { 
-                     background-color: var(--card-background-color);
-                     } 
-                entities:
-                  - type: custom:button-card
-                    variables:
-                      entity: person.tom
-                      state: '[[[ return states[''sensor.tom_gps''].state ]]]'
-                      time: '[[[ return states[''sensor.tom_duree''].state ]]]'
-                      info_1: device_tracker.iphone_tom_box
-                    entity: '[[[  return variables.entity ]]]'
-                    template:
-                      - child_complete_card
-                    custom_fields:
-                      sensor:
-                        card:
-                          type: horizontal-stack
-                          cards:
-                            - type: custom:button-card
-                              template:
-                                - mini_card
-                                - mini_card_state
-                              show_label: false
-                              entity: device_tracker.macbook_air_de_tom
-                              icon: mdi:laptop
-                            - type: custom:button-card
-                              template:
-                                - mini_card
-                                - mini_card_state
-                              show_label: false
-                              entity: switch.trottinette
-              - type: entities
-                card_mod:
-                  style: |
-                    ha-card { 
-                     background-color: var(--card-background-color);
-                     } 
-                entities:
-                  - type: custom:button-card
-                    variables:
-                      entity: person.manon
-                      state: '[[[ return states[''sensor.manon_gps''].state ]]]'
-                      time: '[[[ return states[''sensor.manon_duree''].state ]]]'
-                      info_1: device_tracker.iphone_manon
-                    entity: '[[[  return variables.entity ]]]'
-                    template:
-                      - child_complete_card
-                    custom_fields:
-                      sensor:
-                        card:
-                          type: horizontal-stack
-                          cards:
-                            - type: custom:button-card
-                              template:
-                                - mini_card
-                                - mini_card_state
-                              show_label: false
-                              entity: device_tracker.tablette_manon
+          - type: entities
+            card_mod:
+              style: |
+                ha-card { 
+                 background-color: var(--card-background-color);
+                 } 
+            entities:
+              - type: custom:button-card
+                variables:
+                  entity: person.tom
+                  state: '[[[ return states[''sensor.tom_gps''].state ]]]'
+                  battery_level: sensor.iphone_tom_batterie_apple
+                  battery_state: sensor.tom_iphone_battery_state
+                  phone_tracker: device_tracker.iphone_tom_box
+                  gps: sensor.tom_gps
+                  time: '[[[ return states[''sensor.tom_duree''].state ]]]'
+                  proximity: '[[[ return states["sensor.proximity_tom"].state  ]]]'
+                  trajet: '[[[ return states[''sensor.tom_trajet_domicile''].state ]]]'
+                  destination: domicile
+                entity: '[[[  return variables.entity ]]]'
+                template:
+                  - person_complete_card
+              - type: custom:button-card
+                template:
+                  - around_card
+                  - around_clear_card
+                custom_fields:
+                  info:
+                    card:
+                      type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          template:
+                            - ball_card
+                            - card_state
+                          entity: device_tracker.macbook_air_de_tom
+                          name: MacBook
+                          show_state: true
+                          show_label: false
+                        - type: custom:button-card
+                          template:
+                            - ball_card
+                            - card_state
+                          entity: switch.trottinette
       - type: custom:layout-card
         layout_type: masonry
         layout:
           width: 290
         cards:
-          - type: vertical-stack
-            cards:
-              - type: entities
-                card_mod:
-                  style: |
-                    ha-card { 
-                     background-color: var(--card-background-color);
-                     } 
-                entities:
-                  - type: custom:button-card
-                    variables:
-                      entity: person.leane
-                      state: >-
-                        [[[ if (states["person.leane"].state == "home") return
-                        "Présent"; return "Absent"]]]
-                      time: '[[[ return states[''sensor.leane_duree''].state ]]]'
-                      info_1: device_tracker.galaxy_tab_a7
-                    entity: '[[[  return variables.entity ]]]'
-                    template:
-                      - child_complete_card
-              - type: entities
-                card_mod:
-                  style: |
-                    ha-card { 
-                     background-color: var(--card-background-color);
-                     } 
-                entities:
-                  - type: custom:button-card
-                    variables:
-                      entity: person.nina
-                      state: >-
-                        [[[ if (states["person.nina"].state == "home") return
-                        "Présent"; return "Absent"]]]
-                      time: '[[[ return states[''sensor.nina_duree''].state ]]]'
-                      info_1: device_tracker.tab_nina
-                    entity: '[[[  return variables.entity ]]]'
-                    template:
-                      - child_complete_card
+          - type: entities
+            card_mod:
+              style: |
+                ha-card { 
+                 background-color: var(--card-background-color);
+                 } 
+            entities:
+              - type: custom:button-card
+                variables:
+                  entity: person.manon
+                  state: '[[[ return states[''sensor.manon_gps''].state ]]]'
+                  battery_level: sensor.iphone_manon_batterie_apple
+                  battery_state: sensor.manon_iphone_battery_state
+                  phone_tracker: device_tracker.iphone_manon
+                  gps: sensor.manon_gps
+                  time: '[[[ return states[''sensor.manon_duree''].state ]]]'
+                  proximity: '[[[ return states["sensor.proximity_manon"].state  ]]]'
+                  trajet: '[[[ return states[''sensor.manon_trajet_domicile''].state ]]]'
+                  destination: domicile
+                entity: '[[[  return variables.entity ]]]'
+                template:
+                  - person_complete_card
+              - type: custom:button-card
+                template:
+                  - around_card
+                  - around_clear_card
+                custom_fields:
+                  info:
+                    card:
+                      type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          template:
+                            - ball_card
+                            - card_state
+                          entity: device_tracker.tablette_manon
+                          name: Tablette
+                          show_state: true
+                          show_label: false
   - theme: Backend-selected
     subview: true
     icon: mdi:door-open
@@ -18187,7 +18131,7 @@ views:
                       type: horizontal-stack
                       cards:
                         - type: custom:button-card
-                          entity: weather.country
+                          entity: weather.ville
                           show_entity_picture: true
                           show_name: false
                           template:
@@ -18492,13 +18436,13 @@ views:
               - type: custom:vertical-stack-in-card
                 cards:
                   - type: custom:meteofrance-weather-card
-                    entity: weather.country
+                    entity: weather.ville
                     number_of_forecasts: '0'
                     current: false
                     details: false
                     one_hour_forecast: false
                     alert_forecast: true
-                    rainForecastEntity: sensor.country_next_rain_2
+                    rainForecastEntity: sensor.ville_next_rain_2
                     alertEntity: sensor.49_weather_alert
                     card_mod:
                       style: |
@@ -18511,13 +18455,13 @@ views:
                           display: none;
                         }
                   - type: custom:meteofrance-weather-card
-                    entity: weather.country
+                    entity: weather.ville
                     number_of_forecasts: '5'
                     current: false
                     details: false
                     one_hour_forecast: true
                     alert_forecast: false
-                    rainForecastEntity: sensor.country_next_rain_2
+                    rainForecastEntity: sensor.ville_next_rain_2
                     alertEntity: sensor.49_weather_alert
                     card_mod:
                       style: |
@@ -18543,7 +18487,7 @@ views:
                   info:
                     card:
                       type: custom:clock-weather-card
-                      entity: weather.country
+                      entity: weather.ville
                       title: ''
                       sun_entity: sun.sun
                       weather_icon_type: fill
@@ -19661,4 +19605,42 @@ views:
                       variables:
                         - temp: sensor.temp_cuisine
                         - hum: sensor.hum_cuisine
-
+  - theme: Backend-selected
+    title: test
+    path: test
+    icon: mdi:test-tube
+    layout:
+      width: 350
+      max_cols: 4
+    type: custom:horizontal-layout
+    visible:
+      - user: 76afcf1927a948b19530bcbf1074ac59
+    badge_cards: []
+    cards:
+      - type: entities
+        card_mod:
+          style: |
+            ha-card { 
+             background-color: var(--card-background-color);
+             border-radius: var(--ha-card-border-radius) !important;
+             } 
+        entities:
+          - type: custom:decluttering-card
+            template: header
+            variables:
+              - name: A faire
+              - icon: mdi:clipboard-outline
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: entity
+                entity: todo.home_assistant
+                state_color: true
+              - type: todo-list
+                entity: todo.home_assistant
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: entity
+                entity: todo.maison
+                state_color: true
+              - type: todo-list
+                entity: todo.maison
