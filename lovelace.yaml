@@ -730,18 +730,23 @@ decluttering_templates:
       card_mod:
         style: |
           ha-card {
-            background-color: var(--card-background-color);
+            background-color: none !important;
+            background: none !important;
             box-shadow: none;
             font-family: Avenir;
             font-size: 12px;
-            color: var(--text-off);
+            font-weight: 500;
+            color: var(--text-on);
+            filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5));
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
+            margin-top: -23px !important;
+            padding: 0 !important; 
           }
           ha-card.type-markdown {
-            height: 20px;
+            height: 15px; 
           }
   music:
     card:
@@ -11546,7 +11551,7 @@ views:
                 template:
                   - title_card
                 name: |
-                  [[[ return "Alarme activée" ]]]
+                  [[[ return "Présences sans alarme" ]]]
               - type: custom:button-card
                 template:
                   - around_card
@@ -11558,34 +11563,121 @@ views:
                       columns: 2
                       type: grid
                       cards:
-                        - show_state: false
-                          show_name: false
-                          camera_view: live
-                          type: picture-entity
-                          entity: camera.entreealarme_verifiee
+                        - camera_view: auto
+                          type: picture-glance
+                          aspect_ratio: 60%
+                          entities: []
+                          camera_image: camera.entree_verifiee
                           card_mod:
                             style: |
                               ha-card > div.box {
                                 background: none;
                               }
                               ha-card { 
-                                margin: 5px 0px 0px 0px;
-                                border-radius: 18px !important;
-                              }            
-                        - show_state: false
-                          show_name: false
-                          camera_view: live
-                          type: picture-entity
-                          entity: camera.sejouralarme_verifiee
+                                border-radius: 17px !important;
+                              }
+                        - camera_view: auto
+                          type: picture-glance
+                          aspect_ratio: 60%
+                          entities: []
+                          camera_image: camera.sejour_verifiee
                           card_mod:
                             style: |
                               ha-card > div.box {
                                 background: none;
                               }
                               ha-card { 
-                                margin: 5px 0px 0px 0px;
-                                border-radius: 18px !important;
+                                border-radius: 17px !important;
                               }
+                        - type: custom:decluttering-card
+                          template: timestamp_camera
+                          variables:
+                            - input: input_datetime.horodatage_cam_entree
+                        - type: custom:decluttering-card
+                          template: timestamp_camera
+                          variables:
+                            - input: input_datetime.horodatage_cam_sejour
+                        - camera_view: auto
+                          type: picture-glance
+                          aspect_ratio: 60%
+                          entities: []
+                          camera_image: camera.sonnette_detection
+                          card_mod:
+                            style: |
+                              ha-card > div.box {
+                                background: none;
+                                left: -10px;
+                              }
+                              ha-card { 
+                                border-radius: 17px !important; 
+                                --mdc-icon-size: 15px;
+                                --icon-primary-color: var(--icon-off);
+                              } 
+                        - camera_view: auto
+                          type: picture-glance
+                          aspect_ratio: 60%
+                          entities: []
+                          camera_image: camera.garage_verifiee
+                          card_mod:
+                            style: |
+                              ha-card > div.box {
+                                background: none;
+                              }
+                              ha-card { 
+                                border-radius: 17px !important;
+                              }
+                        - type: custom:decluttering-card
+                          template: timestamp_camera
+                          variables:
+                            - input: input_datetime.horodatage_cam_sonnette
+                        - type: custom:decluttering-card
+                          template: timestamp_camera
+                          variables:
+                            - input: input_datetime.horodatage_cam_garage
+              - type: custom:button-card
+                template: divider
+              - type: custom:button-card
+                template:
+                  - title_card
+                name: |
+                  [[[ return "Présences avec alarme" ]]]
+              - type: custom:button-card
+                template:
+                  - around_card
+                  - around_clear_card
+                custom_fields:
+                  info:
+                    card:
+                      square: false
+                      columns: 2
+                      type: grid
+                      cards:
+                        - camera_view: auto
+                          type: picture-glance
+                          aspect_ratio: 60%
+                          entities: []
+                          camera_image: camera.entreealarme_verifiee
+                          card_mod:
+                            style: |
+                              ha-card > div.box {
+                                background: none;
+                              }
+                              ha-card { 
+                                border-radius: 17px !important;
+                              } 
+                        - camera_view: auto
+                          type: picture-glance
+                          aspect_ratio: 60%
+                          entities: []
+                          camera_image: camera.sejouralarme_verifiee
+                          card_mod:
+                            style: |
+                              ha-card > div.box {
+                                background: none;
+                              }
+                              ha-card { 
+                                border-radius: 17px !important;
+                              } 
                         - type: custom:decluttering-card
                           template: timestamp_camera
                           variables:
@@ -11594,34 +11686,35 @@ views:
                           template: timestamp_camera
                           variables:
                             - input: input_datetime.horodatage_cam_sejour_alarme
-                        - show_state: false
-                          show_name: false
-                          camera_view: live
-                          type: picture-entity
-                          entity: camera.sonnettealarme_detection
+                        - camera_view: auto
+                          type: picture-glance
+                          aspect_ratio: 60%
+                          entities: []
+                          camera_image: camera.sonnettealarme_detection
+                          card_mod:
+                            style: |
+                              ha-card > div.box {
+                                background: none;
+                                left: -10px;
+                              }
+                              ha-card { 
+                                border-radius: 17px !important; 
+                                --mdc-icon-size: 15px;
+                                --icon-primary-color: var(--icon-off);
+                              } 
+                        - camera_view: auto
+                          type: picture-glance
+                          aspect_ratio: 60%
+                          entities: []
+                          camera_image: camera.garagealarme_verifiee
                           card_mod:
                             style: |
                               ha-card > div.box {
                                 background: none;
                               }
                               ha-card { 
-                                margin: 5px 0px 0px 0px;
-                                border-radius: 18px !important;
-                              }
-                        - show_state: false
-                          show_name: false
-                          camera_view: live
-                          type: picture-entity
-                          entity: camera.garagealarme_verifiee
-                          card_mod:
-                            style: |
-                              ha-card > div.box {
-                                background: none;
-                              }
-                              ha-card { 
-                                margin: 5px 0px 0px 0px;
-                                border-radius: 18px !important;
-                              }
+                                border-radius: 17px !important;
+                              }  
                         - type: custom:decluttering-card
                           template: timestamp_camera
                           variables:
@@ -11636,7 +11729,7 @@ views:
                 template:
                   - title_card
                 name: |
-                  [[[ return "Alarme désactivée" ]]]
+                  [[[ return "Dernières vidéos" ]]]    
               - type: custom:button-card
                 template:
                   - around_card
@@ -11645,81 +11738,67 @@ views:
                   info:
                     card:
                       square: false
-                      columns: 2
+                      columns: 3
                       type: grid
                       cards:
-                        - show_state: false
-                          show_name: false
-                          camera_view: live
-                          type: picture-entity
-                          entity: camera.entree_verifiee
+                        - type: picture-glance
+                          camera_image: camera.cam_entree
+                          title: Entrée
+                          camera_view: auto
+                          aspect_ratio: 100%
+                          entities: []
                           card_mod:
                             style: |
                               ha-card > div.box {
                                 background: none;
+                                top: 60px !important;
+                                left: -05px !important;
+                                font-size: 12px; 
+                                filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
                               }
                               ha-card { 
-                                margin: 5px 0px 0px 0px;
-                                border-radius: 18px !important;
-                              }
-                        - show_state: false
-                          show_name: false
-                          camera_view: live
-                          type: picture-entity
-                          entity: camera.sejour_verifiee
+                                border-radius: 15px !important;
+                                font-family: var(--primary-font-family);
+                              } 
+                               
+                        - type: picture-glance
+                          camera_image: camera.cam_entree_ding
+                          title: Sonnette
+                          camera_view: auto
+                          aspect_ratio: 100%
+                          entities: []
                           card_mod:
                             style: |
                               ha-card > div.box {
                                 background: none;
+                                top: 60px !important;
+                                left: -05px !important;
+                                font-size: 12px; 
+                                filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
                               }
                               ha-card { 
-                                margin: 5px 0px 0px 0px;
-                                border-radius: 18px !important;
-                              }
-                        - type: custom:decluttering-card
-                          template: timestamp_camera
-                          variables:
-                            - input: input_datetime.horodatage_cam_entree
-                        - type: custom:decluttering-card
-                          template: timestamp_camera
-                          variables:
-                            - input: input_datetime.horodatage_cam_sejour
-                        - show_state: false
-                          show_name: false
-                          camera_view: live
-                          type: picture-entity
-                          entity: camera.sonnette_detection
+                                border-radius: 15px !important;
+                                font-family: var(--primary-font-family);
+                              }  
+                        - type: picture-glance
+                          camera_image: camera.cam_entree_mouv
+                          title: Mouvement
+                          camera_view: auto
+                          aspect_ratio: 100%
+                          entities: []
                           card_mod:
                             style: |
                               ha-card > div.box {
                                 background: none;
+                                top: 60px !important;
+                                left: -05px !important;
+                                font-size: 12px; 
+                                filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5))
                               }
                               ha-card { 
-                                margin: 5px 0px 0px 0px;
-                                border-radius: 18px !important;
-                              }
-                        - show_state: false
-                          show_name: false
-                          camera_view: live
-                          type: picture-entity
-                          entity: camera.garage_verifiee
-                          card_mod:
-                            style: |
-                              ha-card > div.box {
-                                background: none;
-                              }
-                              ha-card { 
-                                margin: 5px 0px 0px 0px;
-                                border-radius: 18px !important;
-                              }
-                        - type: custom:decluttering-card
-                          template: timestamp_camera
-                          variables:
-                            - input: input_datetime.horodatage_cam_sonnette
-                        - type: custom:decluttering-card
-                          template: timestamp_camera
-                          variables:
-                            - input: input_datetime.horodatage_cam_garage
+                                border-radius: 15px !important;
+                                font-family: var(--primary-font-family);
+                              } 
       - type: custom:layout-card
         layout_type: masonry
         layout:
