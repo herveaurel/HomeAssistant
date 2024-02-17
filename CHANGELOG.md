@@ -15,7 +15,7 @@
 
 4. Security subview
 
-- New style for the 'records' column ! 
+- New style for the `records` column ! 
 - Modification of the template button card : `timestamp_camera` 
 
 ---
