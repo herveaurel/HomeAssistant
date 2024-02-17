@@ -1,21 +1,17 @@
-## 2024-02-13
+## 2024-02-17
 
-1. error corrections :   
-    - color of the badge calendar `bubble` in the `Activity card`  
-    - color of the badge bin `bubble` in the `Activity card`  
+1. Thermometer gauge
 
-2. Proximity  
-The integration is now in the UI and removed from the YAML configuration.  
-The entity names are different.  
-    - I created a sensor template for each person: `sensor.proximity_NAME`  
-    - I modified the person card to `person_complete_card` 
-    - I modified the `proximity` variable in the dashboard card   
+- Modification of the template button card : `climat_card` : A slightly smaller gauge
 
----
+2. Persons
 
-## 2024-02-14  
+- Modification of the template button card : `person_card_var_device` : Colors
 
-- Reduce font-size of the time to avoid text being cut off at the top
+3. Activity Card
+
+- Modification of the template button card : `title_activity_card` : A slightly larger font size
+- Modification of the template button card : `title_activity_card` : A slightly larger font size
 
 ---
 
@@ -41,3 +37,30 @@ The entity names are different.
 
 - Correction of the units for the sky, rain, and snow sensors.
 - Modification of the thresholds and colors of the temperature gauge.
+
+---
+
+## 2024-02-14  
+
+- Reduce font-size of the time to avoid text being cut off at the top
+
+---
+
+## 2024-02-13
+
+1. error corrections :   
+    - color of the badge calendar `bubble` in the `Activity card`  
+    - color of the badge bin `bubble` in the `Activity card`  
+
+2. Proximity  
+The integration is now in the UI and removed from the YAML configuration.  
+The entity names are different.  
+    - I created a sensor template for each person: `sensor.proximity_NAME`  
+    - I modified the person card to `person_complete_card` 
+    - I modified the `proximity` variable in the dashboard card   
+
+---
+
+
+
+
