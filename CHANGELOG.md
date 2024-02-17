@@ -13,6 +13,11 @@
 - Modification of the template button card : `title_activity_card` : A slightly larger font size
 - Modification of the template button card : `title_activity_card` : A slightly larger font size
 
+4. Security subview
+
+- New style for the 'records' column ! 
+- Modification of the template button card : `timestamp_camera` 
+
 ---
 
 ## 2024-02-15
