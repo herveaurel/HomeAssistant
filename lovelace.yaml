@@ -2297,7 +2297,7 @@ button_card_templates:
             - no_style
           styles:
             icon:
-              - width: 20px
+              - width: 18px
               - color: |
                   [[[ 
                     if (variables.temp_state > 26)   
@@ -2321,7 +2321,7 @@ button_card_templates:
             - no_style
           styles:
             label:
-              - font-size: 35px
+              - font-size: 30px
               - font-weight: null
               - color: |
                   [[[ 
@@ -2350,8 +2350,8 @@ button_card_templates:
             - no_style
           styles:
             label:
-              - font-size: 20px
-              - font-weight: null
+              - font-size: 16px
+              - font-weight: 500
               - opacity: 0.8
               - color: |
                   [[[ 
@@ -2402,7 +2402,7 @@ button_card_templates:
               fill_raw: last
           apex_config:
             chart:
-              height: 220
+              height: 190
             legend:
               show: false
             colors:
@@ -2411,7 +2411,7 @@ button_card_templates:
               radialBar:
                 hollow:
                   margin: 0
-                  size: 70%
+                  size: 60%
                   background: var(--ha-card-background)
                 track:
                   dropShadow:
@@ -2452,34 +2452,34 @@ button_card_templates:
                }
     styles:
       card:
-        - height: 200px
+        - height: 150px
         - padding: 0
       custom_fields:
         icon:
           - position: absolute
           - width: 100%
-          - top: 8%
+          - top: 11%
           - left: 0%
           - opacity: 100%
           - z-index: 1
         title:
           - position: absolute
           - width: 100%
-          - top: 25%
+          - top: 31%
           - left: '-02%'
           - opacity: 100%
           - z-index: 2
         temp:
           - position: absolute
           - width: 100%
-          - top: 29%
+          - top: 33%
           - left: 0%
           - opacity: 100%
           - z-index: 2
         hum:
           - position: absolute
           - width: 100%
-          - top: 50%
+          - top: 58%
           - left: '-02%'
           - opacity: 100%
           - z-index: 2
