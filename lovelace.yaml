@@ -1539,7 +1539,7 @@ button_card_templates:
         - background-color: none
       label:
         - align-self: end
-        - font-size: 10px
+        - font-size: 11px
         - color: var(--text-off)
       icon:
         - width: 12px
@@ -1565,7 +1565,7 @@ button_card_templates:
         - grid-template-columns: 43px 1fr
       name:
         - color: var(--title)
-        - font-size: 11px
+        - font-size: 12px
         - margin-top: 2px
       label:
         - color: var(--text-on)
@@ -4103,11 +4103,9 @@ button_card_templates:
         - border: |
             [[[
               if (variables.var_state  == "Charging")
-                return " 0.5px solid var(--yellow) " 
+                return " 1px dashed var(--yellow) " 
               if (variables.var_state  == "Full" || variables.var_state  == "Charged")
-                return " 0.5px dashed var(--red) "                
-              if (variables.var_level  < 30)
-                return " 0.5px solid var(--red) "                        
+                return " 1px solid var(--blue) "                                      
               return ""
             ]]] 
     tap_action:
