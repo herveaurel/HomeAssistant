@@ -4110,7 +4110,9 @@ button_card_templates:
               if (variables.var_state  == "Charging")
                 return " 1px dashed var(--yellow) " 
               if (variables.var_state  == "Full" || variables.var_state  == "Charged")
-                return " 1px solid var(--blue) "                                      
+                return " 1px solid var(--blue) "  
+              if (variables.var_level < 31 && (variables.var_state == "Not Charging" || variables.var_state  == "NotCharging"))
+                return " 1px solid var(--red) "                  
               return ""
             ]]] 
     tap_action:
