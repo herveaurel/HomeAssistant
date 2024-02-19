@@ -1,3 +1,23 @@
+## 2024-02-19
+
+1. Persons : Modification of the `GPS` button to display the travel time in `hh mm`  
+
+- Modification of the sensors template `sensor.xxx_trajet` in the `sensor.yaml` file.
+- Modification of the `gps` custom_fields in the `person_complete_card` button card template
+- Modification of the `variables` in the Person cards on the Person tab.
+
+2. Activity Card Calendar Button : If no events, the calendar icon is displayed
+
+- `Activity Card` Modification
+
+3. Weather Alerts: 
+
+- Adding a `Condition` to the `Activity Card`
+- Adding a `Condition` to the `Weather subview`
+
+
+---
+
 ## 2024-02-17
 
 1. Thermometer gauge

@@ -2782,48 +2782,26 @@
             {%- set entities = expand('group.person') | selectattr('state', 'eq', 'home') | map(attribute='name') | list -%}
             {{ entities | join(', ') if entities else 'Personne' }}        
          
-###### STATUT PERSON AND GPS POSITION
-
+###### STATUT PERSON ET GPS POSITION
+##Alex
       alex_trajet:
         friendly_name: "Alex tps trajet"
         value_template: >-
             {% set person = states.person.alex.state %}
-            {% if person == "home" %}
-              {{ states.sensor.alex_trajet_travail.state }}
-            {% else %}       
-              {{ states.sensor.alex_trajet_domicile.state }}
-            {% endif %}  
-
-      aurel_trajet:
-        friendly_name: "Aurel tps trajet"
-        value_template: >-
-            {% set person = states.person.herve.state %}
-            {% if person == "home" %}
-              {{ states.sensor.aurel_trajet_travail.state }}
-            {% else %}       
-              {{ states.sensor.aurel_trajet_domicile.state }}
-            {% endif %}  
-
-
-          
-      aurel_activite:
-        friendly_name: Aurel activité          
-        value_template: >-
-            {% set activite = states('sensor.iphone_aurel_activity') %}
-            {% set traduction = {'Unknown':'Mouvement', 'Stationary':'Stationnaire', 'Automotive':'Conduite', 'Walking':'Marche', 'Running':'Course', 'Cycling':'Vélo'} %}
             
-            {{ traduction[activite] if activite in traduction.keys() else 'Inconnu' }}
+            {% if person == "home" %}
+            {% set minutes = states.sensor.alex_trajet_travail.state | int %}
+            {% set heures = minutes // 60 %}
+            {% set minutes_restantes = minutes % 60 %}  
+            {{ heures }}h {{ minutes_restantes }}min            
+              
+            {% else %}  
+            {% set minutes = states.sensor.alex_trajet_domicile.state | int %}
+            {% set heures = minutes // 60 %}
+            {% set minutes_restantes = minutes % 60 %}  
+            {{ heures }}h {{ minutes_restantes }}min            
+            {% endif %} 
 
-          
-      alex_activite:
-        friendly_name: Alex activité          
-        value_template: >-
-            {% set activite = states('sensor.iphone_alex_activity') %}
-            {% set traduction = {'Unknown':'Mouvement', 'Stationary':'Stationnaire', 'Automotive':'Conduite', 'Walking':'Marche', 'Running':'Course', 'Cycling':'Vélo'} %}
-            
-            {{ traduction[activite] if activite in traduction.keys() else 'Inconnu' }}
-
-          
       alex_gps:
         friendly_name: Alex GPS 
         value_template: >-      
@@ -2869,74 +2847,15 @@
             } %}
             
             {{ state_map.get(states.person.alex.state, state_map['default']) }}
-                     
 
-      aurel_gps:
-        friendly_name: Aurel GPS
-        value_template: >-      
-            {%- set aurel_state = states.person.herve.state -%}
+      alex_activite:
+        friendly_name: Alex activité          
+        value_template: >-
+            {% set activite = states('sensor.iphone_alex_activity') %}
+            {% set traduction = {'Unknown':'Mouvement', 'Stationary':'Stationnaire', 'Automotive':'Conduite', 'Walking':'Marche', 'Running':'Course', 'Cycling':'Vélo'} %}
             
-            {%- set location = states.sensor.iphone_aurel_geocoded_location.attributes -%}
-            
-            {%- if aurel_state == "home" -%}
-              Maison
-            {%- elif aurel_state == "not_home" and location -%}
-              {{ location.Name }} {{ state_attr('sensor.iphone_aurel_geocoded_location', 'Postal Code') }} {{ location.Locality }}
-            {%- else -%}
-              {{ aurel_state | default("Inconnu") }}
-            {%- endif -%}
-    
- 
-      aurel_gps_simple:
-        friendly_name: Aurel GPS
-        value_template: >-      
-          {% if states.person.herve.state == "home" %}
-            Maison
-          {% elif states.person.herve.state == "not_home" %}
-            {{ states.sensor.iphone_aurel_geocoded_location.attributes.Locality }}
-          {%- else -%}
-            {{ states.person.herve.state }}
-          {%- endif %}
-          
-      tom_gps:
-        friendly_name: Tom GPS
-        value_template: >-      
-            {% if states.person.tom.state == "home" %}
-              Maison
-            {% elif states.person.tom.state == "not_home" %}
-              Absent              
-            {% else %}
-              {{ states.person.tom.state }}
-            {% endif %}          
-          
-      tom_iphone_battery_state:    
-        friendly_name: Tom état de la batterie de l'iPhone
-        value_template: >-      
-          {{ (states.sensor.iphone_tom_batterie_apple.attributes.battery_status)  }} 
+            {{ traduction[activite] if activite in traduction.keys() else 'Inconnu' }}
 
-      manon_iphone_battery_state:    
-        friendly_name: Manon état de la batterie de l'iPhone
-        value_template: >-      
-          {{ (states.sensor.iphone_manon_batterie_apple.attributes.battery_status)  }} 
-          
-      aurel_duree:
-        friendly_name: "Aurel duree"  
-        value_template: >-        
-          {%- set time = (as_timestamp(now()) - as_timestamp(states.person.herve.last_changed)) | int  %}
-          {%- set minutes = ((time % 3600) // 60) %}
-          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '0min' %}
-          {%- set hours = ((time % 86400) // 3600) %}
-          {%- set hours = '{}h '.format(hours) if hours > 0 else '0h ' %}
-          {%- set days = (time // 86400) %}
-          {%- set days = '{}j '.format(days) if days > 0 else '' %}
-          {%- if time < 60 %}
-          - de 1min 
-          {%- elif time > 86400 %}
-          {{ days + hours }}
-          {%- else -%}
-          {{ days + hours + minutes}}
-          {%- endif -%}
-          
       alex_duree:
         friendly_name: "Alex duree"
         value_template: >-
@@ -2955,6 +2874,107 @@
           {{ days + hours + minutes}}
           {%- endif -%}
           
+##Aurel            
+      aurel_trajet:
+        friendly_name: "Aurel tps trajet"
+        value_template: >-
+            {% set person = states.person.herve.state %}
+            
+            {% if person == "home" %}
+            {% set minutes = states.sensor.aurel_trajet_travail.state | int %}
+            {% set heures = minutes // 60 %}
+            {% set minutes_restantes = minutes % 60 %}  
+            {{ heures }}h {{ minutes_restantes }}min            
+              
+            {% else %}  
+            {% set minutes = states.sensor.aurel_trajet_domicile.state | int %}
+            {% set heures = minutes // 60 %}
+            {% set minutes_restantes = minutes % 60 %}  
+            {{ heures }}h {{ minutes_restantes }}min            
+            {% endif %}   
+
+      aurel_gps:
+        friendly_name: Aurel GPS
+        value_template: >-      
+            {%- set aurel_state = states.person.herve.state -%}
+            
+            {%- set location = states.sensor.iphone_aurel_geocoded_location.attributes -%}
+            
+            {%- if aurel_state == "home" -%}
+              Maison
+            {%- elif aurel_state == "not_home" and location -%}
+              {{ location.Name }} {{ state_attr('sensor.iphone_aurel_geocoded_location', 'Postal Code') }} {{ location.Locality }}
+            {%- else -%}
+              {{ aurel_state | default("Inconnu") }}
+            {%- endif -%}
+    
+      aurel_gps_simple:
+        friendly_name: Aurel GPS
+        value_template: >-      
+          {% if states.person.herve.state == "home" %}
+            Maison
+          {% elif states.person.herve.state == "not_home" %}
+            {{ states.sensor.iphone_aurel_geocoded_location.attributes.Locality }}
+          {%- else -%}
+            {{ states.person.herve.state }}
+          {%- endif %}
+
+      aurel_activite:
+        friendly_name: Aurel activité          
+        value_template: >-
+            {% set activite = states('sensor.iphone_aurel_activity') %}
+            {% set traduction = {'Unknown':'Mouvement', 'Stationary':'Stationnaire', 'Automotive':'Conduite', 'Walking':'Marche', 'Running':'Course', 'Cycling':'Vélo'} %}
+            
+            {{ traduction[activite] if activite in traduction.keys() else 'Inconnu' }}
+
+      aurel_duree:
+        friendly_name: "Aurel duree"  
+        value_template: >-        
+          {%- set time = (as_timestamp(now()) - as_timestamp(states.person.herve.last_changed)) | int  %}
+          {%- set minutes = ((time % 3600) // 60) %}
+          {%- set minutes = '{}min'.format(minutes) if minutes > 0 else '0min' %}
+          {%- set hours = ((time % 86400) // 3600) %}
+          {%- set hours = '{}h '.format(hours) if hours > 0 else '0h ' %}
+          {%- set days = (time // 86400) %}
+          {%- set days = '{}j '.format(days) if days > 0 else '' %}
+          {%- if time < 60 %}
+          - de 1min 
+          {%- elif time > 86400 %}
+          {{ days + hours }}
+          {%- else -%}
+          {{ days + hours + minutes}}
+          {%- endif -%}
+          
+##Tom          
+      tom_trajet:
+        friendly_name: "Tom tps trajet"
+        value_template: >-
+            {% set minutes = states.sensor.tom_trajet_domicile.state | int %}
+            {% set heures = minutes // 60 %}
+            {% set minutes_restantes = minutes % 60 %}  
+            {{ heures }}h {{ minutes_restantes }}min        
+
+      tom_gps:
+        friendly_name: Tom GPS
+        value_template: >-      
+            {% if states.person.tom.state == "home" %}
+              Maison
+            {% elif states.person.tom.state == "not_home" %}
+              Absent              
+            {% else %}
+              {{ states.person.tom.state }}
+            {% endif %}          
+          
+      tom_iphone_battery_state:    
+        friendly_name: Tom état de la batterie de l'iPhone
+        value_template: >-      
+          {{ (states.sensor.iphone_tom_batterie_apple.attributes.battery_status)  }} 
+
+      tom_mac_battery_state:    
+        friendly_name: Tom état de la batterie du mac
+        value_template: >-      
+          {{ (states.sensor.macbook_air_de_tom_batterie.attributes.battery_status)  }} 
+          
       tom_duree:
         friendly_name: "tom duree"
         value_template: >-
@@ -2972,6 +2992,20 @@
           {%- else -%}
           {{ days + hours + minutes}}
           {%- endif -%}
+          
+##Manon          
+      manon_trajet:
+        friendly_name: "Manon tps trajet"
+        value_template: >-
+            {% set minutes = states.sensor.manon_trajet_domicile.state | int %}
+            {% set heures = minutes // 60 %}
+            {% set minutes_restantes = minutes % 60 %}  
+            {{ heures }}h {{ minutes_restantes }}min        
+        
+      manon_iphone_battery_state:    
+        friendly_name: Manon état de la batterie de l'iPhone
+        value_template: >-      
+          {{ (states.sensor.iphone_manon_batterie_apple.attributes.battery_status)  }} 
           
       manon_gps:
         friendly_name: Manon GPS
@@ -3001,7 +3035,8 @@
           {%- else -%}
           {{ days + hours + minutes}}
           {%- endif -%}
-          
+
+##Léane          
       leane_duree:
         friendly_name: "leane duree"
         value_template: >-
@@ -3019,7 +3054,8 @@
           {%- else -%}
           {{ days + hours + minutes}}
           {%- endif -%}
-          
+
+##Nina          
       nina_duree:
         friendly_name: "nina duree"
         value_template: >-
