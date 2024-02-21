@@ -266,6 +266,8 @@ A new card entirely written in the "button card" template called `vacuum_header`
 
 And in the template button card named `vacuum_name` you'll need to modify your entities. After that, everything will be automatic.   
 
+To enable transparent background around the card, modify this code in the YAML configuration file:  `color_map_outside: [0xFF,0x00,0x0,0x000]` 
+
 I love it! Paired with the slightly customized `custom:xiaomi-vacuum-map-card`, it's perfect!  
 
 I have also created `scripts`, which I have injected into `Alexa`, to control robots by voice and do much more than just 'vacuuming' ! [(My French documentation)](https://github.com/herveaurel/Docs/tree/main/Aspirateur)  
