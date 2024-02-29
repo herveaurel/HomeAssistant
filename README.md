@@ -235,6 +235,40 @@ For the trash bins, I have created a `local calendar` for each type of bin.
 </details>  
 
 
+![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/08.jpg)   
+<details>
+ <summary>Click to view the information</summary>  
+
+1. 1st column: HA startup duration (`Uptime` integration)+ Raspberry and SSD performance (`System Monitor`Integration)   
+
+2. 2nd column: 3 parts:   
+
+  - RPI power supply + modem status + Mesh WiFi Router states  
+  - Scripts for: backup + restart HA + restart Mesh WiFi Router + reboot Alexa Media Player integration (sometimes needed to update alarm information)  
+
+```yaml
+alias: Backup full HA
+sequence:
+  - service: hassio.backup_full
+    data:
+      compressed: true
+mode: single
+icon: mdi:cloud-upload
+````  
+```yaml
+alias: Restart HA
+sequence:
+  - service: homeassistant.restart
+    data: {}
+mode: single
+````   
+  - System-wide warnings  
+
+3. 3rd column: All updates (HA, HACS, add-ons, etc...). The circular gauges represent the used RAM. To have this entity, it needs to be enabled (disabled by default) in the `Home Assistant Supervisor`integration.  
+
+</details>  
+
+
 ![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/09.jpg)  
 
 
@@ -434,39 +468,6 @@ icon: mdi:speaker-message
 ````  
 </details>  
 
-
-![alt text](https://github.com/herveaurel/HomeAssistant/blob/main/Captures/20.jpg)   
-<details>
- <summary>Click to view the information</summary>  
-
-1. 1st column: HA startup duration (`Uptime` integration)+ Raspberry and SSD performance (`System Monitor`Integration)   
-
-2. 2nd column: 3 parts:   
-
-  - RPI power supply + modem status + Mesh WiFi Router states  
-  - Scripts for: backup + restart HA + restart Mesh WiFi Router + reboot Alexa Media Player integration (sometimes needed to update alarm information)  
-
-```yaml
-alias: Backup full HA
-sequence:
-  - service: hassio.backup_full
-    data:
-      compressed: true
-mode: single
-icon: mdi:cloud-upload
-````  
-```yaml
-alias: Restart HA
-sequence:
-  - service: homeassistant.restart
-    data: {}
-mode: single
-````   
-  - System-wide warnings  
-
-3. 3rd column: All updates (HA, HACS, add-ons, etc...). The circular gauges represent the used RAM. To have this entity, it needs to be enabled (disabled by default) in the `Home Assistant Supervisor`integration.  
-
-</details>  
 
 ---
 
